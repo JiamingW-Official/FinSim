@@ -1077,27 +1077,13 @@ export default function GlobalMacroPage() {
  const [minPotential, setMinPotential] = useState(0);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="w-9 h-9 rounded-md bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
- <Globe className="w-5 h-5 text-indigo-400" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">Global Macro Trading</h1>
- <p className="text-xs text-muted-foreground">Macro regime analysis · Trade ideas · Central banks · Economic indicators · Currency markets</p>
- </div>
- </div>
- </motion.div>
+  <div className="flex h-full flex-col overflow-y-auto">
+   <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+    <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Global Macro</h1>
+    <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">GDP · INFLATION · RATES · GEOPOLITICS</p>
 
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+    <Tabs value={activeTab} onValueChange={setActiveTab}>
+     <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="dashboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Macro Dashboard</TabsTrigger>
  <TabsTrigger value="trade-ideas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Trade Ideas</TabsTrigger>
  <TabsTrigger value="central-banks" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Central Banks</TabsTrigger>
@@ -1408,6 +1394,7 @@ export default function GlobalMacroPage() {
  </motion.div>
  </TabsContent>
  </Tabs>
- </div>
+   </div>
+  </div>
  );
 }

@@ -900,32 +900,12 @@ export default function AnalyticsPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- {/* HERO Header */}
- <div className="border-b border-border border-l-4 border-l-primary bg-background/80 backdrop-blur sticky top-0 z-10">
- <div className="px-6 py-4 flex items-center justify-between">
- <div className="flex items-center gap-3">
- <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center">
- <Cpu className="w-4 h-4 text-indigo-400" />
- </div>
- <div>
- <h1 className="text-lg font-semibold text-foreground">Advanced Analytics</h1>
- <p className="text-xs text-muted-foreground">Institutional-grade portfolio intelligence</p>
- </div>
- </div>
- <div className="flex items-center gap-2">
- <Badge variant="outline" className="text-xs border-indigo-800 text-indigo-400">
- 252-Day Window
- </Badge>
- <Badge variant="outline" className="text-xs border-border text-muted-foreground">
- Live Simulation
- </Badge>
- </div>
- </div>
- </div>
+  <div className="flex h-full flex-col overflow-y-auto">
+   <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+    <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Analytics</h1>
+    <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">PERFORMANCE · ATTRIBUTION · STATISTICS</p>
 
- <div className="p-4">
- <Tabs defaultValue="attribution">
+    <Tabs defaultValue="attribution">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="attribution" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Performance Attribution</TabsTrigger>
  <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Decomposition</TabsTrigger>

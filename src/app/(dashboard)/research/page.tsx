@@ -1526,32 +1526,17 @@ function DataLibrary() {
 
 export default function ResearchPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- className="flex items-start gap-4"
- >
- <div className="w-10 h-10 rounded-md bg-indigo-950/60 border border-indigo-800/50 flex items-center justify-center shrink-0 mt-0.5">
- <BookOpen className="w-5 h-5 text-indigo-400" />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Economic Research &amp; Data</h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Institutional-grade research, market valuation, economic calendars, thematic deep-dives, and data library.
- </p>
- </div>
- <div className="ml-auto flex items-center gap-2 shrink-0">
- <Badge variant="outline" className="text-xs text-emerald-400 border-emerald-800">Live Data</Badge>
- <Badge variant="outline" className="text-xs text-muted-foreground border-border">Mar 27, 2026</Badge>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Research</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">ANALYSIS · REPORTS · INSIGHTS</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
  <Tabs defaultValue="dashboard" className="w-full">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="dashboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Research Dashboard
  </TabsTrigger>

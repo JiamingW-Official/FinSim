@@ -1826,25 +1826,18 @@ function EarningsQualityTab() {
 
 export default function FundamentalsPage() {
  return (
- <div className="min-h-screen bg-background p-4 md:p-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
- <BarChart2 size={16} className="text-foreground" />
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Fundamentals</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">EARNINGS · MARGINS · BALANCE SHEET · CASH FLOW</p>
  </div>
- <h1 className="text-lg font-medium text-foreground">Fundamental Analysis</h1>
- <span className="text-xs bg-indigo-900/60 text-indigo-400 px-2 py-0.5 rounded-full border border-indigo-800">Pro</span>
- </div>
- <p className="text-sm text-muted-foreground ml-11">Deep-dive screening, income/balance sheet analysis, cash flow, competitive positioning, and earnings quality</p>
- </motion.div>
 
- <Tabs defaultValue="screener" className="mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <div className="border-t border-border mb-6" />
+
+ <Tabs defaultValue="screener">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6 w-full justify-start gap-0">
  <TabsTrigger value="screener" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Search size={12} className="mr-1.5" />
  Quality Screener
@@ -1904,6 +1897,7 @@ export default function FundamentalsPage() {
  </TabsContent>
  </AnimatePresence>
  </Tabs>
+ </div>
  </div>
  );
 }

@@ -961,45 +961,36 @@ function DividendGrowthTab() {
 
 export default function DividendsPage() {
  return (
- <div className="p-4 sm:p-4 space-y-4">
- {/* Header — Hero */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-center justify-between">
- <div>
- <h1 className="text-lg font-medium flex items-center gap-2">
- <DollarSign className="w-5 h-5 text-green-400" />
- Dividend Investing
- </h1>
- <p className="text-sm text-muted-foreground mt-0.5">Build passive income with dividend stocks — track yield, growth, and calendar</p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Dividends</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">YIELD · GROWTH · PAYOUT · REINVESTMENT</p>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="stocks" className="mt-8">
- <TabsList className="grid w-full grid-cols-5">
- <TabsTrigger value="stocks" className="flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
+ <Tabs defaultValue="stocks">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsTrigger value="stocks" className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <TrendingUp className="w-3.5 h-3.5" />
- <span className="hidden sm:inline">Dividend Stocks</span>
- <span className="sm:hidden">Stocks</span>
+ Dividend Stocks
  </TabsTrigger>
- <TabsTrigger value="calculator" className="flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="calculator" className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <DollarSign className="w-3.5 h-3.5" />
- <span className="hidden sm:inline">Income Calculator</span>
- <span className="sm:hidden">Calc</span>
+ Income Calculator
  </TabsTrigger>
- <TabsTrigger value="calendar" className="flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="calendar" className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Calendar className="w-3.5 h-3.5" />
- <span className="hidden sm:inline">Ex-Div Calendar</span>
- <span className="sm:hidden">Calendar</span>
+ Ex-Div Calendar
  </TabsTrigger>
- <TabsTrigger value="analysis" className="flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="analysis" className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <BarChart3 className="w-3.5 h-3.5" />
- <span className="hidden sm:inline">Growth Analysis</span>
- <span className="sm:hidden">Growth</span>
+ Growth Analysis
  </TabsTrigger>
- <TabsTrigger value="tracker" className="flex items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="tracker" className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Activity className="w-3.5 h-3.5" />
- <span className="hidden sm:inline">Income Tracker</span>
- <span className="sm:hidden">Tracker</span>
+ Income Tracker
  </TabsTrigger>
  </TabsList>
 
@@ -1019,6 +1010,7 @@ export default function DividendsPage() {
  <DividendIncomeTracker />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

@@ -1200,20 +1200,15 @@ function EarningsStrategiesTab() {
 
 export default function EarningsPage() {
  return (
- <div className="flex flex-col h-full overflow-hidden">
- {/* Header */}
- <div className="shrink-0 border-b border-border px-4 py-3 flex items-center gap-3">
- <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted/10">
- </div>
- <div>
- <h1 className="text-sm font-medium text-foreground">Earnings Calendar</h1>
- <p className="text-[11px] text-muted-foreground">Calendar, analyst ratings, earnings history &amp; trading strategies</p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Earnings</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">EPS · SURPRISE · GUIDANCE · ESTIMATES</p>
 
  {/* Tabs */}
- <div className="flex-1 min-h-0 overflow-hidden">
- <Tabs defaultValue="calendar" className="flex flex-col h-full">
+ <div className="flex-1 flex flex-col">
+ <Tabs defaultValue="calendar" className="flex flex-col flex-1">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto shrink-0 mx-4 mt-3 mb-0 w-auto">
  <TabsTrigger value="calendar" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Earnings Calendar
@@ -1248,6 +1243,7 @@ export default function EarningsPage() {
  <EarningsDeepDive />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  </div>
  );

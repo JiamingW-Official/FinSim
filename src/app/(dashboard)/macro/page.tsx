@@ -575,24 +575,22 @@ export default function MacroDashboardPage() {
       : "Deflation";
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="flex h-full flex-col overflow-y-auto">
+      <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
       {/* ── Page Header ──────────────────────────────────────────────────────── */}
-      <div className="px-6 pt-6 pb-5 border-b border-border">
-        <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/30 mb-2">Macroeconomics</p>
-        <div className="flex items-end justify-between">
-          <h1 className="font-serif text-4xl font-bold tracking-tight leading-none">
-            Macro <span className="font-light text-muted-foreground/40">Dashboard</span>
-          </h1>
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/50 border border-border rounded px-2 py-0.5">{regimeLabel}</span>
-            <span className="text-[10px] font-mono text-muted-foreground/30">Q1 2026</span>
-          </div>
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Macro Research</h1>
+        <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">CYCLES · INDICATORS · POLICY · GROWTH</p>
+        <div className="flex items-center gap-2 mt-2">
+          <span className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/50 border border-border rounded px-2 py-0.5">{regimeLabel}</span>
+          <span className="text-[10px] font-mono text-muted-foreground/30">Q1 2026</span>
         </div>
-        <p className="text-xs font-mono text-muted-foreground/30 mt-1.5">Simulated indicators · seeded universe</p>
       </div>
 
+      <div className="border-t border-border mb-6" />
+
       {/* ── Hero Stat Strip ───────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-border border-b border-border">
+      <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-border border border-border rounded-lg mb-6">
         <StatChip label="US Real GDP Growth" value={2.5} delta={0.2} unit="%" />
         <StatChip label="CPI (YoY)" value={2.8} delta={-0.1} unit="%" />
         <StatChip label="Unemployment" value={3.9} delta={0.1} unit="%" />
@@ -600,7 +598,7 @@ export default function MacroDashboardPage() {
       </div>
 
       {/* ── Tabs ─────────────────────────────────────────────────────────────── */}
-      <div className="px-6 pt-5 pb-6">
+      <div>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6 w-full justify-start gap-0">
             {["growth", "inflation", "labor", "global", "regime"].map((tab) => (
@@ -1171,10 +1169,11 @@ export default function MacroDashboardPage() {
       </div>
 
       {/* Footer */}
-      <div className="px-6 pb-6 pt-0">
-        <p className="text-[10px] font-mono text-muted-foreground/25 border-t border-border pt-4">
+      <div className="border-t border-border mt-6 pt-4">
+        <p className="text-[10px] font-mono text-muted-foreground/25">
           Data shown is simulated for educational purposes. Sources modeled after BEA, BLS, Federal Reserve, ISM, Conference Board, NY Fed. Last updated: Q1 2026.
         </p>
+      </div>
       </div>
     </div>
   );

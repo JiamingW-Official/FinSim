@@ -1390,46 +1390,27 @@ function PatternStatsTab() {
 
 export default function PatternsPage() {
  return (
- <div className="p-4 space-y-4 min-h-full bg-background">
- {/* Header */}
- <div className="flex items-start justify-between border-l-4 border-l-primary rounded-lg bg-card p-6">
- <div>
- <div className="flex items-center gap-2 mb-1">
- <BarChart2 className="h-5 w-5 text-indigo-400" />
- <h1 className="text-xl font-medium text-foreground">Chart Pattern Recognition</h1>
- </div>
- <p className="text-sm text-muted-foreground">
- Master 20 classic patterns — library, interactive quiz, live scan, and statistics.
- </p>
- </div>
- <div className="flex items-center gap-2">
- <Badge className="bg-indigo-500/15 text-indigo-300 border-indigo-500/30 text-xs">
- 20 Patterns
- </Badge>
- <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 text-xs">
- <Target className="h-3 w-3 mr-1" />
- Pro
- </Badge>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Chart Patterns</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">TECHNICAL · FORMATIONS · BREAKOUTS</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="library" className="mt-8">
- <TabsList className="bg-card border border-border">
- <TabsTrigger value="library" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm">
- <BookOpen className="h-3.5 w-3.5 mr-1.5" />
+ <Tabs defaultValue="library">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsTrigger value="library" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Pattern Library
  </TabsTrigger>
- <TabsTrigger value="quiz" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm">
- <Trophy className="h-3.5 w-3.5 mr-1.5" />
+ <TabsTrigger value="quiz" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Pattern Quiz
  </TabsTrigger>
- <TabsTrigger value="scan" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm">
- <ScanLine className="h-3.5 w-3.5 mr-1.5" />
+ <TabsTrigger value="scan" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Scan Simulator
  </TabsTrigger>
- <TabsTrigger value="stats" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm">
- <BarChart2 className="h-3.5 w-3.5 mr-1.5" />
+ <TabsTrigger value="stats" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Statistics
  </TabsTrigger>
  </TabsList>
@@ -1450,6 +1431,7 @@ export default function PatternsPage() {
  <PatternStatsTab />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

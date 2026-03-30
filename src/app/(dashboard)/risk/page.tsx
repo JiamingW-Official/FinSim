@@ -1199,15 +1199,11 @@ function CorrelationAnalysisTab() {
 
 export default function RiskPage() {
  return (
- <div className="flex flex-col gap-4 p-4 md:p-4">
- <div className="flex items-center justify-between">
- <div>
- <h1 className="text-xl font-medium">Risk Management</h1>
- <p className="mt-0.5 text-sm text-muted-foreground">
- Portfolio risk analytics, position sizing, and stress testing
- </p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Risk Overview</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">PORTFOLIO RISK · VAR · STRESS · EXPOSURE</p>
 
  <Tabs defaultValue="overview" className="space-y-4">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
@@ -1238,6 +1234,7 @@ export default function RiskPage() {
  <TabsContent value="var"><VaRCalculatorTab /></TabsContent>
  <TabsContent value="correlation"><CorrelationAnalysisTab /></TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

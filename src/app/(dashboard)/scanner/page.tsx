@@ -1005,18 +1005,14 @@ export default function ScannerPage() {
  const [activeTab, setActiveTab] = useState<TabId>("patterns");
 
  return (
- <div className="flex flex-col h-full overflow-hidden">
- {/* Header */}
- <div className="shrink-0 border-b border-border px-6 pt-6 pb-5">
- <p className="page-overline">Tools</p>
- <div className="flex items-end justify-between">
- <h1 className="page-title">Market <span className="page-title-light">Scanner</span></h1>
- <span className="page-subtitle">10 tickers · patterns · setups</span>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Market Scanner</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">SIGNALS · ALERTS · BREAKOUTS</p>
 
  {/* Tab bar */}
- <div className="shrink-0 border-b border-border px-6">
+ <div className="shrink-0 border-b border-border mb-5">
  <div className="flex gap-1">
  {TABS.map((tab) => (
  <button
@@ -1024,10 +1020,10 @@ export default function ScannerPage() {
  type="button"
  onClick={() => setActiveTab(tab.id)}
  className={cn(
- "relative border-b-2 px-3 py-2.5 text-xs font-medium transition-colors",
+ "relative border-b-2 px-3 py-2.5 text-[11px] font-medium transition-colors",
  activeTab === tab.id
  ? "border-foreground text-foreground font-semibold"
- : "border-transparent text-muted-foreground hover:text-foreground",
+ : "border-transparent text-muted-foreground/40 hover:text-foreground",
  )}
  >
  {tab.label}
@@ -1037,11 +1033,12 @@ export default function ScannerPage() {
  </div>
 
  {/* Tab content */}
- <div className="flex-1 overflow-y-auto px-6 py-5">
+ <div className="flex-1">
  {activeTab === "patterns" && <PatternScannerTab />}
  {activeTab === "technical" && <TechnicalScannerTab />}
  {activeTab === "setups" && <SetupFinderTab />}
  {activeTab === "library" && <PatternLibrary />}
+ </div>
  </div>
  </div>
  );

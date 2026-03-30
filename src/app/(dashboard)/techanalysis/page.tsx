@@ -1843,29 +1843,16 @@ export default function TechAnalysisPage() {
  const [activeTab, setActiveTab] = useState<string>("candles");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-6">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
- <div className="flex items-start gap-3">
- <div className="p-2 rounded-lg bg-muted/10 border border-border">
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground tracking-tight">Technical Analysis Masterclass</h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Interactive charts · Pattern recognition · Indicators · Volume & S/R analysis
- </p>
- </div>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Technical Analysis</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">INDICATORS · SIGNALS · TREND · MOMENTUM</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {TAB_CONFIG.map(({ id, label }) => (
  <TabsTrigger

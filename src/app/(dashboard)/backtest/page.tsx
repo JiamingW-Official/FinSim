@@ -255,19 +255,14 @@ export default function BacktestPage() {
  : "";
 
  return (
- <div className="flex h-full flex-col">
+ <div className="flex h-full flex-col overflow-y-auto">
  {/* Header */}
- <div className="px-5 pt-6 pb-5 border-b border-border shrink-0">
- <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/30 mb-2">Tools</p>
- <div className="flex items-end justify-between">
- <h1 className="font-serif text-4xl font-bold tracking-tight leading-none">
- Strategy <span className="font-light text-muted-foreground/40">Backtester</span>
- </h1>
+ <div className="px-6 pt-8 pb-0 shrink-0">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Backtesting</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">HISTORICAL · STRATEGY · PERFORMANCE</p>
  {store.totalBacktestsRun > 0 && (
- <p className="text-[11px] font-mono text-muted-foreground/30">{store.totalBacktestsRun} runs · {store.savedStrategies.length} saved</p>
+ <p className="text-[11px] font-mono text-muted-foreground/30 mb-2">{store.totalBacktestsRun} runs · {store.savedStrategies.length} saved</p>
  )}
- </div>
- <p className="text-[11px] font-mono text-muted-foreground/30 mt-1.5">Build, test, and optimize on simulated market data</p>
  </div>
 
  {/* Tab Bar */}

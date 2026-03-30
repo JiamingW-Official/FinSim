@@ -789,36 +789,14 @@ export default function SmartBetaPage() {
  const marketFactor = FACTORS.find((f) => f.id === "market")!;
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto p-4 space-y-4">
- {/* Header */}
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
- <div className="flex items-start justify-between">
- <div>
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-muted/10">
- <Layers className="h-6 w-6 text-primary" />
- </div>
- <div>
- <h1 className="text-xl font-semibold tracking-tight">Smart Beta & Factor ETFs</h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Rules-based systematic exposure to return premia — between passive and active
- </p>
- </div>
- </div>
- </div>
- <div className="flex gap-2">
- <Badge variant="outline" className="text-xs text-muted-foreground">5 Factors</Badge>
- <Badge variant="outline" className="text-xs text-muted-foreground">10 ETFs</Badge>
- <Badge variant="outline" className="text-xs text-muted-foreground">2015–2024</Badge>
- </div>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Smart Beta</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">FACTOR TILTS · ETFs · SYSTEMATIC</p>
 
  {/* Intro blurb */}
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
- <Card className="border-border bg-muted/20 border-l-4 border-l-primary">
- <CardContent className="p-4">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 mb-6">
  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
  <div className="flex items-start gap-2">
  <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
@@ -848,25 +826,22 @@ export default function SmartBetaPage() {
  </div>
  </div>
  </div>
- </CardContent>
- </Card>
- </motion.div>
+ </div>
 
  {/* Factor metrics grid */}
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
- <h2 className="text-sm font-medium text-muted-foreground mb-3">Factor Premium Summary (Long-Run)</h2>
- <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Factor Premium Summary</h2>
+ <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-4">
  {nonMarketFactors.map((f, i) => (
  <FactorCard key={f.id} factor={f} rank={i} />
  ))}
  </div>
- <div className="mt-2">
+ <div className="mb-6">
  <FactorCard factor={marketFactor} rank={5} />
  </div>
- </motion.div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="returns" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Factor Returns</TabsTrigger>
@@ -950,22 +925,14 @@ export default function SmartBetaPage() {
  <FactorBacktester />
  </TabsContent>
  </Tabs>
- </motion.div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Rolling Correlations */}
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm flex items-center gap-2">
- <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
- Rolling Factor Correlations (36-Month)
- </CardTitle>
- </CardHeader>
- <CardContent>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Rolling Factor Correlations</h2>
+ <div className="rounded-lg border border-border bg-card p-5">
  <RollingCorrelationChart />
- </CardContent>
- </Card>
- </motion.div>
+ </div>
  </div>
  </div>
  );
@@ -973,215 +940,215 @@ export default function SmartBetaPage() {
 
 // ── Backtester Component (defined after page for clarity) ─────────────────────
 function FactorBacktester() {
- const allFactorIds = ["value", "momentum", "quality", "lowvol", "size"];
- const [weights, setWeights] = useState<Record<string, number>>({
- value: 20,
- momentum: 20,
- quality: 20,
- lowvol: 20,
- size: 20,
- });
- const [rebalance, setRebalance] = useState<"annual" | "quarterly">("annual");
+  const allFactorIds = ["value", "momentum", "quality", "lowvol", "size"];
+  const [weights, setWeights] = useState<Record<string, number>>({
+    value: 20,
+    momentum: 20,
+    quality: 20,
+    lowvol: 20,
+    size: 20,
+  });
+  const [rebalance, setRebalance] = useState<"annual" | "quarterly">("annual");
 
- const total = Object.values(weights).reduce((a, b) => a + b, 0);
+  const total = Object.values(weights).reduce((a, b) => a + b, 0);
 
- const setWeight = (fid: string, val: number) => {
- setWeights((prev) => ({ ...prev, [fid]: val }));
- };
+  const setWeight = (fid: string, val: number) => {
+    setWeights((prev) => ({ ...prev, [fid]: val }));
+  };
 
- const equalWeight = () => {
- setWeights({ value: 20, momentum: 20, quality: 20, lowvol: 20, size: 20 });
- };
+  const equalWeight = () => {
+    setWeights({ value: 20, momentum: 20, quality: 20, lowvol: 20, size: 20 });
+  };
 
- // Compute blended portfolio returns
- const portfolioReturns = useMemo(() => {
- if (total === 0) return null;
- let cumVal = 100;
- const cumPts: number[] = [100];
- for (const yr of YEARS) {
- let blended = 0;
- for (const fid of allFactorIds) {
- blended += (weights[fid] / total) * YEAR_RETURNS[fid][yr];
- }
- // rebalance bonus/cost (very small synthetic)
- const rCost = rebalance === "quarterly" ? -0.05 : -0.02;
- cumVal = cumVal * (1 + (blended + rCost) / 100);
- cumPts.push(Math.round(cumVal * 10) / 10);
- }
- return { cumPts, finalVal: cumVal };
- }, [weights, total, rebalance]);
+  // Compute blended portfolio returns
+  const portfolioReturns = useMemo(() => {
+    if (total === 0) return null;
+    let cumVal = 100;
+    const cumPts: number[] = [100];
+    for (const yr of YEARS) {
+      let blended = 0;
+      for (const fid of allFactorIds) {
+        blended += (weights[fid] / total) * YEAR_RETURNS[fid][yr];
+      }
+      // rebalance bonus/cost (very small synthetic)
+      const rCost = rebalance === "quarterly" ? -0.05 : -0.02;
+      cumVal = cumVal * (1 + (blended + rCost) / 100);
+      cumPts.push(Math.round(cumVal * 10) / 10);
+    }
+    return { cumPts, finalVal: cumVal };
+  }, [weights, total, rebalance]);
 
- const marketFinalVal = CUMULATIVE["market"][CUMULATIVE["market"].length - 1];
+  const marketFinalVal = CUMULATIVE["market"][CUMULATIVE["market"].length - 1];
 
- // SVG for mini chart
- const W = 480, H = 180;
- const PAD2 = { top: 12, right: 16, bottom: 32, left: 44 };
- const iW = W - PAD2.left - PAD2.right;
- const iH = H - PAD2.top - PAD2.bottom;
- const allVals2 = portfolioReturns
- ? [...portfolioReturns.cumPts, ...CUMULATIVE["market"]]
- : CUMULATIVE["market"];
- const minV2 = Math.min(...allVals2) * 0.95;
- const maxV2 = Math.max(...allVals2) * 1.03;
- const xS2 = (i: number) => (i / (YEARS.length)) * iW;
- const yS2 = (v: number) => iH - ((v - minV2) / (maxV2 - minV2)) * iH;
- const mktPts = CUMULATIVE["market"].map((v, i) => `${xS2(i)},${yS2(v)}`).join(" ");
- const portPts = portfolioReturns?.cumPts.map((v, i) => `${xS2(i)},${yS2(v)}`).join(" ") ?? "";
+  // SVG for mini chart
+  const W = 480, H = 180;
+  const PAD2 = { top: 12, right: 16, bottom: 32, left: 44 };
+  const iW = W - PAD2.left - PAD2.right;
+  const iH = H - PAD2.top - PAD2.bottom;
+  const allVals2 = portfolioReturns
+    ? [...portfolioReturns.cumPts, ...CUMULATIVE["market"]]
+    : CUMULATIVE["market"];
+  const minV2 = Math.min(...allVals2) * 0.95;
+  const maxV2 = Math.max(...allVals2) * 1.03;
+  const xS2 = (i: number) => (i / (YEARS.length)) * iW;
+  const yS2 = (v: number) => iH - ((v - minV2) / (maxV2 - minV2)) * iH;
+  const mktPts = CUMULATIVE["market"].map((v, i) => `${xS2(i)},${yS2(v)}`).join(" ");
+  const portPts = portfolioReturns?.cumPts.map((v, i) => `${xS2(i)},${yS2(v)}`).join(" ") ?? "";
 
- return (
- <div className="space-y-5">
- <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
- {/* Weight sliders */}
- <Card className="border-border">
- <CardHeader className="pb-2">
- <div className="flex items-center justify-between">
- <CardTitle className="text-sm">Factor Allocation</CardTitle>
- <Button size="sm" variant="outline" className="text-xs text-muted-foreground h-7" onClick={equalWeight}>Equal Weight</Button>
- </div>
- </CardHeader>
- <CardContent className="space-y-4">
- {allFactorIds.map((fid) => {
- const f = getFactor(fid);
- return (
- <div key={fid}>
- <div className="flex items-center justify-between mb-1">
- <span className="text-xs font-medium" style={{ color: getFactorColor(fid) }}>{f?.name}</span>
- <span className="text-xs text-muted-foreground font-mono font-medium">{weights[fid]}%</span>
- </div>
- <input
- type="range"
- min={0}
- max={100}
- step={5}
- value={weights[fid]}
- onChange={(e) => setWeight(fid, Number(e.target.value))}
- className="w-full h-1.5 accent-primary cursor-pointer"
- />
- </div>
- );
- })}
- <div className="pt-2 border-t border-border">
- <div className="flex items-center justify-between">
- <span className="text-xs text-muted-foreground">Total allocation</span>
- <span className={cn("text-xs font-medium", total === 100 ? "text-emerald-400" : "text-amber-400")}>
- {total}%
- </span>
- </div>
- {total !== 100 && (
- <p className="text-xs text-amber-400 mt-1">Weights will be normalized to 100%</p>
- )}
- </div>
- <div className="pt-2 border-t border-border">
- <p className="text-xs text-muted-foreground mb-2">Rebalance Frequency</p>
- <div className="flex gap-2">
- {(["annual", "quarterly"] as const).map((r) => (
- <Button
- key={r}
- size="sm"
- variant={rebalance === r ? "default" : "outline"}
- className="text-xs text-muted-foreground h-7 flex-1"
- onClick={() => setRebalance(r)}
- >
- {r === "annual" ? "Annual" : "Quarterly"}
- </Button>
- ))}
- </div>
- </div>
- </CardContent>
- </Card>
+  return (
+    <div className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {/* Weight sliders */}
+        <Card className="border-border">
+          <CardHeader className="pb-2">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-sm">Factor Allocation</CardTitle>
+              <Button size="sm" variant="outline" className="text-xs text-muted-foreground h-7" onClick={equalWeight}>Equal Weight</Button>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {allFactorIds.map((fid) => {
+              const f = getFactor(fid);
+              return (
+                <div key={fid}>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-medium" style={{ color: getFactorColor(fid) }}>{f?.name}</span>
+                    <span className="text-xs text-muted-foreground font-mono font-medium">{weights[fid]}%</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={100}
+                    step={5}
+                    value={weights[fid]}
+                    onChange={(e) => setWeight(fid, Number(e.target.value))}
+                    className="w-full h-1.5 accent-primary cursor-pointer"
+                  />
+                </div>
+              );
+            })}
+            <div className="pt-2 border-t border-border">
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">Total allocation</span>
+                <span className={cn("text-xs font-medium", total === 100 ? "text-emerald-400" : "text-amber-400")}>
+                  {total}%
+                </span>
+              </div>
+              {total !== 100 && (
+                <p className="text-xs text-amber-400 mt-1">Weights will be normalized to 100%</p>
+              )}
+            </div>
+            <div className="pt-2 border-t border-border">
+              <p className="text-xs text-muted-foreground mb-2">Rebalance Frequency</p>
+              <div className="flex gap-2">
+                {(["annual", "quarterly"] as const).map((r) => (
+                  <Button
+                    key={r}
+                    size="sm"
+                    variant={rebalance === r ? "default" : "outline"}
+                    className="text-xs text-muted-foreground h-7 flex-1"
+                    onClick={() => setRebalance(r)}
+                  >
+                    {r === "annual" ? "Annual" : "Quarterly"}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
- {/* Results */}
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm">Backtest Results (2014–2024)</CardTitle>
- </CardHeader>
- <CardContent>
- <div className="w-full overflow-x-auto mb-3">
- <svg viewBox={`0 0 ${W} ${H}`} style={{ minWidth: 320 }} className="w-full">
- <g transform={`translate(${PAD2.left},${PAD2.top})`}>
- {/* Grid */}
- {[100, 150, 200, 250].filter(v => v >= minV2 && v <= maxV2).map((v) => (
- <g key={v}>
- <line x1={0} x2={iW} y1={yS2(v)} y2={yS2(v)} stroke="#334155" strokeDasharray="3,3" strokeWidth={0.5} />
- <text x={-4} y={yS2(v) + 4} textAnchor="end" fill="#64748b" fontSize={9}>{v}</text>
- </g>
- ))}
- {/* X labels */}
- {[0, 5, 10].map((i) => (
- <text key={i} x={xS2(i)} y={iH + 18} textAnchor="middle" fill="#64748b" fontSize={9}>
- {i === 0 ? "2014" : i === 5 ? "2019" : "2024"}
- </text>
- ))}
- {/* Market line */}
- <polyline points={mktPts} fill="none" stroke="#64748b" strokeWidth={1.5} strokeDasharray="5,3" opacity={0.7} />
- {/* Portfolio line */}
- {portPts && (
- <polyline points={portPts} fill="none" stroke="#6366f1" strokeWidth={2.5} opacity={0.95} />
- )}
- {/* Axes */}
- <line x1={0} x2={0} y1={0} y2={iH} stroke="#334155" />
- <line x1={0} x2={iW} y1={iH} y2={iH} stroke="#334155" />
- </g>
- </svg>
- </div>
- <div className="flex gap-4 justify-center mb-4 text-xs text-muted-foreground">
- <div className="flex items-center gap-1.5">
- <span className="inline-block w-6 h-0.5" style={{ backgroundColor: "#6366f1" }} />
- <span className="text-muted-foreground">Your Portfolio</span>
- </div>
- <div className="flex items-center gap-1.5">
- <span className="inline-block w-6 h-0.5 border-t border-dashed border-muted-foreground" />
- <span className="text-muted-foreground">Market Cap (Benchmark)</span>
- </div>
- </div>
- {portfolioReturns && (
- <div className="grid grid-cols-2 gap-3">
- <div className="rounded-lg bg-muted/30 p-3">
- <p className="text-xs text-muted-foreground">Portfolio Final Value</p>
- <p className="text-lg font-medium text-primary">{portfolioReturns.finalVal.toFixed(1)}</p>
- <p className="text-xs text-muted-foreground">Starting 100</p>
- </div>
- <div className="rounded-lg bg-muted/30 p-3">
- <p className="text-xs text-muted-foreground">vs Benchmark</p>
- <p className={cn("text-lg font-medium", portfolioReturns.finalVal >= marketFinalVal ? "text-emerald-400" : "text-red-400")}>
- {portfolioReturns.finalVal >= marketFinalVal ? "+" : ""}
- {(portfolioReturns.finalVal - marketFinalVal).toFixed(1)}
- </p>
- <p className="text-xs text-muted-foreground">Alpha vs market</p>
- </div>
- <div className="rounded-lg bg-muted/30 p-3">
- <p className="text-xs text-muted-foreground">Annualized Return</p>
- <p className="text-lg font-medium">
- {((Math.pow(portfolioReturns.finalVal / 100, 1 / 10) - 1) * 100).toFixed(1)}%
- </p>
- </div>
- <div className="rounded-lg bg-muted/30 p-3">
- <p className="text-xs text-muted-foreground">Rebalance</p>
- <p className="text-lg font-medium capitalize">{rebalance}</p>
- <p className="text-xs text-muted-foreground">
- Cost est: {rebalance === "quarterly" ? "0.05" : "0.02"}%/yr
- </p>
- </div>
- </div>
- )}
- </CardContent>
- </Card>
- </div>
+        {/* Results */}
+        <Card className="border-border">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm">Backtest Results (2014–2024)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="w-full overflow-x-auto mb-3">
+              <svg viewBox={`0 0 ${W} ${H}`} style={{ minWidth: 320 }} className="w-full">
+                <g transform={`translate(${PAD2.left},${PAD2.top})`}>
+                  {/* Grid */}
+                  {[100, 150, 200, 250].filter(v => v >= minV2 && v <= maxV2).map((v) => (
+                    <g key={v}>
+                      <line x1={0} x2={iW} y1={yS2(v)} y2={yS2(v)} stroke="#334155" strokeDasharray="3,3" strokeWidth={0.5} />
+                      <text x={-4} y={yS2(v) + 4} textAnchor="end" fill="#64748b" fontSize={9}>{v}</text>
+                    </g>
+                  ))}
+                  {/* X labels */}
+                  {[0, 5, 10].map((i) => (
+                    <text key={i} x={xS2(i)} y={iH + 18} textAnchor="middle" fill="#64748b" fontSize={9}>
+                      {i === 0 ? "2014" : i === 5 ? "2019" : "2024"}
+                    </text>
+                  ))}
+                  {/* Market line */}
+                  <polyline points={mktPts} fill="none" stroke="#64748b" strokeWidth={1.5} strokeDasharray="5,3" opacity={0.7} />
+                  {/* Portfolio line */}
+                  {portPts && (
+                    <polyline points={portPts} fill="none" stroke="#6366f1" strokeWidth={2.5} opacity={0.95} />
+                  )}
+                  {/* Axes */}
+                  <line x1={0} x2={0} y1={0} y2={iH} stroke="#334155" />
+                  <line x1={0} x2={iW} y1={iH} y2={iH} stroke="#334155" />
+                </g>
+              </svg>
+            </div>
+            <div className="flex gap-4 justify-center mb-4 text-xs text-muted-foreground">
+              <div className="flex items-center gap-1.5">
+                <span className="inline-block w-6 h-0.5" style={{ backgroundColor: "#6366f1" }} />
+                <span className="text-muted-foreground">Your Portfolio</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="inline-block w-6 h-0.5 border-t border-dashed border-muted-foreground" />
+                <span className="text-muted-foreground">Market Cap (Benchmark)</span>
+              </div>
+            </div>
+            {portfolioReturns && (
+              <div className="grid grid-cols-2 gap-3">
+                <div className="rounded-lg bg-muted/30 p-3">
+                  <p className="text-xs text-muted-foreground">Portfolio Final Value</p>
+                  <p className="text-lg font-medium text-primary">{portfolioReturns.finalVal.toFixed(1)}</p>
+                  <p className="text-xs text-muted-foreground">Starting 100</p>
+                </div>
+                <div className="rounded-lg bg-muted/30 p-3">
+                  <p className="text-xs text-muted-foreground">vs Benchmark</p>
+                  <p className={cn("text-lg font-medium", portfolioReturns.finalVal >= marketFinalVal ? "text-emerald-400" : "text-red-400")}>
+                    {portfolioReturns.finalVal >= marketFinalVal ? "+" : ""}
+                    {(portfolioReturns.finalVal - marketFinalVal).toFixed(1)}
+                  </p>
+                  <p className="text-xs text-muted-foreground">Alpha vs market</p>
+                </div>
+                <div className="rounded-lg bg-muted/30 p-3">
+                  <p className="text-xs text-muted-foreground">Annualized Return</p>
+                  <p className="text-lg font-medium">
+                    {((Math.pow(portfolioReturns.finalVal / 100, 1 / 10) - 1) * 100).toFixed(1)}%
+                  </p>
+                </div>
+                <div className="rounded-lg bg-muted/30 p-3">
+                  <p className="text-xs text-muted-foreground">Rebalance</p>
+                  <p className="text-lg font-medium capitalize">{rebalance}</p>
+                  <p className="text-xs text-muted-foreground">
+                    Cost est: {rebalance === "quarterly" ? "0.05" : "0.02"}%/yr
+                  </p>
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
 
- {/* Insights */}
- <Card className="border-border bg-muted/10">
- <CardContent className="p-4">
- <div className="flex items-start gap-2">
- <Info className="h-3.5 w-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
- <div className="space-y-1">
- <p className="text-xs text-muted-foreground font-medium">Backtester Notes</p>
- <p className="text-xs text-muted-foreground">
- Returns are simulated based on historical factor premium research data. Past factor premiums do not guarantee future results. Transaction costs, taxes, and factor crowding effects are not fully modeled. The backtest assumes perfect rebalancing execution.
- </p>
- </div>
- </div>
- </CardContent>
- </Card>
- </div>
- );
+      {/* Insights */}
+      <Card className="border-border bg-muted/10">
+        <CardContent className="p-4">
+          <div className="flex items-start gap-2">
+            <Info className="h-3.5 w-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
+            <div className="space-y-1">
+              <p className="text-xs text-muted-foreground font-medium">Backtester Notes</p>
+              <p className="text-xs text-muted-foreground">
+                Returns are simulated based on historical factor premium research data. Past factor premiums do not guarantee future results. Transaction costs, taxes, and factor crowding effects are not fully modeled. The backtest assumes perfect rebalancing execution.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
 }

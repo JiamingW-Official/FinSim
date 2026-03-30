@@ -1031,74 +1031,40 @@ function SmartBetaTab() {
 
 export default function FactorInvestingPage() {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="p-4 space-y-4 min-h-screen"
- >
- {/* Header */}
- <div className="flex items-start justify-between">
- <div>
- <h1 className="text-2xl font-semibold text-foreground flex items-center gap-2">
- Factor Investing &amp; Smart Beta
- </h1>
- <p className="text-muted-foreground text-sm mt-1">
- Explore systematic factor premiums, portfolio tilts, and the Fama-French model
- </p>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Factor Investing</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">VALUE · MOMENTUM · QUALITY · LOW VOL</p>
+
+ {/* Overview stats */}
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Smart Beta AUM</p>
+ <p className="text-xl font-mono tabular-nums text-foreground">$1.4T</p>
+ <p className="text-xs text-muted-foreground mt-0.5">Global smart beta ETFs</p>
  </div>
- <div className="flex gap-2 flex-wrap justify-end">
- <Badge className="bg-indigo-600/20 text-indigo-300 border-indigo-500/30 text-xs">
- Systematic
- </Badge>
- <Badge className="bg-emerald-600/20 text-emerald-300 border-emerald-500/30 text-xs">
- 5 Factors
- </Badge>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Avg Factor Premium</p>
+ <p className="text-xl font-mono tabular-nums text-emerald-400">+2–4%</p>
+ <p className="text-xs text-muted-foreground mt-0.5">Annualized over market-cap</p>
+ </div>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Research Origin</p>
+ <p className="text-xl font-mono tabular-nums text-foreground">1992</p>
+ <p className="text-xs text-muted-foreground mt-0.5">Fama &amp; French 3-Factor</p>
+ </div>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Factor Crowding Risk</p>
+ <p className="text-xl font-mono tabular-nums text-amber-400">Medium</p>
+ <p className="text-xs text-muted-foreground mt-0.5">Momentum most crowded</p>
  </div>
  </div>
 
- {/* Overview stats — Hero */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
- <Card className="border-border bg-foreground/5">
- <CardContent className="p-4">
- <div className="flex items-center gap-2 mb-1">
- <span className="text-xs text-muted-foreground">Smart Beta AUM</span>
- </div>
- <p className="text-xl font-medium text-foreground">$1.4T</p>
- <p className="text-xs text-muted-foreground mt-0.5">Global smart beta ETFs</p>
- </CardContent>
- </Card>
- <Card className="border-border bg-foreground/5">
- <CardContent className="p-4">
- <div className="flex items-center gap-2 mb-1">
- <span className="text-xs text-muted-foreground">Avg Factor Premium</span>
- </div>
- <p className="text-xl font-medium text-emerald-400">+2–4%</p>
- <p className="text-xs text-muted-foreground mt-0.5">Annualized over market-cap</p>
- </CardContent>
- </Card>
- <Card className="border-border bg-foreground/5">
- <CardContent className="p-4">
- <div className="flex items-center gap-2 mb-1">
- <span className="text-xs text-muted-foreground">Research Origin</span>
- </div>
- <p className="text-xl font-medium text-foreground">1992</p>
- <p className="text-xs text-muted-foreground mt-0.5">Fama &amp; French 3-Factor</p>
- </CardContent>
- </Card>
- <Card className="border-border bg-foreground/5">
- <CardContent className="p-4">
- <div className="flex items-center gap-2 mb-1">
- <span className="text-xs text-muted-foreground">Factor Crowding Risk</span>
- </div>
- <p className="text-xl font-medium text-amber-400">Medium</p>
- <p className="text-xs text-muted-foreground mt-0.5">Momentum most crowded</p>
- </CardContent>
- </Card>
- </div>
+ <div className="border-t border-border my-6" />
 
  {/* Main tabs */}
- <Tabs defaultValue="performance" className="mt-8">
+ <Tabs defaultValue="performance">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="performance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Performance
@@ -1139,6 +1105,7 @@ export default function FactorInvestingPage() {
  <SmartBetaTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
+ </div>
  );
 }

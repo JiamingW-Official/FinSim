@@ -23,7 +23,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -556,43 +555,15 @@ export default function EsgPage() {
  const esgAnnReturn = (Math.pow(lastEsg / 100, 1 / 9) - 1) * 100;
  const nonEsgAnnReturn = (Math.pow(lastNonEsg / 100, 1 / 9) - 1) * 100;
 
- const fadeUp = {
- initial: { opacity: 0, y: 20 },
- animate: { opacity: 1, y: 0 },
- transition: { duration: 0.4 },
- };
-
  return (
- <div className="p-4 md:p-4 space-y-4 min-h-screen bg-background text-foreground">
- {/* Header */}
- <motion.div {...fadeUp} className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start justify-between flex-wrap gap-2">
- <div>
- <h1 className="text-xl font-semibold flex items-center gap-2">
- ESG & Sustainable Investing
- </h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Environmental, Social &amp; Governance analysis — data as of Mar 2026
- </p>
- </div>
- <div className="flex gap-2 flex-wrap">
- <Badge variant="outline" className="text-emerald-400 border-emerald-500/40">
- MSCI ESG Data
- </Badge>
- <Badge variant="outline" className="text-foreground border-primary/40">
- TCFD Aligned
- </Badge>
- <Badge variant="outline" className="text-foreground border-primary/40">
- SDG Framework
- </Badge>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">ESG Investing</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">ENVIRONMENTAL · SOCIAL · GOVERNANCE · IMPACT</p>
 
  {/* Summary chips */}
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
- className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3"
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6"
  >
  {[
  { icon: <Leaf className="w-4 h-4 text-emerald-400" />, label: "Avg E Score", value: Math.round(COMPANIES.reduce((a, c) => a + c.eScore, 0) / COMPANIES.length) },
@@ -610,14 +581,9 @@ export default function EsgPage() {
  </CardContent>
  </Card>
  ))}
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.15 }}
- >
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="scores" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">ESG Scores</TabsTrigger>
@@ -1301,7 +1267,7 @@ export default function EsgPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

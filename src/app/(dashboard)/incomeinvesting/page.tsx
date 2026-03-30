@@ -1659,52 +1659,38 @@ export default function IncomeInvestingPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-start justify-between">
- <div>
- <h1 className="text-lg font-medium text-foreground tracking-tight">Income Investing</h1>
- <p className="text-muted-foreground text-sm mt-1">
- Dividend strategies, fixed income, REITs, and portfolio income construction
- </p>
- </div>
- <div className="flex gap-3 text-center">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Income Investing</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">DIVIDENDS · BONDS · REITs · CASH FLOW</p>
+
+ {/* Stats row */}
+ <div className="flex gap-3 mb-6">
  {[
- { label: "Avg Div Yield", value: `${(DIVIDEND_STOCKS.reduce((s, d) => s + d.yield, 0) / DIVIDEND_STOCKS.length).toFixed(2)}%`, color: "text-green-400" },
- { label: "10yr T-Bond", value: "4.35%", color: "text-primary" },
- { label: "Aristocrats", value: `${DIVIDEND_STOCKS.filter((d) => d.isAristocrat).length}`, color: "text-yellow-400" },
+ { label: "Avg Div Yield", value: `${(DIVIDEND_STOCKS.reduce((s, d) => s + d.yield, 0) / DIVIDEND_STOCKS.length).toFixed(2)}%` },
+ { label: "10yr T-Bond", value: "4.35%" },
+ { label: "Aristocrats", value: `${DIVIDEND_STOCKS.filter((d) => d.isAristocrat).length}` },
  ].map((stat) => (
- <div key={stat.label} className="bg-card border border-border rounded-lg px-4 py-2">
- <div className="text-muted-foreground text-xs">{stat.label}</div>
- <div className={cn("text-lg font-medium", stat.color)}>{stat.value}</div>
+ <div key={stat.label} className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{stat.label}</div>
+ <div className="text-lg font-mono tabular-nums text-foreground mt-1">{stat.value}</div>
  </div>
  ))}
  </div>
- </div>
- </motion.div>
 
- {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Income Strategy Suite</h2>
- <p className="text-sm text-muted-foreground">Dividend screening, yield analysis, fixed income tools, alternative income sources, and portfolio construction.</p>
- </div>
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="flex flex-wrap gap-1 h-auto bg-card border border-border p-1 rounded-md mb-5">
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {tabs.map((tab) => {
  const Icon = tab.icon;
  return (
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="flex items-center gap-1.5 px-3 py-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground rounded-lg"
+ className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  <Icon className="w-3.5 h-3.5" />
  {tab.label}
@@ -1714,41 +1700,30 @@ export default function IncomeInvestingPage() {
  </TabsList>
 
  <TabsContent value="universe" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <DividendUniverseTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="analysis" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <DividendAnalysisTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="fixed" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <FixedIncomeTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="alternative" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <AltIncomeTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="portfolio" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <IncomePortfolioTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="laddering" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <IncomeLadderingTab />
- </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

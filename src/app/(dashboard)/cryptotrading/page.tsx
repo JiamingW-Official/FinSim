@@ -1146,30 +1146,19 @@ export default function CryptoTradingPage() {
  );
 
  return (
- <div className="h-full overflow-y-auto bg-card">
- <div className="max-w-5xl mx-auto px-4 py-6">
- {/* HERO Header */}
- <div className="flex items-center gap-3 mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="p-2.5 rounded-md bg-amber-400/10 border border-amber-400/20">
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Advanced Crypto Trading</h1>
- <p className="text-sm text-muted-foreground">
- On-chain analytics · Derivatives · Cycle indicators · Portfolio strategies
- </p>
- </div>
- <div className="ml-auto flex items-center gap-2">
- <span className="text-xs px-2.5 py-1 rounded-full bg-muted/60 text-muted-foreground border border-border">
- Synthetic data · Seed 3333
- </span>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Crypto Trading</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">SPOT · LEVERAGE · ORDERBOOK · FLOW</p>
 
  {/* Market Summary Strip */}
  <MarketSummaryStrip rng={mulberry32(3333 + 1)} />
 
+ <div className="border-t border-border my-6" />
+
  {/* Tabs */}
- <Tabs defaultValue="technical" className="mt-6">
+ <Tabs defaultValue="technical" className="mt-0">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="technical" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Tech Analysis

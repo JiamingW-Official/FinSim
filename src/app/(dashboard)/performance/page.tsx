@@ -1001,28 +1001,22 @@ export default function PerformancePage() {
  const willHitTarget = pace >= targetReturn;
 
  return (
- <div className="flex flex-col h-full overflow-y-auto p-4 space-y-4">
- {/* Page header */}
- <div className="flex items-center justify-between">
- <div className="flex items-center gap-2">
- <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h1 className="text-lg font-semibold">Performance</h1>
- <Badge variant="outline" className="text-xs text-muted-foreground">YTD 2026</Badge>
- </div>
- <div className="flex items-center gap-2">
- <Button variant="outline" size="sm" className="text-xs text-muted-foreground h-7">
- <Calendar className="h-3 w-3 mr-1" />
- Export
- </Button>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Performance</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">RETURNS · SHARPE · DRAWDOWN · ATTRIBUTION</p>
  </div>
 
- <Tabs defaultValue="overview" className="flex-1">
- <TabsList className="mb-4">
- <TabsTrigger value="overview">Overview</TabsTrigger>
- <TabsTrigger value="benchmarks">vs Benchmarks</TabsTrigger>
- <TabsTrigger value="analytics">Trade Analytics</TabsTrigger>
- <TabsTrigger value="goals">Goals</TabsTrigger>
+ <div className="border-t border-border mb-6" />
+
+ <Tabs defaultValue="overview" className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Overview</TabsTrigger>
+ <TabsTrigger value="benchmarks" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">vs Benchmarks</TabsTrigger>
+ <TabsTrigger value="analytics" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Trade Analytics</TabsTrigger>
+ <TabsTrigger value="goals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Goals</TabsTrigger>
  </TabsList>
 
  {/* ── TAB 1: OVERVIEW ───────────────────────────────────────────────── */}
@@ -1477,6 +1471,7 @@ export default function PerformancePage() {
  </Card>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

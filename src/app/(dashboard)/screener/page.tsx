@@ -593,51 +593,49 @@ export default function ScreenerPage() {
  const enabledCount = criteria.filter((c) => c.enabled).length;
 
  return (
-  <div className="flex h-full flex-col overflow-hidden bg-background">
-   {/* ── Header ──────────────────────────────────────────────────────────── */}
-   <div className="px-6 pt-6 pb-4 border-b border-border/50 shrink-0">
-    <div className="flex items-end justify-between">
-     <div>
-      <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/25 mb-1.5">Tools</p>
-      <h1 className="font-serif text-3xl font-bold tracking-tight leading-none">Screener</h1>
-      <p className="text-[11px] font-mono text-muted-foreground/25 mt-1">50 stocks · Composite scored · Seeded universe</p>
-     </div>
-     <div className="flex items-center gap-2">
-      {activeTab === "builder" && (
-       <>
-        <button
-         type="button"
-         onClick={() => setSaveDialogOpen(true)}
-         className="rounded-md border border-border/60 text-xs px-3 py-1.5 text-muted-foreground/50 hover:text-foreground hover:border-foreground/20 transition-colors"
-        >
-         Save
-        </button>
-        <button
-         type="button"
-         onClick={handleRunScreen}
-         className="rounded-md bg-foreground text-background text-xs font-medium px-4 py-1.5 hover:bg-foreground/90 transition-colors flex items-center gap-1.5"
-        >
-         <Play className="h-3 w-3 fill-current" />
-         Run Screen
-        </button>
-       </>
-      )}
-      {activeTab === "results" && (
+  <div className="flex h-full flex-col overflow-y-auto">
+   <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+   {/* ── Hero ────────────────────────────────────────────────────────────── */}
+   <div className="flex items-start justify-between mb-6">
+    <div>
+     <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Stock Screener</h1>
+     <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">FILTER · RANK · DISCOVER</p>
+    </div>
+    <div className="flex items-center gap-2 mt-1">
+     {activeTab === "builder" && (
+      <>
        <button
         type="button"
-        onClick={handleExportCSV}
+        onClick={() => setSaveDialogOpen(true)}
         className="rounded-md border border-border/60 text-xs px-3 py-1.5 text-muted-foreground/50 hover:text-foreground hover:border-foreground/20 transition-colors"
        >
-        Export CSV
+        Save
        </button>
-      )}
-     </div>
+       <button
+        type="button"
+        onClick={handleRunScreen}
+        className="rounded-md bg-foreground text-background text-xs font-medium px-4 py-1.5 hover:bg-foreground/90 transition-colors flex items-center gap-1.5"
+       >
+        <Play className="h-3 w-3 fill-current" />
+        Run Screen
+       </button>
+      </>
+     )}
+     {activeTab === "results" && (
+      <button
+       type="button"
+       onClick={handleExportCSV}
+       className="rounded-md border border-border/60 text-xs px-3 py-1.5 text-muted-foreground/50 hover:text-foreground hover:border-foreground/20 transition-colors"
+      >
+       Export CSV
+      </button>
+     )}
     </div>
    </div>
 
    {/* ── Tabs ────────────────────────────────────────────────────────────── */}
-   <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col overflow-hidden">
-    <TabsList className="mx-6 mt-3 shrink-0 w-fit h-8 bg-transparent gap-0 p-0 rounded-none border-b border-transparent">
+   <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col">
+    <TabsList className="shrink-0 w-fit h-8 bg-transparent gap-0 p-0 rounded-none border-b border-transparent mb-4">
      {[
       { value: "builder", label: "Screen Builder" },
       { value: "results", label: `Results${hasRun ? ` (${filteredStocks.length})` : ""}` },
@@ -648,7 +646,7 @@ export default function ScreenerPage() {
        key={tab.value}
        value={tab.value}
        className={cn(
-        "rounded-none border-b-2 px-3 pb-2 pt-1 text-xs transition-colors bg-transparent shadow-none",
+        "rounded-none border-b-2 px-3 pb-2 pt-1 text-[11px] transition-colors bg-transparent shadow-none",
         activeTab === tab.value
          ? "border-foreground text-foreground font-medium"
          : "border-transparent text-muted-foreground/40 hover:text-muted-foreground/60",
@@ -660,7 +658,7 @@ export default function ScreenerPage() {
     </TabsList>
 
     {/* ═══ Tab 1: Screen Builder ═════════════════════════════════════════ */}
-    <TabsContent value="builder" className="flex-1 overflow-y-auto px-6 py-5 data-[state=inactive]:hidden">
+    <TabsContent value="builder" className="flex-1 overflow-y-auto py-2 data-[state=inactive]:hidden">
      <div className="max-w-3xl space-y-6">
 
       {/* Presets */}
@@ -814,7 +812,7 @@ export default function ScreenerPage() {
     </TabsContent>
 
     {/* ═══ Tab 2: Results ════════════════════════════════════════════════ */}
-    <TabsContent value="results" className="flex-1 overflow-hidden data-[state=inactive]:hidden">
+    <TabsContent value="results" className="flex-1 overflow-auto data-[state=inactive]:hidden">
      <div className="flex h-full">
       {/* Table */}
       <div className="flex-1 overflow-auto">
@@ -991,7 +989,7 @@ export default function ScreenerPage() {
     </TabsContent>
 
     {/* ═══ Tab 3: Picks ═════════════════════════════════════════════════ */}
-    <TabsContent value="picks" className="flex-1 overflow-y-auto px-6 py-5 data-[state=inactive]:hidden">
+    <TabsContent value="picks" className="flex-1 overflow-y-auto py-2 data-[state=inactive]:hidden">
      <div className="max-w-4xl space-y-10">
 
       {/* Top Picks */}
@@ -1099,7 +1097,7 @@ export default function ScreenerPage() {
     </TabsContent>
 
     {/* ═══ Tab 4: Saved Screens ══════════════════════════════════════════ */}
-    <TabsContent value="saved" className="flex-1 overflow-y-auto px-6 py-5 data-[state=inactive]:hidden">
+    <TabsContent value="saved" className="flex-1 overflow-y-auto py-2 data-[state=inactive]:hidden">
      <div className="max-w-4xl space-y-10">
 
       {/* Your saved screens */}
@@ -1304,6 +1302,7 @@ export default function ScreenerPage() {
      </div>
     </div>
    )}
+  </div>
   </div>
  );
 }

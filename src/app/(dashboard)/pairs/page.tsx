@@ -494,24 +494,21 @@ export default function PairsPage() {
  // ─── Render ────────────────────────────────────────────────────────────────
 
  return (
- <div className="flex flex-col h-full bg-background">
- {/* Header */}
- <div className="shrink-0 border-b border-border px-6 pt-6 pb-5">
- <p className="page-overline">Tools</p>
- <div className="flex items-end justify-between">
- <h1 className="page-title">Pairs <span className="page-title-light">Trading</span></h1>
- <span className="page-subtitle">Statistical arbitrage · mean-reverting spreads</span>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Pairs Trading</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">STATISTICAL ARBITRAGE · COINTEGRATION · SPREAD</p>
+ <div className="border-t border-border mb-6" />
 
  {/* Tab bar */}
- <div className="flex gap-0 border-b border-border shrink-0 px-6">
+ <div className="flex gap-0 border-b border-border shrink-0 mb-6">
  {TABS.map(tab => (
  <button
  key={tab.id}
  onClick={() => setActiveTab(tab.id)}
  className={cn(
- "px-4 py-2.5 text-xs font-medium border-b-2 transition-colors",
+ "px-3 py-2 text-xs font-medium border-b-2 transition-colors",
  activeTab === tab.id
  ? "border-foreground text-foreground font-semibold"
  : "border-transparent text-muted-foreground/50 hover:text-foreground",
@@ -523,7 +520,7 @@ export default function PairsPage() {
  </div>
 
  {/* Content */}
- <div className="flex-1 overflow-y-auto">
+ <div className="flex-1">
 
  {/* ── Tab 1: Pair Finder ───────────────────────────────────────────────── */}
  {activeTab === "finder" && (
@@ -883,6 +880,7 @@ S&P 500 ETF (SPY) / Nasdaq ETF (QQQ): One of the most traded institutional pairs
  ))}
  </div>
  )}
+ </div>
  </div>
  </div>
  );

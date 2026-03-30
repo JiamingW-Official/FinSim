@@ -1710,40 +1710,16 @@ function ProtocolRankings() {
 
 export default function DefiPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start justify-between"
- >
- <div>
- <div className="flex items-center gap-3 mb-1">
- <div className="w-10 h-10 rounded-md bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
- <Droplets size={20} className="text-indigo-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">DeFi Simulator</h1>
- <p className="text-sm text-muted-foreground">Yield Farming, Staking & Liquidity Protocol Lab</p>
- </div>
- </div>
- </div>
- <div className="flex gap-2 mt-1">
- <Badge className="bg-indigo-500/20 text-indigo-300 border-indigo-500/30">
- <Activity size={10} className="mr-1" />
- Live Data
- </Badge>
- <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
- <Flame size={10} className="mr-1" />
- DeFi Summer
- </Badge>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">DeFi</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">PROTOCOLS · YIELD · LIQUIDITY · TVL</p>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="yield" className="mt-8">
+ <Tabs defaultValue="yield" className="mt-0">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "yield", label: "Yield Dashboard", icon: <BarChart3 size={13} /> },

@@ -448,28 +448,19 @@ export default function AlphaResearchPage() {
  const categories = ["all", "momentum", "value", "quality", "sentiment", "technical", "alternative"];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
- <div className="max-w-7xl mx-auto space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
 
- {/* Header */}
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
- <div className="flex items-start justify-between">
- <div>
- <div className="flex items-center gap-3 mb-1">
- <div className="w-8 h-8 rounded-lg bg-muted/10 flex items-center justify-center">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Alpha Research</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">EDGE · SIGNAL DISCOVERY · ALPHA GENERATION</p>
  </div>
- <h1 className="text-lg font-medium">Quantitative Alpha Research</h1>
- </div>
- <p className="text-muted-foreground text-sm ml-11">
- Signal discovery, information coefficient analysis, and alpha decay measurement
- </p>
- </div>
- <Badge className="bg-muted/10 text-foreground border-border">Research Platform</Badge>
- </div>
- </motion.div>
 
- {/* HERO — Key Metrics */}
- <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 border-l-4 border-l-primary rounded-md bg-card p-6">
+ <div className="border-t border-border mb-6" />
+
+ {/* Key Metrics */}
+ <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
  <MetricCard icon={Activity} label="Avg IC (Mean)" value={avgIC} sub="Portfolio IC average" color="#6366f1" delay={0.05} />
  <MetricCard icon={Target} label="Avg IR" value={avgIR} sub="Information Ratio avg" color="#22c55e" delay={0.10} />
  <MetricCard icon={Clock} label="Decay Half-Life" value={`${avgHL}d`} sub="Days until IC halves" color="#f59e0b" delay={0.15} />
@@ -477,9 +468,8 @@ export default function AlphaResearchPage() {
  </div>
 
  {/* Tabs */}
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.4 }}>
- <Tabs defaultValue="library">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <Tabs defaultValue="library" className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="library" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signal Library</TabsTrigger>
  <TabsTrigger value="backtest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtesting</TabsTrigger>
  <TabsTrigger value="decay" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Alpha Decay</TabsTrigger>
@@ -843,7 +833,6 @@ export default function AlphaResearchPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  </div>
  );

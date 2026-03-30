@@ -985,43 +985,32 @@ export default function NewsPage() {
  const downgrades = ANALYST_CHANGES.filter((r) => r.change === "Downgrade").length;
 
  return (
- <div className="flex h-full flex-col overflow-hidden">
- {/* Header */}
- <div className="flex shrink-0 items-center gap-3 border-b border-border border-l-4 border-l-primary px-6 py-6">
- <Newspaper className="h-3.5 w-3.5 text-muted-foreground/50" />
- <div>
- <h1 className="text-xl font-medium leading-none">Market News</h1>
- <p className="mt-0.5 text-xs text-muted-foreground">
- News feed, sentiment analysis, earnings impact &amp; economic calendar
- </p>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Market News</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">HEADLINES · ANALYSIS · CATALYSTS</p>
+ <div className="flex items-center justify-end mb-4">
+ <span className="text-xs text-muted-foreground">Last updated: Mar 27, 2026 · 4:32 PM ET</span>
  </div>
- <div className="ml-auto flex items-center gap-2">
- <span className="text-xs text-muted-foreground">Last updated:</span>
- <span className="text-xs text-muted-foreground font-medium">Mar 27, 2026 · 4:32 PM ET</span>
- </div>
- </div>
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="feed" className="mt-8 flex flex-1 flex-col overflow-hidden">
- <TabsList className="mx-6 mt-3 shrink-0 self-start">
- <TabsTrigger value="feed">
- <Newspaper className="mr-1.5 h-3.5 w-3.5" />
+ <Tabs defaultValue="feed" className="flex flex-1 flex-col">
+ <TabsList className="shrink-0 self-start bg-transparent border-b border-border rounded-none p-0 h-auto mb-6 w-full justify-start">
+ <TabsTrigger value="feed" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  News Feed
  </TabsTrigger>
- <TabsTrigger value="sentiment">
- <Activity className="mr-1.5 h-3.5 w-3.5" />
+ <TabsTrigger value="sentiment" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Sentiment
  </TabsTrigger>
- <TabsTrigger value="earnings">
- <BarChart3 className="mr-1.5 h-3.5 w-3.5" />
+ <TabsTrigger value="earnings" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Earnings Impact
  </TabsTrigger>
- <TabsTrigger value="calendar">
- <Calendar className="mr-1.5 h-3.5 w-3.5" />
+ <TabsTrigger value="calendar" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Event Calendar
  </TabsTrigger>
- <TabsTrigger value="sentiment-ai">
- <Activity className="mr-1.5 h-3.5 w-3.5" />
+ <TabsTrigger value="sentiment-ai" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  AI Sentiment
  </TabsTrigger>
  </TabsList>
@@ -1029,7 +1018,7 @@ export default function NewsPage() {
  {/* ── Tab 1: News Feed ─────────────────────────────────────────── */}
  <TabsContent
  value="feed"
- className="flex-1 overflow-y-auto px-6 pb-6 data-[state=inactive]:hidden"
+ className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden"
  >
  <div className="mb-4 mt-4">
  <CategoryPills active={activeCategory} onChange={setActiveCategory} />
@@ -1134,7 +1123,7 @@ export default function NewsPage() {
  {/* ── Tab 2: Sentiment Dashboard ───────────────────────────────── */}
  <TabsContent
  value="sentiment"
- className="flex-1 overflow-y-auto px-6 pb-6 data-[state=inactive]:hidden"
+ className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden"
  >
  <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
  {/* Fear/Greed gauge */}
@@ -1326,7 +1315,7 @@ export default function NewsPage() {
  {/* ── Tab 3: Earnings Impact ───────────────────────────────────── */}
  <TabsContent
  value="earnings"
- className="flex-1 overflow-y-auto px-6 pb-6 data-[state=inactive]:hidden"
+ className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden"
  >
  <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
  {/* Table */}
@@ -1504,7 +1493,7 @@ export default function NewsPage() {
  {/* ── Tab 4: Event Calendar ────────────────────────────────────── */}
  <TabsContent
  value="calendar"
- className="flex-1 overflow-y-auto px-6 pb-6 data-[state=inactive]:hidden"
+ className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden"
  >
  <div className="mt-4 space-y-4">
  {/* Countdown */}
@@ -1683,13 +1672,14 @@ export default function NewsPage() {
  {/* ── Tab 5: AI Sentiment Analyzer ─────────────────────────────── */}
  <TabsContent
  value="sentiment-ai"
- className="flex-1 overflow-y-auto px-6 pb-6 data-[state=inactive]:hidden"
+ className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden"
  >
  <div className="mt-4">
  <NewsSentimentAnalyzer />
  </div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

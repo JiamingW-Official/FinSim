@@ -1255,51 +1255,19 @@ export default function QuantStrategiesPage() {
  rand(); // consume one to warm up
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-8">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="space-y-2"
- >
- <div className="flex items-center gap-3">
- <div className="p-2 bg-primary/15 rounded-lg">
- <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-bold text-foreground">Quantitative Strategies</h1>
- <p className="text-sm text-muted-foreground">Factor models, momentum, mean reversion, stat arb & ML signals</p>
- </div>
- <span className="ml-4 rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">
- Educational simulation
- </span>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Quant Strategies</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">SYSTEMATIC · ALGORITHMIC · MULTI-FACTOR</p>
  </div>
 
- {/* Summary chips */}
- <div className="flex flex-wrap gap-2 pt-2">
- {[
- { icon: <Layers className="w-3 h-3" />, label: "4 Factor Models", color: "#6366f1" },
- { icon: <TrendingUp className="w-3 h-3" />, label: "4 Momentum Strategies", color: "#22c55e" },
- { icon: <Shuffle className="w-3 h-3" />, label: "5 Cointegrated Pairs", color: "#f59e0b" },
- { icon: <Target className="w-3 h-3" />, label: "Market-Neutral Arb", color: "#ec4899" },
- { icon: <Brain className="w-3 h-3" />, label: "10 ML Features", color: "#64748b" },
- ].map((chip) => (
- <span
- key={chip.label}
- className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs text-muted-foreground font-medium"
- style={{ background: chip.color + "22", color: chip.color }}
- >
- {chip.icon}
- {chip.label}
- </span>
- ))}
- </div>
- </motion.div>
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="factors">
- <TabsList className="bg-card border border-border h-auto p-1 flex flex-wrap gap-1">
+ <Tabs defaultValue="factors" className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "factors", label: "Factor Models" },
  { value: "momentum", label: "Momentum" },
@@ -1310,30 +1278,30 @@ export default function QuantStrategiesPage() {
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary/15 data-[state=active]:text-primary text-muted-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- {TAB_ICONS[tab.value]}
  {tab.label}
  </TabsTrigger>
  ))}
  </TabsList>
 
- <TabsContent value="factors" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="factors" className="mt-0 data-[state=inactive]:hidden">
  <FactorModelsTab />
  </TabsContent>
- <TabsContent value="momentum" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="momentum" className="mt-0 data-[state=inactive]:hidden">
  <MomentumTab />
  </TabsContent>
- <TabsContent value="meanrev" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="meanrev" className="mt-0 data-[state=inactive]:hidden">
  <MeanReversionTab />
  </TabsContent>
- <TabsContent value="statarb" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="statarb" className="mt-0 data-[state=inactive]:hidden">
  <StatArbTab />
  </TabsContent>
- <TabsContent value="mlsignals" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="mlsignals" className="mt-0 data-[state=inactive]:hidden">
  <MLSignalsTab />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

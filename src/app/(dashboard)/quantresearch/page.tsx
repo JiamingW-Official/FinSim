@@ -511,32 +511,23 @@ export default function QuantResearchPage() {
  })).sort((a, b) => b.ret - a.ret);
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
- >
- {/* Header */}
- <div className="flex flex-col gap-1">
- <div className="flex items-center gap-2">
- <FlaskConical className="h-6 w-6 text-primary" />
- <h1 className="text-2xl font-bold">Quantitative Research & Signal Generation</h1>
- </div>
- <p className="text-sm text-muted-foreground max-w-2xl">
- Explore the mechanics of systematic alpha generation — from raw factor signals and IC analysis to alternative data and machine learning.
- </p>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Quant Research</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">SIGNALS · BACKTESTS · ALPHA</p>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
- <TabsTrigger value="signals" className="text-xs text-muted-foreground">Alpha Library</TabsTrigger>
- <TabsTrigger value="combo" className="text-xs text-muted-foreground">Signal Combo</TabsTrigger>
- <TabsTrigger value="ic" className="text-xs text-muted-foreground">IC / ICIR</TabsTrigger>
- <TabsTrigger value="factor" className="text-xs text-muted-foreground">Factor Momentum</TabsTrigger>
- <TabsTrigger value="altdata" className="text-xs text-muted-foreground">Alt Data</TabsTrigger>
- <TabsTrigger value="ml" className="text-xs text-muted-foreground">ML in Quant</TabsTrigger>
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto flex-wrap gap-0">
+ <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Alpha Library</TabsTrigger>
+ <TabsTrigger value="combo" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signal Combo</TabsTrigger>
+ <TabsTrigger value="ic" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">IC / ICIR</TabsTrigger>
+ <TabsTrigger value="factor" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Factor Momentum</TabsTrigger>
+ <TabsTrigger value="altdata" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Alt Data</TabsTrigger>
+ <TabsTrigger value="ml" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">ML in Quant</TabsTrigger>
  </TabsList>
 
  {/* ── Tab 1: Alpha Signal Library ── */}
@@ -990,6 +981,7 @@ export default function QuantResearchPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
+ </div>
  );
 }

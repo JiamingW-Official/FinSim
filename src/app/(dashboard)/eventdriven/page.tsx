@@ -1115,34 +1115,16 @@ function DistressedSPACTab() {
 
 export default function EventDrivenPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
- {/* Header — Hero */}
- <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-indigo-900/40 border border-indigo-800/50">
- </div>
- <div>
- <h1 className="text-lg font-semibold text-foreground">Event-Driven Investment Strategies</h1>
- <p className="text-sm text-muted-foreground">Merger arb · Activism · Spin-offs · Distressed · SPACs</p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- {[
- { label: "Strategy Type", value: "Event-Driven / Special Situations", color: "text-indigo-400" },
- { label: "Return Driver", value: "Corporate Events → Price Convergence", color: "text-emerald-400" },
- { label: "Time Horizon", value: "Days to 18 Months", color: "text-amber-400" },
- ].map((chip) => (
- <div key={chip.label} className="flex items-center gap-1.5 rounded-full bg-card border border-border px-3 py-1">
- <span className="text-xs text-muted-foreground">{chip.label}:</span>
- <span className={cn("text-xs text-muted-foreground font-medium", chip.color)}>{chip.value}</span>
- </div>
- ))}
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Event-Driven</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">M&amp;A · EARNINGS · SPIN-OFFS · CATALYSTS</p>
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="merger" className="w-full mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <Tabs defaultValue="merger" className="w-full flex flex-col flex-1">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6 w-full justify-start">
  {[
  { value: "merger", label: "Merger Arb" },
  { value: "activism", label: "Activism" },
@@ -1192,6 +1174,7 @@ export default function EventDrivenPage() {
  </AnimatePresence>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

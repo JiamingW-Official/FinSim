@@ -20,7 +20,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // ── mulberry32 seeded PRNG ────────────────────────────────────────────────────
@@ -900,46 +899,32 @@ export default function SentimentPage() {
  }, []);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex items-center gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
- <div className="p-2 rounded-lg bg-primary/15">
- <Brain className="h-3.5 w-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">
- Market Psychology & Sentiment
- </h1>
- <p className="text-xs text-muted-foreground">
- Behavioral analytics, fear/greed metrics, institutional flows
- </p>
- </div>
- <Badge className="ml-auto bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-xs">
- Live Synthetic
- </Badge>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Market Sentiment</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">FEAR &amp; GREED · POSITIONING · FLOWS</p>
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-card/80 border border-border flex flex-wrap gap-1 h-auto p-1">
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col flex-1">
+ <TabsList className="shrink-0 w-fit h-8 bg-transparent gap-0 p-0 rounded-none border-b border-transparent mb-6">
  {[
- { value: "feargreed", label: "Fear & Greed", icon: Activity },
- { value: "sentiment", label: "Sentiment", icon: BarChart2 },
- { value: "breadth", label: "Breadth", icon: TrendingUp },
- { value: "institutional", label: "Institutional", icon: Eye },
- { value: "behavioral", label: "Behavioral", icon: Brain },
- ].map(({ value, label, icon: Icon }) => (
+ { value: "feargreed", label: "Fear & Greed" },
+ { value: "sentiment", label: "Sentiment" },
+ { value: "breadth", label: "Breadth" },
+ { value: "institutional", label: "Institutional" },
+ { value: "behavioral", label: "Behavioral" },
+ ].map(({ value, label }) => (
  <TabsTrigger
  key={value}
  value={value}
- className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground flex items-center gap-1.5 px-3 py-1.5"
+ className={cn(
+ "rounded-none border-b-2 px-3 pb-2 pt-1 text-[11px] transition-colors bg-transparent shadow-none",
+ activeTab === value
+ ? "border-foreground text-foreground font-medium"
+ : "border-transparent text-muted-foreground/40 hover:text-muted-foreground/60",
+ )}
  >
- <Icon className="h-3 w-3" />
  {label}
  </TabsTrigger>
  ))}
@@ -1835,6 +1820,7 @@ export default function SentimentPage() {
  </Card>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }
