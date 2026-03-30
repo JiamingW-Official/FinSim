@@ -15,8 +15,6 @@ import {
  RefreshCw,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -965,62 +963,40 @@ export default function YieldCurvePage() {
  )
  )}
 
- {/* Strategy explainer */}
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-medium">Strategy Reference</CardTitle>
- </CardHeader>
- <CardContent>
- <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+ <div className="border-t border-border" />
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Strategy Reference</h2>
+ <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
  {[
- {
- name: "Steepener",
- desc: "Long longer tenor / Short shorter tenor. Profits when the curve steepens (spread widens). Typical in rate cut cycles.",
- color: "border-border bg-primary/5",
- },
- {
- name: "Flattener",
- desc: "Long shorter tenor / Short longer tenor. Profits when the curve flattens. Common in late-cycle tightening phases.",
- color: "border-border bg-primary/5",
- },
- {
- name: "Butterfly",
- desc: "Long wings (short & long maturity) / Short belly (intermediate). Profits when belly richens relative to wings.",
- color: "border-teal-500/30 bg-teal-500/5",
- },
- {
- name: "Condor",
- desc: "Four-leg spread: profit from convergence of two intermediate spreads. More precise, lower carry, narrower range.",
- color: "border-orange-500/30 bg-orange-500/5",
- },
+ { name: "Steepener", desc: "Long longer tenor / Short shorter tenor. Profits when the curve steepens (spread widens). Typical in rate cut cycles.", color: "border-border bg-muted/30" },
+ { name: "Flattener", desc: "Long shorter tenor / Short longer tenor. Profits when the curve flattens. Common in late-cycle tightening phases.", color: "border-border bg-muted/30" },
+ { name: "Butterfly", desc: "Long wings (short & long maturity) / Short belly (intermediate). Profits when belly richens relative to wings.", color: "border-teal-500/30 bg-teal-500/5" },
+ { name: "Condor", desc: "Four-leg spread: profit from convergence of two intermediate spreads. More precise, lower carry, narrower range.", color: "border-orange-500/30 bg-orange-500/5" },
  ].map((s) => (
- <div key={s.name} className={cn("p-3 rounded-lg border", s.color)}>
- <div className="text-xs text-muted-foreground font-medium mb-1">{s.name}</div>
+ <div key={s.name} className={cn("rounded-lg border p-5", s.color)}>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">{s.name}</div>
  <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
  </div>
  ))}
  </div>
- </CardContent>
- </Card>
+ </div>
  </TabsContent>
 
  {/* ── Tab: Historical ── */}
- <TabsContent value="historical" className="mt-4 space-y-4">
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-medium flex items-center gap-2">
+ <TabsContent value="historical" className="space-y-6 data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Historical Inversions</h2>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="flex items-center gap-2 mb-4">
  <AlertTriangle className="h-4 w-4 text-orange-400" />
- Major Yield Curve Inversions
- </CardTitle>
- </CardHeader>
- <CardContent>
+ <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Major Yield Curve Inversions</h3>
+ </div>
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
  <tr className="border-b border-border">
  {["Period", "Start", "End", "Peak Depth", "Recession", "Lead Time", "Severity"].map(
  (h) => (
- <th key={h} className="text-left py-2 pr-4 text-muted-foreground font-medium">
+ <th key={h} className="text-left py-2.5 pr-4 text-[10px] uppercase tracking-widest text-muted-foreground/40 font-normal">
  {h}
  </th>
  )
@@ -1030,36 +1006,29 @@ export default function YieldCurvePage() {
  <tbody>
  {HISTORICAL_INVERSIONS.map((inv) => (
  <tr key={inv.period} className="border-b border-border hover:bg-muted/20 transition-colors">
- <td className="py-2 pr-4 font-medium">{inv.period}</td>
- <td className="py-2 pr-4 text-muted-foreground">{inv.start}</td>
- <td className="py-2 pr-4 text-muted-foreground">{inv.end}</td>
- <td className="py-2 pr-4 text-red-400 font-mono tabular-nums">{inv.depth} bps</td>
- <td className="py-2 pr-4 text-muted-foreground">{inv.recessionStart}</td>
- <td className="py-2 pr-4 font-mono tabular-nums">
+ <td className="py-2.5 pr-4 font-medium text-foreground">{inv.period}</td>
+ <td className="py-2.5 pr-4 text-muted-foreground">{inv.start}</td>
+ <td className="py-2.5 pr-4 text-muted-foreground">{inv.end}</td>
+ <td className="py-2.5 pr-4 text-red-400 font-mono tabular-nums">{inv.depth} bps</td>
+ <td className="py-2.5 pr-4 text-muted-foreground">{inv.recessionStart}</td>
+ <td className="py-2.5 pr-4 font-mono tabular-nums text-foreground">
  {inv.lag > 0 ? `+${inv.lag} mo` : "TBD"}
  </td>
- <td className="py-2">
- <Badge
- variant="outline"
- className={cn("text-xs text-muted-foreground capitalize", severityColor(inv.severity))}
- >
+ <td className="py-2.5">
+ <span className={cn("rounded border px-1.5 py-0.5 text-[11px] capitalize border-border", severityColor(inv.severity))}>
  {inv.severity}
- </Badge>
+ </span>
  </td>
  </tr>
  ))}
  </tbody>
  </table>
  </div>
- </CardContent>
- </Card>
+ </div>
 
  {/* Inversion bar chart */}
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-medium">Inversion Depth Comparison</CardTitle>
- </CardHeader>
- <CardContent>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Inversion Depth Comparison</h3>
  <div className="space-y-3">
  {HISTORICAL_INVERSIONS.map((inv) => {
  const maxDepth = 200;
@@ -1091,90 +1060,72 @@ export default function YieldCurvePage() {
  );
  })}
  </div>
- <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
+ <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
  All 5 modern inversions were followed by recessions (2020 was pandemic-driven). Average lead time: ~19 months.
  Deeper inversions correlated with more severe downturns.
  </p>
- </CardContent>
- </Card>
+ </div>
 
  {/* Regime base rates */}
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-medium">Curve Regime Base Rates (Since 1976)</CardTitle>
- </CardHeader>
- <CardContent>
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Curve Regime Base Rates (Since 1976)</h3>
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
  {[
  { regime: "Normal / Steep", pct: 55, months: 36, color: "bg-green-500" },
  { regime: "Flat (0–50 bps)", pct: 22, months: 8, color: "bg-yellow-500" },
  { regime: "Inverted", pct: 15, months: 10, color: "bg-orange-500" },
  { regime: "Deeply Inverted", pct: 8, months: 14, color: "bg-red-500" },
  ].map((r) => (
- <div key={r.regime} className="p-3 rounded-lg bg-muted/30 border border-border">
+ <div key={r.regime} className="rounded-lg border border-border bg-muted/30 p-5">
  <div className="flex items-center gap-2 mb-2">
  <div className={cn("h-2 w-2 rounded-full", r.color)} />
- <span className="text-xs text-muted-foreground font-medium">{r.regime}</span>
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{r.regime}</span>
  </div>
- <div className="text-lg font-medium tabular-nums">{r.pct}%</div>
- <div className="text-xs text-muted-foreground">Avg {r.months} months</div>
+ <div className="font-mono tabular-nums text-xl font-bold text-foreground">{r.pct}%</div>
+ <div className="text-xs text-muted-foreground mt-1">Avg {r.months} months</div>
  </div>
  ))}
  </div>
- </CardContent>
- </Card>
+ </div>
  </TabsContent>
 
  {/* ── Tab: Macro Signals ── */}
- <TabsContent value="macro" className="mt-4 space-y-4">
+ <TabsContent value="macro" className="space-y-6 data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Macro Signals</h2>
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-medium flex items-center gap-2">
- <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
- Macro Drivers
- </CardTitle>
- </CardHeader>
- <CardContent className="space-y-3">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Macro Drivers</div>
+ <div className="space-y-3">
  {macroSignals.map((sig) => (
  <div
  key={sig.signal}
- className="p-3 rounded-lg border border-border bg-muted/20 space-y-1"
+ className="rounded-lg border border-border bg-muted/30 p-4 space-y-1"
  >
  <div className="flex items-center justify-between">
  <span className="text-xs text-muted-foreground font-medium">{sig.signal}</span>
  <div className="flex items-center gap-2">
  <span className="text-xs text-muted-foreground font-medium tabular-nums">{sig.value}</span>
- <Badge
- variant="outline"
- className={cn(
- "text-xs text-muted-foreground",
+ <span className={cn(
+ "rounded border px-1.5 py-0.5 text-[11px]",
  sig.impact === "bullish"
  ? "text-green-400 border-green-500/30 bg-green-500/10"
  : sig.impact === "bearish"
  ? "text-red-400 border-red-500/30 bg-red-500/5"
  : "text-yellow-400 border-yellow-500/30 bg-yellow-500/10"
- )}
- >
+ )}>
  {sig.impact === "bullish" ? "Steepener" : sig.impact === "bearish" ? "Flattener" : "Neutral"}
- </Badge>
+ </span>
  </div>
  </div>
  <p className="text-xs text-muted-foreground leading-relaxed">{sig.implication}</p>
  </div>
  ))}
- </CardContent>
- </Card>
+ </div>
+ </div>
 
  <div className="space-y-4">
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-medium flex items-center gap-2">
- <Target className="h-3.5 w-3.5 text-muted-foreground/50" />
- Signal Scorecard
- </CardTitle>
- </CardHeader>
- <CardContent>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Signal Scorecard</div>
  {(() => {
  const steepeners = macroSignals.filter((s) => s.impact === "bullish").length;
  const flatteners = macroSignals.filter((s) => s.impact === "bearish").length;
@@ -1188,9 +1139,9 @@ export default function YieldCurvePage() {
  { label: "Neutral signals", count: neutrals, color: "bg-yellow-500", textColor: "text-yellow-400" },
  ].map((row) => (
  <div key={row.label} className="space-y-1">
- <div className="flex justify-between text-xs text-muted-foreground">
+ <div className="flex justify-between text-xs">
  <span className="text-muted-foreground">{row.label}</span>
- <span className={cn("font-medium", row.textColor)}>{row.count}/{total}</span>
+ <span className={cn("font-mono tabular-nums font-medium", row.textColor)}>{row.count}/{total}</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
  <motion.div
@@ -1202,10 +1153,10 @@ export default function YieldCurvePage() {
  </div>
  </div>
  ))}
- <div className="pt-2 border-t border-border">
- <div className="text-xs font-medium text-muted-foreground mb-1">Net Bias</div>
+ <div className="pt-3 border-t border-border">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Net Bias</div>
  <div className={cn(
- "text-sm font-medium",
+ "text-sm font-semibold",
  steepeners > flatteners ? "text-green-400" : steepeners < flatteners ? "text-red-400" : "text-yellow-400"
  )}>
  {steepeners > flatteners ? "Steepener Bias" : steepeners < flatteners ? "Flattener Bias" : "Mixed Signals"}
@@ -1214,17 +1165,11 @@ export default function YieldCurvePage() {
  </div>
  );
  })()}
- </CardContent>
- </Card>
+ </div>
 
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-medium flex items-center gap-2">
- <RefreshCw className="h-3.5 w-3.5 text-muted-foreground/50" />
- Key Risk Factors
- </CardTitle>
- </CardHeader>
- <CardContent className="space-y-2">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Key Risk Factors</div>
+ <div className="space-y-2">
  {[
  { risk: "Re-acceleration of inflation forces Fed to stay higher-for-longer", level: "high" },
  { risk: "Term premium compression on recession fears flattens long end", level: "medium" },
@@ -1246,18 +1191,16 @@ export default function YieldCurvePage() {
  <span className="text-muted-foreground leading-relaxed">{r.risk}</span>
  </div>
  ))}
- </CardContent>
- </Card>
+ </div>
+ </div>
  </div>
  </div>
 
+ <div className="border-t border-border" />
  {/* Fed path */}
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-medium">Fed Rate Path Scenarios & Curve Impact</CardTitle>
- </CardHeader>
- <CardContent>
- <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Fed Rate Path Scenarios</h2>
+ <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
  {[
  {
  scenario: "Soft Landing",
@@ -1284,32 +1227,30 @@ export default function YieldCurvePage() {
  color: "border-red-500/30 bg-red-500/5",
  },
  ].map((sc) => (
- <div key={sc.scenario} className={cn("p-3 rounded-lg border space-y-2", sc.color)}>
+ <div key={sc.scenario} className={cn("rounded-lg border p-5 space-y-3", sc.color)}>
  <div className="flex items-center justify-between">
- <span className="text-xs text-muted-foreground font-medium">{sc.scenario}</span>
- <Badge variant="outline" className="text-xs text-muted-foreground">
+ <span className="text-sm font-semibold text-foreground">{sc.scenario}</span>
+ <span className="rounded border border-border px-1.5 py-0.5 text-[11px] font-mono tabular-nums text-muted-foreground">
  {sc.prob}%
- </Badge>
+ </span>
  </div>
- <div className="space-y-1 text-xs text-muted-foreground">
- <div className="text-muted-foreground">{sc.cuts}</div>
+ <div className="space-y-1.5 text-xs text-muted-foreground">
+ <div>{sc.cuts}</div>
  <div>
  <span className="text-muted-foreground">2s10s → </span>
- <span className="font-medium text-green-400">{sc.impact2s10s}</span>
+ <span className="font-mono tabular-nums font-semibold text-green-400">{sc.impact2s10s}</span>
  </div>
  <div>
  <span className="text-muted-foreground">Best trade: </span>
- <span className="font-medium">{sc.bestTrade}</span>
+ <span className="font-medium text-foreground">{sc.bestTrade}</span>
  </div>
  </div>
  </div>
  ))}
  </div>
- </CardContent>
- </Card>
+ </div>
  </TabsContent>
  </Tabs>
- </div>
 
  {/* ── Info tooltip handler ── */}
  {showInfo && (
@@ -1317,11 +1258,12 @@ export default function YieldCurvePage() {
  className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
  onClick={() => setShowInfo(null)}
  >
- <div className="bg-card border border-border rounded-md p-4 max-w-sm mx-4">
+ <div className="rounded-lg border border-border bg-card p-5 max-w-sm mx-4">
  <p className="text-sm text-muted-foreground">{showInfo}</p>
  </div>
  </div>
  )}
+ </div>
  </div>
  );
 }
