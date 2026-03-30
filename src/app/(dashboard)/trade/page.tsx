@@ -106,29 +106,12 @@ function ChartWithDrawing({ children, flashClass }: { children: React.ReactNode;
  return () => ro.disconnect();
  }, [measure]);
 
- const allData = useMarketDataStore((s) => s.allData);
- const revealedCount = useMarketDataStore((s) => s.revealedCount);
- const visibleBars = revealedCount > 0 ? allData.slice(0, revealedCount) : allData;
-
- let priceHigh = 0;
- let priceLow = Infinity;
- for (const bar of visibleBars) {
- if (bar.high > priceHigh) priceHigh = bar.high;
- if (bar.low < priceLow) priceLow = bar.low;
- }
- if (priceLow === Infinity) priceLow = 0;
- const range = priceHigh - priceLow;
- priceHigh = priceHigh + range * 0.05;
- priceLow = Math.max(0, priceLow - range * 0.05);
-
  return (
  <div ref={containerRef} className={cn("relative flex-1", flashClass)} data-tutorial="chart">
  {children}
  <DrawingOverlay
  width={dims.width}
  height={dims.height}
- priceHigh={priceHigh}
- priceLow={priceLow}
  />
  </div>
  );

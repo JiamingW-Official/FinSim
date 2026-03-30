@@ -21,6 +21,7 @@ import {
 import { useMarketDataStore } from "@/stores/market-data-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { useChartStore, type IndicatorType } from "@/stores/chart-store";
+import { registerChartApi, unregisterChartApi } from "@/stores/chart-api-store";
 import { INTRADAY_TIMEFRAMES } from "@/types/market";
 import type { Timeframe } from "@/types/market";
 import {
@@ -322,6 +323,7 @@ export function CandlestickChart() {
  textColor: CHART_COLORS.text,
  fontFamily: "JetBrains Mono, monospace",
  fontSize: 11,
+ attributionLogo: false,
  },
  grid: {
  vertLines: { color: CHART_COLORS.grid },
@@ -385,7 +387,11 @@ export function CandlestickChart() {
  areaSeriesRef.current = areaSeries;
  volumeSeriesRef.current = volumeSeries;
 
+ // Register chart API for DrawingOverlay coordinate conversion
+ registerChartApi(chart, candleSeries);
+
  return () => {
+ unregisterChartApi();
  chart.remove();
  chartRef.current = null;
  candleSeriesRef.current = null;
