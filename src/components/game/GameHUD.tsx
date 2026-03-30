@@ -90,8 +90,10 @@ function CountdownChip() {
           ? "bg-rose-500/[0.07] text-rose-400/60 ring-rose-500/10"
           : "bg-emerald-500/[0.07] text-emerald-400/50 ring-emerald-500/10",
     )}>
-      <span className="opacity-50">{countdown.label} · {countdown.action}</span>
-      <span className="font-semibold ml-0.5">{countdown.display}</span>
+      <span className="font-semibold">{countdown.currentLabel}</span>
+      <span className="opacity-40 mx-0.5">·</span>
+      <span className="opacity-50">{countdown.label} {countdown.action} </span>
+      <span className="font-semibold">{countdown.display}</span>
     </span>
   );
 }

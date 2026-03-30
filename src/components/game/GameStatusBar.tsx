@@ -108,6 +108,8 @@ export function GameStatusBar() {
                 ? "bg-rose-500/[0.07] text-rose-400/65 ring-rose-500/10"
                 : "bg-emerald-500/[0.07] text-emerald-400/60 ring-emerald-500/10",
           )}>
+            <span className="font-semibold">{countdown.currentLabel}</span>
+            <span className="opacity-40 mx-0.5">·</span>
             <span className="opacity-55">{countdown.label} {countdown.action} </span>
             <span className="font-bold">{countdown.display}</span>
           </span>

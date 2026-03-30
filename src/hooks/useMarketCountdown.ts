@@ -22,9 +22,11 @@ import { useClockStore } from "@/stores/clock-store";
 import { getGameTime } from "@/services/game-clock/engine";
 
 export interface CountdownInfo {
-  /** Short verb phrase, e.g. "Pre-Market" or "Market Open" */
+  /** What session we are currently in, e.g. "Pre-Market", "Day-Market", "Closed" */
+  currentLabel: string;
+  /** Short verb phrase for the next session, e.g. "Day-Market" or "Market" */
   label: string;
-  /** Action word: "opens in" | "closes in" | "ends in" */
+  /** Action word: "opens in" | "closes in" */
   action: string;
   /** Formatted time string: always H:MM:SS or MM:SS */
   display: string;
@@ -60,7 +62,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
   const { gameDate, marketSession, isMarketDay: isMktDay, isSeasonOver } = state;
 
   if (isSeasonOver) {
-    return { label: "", action: "", display: "", urgent: false, target: "none" };
+    return { currentLabel: "", label: "", action: "", display: "", urgent: false, target: "none" };
   }
 
   const h = gameDate.getUTCHours();
@@ -73,6 +75,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
     const secsToMidnight = 86400 - currentSec;
     const remaining = secsToMidnight + PRE_MARKET_SEC;
     return {
+      currentLabel: "Closed",
       label: "Pre-Market",
       action: "opens in",
       display: formatCountdown(remaining),
@@ -87,6 +90,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
         // Before 4AM — count to pre-market open
         const remaining = PRE_MARKET_SEC - currentSec;
         return {
+          currentLabel: "Closed",
           label: "Pre-Market",
           action: "opens in",
           display: formatCountdown(remaining),
@@ -97,6 +101,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
       // After 8PM (AH ended) — count to next day 4AM pre-market
       const secsToMidnight = 86400 - currentSec;
       return {
+        currentLabel: "Closed",
         label: "Pre-Market",
         action: "opens in",
         display: formatCountdown(secsToMidnight + PRE_MARKET_SEC),
@@ -108,7 +113,8 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
     case "pre-market": {
       const remaining = OPEN_SEC - currentSec;
       return {
-        label: "Market Open",
+        currentLabel: "Pre-Market",
+        label: "Day-Market",
         action: "opens in",
         display: formatCountdown(remaining),
         urgent: remaining < URGENT_GAME_SEC,
@@ -119,7 +125,8 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
     case "open": {
       const remaining = CLOSE_SEC - currentSec;
       return {
-        label: "Market Close",
+        currentLabel: "Day-Market",
+        label: "Market",
         action: "closes in",
         display: formatCountdown(remaining),
         urgent: remaining < URGENT_GAME_SEC,
@@ -130,8 +137,9 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
     case "after-hours": {
       const remaining = AH_END_SEC - currentSec;
       return {
-        label: "After-Hours",
-        action: "ends in",
+        currentLabel: "Post-Market",
+        label: "Market",
+        action: "closes in",
         display: formatCountdown(remaining),
         urgent: remaining < URGENT_GAME_SEC,
         target: "close",
@@ -139,10 +147,11 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
     }
   }
 
-  return { label: "", action: "", display: "--:--", urgent: false, target: "none" };
+  return { currentLabel: "", label: "", action: "", display: "--:--", urgent: false, target: "none" };
 }
 
 const EMPTY: CountdownInfo = {
+  currentLabel: "Closed",
   label: "Pre-Market",
   action: "opens in",
   display: "--:--",
@@ -160,6 +169,7 @@ export function useMarketCountdown(): CountdownInfo {
       const next = computeCountdown(seasonStartRealMs);
       // Only trigger re-render when the displayed string changes (every second)
       setInfo((prev) =>
+        prev.currentLabel === next.currentLabel &&
         prev.label === next.label &&
         prev.action === next.action &&
         prev.display === next.display &&
