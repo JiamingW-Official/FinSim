@@ -276,14 +276,27 @@ export function CandlestickChart() {
 
  const handleCrosshairMove = useCallback(
  (param: MouseEventParams<Time>) => {
- if (!param.time || !param.point) {
+ if (!param.point) {
   updateCrosshairPoint(null, null);
   setCrosshairData(null);
   return;
  }
  // Update crosshair point for drawing tools
+ // param.time may be undefined when hovering outside the data range — use coordinateToTime fallback
  const crosshairPrice = candleSeriesRef.current?.coordinateToPrice(param.point.y) ?? null;
- updateCrosshairPoint(param.time as number, crosshairPrice);
+ if (param.time != null) {
+  updateCrosshairPoint(param.time as number, crosshairPrice);
+ } else {
+  const ts = chartRef.current?.timeScale().coordinateToTime(param.point.x);
+  if (ts != null) {
+   updateCrosshairPoint(ts as number, crosshairPrice);
+  }
+  // If coordinateToTime also fails, leave crosshair point as-is so click can still fire
+ }
+ if (!param.time) {
+  setCrosshairData(null);
+  return;
+ }
 
  const bar = dataByTime.get(param.time as number);
  if (bar) {
@@ -425,10 +438,20 @@ export function CandlestickChart() {
 
  // Forward chart clicks to drawing tools
  chart.subscribeClick((param) => {
-  if (!param.time || !param.point) return;
+  if (!param.point) return;
   const price = candleSeries.coordinateToPrice(param.point.y);
   if (price == null) return;
-  updateCrosshairPoint(param.time as number, price);
+  // param.time may be undefined when clicking outside the data range in v5
+  // Fall back to coordinateToTime conversion in that case
+  let time: number;
+  if (param.time != null) {
+   time = param.time as number;
+  } else {
+   const ts = chart.timeScale().coordinateToTime(param.point.x);
+   if (ts == null) return;
+   time = ts as number;
+  }
+  updateCrosshairPoint(time, price);
   notifyChartClick();
  });
 
