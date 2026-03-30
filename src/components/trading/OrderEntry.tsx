@@ -699,21 +699,21 @@ export function OrderEntry() {
  )}
  </AnimatePresence>
 
- {/* Order Type Selector — flat, minimal */}
- <div className="grid grid-cols-4 gap-0.5 rounded-lg border border-border/60 p-0.5">
- {ORDER_TYPES.map((ot) => (
+ {/* Order Type Selector — compact pill tabs */}
+ <div className="flex items-center gap-1">
+ {ORDER_TYPES.map(({ value, label }) => (
  <button
- key={ot.value}
+ key={value}
  type="button"
- onClick={() => setOrderType(ot.value)}
+ onClick={() => setOrderType(value)}
  className={cn(
- "rounded-md py-1.5 text-xs font-medium transition-colors",
- orderType === ot.value
- ? "bg-foreground/[0.08] text-foreground"
- : "text-muted-foreground/60 hover:text-foreground/80",
+ "rounded-full px-2.5 py-0.5 text-[9px] font-mono uppercase tracking-wider transition-colors",
+ orderType === value
+ ? "bg-foreground/10 text-foreground/80 font-semibold"
+ : "text-muted-foreground/30 hover:text-muted-foreground/60",
  )}
  >
- {ot.label}
+ {label}
  </button>
  ))}
  </div>
@@ -721,66 +721,85 @@ export function OrderEntry() {
  {/* Conditional price inputs */}
  {orderType === "limit" && (
  <div>
- <label htmlFor="order-limit-price" className="mb-1.5 text-[10px] font-mono text-muted-foreground/40 uppercase tracking-[0.15em]">
- Limit Price
- </label>
- <Input
+ <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35 block mb-0.5">Limit Price</span>
+ <div className="flex items-center gap-2 rounded border border-border/50 px-2 py-1.5 focus-within:border-primary/40 bg-muted/5">
+ <span className="text-[9px] font-mono text-muted-foreground/40">$</span>
+ <input
  id="order-limit-price"
  type="number"
  step="0.01"
  placeholder={price > 0 ? price.toFixed(2) : "0.00"}
  value={limitPrice}
  onChange={(e) => setLimitPrice(e.target.value)}
- className="h-9 bg-transparent text-sm tabular-nums"
+ className="flex-1 bg-transparent text-[13px] font-mono tabular-nums text-foreground outline-none"
  />
+ </div>
  </div>
  )}
  {orderType === "stop_loss" && (
  <div>
- <label htmlFor="order-stop-price" className="mb-1.5 text-[10px] font-mono text-muted-foreground/40 uppercase tracking-[0.15em]">
- Stop Price
- </label>
- <Input
+ <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35 block mb-0.5">Stop Price</span>
+ <div className="flex items-center gap-2 rounded border border-border/50 px-2 py-1.5 focus-within:border-primary/40 bg-muted/5">
+ <span className="text-[9px] font-mono text-muted-foreground/40">$</span>
+ <input
  id="order-stop-price"
  type="number"
  step="0.01"
  placeholder={price > 0 ? (price * 0.95).toFixed(2) : "0.00"}
  value={stopPrice}
  onChange={(e) => setStopPrice(e.target.value)}
- className="h-9 bg-transparent text-sm tabular-nums"
+ className="flex-1 bg-transparent text-[13px] font-mono tabular-nums text-foreground outline-none"
  />
+ </div>
  </div>
  )}
  {orderType === "take_profit" && (
  <div>
- <label htmlFor="order-target-price" className="mb-1.5 text-[10px] font-mono text-muted-foreground/40 uppercase tracking-[0.15em]">
- Target Price
- </label>
- <Input
+ <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35 block mb-0.5">Target Price</span>
+ <div className="flex items-center gap-2 rounded border border-border/50 px-2 py-1.5 focus-within:border-primary/40 bg-muted/5">
+ <span className="text-[9px] font-mono text-muted-foreground/40">$</span>
+ <input
  id="order-target-price"
  type="number"
  step="0.01"
  placeholder={price > 0 ? (price * 1.1).toFixed(2) : "0.00"}
  value={takeProfitPrice}
  onChange={(e) => setTakeProfitPrice(e.target.value)}
- className="h-9 bg-transparent text-sm tabular-nums"
+ className="flex-1 bg-transparent text-[13px] font-mono tabular-nums text-foreground outline-none"
  />
+ </div>
  </div>
  )}
 
- {/* Quantity */}
+ {/* Quantity — hero input */}
  <div>
- <label htmlFor="order-quantity" className="mb-1.5 text-[10px] font-mono text-muted-foreground/40 uppercase tracking-[0.15em]">
- Quantity
- </label>
- <Input
+ <div className="flex items-center justify-between mb-0.5">
+ <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35">Quantity</span>
+ <button
+ type="button"
+ onClick={() => {
+ if (price > 0 && cash > 0) {
+ const maxShares = Math.floor((cash - 1) / price);
+ if (maxShares > 0) setQuantity(String(maxShares));
+ }
+ }}
+ className="text-[9px] font-mono text-primary/50 hover:text-primary/80 transition-colors"
+ >
+ MAX
+ </button>
+ </div>
+ <div className="flex items-center gap-2 rounded border border-border/50 px-2 py-1.5 focus-within:border-primary/40 bg-muted/5">
+ <input
  id="order-quantity"
  type="number"
- min="1"
  value={quantity}
  onChange={(e) => setQuantity(e.target.value)}
- className="h-9 bg-transparent text-sm tabular-nums"
+ className="flex-1 bg-transparent text-[14px] font-mono tabular-nums text-foreground outline-none"
+ placeholder="0"
+ min="1"
  />
+ <span className="text-[9px] font-mono text-muted-foreground/30">shares</span>
+ </div>
  </div>
 
  {/* Quick quantity buttons */}
@@ -883,6 +902,16 @@ export function OrderEntry() {
  </div>
  )}
 
+ {/* Order summary row */}
+ {canExecute && qty > 0 && price > 0 && (
+ <div className="flex items-center justify-between px-2 mb-1.5 py-1 bg-muted/5 rounded border border-border/20">
+ <span className="text-[9px] font-mono text-muted-foreground/40">Est. Total</span>
+ <span className="text-[11px] font-mono font-semibold tabular-nums text-foreground/80">
+ ${(qty * price).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+ </span>
+ </div>
+ )}
+
  {/* Execute button */}
  <Button
  onClick={() => setShowConfirm(true)}
@@ -911,14 +940,14 @@ export function OrderEntry() {
  : `Place ${orderType.replace("_", " ")}`}
  </Button>
 
- {/* ═══════════════════ ADVANCED OPTIONS ═══════════════════ */}
+ {/* Advanced section trigger */}
  <button
  type="button"
  onClick={() => setShowAdvanced((v) => !v)}
- className="flex w-full items-center justify-between rounded-md border border-border/40 px-3 py-2 text-xs text-muted-foreground/50 hover:text-muted-foreground hover:border-border/70 transition-colors"
+ className="flex w-full items-center justify-between px-3 py-1.5 text-[9px] font-mono uppercase tracking-wider text-muted-foreground/25 hover:text-muted-foreground/50 transition-colors"
  >
- <span>Advanced Orders</span>
- {showAdvanced ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+ <span>Advanced</span>
+ <span>{showAdvanced ? '−' : '+'}</span>
  </button>
 
  <AnimatePresence initial={false}>
