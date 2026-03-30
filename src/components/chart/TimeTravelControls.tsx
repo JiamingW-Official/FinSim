@@ -225,15 +225,15 @@ export function TimeTravelControls() {
     <div className="flex items-center gap-2.5">
      <span className="text-[9px] text-muted-foreground/30">
       <kbd className="font-mono">Space</kbd>
-      {" "}= 播放/暂停
+      {" "}= Play/Pause
      </span>
      <span className="text-[9px] text-muted-foreground/30">
       <kbd className="font-mono">←</kbd>
-      {" "}= 上一根
+      {" "}= Prev
      </span>
      <span className="text-[9px] text-muted-foreground/30">
       <kbd className="font-mono">→</kbd>
-      {" "}= 下一根
+      {" "}= Next
      </span>
     </div>
     <div className="ml-auto flex items-center gap-1.5">

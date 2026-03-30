@@ -28,7 +28,6 @@ import { useMarketDataStore } from "@/stores/market-data-store";
 import { useClockStore } from "@/stores/clock-store";
 import { useCompetitionStore } from "@/stores/competition-store";
 import { LobbyScreen } from "@/components/game/LobbyScreen";
-import { GameHUD } from "@/components/game/GameHUD";
 import { SeasonSummary } from "@/components/game/SeasonSummary";
 import { IndicatorInfoPanel } from "@/components/education/IndicatorInfoPanel";
 import { FundamentalsPanel } from "@/components/trading/FundamentalsPanel";
@@ -87,6 +86,8 @@ function LiveInfoBar() {
 
  if (price === 0) return null;
 
+ const pnlVsStart = ((portfolioValue - 100_000) / 100_000) * 100;
+
  return (
   <div className="flex shrink-0 h-7 border-b border-border/40 px-4 items-center gap-5">
    <div className="flex items-baseline gap-2">
@@ -109,6 +110,10 @@ function LiveInfoBar() {
      <span className="text-[10px] font-mono text-muted-foreground/25 uppercase tracking-wider">Cash</span>
      <span className="text-xs font-medium tabular-nums">${cash.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
     </div>
+    <div className="h-3 w-px bg-border/30" />
+    <span className={pnlVsStart >= 0 ? "text-emerald-400/70" : "text-rose-400/70"} style={{ fontSize: "11px", fontVariantNumeric: "tabular-nums" }}>
+     Season: {pnlVsStart >= 0 ? "+" : ""}{pnlVsStart.toFixed(1)}%
+    </span>
    </div>
   </div>
  );
@@ -207,15 +212,9 @@ export default function TradePage() {
  const isSeasonActive = useCompetitionStore((s) => s.isSeasonActive);
  const updateLeaderboard = useCompetitionStore((s) => s.updateLeaderboard);
 
- // Clock data for GameHUD
- const gameDate = useClockStore((s) => s.gameDate);
- const gameHour = useClockStore((s) => s.gameHour);
- const gameMinute = useClockStore((s) => s.gameMinute);
- const marketSession = useClockStore((s) => s.marketSession);
- const seasonProgress = useClockStore((s) => s.seasonProgress);
  const isSeasonOver = useClockStore((s) => s.isSeasonOver);
 
- // Portfolio data for GameHUD and leaderboard sync
+ // Portfolio value — used for leaderboard sync and SeasonSummary
  const portfolioValue = useTradingStore((s) => s.portfolioValue);
 
  // Throttle leaderboard updates to at most once per game minute (~6 real seconds).
@@ -242,7 +241,6 @@ export default function TradePage() {
   return () => clearTimeout(timer);
  }, [lastTradeFlash, clearTradeFlash]);
 
- const [mainView, setMainView] = useState<"trade" | "replay">("trade");
 
  return (
   <>
@@ -263,47 +261,8 @@ export default function TradePage() {
 
     <LiveInfoBar />
 
-    <GameHUD
-     gameDate={gameDate}
-     gameHour={gameHour}
-     gameMinute={gameMinute}
-     marketSession={marketSession}
-     portfolioValue={portfolioValue}
-     seasonProgress={seasonProgress}
-     isSeasonOver={isSeasonOver}
-    />
-
-    {/* View switcher */}
-    <div className="flex items-center gap-0.5 border-b border-border/40 px-3 py-0.5 shrink-0">
-     <button
-      onClick={() => setMainView("trade")}
-      className={cn(
-       "rounded px-2 py-0.5 text-[10px] font-mono tracking-tight transition-colors",
-       mainView === "trade" ? "bg-foreground/10 text-foreground/80" : "text-muted-foreground/30 hover:text-muted-foreground/60",
-      )}
-     >
-      Trade
-     </button>
-     <button
-      onClick={() => setMainView("replay")}
-      className={cn(
-       "rounded px-2 py-0.5 text-[10px] font-mono tracking-tight transition-colors",
-       mainView === "replay" ? "bg-foreground/10 text-foreground/80" : "text-muted-foreground/30 hover:text-muted-foreground/60",
-      )}
-     >
-      Replay
-     </button>
-    </div>
-
-    {/* Replay view */}
-    {mainView === "replay" && (
-     <div className="flex-1 overflow-hidden">
-      <TradeReplay />
-     </div>
-    )}
-
     {/* ── Trade view: 3-column layout ── */}
-    <div className={cn("flex flex-1 overflow-hidden", mainView !== "trade" && "hidden")}>
+    <div className="flex flex-1 overflow-hidden">
 
      {/* ── LEFT: Watchlist (160px) ── */}
      <div className="flex flex-col border-r border-border/40 shrink-0 overflow-hidden" style={{ width: 160 }}>
@@ -377,6 +336,7 @@ export default function TradePage() {
          Ord{pendingCount > 0 && <span className="ml-0.5 font-mono text-[9px] tabular-nums text-muted-foreground/30">{pendingCount}</span>}
         </TabsTrigger>
         <TabsTrigger value="margin" className={tabCls}>Mgn</TabsTrigger>
+        <TabsTrigger value="replay" className={tabCls}>Replay</TabsTrigger>
        </TabsList>
 
        {/* Order tab */}
@@ -431,6 +391,11 @@ export default function TradePage() {
          </ErrorBoundary>
         </div>
        </TabsContent>
+
+       {/* Replay tab */}
+       <TabsContent value="replay" className="flex-1 overflow-hidden mt-0 data-[state=inactive]:hidden">
+        <TradeReplay />
+       </TabsContent>
       </Tabs>
      </div>
     </div>
@@ -447,16 +412,6 @@ export default function TradePage() {
     <TradeShareCard />
     <AlphaBotAlerts />
     <PositionAlerts />
-
-    <GameHUD
-     gameDate={gameDate}
-     gameHour={gameHour}
-     gameMinute={gameMinute}
-     marketSession={marketSession}
-     portfolioValue={portfolioValue}
-     seasonProgress={seasonProgress}
-     isSeasonOver={isSeasonOver}
-    />
 
     <ChartToolbar data-tutorial="indicators" />
     <IndicatorInfoPanel />
