@@ -9,11 +9,12 @@ import { generateIntradayBars } from "@/services/market-data/intraday-generator"
 
 function getDateRange() {
   // Game season: 2023-01-01 → 2026-03-01.
-  // Fetch from season start so ALL game dates have bar data.
-  // "to" is today so the full historical range is always covered.
+  // "from" is 2022-12-01 — one month before season start — so the chart
+  // shows 30 days of context bars before the game clock begins.
+  // "to" is today so the full season range is covered.
   const to = new Date();
   return {
-    from: "2023-01-01",
+    from: "2022-12-01",
     to: to.toISOString().split("T")[0],
   };
 }

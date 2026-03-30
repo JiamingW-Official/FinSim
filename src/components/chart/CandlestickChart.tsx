@@ -17,6 +17,7 @@ import {
  LineSeries,
  AreaSeries,
  type UTCTimestamp,
+ TickMarkType,
 } from "lightweight-charts";
 import { useMarketDataStore } from "@/stores/market-data-store";
 import { useTradingStore } from "@/stores/trading-store";
@@ -347,6 +348,23 @@ export function CandlestickChart() {
  timeScale: {
  borderColor: CHART_COLORS.borderColor,
  timeVisible: false,
+ secondsVisible: false,
+ tickMarkFormatter: (time: UTCTimestamp, type: TickMarkType) => {
+  const d = new Date((time as number) * 1000);
+  // ET = UTC - 5
+  const etH = (d.getUTCHours() + 19) % 24; // +19 = -5 mod 24
+  const etM = d.getUTCMinutes();
+  if (type === TickMarkType.Time || type === TickMarkType.TimeWithSeconds) {
+   return `${String(etH).padStart(2, "0")}:${String(etM).padStart(2, "0")}`;
+  }
+  if (type === TickMarkType.DayOfMonth) {
+   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+  }
+  if (type === TickMarkType.Month) {
+   return d.toLocaleDateString("en-US", { month: "short", year: "2-digit", timeZone: "UTC" });
+  }
+  return String(d.getUTCFullYear());
+ },
  },
  autoSize: true,
  });
