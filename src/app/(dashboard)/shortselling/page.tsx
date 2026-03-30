@@ -725,29 +725,23 @@ export default function ShortSellingPage() {
  : { label: "Weak / Pass", color: "text-muted-foreground", bg: "bg-muted-foreground/20 border-muted-foreground/30" };
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- {/* Header */}
- <div className="border-b border-border bg-card/60 px-6 py-6 backdrop-blur-sm border-l-4 border-l-primary">
- <div className="max-w-6xl mx-auto flex items-center gap-3">
- <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-500/5 border border-red-500/20">
- <TrendingDown className="w-5 h-5 text-red-400" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">Short Selling</h1>
- <p className="text-xs text-muted-foreground">Mechanics, thesis frameworks, risk management & market efficiency</p>
- </div>
- <div className="ml-auto hidden md:flex items-center gap-2">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Short Selling</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">BORROW · SQUEEZE · CATALYSTS · CONVICTION</p>
+
+ {/* Stats row */}
+ <div className="grid grid-cols-3 gap-3 mb-6">
  <StatChip label="Avg SI (S&P 500)" value="2.4%" sub="% float" />
  <StatChip label="GME Peak SI" value="140%" sub="Jan 2021" />
  <StatChip label="Borrow Rate Range" value="0.3–85%" sub="annualized" />
  </div>
- </div>
- </div>
 
- {/* Tabs */}
- <div className="max-w-6xl mx-auto px-4 py-6">
+ <div className="border-t border-border mb-6" />
+
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "mechanics", label: "Short Mechanics", icon: Activity },
  { value: "thesis", label: "Thesis Framework", icon: Target },
@@ -758,7 +752,7 @@ export default function ShortSellingPage() {
  <TabsTrigger
  key={value}
  value={value}
- className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground flex items-center gap-1.5"
  >
  <Icon className="w-3.5 h-3.5" />
  {label}

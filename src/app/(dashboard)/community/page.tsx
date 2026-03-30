@@ -942,23 +942,18 @@ function TopTradersTab() {
 
 export default function CommunityPage() {
  return (
- <div className="flex flex-col h-full min-h-0">
- {/* HERO header */}
- <div className="shrink-0 border-b border-border border-l-4 border-l-primary px-6 py-4">
- <div className="flex items-center gap-2">
- <div>
- <h1 className="text-lg font-semibold text-foreground leading-none">Community</h1>
- <p className="text-xs text-muted-foreground/60 mt-0.5">
- Trade ideas, analyst ratings, trending tickers, and top traders
- </p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Header */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Community</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">LEADERBOARD · DISCUSSION · INSIGHTS</p>
  </div>
 
  {/* Tabs */}
- <div className="flex-1 min-h-0 overflow-hidden">
- <Tabs defaultValue="ideas" className="h-full flex flex-col">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto shrink-0 mx-6 mt-4 mb-0 w-auto">
+ <div className="flex-1 min-h-0">
+ <Tabs defaultValue="ideas" className="flex flex-col h-full">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto shrink-0 mb-0 w-auto">
  <TabsTrigger value="ideas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Trade Ideas
  </TabsTrigger>
@@ -973,19 +968,20 @@ export default function CommunityPage() {
  </TabsTrigger>
  </TabsList>
 
- <TabsContent value="ideas" className="flex-1 min-h-0 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
+ <TabsContent value="ideas" className="mt-4 data-[state=inactive]:hidden">
  <TradeIdeasTab />
  </TabsContent>
- <TabsContent value="analysts" className="flex-1 min-h-0 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
+ <TabsContent value="analysts" className="mt-4 data-[state=inactive]:hidden">
  <AnalystRatingsTab />
  </TabsContent>
- <TabsContent value="trending" className="flex-1 min-h-0 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
+ <TabsContent value="trending" className="mt-4 data-[state=inactive]:hidden">
  <TrendingTab />
  </TabsContent>
- <TabsContent value="traders" className="flex-1 min-h-0 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
+ <TabsContent value="traders" className="mt-4 data-[state=inactive]:hidden">
  <TopTradersTab />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  </div>
  );

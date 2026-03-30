@@ -996,51 +996,35 @@ export default function CrossAssetMomPage() {
  );
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
- {/* HERO Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-indigo-900/40 border border-indigo-700/40">
- <TrendingUp size={22} className="text-indigo-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Cross-Asset Momentum</h1>
- <p className="text-sm text-muted-foreground">
- Time-series momentum, cross-sectional signals, trend following &amp; AQR evidence
- </p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* HERO */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Cross-Asset Momentum</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">TREND · CARRY · DIVERSIFICATION</p>
+
+ <div className="border-t border-border mb-6" />
+
  {/* Key metrics row */}
- <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
  <StatCard label="TSMOM Sharpe" value="0.88" sub="12-1 lookback" color="#6366f1" icon={BarChart3} />
  <StatCard label="CTA Avg Return" value="13.6%" sub="10yr backtest" color="#22c55e" icon={TrendingUp} />
  <StatCard label="Asset Classes" value="8" sub="diversified" color="#f59e0b" icon={Layers} />
  <StatCard label="Crisis Alpha" value="+14.6%" sub="2008 trend return" color="#ec4899" icon={Shield} />
  </div>
- </motion.div>
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab}>
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="factor" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
- <Activity size={13} className="mr-1.5" />
  Momentum Factor
  </TabsTrigger>
  <TabsTrigger value="trend" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
- <GitBranch size={13} className="mr-1.5" />
  Trend Following
  </TabsTrigger>
  <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
- <Globe size={13} className="mr-1.5" />
  Multi-Asset Portfolio
  </TabsTrigger>
  <TabsTrigger value="implementation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
- <Zap size={13} className="mr-1.5" />
  Strategy Implementation
  </TabsTrigger>
  </TabsList>
@@ -1919,6 +1903,7 @@ export default function CrossAssetMomPage() {
  </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

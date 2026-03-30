@@ -982,55 +982,18 @@ export default function MultiStrategyPage() {
  const [activeTab, setActiveTab] = useState("pods");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-indigo-900/40 border border-indigo-800">
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Multi-Strategy</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">DIVERSIFIED · UNCORRELATED · RISK-ADJUSTED</p>
  </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Multi-Strategy Hedge Funds</h1>
- <p className="text-sm text-muted-foreground">Millennium / Point72 / Citadel model — pod architecture, risk, and economics</p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- {[
- { label: "Pod Model", color: "indigo" },
- { label: "Pass-Through Expenses", color: "amber" },
- { label: "Centralized Risk", color: "red" },
- { label: "Capital Allocation", color: "cyan" },
- { label: "~$200B+ Combined AUM", color: "emerald" },
- ].map((chip) => {
- const colors: Record<string, string> = {
- indigo: "bg-indigo-900/30 text-indigo-300 border-indigo-800",
- amber: "bg-amber-900/30 text-amber-300 border-amber-800",
- red: "bg-red-900/30 text-red-300 border-red-800",
- cyan: "bg-cyan-900/30 text-muted-foreground border-cyan-800",
- emerald: "bg-emerald-900/30 text-emerald-300 border-emerald-800",
- };
- return (
- <span key={chip.label} className={`text-xs text-muted-foreground px-2 py-0.5 rounded border ${colors[chip.color]}`}>
- {chip.label}
- </span>
- );
- })}
- </div>
- </motion.div>
 
- {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Multi-Strategy Architecture</h2>
- <p className="text-sm text-muted-foreground">Pod structure, strategy allocation, centralized risk management, and fund economics of the Millennium/Citadel model.</p>
- </div>
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="pods" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Pod Structure

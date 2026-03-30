@@ -608,27 +608,11 @@ export default function CommoditySpreadsPage() {
  const crushCurrent = CRUSH_BARS[CRUSH_BARS.length - 1];
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
- >
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* HERO Header */}
- <div className="flex flex-col gap-1 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-center gap-2">
- <ArrowUpDown className="w-6 h-6 text-indigo-400" />
- <h1 className="text-xl font-semibold text-foreground">
- Commodity Spreads &amp; Relative Value
- </h1>
- <Badge className="bg-indigo-500/15 text-indigo-400 border-indigo-500/30 text-xs">
- Advanced
- </Badge>
- </div>
- <p className="text-sm text-muted-foreground">
- Crack spreads, spark spreads, crush margins, calendar structures and relative value strategies across energy and agricultural commodities
- </p>
- </div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Commodity Spreads</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">CRACK · CRUSH · CALENDAR · BASIS</p>
 
  {/* Live Summary Chips */}
  <div className="flex flex-wrap gap-2">
@@ -1455,6 +1439,7 @@ export default function CommoditySpreadsPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
+ </div>
  );
 }

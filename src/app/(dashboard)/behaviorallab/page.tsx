@@ -755,46 +755,26 @@ export default function BehavioralLabPage() {
  const allAnswered = QUIZ_QUESTIONS.every((q) => quizAnswers[q.id] !== undefined);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* HERO Header */}
- <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-primary/10 border border-border">
- <Brain className="w-6 h-6 text-primary" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Behavioral Economics Lab</h1>
- <p className="text-sm text-muted-foreground">
- Interactive experiments revealing cognitive biases in investing
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- {(Object.keys(BIAS_META) as BiasType[]).map((b) => (
- <Badge
- key={b}
- variant="outline"
- className="text-xs border-border text-muted-foreground"
- style={{ borderColor: BIAS_META[b].color + "44", color: BIAS_META[b].color }}
- >
- {BIAS_META[b].label}
- </Badge>
- ))}
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-8">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Behavioral Finance</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">BIASES · PSYCHOLOGY · HEURISTICS · DECISION</p>
  </div>
 
  <Tabs defaultValue="detector" className="space-y-4">
- <TabsList className="bg-card border border-border grid grid-cols-4 w-full md:w-auto">
- <TabsTrigger value="detector" className="text-xs text-muted-foreground sm:text-sm">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto flex flex-wrap gap-0">
+ <TabsTrigger value="detector" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Bias Detector
  </TabsTrigger>
- <TabsTrigger value="experiments" className="text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="experiments" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Experiments
  </TabsTrigger>
- <TabsTrigger value="impact" className="text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="impact" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Portfolio Impact
  </TabsTrigger>
- <TabsTrigger value="debiasing" className="text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="debiasing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Debiasing
  </TabsTrigger>
  </TabsList>
@@ -1648,6 +1628,7 @@ export default function BehavioralLabPage() {
  </Card>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

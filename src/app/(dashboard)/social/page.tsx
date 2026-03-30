@@ -1361,24 +1361,16 @@ export default function SocialPage() {
  const [tab, setTab] = useState("leaderboard");
 
  return (
- <div className="flex flex-col h-full min-h-0">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <div className="shrink-0 border-b border-border px-6 py-6">
- <div className="flex items-center gap-3">
- <div className="h-8 w-8 rounded-lg bg-muted/10 flex items-center justify-center">
- </div>
- <div>
- <h1 className="text-xl font-bold tracking-tight">Social Trading</h1>
- <p className="text-xs text-muted-foreground">Leaderboards, trade ideas, copy trading &amp; community insights</p>
- </div>
- </div>
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Social</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">NETWORK · PORTFOLIOS · IDEAS · TRENDING</p>
  </div>
 
- {/* Content */}
- <div className="flex-1 min-h-0 overflow-y-auto">
- <div className="max-w-5xl mx-auto px-6 py-4">
- <Tabs value={tab} onValueChange={setTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4 w-auto">
+ <Tabs value={tab} onValueChange={setTab} className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-0 w-auto">
  <TabsTrigger value="leaderboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <span>Leaderboard</span>
  </TabsTrigger>
@@ -1396,23 +1388,22 @@ export default function SocialPage() {
  </TabsTrigger>
  </TabsList>
 
- <TabsContent value="leaderboard" className="data-[state=inactive]:hidden">
+ <TabsContent value="leaderboard" className="mt-4 data-[state=inactive]:hidden">
  <LeaderboardTab />
  </TabsContent>
- <TabsContent value="ideas" className="data-[state=inactive]:hidden">
+ <TabsContent value="ideas" className="mt-4 data-[state=inactive]:hidden">
  <TradeIdeasTab />
  </TabsContent>
- <TabsContent value="copy" className="data-[state=inactive]:hidden">
+ <TabsContent value="copy" className="mt-4 data-[state=inactive]:hidden">
  <CopyTradingTab />
  </TabsContent>
- <TabsContent value="stats" className="data-[state=inactive]:hidden">
+ <TabsContent value="stats" className="mt-4 data-[state=inactive]:hidden">
  <CommunityStatsTab />
  </TabsContent>
- <TabsContent value="hub" className="data-[state=inactive]:hidden">
+ <TabsContent value="hub" className="mt-4 data-[state=inactive]:hidden">
  <SocialTradingHub />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  </div>
  );

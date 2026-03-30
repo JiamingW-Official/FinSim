@@ -229,13 +229,13 @@ export default function JournalPageClient() {
 
  return (
  <div className="flex h-full flex-col overflow-y-auto">
- <div className="space-y-4 p-4">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
 
  {/* Header */}
- <div>
- <p className="text-xs text-muted-foreground mb-1">Analytics</p>
- <h1 className="text-lg font-semibold tracking-tight">Trade Journal</h1>
- <p className="text-xs text-muted-foreground mt-0.5">
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Trade Journal</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">NOTES · REVIEW · PATTERNS · IMPROVEMENT</p>
+ <p className="text-xs text-muted-foreground mt-1.5">
  <span className="font-mono tabular-nums">{rows.length}</span> closed trade{rows.length !== 1 ? "s" : ""}
  </p>
  </div>

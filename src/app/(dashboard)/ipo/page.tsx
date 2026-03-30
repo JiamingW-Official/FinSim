@@ -845,29 +845,23 @@ export default function IPOPage() {
  );
 
  return (
- <div className="flex flex-col h-full overflow-hidden">
+ <div className="flex h-full flex-col overflow-y-auto">
  {selectedIPO && (
  <IPODetailModal ipo={selectedIPO} onClose={() => setSelectedIPO(null)} />
  )}
 
- {/* Header — Hero */}
- <div className="shrink-0 border-b border-border border-l-4 border-l-primary px-6 py-4">
- <div className="flex items-center gap-3">
- <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted/10">
- <Building2 className="h-3.5 w-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">IPO Center</h1>
- <p className="text-xs text-muted-foreground">Track, analyze, and simulate IPO investing</p>
- </div>
- </div>
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">IPO Markets</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">PRICING · ALLOCATION · LOCK-UP · AFTERMARKET</p>
  </div>
 
+ <div className="border-t border-border mb-6" />
+
  {/* Tabs */}
- <div className="flex-1 min-h-0 overflow-hidden">
- <Tabs defaultValue="upcoming" className="h-full flex flex-col">
- <div className="shrink-0 border-b border-border px-6">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <Tabs defaultValue="upcoming" className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "upcoming", label: "Upcoming IPOs" },
  { value: "recent", label: "Recent IPOs" },
@@ -883,10 +877,9 @@ export default function IPOPage() {
  </TabsTrigger>
  ))}
  </TabsList>
- </div>
 
  {/* ── Tab 1: Upcoming IPOs ── */}
- <TabsContent value="upcoming" className="flex-1 min-h-0 overflow-y-auto data-[state=inactive]:hidden m-0">
+ <TabsContent value="upcoming" className="data-[state=inactive]:hidden mt-0">
  <div className="p-4 space-y-2">
  <div className="flex items-center justify-between mb-4">
  <p className="text-sm text-muted-foreground">
@@ -974,7 +967,7 @@ export default function IPOPage() {
  </TabsContent>
 
  {/* ── Tab 2: Recent IPOs ── */}
- <TabsContent value="recent" className="flex-1 min-h-0 overflow-y-auto data-[state=inactive]:hidden m-0">
+ <TabsContent value="recent" className="data-[state=inactive]:hidden mt-0">
  <div className="p-4">
  {/* Filters */}
  <div className="flex flex-wrap gap-2 mb-5">
@@ -1061,14 +1054,14 @@ export default function IPOPage() {
  </TabsContent>
 
  {/* ── Tab 3: IPO Analysis ── */}
- <TabsContent value="analysis" className="flex-1 min-h-0 overflow-y-auto data-[state=inactive]:hidden m-0">
+ <TabsContent value="analysis" className="data-[state=inactive]:hidden mt-0">
  <div className="p-4 space-y-4">
 
  {/* IPO Grader */}
  <div className="rounded-md border border-border p-5">
  <div className="flex items-center gap-2 mb-4">
  <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h2 className="font-medium text-foreground">IPO Grading Tool</h2>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-0">IPO Grading Tool</h2>
  <span className="ml-auto text-xs text-muted-foreground">Rate a company's IPO quality</span>
  </div>
 
@@ -1188,7 +1181,7 @@ export default function IPOPage() {
  <div className="rounded-md border border-border p-5">
  <div className="flex items-center gap-2 mb-4">
  <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h2 className="font-medium text-foreground">Average First-Day Return by Sector</h2>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Average First-Day Return by Sector</h2>
  <span className="ml-auto text-xs text-muted-foreground">Based on 204 IPOs (2019–2025)</span>
  </div>
  <div className="overflow-x-auto">
@@ -1209,7 +1202,7 @@ export default function IPOPage() {
  <div className="rounded-md border border-amber-500/20 bg-amber-500/5 p-5">
  <div className="flex items-center gap-2 mb-3">
  <TrendingDown className="h-4 w-4 text-amber-400" />
- <h2 className="font-medium text-foreground">Post-IPO Drift: The 6–12 Month Effect</h2>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Post-IPO Drift: The 6–12 Month Effect</h2>
  </div>
  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
  Academic research consistently shows that IPOs tend to <strong className="text-foreground">underperform</strong> relative
@@ -1239,14 +1232,14 @@ export default function IPOPage() {
  </TabsContent>
 
  {/* ── Tab 4: Participate ── */}
- <TabsContent value="participate" className="flex-1 min-h-0 overflow-y-auto data-[state=inactive]:hidden m-0">
+ <TabsContent value="participate" className="data-[state=inactive]:hidden mt-0">
  <div className="p-4 space-y-4">
 
  {/* Allocations */}
  <div className="rounded-md border border-border p-5">
  <div className="flex items-center gap-2 mb-4">
  <DollarSign className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h2 className="font-medium text-foreground">Your IPO Allocations</h2>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Your IPO Allocations</h2>
  <span className="ml-auto text-xs text-muted-foreground">Simulated retail allocation</span>
  </div>
  <div className="space-y-3">
@@ -1301,7 +1294,7 @@ export default function IPOPage() {
  <div className="rounded-md border border-border p-5">
  <div className="flex items-center gap-2 mb-4">
  <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h2 className="font-medium text-foreground">IPO Flip Simulator</h2>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">IPO Flip Simulator</h2>
  <span className="ml-auto text-xs text-muted-foreground">Day 1 sell vs hold</span>
  </div>
  <div className="flex flex-wrap gap-2 mb-4">
@@ -1330,7 +1323,7 @@ export default function IPOPage() {
  <div className="rounded-md border border-border p-5">
  <div className="flex items-center gap-2 mb-4">
  <Lock className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h2 className="font-medium text-foreground">Lock-up Expiry Countdown</h2>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Lock-up Expiry Countdown</h2>
  </div>
  <div className="space-y-2">
  {RECENT_IPOS.filter((r) => new Date(r.lockupExpiry) >= new Date(BASE_DATE))
@@ -1367,7 +1360,7 @@ export default function IPOPage() {
  <div className="rounded-md border border-border p-5">
  <div className="flex items-center gap-2 mb-4">
  <BookOpen className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h2 className="font-medium text-foreground">How Retail Investors Access IPOs</h2>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">How Retail Investors Access IPOs</h2>
  </div>
  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
  {[

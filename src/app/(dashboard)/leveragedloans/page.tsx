@@ -1034,55 +1034,35 @@ export default function LeveragedLoansPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-8">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-8"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-muted/60 border border-border">
- <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-bold text-foreground">Leveraged Loans &amp; CLOs</h1>
- <p className="text-sm text-muted-foreground">Syndicated lending, loan structures, CLO mechanics, and credit market dynamics</p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Leveraged Loans</h1>
+ <p className="text-sm text-muted-foreground mb-6">LBO · COVENANT · SPREAD · CLO</p>
+
+ <div className="flex flex-wrap gap-2 mb-6">
  {[
- { icon: DollarSign, label: "$1.4T US Market", color: "text-primary" },
- { icon: TrendingUp, label: "SOFR + Spread", color: "text-green-400" },
- { icon: Shield, label: "Senior Secured", color: "text-amber-400" },
- { icon: Activity, label: "Floating Rate", color: "text-primary" },
+ { label: "$1.4T US Market" },
+ { label: "SOFR + Spread" },
+ { label: "Senior Secured" },
+ { label: "Floating Rate" },
  ].map((badge, i) => (
  <div key={i} className="flex items-center gap-1.5 text-xs text-muted-foreground bg-card border border-border rounded-full px-3 py-1">
- <badge.icon className={cn("w-3 h-3", badge.color)} />
- <span className="text-muted-foreground">{badge.label}</span>
+ <span>{badge.label}</span>
  </div>
  ))}
  </div>
- </motion.div>
 
- {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Leveraged Loan &amp; CLO Analytics</h2>
- <p className="text-sm text-muted-foreground">Loan structure, syndication mechanics, CLO waterfall analysis, and credit market dynamics.</p>
- </div>
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="grid grid-cols-4 mb-6 bg-card border border-border h-auto p-1 gap-1">
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {tabItems.map((tab) => (
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className={cn(
- "flex items-center gap-1.5 text-xs py-2 px-2 rounded-md data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground",
- )}
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  <tab.icon className="w-3.5 h-3.5 flex-shrink-0" />
  <span className="hidden sm:inline">{tab.label}</span>

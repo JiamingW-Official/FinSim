@@ -1504,27 +1504,11 @@ function OptimalPairsTab() {
 
 export default function CorrelationsPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
- {/* HERO header */}
- <motion.div
- initial={{ opacity: 0, y: -10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="w-8 h-8 rounded-lg bg-muted/10 border border-border flex items-center justify-center">
- <GitBranch size={16} className="text-muted-foreground/50" />
- </div>
- <h1 className="text-xl font-semibold text-foreground">Correlation Analysis</h1>
- <Badge className="bg-muted/10 text-foreground border-primary/30 text-xs">
- 10 Asset Classes
- </Badge>
- </div>
- <p className="text-sm text-muted-foreground max-w-2xl">
- Multi-asset correlation analysis, crisis regime shifts, portfolio diversification scoring, and optimal pair identification for the free lunch of diversification.
- </p>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Correlations</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">CROSS-ASSET · DIVERSIFICATION · MATRIX</p>
 
  {/* Tabs */}
  <Tabs defaultValue="matrix" className="space-y-5">
@@ -1552,6 +1536,7 @@ export default function CorrelationsPage() {
  <TabsContent value="divScore" className="mt-0"><DiversificationScoreTab /></TabsContent>
  <TabsContent value="pairs" className="mt-0"><OptimalPairsTab /></TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

@@ -986,14 +986,11 @@ function DataTab() {
 export default function SettingsPage() {
  return (
  <div className="flex h-full flex-col overflow-y-auto">
- <div className="space-y-5 px-6 py-6 max-w-2xl">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <div>
- <p className="text-xs text-muted-foreground mb-1">Preferences</p>
- <h1 className="text-xl font-semibold tracking-tight">Settings</h1>
- <p className="text-xs text-muted-foreground/50 mt-1">
- Customize your trading experience
- </p>
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Settings</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">PREFERENCES · ACCOUNT · NOTIFICATIONS</p>
  </div>
 
  {/* Tabs */}

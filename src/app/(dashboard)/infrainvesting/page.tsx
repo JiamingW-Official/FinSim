@@ -1629,47 +1629,14 @@ export default function InfraInvestingPage() {
  const [activeTab, setActiveTab] = useState("asset-classes");
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Page Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="flex items-center justify-center w-10 h-10 rounded-md bg-muted/10 border border-border">
- <Building2 size={20} className="text-foreground" />
- </div>
- <div>
- <h1 className="text-2xl font-semibold text-foreground">Infrastructure Investing</h1>
- <p className="text-sm text-muted-foreground">
- Asset classes · Project finance · Energy transition · Institutional allocation
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- {[
- { icon: <Shield size={12} />, label: "Low Volatility" },
- { icon: <TrendingUp size={12} />, label: "Inflation-Linked" },
- { icon: <Globe size={12} />, label: "$1.1T AUM" },
- { icon: <Zap size={12} />, label: "Energy Transition" },
- ].map(({ icon, label }) => (
- <Badge key={label} variant="outline" className="text-xs flex items-center gap-1 text-muted-foreground border-border">
- {icon} {label}
- </Badge>
- ))}
- </div>
- </motion.div>
-
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Asset Classes &amp; Project Finance</h2>
- <p className="text-sm text-muted-foreground">Explore infrastructure asset classes, project finance structures, energy transition investments, and institutional allocation strategies.</p>
- </div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Infrastructure</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">ASSETS · CONCESSIONS · YIELD · PROJECTS</p>
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="asset-classes" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Asset Classes
@@ -1686,49 +1653,22 @@ export default function InfraInvestingPage() {
  </TabsList>
 
  <TabsContent value="asset-classes" className="data-[state=inactive]:hidden">
- <motion.div
- key="asset-classes"
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
  <AssetClassesTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="project-finance" className="data-[state=inactive]:hidden">
- <motion.div
- key="project-finance"
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
  <ProjectFinanceTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="energy-transition" className="data-[state=inactive]:hidden">
- <motion.div
- key="energy-transition"
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
  <EnergyTransitionTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="institutional" className="data-[state=inactive]:hidden">
- <motion.div
- key="institutional"
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
  <InstitutionalTab />
- </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

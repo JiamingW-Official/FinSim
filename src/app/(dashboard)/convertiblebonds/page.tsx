@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  BarChart2,
@@ -426,34 +425,30 @@ export default function ConvertibleBondsPage() {
  const arbScenarios = genArbScenarios(selectedCb, selectedDerived.delta);
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, ease: "easeOut" }}
- className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
- >
- {/* HERO Header */}
- <div className="flex items-start justify-between flex-wrap gap-3 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div>
- <h1 className="text-xl font-semibold tracking-tight text-foreground">Convertible Bonds</h1>
- <p className="text-sm text-foreground/50 mt-1">Hybrid instruments combining fixed-income safety with equity upside optionality</p>
- </div>
- <div className="flex gap-2 flex-wrap">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* HERO */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Convertible Bonds</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">YIELD · CONVERSION · PREMIUM · PARITY</p>
+
+ <div className="border-t border-border mb-6" />
+
+ {/* Summary row */}
+ <div className="flex gap-2 flex-wrap mb-6">
  {[
  { label: "Market Size", value: "$600B+" },
  { label: "Avg Delta", value: "0.42" },
  { label: "Avg Premium", value: "22%" },
  ].map((s) => (
- <div key={s.label} className="rounded-lg border border-border bg-foreground/5 px-3 py-2 text-center">
- <div className="text-xs text-muted-foreground/60">{s.label}</div>
- <div className="text-sm font-medium text-amber-400">{s.value}</div>
+ <div key={s.label} className="rounded-lg border border-border bg-card px-4 py-2 text-center">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{s.label}</div>
+ <div className="text-sm font-mono tabular-nums text-foreground mt-0.5">{s.value}</div>
  </div>
  ))}
  </div>
- </div>
 
  {/* Tabs */}
- <Tabs defaultValue="scanner">
+ <Tabs defaultValue="scanner" className="flex-1 flex flex-col">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "scanner", label: "CB Scanner" },
@@ -983,6 +978,7 @@ export default function ConvertibleBondsPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
+ </div>
  );
 }

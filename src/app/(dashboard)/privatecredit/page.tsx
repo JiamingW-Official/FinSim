@@ -903,39 +903,31 @@ export default function PrivateCreditPage() {
  const [activeTab, setActiveTab] = useState<TabId>("direct");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- {/* Header */}
- <div className="border-b border-border border-l-4 border-l-primary bg-card/60 backdrop-blur px-6 py-6">
- <div className="max-w-6xl mx-auto flex items-start gap-4">
- <div className="rounded-md bg-muted/10 p-2.5 border border-border">
- <Briefcase className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Private Credit Markets</h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Direct lending, mezzanine finance, distressed debt, special situations, and the $1.7T rise of private credit as an asset class
- </p>
- <div className="flex flex-wrap gap-2 mt-3">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Private Credit</h1>
+ <p className="text-sm text-muted-foreground mb-6">DIRECT LENDING · MEZZANINE · YIELD</p>
+
+ <div className="flex flex-wrap gap-2 mb-6">
  <InfoPill text="$1.7T AUM" color="violet" />
  <InfoPill text="SOFR+500–700bps" color="blue" />
  <InfoPill text="200–300bps Illiquidity Premium" color="emerald" />
  <InfoPill text="1st Lien / Unitranche" color="amber" />
  </div>
- </div>
- </div>
- </div>
 
- {/* Content */}
- <div className="max-w-6xl mx-auto px-6 py-6">
+ <div className="border-t border-border mb-6" />
+
  <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {tabs.map((tab) => {
  const Icon = tab.icon;
+ void Icon;
  return (
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  ><span>{tab.label}</span></TabsTrigger>
  );
  })}

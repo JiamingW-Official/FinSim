@@ -1267,20 +1267,16 @@ export default function MacroTradingPage() {
  const [activeTab, setActiveTab] = useState<TabValue>("regime");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-6 space-y-4">
- {/* Header */}
- <div className="flex items-start justify-between gap-4">
- <div>
- <h1 className="text-xl font-medium text-foreground flex items-center gap-2">
- <Globe className="w-5 h-5 text-sky-400" />
- Macro Trading
- </h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Economic regime analysis, rate cycle playbook, and cross-asset signals
- </p>
- </div>
- <div className="flex items-center gap-2 shrink-0">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Macro Trading</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-6">TOP-DOWN · RATES · FX · COMMODITIES</p>
+
+ <div className="border-t border-border mb-6" />
+
+ {/* Regime badges */}
+ <div className="flex items-center gap-2 mb-6">
  <span className="text-xs text-muted-foreground">Regime:</span>
  <Badge className="bg-emerald-900/60 text-emerald-300 border-emerald-700/50 border">
  {CURRENT_REGIME}
@@ -1289,26 +1285,19 @@ export default function MacroTradingPage() {
  {CURRENT_PHASE} Cycle
  </Badge>
  </div>
- </div>
-
- {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Macro Trading Playbook</h2>
- <p className="text-sm text-muted-foreground">Economic regime analysis, rate cycle playbook, leading indicators, and cross-asset signal generation.</p>
- </div>
 
  {/* Tabs */}
  <Tabs
  value={activeTab}
  onValueChange={(v) => setActiveTab(v as TabValue)}
- className="w-full mt-8"
+ className="w-full"
  >
- <TabsList className="flex w-full overflow-x-auto gap-1 bg-card/60 border border-border p-1 rounded-md h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto w-full flex overflow-x-auto">
  {TABS.map(({ value, label, icon: Icon }) => (
  <TabsTrigger
  key={value}
  value={value}
- className="flex items-center gap-1.5 text-xs whitespace-nowrap px-3 py-2 rounded-lg data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
+ className="flex items-center gap-1.5 text-xs whitespace-nowrap px-3 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground"
  >
  <Icon className="w-3.5 h-3.5 shrink-0" />
  <span>{label}</span>

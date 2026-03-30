@@ -1699,34 +1699,12 @@ function Tab4OnchainContent() {
 
 export default function CryptoInstitutionalPage() {
  return (
- <div className="p-4 space-y-4 max-w-5xl mx-auto">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* HERO Header */}
- <div className="border-l-4 border-l-primary rounded-md bg-card p-6 space-y-1">
- <div className="flex items-center gap-3">
- <div className="p-2 bg-indigo-500/15 rounded-lg border border-indigo-500/25">
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Institutional Crypto</h1>
- <p className="text-sm text-muted-foreground">
- Bitcoin ETFs · Stablecoin Ecosystem · Crypto Prime Brokerage · On-Chain Analytics
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- {[
- { label: "Spot BTC ETF", color: "bg-indigo-500/15 text-indigo-300 border-indigo-500/25" },
- { label: "Stablecoins", color: "bg-emerald-500/15 text-emerald-300 border-emerald-500/25" },
- { label: "Prime Brokerage", color: "bg-amber-500/15 text-amber-300 border-amber-500/25" },
- { label: "On-Chain Analytics", color: "bg-muted/10 text-foreground border-border" },
- ].map((tag) => (
- <span
- key={tag.label}
- className={cn("text-xs text-muted-foreground px-2 py-0.5 rounded border font-medium", tag.color)}
- >
- {tag.label}
- </span>
- ))}
- </div>
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Institutional Crypto</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">CUSTODY · PRIME · COMPLIANCE · SCALE</p>
  </div>
 
  {/* Tabs */}
@@ -1771,6 +1749,7 @@ export default function CryptoInstitutionalPage() {
  <Tab4OnchainContent />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

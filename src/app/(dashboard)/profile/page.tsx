@@ -650,15 +650,21 @@ export default function ProfilePage() {
  };
 
  return (
- <div className="flex h-full flex-col overflow-y-auto bg-background">
- <div className="mx-auto w-full max-w-3xl space-y-4 p-4 pb-16">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Header */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Profile</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">STATS · ACHIEVEMENTS · HISTORY</p>
+ </div>
+
  {/* HERO — Player Stats/Level */}
  <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
- className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6 space-y-3"
+ className="rounded-lg border border-border bg-card p-5 space-y-3 mb-6"
  >
  <div className="flex items-center justify-between">
  <div>
- <h1 className="text-lg font-serif font-semibold tracking-tight">Investor Profile</h1>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Investor Profile</h2>
  <p className="text-xs text-muted-foreground/70 leading-relaxed">Personalized analysis & learning path</p>
  </div>
  <div className="flex items-center gap-2">

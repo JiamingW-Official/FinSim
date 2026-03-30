@@ -566,24 +566,18 @@ export default function PensionFundPage() {
  };
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 sm:p-4 space-y-4">
- {/* Header */}
- <motion.div {...fadeIn} className="space-y-1">
- <div className="flex items-center gap-3">
- <div className="p-2 rounded-lg bg-primary/10 border border-border">
- <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Pension Fund</h1>
+ <p className="text-sm font-mono tracking-widest text-muted-foreground uppercase">LIABILITIES · ALM · GLIDE PATH · FUNDING</p>
  </div>
- <div>
- <h1 className="text-2xl font-bold tracking-tight">Pension Fund Management</h1>
- <p className="text-muted-foreground text-sm">
- Liability-driven investing, asset-liability matching, actuarial concepts &amp; funded status analysis
- </p>
- </div>
- </div>
- </motion.div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Key Metrics */}
- <motion.div {...fadeIn} transition={{ delay: 0.05 }} className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
  {[
  {
  label: "Funded Ratio",
@@ -641,11 +635,10 @@ export default function PensionFundPage() {
  </CardContent>
  </Card>
  ))}
- </motion.div>
+ </div>
 
  {/* Main Tabs */}
- <motion.div {...fadeIn} transition={{ delay: 0.1 }}>
- <Tabs defaultValue="funded">
+ <Tabs defaultValue="funded" className="mt-6">
  <TabsList className="mb-4">
  <TabsTrigger value="funded">Funded Status</TabsTrigger>
  <TabsTrigger value="allocation">Asset Allocation</TabsTrigger>
@@ -1193,7 +1186,7 @@ export default function PensionFundPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

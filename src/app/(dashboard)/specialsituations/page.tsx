@@ -1317,40 +1317,32 @@ function StubTradesTab() {
 
 export default function SpecialSituationsPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-8 space-y-4">
- {/* Header */}
- <div className="space-y-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
- <div className="flex items-center gap-2">
- <Zap className="w-5 h-5 text-indigo-400" />
- <h1 className="text-xl font-medium text-foreground">Special Situations Investing</h1>
- </div>
- <p className="text-sm text-muted-foreground">
- Event-driven strategies — merger arbitrage, activist campaigns, post-reorganization equity, and stub trades
- </p>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col space-y-4">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Special Situations</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">SPIN-OFFS · DISTRESSED · ACTIVISM · RESTRUCTURING</p>
 
  {/* Stats Row */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
  {[
- { label: "Avg Merger Arb Spread", value: "3–6%", sub: "Annualized", icon: <Activity className="w-4 h-4 text-indigo-400" /> },
- { label: "Post-Reorg 3yr Median", value: "+128%", sub: "vs market +38%", icon: <TrendingUp className="w-4 h-4 text-emerald-400" /> },
- { label: "Activist Success Rate", value: "66%", sub: "Demand met", icon: <Target className="w-3.5 h-3.5 text-muted-foreground/50" /> },
- { label: "Stub Avg Entry Discount", value: "−38%", sub: "To fair value", icon: <DollarSign className="w-4 h-4 text-pink-400" /> },
- ].map(({ label, value, sub, icon }) => (
- <div key={label} className="bg-card border border-border rounded-md p-3">
- <div className="flex items-center gap-1.5 mb-1">
- {icon}
- <span className="text-xs text-muted-foreground">{label}</span>
- </div>
- <div className="text-lg font-medium font-mono text-foreground">{value}</div>
- <div className="text-xs text-muted-foreground">{sub}</div>
+ { label: "Avg Merger Arb Spread", value: "3–6%", sub: "Annualized" },
+ { label: "Post-Reorg 3yr Median", value: "+128%", sub: "vs market +38%" },
+ { label: "Activist Success Rate", value: "66%", sub: "Demand met" },
+ { label: "Stub Avg Entry Discount", value: "−38%", sub: "To fair value" },
+ ].map(({ label, value, sub }) => (
+ <div key={label} className="rounded-lg border border-border bg-card p-5">
+ <div className="text-xl font-mono tabular-nums text-foreground mb-1">{value}</div>
+ <div className="text-xs text-muted-foreground">{label}</div>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mt-0.5">{sub}</div>
  </div>
  ))}
  </div>
 
+ <div className="border-t border-border my-2" />
+
  {/* Tabs */}
- <Tabs defaultValue="events" className="mt-8">
+ <Tabs defaultValue="events">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="events" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Event Catalog

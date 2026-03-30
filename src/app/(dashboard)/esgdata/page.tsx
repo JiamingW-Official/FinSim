@@ -1164,41 +1164,13 @@ export default function ESGDataPage() {
  const [activeTab, setActiveTab] = useState("providers");
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="w-9 h-9 rounded-md bg-emerald-500/20 flex items-center justify-center">
+ <div className="mb-8">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">ESG Data</h1>
+ <p className="text-sm text-muted-foreground tracking-widest uppercase">RATINGS · METRICS · REPORTING · STANDARDS</p>
  </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">ESG Data & Ratings</h1>
- <p className="text-sm text-muted-foreground">
- Rating methodologies, disclosure frameworks, greenwashing, and ESG integration in investment
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- {[
- { icon: <BarChart2 className="w-3 h-3" />, label: "6 Major Providers", color: "text-foreground" },
- { icon: <FileText className="w-3 h-3" />, label: "5 Disclosure Frameworks", color: "text-amber-400" },
- { icon: <Shield className="w-3 h-3" />, label: "8 Greenwashing Cases", color: "text-red-400" },
- { icon: <Globe className="w-3 h-3" />, label: "$120T PRI AUM", color: "text-emerald-400" },
- ].map((chip) => (
- <span
- key={chip.label}
- className={`flex items-center gap-1.5 text-xs text-muted-foreground px-2.5 py-1 rounded-full bg-foreground/5 border border-border ${chip.color}`}
- >
- {chip.icon}
- {chip.label}
- </span>
- ))}
- </div>
- </motion.div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">

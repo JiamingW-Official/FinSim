@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -632,27 +631,12 @@ export default function CryptoDerivativesPage() {
  const fundingColor = perp.fundingRate >= 0 ? "text-red-400" : "text-emerald-400";
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="p-4 space-y-4 max-w-7xl mx-auto"
- >
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* HERO Header */}
- <div className="flex items-start justify-between gap-4 flex-wrap border-l-4 border-l-primary rounded-md bg-card p-6">
- <div>
- <h1 className="text-xl font-semibold text-foreground tracking-tight flex items-center gap-2">
- <Activity className="w-6 h-6 text-primary" />
- Crypto Derivatives
- </h1>
- <p className="text-sm text-muted-foreground mt-1">
- Perpetual futures, options chains, liquidation maps, and DeFi perps comparison
- </p>
- </div>
- <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/30 rounded-lg px-3 py-1.5 border border-border">
- <RefreshCw className="w-3 h-3" />
- Simulated data — educational only
- </div>
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Crypto Derivatives</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">PERPS · OPTIONS · FUTURES · FUNDING</p>
  </div>
 
  {/* Perp Selector & Stats Bar */}
@@ -747,11 +731,11 @@ export default function CryptoDerivativesPage() {
 
  {/* Main Tabs */}
  <Tabs defaultValue="perps">
- <TabsList className="mb-4">
- <TabsTrigger value="perps">Perpetual Futures</TabsTrigger>
- <TabsTrigger value="options">Options Chain</TabsTrigger>
- <TabsTrigger value="liquidations">Liquidation Map</TabsTrigger>
- <TabsTrigger value="defi">DeFi vs CEX</TabsTrigger>
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4">
+ <TabsTrigger value="perps" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Perpetual Futures</TabsTrigger>
+ <TabsTrigger value="options" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Options Chain</TabsTrigger>
+ <TabsTrigger value="liquidations" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Liquidation Map</TabsTrigger>
+ <TabsTrigger value="defi" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">DeFi vs CEX</TabsTrigger>
  </TabsList>
 
  {/* ── Perpetuals Tab ── */}
@@ -1160,6 +1144,7 @@ export default function CryptoDerivativesPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
+ </div>
  );
 }

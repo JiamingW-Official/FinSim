@@ -950,50 +950,30 @@ export default function MergerArbPage() {
  );
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
- >
- {/* Header */}
- <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
- <div>
- <h1 className="text-lg font-medium text-foreground flex items-center gap-2">
- <TrendingDown className="w-6 h-6 text-primary" />
- Merger Arbitrage
- </h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Exploit acquisition spreads — earn returns by positioning in announced M&amp;A deals
- </p>
- </div>
- <Badge
- variant="outline"
- className="text-xs border-emerald-500/40 text-emerald-400 self-start sm:self-auto"
- >
- <Clock className="w-3 h-3 mr-1" />
- Live Data Simulation
- </Badge>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col space-y-4">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Merger Arbitrage</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">M&A · SPREAD · RISK · DEAL PROBABILITY</p>
 
- {/* Summary stats — Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
+ {/* Summary stats */}
  <SummaryStats deals={DEALS} />
- </div>
+
+ <div className="border-t border-border my-2" />
 
  {/* Main tabs */}
- <Tabs defaultValue="dashboard" className="mt-8">
- <TabsList className="bg-card border border-border">
- <TabsTrigger value="dashboard" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
+ <Tabs defaultValue="dashboard">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsTrigger value="dashboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Deal Dashboard
  </TabsTrigger>
- <TabsTrigger value="analysis" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="analysis" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Analysis
  </TabsTrigger>
- <TabsTrigger value="risk" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Risk Factors
  </TabsTrigger>
- <TabsTrigger value="calculator" className="data-[state=active]:bg-muted text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="calculator" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Calculator
  </TabsTrigger>
  </TabsList>
@@ -1177,6 +1157,7 @@ export default function MergerArbPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
+ </div>
  );
 }

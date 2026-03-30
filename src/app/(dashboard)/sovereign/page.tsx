@@ -1403,29 +1403,18 @@ function FactorInvestingTab() {
 
 export default function SovereignPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto p-4 space-y-4">
- {/* Header */}
- <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2.5 bg-indigo-600 rounded-md">
- <Globe className="w-5 h-5 text-foreground" />
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Sovereign Wealth</h1>
+ <p className="text-sm font-mono tracking-widest text-muted-foreground uppercase">SWF · GOVERNANCE · MANDATE · ALLOCATION</p>
  </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Sovereign Wealth &amp; Institutional Investing</h1>
- <p className="text-sm text-muted-foreground">How the world's largest pools of capital allocate, govern, and grow</p>
- </div>
- </div>
- <div className="flex gap-2 mt-3 flex-wrap">
- <Badge variant="outline" className="border-indigo-500/40 text-indigo-300 text-xs">$10T+ AUM covered</Badge>
- <Badge variant="outline" className="border-emerald-500/40 text-emerald-300 text-xs">Norway GPFG deep dive</Badge>
- <Badge variant="outline" className="border-primary/40 text-primary text-xs">Yale &amp; Harvard models</Badge>
- <Badge variant="outline" className="border-cyan-500/40 text-muted-foreground text-xs">Factor investing at scale</Badge>
- </div>
- </motion.div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="overview" className="mt-8">
+ <Tabs defaultValue="overview" className="mt-2">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">SWF Overview</TabsTrigger>
  <TabsTrigger value="allocation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Asset Allocation</TabsTrigger>

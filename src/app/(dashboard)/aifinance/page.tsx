@@ -1283,49 +1283,24 @@ export default function AIFinancePage() {
  void rand(); void rand(); void rand();
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Page header */}
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Header */}
  <div className="mb-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="w-9 h-9 rounded-md bg-primary/15 border border-border flex items-center justify-center">
- <Brain className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-2xl font-bold text-foreground tracking-tight">AI & ML in Finance</h1>
- <p className="text-sm text-muted-foreground">
- Machine learning, natural language processing, and AI governance across capital markets
- </p>
- </div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">AI in Finance</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">ML · NLP · PREDICTION · AUTOMATION</p>
  </div>
 
- {/* Quick concept pills */}
- <div className="flex flex-wrap gap-2 mt-3">
- {[
- { icon: TrendingUp, label: "Return prediction", color: "text-primary" },
- { icon: Shield, label: "Fraud detection", color: "text-emerald-400" },
- { icon: FileText, label: "NLP filings", color: "text-primary" },
- { icon: Eye, label: "Explainability", color: "text-amber-400" },
- { icon: Lock, label: "SR 11-7 compliance", color: "text-rose-400" },
- ].map(({ icon: Icon, label, color }) => (
- <div
- key={label}
- className="flex items-center gap-1.5 px-2.5 py-1 bg-card border border-border rounded-full text-xs text-muted-foreground"
- >
- <Icon className={cn("w-3 h-3", color)} />
- {label}
- </div>
- ))}
- </div>
- </div>
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
  <Tabs defaultValue="ml-trading" className="w-full">
- <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1 mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6 flex flex-wrap gap-0">
  {TABS.map(({ id, label, Icon }) => (
  <TabsTrigger
  key={id}
  value={id}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
+ className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  <Icon className="w-3.5 h-3.5" />
  {label}
@@ -1363,6 +1338,7 @@ export default function AIFinancePage() {
  </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

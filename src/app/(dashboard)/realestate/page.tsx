@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
- Home,
  Building2,
  BarChart3,
  TrendingUp,
@@ -20,7 +19,6 @@ import {
  RefreshCw,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
@@ -1553,33 +1551,11 @@ const TABS = [
 
 export default function RealEstatePage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
- {/* Header */}
- <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} className="flex items-start justify-between flex-wrap gap-4">
- <div>
- <div className="flex items-center gap-3 mb-1">
- <div className="rounded-md bg-muted/10 p-2.5">
- <Home className="w-6 h-6 text-primary" />
- </div>
- <h1 className="text-lg font-medium text-foreground">Real Estate Investment Analysis</h1>
- </div>
- <p className="text-sm text-muted-foreground ml-14">
- Property analyzer, market comparisons, REITs, commercial RE, development, and portfolio strategy.
- </p>
- </div>
- <div className="flex gap-2 flex-wrap">
- {[
- { label: "Residential", color: "bg-muted/10 text-primary" },
- { label: "Commercial", color: "bg-emerald-600/20 text-emerald-400" },
- { label: "REITs", color: "bg-orange-600/20 text-orange-400" },
- ].map(({ label, color }) => (
- <Badge key={label} className={cn("text-xs text-muted-foreground font-medium border-0", color)}>
- {label}
- </Badge>
- ))}
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Real Estate</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">PROPERTY · REITs · CAP RATES · VALUATIONS</p>
 
  {/* Tabs */}
  <Tabs defaultValue="analyzer" className="space-y-4">
@@ -1588,7 +1564,7 @@ export default function RealEstatePage() {
  <TabsTrigger
  key={id}
  value={id}
- className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground hover:text-foreground transition-colors"
+ className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  {icon}
  <span className="hidden sm:inline">{label}</span>
@@ -1597,39 +1573,27 @@ export default function RealEstatePage() {
  </TabsList>
 
  <TabsContent value="analyzer" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
  <PropertyAnalyzer />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="markets" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
  <MarketComparisons />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="reits" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
  <REITAnalysis />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="commercial" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
  <CommercialRE />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="development" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
  <DevelopmentTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="portfolio" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
  <PortfolioStrategy />
- </motion.div>
  </TabsContent>
  </Tabs>
  </div>

@@ -1191,62 +1191,45 @@ export default function GlobalFixedIncomePage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="mx-auto max-w-7xl px-4 py-6">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="rounded-lg bg-muted/10 p-2">
- <Globe size={20} className="text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Global Fixed Income</h1>
- <p className="text-sm text-foreground/50">
- Cross-border bond investing, sovereign &amp; corporate credit, EM bonds, FX hedging, and portfolio construction
- </p>
- </div>
- <Badge variant="outline" className="ml-auto border-border text-primary text-xs">
- Professional
- </Badge>
- </div>
- </motion.div>
+  <div className="flex h-full flex-col overflow-y-auto">
+   <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+    {/* Hero */}
+    <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Global Fixed Income</h1>
+    <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">MULTI-CURRENCY · DURATION · YIELD · RISK</p>
 
- {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- {tabs.map((tab) => (
- <TabsTrigger
- key={tab.id}
- value={tab.id}
- className="flex items-center gap-1.5 rounded px-3 py-2 text-sm data-[state=active]:bg-primary/25 data-[state=active]:text-primary"
- >
- <tab.icon size={13} />
- {tab.label}
- </TabsTrigger>
- ))}
- </TabsList>
+    <div className="border-t border-border mb-6" />
 
- <AnimatePresence mode="wait">
- <TabsContent value="overview" className="data-[state=inactive]:hidden">
- <MarketOverviewTab />
- </TabsContent>
- <TabsContent value="em" className="data-[state=inactive]:hidden">
- <EMBondsTab />
- </TabsContent>
- <TabsContent value="hedging" className="data-[state=inactive]:hidden">
- <CurrencyHedgingTab />
- </TabsContent>
- <TabsContent value="portfolio" className="data-[state=inactive]:hidden">
- <PortfolioConstructionTab />
- </TabsContent>
- </AnimatePresence>
- </Tabs>
- </div>
- </div>
+    {/* Tabs */}
+    <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col flex-1">
+     <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+      {tabs.map((tab) => (
+       <TabsTrigger
+        key={tab.id}
+        value={tab.id}
+        className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-sm text-muted-foreground data-[state=active]:text-foreground"
+       >
+        <tab.icon size={13} />
+        {tab.label}
+       </TabsTrigger>
+      ))}
+     </TabsList>
+
+     <AnimatePresence mode="wait">
+      <TabsContent value="overview" className="data-[state=inactive]:hidden">
+       <MarketOverviewTab />
+      </TabsContent>
+      <TabsContent value="em" className="data-[state=inactive]:hidden">
+       <EMBondsTab />
+      </TabsContent>
+      <TabsContent value="hedging" className="data-[state=inactive]:hidden">
+       <CurrencyHedgingTab />
+      </TabsContent>
+      <TabsContent value="portfolio" className="data-[state=inactive]:hidden">
+       <PortfolioConstructionTab />
+      </TabsContent>
+     </AnimatePresence>
+    </Tabs>
+   </div>
+  </div>
  );
 }

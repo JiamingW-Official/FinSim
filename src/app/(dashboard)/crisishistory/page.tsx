@@ -649,42 +649,17 @@ export default function CrisisHistoryPage() {
  );
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
- {/* HERO Header */}
- <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
- <AlertTriangle className="w-5 h-5 text-red-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Financial Crises: History &amp; Anatomy</h1>
- <p className="text-sm text-muted-foreground">Study the crashes, understand the patterns, avoid repeating history</p>
- </div>
- </div>
- {/* quick stats */}
- <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
- {[
- { label: "Crises Covered", value: "8", icon: <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" /> },
- { label: "Worst Peak Loss", value: "-89%", icon: <TrendingDown className="w-4 h-4 text-red-400" /> },
- { label: "Asset Classes", value: "6", icon: <Activity className="w-4 h-4 text-emerald-400" /> },
- { label: "Policy Tools", value: "12+", icon: <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" /> },
- ].map((s) => (
- <Card key={s.label} className="bg-card border-border">
- <CardContent className="p-3 flex items-center gap-3">
- <div className="w-8 h-8 rounded-md bg-muted flex items-center justify-center">{s.icon}</div>
- <div>
- <p className="text-xs text-muted-foreground">{s.label}</p>
- <p className="text-lg font-semibold text-foreground">{s.value}</p>
- </div>
- </CardContent>
- </Card>
- ))}
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-8">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Crisis History</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">CRASHES · CONTAGION · LESSONS · RECOVERY</p>
  </div>
 
  {/* Tabs */}
  <Tabs defaultValue="timeline" className="w-full">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto flex flex-wrap gap-0">
  <TabsTrigger value="timeline" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Crisis Timeline
  </TabsTrigger>
@@ -1293,6 +1268,7 @@ export default function CrisisHistoryPage() {
  </Card>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

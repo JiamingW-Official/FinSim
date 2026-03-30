@@ -1055,31 +1055,16 @@ function RiskAnalysisTab() {
 
 export default function ConvertiblesPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
- {/* HERO Header */}
- <div className="flex items-center justify-between border-l-4 border-l-primary rounded-md bg-card p-6">
- <div>
- <div className="flex items-center gap-2 mb-1">
- <Layers size={22} className="text-indigo-400" />
- <h1 className="text-xl font-semibold text-foreground">Convertible Bonds & Hybrid Securities</h1>
- </div>
- <p className="text-sm text-muted-foreground">
- Bonds with embedded equity options — $320B+ global market bridging debt and equity
- </p>
- </div>
- <div className="hidden sm:flex items-center gap-2">
- <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-medium">
- Bond + Option
- </span>
- <span className="px-3 py-1 rounded-full bg-muted border border-border text-muted-foreground text-xs font-medium">
- $320B Market
- </span>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* HERO */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Convertible Securities</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">CB · DELTA · GAMMA · HYBRID</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Summary row */}
- <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
  <StatChip label="Global Market" value="$320B+" sub="Outstanding notional" color="indigo" />
  <StatChip label="Avg Duration" value="3.8yr" sub="Weighted avg maturity" color="blue" />
  <StatChip label="Avg IV Rank" value="42%" sub="Embedded option vol" color="teal" />
@@ -1087,21 +1072,21 @@ export default function ConvertiblesPage() {
  </div>
 
  {/* Tabs */}
- <Tabs defaultValue="mechanics" className="w-full">
+ <Tabs defaultValue="mechanics" className="w-full flex-1 flex flex-col">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
- { value: "mechanics", label: "Mechanics", icon: <Layers size={13} /> },
- { value: "greeks", label: "Greeks", icon: <Activity size={13} /> },
- { value: "market", label: "Market", icon: <BarChart3 size={13} /> },
- { value: "strategies", label: "Strategies", icon: <Target size={13} /> },
- { value: "risk", label: "Risk", icon: <ShieldAlert size={13} /> },
+ { value: "mechanics", label: "Mechanics" },
+ { value: "greeks", label: "Greeks" },
+ { value: "market", label: "Market" },
+ { value: "strategies", label: "Strategies" },
+ { value: "risk", label: "Risk" },
  ].map((t) => (
  <TabsTrigger
  key={t.value}
  value={t.value}
  className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- <span className="hidden sm:inline">{t.label}</span>
+ {t.label}
  </TabsTrigger>
  ))}
  </TabsList>

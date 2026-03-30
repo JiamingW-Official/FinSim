@@ -830,26 +830,11 @@ export default function CommodityTermPage() {
  const annRollYield = rollYield(CURVE_PRICES[0], CURVE_PRICES[1], 28);
 
  return (
- <div className="p-4 md:p-4 space-y-4 max-w-6xl mx-auto">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* HERO Header */}
- <FadeIn>
- <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div>
- <h1 className="text-xl font-semibold text-foreground">
- Commodity Term Structure &amp; Roll Yield
- </h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Contango, backwardation, roll costs &amp; storage carry — WTI Crude Oil
- </p>
- </div>
- <div className="flex items-center gap-2">
- <Badge className={cn("text-xs font-medium", isContango ? "bg-red-500/20 text-red-400" : "bg-emerald-500/20 text-emerald-400")}>
- {isContango ? "CONTANGO" : "BACKWARDATION"}
- </Badge>
- <Badge className="bg-amber-500/20 text-amber-400 text-xs">WTI Crude</Badge>
- </div>
- </div>
- </FadeIn>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Commodity Term Structure</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">CONTANGO · BACKWARDATION · ROLL YIELD</p>
 
  {/* Key Metrics */}
  <FadeIn delay={0.05}>
@@ -998,6 +983,7 @@ export default function CommodityTermPage() {
  </CardContent>
  </Card>
  </FadeIn>
+ </div>
  </div>
  );
 }

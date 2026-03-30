@@ -1530,37 +1530,23 @@ export default function CentralBankPage() {
  const [activeTab, setActiveTab] = useState<TabId>("fed");
 
  return (
- <div className="flex h-full flex-col overflow-hidden">
- {/* HERO Header */}
- <div className="shrink-0 border-b border-border border-l-4 border-l-primary bg-background/80 px-4 py-4 backdrop-blur-sm">
- <div className="flex items-center justify-between">
- <div>
- <h1 className="text-lg font-semibold">Central Banking &amp; Monetary Policy</h1>
- <p className="text-xs text-muted-foreground">
- Fed policy · Global rates · Yield curves · Transmission mechanisms · Forward guidance
- </p>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Central Banking</h1>
+ <p className="text-sm font-mono tracking-widest text-muted-foreground uppercase">POLICY · RATES · QE · RESERVES</p>
  </div>
- <div className="flex items-center gap-2 text-xs text-muted-foreground">
- <span className="rounded-full bg-red-500/5 px-2 py-0.5 font-medium text-red-400">
- Fed Funds: 5.25–5.50%
- </span>
- <span className="rounded-full bg-amber-500/10 px-2 py-0.5 font-medium text-amber-400">
- PCE: 3.2%
- </span>
- <span className="rounded-full bg-primary/10 px-2 py-0.5 font-medium text-primary">
- U3: 4.1%
- </span>
- </div>
- </div>
- </div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
  <Tabs
  value={activeTab}
  onValueChange={(v) => setActiveTab(v as TabId)}
- className="flex flex-1 flex-col overflow-hidden"
+ className="flex-1 flex flex-col"
  >
- <div className="shrink-0 border-b border-border bg-background/60 px-4 pt-2">
+ <div className="shrink-0 border-b border-border mb-4">
  <TabsList className="h-auto gap-0 rounded-none border-0 bg-transparent p-0">
  {TABS.map((tab) => {
  const Icon = tab.icon;
@@ -1568,7 +1554,7 @@ export default function CentralBankPage() {
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="relative flex items-center gap-1.5 rounded-none border-b-2 border-transparent px-3 pb-2 pt-1 text-[11px] font-medium text-muted-foreground/60 transition-colors data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+ className="relative flex items-center gap-1.5 rounded-none border-b-2 border-transparent px-3 pb-2 pt-1 text-[11px] font-medium text-muted-foreground/60 transition-colors data-[state=active]:border-foreground data-[state=active]:text-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none"
  >
  <Icon className="h-3.5 w-3.5" />
  {tab.label}
@@ -1578,7 +1564,7 @@ export default function CentralBankPage() {
  </TabsList>
  </div>
 
- <div className="flex-1 overflow-y-auto">
+ <div>
  <TabsContent value="fed" className="m-0 p-4 data-[state=inactive]:hidden">
  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
  <FedPolicyDashboard />

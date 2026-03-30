@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
  Building2,
  Shield,
@@ -1233,56 +1232,24 @@ export default function FamilyOfficePage() {
  ];
 
  return (
- <motion.div
- className="min-h-screen bg-background p-4 md:p-4"
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
- {/* Header — Hero */}
- <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="flex h-9 w-9 items-center justify-center rounded-md bg-indigo-500/20">
- <Building2 className="h-5 w-5 text-indigo-400" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">
- Family Office & UHNW Wealth Management
- </h1>
- <p className="text-sm text-muted-foreground">
- Structuring, allocating, and preserving generational wealth at scale
- </p>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Header */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Family Office</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">WEALTH · GOVERNANCE · MULTI-GENERATIONAL</p>
  </div>
 
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
- {[
- { label: "Portfolio AUM", value: "$500M", icon: DollarSign, color: "text-indigo-400" },
- { label: "Family Generation", value: "3rd Gen", icon: Users, color: "text-emerald-400" },
- { label: "YTD Return", value: "+12.4%", icon: TrendingUp, color: "text-emerald-400" },
- { label: "Office Type", value: "SFO", icon: Globe, color: "text-amber-400" },
- ].map(({ label, value, icon: Icon, color }) => (
- <Card key={label} className="border-border bg-foreground/5">
- <CardContent className="flex items-center gap-3 pt-3 pb-3">
- <Icon className={`h-4 w-4 ${color}`} />
- <div>
- <div className="text-xs text-muted-foreground">{label}</div>
- <div className={`text-sm font-medium ${color}`}>{value}</div>
- </div>
- </CardContent>
- </Card>
- ))}
- </div>
- </div>
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="structure" className="mt-8">
- <TabsList className="mb-4 flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-md">
+ <Tabs defaultValue="structure">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6 flex flex-wrap gap-0">
  {tabs.map(({ id, label, icon: Icon }) => (
  <TabsTrigger
  key={id}
  value={id}
- className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium data-[state=active]:bg-foreground/15 data-[state=active]:text-foreground text-muted-foreground"
+ className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  <Icon className="h-3.5 w-3.5" />
  {label}
@@ -1309,6 +1276,7 @@ export default function FamilyOfficePage() {
  <LiquidityTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
+ </div>
  );
 }

@@ -581,38 +581,28 @@ export default function CreditDerivativesPage() {
  const [activeTab, setActiveTab] = useState("cds-fundamentals");
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* HERO Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
- <Shield className="w-5 h-5 text-indigo-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Credit Derivatives</h1>
- <p className="text-muted-foreground text-sm">CDS mechanics, CDX indices, credit-linked notes, TRS, and structured credit</p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Credit Derivatives</h1>
+ <p className="text-sm text-muted-foreground mb-6">CDS · CDX · PROTECTION · SPREAD</p>
+
+ <div className="flex flex-wrap gap-2 mb-6">
  {[
  { label: "CDX.NA.IG S41", value: "68bps", color: "text-emerald-400" },
  { label: "CDX.NA.HY S41", value: "385bps", color: "text-amber-400" },
  { label: "iTraxx Europe", value: "72bps", color: "text-primary" },
  { label: "iTraxx Xover", value: "320bps", color: "text-orange-400" },
- { label: "CDS Market Notional", value: "$10.3T", color: "text-indigo-400" },
+ { label: "CDS Market Notional", value: "$10.3T", color: "text-foreground" },
  ].map((stat) => (
  <div key={stat.label} className="flex items-center gap-1.5 px-3 py-1 bg-card border border-border rounded-full">
  <span className="text-muted-foreground text-xs">{stat.label}</span>
- <span className={cn("text-xs text-muted-foreground font-semibold", stat.color)}>{stat.value}</span>
+ <span className={cn("text-xs font-semibold font-mono tabular-nums", stat.color)}>{stat.value}</span>
  </div>
  ))}
  </div>
- </motion.div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -1610,6 +1600,7 @@ export default function CreditDerivativesPage() {
  </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

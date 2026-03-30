@@ -352,55 +352,47 @@ export default function VolatilityArbPage() {
  const dispersionSpread = basketIV - indexIV;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
- {/* Header */}
- <div className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 bg-muted/10 rounded-lg">
- </div>
- <div>
- <h1 className="text-xl font-semibold tracking-tight">Volatility Arbitrage</h1>
- <p className="text-muted-foreground text-sm">
- Realized vs implied vol trading · Delta-neutral strategies · Dispersion & surface arb
- </p>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Volatility Arb</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">VIX · IMPLIED VOL · REALIZED · DISPERSION</p>
  </div>
 
- {/* Summary chips */}
- <div className="flex flex-wrap gap-2 mt-4">
- <Badge variant="outline" className="gap-1">
- Avg IV-RV Spread: <span className="text-foreground ml-1">{(avgSpread * 100).toFixed(1)} vols</span>
- </Badge>
- <Badge variant="outline" className="gap-1">
- Rich IV Tickers: <span className="text-red-400 ml-1">{richCount}</span>
- </Badge>
- <Badge variant="outline" className="gap-1">
- Cheap IV Tickers: <span className="text-green-400 ml-1">{cheapCount}</span>
- </Badge>
- <Badge variant="outline" className="gap-1">
- Dispersion Spread: <span className="text-amber-400 ml-1">{(dispersionSpread * 100).toFixed(1)} vols</span>
- </Badge>
- <Badge variant="outline" className="gap-1">
- VRP Win Rate: <span className="text-foreground ml-1">{positiveVRPYears}/20 years</span>
- </Badge>
+ {/* Summary stats */}
+ <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+ {[
+ { label: "Avg IV-RV Spread", value: `${(avgSpread * 100).toFixed(1)} vols`, col: "text-foreground" },
+ { label: "Rich IV Tickers", value: String(richCount), col: "text-red-400" },
+ { label: "Cheap IV Tickers", value: String(cheapCount), col: "text-green-400" },
+ { label: "Dispersion Spread", value: `${(dispersionSpread * 100).toFixed(1)} vols`, col: "text-amber-400" },
+ { label: "VRP Win Rate", value: `${positiveVRPYears}/20 yrs`, col: "text-foreground" },
+ ].map((s) => (
+ <div key={s.label} className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{s.label}</div>
+ <div className={`text-xl font-mono tabular-nums font-semibold ${s.col}`}>{s.value}</div>
  </div>
+ ))}
  </div>
 
- <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="vol-spread" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <div className="border-t border-border mb-6" />
+
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsTrigger value="vol-spread" className="h-10 rounded-none border-b-2 border-transparent px-4 text-sm font-medium text-muted-foreground transition-colors data-[state=active]:border-primary data-[state=active]:text-foreground bg-transparent">
  Vol Spread Dashboard
  </TabsTrigger>
- <TabsTrigger value="delta-neutral" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="delta-neutral" className="h-10 rounded-none border-b-2 border-transparent px-4 text-sm font-medium text-muted-foreground transition-colors data-[state=active]:border-primary data-[state=active]:text-foreground bg-transparent">
  Delta-Neutral P&L
  </TabsTrigger>
- <TabsTrigger value="dispersion" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="dispersion" className="h-10 rounded-none border-b-2 border-transparent px-4 text-sm font-medium text-muted-foreground transition-colors data-[state=active]:border-primary data-[state=active]:text-foreground bg-transparent">
  Dispersion Trading
  </TabsTrigger>
- <TabsTrigger value="vol-surface" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="vol-surface" className="h-10 rounded-none border-b-2 border-transparent px-4 text-sm font-medium text-muted-foreground transition-colors data-[state=active]:border-primary data-[state=active]:text-foreground bg-transparent">
  Vol Surface Arb
  </TabsTrigger>
- <TabsTrigger value="stat-edge" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="stat-edge" className="h-10 rounded-none border-b-2 border-transparent px-4 text-sm font-medium text-muted-foreground transition-colors data-[state=active]:border-primary data-[state=active]:text-foreground bg-transparent">
  Statistical Edge
  </TabsTrigger>
  </TabsList>
@@ -1316,6 +1308,7 @@ export default function VolatilityArbPage() {
  </AnimatePresence>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

@@ -987,32 +987,11 @@ export default function CommodityCyclesPage() {
  }, []);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* HERO Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-amber-500/15">
- <Activity className="text-amber-400" size={22} />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Commodity Super-Cycles</h1>
- <p className="text-sm text-muted-foreground">
- Raw materials analysis, market dynamics, and investment vehicles
- </p>
- </div>
- </div>
- {/* summary chips */}
- <div className="flex flex-wrap gap-2 mt-3">
- <InfoBadge text="5 Historical Cycles Analyzed" />
- <InfoBadge text="Current Cycle: Green Energy Transition" />
- <InfoBadge text="Avg Cycle Duration: 25yrs" />
- </div>
- </motion.div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Commodity Cycles</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">SUPER-CYCLES · DEMAND · SUPPLY · INVENTORY</p>
 
  <Tabs defaultValue="supercycle">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
@@ -1917,6 +1896,7 @@ export default function CommodityCyclesPage() {
  </div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

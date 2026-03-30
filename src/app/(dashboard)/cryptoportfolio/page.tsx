@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Tabs,
  TabsContent,
@@ -585,31 +584,25 @@ export default function CryptoPortfolioPage() {
  const toggle = (key: string) => setExpandedSection(prev => prev === key ? null : key);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* HERO Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-l-4 border-l-primary rounded-md bg-card p-6"
- >
+ <div className="mb-4">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Crypto Portfolio</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">ALLOCATION · RISK · REBALANCING · DCA</p>
+ </div>
+
+ {/* Summary stats inline */}
+ <div className="flex items-center gap-6 mb-6">
  <div>
- <h1 className="text-xl font-semibold flex items-center gap-2">
- <Bitcoin className="w-6 h-6 text-orange-400" />
- Crypto Portfolio
- </h1>
- <p className="text-sm text-muted-foreground mt-0.5">Advanced analytics, on-chain insights, DeFi yields & tax optimization</p>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-0.5">Total Value</div>
+ <div className="text-xl font-mono tabular-nums text-foreground">{fmt(portfolioData.totalValue)}</div>
  </div>
- <div className="flex items-center gap-3">
- <div className="text-right">
- <div className="text-xs text-muted-foreground">Total Value</div>
- <div className="text-xl font-medium text-foreground">{fmt(portfolioData.totalValue)}</div>
- </div>
- <div className={cn("text-right", portfolioData.totalPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
- <div className="text-xs text-muted-foreground">Total P&L</div>
- <div className="text-lg font-semibold">{fmtPct(portfolioData.totalPnlPct)}</div>
+ <div className={cn("", portfolioData.totalPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-0.5">Total P&L</div>
+ <div className="text-xl font-mono tabular-nums">{fmtPct(portfolioData.totalPnlPct)}</div>
  </div>
  </div>
- </motion.div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -618,10 +611,7 @@ export default function CryptoPortfolioPage() {
  <TabsTrigger
  key={t.id}
  value={t.id}
- className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium
- data-[state=active]:bg-primary data-[state=active]:text-foreground
- data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground
- data-[state=inactive]:bg-foreground/5 transition-colors"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground flex items-center gap-1.5"
  >
  <t.icon className="w-3.5 h-3.5" />
  {t.label}
@@ -1383,14 +1373,10 @@ export default function CryptoPortfolioPage() {
  </Tabs>
 
  {/* Footer disclaimer */}
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: 0.5 }}
- className="text-xs text-muted-foreground border-t border-border pt-4"
- >
+ <div className="text-xs text-muted-foreground border-t border-border pt-4 mt-6">
  Educational simulation only. Not financial or tax advice. Prices and data are illustrative. Consult a CPA or financial advisor for actual decisions.
- </motion.div>
+ </div>
+ </div>
  </div>
  );
 }

@@ -1130,40 +1130,13 @@ function PaymentStocksTab() {
 
 export default function PaymentsPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-8">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="mb-8"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="w-10 h-10 rounded-md bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
+ <div className="mb-8">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Payments</h1>
+ <p className="text-sm text-muted-foreground tracking-widest uppercase">RAILS · FINTECH · DIGITAL · SETTLEMENT</p>
  </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">Payment Systems</h1>
- <p className="text-sm text-muted-foreground">Fintech infrastructure, digital payments, and the future of money</p>
- </div>
- </div>
- <div className="flex flex-wrap gap-3 mt-4">
- {[
- { icon: <Clock className="w-3 h-3" />, label: "RTP: &lt;5 seconds" },
- { icon: <DollarSign className="w-3 h-3" />, label: "$172B merchant fees (2023)" },
- { icon: <Globe className="w-3 h-3" />, label: "130+ CBDC projects globally" },
- { icon: <TrendingUp className="w-3 h-3" />, label: "Stablecoins: $27T volume (2024)" },
- ].map((chip) => (
- <div
- key={chip.label}
- className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-full text-xs text-muted-foreground"
- >
- <span className="text-indigo-400">{chip.icon}</span>
- <span dangerouslySetInnerHTML={{ __html: chip.label }} />
- </div>
- ))}
- </div>
- </motion.div>
 
  {/* Tabs */}
  <Tabs defaultValue="rails">

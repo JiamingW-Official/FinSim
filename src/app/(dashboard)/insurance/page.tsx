@@ -1944,42 +1944,18 @@ export default function InsurancePage() {
  ];
 
  return (
- <div className="p-4 md:p-4 max-w-5xl mx-auto">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
- {/* Page header */}
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
  <div className="mb-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="w-9 h-9 rounded-lg bg-muted/10 flex items-center justify-center">
- <Shield size={18} className="text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-2xl font-semibold">Insurance & Risk Transfer</h1>
- <p className="text-sm text-muted-foreground">
- From actuarial pricing to catastrophe bonds — the $7T industry that underlies the financial system
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- <Badge className="bg-muted/10 text-foreground border-border text-xs">Risk Pooling</Badge>
- <Badge className="bg-green-500/15 text-green-400 border-green-500/25 text-xs">Float Leverage</Badge>
- <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/25 text-xs">Combined Ratio</Badge>
- <Badge className="bg-muted/10 text-foreground border-border text-xs">Cat Bonds</Badge>
- <Badge className="bg-rose-500/15 text-rose-400 border-rose-500/25 text-xs">ILS Market</Badge>
- </div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Insurance</h1>
+ <p className="text-sm font-mono tracking-widest text-muted-foreground uppercase">RISK TRANSFER · PREMIUMS · RESERVES · ALM</p>
  </div>
 
- {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Insurance Industry Deep Dive</h2>
- <p className="text-sm text-muted-foreground">Fundamentals, life insurance, P&amp;C, reinsurance, InsurTech, and investment strategies across the $7T industry.</p>
- </div>
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="fundamentals" className="mt-8">
+ <Tabs defaultValue="fundamentals" className="mt-2">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {tabs.map((tab) => (
  <TabsTrigger
@@ -2011,7 +1987,7 @@ export default function InsurancePage() {
  <InvestmentTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

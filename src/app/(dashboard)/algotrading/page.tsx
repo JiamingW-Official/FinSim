@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
  Zap,
  Clock,
@@ -498,56 +497,36 @@ export default function AlgoTradingPage() {
  },
  ];
 
- const fadeUp = {
- initial: { opacity: 0, y: 20 },
- animate: { opacity: 1, y: 0 },
- transition: { duration: 0.4 },
- };
-
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
- {/* HERO Header */}
- <motion.div {...fadeUp}>
- <div className="border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
- <Zap className="w-5 h-5 text-indigo-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Algorithmic Trading &amp; Market Microstructure</h1>
- <p className="text-sm text-muted-foreground">Order types, execution algorithms, market impact models, and HFT strategies</p>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Algo Trading</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">SYSTEMATIC · EXECUTION · HFT · SIGNALS</p>
  </div>
 
  {/* KPI strip */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  {[
- { label: "Impl. Shortfall", value: `${IMPL_SHORTFALL_BPS > 0 ? "+" : ""}${IMPL_SHORTFALL_BPS} bps`, sub: "vs arrival price", icon: <Target className="w-4 h-4 text-amber-400" />, col: "text-amber-400" },
- { label: "TWAP Shortfall", value: `${TWAP_SHORTFALL > 0 ? "+" : ""}${TWAP_SHORTFALL} bps`, sub: "vs benchmark", icon: <Clock className="w-4 h-4 text-muted-foreground" />, col: "text-muted-foreground" },
- { label: "VWAP Shortfall", value: `${VWAP_SHORTFALL > 0 ? "+" : ""}${VWAP_SHORTFALL} bps`, sub: "vs benchmark", icon: <BarChart2 className="w-4 h-4 text-orange-400" />, col: "text-orange-400" },
- { label: "Backtest Sharpe", value: sharpe.toFixed(2), sub: "momentum strategy", icon: <TrendingUp className="w-4 h-4 text-emerald-400" />, col: "text-emerald-400" },
+ { label: "Impl. Shortfall", value: `${IMPL_SHORTFALL_BPS > 0 ? "+" : ""}${IMPL_SHORTFALL_BPS} bps`, sub: "vs arrival price", col: "text-amber-400" },
+ { label: "TWAP Shortfall", value: `${TWAP_SHORTFALL > 0 ? "+" : ""}${TWAP_SHORTFALL} bps`, sub: "vs benchmark", col: "text-muted-foreground" },
+ { label: "VWAP Shortfall", value: `${VWAP_SHORTFALL > 0 ? "+" : ""}${VWAP_SHORTFALL} bps`, sub: "vs benchmark", col: "text-orange-400" },
+ { label: "Backtest Sharpe", value: sharpe.toFixed(2), sub: "momentum strategy", col: "text-emerald-400" },
  ].map((k) => (
- <Card key={k.label} className="bg-card/60 border-border">
- <CardContent className="p-3">
- <div className="flex items-center gap-2 mb-1">
- {k.icon}
- <span className="text-xs text-muted-foreground">{k.label}</span>
+ <div key={k.label} className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{k.label}</div>
+ <div className={cn("text-xl font-mono tabular-nums font-semibold", k.col)}>{k.value}</div>
+ <div className="text-xs text-muted-foreground mt-0.5">{k.sub}</div>
  </div>
- <div className={cn("text-lg font-semibold tabular-nums", k.col)}>{k.value}</div>
- <div className="text-xs text-muted-foreground">{k.sub}</div>
- </CardContent>
- </Card>
  ))}
  </div>
- </div>
- </motion.div>
 
- <div className="mt-8" />
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.4 }}>
- <Tabs defaultValue="orders">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <Tabs defaultValue="orders" className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "orders", label: "Order Types" },
  { value: "execution", label: "TWAP/VWAP" },
@@ -559,7 +538,7 @@ export default function AlgoTradingPage() {
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className="text-xs px-3 py-1.5 data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-300"
+ className="h-10 rounded-none border-b-2 border-transparent px-4 text-sm font-medium text-muted-foreground transition-colors data-[state=active]:border-primary data-[state=active]:text-foreground bg-transparent"
  >
  {tab.label}
  </TabsTrigger>
@@ -1012,7 +991,7 @@ export default function AlgoTradingPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

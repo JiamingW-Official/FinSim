@@ -1546,37 +1546,20 @@ export default function StructuredProductsPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-6">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-500/30 flex items-center justify-center">
- <Layers className="w-4 h-4 text-sky-400" />
- </div>
- <h1 className="text-xl font-bold text-foreground">Structured Products</h1>
- <Badge variant="outline" className="border-sky-500/30 text-sky-400 text-xs">
- Advanced
- </Badge>
- </div>
- <p className="text-sm text-foreground/50">
- ABS, MBS, CMOs, principal-protected notes, autocallables, and structured credit instruments
- </p>
- </motion.div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Structured Products</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground mb-8">NOTES · CERTIFICATES · PROTECTION · YIELD</p>
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-foreground/5 border border-border h-auto p-1 flex flex-wrap gap-1 mb-6">
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-0">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6 flex flex-wrap gap-0">
  {tabs.map((t) => (
  <TabsTrigger
  key={t.id}
  value={t.id}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-sky-500/20 data-[state=active]:text-sky-400 text-foreground/50 px-3 py-1.5"
+ className="flex items-center gap-1.5 text-xs rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2"
  >
  <t.icon className="w-3.5 h-3.5" />
  {t.label}

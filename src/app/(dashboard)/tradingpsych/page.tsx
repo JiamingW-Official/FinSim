@@ -1119,34 +1119,29 @@ export default function TradingPsychPage() {
  }, []);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
- {/* Header */}
- <div className="space-y-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
- <h1 className="text-xl font-bold tracking-tight flex items-center gap-2">
- <Brain className="w-6 h-6 text-primary" />
- Trading Psychology
- </h1>
- <p className="text-sm text-muted-foreground">
- Mental performance, bias detection, and peak mindset for consistent
- trading.
- </p>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col space-y-4">
+ {/* Hero */}
+ <div className="mb-4">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Trading Psychology</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">MINDSET · DISCIPLINE · RISK · PERFORMANCE</p>
  </div>
 
- <Tabs defaultValue="bias" className="mt-8">
- <TabsList className="flex flex-wrap gap-1 h-auto">
- <TabsTrigger value="bias" className="text-xs text-muted-foreground">
+ <Tabs defaultValue="bias">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto flex flex-wrap gap-0">
+ <TabsTrigger value="bias" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Bias Assessment
  </TabsTrigger>
- <TabsTrigger value="emotional" className="text-xs text-muted-foreground">
+ <TabsTrigger value="emotional" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Emotional Cycle
  </TabsTrigger>
- <TabsTrigger value="process" className="text-xs text-muted-foreground">
+ <TabsTrigger value="process" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Process Development
  </TabsTrigger>
- <TabsTrigger value="review" className="text-xs text-muted-foreground">
+ <TabsTrigger value="review" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Post-Trade Review
  </TabsTrigger>
- <TabsTrigger value="peak" className="text-xs text-muted-foreground">
+ <TabsTrigger value="peak" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Peak Performance
  </TabsTrigger>
  </TabsList>
@@ -1873,6 +1868,7 @@ export default function TradingPsychPage() {
  </Card>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

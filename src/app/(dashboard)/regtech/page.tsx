@@ -1385,33 +1385,13 @@ function MarketFutureTab() {
 
 export default function RegtechPage() {
  return (
- <div className="p-4 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="w-10 h-10 rounded-md bg-muted/10 border border-primary/40 flex items-center justify-center">
- <ShieldCheck className="w-3.5 h-3.5 text-muted-foreground/50" />
+ <div className="mb-8">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">RegTech</h1>
+ <p className="text-sm text-muted-foreground tracking-widest uppercase">COMPLIANCE · KYC · AML · REPORTING</p>
  </div>
- <div>
- <h1 className="text-2xl font-semibold text-foreground">RegTech & Compliance Automation</h1>
- <p className="text-sm text-muted-foreground">
- AML/KYC automation, regulatory reporting, sanctions screening, and compliance cost reduction
- </p>
- </div>
- </div>
-
- <div className="flex flex-wrap gap-2 mt-3">
- {["AML/KYC", "COREP/FINREP", "Sanctions Screening", "SupTech", "AI Compliance"].map((tag) => (
- <Badge key={tag} variant="outline" className="text-xs text-primary border-border">
- {tag}
- </Badge>
- ))}
- </div>
- </motion.div>
 
  {/* Tabs */}
  <Tabs defaultValue="aml">
@@ -1472,6 +1452,7 @@ export default function RegtechPage() {
  </TabsContent>
  </AnimatePresence>
  </Tabs>
+ </div>
  </div>
  );
 }
