@@ -867,20 +867,29 @@ export function OrderEntry() {
  />
  )}
 
- {/* Market session warning */}
- {orderType === "market" && isExtendedHours && (
- <div className="flex items-center gap-2 rounded px-2 py-1 bg-amber-500/8 border border-amber-500/15 text-amber-400/70">
- <AlertTriangle className="h-3 w-3 shrink-0 text-amber-400/60" />
- <span className="text-[9px] font-mono">
- {marketSession === "pre-market" ? "Pre-Market  04:00 – 09:30 ET" : "After-Hours  16:00 – 20:00 ET"}
- </span>
- <span className="ml-auto text-[9px] font-mono opacity-60">Wider spreads may apply</span>
+ {/* Market session banner */}
+ {orderType === "market" && isMarketOpen && (
+ <div className="flex items-center gap-1.5 rounded px-2 py-1 bg-emerald-500/10 border border-emerald-500/20">
+ <span className="text-[9px] font-semibold text-emerald-400">✓ Market Open</span>
+ <span className="text-[9px] text-emerald-400/60">· Regular trading hours (09:30–16:00 ET)</span>
+ </div>
+ )}
+ {orderType === "market" && marketSession === "pre-market" && (
+ <div className="flex items-center gap-1.5 rounded px-2 py-1 bg-amber-500/10 border border-amber-500/20">
+ <span className="text-[9px] font-semibold text-amber-400">⚡ Pre-Market</span>
+ <span className="text-[9px] text-amber-400/70">· Extended hours trading active (04:00–09:30 ET)</span>
+ </div>
+ )}
+ {orderType === "market" && marketSession === "after-hours" && (
+ <div className="flex items-center gap-1.5 rounded px-2 py-1 bg-sky-500/10 border border-sky-500/20">
+ <span className="text-[9px] font-semibold text-sky-400">⚡ After-Hours</span>
+ <span className="text-[9px] text-sky-400/70">· Extended hours trading active (16:00–20:00 ET)</span>
  </div>
  )}
  {orderType === "market" && marketSession === "closed" && (
- <div className="flex items-center gap-1.5 rounded-md border border-amber-500/20 bg-amber-500/5 px-2.5 py-1.5 text-xs text-amber-500/70">
- <AlertCircle className="h-3 w-3 shrink-0" />
- <span>Market closed — orders unavailable</span>
+ <div className="flex items-center gap-1.5 rounded px-2 py-1 bg-muted/30 border border-border/40">
+ <AlertCircle className="h-3 w-3 shrink-0 text-muted-foreground/60" />
+ <span className="text-[9px] text-muted-foreground">Market closed (trades not allowed)</span>
  </div>
  )}
 
@@ -891,9 +900,13 @@ export function OrderEntry() {
  className={cn(
  "w-full h-10 font-semibold text-sm tracking-tight mt-1",
  tradeMode === "buy"
- ? "bg-emerald-500 hover:bg-emerald-400 text-white"
+ ? isExtendedHours
+ ? "bg-amber-500/80 hover:bg-amber-500 text-white"
+ : "bg-emerald-500 hover:bg-emerald-400 text-white"
  : tradeMode === "short"
  ? "bg-purple-500 hover:bg-purple-400 text-white"
+ : isExtendedHours
+ ? "bg-rose-500/80 hover:bg-rose-500 text-white"
  : "bg-red-500 hover:bg-red-400 text-white",
  )}
  >
