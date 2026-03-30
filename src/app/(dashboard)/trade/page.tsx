@@ -88,10 +88,10 @@ function LiveInfoBar() {
  if (price === 0) return null;
 
  return (
-  <div className="hidden md:flex shrink-0 border-b border-border/40 px-4 py-1 items-center gap-5">
+  <div className="flex shrink-0 h-7 border-b border-border/40 px-4 items-center gap-5">
    <div className="flex items-baseline gap-2">
-    <span className="text-xs font-semibold tracking-tight">{ticker}</span>
-    <span className="text-sm font-semibold tabular-nums">${price.toFixed(2)}</span>
+    <span className="text-[11px] font-semibold tracking-tight">{ticker}</span>
+    <span className="text-[11px] font-semibold tabular-nums">${price.toFixed(2)}</span>
     <span className={cn("text-xs font-mono tabular-nums", isUp ? "text-emerald-400/80" : "text-rose-400/70")}>
      {isUp ? "+" : ""}{change.toFixed(2)} ({isUp ? "+" : ""}{changePct.toFixed(2)}%)
     </span>
@@ -103,7 +103,7 @@ function LiveInfoBar() {
    <div className="flex items-center gap-4">
     <div className="flex items-baseline gap-1.5">
      <span className="text-[10px] font-mono text-muted-foreground/25 uppercase tracking-wider">Portfolio</span>
-     <span className="text-xs font-medium tabular-nums">${portfolioValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
+     <span className="text-[11px] font-medium tabular-nums">${portfolioValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
     </div>
     <div className="flex items-baseline gap-1.5">
      <span className="text-[10px] font-mono text-muted-foreground/25 uppercase tracking-wider">Cash</span>
@@ -116,7 +116,7 @@ function LiveInfoBar() {
 
 // ── Shared tab trigger style ────────────────────────────────────────────────
 const tabCls =
- "rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-2.5 py-1.5 text-[11px] text-muted-foreground/40 data-[state=active]:text-foreground data-[state=active]:font-medium";
+ "rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-2 py-1 text-[10px] text-muted-foreground/40 data-[state=active]:text-foreground data-[state=active]:font-medium";
 
 // ── Chart area wrapper with DrawingOverlay ────────────────────────────────────
 
@@ -337,9 +337,9 @@ export default function TradePage() {
 
       <NewsTicker />
 
-      {/* Bottom panel — flex-[3] gives it ~38% of remaining height, min 160px */}
+      {/* Bottom panel — flex-[2] gives chart more vertical space, min 140px */}
       <div
-       className="flex-[3] min-h-[160px] shrink-0 overflow-hidden border-t border-border/40"
+       className="flex-[2] min-h-[140px] shrink-0 overflow-hidden border-t border-border/40"
        data-tutorial="positions"
       >
        <Tabs defaultValue="fundamentals" className="h-full flex flex-col">

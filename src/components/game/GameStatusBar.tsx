@@ -62,14 +62,12 @@ export function GameStatusBar() {
   const session   = SESSION_STYLES[marketSession] ?? SESSION_STYLES.closed;
 
   return (
-    <div className="h-10 shrink-0 border-t border-border/30 bg-background flex items-center px-3 gap-0">
+    <div className="h-8 shrink-0 border-t border-border/30 bg-background flex items-center px-3 gap-0">
 
-      {/* ── LEFT: LIVE pill ── */}
-      <div className="flex items-center gap-2 shrink-0" style={{ width: 72 }}>
+      {/* ── LEFT: LIVE + speed + separator + real ET clock ── */}
+      <div className="flex items-center gap-2 shrink-0" style={{ width: 160 }}>
         {isSeasonOver ? (
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-rose-400/80">
-            ENDED
-          </span>
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-rose-400/80">ENDED</span>
         ) : (
           <>
             <span className="flex items-center gap-1">
@@ -80,19 +78,12 @@ export function GameStatusBar() {
               <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-emerald-400/90">LIVE</span>
             </span>
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/30">6×</span>
+            <span className="h-3 w-px bg-border/40" />
+            <span className="font-mono text-[10px] tabular-nums text-muted-foreground/50">{realTime}</span>
+            <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground/25">ET</span>
           </>
         )}
       </div>
-
-      <span className="h-3 w-px bg-border/40 mx-2 shrink-0" />
-
-      {/* ── CENTER LEFT: Real ET clock ── */}
-      <div className="flex items-center gap-1.5 shrink-0">
-        <span className="font-mono text-[9px] tracking-widest text-muted-foreground/25 uppercase">Real ET</span>
-        <span className="font-mono text-[12px] font-semibold tabular-nums text-muted-foreground/55 tracking-tight">{realTime}</span>
-      </div>
-
-      <span className="h-3 w-px bg-border/40 mx-2 shrink-0" />
 
       {/* ── CENTER: Game clock (the most prominent element) ── */}
       <div className="flex-1 flex items-center justify-center gap-2">
@@ -106,23 +97,20 @@ export function GameStatusBar() {
         <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground/25 mt-px">ET</span>
       </div>
 
-      <span className="h-3 w-px bg-border/40 mx-2 shrink-0" />
-
-      {/* ── RIGHT: countdown + day + session ── */}
+      {/* ── RIGHT: countdown + day + session (all on one line) ── */}
       <div className="flex items-center gap-2 shrink-0">
         {!isSeasonOver && countdown.display && countdown.display !== "--:--" && (
-          <div className={cn(
-            "flex flex-col items-end rounded px-2 py-0.5",
-            "font-mono tabular-nums ring-1 ring-inset",
+          <span className={cn(
+            "font-mono text-[9px] tabular-nums px-1.5 py-0.5 rounded ring-1 ring-inset",
             countdown.urgent
               ? "bg-amber-400/10 text-amber-400/90 ring-amber-400/25 animate-pulse"
               : countdown.target === "close"
                 ? "bg-rose-500/[0.07] text-rose-400/65 ring-rose-500/10"
                 : "bg-emerald-500/[0.07] text-emerald-400/60 ring-emerald-500/10",
           )}>
-            <span className="text-[9px] opacity-55 leading-none">{countdown.label} · {countdown.action}</span>
-            <span className="text-[11px] font-bold leading-tight tracking-tight">{countdown.display}</span>
-          </div>
+            <span className="opacity-55">{countdown.label} {countdown.action} </span>
+            <span className="font-bold">{countdown.display}</span>
+          </span>
         )}
 
         <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/35 tabular-nums">

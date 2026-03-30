@@ -22,7 +22,7 @@ import {
 import { useMarketDataStore } from "@/stores/market-data-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { useChartStore, type IndicatorType } from "@/stores/chart-store";
-import { registerChartApi, unregisterChartApi, notifyChartDataReady } from "@/stores/chart-api-store";
+import { registerChartApi, unregisterChartApi, notifyChartDataReady, updateCrosshairPoint, notifyChartClick } from "@/stores/chart-api-store";
 import { INTRADAY_TIMEFRAMES } from "@/types/market";
 import type { Timeframe } from "@/types/market";
 import {
@@ -276,10 +276,15 @@ export function CandlestickChart() {
 
  const handleCrosshairMove = useCallback(
  (param: MouseEventParams<Time>) => {
- if (!param.time) {
- setCrosshairData(null);
- return;
+ if (!param.time || !param.point) {
+  updateCrosshairPoint(null, null);
+  setCrosshairData(null);
+  return;
  }
+ // Update crosshair point for drawing tools
+ const crosshairPrice = candleSeriesRef.current?.coordinateToPrice(param.point.y) ?? null;
+ updateCrosshairPoint(param.time as number, crosshairPrice);
+
  const bar = dataByTime.get(param.time as number);
  if (bar) {
  const isIntradayBar = INTRADAY_TIMEFRAMES.has(bar.timeframe as Timeframe);
@@ -417,6 +422,15 @@ export function CandlestickChart() {
 
  // Register chart API for DrawingOverlay coordinate conversion
  registerChartApi(chart, candleSeries);
+
+ // Forward chart clicks to drawing tools
+ chart.subscribeClick((param) => {
+  if (!param.time || !param.point) return;
+  const price = candleSeries.coordinateToPrice(param.point.y);
+  if (price == null) return;
+  updateCrosshairPoint(param.time as number, price);
+  notifyChartClick();
+ });
 
  return () => {
  unregisterChartApi();

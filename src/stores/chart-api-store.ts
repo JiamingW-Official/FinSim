@@ -79,3 +79,38 @@ export function subscribeChartApi(fn: () => void): () => void {
   _listeners.delete(fn);
  };
 }
+
+// ── Crosshair point tracking ──────────────────────────────────────────────────
+let _crosshairPoint: { time: number; price: number } | null = null;
+const _crosshairListeners: Set<() => void> = new Set();
+
+export function updateCrosshairPoint(time: number | null, price: number | null) {
+ _crosshairPoint =
+  time != null && price != null ? { time, price } : null;
+ _crosshairListeners.forEach((fn) => fn());
+}
+
+export function getCrosshairPoint() {
+ return _crosshairPoint;
+}
+
+export function subscribeCrosshairUpdate(fn: () => void): () => void {
+ _crosshairListeners.add(fn);
+ return () => {
+  _crosshairListeners.delete(fn);
+ };
+}
+
+// ── Chart click forwarding ────────────────────────────────────────────────────
+const _clickListeners: Set<() => void> = new Set();
+
+export function notifyChartClick() {
+ _clickListeners.forEach((fn) => fn());
+}
+
+export function subscribeChartClick(fn: () => void): () => void {
+ _clickListeners.add(fn);
+ return () => {
+  _clickListeners.delete(fn);
+ };
+}

@@ -5,6 +5,9 @@ import {
  getChartApi,
  subscribeChartApi,
  getRangeVersion,
+ getCrosshairPoint,
+ subscribeCrosshairUpdate,
+ subscribeChartClick,
 } from "@/stores/chart-api-store";
 import type { UTCTimestamp, Logical } from "lightweight-charts";
 
@@ -123,59 +126,12 @@ function priceToY(price: number): number | null {
  return series.priceToCoordinate(price);
 }
 
-function xToTime(x: number): number | null {
- const { chart } = getChartApi();
- if (!chart) return null;
- const t = chart.timeScale().coordinateToTime(x);
- if (t != null) return t as number;
-
- // Fallback: when clicking in empty area (past last bar), coordinateToTime
- // returns null. Use logical coordinates to find the nearest bar time and
- // extrapolate.
- const logical = chart.timeScale().coordinateToLogical(x);
- if (logical == null) return null;
- // Round to nearest integer logical index and convert back to coordinate,
- // then map that coordinate to time. This snaps to the nearest bar.
- const rounded = Math.round(logical) as unknown as Logical;
- const snappedX = chart.timeScale().logicalToCoordinate(rounded);
- if (snappedX == null) return null;
- const snappedTime = chart.timeScale().coordinateToTime(snappedX);
- return snappedTime != null ? (snappedTime as number) : null;
-}
-
-function yToPrice(y: number): number | null {
- const { series } = getChartApi();
- if (!series) return null;
- return series.coordinateToPrice(y);
-}
-
-/** Convert a screen click → logical point */
-function screenToLogical(clientX: number, clientY: number, svg: SVGSVGElement): LogicalPoint | null {
- const rect = svg.getBoundingClientRect();
- const x = clientX - rect.left;
- const y = clientY - rect.top;
- const time = xToTime(x);
- const price = yToPrice(y);
- if (time == null || price == null) return null;
- return { time, price };
-}
-
 /** Convert a logical point → screen pixel coords */
 function logicalToScreen(lp: LogicalPoint): { x: number; y: number } | null {
  const x = timeToX(lp.time);
  const y = priceToY(lp.price);
  if (x == null || y == null) return null;
  return { x, y };
-}
-
-// ── Pending two-click state ───────────────────────────────────────────────────
-
-interface InProgressState {
- type: "trendline" | "rect" | "fib";
- p1: LogicalPoint;
- p1Screen: { x: number; y: number };
- currentX: number;
- currentY: number;
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -187,13 +143,12 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
  const { activeTool, drawings, addDrawing, removeDrawing, setActiveTool } = useDrawingStore();
 
  const [firstClick, setFirstClick] = useState<LogicalPoint | null>(null);
- const [firstClickScreen, setFirstClickScreen] = useState<{ x: number; y: number } | null>(null);
- const [inProgress, setInProgress] = useState<InProgressState | null>(null);
+ const [ghostPoint, setGhostPoint] = useState<{ x: number; y: number } | null>(null);
  const [pendingText, setPendingText] = useState<{ p: LogicalPoint; screen: { x: number; y: number } } | null>(null);
  const [textInput, setTextInput] = useState("");
  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
- // Subscribe to chart API changes (scroll, zoom) to re-render
+ // Subscribe to chart API changes (scroll, zoom, data) to re-render drawings
  const [, setRangeVer] = useState(0);
  useEffect(() => {
   return subscribeChartApi(() => setRangeVer(getRangeVersion()));
@@ -202,40 +157,28 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
  // Reset state when tool changes
  useEffect(() => {
   setFirstClick(null);
-  setFirstClickScreen(null);
-  setInProgress(null);
+  setGhostPoint(null);
   setPendingText(null);
   setTextInput("");
   setHoveredId(null);
  }, [activeTool]);
 
- const handleMouseMove = useCallback(
-  (e: React.MouseEvent<SVGSVGElement>) => {
-   if (!firstClick || !firstClickScreen) return;
-   if (activeTool !== "trendline" && activeTool !== "rect" && activeTool !== "fib") return;
-   const svg = svgRef.current;
-   if (!svg) return;
-   const rect = svg.getBoundingClientRect();
-   setInProgress({
-    type: activeTool as "trendline" | "rect" | "fib",
-    p1: firstClick,
-    p1Screen: firstClickScreen,
-    currentX: e.clientX - rect.left,
-    currentY: e.clientY - rect.top,
-   });
-  },
-  [firstClick, firstClickScreen, activeTool],
- );
+ // Track crosshair position for ghost preview
+ useEffect(() => {
+  return subscribeCrosshairUpdate(() => {
+   const pt = getCrosshairPoint();
+   if (!pt) { setGhostPoint(null); return; }
+   const screen = logicalToScreen(pt);
+   setGhostPoint(screen);
+  });
+ }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
- const handleClick = useCallback(
-  (e: React.MouseEvent<SVGSVGElement>) => {
-   if (activeTool === "none") return;
-   const svg = svgRef.current;
-   if (!svg) return;
-   const pt = screenToLogical(e.clientX, e.clientY, svg);
+ // Handle chart clicks to place drawings
+ useEffect(() => {
+  if (activeTool === "none" || activeTool === "eraser") return;
+  return subscribeChartClick(() => {
+   const pt = getCrosshairPoint();
    if (!pt) return;
-   const rect = svg.getBoundingClientRect();
-   const screenPt = { x: e.clientX - rect.left, y: e.clientY - rect.top };
 
    switch (activeTool) {
     case "hline":
@@ -251,39 +194,44 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
     case "trendline":
     case "rect":
     case "fib": {
-     if (!firstClick) {
-      setFirstClick(pt);
-      setFirstClickScreen(screenPt);
-     } else {
-      if (activeTool === "trendline") {
-       addDrawing({ id: uid(), type: "trendline", p1: firstClick, p2: pt, color: "#3b82f6" });
-      } else if (activeTool === "rect") {
-       addDrawing({ id: uid(), type: "rect", p1: firstClick, p2: pt, color: "#8b5cf6" });
-      } else if (activeTool === "fib") {
-       const high = Math.max(firstClick.price, pt.price);
-       const low = Math.min(firstClick.price, pt.price);
-       const levels = FIB_LEVELS.map(({ ratio }) => ({ ratio, price: high - ratio * (high - low) }));
-       addDrawing({ id: uid(), type: "fib", p1: firstClick, p2: pt, color: "#10b981", levels });
+     setFirstClick((prev) => {
+      if (!prev) {
+       // First click — store anchor
+       return pt;
       }
-      setFirstClick(null);
-      setFirstClickScreen(null);
-      setInProgress(null);
+      // Second click — create drawing
+      if (activeTool === "trendline") {
+       addDrawing({ id: uid(), type: "trendline", p1: prev, p2: pt, color: "#3b82f6" });
+      } else if (activeTool === "rect") {
+       addDrawing({ id: uid(), type: "rect", p1: prev, p2: pt, color: "#8b5cf6" });
+      } else {
+       const high = Math.max(prev.price, pt.price);
+       const low = Math.min(prev.price, pt.price);
+       const levels = FIB_LEVELS.map(({ ratio }) => ({
+        ratio,
+        price: high - ratio * (high - low),
+       }));
+       addDrawing({ id: uid(), type: "fib", p1: prev, p2: pt, color: "#10b981", levels });
+      }
       setActiveTool("none");
-     }
+      return null;
+     });
      break;
     }
 
-    case "text":
-     setPendingText({ p: pt, screen: screenPt });
+    case "text": {
+     const currentGhost = getCrosshairPoint();
+     if (!currentGhost) return;
+     const screen = logicalToScreen(currentGhost);
+     if (!screen) return;
+     setPendingText({ p: pt, screen });
      setTextInput("");
      break;
-
-    case "eraser":
-     break;
+    }
    }
-  },
-  [activeTool, firstClick, addDrawing],
- );
+  });
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [activeTool, addDrawing, setActiveTool]);
 
  /** Click on a drawing: eraser mode removes, or in idle mode → delete */
  const handleDrawingClick = useCallback(
@@ -308,38 +256,26 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
   setActiveTool("none");
  }, [pendingText, textInput, addDrawing, setActiveTool]);
 
- const cursorStyle = activeTool === "none" ? "default" : "crosshair";
-
  if (width === 0 || height === 0) return null;
 
  // Check if chart API is available
  const { chart: chartApi, series: seriesApi } = getChartApi();
  const hasApi = !!chartApi && !!seriesApi;
 
- // When activeTool is "none", the overlay container is pointer-events-none
- // so the chart underneath receives interactions. Individual drawing <g>
- // elements set their own pointer-events to "auto" so they remain clickable
- // (for deletion on hover). When a tool is active, the SVG itself captures
- // all clicks for drawing placement.
- const isToolActive = activeTool !== "none";
-
  return (
   <div
    className="absolute inset-0 z-10"
-   style={{ pointerEvents: isToolActive ? "auto" : "none" }}
+   style={{ pointerEvents: "none" }}
   >
    <svg
     ref={svgRef}
     width={width}
     height={height}
     style={{
-     cursor: cursorStyle,
+     cursor: "default",
      display: "block",
-     pointerEvents: isToolActive ? "auto" : "none",
+     pointerEvents: "none",
     }}
-    onClick={handleClick}
-    onMouseMove={handleMouseMove}
-    onMouseLeave={() => { if (!firstClick) setInProgress(null); }}
    >
     {hasApi && drawings.map((d) => {
      const canInteract = activeTool === "eraser" || activeTool === "none";
@@ -551,40 +487,44 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
      return null;
     })}
 
-    {/* Ghost: first-click dot */}
-    {firstClickScreen && (
-     <circle cx={firstClickScreen.x} cy={firstClickScreen.y} r={4} fill="#3b82f6" opacity={0.8} />
-    )}
+    {/* Ghost: first-click anchor dot */}
+    {firstClick && (() => {
+     const s = logicalToScreen(firstClick);
+     if (!s) return null;
+     return <circle cx={s.x} cy={s.y} r={4} fill="#3b82f6" opacity={0.8} />;
+    })()}
 
-    {/* Ghost: in-progress trendline */}
-    {inProgress?.type === "trendline" && (
-     <line
-      x1={inProgress.p1Screen.x} y1={inProgress.p1Screen.y}
-      x2={inProgress.currentX} y2={inProgress.currentY}
-      stroke="#3b82f6" strokeWidth={1.5} strokeLinecap="round" strokeDasharray="4 3" opacity={0.7}
-     />
-    )}
-
-    {/* Ghost: in-progress rect */}
-    {inProgress?.type === "rect" && (() => {
-     const x = Math.min(inProgress.p1Screen.x, inProgress.currentX);
-     const y = Math.min(inProgress.p1Screen.y, inProgress.currentY);
-     const w = Math.abs(inProgress.currentX - inProgress.p1Screen.x);
-     const h = Math.abs(inProgress.currentY - inProgress.p1Screen.y);
+    {/* Ghost: in-progress line/rect from firstClick to current crosshair */}
+    {firstClick && ghostPoint && (activeTool === "trendline" || activeTool === "rect" || activeTool === "fib") && (() => {
+     const s1 = logicalToScreen(firstClick);
+     if (!s1) return null;
+     if (activeTool === "trendline" || activeTool === "fib") {
+      return (
+       <line
+        x1={s1.x} y1={s1.y}
+        x2={ghostPoint.x} y2={ghostPoint.y}
+        stroke="#3b82f6" strokeWidth={1.5} strokeLinecap="round"
+        strokeDasharray="4 3" opacity={0.7}
+       />
+      );
+     }
+     // rect
+     const rx = Math.min(s1.x, ghostPoint.x);
+     const ry = Math.min(s1.y, ghostPoint.y);
+     const rw = Math.abs(ghostPoint.x - s1.x);
+     const rh = Math.abs(ghostPoint.y - s1.y);
      return (
-      <rect x={x} y={y} width={w} height={h}
-       fill="#8b5cf61a" stroke="#8b5cf6" strokeWidth={1} strokeDasharray="4 3" opacity={0.7}
+      <rect
+       x={rx} y={ry} width={rw} height={rh}
+       fill="#8b5cf61a" stroke="#8b5cf6"
+       strokeWidth={1} strokeDasharray="4 3" opacity={0.7}
       />
      );
     })()}
 
-    {/* Ghost: in-progress fib */}
-    {inProgress?.type === "fib" && (
-     <line
-      x1={inProgress.p1Screen.x} y1={inProgress.p1Screen.y}
-      x2={inProgress.currentX} y2={inProgress.currentY}
-      stroke="#10b981" strokeWidth={1.5} strokeDasharray="4 3" opacity={0.7}
-     />
+    {/* Ghost: crosshair dot when tool active */}
+    {ghostPoint && activeTool !== "none" && activeTool !== "eraser" && (
+     <circle cx={ghostPoint.x} cy={ghostPoint.y} r={3} fill="#3b82f6" opacity={0.5} />
     )}
    </svg>
 
