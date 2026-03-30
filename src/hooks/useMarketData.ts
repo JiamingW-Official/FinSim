@@ -10,7 +10,7 @@ import { generateIntradayBars } from "@/services/market-data/intraday-generator"
 function getDateRange() {
   const to = new Date();
   const from = new Date();
-  from.setFullYear(from.getFullYear() - 2);
+  from.setFullYear(from.getFullYear() - 4); // 4 years → ~4 years of game time starting 2031
   return {
     from: from.toISOString().split("T")[0],
     to: to.toISOString().split("T")[0],

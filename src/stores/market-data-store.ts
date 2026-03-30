@@ -3,6 +3,10 @@ import type { OHLCVBar } from "@/types/market";
 
 const INITIAL_REVEALED = 1300; // ~50 days × 26 bars/day (15m bars)
 
+// Game epoch: all bar timestamps are shifted so the FIRST bar = Jan 1, 2031.
+// Real historical data is used for prices; only the displayed calendar is shifted.
+const GAME_EPOCH_MS = Date.UTC(2031, 0, 1); // Jan 1, 2031 00:00 UTC
+
 interface MarketDataState {
  allData: OHLCVBar[];
  revealedCount: number;
@@ -26,12 +30,19 @@ export const useMarketDataStore = create<MarketDataState>((set, get) => ({
  isPlaying: false,
  subBarStep: 2, // start fully revealed (all 3 sub-bars of last 15m bar)
 
- setAllData: (data) =>
- set({
- allData: data,
- revealedCount: Math.min(INITIAL_REVEALED, data.length),
+ setAllData: (data) => {
+ // Shift all timestamps so the first bar lands exactly on Jan 1, 2031.
+ let bars = data;
+ if (data.length > 0) {
+ const offset = GAME_EPOCH_MS - data[0].timestamp;
+ bars = data.map((b) => ({ ...b, timestamp: b.timestamp + offset }));
+ }
+ return set({
+ allData: bars,
+ revealedCount: Math.min(INITIAL_REVEALED, bars.length),
  subBarStep: 2,
- }),
+ });
+ },
 
  setRevealedCount: (n) =>
  set((state) => ({
