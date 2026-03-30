@@ -233,15 +233,25 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
  // eslint-disable-next-line react-hooks/exhaustive-deps
  }, [activeTool, addDrawing, setActiveTool]);
 
- /** Click on a drawing: eraser mode removes, or in idle mode → delete */
+ /** Click on a drawing: only eraser mode removes on click */
  const handleDrawingClick = useCallback(
   (e: React.MouseEvent, id: string) => {
    e.stopPropagation();
-   if (activeTool === "eraser" || activeTool === "none") {
+   if (activeTool === "eraser") {
     removeDrawing(id);
    }
   },
   [activeTool, removeDrawing],
+ );
+
+ /** Right-click on a drawing always removes it */
+ const handleDrawingContextMenu = useCallback(
+  (e: React.MouseEvent, id: string) => {
+   e.preventDefault();
+   e.stopPropagation();
+   removeDrawing(id);
+  },
+  [removeDrawing],
  );
 
  const commitText = useCallback(() => {
@@ -295,6 +305,7 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
         onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        onContextMenu={(e) => handleDrawingContextMenu(e, d.id)}
         style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         <line x1={s1.x} y1={s1.y} x2={s2.x} y2={s2.y}
@@ -330,6 +341,7 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
         onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        onContextMenu={(e) => handleDrawingContextMenu(e, d.id)}
         style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         <line x1={0} y1={y} x2={width} y2={y}
@@ -342,11 +354,19 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         <rect x={4} y={y - 8} width={label.length * 5.5 + 4} height={13} rx={2} fill="#0a0e17" opacity={0.8} />
         <text x={6} y={y + 2} fill={d.color} fontSize={9} fontFamily="monospace">{label}</text>
         {isHovered && (
-         <g onClick={(e) => handleDrawingClick(e, d.id)} className="cursor-pointer">
-          <circle cx={width - 16} cy={y} r={8} fill="#1a1a2e" stroke="#ef4444" strokeWidth={1} />
-          <line x1={width - 19} y1={y - 3} x2={width - 13} y2={y + 3} stroke="#ef4444" strokeWidth={1.5} />
-          <line x1={width - 13} y1={y - 3} x2={width - 19} y2={y + 3} stroke="#ef4444" strokeWidth={1.5} />
-         </g>
+         <>
+          {/* Right-edge price tag */}
+          <g>
+           <rect x={width - 58} y={y - 8} width={54} height={14} rx={2} fill={d.color} opacity={0.18} />
+           <text x={width - 56} y={y + 3} fill={d.color} fontSize={9} fontFamily="monospace" fontWeight="bold">{label}</text>
+          </g>
+          {/* Delete button */}
+          <g onClick={(e) => handleDrawingClick(e, d.id)} className="cursor-pointer">
+           <circle cx={width - 66} cy={y} r={7} fill="#1a1a2e" stroke="#ef4444" strokeWidth={1} />
+           <line x1={width - 69} y1={y - 3} x2={width - 63} y2={y + 3} stroke="#ef4444" strokeWidth={1.5} />
+           <line x1={width - 63} y1={y - 3} x2={width - 69} y2={y + 3} stroke="#ef4444" strokeWidth={1.5} />
+          </g>
+         </>
         )}
        </g>
       );
@@ -362,6 +382,7 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
         onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        onContextMenu={(e) => handleDrawingContextMenu(e, d.id)}
         style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         <line x1={x} y1={0} x2={x} y2={height}
@@ -397,6 +418,7 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
         onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        onContextMenu={(e) => handleDrawingContextMenu(e, d.id)}
         style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         <rect x={rx} y={ry} width={rw} height={rh}
@@ -421,6 +443,7 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
         onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        onContextMenu={(e) => handleDrawingContextMenu(e, d.id)}
         style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         {d.levels.map((lv, i) => {
@@ -466,6 +489,7 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
         onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        onContextMenu={(e) => handleDrawingContextMenu(e, d.id)}
         style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         <text x={s.x} y={s.y} fill={d.color} fontSize={11} fontFamily="monospace" fontWeight="500"

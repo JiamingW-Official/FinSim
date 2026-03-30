@@ -151,28 +151,29 @@ export function WatchlistPanel() {
                 <div className="absolute left-0 top-1/2 h-3 w-[2px] -translate-y-1/2 rounded-r bg-foreground/30" />
               )}
 
-              {/* Ticker + price */}
+              {/* Ticker + sparkline */}
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1 text-[11px] font-medium leading-none text-foreground">
                   <span className={`inline-block h-1.5 w-1.5 rounded-full shrink-0 ${sessionDotColor}`} />
                   {ticker}
                 </div>
-                <div className="mt-0.5 text-[10px] leading-none text-muted-foreground/60">
-                  {price.toFixed(2)}
+                <div className="mt-0.5">
+                  <MiniSpark ticker={ticker} positive={positive} />
                 </div>
               </div>
 
-              {/* Sparkline */}
-              <MiniSpark ticker={ticker} positive={positive} />
-
-              {/* Change % */}
-              <div
-                className={`text-right text-[10px] font-mono tabular-nums leading-none ${
-                  positive ? "text-emerald-400/80" : "text-rose-400/70"
-                }`}
-              >
-                {positive ? "+" : ""}
-                {changePct.toFixed(2)}%
+              {/* Price + Change % — right-aligned */}
+              <div className="flex flex-col items-end gap-0.5">
+                <div className="text-right text-[11px] font-mono tabular-nums leading-none text-foreground">
+                  {price.toFixed(2)}
+                </div>
+                <div
+                  className={`text-right text-[10px] font-mono tabular-nums leading-none ${
+                    positive ? "text-emerald-400/80" : "text-rose-400/70"
+                  }`}
+                >
+                  {positive ? "+" : ""}{changePct.toFixed(1)}%
+                </div>
               </div>
 
               {/* Remove button */}
