@@ -604,18 +604,14 @@ export default function DebtCapitalMarketsPage() {
 
  {/* Step Detail */}
  {activeStep !== null && (
- <motion.div
- key={activeStep}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className={`mt-4 p-4 rounded-md border ${PRICING_STEPS[activeStep].bgColor} border-current`}
  >
  <h3 className={`text-sm font-medium ${PRICING_STEPS[activeStep].color} mb-1`}>
  {PRICING_STEPS[activeStep].label} — {PRICING_STEPS[activeStep].duration}
  </h3>
  <p className="text-sm text-foreground/80">{PRICING_STEPS[activeStep].description}</p>
- </motion.div>
+ </div>
  )}
 
  {/* Key Concepts */}
@@ -709,12 +705,9 @@ export default function DebtCapitalMarketsPage() {
  />
  </div>
  {activeRole === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- transition={{ duration: 0.2 }}
- className="mt-2 pt-2 border-t border-border"
- >
+ <div
+              className="mt-2 pt-2 border-t border-border"
+            >
  <p className="text-xs text-foreground/80 mb-2">{role.description}</p>
  <ul className="space-y-0.5">
  {role.responsibilities.map((r) => (
@@ -724,7 +717,7 @@ export default function DebtCapitalMarketsPage() {
  </li>
  ))}
  </ul>
- </motion.div>
+ </div>
  )}
  </button>
  ))}
@@ -879,15 +872,13 @@ export default function DebtCapitalMarketsPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
 
  {/* Footer note */}
- <motion.div {...fadeUp} transition={{ delay: 0.15, duration: 0.4 }}>
  <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/20 border border-border rounded-lg px-3 py-2">
  <AlertTriangle size={12} className="shrink-0" />
  Simulated data for educational purposes only. Spreads, volumes, and deal details are illustrative.
  </div>
- </motion.div>
  </div>
  );
 }

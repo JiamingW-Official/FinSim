@@ -925,20 +925,17 @@ export default function OptionsFlowPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
 
  {/* ── Footer disclaimer ── */}
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ duration: 0.4, delay: 0.3 }}
+ <div
  className="flex items-start gap-2 p-3 rounded-lg bg-muted/10 border border-border text-xs text-muted-foreground"
  >
  <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
  <span>
  Options flow and dark pool data shown is <strong className="text-foreground">simulated for educational purposes</strong>. In live trading, this data is sourced from CBOE, OCC, FINRA TRACE, and ATS reporting systems. Unusual flow should be interpreted in context — not all large trades are directional; some hedge existing positions.
  </span>
- </motion.div>
+ </div>
  </div>
  </div>
  );

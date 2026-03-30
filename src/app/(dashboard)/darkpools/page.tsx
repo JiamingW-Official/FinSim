@@ -1202,9 +1202,8 @@ function HFTInteractionTab() {
  {/* Events list */}
  <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
  {HFT_TIMELINE.map((ev, i) => (
- <motion.div
- key={ev.year + ev.title}
- className={cn(
+ <div
+              className={cn(
  "rounded-lg px-3 py-2.5 cursor-pointer border transition-colors",
  activeEvent === i
  ? "border-opacity-50"
@@ -1234,21 +1233,16 @@ function HFTInteractionTab() {
  {typeLabel[ev.type]}
  </Badge>
  </div>
- <AnimatePresence>
+ 
  {activeEvent === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <p className="text-xs text-muted-foreground mt-2 pl-8 leading-relaxed">
  {ev.description}
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  </div>
@@ -1338,23 +1332,13 @@ function LitVsDarkTab() {
  <div className="flex items-center gap-2">
  <span className="text-xs text-muted-foreground w-6">Lit</span>
  <div className="flex-1 bg-muted/40 rounded-full h-3 overflow-hidden">
- <motion.div
- className="h-full rounded-full bg-primary/70"
- initial={{ width: 0 }}
- animate={{ width: `${litW}%` }}
- transition={{ duration: 0.6, ease: "easeOut" }}
- />
+ <div className="h-full rounded-full bg-primary/70" style={{ width: `${litW}%` }} />
  </div>
  </div>
  <div className="flex items-center gap-2">
  <span className="text-xs text-muted-foreground w-6">Dark</span>
  <div className="flex-1 bg-muted/40 rounded-full h-3 overflow-hidden">
- <motion.div
- className="h-full rounded-full bg-primary/70"
- initial={{ width: 0 }}
- animate={{ width: `${darkW}%` }}
- transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
- />
+ <div className="h-full rounded-full bg-primary/70" style={{ width: `${darkW}%` }} />
  </div>
  </div>
  </div>

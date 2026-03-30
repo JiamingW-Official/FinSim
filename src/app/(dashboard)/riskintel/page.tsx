@@ -1149,7 +1149,7 @@ export default function RiskIntelPage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ================================================================
@@ -1519,17 +1519,14 @@ export default function RiskIntelPage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ================================================================
  TAB 4: Scenario Analysis
  ================================================================ */}
  <TabsContent value="scenarios" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-5"
  >
  {/* Scenario impact bar chart */}
@@ -1558,7 +1555,7 @@ export default function RiskIntelPage() {
  const color = impact > -10 ? "#f59e0b" : impact > -20 ? "#f97316" : "#ef4444";
  const isSelected = selectedScenario === i;
  return (
- <motion.div key={s.name} whileHover={{ scale: 1.01 }} transition={{ duration: 0.15 }}>
+ <div>
  <Card
  className={`bg-card border-border cursor-pointer transition-colors ${
  isSelected ? "border-orange-500/50 bg-muted/80" : "hover:border-border"
@@ -1583,13 +1580,9 @@ export default function RiskIntelPage() {
  <div className="text-xs text-muted-foreground">portfolio P&amp;L</div>
  </div>
  </div>
- <AnimatePresence>
+ <>
  {isSelected && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="overflow-hidden"
  >
  <div className="pt-3 border-t border-border mt-3 space-y-2">
@@ -1624,12 +1617,12 @@ export default function RiskIntelPage() {
  </span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ </>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -1728,17 +1721,14 @@ export default function RiskIntelPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ================================================================
  TAB 5: Position Sizing & Kelly
  ================================================================ */}
  <TabsContent value="sizing" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-5"
  >
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -2110,9 +2100,10 @@ export default function RiskIntelPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }
