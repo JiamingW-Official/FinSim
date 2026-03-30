@@ -101,14 +101,14 @@ export function StrategyRecommendationCard({
  animate={{ opacity: 1, y: 0 }}
  transition={{ duration: 0.2 }}
  onClick={() => onSelect(rec)}
- className="rounded-lg border border-border bg-card p-2.5 flex flex-col gap-2 cursor-pointer hover:border-primary/30 hover:bg-muted/20 transition-colors duration-150"
+ className="rounded-xl border border-border/20 bg-card/30 p-3 flex flex-col gap-2 cursor-pointer hover:border-primary/30 hover:bg-muted/20 transition-colors duration-150"
  >
  {/* Row 1: Name + Sentiment badge */}
  <div className="flex justify-between items-start gap-1">
- <span className="text-[11px] font-semibold text-foreground leading-tight">{preset.name}</span>
+ <span className="text-[11px] font-semibold font-mono text-foreground leading-tight">{preset.name}</span>
  <span
  className={cn(
- "text-[11px] font-semibold px-1.5 py-0.5 rounded shrink-0",
+ "text-[9px] font-mono px-1.5 py-0.5 rounded-full shrink-0",
  SENTIMENT_STYLES[preset.sentiment] ?? "bg-muted-foreground/10 text-muted-foreground",
  )}
  >
@@ -124,6 +124,7 @@ export function StrategyRecommendationCard({
  viewBox="0 0 200 50"
  preserveAspectRatio="none"
  className="overflow-visible"
+ style={{ background: 'transparent' }}
  >
  {hasMiniPayoff ? (
  <>
@@ -159,7 +160,7 @@ export function StrategyRecommendationCard({
  y1={zeroY}
  x2="200"
  y2={zeroY}
- stroke="#1e293b"
+ stroke="rgba(255,255,255,0.06)"
  strokeWidth="1"
  strokeDasharray="4,3"
  />
@@ -181,7 +182,7 @@ export function StrategyRecommendationCard({
  y1="25"
  x2="200"
  y2="25"
- stroke="#1e293b"
+ stroke="rgba(255,255,255,0.06)"
  strokeWidth="1"
  strokeDasharray="4,3"
  />
@@ -190,28 +191,29 @@ export function StrategyRecommendationCard({
  </div>
 
  {/* Row 3: Stats grid */}
- <div className="grid grid-cols-2 gap-1 text-[11px]">
+ <div className="grid grid-cols-2 gap-1">
  <div className="flex gap-1 items-baseline">
- <span className="text-muted-foreground">P/P:</span>
- <span className={cn("font-semibold", popColor)}>{probabilityOfProfit.toFixed(0)}%</span>
+ <span className="text-[9px] font-mono text-muted-foreground/50">P/P:</span>
+ <span className={cn("text-[10px] font-mono font-semibold", popColor)}>{probabilityOfProfit.toFixed(0)}%</span>
  </div>
  <div className="flex gap-1 items-baseline">
- <span className="text-muted-foreground">RoR:</span>
- <span className="font-semibold text-foreground">{rorDisplay}</span>
+ <span className="rounded-full bg-emerald-500/10 text-emerald-400/70 px-2 py-0.5 text-[9px] font-mono">
+ RoR {rorDisplay}
+ </span>
  </div>
  <div className="flex gap-1 items-baseline">
- <span className="text-muted-foreground">Max P:</span>
- <span className="font-semibold text-emerald-400">{formatPnlLabel(maxProfit)}</span>
+ <span className="text-[9px] font-mono text-muted-foreground/50">Max P:</span>
+ <span className="text-[10px] font-mono font-semibold text-emerald-400/70">{formatPnlLabel(maxProfit)}</span>
  </div>
  <div className="flex gap-1 items-baseline">
- <span className="text-muted-foreground">Max L:</span>
- <span className="font-semibold text-red-400">{formatPnlLabel(maxLoss)}</span>
+ <span className="text-[9px] font-mono text-muted-foreground/50">Max L:</span>
+ <span className="text-[10px] font-mono font-semibold text-red-400/70">{formatPnlLabel(maxLoss)}</span>
  </div>
  </div>
 
  {/* Row 4: Breakevens */}
  {breakevens.length > 0 && (
- <p className="text-[11px] text-muted-foreground">
+ <p className="text-[10px] text-muted-foreground/50 font-mono">
  BE: {breakevens.map((be) => `$${be.toFixed(2)}`).join(", ")}
  </p>
  )}
@@ -222,7 +224,7 @@ export function StrategyRecommendationCard({
  e.stopPropagation();
  onSelect(rec);
  }}
- className="w-full rounded bg-primary/10 border border-primary/20 text-primary text-xs font-semibold py-1 hover:bg-primary/20 transition-colors"
+ className="w-full rounded border border-border/20 bg-muted/10 text-[10px] font-mono font-semibold text-muted-foreground/60 py-1 hover:bg-muted/20 hover:text-foreground/70 transition-colors"
  >
  Select Strategy &rarr;
  </button>

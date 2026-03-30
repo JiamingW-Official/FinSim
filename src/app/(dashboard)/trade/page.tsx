@@ -43,6 +43,7 @@ import { TradeReplay } from "@/components/trading/TradeReplay";
 import { MarginDashboard } from "@/components/trading/MarginDashboard";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
+import { toast } from "sonner";
 
 // ── Live info bar helpers ────────────────────────────────────────────────────
 function formatLiveDate(iso: string): string {
@@ -136,7 +137,7 @@ function LiveInfoBar() {
 
 // ── Shared tab trigger style ────────────────────────────────────────────────
 const tabCls =
- "shrink-0 rounded-none px-2.5 py-1.5 text-[9px] font-mono uppercase tracking-wider " +
+ "shrink-0 rounded-none px-2 py-1.5 text-[9px] font-mono uppercase tracking-wider " +
  "text-muted-foreground/40 data-[state=active]:text-foreground/80 " +
  "data-[state=active]:border-b-2 data-[state=active]:border-primary/60 data-[state=active]:bg-transparent " +
  "hover:text-muted-foreground/60 transition-colors duration-150";
@@ -259,6 +260,14 @@ export default function TradePage() {
   return () => clearTimeout(timer);
  }, [lastTradeFlash, clearTradeFlash]);
 
+ // Global Escape — dismiss all active toasts
+ useEffect(() => {
+  const handler = (e: KeyboardEvent) => {
+   if (e.key === "Escape") toast.dismiss();
+  };
+  window.addEventListener("keydown", handler);
+  return () => window.removeEventListener("keydown", handler);
+ }, []);
 
  return (
   <>
@@ -345,15 +354,15 @@ export default function TradePage() {
       data-tutorial="order-entry"
      >
       <Tabs defaultValue="order" className="flex flex-col h-full">
-       <TabsList className="bg-muted/5 border-b border-border/30 rounded-none p-0 h-auto shrink-0 w-full flex">
+       <TabsList className="bg-muted/5 border-b border-border/30 rounded-none p-0 h-auto shrink-0 w-full flex overflow-x-auto scrollbar-none">
         <TabsTrigger value="order" className={tabCls}>Order</TabsTrigger>
-        <TabsTrigger value="analysis" className={tabCls}>Analysis</TabsTrigger>
+        <TabsTrigger value="analysis" className={tabCls}>Alpha</TabsTrigger>
         <TabsTrigger value="positions" className={tabCls}>Pos</TabsTrigger>
         <TabsTrigger value="history" className={tabCls}>Hist</TabsTrigger>
         <TabsTrigger value="pending" className={tabCls}>
-         Orders{pendingCount > 0 && <span className="ml-0.5 font-mono text-[9px] tabular-nums text-muted-foreground/30">{pendingCount}</span>}
+         Ord{pendingCount > 0 && <span className="ml-0.5 font-mono text-[9px] tabular-nums text-muted-foreground/30">{pendingCount}</span>}
         </TabsTrigger>
-        <TabsTrigger value="margin" className={tabCls}>Margin</TabsTrigger>
+        <TabsTrigger value="margin" className={tabCls}>Mgn</TabsTrigger>
         <TabsTrigger value="replay" className={tabCls}>Replay</TabsTrigger>
        </TabsList>
 

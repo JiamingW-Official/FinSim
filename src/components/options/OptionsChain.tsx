@@ -30,9 +30,9 @@ function getChangePct(contract: OptionContract): number {
 }
 
 const TH_RIGHT =
- "text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/30 px-2 py-3 text-right font-medium border-b border-border/60 whitespace-nowrap";
+ "text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30 px-2 py-2 text-right border-b border-border/20 whitespace-nowrap";
 const TH_LEFT =
- "text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/30 px-2 py-3 text-left font-medium border-b border-border/60 whitespace-nowrap";
+ "text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30 px-2 py-2 text-left border-b border-border/20 whitespace-nowrap";
 
 export function OptionsChain({
  chain,
@@ -82,22 +82,22 @@ export function OptionsChain({
  <th
  colSpan={CALL_COLS.length}
  scope="col"
- className="text-[10px] font-mono uppercase tracking-[0.3em] text-foreground/30 py-2 text-center border-b border-border/40 bg-emerald-500/[0.03]"
+ className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30 py-1.5 text-center border-b border-border/20 bg-emerald-500/[0.02]"
  >
- CALLS
+ Calls
  </th>
  )}
  <th
  scope="col"
- className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/50 font-semibold text-center py-2 border-b border-border/40"
+ className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30 text-center py-1.5 border-b border-border/20"
  />
  {showPuts && (
  <th
  colSpan={PUT_COLS.length}
  scope="col"
- className="text-[10px] font-mono uppercase tracking-[0.3em] text-foreground/30 py-2 text-center border-b border-border/40 bg-red-500/[0.03]"
+ className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30 py-1.5 text-center border-b border-border/20 bg-red-500/[0.02]"
  >
- PUTS
+ Puts
  </th>
  )}
  </tr>
@@ -111,7 +111,7 @@ export function OptionsChain({
  ))}
  <th
  scope="col"
- className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/50 font-semibold text-center px-3 py-3 border-b border-border/60 whitespace-nowrap"
+ className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30 text-center px-3 py-2 border-b border-border/20 whitespace-nowrap"
  >
  Strike
  </th>
@@ -123,7 +123,7 @@ export function OptionsChain({
  ))}
  </tr>
  </thead>
- <tbody className="divide-y divide-border/40">
+ <tbody className="divide-y divide-border/20">
  {visibleRows.map(({ call, put }) => {
  const isAtm = call.strike === atmStrike;
  // ITM: calls below ATM, puts above ATM
@@ -144,15 +144,15 @@ export function OptionsChain({
 
  const callCellCn = (...extra: string[]) =>
  cn(
- "px-2 py-2.5 text-right font-mono tabular-nums text-xs text-foreground/80 cursor-pointer transition-colors",
- isCallItm && "bg-muted/10",
+ "px-2 py-2 text-right font-mono tabular-nums text-[10px] text-foreground/80 cursor-pointer transition-colors",
+ isCallItm && "bg-primary/[0.03]",
  isCallSelected && "bg-primary/10",
  ...extra,
  );
  const putCellCn = (...extra: string[]) =>
  cn(
- "px-2 py-2.5 text-right font-mono tabular-nums text-xs text-foreground/80 cursor-pointer transition-colors",
- isPutItm && "bg-muted/10",
+ "px-2 py-2 text-right font-mono tabular-nums text-[10px] text-foreground/80 cursor-pointer transition-colors",
+ isPutItm && "bg-primary/[0.03]",
  isPutSelected && "bg-primary/10",
  ...extra,
  );
@@ -162,7 +162,7 @@ export function OptionsChain({
  key={call.strike}
  className={cn(
  "hover:bg-foreground/[0.03] cursor-pointer transition-colors",
- isAtm && "border-y border-primary/20",
+ isAtm && "border-l-2 border-l-primary/40",
  )}
  >
  {/* Call side */}
@@ -211,7 +211,7 @@ export function OptionsChain({
  {(call.iv * 100).toFixed(1)}%
  </td>
  <td
- className={callCellCn("text-emerald-400/80")}
+ className={callCellCn(call.greeks.delta >= 0 ? "text-emerald-400/80" : "text-red-400/80")}
  onClick={() => onSelectContract?.(call)}
  >
  {call.greeks.delta.toFixed(2)}
@@ -222,10 +222,10 @@ export function OptionsChain({
  {/* Strike — center axis, visually dominant */}
  <td
  className={cn(
- "px-3 py-2.5 text-center font-mono font-bold text-sm border-x border-border/30 transition-colors",
+ "px-3 py-2 text-center font-mono font-semibold text-[10px] border-x border-border/20 transition-colors",
  isAtm
- ? "text-primary bg-primary/5 border-l-2 border-l-primary/60"
- : "text-foreground/70 bg-muted/10",
+ ? "text-foreground/60 bg-primary/5"
+ : "text-foreground/60 bg-background",
  )}
  >
  {call.strike.toFixed(

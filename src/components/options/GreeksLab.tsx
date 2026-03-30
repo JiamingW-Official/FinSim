@@ -26,11 +26,11 @@ function clamp(v: number, lo: number, hi: number) {
 function SectionTitle({ title, subtitle }: { title: string; subtitle?: string }) {
  return (
  <div className="mb-2 flex items-baseline gap-2">
- <span className="text-[11px] font-semibold text-foreground">
+ <span className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">
  {title}
  </span>
  {subtitle && (
- <span className="text-xs text-muted-foreground">{subtitle}</span>
+ <span className="text-[9px] font-mono text-muted-foreground/30">{subtitle}</span>
  )}
  </div>
  );
@@ -45,7 +45,7 @@ interface PortfolioGreeksSummaryProps {
 function PortfolioGreeksSummary({ positions }: PortfolioGreeksSummaryProps) {
  if (positions.length === 0) {
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="Portfolio Greeks Summary" />
  <p className="text-[11px] text-muted-foreground">
  No open options positions. Open a position from the Chains tab to see
@@ -110,7 +110,7 @@ function PortfolioGreeksSummary({ positions }: PortfolioGreeksSummaryProps) {
  ];
 
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle
  title="Portfolio Greeks Summary"
  subtitle={`${positions.length} position${positions.length > 1 ? "s" : ""}`}
@@ -231,7 +231,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
  }, [inputs.strike, inputs.quantity, inputs.delta, inputs.optionType, spotPrice, T, sigma, optionPrice, sharesNeeded]);
 
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="Delta Hedging Calculator" />
 
  <div className="grid grid-cols-2 gap-3 mb-3">
@@ -376,7 +376,7 @@ function PnLAttribution({
 }) {
  if (positions.length === 0) {
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="P&L Attribution" />
  <p className="text-[11px] text-muted-foreground">
  Open a position to see P&L attribution.
@@ -425,7 +425,7 @@ function PnLAttribution({
  const centerX = padLeft + barAreaW / 2;
 
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle
  title="P&L Attribution"
  subtitle="per 1% price move, 1pp IV change, 1 day"
@@ -538,7 +538,7 @@ function GammaScalpingSimulator({
  const ivPct = iv * 100;
 
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="Gamma Scalping Simulator" subtitle="ATM Straddle" />
 
  <div className="grid grid-cols-2 gap-2 mb-3">
@@ -607,7 +607,7 @@ function VolSkewExplanation({
 }) {
  if (smile.length < 3) {
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="Vol Skew Explanation" />
  <p className="text-[11px] text-muted-foreground">No smile data available.</p>
  </div>
@@ -682,7 +682,7 @@ function VolSkewExplanation({
  const yTicks = [minIV, minIV + (maxIV - minIV) * 0.5, maxIV];
 
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="Vol Skew Explanation" />
 
  {/* Skew reading */}

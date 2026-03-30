@@ -110,20 +110,20 @@ function formatShares(n: number): string {
 function sideLabel(side: DarkPoolPrint["side"]): React.ReactNode {
  if (side === "above_ask") {
  return (
- <span className="rounded bg-emerald-500/15 px-1 py-0.5 text-[11px] font-semibold text-emerald-400">
+ <span className="rounded-full bg-emerald-500/10 px-1.5 py-0.5 text-[8px] font-medium text-emerald-400/70">
  Above Ask
  </span>
  );
  }
  if (side === "below_bid") {
  return (
- <span className="rounded bg-red-500/15 px-1 py-0.5 text-[11px] font-semibold text-red-400">
+ <span className="rounded-full bg-rose-500/10 px-1.5 py-0.5 text-[8px] font-medium text-rose-400/70">
  Below Bid
  </span>
  );
  }
  return (
- <span className="rounded bg-muted/30 px-1 py-0.5 text-[11px] font-medium text-muted-foreground">
+ <span className="rounded-full bg-muted/20 px-1.5 py-0.5 text-[8px] font-medium text-muted-foreground/50">
  Mid
  </span>
  );
@@ -163,11 +163,11 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
  return (
  <div className="flex flex-col gap-3">
  {/* 24h Buy/Sell ratio bar */}
- <div className="rounded-md border border-border bg-card/40 p-3">
- <div className="mb-2 flex items-center justify-between text-xs">
- <span className="font-medium text-foreground">24h Simulated Institutional Flow Ratio</span>
- <span className="text-muted-foreground">
- {prints.length} prints tracked
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
+ <div className="mb-2 flex items-center justify-between">
+ <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35">24h Institutional Flow</span>
+ <span className="text-[9px] font-mono text-muted-foreground/35">
+ {prints.length} prints
  </span>
  </div>
  <div className="flex h-3 overflow-hidden rounded-full">
@@ -180,25 +180,25 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
  style={{ width: `${sellPct.toFixed(1)}%` }}
  />
  </div>
- <div className="mt-1.5 flex justify-between text-[11px]">
- <span className="text-emerald-400">
+ <div className="mt-1.5 flex justify-between">
+ <span className="text-[10px] font-mono tabular-nums text-emerald-400/80">
  Buy {buyPct.toFixed(0)}% · {formatBillion(buyDollar)}
  </span>
- <span className="text-red-400">
+ <span className="text-[10px] font-mono tabular-nums text-rose-400/80">
  Sell {sellPct.toFixed(0)}% · {formatBillion(sellDollar)}
  </span>
  </div>
  </div>
 
  {/* Prints feed */}
- <div className="overflow-auto">
- <table className="w-full border-collapse text-[11px]">
+ <div className="overflow-auto rounded-xl border border-border/20 bg-card/30">
+ <table className="w-full border-collapse text-[10px]">
  <thead className="sticky top-0 z-10 bg-card">
  <tr className="border-b border-border">
  {["Time", "Ticker", "Size", "Price", "vs Last", "Side"].map((col) => (
  <th
  key={col}
- className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground"
+ className="px-3 py-2 text-left text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35"
  >
  {col}
  </th>
@@ -209,37 +209,41 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
  {prints.map((p) => {
  const isAbove = p.side === "above_ask";
  const isBelow = p.side === "below_bid";
+ const isLarge = p.size >= 500_000;
  return (
  <tr
  key={p.id}
- className="border-b border-border transition-colors hover:bg-muted/50"
+ className={cn(
+ "border-b border-border/30 transition-colors hover:bg-muted/30",
+ isLarge && "bg-amber-500/5",
+ )}
  >
- <td className="px-3 py-2 text-muted-foreground">
+ <td className="px-3 py-1.5 text-[10px] font-mono text-muted-foreground/60">
  {relTime(p.timestamp)}
  </td>
- <td className="px-3 py-2 font-medium">
+ <td className={cn("px-3 py-1.5 text-[10px] font-mono font-medium", isLarge && "text-amber-400/80")}>
  {p.ticker}
  </td>
- <td className="px-3 py-2 text-right font-mono tabular-nums font-medium">
+ <td className={cn("px-3 py-1.5 text-right text-[10px] font-mono tabular-nums", isLarge && "text-amber-400/80")}>
  {formatShares(p.size)}
  </td>
- <td className="px-3 py-2 text-right font-mono tabular-nums">
+ <td className="px-3 py-1.5 text-right text-[10px] font-mono tabular-nums">
  ${p.price.toFixed(2)}
  </td>
  <td
  className={cn(
- "px-3 py-2 text-right font-mono tabular-nums font-medium",
+ "px-3 py-1.5 text-right text-[10px] font-mono tabular-nums",
  isAbove
- ? "text-emerald-500"
+ ? "text-emerald-400/80"
  : isBelow
- ? "text-red-500"
- : "text-muted-foreground",
+ ? "text-rose-400/80"
+ : "text-muted-foreground/50",
  )}
  >
  {p.diffPct >= 0 ? "+" : ""}
  {p.diffPct.toFixed(3)}%
  </td>
- <td className="px-3 py-2">{sideLabel(p.side)}</td>
+ <td className="px-3 py-1.5">{sideLabel(p.side)}</td>
  </tr>
  );
  })}

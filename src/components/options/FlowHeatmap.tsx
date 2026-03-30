@@ -25,19 +25,19 @@ function formatCompact(n: number): string {
 
 /** Map a net flow value to a green/red/neutral color with opacity. */
 function flowColor(net: number, maxAbs: number): string {
- if (maxAbs === 0) return "hsl(var(--muted))";
+ if (maxAbs === 0) return "rgba(100,100,100,0.12)";
  const ratio = Math.min(1, Math.abs(net) / maxAbs);
  if (net > 0) {
- // green: emerald-500 with opacity
- const alpha = 0.15 + ratio * 0.7;
- return `rgba(52, 211, 153, ${alpha.toFixed(2)})`;
+ // emerald: calls
+ const alpha = 0.12 + ratio * 0.68;
+ return `rgba(16, 185, 129, ${alpha.toFixed(2)})`;
  }
  if (net < 0) {
- // red: rose-500 with opacity
- const alpha = 0.15 + ratio * 0.7;
- return `rgba(251, 113, 133, ${alpha.toFixed(2)})`;
+ // rose: puts
+ const alpha = 0.12 + ratio * 0.68;
+ return `rgba(239, 68, 68, ${alpha.toFixed(2)})`;
  }
- return "rgba(100,100,100,0.15)";
+ return "rgba(100,100,100,0.12)";
 }
 
 function textColorClass(net: number): string {
@@ -124,7 +124,7 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
  const LEGEND_Y = MARGIN_TOP + TICKERS.length * BASE_ROW_H + 6;
 
  return (
- <div className="relative">
+ <div className="relative rounded-xl border border-border/20 bg-card/30 p-2">
  <svg
  width="100%"
  viewBox={`0 0 ${svgWidth} ${svgHeight}`}
@@ -133,9 +133,9 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
  >
  <defs>
  <linearGradient id={`${uid}-legend`} x1="0" x2="1" y1="0" y2="0">
- <stop offset="0%" stopColor="rgba(251,113,133,0.85)" />
- <stop offset="50%" stopColor="rgba(100,100,100,0.2)" />
- <stop offset="100%" stopColor="rgba(52,211,153,0.85)" />
+ <stop offset="0%" stopColor="rgba(239,68,68,0.80)" />
+ <stop offset="50%" stopColor="rgba(100,100,100,0.20)" />
+ <stop offset="100%" stopColor="rgba(16,185,129,0.80)" />
  </linearGradient>
  </defs>
 
@@ -147,7 +147,9 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
  y={MARGIN_TOP - 8}
  textAnchor="middle"
  fontSize={9}
- className="fill-muted-foreground font-medium"
+ fontFamily="monospace"
+ letterSpacing="0.08em"
+ className="fill-muted-foreground/35 uppercase"
  >
  {expiry.slice(5)}
  </text>
@@ -163,8 +165,9 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
  x={MARGIN_LEFT - 4}
  y={y + BASE_ROW_H / 2 + 4}
  textAnchor="end"
- fontSize={9}
- className="fill-muted-foreground font-medium"
+ fontSize={8}
+ fontFamily="monospace"
+ className="fill-muted-foreground/30"
  >
  {ticker}
  </text>
@@ -235,6 +238,7 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
  y={cellY + cellH / 2 + 3}
  textAnchor="middle"
  fontSize={8}
+ fontFamily="monospace"
  className={textColorClass(cell.netFlow)}
  fontWeight={500}
  >
@@ -257,15 +261,16 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
  rx={3}
  fill={`url(#${uid}-legend)`}
  />
- <text x={LEGEND_X} y={LEGEND_Y + 20} fontSize={8} className="fill-muted-foreground">
- Put flow
+ <text x={LEGEND_X} y={LEGEND_Y + 20} fontSize={8} fontFamily="monospace" className="fill-muted-foreground/40">
+ Put
  </text>
  <text
  x={LEGEND_X + LEGEND_W / 2}
  y={LEGEND_Y + 20}
  textAnchor="middle"
  fontSize={8}
- className="fill-muted-foreground"
+ fontFamily="monospace"
+ className="fill-muted-foreground/40"
  >
  Neutral
  </text>
@@ -274,9 +279,10 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
  y={LEGEND_Y + 20}
  textAnchor="end"
  fontSize={8}
- className="fill-muted-foreground"
+ fontFamily="monospace"
+ className="fill-muted-foreground/40"
  >
- Call flow
+ Call
  </text>
  </svg>
 

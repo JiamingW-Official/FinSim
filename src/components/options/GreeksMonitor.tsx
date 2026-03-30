@@ -31,11 +31,11 @@ function clamp(v: number, lo: number, hi: number) {
 function SectionTitle({ title, subtitle }: { title: string; subtitle?: string }) {
  return (
  <div className="mb-3 flex items-baseline gap-2">
- <span className="text-[11px] font-semibold text-foreground">
+ <span className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">
  {title}
  </span>
  {subtitle && (
- <span className="text-xs text-muted-foreground">{subtitle}</span>
+ <span className="text-[9px] font-mono text-muted-foreground/30">{subtitle}</span>
  )}
  </div>
  );
@@ -64,7 +64,7 @@ function PortfolioSummary({ positions, spotPrice }: PortfolioSummaryProps) {
 
  if (positions.length === 0) {
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="Portfolio Greeks Summary" />
  <p className="text-[11px] text-muted-foreground">
  No open options positions. Open a position from the Chains tab to see aggregate Greeks.
@@ -131,7 +131,7 @@ function PortfolioSummary({ positions, spotPrice }: PortfolioSummaryProps) {
  ];
 
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle
  title="Portfolio Greeks Summary"
  subtitle={`${positions.length} position${positions.length > 1 ? "s" : ""}`}
@@ -146,11 +146,11 @@ function PortfolioSummary({ positions, spotPrice }: PortfolioSummaryProps) {
  return (
  <div key={row.label} className="space-y-0.5">
  <div className="flex items-center justify-between">
- <span className="text-xs font-semibold text-foreground">{row.label}</span>
+ <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35">{row.label}</span>
  <div className="flex items-center gap-2">
- <span className="text-[11px] text-muted-foreground">{row.desc}</span>
+ <span className="text-[9px] font-mono text-muted-foreground/30">{row.desc}</span>
  <span
- className="font-mono text-xs font-semibold"
+ className="text-[10px] font-mono font-semibold tabular-nums"
  style={{ color: row.color }}
  >
  {displayVal}
@@ -332,7 +332,7 @@ function GreeksVsStrikeChart({ spotPrice, iv, dte }: GreeksVsStrikeProps) {
  }));
 
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle
  title="Greeks vs Strike"
  subtitle={`${dte}d to expiry · ATM IV ${(iv * 100).toFixed(0)}%`}
@@ -529,7 +529,7 @@ function ThetaDecayCalendar({ positions, spotPrice }: ThetaCalendarProps) {
 
  if (positions.length === 0 || decayPoints.length === 0) {
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="Theta Decay Calendar" />
  <p className="text-[11px] text-muted-foreground">
  No open positions. Theta decay curve will appear once you have options positions.
@@ -562,7 +562,7 @@ function ThetaDecayCalendar({ positions, spotPrice }: ThetaCalendarProps) {
  const yTicks = [minTheta, (minTheta + maxTheta) / 2, maxTheta];
 
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle
  title="Theta Decay Calendar"
  subtitle="Portfolio daily theta $ vs days to expiry"
@@ -711,7 +711,7 @@ function IVSensTable({ positions }: IVSensTableProps) {
 
  if (positions.length === 0) {
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="IV Sensitivity Table" />
  <p className="text-[11px] text-muted-foreground">No open positions.</p>
  </div>
@@ -732,18 +732,18 @@ function IVSensTable({ positions }: IVSensTableProps) {
  const absMax = Math.max(...rows.map((r) => Math.abs(r.pnl)), 1);
 
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle
  title="IV Sensitivity Table"
  subtitle={`Net Vega: ${fmtSign(totalVega, 1)}`}
  />
  <div className="overflow-x-auto">
- <table className="w-full text-xs">
+ <table className="w-full">
  <thead>
- <tr className="border-b border-border">
- <th className="py-1 text-left font-semibold text-muted-foreground">IV Change</th>
- <th className="py-1 text-right font-semibold text-muted-foreground">P&L Impact</th>
- <th className="py-1 text-right font-semibold text-muted-foreground">Bar</th>
+ <tr className="border-b border-border/20">
+ <th className="py-1 text-left text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35">IV Change</th>
+ <th className="py-1 text-right text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35">P&L Impact</th>
+ <th className="py-1 text-right text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35">Bar</th>
  </tr>
  </thead>
  <tbody>
@@ -751,12 +751,12 @@ function IVSensTable({ positions }: IVSensTableProps) {
  const barW = Math.round((Math.abs(pnl) / absMax) * 100);
  const color = pnl >= 0 ? "#10b981" : "#ef4444";
  return (
- <tr key={pp} className="border-b border-border">
+ <tr key={pp} className="border-b border-border/10">
  <td className="py-1 font-mono">
  <span
- className="rounded px-1 text-[11px] font-semibold"
+ className="rounded px-1 text-[9px] font-mono font-semibold"
  style={{
- backgroundColor: pp < 0 ? "rgba(239,68,68,0.1)" : "rgba(16,185,129,0.1)",
+ backgroundColor: pp < 0 ? "rgba(239,68,68,0.08)" : "rgba(16,185,129,0.08)",
  color: pp < 0 ? "#ef4444" : "#10b981",
  }}
  >
@@ -765,7 +765,7 @@ function IVSensTable({ positions }: IVSensTableProps) {
  </span>
  </td>
  <td
- className="py-1 text-right font-mono font-semibold"
+ className="py-1 text-right text-[10px] font-mono font-semibold tabular-nums"
  style={{ color }}
  >
  {fmtDollar(pnl)}
@@ -822,7 +822,7 @@ function DeltaHedgingStatus({ positions, spotPrice }: DeltaHedgingProps) {
 
  if (positions.length === 0) {
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="Delta Hedging Status" />
  <p className="text-[11px] text-muted-foreground">No open positions.</p>
  </div>
@@ -843,15 +843,15 @@ function DeltaHedgingStatus({ positions, spotPrice }: DeltaHedgingProps) {
  const netPnl1pct = optionsPnl1pct + hedgePnl1pct;
 
  return (
- <div className="rounded-lg border border-border bg-card p-4">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-3">
  <SectionTitle title="Delta Hedging Status" />
 
  <div className="grid grid-cols-2 gap-3">
  {/* Net Delta gauge */}
  <div className="rounded-md bg-muted/20 p-3">
- <div className="mb-1 text-[11px] text-muted-foreground">Net Portfolio Delta</div>
+ <div className="mb-1 text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35">Net Portfolio Delta</div>
  <div
- className="font-mono text-2xl font-semibold leading-none"
+ className="text-[16px] font-mono font-bold leading-none tabular-nums"
  style={{ color: isDeltaNeutral ? "#10b981" : isLongBias ? "#60a5fa" : "#f87171" }}
  >
  {fmtSign(netDelta, 2)}

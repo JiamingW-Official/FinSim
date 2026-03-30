@@ -10,7 +10,7 @@ import { calculateOptionFees } from "@/services/options/fees";
 import { computeProbabilityOfProfit } from "@/services/options/analytics";
 import { calculateBreakevens, calculateMaxProfitLoss } from "@/services/options/payoff";
 import { formatCurrency, cn } from "@/lib/utils";
-import { Activity, Trash2, AlertTriangle } from "lucide-react";
+import { Trash2, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
 
 // Suppress unused import warning — CONTRACT_MULTIPLIER used indirectly via store
@@ -104,17 +104,14 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
  return (
  <div className="flex flex-col p-3 gap-3">
  {/* Header */}
- <div className="flex items-center gap-1.5">
- <Activity className="h-3.5 w-3.5 text-muted-foreground" />
- <span className="text-xs font-medium">Order Entry</span>
- </div>
-
- {/* Strategy name */}
+ <div className="flex items-center justify-between">
+ <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35">Order Entry</span>
  {activeStrategy && (
- <div className="rounded-md bg-muted/50 px-2 py-1 text-center text-xs font-medium text-foreground">
+ <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wide text-primary/70">
  {activeStrategy}
- </div>
+ </span>
  )}
+ </div>
 
  {/* Legs list */}
  <div className="space-y-1.5">
@@ -131,10 +128,9 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
  </div>
 
  {selectedLegs.length === 0 && (
- <div className="flex flex-col items-center gap-1 py-6 text-muted-foreground">
- <Activity className="h-5 w-5 opacity-30" />
- <p className="text-xs">No legs selected</p>
- <p className="text-[11px] opacity-60">Click any contract in the chain to add legs</p>
+ <div className="flex flex-col items-center gap-1.5 py-8">
+ <p className="text-[11px] font-mono text-muted-foreground/40">No legs selected</p>
+ <p className="text-[10px] font-mono text-muted-foreground/25">Click any contract in the chain</p>
  </div>
  )}
 
@@ -142,7 +138,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
  <>
  {/* Probability of Profit & Risk Stats */}
  {pop !== null && (
- <div className="border border-border p-2 space-y-1.5">
+ <div className="border border-border/20 p-2 space-y-1.5">
  <div className="flex items-center justify-between text-xs">
  <span className="text-muted-foreground font-medium">Prob of Profit</span>
  <span
@@ -187,7 +183,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
  {totalGreeks && <GreeksPanel greeks={totalGreeks} />}
 
  {/* Cost summary */}
- <div className="space-y-1 border border-border p-2.5">
+ <div className="space-y-1 border border-border/20 p-2.5">
  <div className="flex items-center justify-between text-xs">
  <span className="text-muted-foreground">
  {isDebit ? "Net Debit" : "Net Credit"}
@@ -204,7 +200,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
  {formatCurrency(commission)}
  </span>
  </div>
- <div className="border-t border-border" />
+ <div className="border-t border-border/20" />
  <div className="flex items-center justify-between text-[11px]">
  <span className="font-medium">Total</span>
  <span
@@ -231,7 +227,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
  <div className="flex gap-2">
  <button
  onClick={clearLegs}
- className="flex items-center gap-1 border border-border px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted/30"
+ className="flex items-center gap-1 border border-border/20 px-3 py-2 text-[10px] font-mono uppercase tracking-wide text-muted-foreground/50 transition-colors hover:text-muted-foreground/80 hover:border-border/40"
  >
  <Trash2 className="h-3 w-3" />
  Clear
@@ -240,10 +236,10 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
  onClick={handleExecute}
  disabled={!canAfford}
  className={cn(
- "flex-1 px-3 py-2 text-xs font-medium transition-colors",
+ "flex-1 px-3 py-2 text-[10px] font-mono uppercase tracking-wide transition-colors",
  canAfford
- ? "bg-foreground text-background hover:bg-foreground/90"
- : "cursor-not-allowed bg-muted text-muted-foreground/50",
+ ? "bg-foreground/90 text-background hover:bg-foreground"
+ : "cursor-not-allowed bg-muted/30 text-muted-foreground/30",
  )}
  >
  Execute Trade

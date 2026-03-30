@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { StrategyLeg } from "@/types/options";
 import { CONTRACT_MULTIPLIER } from "@/types/options";
@@ -18,12 +17,7 @@ export function LegBuilder({ leg, index, onRemove }: LegBuilderProps) {
 
  return (
  <motion.div
- className={cn(
- "flex items-center gap-2 rounded-lg border px-2.5 py-1.5",
- isLong
- ? "border-emerald-500/20 bg-emerald-500/5"
- : "border-red-500/20 bg-red-500/5",
- )}
+ className="rounded-lg border border-border/20 bg-card/30 p-2 flex items-center gap-2"
  initial={{ opacity: 0, x: -8 }}
  animate={{ opacity: 1, x: 0 }}
  exit={{ opacity: 0, x: 8 }}
@@ -31,44 +25,55 @@ export function LegBuilder({ leg, index, onRemove }: LegBuilderProps) {
  >
  <div className="flex-1 min-w-0">
  <div className="flex items-center gap-1.5">
+ {/* Buy/Sell pill */}
  <span
  className={cn(
- "text-[11px] font-semibold",
- isLong ? "text-emerald-400" : "text-red-400",
+ "rounded-full px-1.5 py-0.5 text-[8px] font-mono font-medium",
+ isLong
+ ? "bg-emerald-500/10 text-emerald-400/80"
+ : "bg-rose-500/10 text-rose-400/80",
  )}
  >
- {leg.side}
+ {leg.side.toUpperCase()}
  </span>
- <span className="text-xs font-semibold">
+ <span className="text-[10px] font-mono tabular-nums text-muted-foreground/60">
  {leg.quantity}x
  </span>
+ {/* Call/Put badge */}
  <span
  className={cn(
- "text-xs font-semibold",
- leg.type === "call" ? "text-emerald-400" : "text-red-400",
+ "rounded-full px-1.5 py-0.5 text-[8px] font-mono font-medium",
+ leg.type === "call"
+ ? "bg-emerald-500/10 text-emerald-400/80"
+ : "bg-rose-500/10 text-rose-400/80",
  )}
  >
- ${leg.strike} {leg.type.toUpperCase()}
+ {leg.type.toUpperCase()}
+ </span>
+ {/* Strike */}
+ <span className="text-[10px] font-mono tabular-nums font-medium">
+ ${leg.strike}
  </span>
  </div>
- <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
- <span>
+ <div className="flex items-center gap-2 mt-0.5">
+ {/* Expiry */}
+ <span className="text-[10px] font-mono tabular-nums text-muted-foreground/50">
  {new Date(leg.expiry + "T12:00:00").toLocaleDateString("en-US", {
  month: "short",
  day: "numeric",
  })}
  </span>
- <span>@${leg.price.toFixed(2)}</span>
- <span className={cn("font-semibold", isLong ? "text-red-400" : "text-emerald-400")}>
+ <span className="text-[10px] font-mono tabular-nums text-muted-foreground/50">@${leg.price.toFixed(2)}</span>
+ <span className={cn("text-[10px] font-mono tabular-nums font-medium", isLong ? "text-rose-400/80" : "text-emerald-400/80")}>
  {isLong ? "-" : "+"}${cost.toFixed(0)}
  </span>
  </div>
  </div>
  <button
  onClick={() => onRemove(index)}
- className="rounded p-0.5 text-muted-foreground hover:bg-muted/30 hover:text-foreground transition-colors"
+ className="rounded p-0.5 text-muted-foreground/40 hover:bg-rose-500/10 hover:text-rose-400 transition-colors text-base leading-none"
  >
- <X className="h-3 w-3" />
+ ×
  </button>
  </motion.div>
  );

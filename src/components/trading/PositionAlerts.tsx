@@ -9,11 +9,12 @@ import { calculateATR } from "@/services/indicators";
 /**
  * PositionAlerts — real-time scanner that fires Sonner toasts when:
  * - Position up 5% / 10% / 15% (profit milestones)
- * - Position down 3% / 5% (loss alerts)
+ * - Position down 5% / 10% (loss alerts) — 3% threshold removed (too noisy)
  * - ATR stop approached ≤ 0.5% (stop proximity alert)
  * - Position held > 20 bars (time-based exit alert, fires once)
  *
  * Deduplication: each alert type fires once per position via useRef<Set<string>>.
+ * P&L cooldown: P&L alerts are skipped if one fired within the last 30 bars per ticker.
  */
 export function PositionAlerts() {
  const revealedCount = useMarketDataStore((s) => s.revealedCount);
@@ -24,6 +25,8 @@ export function PositionAlerts() {
  const alertedLoss = useRef<Set<string>>(new Set());
  const alertedAtrStop = useRef<Set<string>>(new Set());
  const alertedTimeExit = useRef<Set<string>>(new Set());
+ // cooldown: records the revealedCount at which the last P&L alert fired per ticker
+ const pnlAlertLastBar = useRef<Map<string, number>>(new Map());
 
  // Reset dedup sets when positions list changes (position closed)
  useEffect(() => {
@@ -43,6 +46,10 @@ export function PositionAlerts() {
  for (const key of alertedTimeExit.current) {
  const tickerSide = key.split("-").slice(0, 2).join("-");
  if (!activeTickers.has(tickerSide)) alertedTimeExit.current.delete(key);
+ }
+ // Clean up cooldown map for closed positions
+ for (const [k] of pnlAlertLastBar.current) {
+ if (!activeTickers.has(k)) pnlAlertLastBar.current.delete(k);
  }
  }, [positions]);
 
@@ -64,13 +71,19 @@ export function PositionAlerts() {
  const price = pos.currentPrice;
  const tickerSide = `${pos.ticker}-${pos.side}`;
 
+ // ── Cooldown: skip P&L alerts if one fired within the last 30 bars ──
+ const lastPnLBar = pnlAlertLastBar.current.get(tickerSide) ?? -Infinity;
+ const pnlCooldownActive = revealedCount - lastPnLBar < 30;
+
  // ── Profit milestones: 5%, 10%, 15% ──────────────────────────────────
  const profitMilestones = [15, 10, 5];
+ if (!pnlCooldownActive) {
  for (const threshold of profitMilestones) {
  if (pct >= threshold) {
  const key = `${tickerSide}-profit-${threshold}`;
  if (!alertedProfit.current.has(key)) {
  alertedProfit.current.add(key);
+ pnlAlertLastBar.current.set(tickerSide, revealedCount);
  const msg =
  threshold >= 15
  ? `${pos.ticker} up ${pct.toFixed(1)}% — outstanding gain. Consider taking profits or moving stop to breakeven +`
@@ -97,23 +110,26 @@ export function PositionAlerts() {
  break; // Only fire the highest threshold hit
  }
  }
+ }
 
- // ── Loss alerts: -3%, -5% ─────────────────────────────────────────────
- const lossMilestones = [-5, -3];
+ // ── Loss alerts: -5%, -10% ────────────────────────────────────────────
+ const lossMilestones = [-10, -5];
+ if (!pnlCooldownActive) {
  for (const threshold of lossMilestones) {
  if (pct <= threshold) {
  const key = `${tickerSide}-loss-${threshold}`;
  if (!alertedLoss.current.has(key)) {
  alertedLoss.current.add(key);
+ pnlAlertLastBar.current.set(tickerSide, revealedCount);
  const absT = Math.abs(threshold);
  const msg =
- absT >= 5
- ? `${pos.ticker} down ${pct.toFixed(1)}% — near stop territory. Is your thesis still intact?`
- : `${pos.ticker} down ${pct.toFixed(1)}% — drawdown building. Keep your stop in place`;
+ absT >= 10
+ ? `${pos.ticker} down ${pct.toFixed(1)}% — significant drawdown. Is your thesis still intact?`
+ : `${pos.ticker} down ${pct.toFixed(1)}% — near stop territory. Keep your stop in place`;
  toast.custom(
  () => (
  <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-card px-3 py-2 text-[11px] max-w-64">
- <span className="text-base shrink-0">{absT >= 5 ? "" : ""}</span>
+ <span className="text-base shrink-0">{absT >= 10 ? "" : ""}</span>
  <div className="min-w-0">
  <div className="font-semibold text-red-400 leading-tight">
  Loss Alert {threshold}%
@@ -126,6 +142,7 @@ export function PositionAlerts() {
  );
  }
  break; // Only fire the deepest threshold hit
+ }
  }
  }
 

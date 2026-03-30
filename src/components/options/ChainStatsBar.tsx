@@ -78,20 +78,28 @@ export function ChainStatsBar({ analytics, spotPrice, isLoading }: ChainStatsBar
  ];
 
  return (
- <div className="flex shrink-0 items-center gap-0 overflow-x-auto border-b border-border bg-card px-3 py-1.5 text-[10px]">
- <span className="shrink-0 text-muted-foreground">Spot</span>
- <span className="ml-1 shrink-0 font-mono font-medium tabular-nums">${spotPrice.toFixed(2)}</span>
- {isLoading && (
- <span className="ml-1 text-muted-foreground/50 animate-pulse">...</span>
- )}
+ <div className="h-8 flex shrink-0 items-center gap-4 overflow-x-auto border-b border-border/20 bg-background/50 px-3">
+ {/* Spot price */}
+ <div className="flex items-baseline gap-1 shrink-0">
+ <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35">Spot</span>
+ <span className="text-[11px] font-mono tabular-nums text-foreground/80">
+ ${spotPrice.toFixed(2)}
+ {isLoading && <span className="ml-0.5 animate-pulse text-muted-foreground/40">…</span>}
+ </span>
+ </div>
+
  {chips.map((chip) => (
- <span key={chip.label} className="shrink-0 flex items-center">
- <span className="mx-1.5 text-border">|</span>
- <span className="text-muted-foreground/70">{chip.label}</span>
- <span className={cn("ml-1 font-mono font-medium tabular-nums", chip.colorClass)}>
+ <div key={chip.label} className="flex shrink-0 items-center gap-2">
+ <span className="h-3 w-px bg-border/30 shrink-0" />
+ <div className="flex items-baseline gap-1">
+ <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/35">
+ {chip.label}
+ </span>
+ <span className={cn("text-[11px] font-mono tabular-nums", chip.colorClass)}>
  {chip.value}
  </span>
- </span>
+ </div>
+ </div>
  ))}
  </div>
  );

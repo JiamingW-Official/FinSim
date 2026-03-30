@@ -61,8 +61,9 @@ function AlertToast({
 }
 
 /* ─── Global toast limit ─── */
-const MAX_CONCURRENT_TOASTS = 3;
-const TOAST_GAP_MS = 2000; // minimum gap between toasts
+const MAX_CONCURRENT_TOASTS = 2;
+const TOAST_GAP_MS = 4000; // minimum gap between toasts
+const MAX_PATTERN_ALERTS_PER_SESSION = 3;
 
 export function AlphaBotAlerts() {
  const revealedCount = useMarketDataStore((s) => s.revealedCount);
@@ -78,6 +79,7 @@ export function AlphaBotAlerts() {
  const alertedVolumeSurges = useRef<Set<string>>(new Set());
  const lastToastTime = useRef(0);
  const toastQueue = useRef<Array<() => void>>([]);
+ const patternAlertCount = useRef(0);
 
  function throttledToast(fn: () => void) {
  const now = Date.now();
@@ -105,6 +107,7 @@ export function AlphaBotAlerts() {
  alertedPatterns.current.clear();
  alertedSetups.current.clear();
  alertedVolumeSurges.current.clear();
+ patternAlertCount.current = 0;
  toast.dismiss(); // clear all toasts on ticker change
  }, [currentTicker]);
 
@@ -172,8 +175,8 @@ export function AlphaBotAlerts() {
  // eslint-disable-next-line react-hooks/exhaustive-deps
  }, [throttledCount]);
 
- // ── Pattern detection (strength 3 only, max 1 per 3 bars) ──────────────
- const patternBucket = Math.floor(revealedCount / 3);
+ // ── Pattern detection (strength 3 only, max 1 per 5 bars, max 3 per session) ──
+ const patternBucket = Math.floor(revealedCount / 5);
  useEffect(() => {
  if (revealedCount < 5) return;
  const visibleData = allData.slice(0, revealedCount);
@@ -186,7 +189,9 @@ export function AlphaBotAlerts() {
 
  const key = `${first.name}-${patternBucket}`;
  if (alertedPatterns.current.has(key)) return;
+ if (patternAlertCount.current >= MAX_PATTERN_ALERTS_PER_SESSION) return;
  alertedPatterns.current.add(key);
+ patternAlertCount.current += 1;
 
  const isBull = first.direction === "bullish";
  const toastId = `pattern-${key}`;

@@ -44,12 +44,12 @@ function CardTitle({
  subtitle?: React.ReactNode;
 }) {
  return (
- <div className="flex items-center justify-between border-b border-border px-3 py-1.5">
- <span className="text-xs font-medium text-muted-foreground">
+ <div className="flex items-center justify-between border-b border-border/20 px-2 py-1">
+ <span className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">
  {title}
  </span>
  {subtitle && (
- <span className="rounded bg-muted/30 px-1.5 py-0.5 text-[11px] text-muted-foreground">
+ <span className="rounded bg-muted/20 px-1.5 py-0.5 text-[9px] font-mono text-muted-foreground/40">
  {subtitle}
  </span>
  )}
@@ -92,10 +92,10 @@ function VolumeChart({
  const subtitle = `Total: ${fmt(analytics.totalCallVolume + analytics.totalPutVolume)} | P/C: ${analytics.putCallRatioVolume.toFixed(2)}`;
 
  return (
- <div className="flex flex-col rounded-lg border border-border bg-card">
+ <div className="flex flex-col rounded-xl border border-border/20 bg-card/30">
  <CardTitle title="Call vs Put Volume" subtitle={subtitle} />
  <div className="flex-1">
- <svg viewBox="0 0 300 120" className="w-full">
+ <svg viewBox="0 0 300 120" className="w-full" style={{ background: 'transparent' }}>
  {/* Y gridlines */}
  {gridLines.map((pct) => {
  const y = padTop + chartH - pct * chartH;
@@ -106,11 +106,9 @@ function VolumeChart({
  y1={y}
  x2={300 - padRight}
  y2={y}
- stroke="currentColor"
- strokeOpacity={0.15}
+ stroke="rgba(255,255,255,0.06)"
  strokeWidth={0.5}
  strokeDasharray="3 2"
- className="text-muted-foreground"
  />
  );
  })}
@@ -243,10 +241,10 @@ function VolatilityChart({ analytics }: { analytics: ChainAnalytics }) {
  const gridLines = [0.25, 0.5, 0.75, 1];
 
  return (
- <div className="flex flex-col rounded-lg border border-border bg-card">
+ <div className="flex flex-col rounded-xl border border-border/20 bg-card/30">
  <CardTitle title="Volatility Analysis" subtitle={spreadSubtitle} />
  <div className="flex-1">
- <svg viewBox="0 0 300 120" className="w-full">
+ <svg viewBox="0 0 300 120" className="w-full" style={{ background: 'transparent' }}>
  {/* Gridlines */}
  {gridLines.map((pct) => {
  const v = minV + pct * (maxV - minV);
@@ -258,11 +256,9 @@ function VolatilityChart({ analytics }: { analytics: ChainAnalytics }) {
  y1={y}
  x2={svgW - padRight}
  y2={y}
- stroke="currentColor"
- strokeOpacity={0.1}
+ stroke="rgba(255,255,255,0.06)"
  strokeWidth={0.5}
  strokeDasharray="3 2"
- className="text-muted-foreground"
  />
  );
  })}
@@ -294,7 +290,7 @@ function VolatilityChart({ analytics }: { analytics: ChainAnalytics }) {
  stroke="#60a5fa"
  strokeWidth={1.5}
  strokeDasharray="4 2"
- strokeOpacity={0.8}
+ strokeOpacity={0.5}
  />
 
  {/* IV solid line */}
@@ -303,7 +299,7 @@ function VolatilityChart({ analytics }: { analytics: ChainAnalytics }) {
  fill="none"
  stroke="#f97316"
  strokeWidth={1.5}
- strokeOpacity={0.9}
+ strokeOpacity={0.5}
  />
 
  {/* X axis ticks */}
@@ -352,7 +348,7 @@ function HorizontalStrikeChart({
 }) {
  if (oiVol.length === 0) {
  return (
- <div className="flex flex-col rounded-lg border border-border bg-card">
+ <div className="flex flex-col rounded-xl border border-border/20 bg-card/30">
  <CardTitle title={title} subtitle={subtitle} />
  <div className="flex flex-1 items-center justify-center py-8">
  <span className="text-xs text-muted-foreground">No data</span>
@@ -384,10 +380,10 @@ function HorizontalStrikeChart({
  const maxBarHalf = 110 - labelW / 2;
 
  return (
- <div className="flex flex-col rounded-lg border border-border bg-card">
+ <div className="flex flex-col rounded-xl border border-border/20 bg-card/30">
  <CardTitle title={title} subtitle={subtitle} />
  <div className="flex-1">
- <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
+ <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ background: 'transparent' }}>
  {/* Header labels */}
  <text x={centerX - labelW / 2 - 4} y={padTop + 6} textAnchor="end" fontSize={7} fill="#10b981" opacity={0.7}>
  Calls
@@ -480,7 +476,7 @@ function VolSmileChart({
 }) {
  if (smile.length === 0) {
  return (
- <div className="flex flex-col rounded-lg border border-border bg-card">
+ <div className="flex flex-col rounded-xl border border-border/20 bg-card/30">
  <CardTitle title="Volatility Smile" />
  <div className="flex flex-1 items-center justify-center py-8">
  <span className="text-xs text-muted-foreground">No data</span>
@@ -529,10 +525,10 @@ function VolSmileChart({
  const yTicks = [minIV, minIV + (maxIV - minIV) * 0.5, maxIV];
 
  return (
- <div className="flex flex-col rounded-lg border border-border bg-card">
+ <div className="flex flex-col rounded-xl border border-border/20 bg-card/30">
  <CardTitle title="Volatility Smile" />
  <div className="flex-1">
- <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
+ <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ background: 'transparent' }}>
  {/* Gridlines */}
  {yTicks.map((iv, i) => {
  const y = toY(iv);
@@ -543,11 +539,9 @@ function VolSmileChart({
  y1={y}
  x2={svgW - padRight}
  y2={y}
- stroke="currentColor"
- strokeOpacity={0.1}
+ stroke="rgba(255,255,255,0.06)"
  strokeWidth={0.5}
  strokeDasharray="3 2"
- className="text-muted-foreground"
  />
  );
  })}
@@ -587,7 +581,7 @@ function VolSmileChart({
  stroke="#f97316"
  strokeWidth={1.5}
  strokeDasharray="4 2"
- strokeOpacity={0.85}
+ strokeOpacity={0.5}
  />
 
  {/* Call IV solid (blue) */}
@@ -596,7 +590,7 @@ function VolSmileChart({
  fill="none"
  stroke="#60a5fa"
  strokeWidth={1.5}
- strokeOpacity={0.9}
+ strokeOpacity={0.5}
  />
 
  {/* X axis labels */}
@@ -639,7 +633,7 @@ function TermStructureChart({
 }) {
  if (termStructure.length === 0) {
  return (
- <div className="flex flex-col rounded-lg border border-border bg-card">
+ <div className="flex flex-col rounded-xl border border-border/20 bg-card/30">
  <CardTitle title="Vol Term Structure" />
  <div className="flex flex-1 items-center justify-center py-8">
  <span className="text-xs text-muted-foreground">No data</span>
@@ -677,10 +671,10 @@ function TermStructureChart({
  const gridLines = [0.25, 0.5, 0.75, 1];
 
  return (
- <div className="flex flex-col rounded-lg border border-border bg-card">
+ <div className="flex flex-col rounded-xl border border-border/20 bg-card/30">
  <CardTitle title="Vol Term Structure" />
  <div className="flex-1">
- <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
+ <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ background: 'transparent' }}>
  {/* Gridlines */}
  {gridLines.map((pct) => {
  const iv = minIV + pct * (maxIV - minIV);
@@ -692,11 +686,9 @@ function TermStructureChart({
  y1={y}
  x2={svgW - padRight}
  y2={y}
- stroke="currentColor"
- strokeOpacity={0.1}
+ stroke="rgba(255,255,255,0.06)"
  strokeWidth={0.5}
  strokeDasharray="3 2"
- className="text-muted-foreground"
  />
  );
  })}
@@ -727,7 +719,7 @@ function TermStructureChart({
  fill="none"
  stroke="#10b981"
  strokeWidth={1.5}
- strokeOpacity={0.85}
+ strokeOpacity={0.5}
  />
 
  {/* Dots + X labels */}
@@ -806,7 +798,7 @@ function ScenarioAnalysis({
  }
 
  return (
- <div className="col-span-2 flex flex-col rounded-lg border border-border bg-card">
+ <div className="col-span-2 flex flex-col rounded-xl border border-border/20 bg-card/30">
  <CardTitle
  title="Scenario Analysis — ATM Call P&L"
  subtitle={`Base: $${refPrice.toFixed(2)} | T=${dte}d | IV=${(baseIV * 100).toFixed(0)}%`}
@@ -879,8 +871,8 @@ export function AnalysisPanel({
  const oiSubtitle = atmStrike > 0 ? `Max Pain est. near $${atmStrike}` : undefined;
 
  return (
- <div className={cn("overflow-auto p-3")}>
- <div className="grid grid-cols-2 gap-3">
+ <div className={cn("overflow-auto")}>
+ <div className="grid grid-cols-2 gap-3 p-3">
  {/* Chart 1: Call vs Put Volume */}
  <VolumeChart analytics={analytics} chain={chain} />
 

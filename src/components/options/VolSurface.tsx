@@ -295,7 +295,7 @@ function SmileChart({
  return (
  <g key={t}>
  <line x1={padL} y1={yy} x2={W - padR} y2={yy} stroke="#ffffff10" strokeWidth={1} />
- <text x={padL - 4} y={yy + 3} fontSize={8} fill="#888" textAnchor="end">
+ <text x={padL - 4} y={yy + 3} fontSize={8} fontFamily="monospace" fill="rgba(148,163,184,0.30)" textAnchor="end">
  {(yv * 100).toFixed(0)}%
  </text>
  </g>
@@ -451,7 +451,7 @@ function TermStructurePanel({ cells }: { cells: SurfaceCell[][] }) {
  return (
  <g key={t}>
  <line x1={padL} y1={yy} x2={W - padR} y2={yy} stroke="#ffffff10" strokeWidth={1} />
- <text x={padL - 4} y={yy + 3} fontSize={8} fill="#888" textAnchor="end">
+ <text x={padL - 4} y={yy + 3} fontSize={8} fontFamily="monospace" fill="rgba(148,163,184,0.30)" textAnchor="end">
  {(yv * 100).toFixed(0)}%
  </text>
  </g>
@@ -579,6 +579,7 @@ function IsoGrid({
  width={W}
  height={H}
  className="block cursor-crosshair"
+ style={{ background: "transparent" }}
  onMouseLeave={() => onHover(null, 0, 0)}
  >
  {/* Grid cells */}
@@ -623,7 +624,8 @@ function IsoGrid({
  x={p.x}
  y={p.y + 13}
  fontSize={8}
- fill="#9ca3af"
+ fontFamily="monospace"
+ fill="rgba(148,163,184,0.30)"
  textAnchor="middle"
  >
  {strikePcts[xi]}
@@ -637,7 +639,7 @@ function IsoGrid({
  EXPIRY_LABELS.map((label, yi) => {
  const p = isoProject(0, yi + 0.5, 0, cfg);
  return (
- <text key={yi} x={p.x - 6} y={p.y + 3} fontSize={8} fill="#9ca3af" textAnchor="end">
+ <text key={yi} x={p.x - 6} y={p.y + 3} fontSize={8} fontFamily="monospace" fill="rgba(148,163,184,0.30)" textAnchor="end">
  {label}
  </text>
  );
@@ -647,7 +649,7 @@ function IsoGrid({
  EXPIRY_LABELS.map((label, yi) => {
  const p = isoProject(NUM_STRIKES, yi + 0.5, 0, cfg);
  return (
- <text key={yi} x={p.x + 6} y={p.y + 3} fontSize={8} fill="#9ca3af" textAnchor="start">
+ <text key={yi} x={p.x + 6} y={p.y + 3} fontSize={8} fontFamily="monospace" fill="rgba(148,163,184,0.30)" textAnchor="start">
  {label}
  </text>
  );
@@ -659,7 +661,7 @@ function IsoGrid({
  {(() => {
  const p = isoProject(NUM_STRIKES / 2, NUM_EXPIRIES + 0.5, 0, cfg);
  return (
- <text x={p.x} y={p.y + 10} fontSize={8} fill="#6b7280" textAnchor="middle">
+ <text x={p.x} y={p.y + 10} fontSize={8} fontFamily="monospace" fill="rgba(148,163,184,0.30)" textAnchor="middle">
  Strike (% of spot)
  </text>
  );
@@ -762,7 +764,7 @@ export function VolSurface({ spotPrice, hv = 0.25, ivRank = 50 }: VolSurfaceProp
  </button>
  </div>
 
- <div className="relative overflow-hidden px-2 py-2">
+ <div className="relative overflow-hidden rounded-xl border border-border/20 bg-card/30 px-2 py-2">
  <IsoGrid
  cells={cells}
  spotPrice={spotPrice}

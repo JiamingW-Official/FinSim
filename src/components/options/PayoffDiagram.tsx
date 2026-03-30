@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
 import type { StrategyLeg } from "@/types/options";
 import {
  calculatePayoffCurve,
@@ -114,10 +113,11 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
  : null;
 
  return (
- <div className="px-3 py-2">
+ <div className="px-3 py-2 bg-transparent">
  <svg
  viewBox={`0 0 ${SVG_W} ${SVG_H}`}
  className="w-full"
+ style={{ background: "transparent" }}
  onMouseMove={(e) => {
  const rect = e.currentTarget.getBoundingClientRect();
  const x = ((e.clientX - rect.left) / rect.width) * SVG_W;

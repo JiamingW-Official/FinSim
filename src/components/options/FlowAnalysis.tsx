@@ -354,7 +354,7 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
  ({ col, align }, i) => (
  <th
  key={`${col}-${i}`}
- className={cn("px-3 py-2 text-[11px] font-medium text-muted-foreground", align)}
+ className={cn("px-3 py-2 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35", align)}
  >
  {col}
  </th>
@@ -384,7 +384,7 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
  <td className="px-3 py-2 text-right font-mono tabular-nums font-medium text-orange-400">
  {fmtPremium(order.premium)}
  {order.isUnusual && (
- <span className="ml-1 rounded bg-amber-500/20 px-1 py-0.5 text-[11px] font-semibold text-amber-400">
+ <span className="ml-1 rounded-full bg-amber-500/15 px-1.5 py-0.5 text-[8px] font-mono font-medium text-amber-400/80">
  UNUSUAL
  </span>
  )}
@@ -659,7 +659,7 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
  { col: "Notional", align: "text-right" },
  { col: "Dark Vol%", align: "text-right" },
  ].map(({ col, align }) => (
- <th key={col} className={cn("px-3 py-2 text-[11px] font-medium text-muted-foreground", align)}>
+ <th key={col} className={cn("px-3 py-2 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35", align)}>
  {col}
  </th>
  ))}
@@ -686,10 +686,10 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
  <td className="px-3 py-2">
  <span
  className={cn(
- "rounded px-1 py-0.5 text-[11px] font-medium",
- isAbove ? "bg-emerald-500/15 text-emerald-500"
- : isBelow ? "bg-red-500/15 text-red-500"
- : "bg-muted/30 text-muted-foreground",
+ "rounded-full px-1.5 py-0.5 text-[8px] font-medium",
+ isAbove ? "bg-emerald-500/10 text-emerald-400/70"
+ : isBelow ? "bg-rose-500/10 text-rose-400/70"
+ : "bg-muted/20 text-muted-foreground/50",
  )}
  >
  {p.diffLabel}
@@ -890,43 +890,43 @@ function PcDashboard({ seed }: PcDashboardProps) {
  {/* Overall gauge + chart */}
  <div className="flex flex-wrap items-start gap-6">
  <div className="flex flex-col items-center gap-1">
- <p className="text-xs font-semibold text-muted-foreground">Market P/C Ratio</p>
+ <p className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Market P/C Ratio</p>
  <PcGauge value={currentPc} />
  <p className="text-[11px] text-muted-foreground">Extreme Greed = 0.5 · Extreme Fear = 2.0</p>
  </div>
  <div className="min-w-[280px] flex-1">
- <p className="mb-1 text-xs font-semibold text-muted-foreground">30-Day P/C History</p>
+ <p className="mb-1 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">30-Day P/C History</p>
  <PcLineChart history={pcHistory} />
  </div>
  </div>
 
  {/* Smart money vs retail explanation */}
  <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
- <div className="rounded-md border border-border bg-card/30 p-2">
- <p className="text-[11px] text-muted-foreground">Smart $ Bullish</p>
- <p className="text-[11px] text-muted-foreground/60">(orders &gt;$250K calls)</p>
- <p className="mt-1 text-base font-semibold text-emerald-400">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-2">
+ <p className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Smart $ Bullish</p>
+ <p className="text-[9px] font-mono text-muted-foreground/30">&gt;$250K calls</p>
+ <p className="mt-1 text-[11px] font-mono tabular-nums font-semibold text-emerald-400">
  {tickerRatios.reduce((s, r) => s + r.largeBullish, 0)}
  </p>
  </div>
- <div className="rounded-md border border-border bg-card/30 p-2">
- <p className="text-[11px] text-muted-foreground">Smart $ Bearish</p>
- <p className="text-[11px] text-muted-foreground/60">(orders &gt;$250K puts)</p>
- <p className="mt-1 text-base font-semibold text-red-400">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-2">
+ <p className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Smart $ Bearish</p>
+ <p className="text-[9px] font-mono text-muted-foreground/30">&gt;$250K puts</p>
+ <p className="mt-1 text-[11px] font-mono tabular-nums font-semibold text-rose-400">
  {tickerRatios.reduce((s, r) => s + r.largeBearish, 0)}
  </p>
  </div>
- <div className="rounded-md border border-border bg-card/30 p-2">
- <p className="text-[11px] text-muted-foreground">Retail Bullish</p>
- <p className="text-[11px] text-muted-foreground/60">(orders &lt;$50K calls)</p>
- <p className="mt-1 text-base font-semibold text-emerald-400/70">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-2">
+ <p className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Retail Bullish</p>
+ <p className="text-[9px] font-mono text-muted-foreground/30">&lt;$50K calls</p>
+ <p className="mt-1 text-[11px] font-mono tabular-nums font-semibold text-emerald-400/70">
  {tickerRatios.reduce((s, r) => s + r.retailBullish, 0)}
  </p>
  </div>
- <div className="rounded-md border border-border bg-card/30 p-2">
- <p className="text-[11px] text-muted-foreground">Retail Bearish</p>
- <p className="text-[11px] text-muted-foreground/60">(orders &lt;$50K puts)</p>
- <p className="mt-1 text-base font-semibold text-red-400/70">
+ <div className="rounded-xl border border-border/20 bg-card/30 p-2">
+ <p className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Retail Bearish</p>
+ <p className="text-[9px] font-mono text-muted-foreground/30">&lt;$50K puts</p>
+ <p className="mt-1 text-[11px] font-mono tabular-nums font-semibold text-rose-400/70">
  {tickerRatios.reduce((s, r) => s + r.retailBearish, 0)}
  </p>
  </div>
@@ -934,7 +934,7 @@ function PcDashboard({ seed }: PcDashboardProps) {
 
  {/* Per-ticker P/C table */}
  <div>
- <p className="mb-1.5 text-xs font-semibold text-muted-foreground">P/C Ratio by Ticker</p>
+ <p className="mb-1.5 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">P/C Ratio by Ticker</p>
  <div className="overflow-auto">
  <table className="w-full border-collapse text-[11px]">
  <thead className="sticky top-0 z-10 bg-card">
@@ -950,7 +950,7 @@ function PcDashboard({ seed }: PcDashboardProps) {
  { col: "Retail Bear", align: "text-right" },
  ].map(
  ({ col, align }, i) => (
- <th key={`${col}-${i}`} className={cn("px-3 py-2 text-[11px] font-medium text-muted-foreground", align)}>
+ <th key={`${col}-${i}`} className={cn("px-3 py-2 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35", align)}>
  {col}
  </th>
  ),

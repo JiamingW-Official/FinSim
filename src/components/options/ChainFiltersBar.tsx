@@ -46,10 +46,10 @@ function ToggleButton({
  <button
  onClick={onClick}
  className={cn(
- "rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors",
+ "rounded-full px-2 py-0.5 text-[9px] font-mono uppercase tracking-wide transition-colors",
  active
- ? "bg-foreground/[0.06] text-foreground"
- : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]",
+ ? "bg-primary/15 text-primary/80"
+ : "text-muted-foreground/30 hover:text-muted-foreground/60",
  )}
  >
  {children}
@@ -65,9 +65,9 @@ export function ChainFiltersBar({
  onSelectExpiry,
 }: ChainFiltersBarProps) {
  return (
- <div className="flex shrink-0 items-center gap-2 border-b border-border bg-card/50 px-2 py-1 overflow-x-auto">
+ <div className="h-8 flex shrink-0 items-center gap-2 overflow-x-auto border-b border-border/20 px-3">
  {/* Type filter */}
- <div className="flex items-center gap-0.5 rounded-md border border-border bg-card p-0.5">
+ <div className="flex items-center gap-0.5">
  {TYPE_OPTIONS.map((opt) => (
  <ToggleButton
  key={opt.value}
@@ -79,10 +79,10 @@ export function ChainFiltersBar({
  ))}
  </div>
 
- <div className="h-4 w-px bg-border/50" />
+ <span className="h-3 w-px bg-border/30 shrink-0" />
 
  {/* Moneyness filter */}
- <div className="flex items-center gap-0.5 rounded-md border border-border bg-card p-0.5">
+ <div className="flex items-center gap-0.5">
  {MONEYNESS_OPTIONS.map((opt) => (
  <ToggleButton
  key={opt.value}
@@ -94,7 +94,7 @@ export function ChainFiltersBar({
  ))}
  </div>
 
- <div className="h-4 w-px bg-border/50" />
+ <span className="h-3 w-px bg-border/30 shrink-0" />
 
  {/* Expiry pills */}
  <div className="flex items-center gap-1">
@@ -103,16 +103,14 @@ export function ChainFiltersBar({
  key={exp.expiry}
  onClick={() => onSelectExpiry(exp.expiry)}
  className={cn(
- "rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors",
+ "rounded-full px-2 py-0.5 text-[9px] font-mono uppercase tracking-wide transition-colors",
  selectedExpiry === exp.expiry
- ? "bg-foreground/[0.06] text-foreground"
- : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]",
+ ? "bg-primary/15 text-primary/80"
+ : "text-muted-foreground/30 hover:text-muted-foreground/60",
  )}
  >
  {formatDTE(exp.daysToExpiry)}
- <span className="ml-0.5 text-[10px] opacity-60">
- {exp.daysToExpiry}d
- </span>
+ <span className="ml-0.5 opacity-50">{exp.daysToExpiry}d</span>
  </button>
  ))}
  </div>
