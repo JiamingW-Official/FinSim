@@ -251,7 +251,7 @@ export default function TradePage() {
  <Skeleton
  key={i}
  className="flex-1 rounded-sm"
- style={{ height: `${25 + Math.sin(i * 0.4) * 20 + Math.random() * 30}%` }}
+ style={{ height: `${25 + Math.sin(i * 0.4) * 20 + ((i * 17 + 7) % 30)}%` }}
  />
  ))}
  </div>
@@ -444,7 +444,7 @@ export default function TradePage() {
  <Skeleton
  key={i}
  className="flex-1 rounded-sm"
- style={{ height: `${25 + Math.sin(i * 0.4) * 20 + Math.random() * 30}%` }}
+ style={{ height: `${25 + Math.sin(i * 0.4) * 20 + ((i * 17 + 7) % 30)}%` }}
  />
  ))}
  </div>
