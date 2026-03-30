@@ -3,224 +3,217 @@
 import { useDrawingStore, type DrawingTool } from "@/components/chart/DrawingOverlay";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import {
+  TrendingUp,
+  Minus,
+  GripVertical,
+  Square,
+  GitBranch,
+  Type,
+  Eraser,
+  Trash2,
+  Undo2,
+  MousePointer2,
+} from "lucide-react";
 
 interface ToolConfig {
- tool: DrawingTool;
- label: string;
- title: string;
- /** Inline SVG icon as JSX */
- icon: React.ReactNode;
+  tool: DrawingTool;
+  title: string;
+  icon: React.ReactNode;
 }
 
-// Thin inline SVG icons for each tool
-function TrendlineIcon() {
- return (
- <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
- <line x1="2" y1="13" x2="14" y2="3" />
- <circle cx="2" cy="13" r="1.5" fill="currentColor" stroke="none" />
- <circle cx="14" cy="3" r="1.5" fill="currentColor" stroke="none" />
- </svg>
- );
-}
-
-function HLineIcon() {
- return (
- <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 1.5">
- <line x1="1" y1="8" x2="15" y2="8" />
- </svg>
- );
-}
-
-function VLineIcon() {
- return (
- <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 1.5">
- <line x1="8" y1="1" x2="8" y2="15" />
- </svg>
- );
-}
-
-function RectIcon() {
- return (
- <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5">
- <rect x="2" y="4" width="12" height="8" rx="0.5" />
- </svg>
- );
-}
-
-function FibIcon() {
- return (
- <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round">
- <line x1="1" y1="3" x2="15" y2="3" />
- <line x1="1" y1="6" x2="15" y2="6" />
- <line x1="1" y1="8" x2="15" y2="8" strokeWidth="1.5" />
- <line x1="1" y1="10" x2="15" y2="10" />
- <line x1="1" y1="13" x2="15" y2="13" />
- <text x="1" y="15.5" fontSize="4" fill="currentColor" stroke="none" fontFamily="monospace">0.618</text>
- </svg>
- );
-}
-
-function TextIcon() {
- return (
- <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
- <text x="2" y="13" fontSize="12" fontFamily="monospace" fontWeight="bold">T</text>
- </svg>
- );
-}
-
-function EraserIcon() {
- return (
- <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
- <path d="M2 13 L6 13 L14 5 L10 1 L3 8 Z" />
- <line x1="6" y1="13" x2="14" y2="5" />
- </svg>
- );
-}
-
-function UndoIcon() {
- return (
- <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
- <path d="M3 7 L3 3 L7 3" />
- <path d="M3 3 C5 1 12 1 13 7 C14 11 10 14 7 13" />
- </svg>
- );
-}
-
-const TOOLS: ToolConfig[] = [
- {
- tool: "trendline",
- label: "TL",
- title: "Trendline — click two points",
- icon: <TrendlineIcon />,
- },
- {
- tool: "hline",
- label: "HL",
- title: "Horizontal line — click to place",
- icon: <HLineIcon />,
- },
- {
- tool: "vline",
- label: "VL",
- title: "Vertical line — click to place",
- icon: <VLineIcon />,
- },
- {
- tool: "rect",
- label: "RB",
- title: "Rectangle / consolidation box — click and drag",
- icon: <RectIcon />,
- },
- {
- tool: "fib",
- label: "FIB",
- title: "Fibonacci retracement — click swing high then swing low",
- icon: <FibIcon />,
- },
- {
- tool: "text",
- label: "TXT",
- title: "Text label — click to place",
- icon: <TextIcon />,
- },
+const SELECTION_TOOLS: ToolConfig[] = [
+  {
+    tool: "eraser",
+    title: "Eraser — click a drawing to remove it",
+    icon: <Eraser className="h-3.5 w-3.5" />,
+  },
 ];
 
+const LINE_TOOLS: ToolConfig[] = [
+  {
+    tool: "trendline",
+    title: "Trendline — click two points",
+    icon: <TrendingUp className="h-3.5 w-3.5" />,
+  },
+  {
+    tool: "hline",
+    title: "Horizontal line — click to place",
+    icon: <Minus className="h-3.5 w-3.5" />,
+  },
+  {
+    tool: "vline",
+    title: "Vertical line — click to place",
+    icon: <GripVertical className="h-3.5 w-3.5" />,
+  },
+];
+
+const SHAPE_TOOLS: ToolConfig[] = [
+  {
+    tool: "rect",
+    title: "Rectangle / consolidation box — click and drag",
+    icon: <Square className="h-3.5 w-3.5" />,
+  },
+  {
+    tool: "fib",
+    title: "Fibonacci retracement — click swing high then swing low",
+    icon: <GitBranch className="h-3.5 w-3.5" />,
+  },
+];
+
+const TEXT_TOOLS: ToolConfig[] = [
+  {
+    tool: "text",
+    title: "Text label — click to place",
+    icon: <Type className="h-3.5 w-3.5" />,
+  },
+];
+
+function ToolButton({
+  tool,
+  title,
+  icon,
+  activeTool,
+  onClick,
+}: ToolConfig & { activeTool: DrawingTool; onClick: () => void }) {
+  const isActive = activeTool === tool;
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          type="button"
+          aria-label={title}
+          onClick={onClick}
+          className={cn(
+            "h-7 w-7 flex items-center justify-center rounded-none transition-colors",
+            isActive
+              ? "bg-primary/10 text-primary/70 border-r-2 border-primary/50"
+              : "text-muted-foreground/25 hover:text-muted-foreground/60 hover:bg-foreground/[0.03]",
+          )}
+        >
+          {icon}
+        </button>
+      </TooltipTrigger>
+      <TooltipContent side="right" sideOffset={6} className="text-[10px]">
+        {title}
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
+function ToolSep() {
+  return <div className="h-px bg-border/20 mx-1.5 my-0.5" />;
+}
+
 export function DrawingToolbar() {
- const { activeTool, drawings, setActiveTool, clearDrawings, removeDrawing } = useDrawingStore();
+  const { activeTool, drawings, setActiveTool, clearDrawings, removeDrawing } = useDrawingStore();
 
- const handleToolClick = (tool: DrawingTool) => {
- // Clicking the active tool deselects it
- setActiveTool(activeTool === tool ? "none" : tool);
- };
+  const handleToolClick = (tool: DrawingTool) => {
+    setActiveTool(activeTool === tool ? "none" : tool);
+  };
 
- const handleErase = () => {
- // Toggle eraser mode: click a drawing to remove it individually.
- // Undo (↩) removes the last drawing; this is for per-click removal.
- setActiveTool(activeTool === "eraser" ? "none" : "eraser");
- };
+  const handleUndo = () => {
+    if (drawings.length > 0) {
+      const last = drawings[drawings.length - 1];
+      removeDrawing(last.id);
+    }
+  };
 
- const handleUndo = () => {
- if (drawings.length > 0) {
- // Remove the last drawing
- const last = drawings[drawings.length - 1];
- removeDrawing(last.id);
- }
- };
+  return (
+    <div className="flex flex-col items-center w-7 bg-background border-r border-border/20 py-1">
 
- return (
- <div className="flex flex-col items-center gap-0.5 border-r border-border bg-card px-1 py-1.5">
- {TOOLS.map(({ tool, title, icon }) => (
- <Tooltip key={tool}>
- <TooltipTrigger asChild>
- <button
- type="button"
- aria-label={title}
- onClick={() => handleToolClick(tool)}
- className={cn(
- "flex h-6 w-6 items-center justify-center rounded transition-colors",
- activeTool === tool
- ? "bg-primary/20 text-primary ring-1 ring-primary/40"
- : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
- )}
- >
- {icon}
- </button>
- </TooltipTrigger>
- <TooltipContent side="right" sideOffset={6} className="text-xs">
- {title}
- </TooltipContent>
- </Tooltip>
- ))}
+      {/* Group 1: Selection / Eraser */}
+      {SELECTION_TOOLS.map((cfg) => (
+        <ToolButton
+          key={cfg.tool}
+          {...cfg}
+          activeTool={activeTool}
+          onClick={() => handleToolClick(cfg.tool)}
+        />
+      ))}
 
- {/* Divider */}
- <div className="my-0.5 h-px w-4 bg-border/50" />
+      <ToolSep />
 
- {/* Undo */}
- <Tooltip>
- <TooltipTrigger asChild>
- <button
- type="button"
- aria-label="Undo last drawing"
- onClick={handleUndo}
- className={cn(
- "flex h-6 w-6 items-center justify-center rounded transition-colors",
- drawings.length > 0
- ? "text-muted-foreground hover:bg-muted/30 hover:text-foreground"
- : "text-muted-foreground/30",
- )}
- disabled={drawings.length === 0}
- >
- <UndoIcon />
- </button>
- </TooltipTrigger>
- <TooltipContent side="right" sideOffset={6} className="text-xs">
- Undo last drawing
- </TooltipContent>
- </Tooltip>
+      {/* Group 2: Lines */}
+      {LINE_TOOLS.map((cfg) => (
+        <ToolButton
+          key={cfg.tool}
+          {...cfg}
+          activeTool={activeTool}
+          onClick={() => handleToolClick(cfg.tool)}
+        />
+      ))}
 
- {/* Eraser */}
- <Tooltip>
- <TooltipTrigger asChild>
- <button
- type="button"
- aria-label="Eraser — click a drawing to remove it"
- onClick={handleErase}
- className={cn(
- "flex h-6 w-6 items-center justify-center rounded transition-colors",
- activeTool === "eraser"
- ? "bg-destructive/20 text-destructive ring-1 ring-destructive/40"
- : drawings.length > 0
- ? "text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
- : "text-muted-foreground/30",
- )}
- >
- <EraserIcon />
- </button>
- </TooltipTrigger>
- <TooltipContent side="right" sideOffset={6} className="text-xs">
- {activeTool === "eraser" ? "Eraser active — click a drawing to remove it" : "Eraser — click to activate, then click a drawing"}
- </TooltipContent>
- </Tooltip>
- </div>
- );
+      <ToolSep />
+
+      {/* Group 3: Shapes */}
+      {SHAPE_TOOLS.map((cfg) => (
+        <ToolButton
+          key={cfg.tool}
+          {...cfg}
+          activeTool={activeTool}
+          onClick={() => handleToolClick(cfg.tool)}
+        />
+      ))}
+
+      <ToolSep />
+
+      {/* Group 4: Text */}
+      {TEXT_TOOLS.map((cfg) => (
+        <ToolButton
+          key={cfg.tool}
+          {...cfg}
+          activeTool={activeTool}
+          onClick={() => handleToolClick(cfg.tool)}
+        />
+      ))}
+
+      <ToolSep />
+
+      {/* Group 5: Undo + Clear all */}
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            type="button"
+            aria-label="Undo last drawing"
+            onClick={handleUndo}
+            disabled={drawings.length === 0}
+            className={cn(
+              "h-7 w-7 flex items-center justify-center rounded-none transition-colors",
+              drawings.length > 0
+                ? "text-muted-foreground/25 hover:text-muted-foreground/60 hover:bg-foreground/[0.03]"
+                : "text-muted-foreground/10 cursor-not-allowed",
+            )}
+          >
+            <Undo2 className="h-3.5 w-3.5" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent side="right" sideOffset={6} className="text-[10px]">
+          Undo last drawing
+        </TooltipContent>
+      </Tooltip>
+
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            type="button"
+            aria-label="Clear all drawings"
+            onClick={clearDrawings}
+            disabled={drawings.length === 0}
+            className={cn(
+              "h-7 w-7 flex items-center justify-center rounded-none transition-colors",
+              drawings.length > 0
+                ? "text-muted-foreground/25 hover:text-destructive/50 hover:bg-destructive/[0.04]"
+                : "text-muted-foreground/10 cursor-not-allowed",
+            )}
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent side="right" sideOffset={6} className="text-[10px]">
+          Clear all drawings
+        </TooltipContent>
+      </Tooltip>
+    </div>
+  );
 }
