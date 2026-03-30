@@ -906,7 +906,6 @@ export function AICoachPanel() {
     toast.custom(
       () => (
         <div className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-1.5 shadow text-xs max-w-56">
-          <span className="shrink-0"></span>
           <span className="text-muted-foreground">{msg}</span>
         </div>
       ),

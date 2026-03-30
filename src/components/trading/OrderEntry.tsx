@@ -885,13 +885,13 @@ export function OrderEntry() {
  )}
  {orderType === "market" && marketSession === "pre-market" && (
  <div className="flex items-center gap-1.5 rounded px-2 py-1 bg-amber-500/10 border border-amber-500/20">
- <span className="text-[9px] font-semibold text-amber-400">⚡ Pre-Market</span>
+ <span className="text-[9px] font-semibold text-amber-400">Pre-Market</span>
  <span className="text-[9px] text-amber-400/70">· Extended hours trading active (04:00–09:30 ET)</span>
  </div>
  )}
  {orderType === "market" && marketSession === "after-hours" && (
  <div className="flex items-center gap-1.5 rounded px-2 py-1 bg-sky-500/10 border border-sky-500/20">
- <span className="text-[9px] font-semibold text-sky-400">⚡ After-Hours</span>
+ <span className="text-[9px] font-semibold text-sky-400">After-Hours</span>
  <span className="text-[9px] text-sky-400/70">· Extended hours trading active (16:00–20:00 ET)</span>
  </div>
  )}
