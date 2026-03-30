@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 import { useWatchlistStore } from "@/stores/watchlist-store";
 import { useChartStore } from "@/stores/chart-store";
 import { useClockStore } from "@/stores/clock-store";
@@ -44,19 +45,19 @@ function MiniSpark({ ticker, positive }: { ticker: string; positive: boolean }) 
     v = Math.max(5, Math.min(95, v + (rng() - 0.5) * 25));
     pts.push(v);
   }
-  const w = 48,
-    h = 16;
+  const w = 40;
+  const h = 14;
   const d = pts
     .map((y, i) => `${i === 0 ? "M" : "L"}${(i / 7) * w},${h - (y / 100) * h}`)
     .join(" ");
   return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="shrink-0">
       <path
         d={d}
         fill="none"
         stroke={positive ? "#34d399" : "#f87171"}
         strokeWidth="1.2"
-        opacity="0.6"
+        opacity={positive ? "0.55" : "0.5"}
       />
     </svg>
   );
@@ -66,9 +67,9 @@ function MiniSpark({ ticker, positive }: { ticker: string; positive: boolean }) 
 
 function PriceSkeleton() {
   return (
-    <div className="flex flex-col items-end gap-0.5">
-      <div className="h-3 w-12 animate-pulse rounded bg-foreground/10" />
-      <div className="h-2.5 w-8 animate-pulse rounded bg-foreground/8" />
+    <div className="flex flex-col items-end gap-0.5 shrink-0">
+      <div className="h-3 w-10 animate-pulse rounded bg-foreground/10" />
+      <div className="h-2.5 w-7 animate-pulse rounded bg-foreground/8" />
     </div>
   );
 }
@@ -83,7 +84,7 @@ const KNOWN_TICKERS = new Set([
 
 const POPULAR = ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "NVDA", "META"];
 
-const LISTS = ["Main", "Options Plays", "Swing Trades"] as const;
+const LISTS = ["Main", "Options", "Swing"] as const;
 
 // ── Component ────────────────────────────────────────────────────────────────
 
@@ -91,8 +92,7 @@ export function WatchlistPanel() {
   const { watchlist, addToWatchlist, removeFromWatchlist } = useWatchlistStore();
   const { currentTicker, setTicker } = useChartStore();
   const [activeList, setActiveList] = useState<string>("Main");
-  const [input, setInput] = useState("");
-  const [hoveredTicker, setHoveredTicker] = useState<string | null>(null);
+  const [newTicker, setNewTicker] = useState("");
   const marketSession = useClockStore((s) => s.marketSession);
 
   // Real price data for the currently selected ticker
@@ -115,48 +115,68 @@ export function WatchlistPanel() {
       : "bg-muted-foreground/20";
 
   const tickers = watchlist.map((w) => w.ticker);
-
   const quickAdd = POPULAR.filter((t) => !tickers.includes(t));
 
   function handleAdd() {
-    const t = input.trim().toUpperCase();
+    const t = newTicker.trim().toUpperCase();
     if (t && KNOWN_TICKERS.has(t) && !tickers.includes(t)) {
       addToWatchlist(t);
     }
-    setInput("");
+    setNewTicker("");
   }
 
   return (
     <div className="flex h-full flex-col">
-      {/* List selector */}
-      <div className="flex items-center gap-1 border-b border-border/20 px-2 py-1.5">
+
+      {/* ── Header ──────────────────────────────────────────────────────── */}
+      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/30 shrink-0">
+        <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30">
+          Watchlist
+        </span>
+        {/* session indicator */}
+        <div className="flex items-center gap-1">
+          <span className={cn("inline-block h-1.5 w-1.5 rounded-full shrink-0", sessionDotColor)} />
+          <span className="text-[9px] font-mono text-muted-foreground/30 capitalize">
+            {marketSession === "open"
+              ? "Open"
+              : marketSession === "pre-market"
+              ? "Pre"
+              : marketSession === "after-hours"
+              ? "AH"
+              : "Closed"}
+          </span>
+        </div>
+      </div>
+
+      {/* ── List selector pills ──────────────────────────────────────────── */}
+      <div className="flex items-center gap-1 px-2 py-1 border-b border-border/20 shrink-0 overflow-x-auto">
         {LISTS.map((name) => (
           <button
             key={name}
             onClick={() => setActiveList(name)}
-            className={`text-[10px] font-mono uppercase tracking-widest transition-colors ${
+            className={cn(
+              "shrink-0 rounded-full px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider transition-colors",
               activeList === name
-                ? "text-foreground"
-                : "text-muted-foreground/50 hover:text-muted-foreground"
-            }`}
+                ? "bg-primary/15 text-primary/80"
+                : "text-muted-foreground/30 hover:text-muted-foreground/60"
+            )}
           >
             {name}
           </button>
         ))}
       </div>
 
-      {/* Ticker rows */}
-      <div className="flex-1 divide-y divide-border/20 overflow-y-auto">
+      {/* ── Ticker rows ──────────────────────────────────────────────────── */}
+      <div className="flex-1 overflow-y-auto">
         {tickers.length === 0 && (
-          <div className="px-2 py-6 text-center text-[10px] text-muted-foreground/40">
+          <div className="px-2 py-6 text-center text-[10px] text-muted-foreground/30">
             No tickers yet
           </div>
         )}
+
         {tickers.map((ticker) => {
           const isActive = ticker === currentTicker;
-          const isHovered = ticker === hoveredTicker;
 
-          // For active ticker: use real market data if available; fallback to simulated
           let displayPrice: number;
           let displayChangePct: number;
           let isLoadingReal = false;
@@ -169,7 +189,6 @@ export function WatchlistPanel() {
                   ? ((realPrice - prevPrice) / prevPrice) * 100
                   : 0;
             } else {
-              // Real data not yet loaded — show skeleton
               isLoadingReal = true;
               const sim = simulatePrice(ticker);
               displayPrice = sim.price;
@@ -187,83 +206,87 @@ export function WatchlistPanel() {
             <button
               key={ticker}
               onClick={() => setTicker(ticker)}
-              onMouseEnter={() => setHoveredTicker(ticker)}
-              onMouseLeave={() => setHoveredTicker(null)}
-              className={`group relative flex w-full items-center gap-1.5 px-2 py-1.5 text-left transition-colors ${
+              className={cn(
+                "group w-full flex items-center px-2 py-1.5 transition-colors border-b border-border/10",
+                "hover:bg-foreground/[0.025]",
                 isActive
-                  ? "border-l-2 border-primary bg-primary/5 hover:bg-primary/8"
-                  : "border-l-2 border-transparent hover:bg-foreground/[0.02]"
-              }`}
+                  ? "bg-primary/5 border-l-2 border-l-primary/60"
+                  : "border-l-2 border-l-transparent"
+              )}
             >
-              {/* Ticker + sparkline */}
-              <div className="min-w-0 flex-1">
-                <div
-                  className={`flex items-center gap-1 text-[11px] font-medium leading-none ${
-                    isActive ? "text-foreground" : "text-foreground/70"
-                  }`}
-                >
+              {/* Left: ticker symbol + price stacked */}
+              <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+                <div className="flex items-baseline gap-1.5">
                   <span
-                    className={`inline-block h-1.5 w-1.5 rounded-full shrink-0 ${sessionDotColor}`}
-                  />
-                  <span className={isActive ? "font-semibold" : ""}>{ticker}</span>
-                </div>
-                <div className="mt-0.5">
-                  <MiniSpark ticker={ticker} positive={positive} />
+                    className={cn(
+                      "text-[11px] font-semibold tracking-tight leading-none",
+                      isActive ? "text-foreground" : "text-foreground/70"
+                    )}
+                  >
+                    {ticker}
+                  </span>
+                  {!isLoadingReal && (
+                    <span
+                      className={cn(
+                        "text-[9px] font-mono tabular-nums leading-none",
+                        isActive ? "text-foreground/80" : "text-muted-foreground/50"
+                      )}
+                    >
+                      ${displayPrice.toFixed(2)}
+                    </span>
+                  )}
                 </div>
               </div>
 
-              {/* Price + Change % — right-aligned */}
+              {/* Right: sparkline + change% */}
               {isActive && isLoadingReal ? (
                 <PriceSkeleton />
               ) : (
-                <div className="flex flex-col items-end gap-0.5">
-                  <div
-                    className={`text-right text-[11px] font-mono tabular-nums leading-none ${
-                      isActive ? "text-foreground font-semibold" : "text-foreground"
-                    }`}
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <MiniSpark ticker={ticker} positive={positive} />
+                  <span
+                    className={cn(
+                      "text-[9px] font-mono tabular-nums w-[3.25rem] text-right leading-none",
+                      displayChangePct > 0
+                        ? "text-emerald-400/80"
+                        : displayChangePct < 0
+                        ? "text-rose-400/70"
+                        : "text-muted-foreground/40"
+                    )}
                   >
-                    {displayPrice.toFixed(2)}
-                  </div>
-                  <div
-                    className={`text-right text-[10px] font-mono tabular-nums leading-none ${
-                      positive ? "text-emerald-400/80" : "text-rose-400/70"
-                    }`}
-                  >
-                    {positive ? "+" : ""}{displayChangePct.toFixed(2)}%
-                  </div>
+                    {displayChangePct >= 0 ? "+" : ""}
+                    {displayChangePct.toFixed(2)}%
+                  </span>
                 </div>
               )}
 
-              {/* Remove button */}
-              {isHovered && (
-                <span
-                  role="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    removeFromWatchlist(ticker);
-                  }}
-                  className="absolute right-1 top-1 flex h-3.5 w-3.5 items-center justify-center rounded text-[9px] text-muted-foreground/40 transition-colors hover:bg-foreground/5 hover:text-foreground/60"
-                >
-                  x
-                </span>
-              )}
+              {/* Remove button — visible on hover */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  removeFromWatchlist(ticker);
+                }}
+                className="opacity-0 group-hover:opacity-100 ml-1 h-4 w-4 flex items-center justify-center rounded text-muted-foreground/30 hover:text-rose-400/70 hover:bg-rose-500/10 transition-all shrink-0 text-[11px]"
+              >
+                ×
+              </button>
             </button>
           );
         })}
       </div>
 
-      {/* Quick-add chips */}
+      {/* ── Quick-add chips ──────────────────────────────────────────────── */}
       {quickAdd.length > 0 && (
-        <div className="border-t border-border/20 px-2 py-1.5">
-          <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/40">
+        <div className="border-t border-border/20 px-2 py-1.5 shrink-0">
+          <div className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/25 mb-1">
             Quick add
           </div>
-          <div className="mt-1 flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1">
             {quickAdd.map((t) => (
               <button
                 key={t}
                 onClick={() => addToWatchlist(t)}
-                className="rounded border border-border/20 px-1.5 py-0.5 text-[9px] text-muted-foreground/50 transition-colors hover:bg-foreground/[0.02] hover:text-foreground/70"
+                className="rounded-full border border-border/20 px-1.5 py-0.5 text-[9px] font-mono text-muted-foreground/40 transition-colors hover:border-primary/20 hover:bg-primary/5 hover:text-primary/70"
               >
                 {t}
               </button>
@@ -272,21 +295,23 @@ export function WatchlistPanel() {
         </div>
       )}
 
-      {/* Add input */}
-      <div className="flex items-center gap-1 border-t border-border/20 px-2 py-1.5">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value.toUpperCase())}
-          onKeyDown={(e) => e.key === "Enter" && handleAdd()}
-          placeholder="Add ticker"
-          className="min-w-0 flex-1 bg-transparent text-[10px] text-foreground placeholder:text-muted-foreground/30 focus:outline-none"
-        />
-        <button
-          onClick={handleAdd}
-          className="text-[10px] text-muted-foreground/40 transition-colors hover:text-foreground/60"
-        >
-          +
-        </button>
+      {/* ── Add ticker input ─────────────────────────────────────────────── */}
+      <div className="border-t border-border/20 px-2 py-1.5 shrink-0">
+        <div className="flex items-center gap-1">
+          <input
+            value={newTicker}
+            onChange={(e) => setNewTicker(e.target.value.toUpperCase())}
+            onKeyDown={(e) => e.key === "Enter" && handleAdd()}
+            placeholder="Add ticker..."
+            className="flex-1 bg-transparent text-[10px] font-mono text-foreground/70 placeholder:text-muted-foreground/25 outline-none min-w-0"
+          />
+          <button
+            onClick={handleAdd}
+            className="text-[11px] font-mono text-primary/50 hover:text-primary/80 transition-colors shrink-0 leading-none"
+          >
+            +
+          </button>
+        </div>
       </div>
     </div>
   );
