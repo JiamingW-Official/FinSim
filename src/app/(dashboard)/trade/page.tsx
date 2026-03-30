@@ -141,7 +141,11 @@ function LiveInfoBar() {
 
 // ── Shared tab trigger style ────────────────────────────────────────────────
 const tabCls =
- "rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-2 py-1 text-[10px] text-muted-foreground/40 data-[state=active]:text-foreground data-[state=active]:font-medium";
+ "rounded-none border-b-2 border-transparent data-[state=active]:border-primary/70 " +
+ "data-[state=active]:bg-transparent data-[state=active]:shadow-none " +
+ "px-2.5 py-1.5 text-[10px] font-mono tracking-wider uppercase " +
+ "text-muted-foreground/35 data-[state=active]:text-foreground/85 data-[state=active]:font-semibold " +
+ "transition-colors duration-150";
 
 // ── Chart area wrapper with DrawingOverlay ────────────────────────────────────
 
@@ -316,9 +320,9 @@ export default function TradePage() {
 
       <NewsTicker />
 
-      {/* Bottom panel — flex-[2] gives chart more vertical space, min 140px */}
+      {/* Bottom panel — flex-[2] gives chart more vertical space, min 160px */}
       <div
-       className="flex-[2] min-h-[140px] shrink-0 overflow-hidden border-t border-border/40"
+       className="flex-[2] min-h-[160px] shrink-0 overflow-hidden border-t border-border/40"
        data-tutorial="positions"
       >
        <Tabs defaultValue="fundamentals" className="h-full flex flex-col">
@@ -340,14 +344,14 @@ export default function TradePage() {
       </div>
      </div>
 
-     {/* ── RIGHT: Order + Analysis sidebar (280px) ── */}
+     {/* ── RIGHT: Order + Analysis sidebar (300px) ── */}
      <div
       className="flex flex-col border-l border-border/40 shrink-0 overflow-hidden"
-      style={{ width: 280 }}
+      style={{ width: 300 }}
       data-tutorial="order-entry"
      >
       <Tabs defaultValue="order" className="flex flex-col h-full">
-       <TabsList className="bg-transparent border-b border-border/30 rounded-none p-0 h-auto shrink-0">
+       <TabsList className="bg-muted/5 border-b border-border/30 rounded-none p-0 h-auto shrink-0 w-full flex">
         <TabsTrigger value="order" className={tabCls}>Order</TabsTrigger>
         <TabsTrigger value="analysis" className={tabCls}>Analysis</TabsTrigger>
         <TabsTrigger value="positions" className={tabCls}>Pos</TabsTrigger>

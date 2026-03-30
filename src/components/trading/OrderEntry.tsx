@@ -596,77 +596,67 @@ export function OrderEntry() {
  setAdvancedTicket(summary);
  };
 
+ // Compute price change for header
+ const prevBar = allData.length > 0 && revealedCount > 1 ? allData[revealedCount - 2] : null;
+ const changeAmt = prevBar ? price - prevBar.close : 0;
+ const changePct = prevBar && prevBar.close > 0 ? (changeAmt / prevBar.close) * 100 : 0;
+
  return (
  <div
  className={cn(
- "flex flex-col gap-3 p-4 transition-colors",
+ "flex flex-col gap-3 transition-colors",
  tradeFlash === "buy" && "trade-flash-buy",
  tradeFlash === "sell" && "trade-flash-sell",
  )}
  >
- {/* Ticker & Price — hero treatment */}
- <div className="flex items-baseline justify-between">
- <span className="text-sm font-medium tracking-tight text-foreground">{currentTicker}</span>
+ {/* Header: ticker + current price */}
+ <div className="flex items-center justify-between px-3 pt-3 pb-2 border-b border-border/20">
+ <div className="flex flex-col">
+ <span className="text-[13px] font-bold tracking-tight">{currentTicker}</span>
+ <span className="text-[9px] font-mono text-muted-foreground/40 uppercase tracking-widest">
+ {marketSession === 'open' ? 'Regular Hours' : marketSession === 'pre-market' ? 'Pre-Market' : marketSession === 'after-hours' ? 'After-Hours' : 'Closed'}
+ </span>
+ </div>
+ <div className="flex flex-col items-end">
  <span
  className={cn(
- "text-2xl font-serif tabular-nums tracking-tight transition-colors duration-300",
+ "text-[15px] font-mono font-bold tabular-nums transition-colors duration-300",
  priceFlash === "up" && "price-flash-up",
  priceFlash === "down" && "price-flash-down",
  )}
  >
- {price > 0 ? formatCurrency(animatedPrice) : "---"}
+ {price > 0 ? `$${animatedPrice.toFixed(2)}` : "---"}
+ </span>
+ <span className={cn("text-[10px] font-mono tabular-nums", changeAmt >= 0 ? "text-emerald-400/80" : "text-rose-400/70")}>
+ {changeAmt >= 0 ? '+' : ''}{changeAmt.toFixed(2)} ({changePct.toFixed(2)}%)
  </span>
  </div>
+ </div>
 
- {/* Buy / Sell / Short Toggle — clean segmented control */}
- <div className="relative grid grid-cols-3 gap-0.5 rounded-lg border border-border p-1">
- {/* Sliding background indicator */}
- <motion.div
- layoutId="trade-mode"
- className={cn(
- "absolute inset-y-1 rounded-sm",
- tradeMode === "buy" ? "bg-emerald-500/20 left-1 right-[calc(66.666%+2px)]" :
- tradeMode === "sell" ? "bg-red-500/20 left-[calc(33.333%+2px)] right-[calc(33.333%+2px)]" :
- "bg-purple-500/20 left-[calc(66.666%+2px)] right-1",
- )}
- transition={{ type: "spring", stiffness: 500, damping: 35 }}
- />
+ {/* Inner content padding wrapper */}
+ <div className="flex flex-col gap-3 px-3 pb-3">
+
+ {/* Buy / Sell / Short Toggle — segmented control */}
+ <div className="flex rounded-md overflow-hidden border border-border/40">
+ {(['buy', 'sell', 'short'] as const).map((mode) => (
  <button
+ key={mode}
  type="button"
- onClick={() => setTradeMode("buy")}
+ onClick={() => setTradeMode(mode)}
  className={cn(
- "relative z-[1] rounded-sm py-2 text-xs font-medium transition-colors",
- tradeMode === "buy"
- ? "text-emerald-400"
- : "text-muted-foreground hover:text-foreground",
+ "flex-1 py-1.5 text-[10px] font-mono font-semibold uppercase tracking-wider transition-colors border-r border-border/20 last:border-r-0",
+ tradeMode === mode
+ ? mode === 'buy'
+ ? "bg-emerald-500/20 text-emerald-400"
+ : mode === 'sell'
+ ? "bg-rose-500/15 text-rose-400"
+ : "bg-purple-500/15 text-purple-400"
+ : "bg-transparent text-muted-foreground/30 hover:text-muted-foreground/60",
  )}
  >
- Buy
+ {mode}
  </button>
- <button
- type="button"
- onClick={() => setTradeMode("sell")}
- className={cn(
- "relative z-[1] rounded-sm py-2 text-xs font-medium transition-colors",
- tradeMode === "sell"
- ? "text-red-400"
- : "text-muted-foreground hover:text-foreground",
- )}
- >
- Sell
- </button>
- <button
- type="button"
- onClick={() => setTradeMode("short")}
- className={cn(
- "relative z-[1] rounded-sm py-2 text-xs font-medium transition-colors",
- tradeMode === "short"
- ? "text-purple-400"
- : "text-muted-foreground hover:text-foreground",
- )}
- >
- Short
- </button>
+ ))}
  </div>
 
  {/* Short mode: borrow rate + risk warning */}
@@ -1331,6 +1321,7 @@ export function OrderEntry() {
  <span>→: Step</span>
  <span>1-4: Speed</span>
  </div>
+ </div>{/* end inner content padding wrapper */}
  </div>
  );
 }
