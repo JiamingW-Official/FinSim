@@ -13,36 +13,70 @@ import {
 import { INDICATOR_EXPLANATIONS } from "@/data/indicator-explanations";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
-const INDICATOR_OPTIONS: { value: IndicatorType; label: string }[] = [
-  { value: "sma20", label: "SMA20" },
-  { value: "sma50", label: "SMA50" },
-  { value: "ema12", label: "EMA12" },
-  { value: "ema26", label: "EMA26" },
-  { value: "bollinger", label: "BB" },
-  { value: "rsi", label: "RSI" },
-  { value: "macd", label: "MACD" },
-  { value: "stochastic", label: "STOCH" },
-  { value: "atr", label: "ATR" },
-  { value: "vwap", label: "VWAP" },
-  { value: "adx", label: "ADX" },
-  { value: "obv", label: "OBV" },
-  { value: "cci", label: "CCI" },
-  { value: "williams_r", label: "%R" },
-  { value: "psar", label: "PSAR" },
+// Timeframe keyboard shortcut titles
+const TIMEFRAME_TITLES: Record<string, string> = {
+  "5m":  "5 min (5)",
+  "15m": "15 min (1)",
+  "1h":  "1 Hour (H)",
+  "1d":  "Daily (D)",
+  "1wk": "Weekly (W)",
+};
+
+// Indicator groups
+const INDICATOR_GROUPS: { label: string; indicators: { value: IndicatorType; label: string }[] }[] = [
+  {
+    label: "Trend",
+    indicators: [
+      { value: "sma20",     label: "SMA20" },
+      { value: "sma50",     label: "SMA50" },
+      { value: "ema12",     label: "EMA12" },
+      { value: "ema26",     label: "EMA26" },
+      { value: "bollinger", label: "BB"    },
+      { value: "psar",      label: "PSAR"  },
+      { value: "vwap",      label: "VWAP"  },
+    ],
+  },
+  {
+    label: "Momentum",
+    indicators: [
+      { value: "rsi",        label: "RSI"   },
+      { value: "macd",       label: "MACD"  },
+      { value: "stochastic", label: "STOCH" },
+      { value: "cci",        label: "CCI"   },
+      { value: "williams_r", label: "%R"    },
+    ],
+  },
+  {
+    label: "Volume",
+    indicators: [
+      { value: "atr", label: "ATR" },
+      { value: "obv", label: "OBV" },
+    ],
+  },
+  {
+    label: "Other",
+    indicators: [
+      { value: "adx", label: "ADX" },
+    ],
+  },
 ];
 
 const CHART_TYPE_OPTIONS: { value: ChartType; label: string; title: string }[] = [
   { value: "candlestick", label: "Candle", title: "Candlestick chart" },
-  { value: "heikin_ashi", label: "HA", title: "Heikin Ashi — smoothed candles" },
-  { value: "line", label: "Line", title: "Line chart (close prices)" },
-  { value: "area", label: "Area", title: "Area chart (filled)" },
+  { value: "heikin_ashi", label: "HA",     title: "Heikin Ashi — smoothed candles" },
+  { value: "line",        label: "Line",   title: "Line chart (close prices)" },
+  { value: "area",        label: "Area",   title: "Area chart (filled)" },
 ];
 
 const intradayOptions = TIMEFRAME_OPTIONS.filter((o) => o.group === "intraday");
-const dailyOptions = TIMEFRAME_OPTIONS.filter((o) => o.group === "daily");
+const dailyOptions    = TIMEFRAME_OPTIONS.filter((o) => o.group === "daily");
 
 function Sep() {
   return <span className="h-3 w-px bg-border/30 mx-1 shrink-0" />;
+}
+
+function GroupSep() {
+  return <span className="h-3 w-px bg-border/20 mx-0.5 shrink-0" />;
 }
 
 export function ChartToolbar() {
@@ -67,8 +101,10 @@ export function ChartToolbar() {
     setShowDividends,
   } = useChartStore();
 
+  const isIntraday = ["5m", "15m", "1h"].includes(currentTimeframe);
+
   return (
-    <div className="flex h-8 items-center justify-between border-b border-border/30 bg-transparent px-2 gap-1 overflow-x-auto scrollbar-none">
+    <div className="flex items-center gap-1 h-8 border-b border-border/30 px-2 overflow-x-auto shrink-0 scrollbar-none">
       {/* LEFT: controls */}
       <div className="flex items-center gap-1 min-w-0 shrink-0">
 
@@ -79,6 +115,7 @@ export function ChartToolbar() {
               key={opt.value}
               type="button"
               onClick={() => setTimeframe(opt.value as Timeframe)}
+              title={TIMEFRAME_TITLES[opt.value]}
               className={cn(
                 "px-2 py-1 text-[9px] font-mono uppercase transition-colors border-r border-border/20 last:border-r-0",
                 currentTimeframe === opt.value
@@ -98,6 +135,7 @@ export function ChartToolbar() {
               key={opt.value}
               type="button"
               onClick={() => setTimeframe(opt.value as Timeframe)}
+              title={TIMEFRAME_TITLES[opt.value]}
               className={cn(
                 "px-2 py-1 text-[9px] font-mono uppercase transition-colors border-r border-border/20 last:border-r-0",
                 currentTimeframe === opt.value
@@ -256,46 +294,83 @@ export function ChartToolbar() {
 
         <Sep />
 
-        {/* Indicators */}
-        <div className="flex flex-wrap items-center gap-0.5">
-          {INDICATOR_OPTIONS.map((opt) => (
-            <Tooltip key={opt.value}>
-              <TooltipTrigger asChild>
+        {/* Active indicator chips (quick-remove) */}
+        {activeIndicators.length > 0 && (
+          <div className="flex items-center gap-0.5 shrink-0">
+            {activeIndicators.map((ind) => (
+              <span
+                key={ind}
+                className="inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-[9px] font-mono bg-primary/10 text-primary/70"
+              >
+                {ind}
                 <button
                   type="button"
-                  onClick={() => toggleIndicator(opt.value)}
-                  className={cn(
-                    "rounded-full px-2 py-0.5 text-[9px] font-mono transition-colors",
-                    activeIndicators.includes(opt.value)
-                      ? "bg-primary/10 text-primary/70"
-                      : "text-muted-foreground/25 hover:text-muted-foreground/50",
-                  )}
+                  onClick={() => toggleIndicator(ind)}
+                  className="text-primary/40 hover:text-primary/80 leading-none"
+                  aria-label={`Remove ${ind}`}
                 >
-                  {opt.label}
+                  ×
                 </button>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" sideOffset={4} className="text-[10px]">
-                {INDICATOR_EXPLANATIONS[opt.value].shortDesc}
-              </TooltipContent>
-            </Tooltip>
-          ))}
-        </div>
+              </span>
+            ))}
+            <GroupSep />
+          </div>
+        )}
+
+        {/* Indicators — grouped */}
+        {isIntraday ? (
+          <span className="text-[9px] italic text-muted-foreground/25 shrink-0">
+            Indicators n/a for intraday
+          </span>
+        ) : (
+          <div className="flex items-center gap-0.5">
+            {INDICATOR_GROUPS.map((group, gi) => (
+              <div key={group.label} className="flex items-center gap-0.5">
+                {gi > 0 && <GroupSep />}
+                {group.indicators.map((opt) => {
+                  const isActive = activeIndicators.includes(opt.value);
+                  // Skip active indicators here — they show in the chips row above
+                  if (isActive) return null;
+                  return (
+                    <Tooltip key={opt.value}>
+                      <TooltipTrigger asChild>
+                        <button
+                          type="button"
+                          onClick={() => toggleIndicator(opt.value)}
+                          className="rounded-full px-2 py-0.5 text-[9px] font-mono transition-colors text-muted-foreground/25 hover:text-muted-foreground/50"
+                        >
+                          {opt.label}
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom" sideOffset={4} className="text-[10px]">
+                        <span className="font-semibold text-muted-foreground/60 mr-1">[{group.label}]</span>
+                        {INDICATOR_EXPLANATIONS[opt.value].shortDesc}
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* RIGHT: Ticker selector */}
-      <select
-        value={currentTicker}
-        onChange={(e) => setTicker(e.target.value)}
-        title="Select ticker"
-        aria-label="Select ticker"
-        className="shrink-0 rounded border border-border/30 bg-transparent px-2 py-0.5 text-[11px] font-bold text-foreground/80 outline-none focus-visible:ring-1 focus-visible:ring-ring/50 cursor-pointer"
-      >
-        {WATCHLIST_STOCKS.map((stock) => (
-          <option key={stock.ticker} value={stock.ticker}>
-            {stock.ticker} — {stock.name}
-          </option>
-        ))}
-      </select>
+      <div className="ml-auto shrink-0">
+        <select
+          value={currentTicker}
+          onChange={(e) => setTicker(e.target.value)}
+          title="Select ticker"
+          aria-label="Select ticker"
+          className="rounded border border-border/30 bg-transparent px-2 py-0.5 text-[11px] font-bold text-foreground/80 outline-none focus-visible:ring-1 focus-visible:ring-ring/50 cursor-pointer"
+        >
+          {WATCHLIST_STOCKS.map((stock) => (
+            <option key={stock.ticker} value={stock.ticker}>
+              {stock.ticker} — {stock.name}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }

@@ -217,33 +217,23 @@ export function TimeTravelControls() {
     </div>
    </div>
 
-   {/* Keyboard hints row */}
-   <div className="flex items-center gap-3 border-t border-border/20 px-3 pb-1 pt-0.5">
-    <span className="text-[9px] font-mono text-muted-foreground/25 uppercase tracking-wider">
+   {/* Keyboard hints row — only shown on xl screens */}
+   <div className="hidden xl:flex items-center gap-2 border-t border-border/15 px-3 py-0.5">
+    <span className="text-[8px] font-mono text-muted-foreground/20 uppercase tracking-widest">
      Shortcuts
     </span>
-    <div className="flex items-center gap-2.5">
-     <span className="text-[9px] text-muted-foreground/30">
-      <kbd className="font-mono">Space</kbd>
-      {" "}= Play/Pause
+    {[
+     { key: "Space", label: "Play" },
+     { key: "←",    label: "Prev" },
+     { key: "→",    label: "Next" },
+     { key: "R",    label: "Reset" },
+     { key: "5/1/H/D/W", label: "Timeframe" },
+    ].map(({ key, label }) => (
+     <span key={key} className="text-[8px] font-mono text-muted-foreground/20">
+      <span className="bg-muted/40 px-0.5 rounded">{key}</span>
+      {" "}{label}
      </span>
-     <span className="text-[9px] text-muted-foreground/30">
-      <kbd className="font-mono">←</kbd>
-      {" "}= Prev
-     </span>
-     <span className="text-[9px] text-muted-foreground/30">
-      <kbd className="font-mono">→</kbd>
-      {" "}= Next
-     </span>
-    </div>
-    <div className="ml-auto flex items-center gap-1.5">
-     {SPEED_OPTIONS.map((opt) => (
-      <span key={opt.value} className="text-[9px] text-muted-foreground/25">
-       {opt.label}
-       <span className="ml-0.5 text-muted-foreground/20">{opt.cn}</span>
-      </span>
-     ))}
-    </div>
+    ))}
    </div>
   </div>
  );
