@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -346,10 +345,7 @@ export function WeeklyReview() {
  );
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="space-y-3"
  >
  {/* ── Review Header ── */}
@@ -582,6 +578,6 @@ export function WeeklyReview() {
  <p className="text-[12px] font-medium text-foreground">{insights.focusCTA}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  );
 }

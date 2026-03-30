@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { AlertTriangle, TrendingUp, TrendingDown, Target, Shield, BarChart2, Users } from "lucide-react";
 
@@ -1087,12 +1087,8 @@ export default function AdvancedAnalytics() {
 
  {/* Content panel */}
  <AnimatePresence mode="wait">
- <motion.div
+ <div
  key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2, ease: "easeOut" }}
  className="rounded-lg border border-border bg-card p-4"
  >
  <div className="flex items-center gap-2 mb-4">
@@ -1100,7 +1096,7 @@ export default function AdvancedAnalytics() {
  <h3 className={cn("text-xs font-semibold", activeTabMeta.color)}>{activeTabMeta.label}</h3>
  </div>
  {sectionContent[activeTab]}
- </motion.div>
+ </div>
  </AnimatePresence>
  </div>
  );

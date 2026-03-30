@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Download, FileSpreadsheet, FileText, Copy, Check } from "lucide-react";
 import { useGameStore } from "@/stores/game-store";
 import { useTradingStore } from "@/stores/trading-store";
@@ -111,7 +111,7 @@ export function ExportMenu() {
 
  return (
  <div ref={menuRef} className="relative">
- <motion.button
+ <button
  type="button"
  onClick={() => setOpen(!open)}
  className={cn(
@@ -120,19 +120,13 @@ export function ExportMenu() {
  ? "bg-primary/10 text-primary"
  : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
  )}
- whileHover={{ scale: 1.1 }}
- whileTap={{ scale: 0.9 }}
  >
  <Download className="h-4 w-4" />
- </motion.button>
+ </button>
 
  <AnimatePresence>
  {open && (
- <motion.div
- initial={{ opacity: 0, y: -4, scale: 0.95 }}
- animate={{ opacity: 1, y: 0, scale: 1 }}
- exit={{ opacity: 0, y: -4, scale: 0.95 }}
- transition={{ duration: 0.15 }}
+ <div
  className="absolute right-0 top-full z-50 mt-1 w-56 overflow-hidden rounded-md border border-border bg-card"
  >
  <div className="px-3 py-2 text-xs font-semibold text-muted-foreground">
@@ -156,7 +150,7 @@ export function ExportMenu() {
  </button>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
  </AnimatePresence>
  </div>

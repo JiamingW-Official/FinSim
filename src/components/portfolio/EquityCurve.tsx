@@ -23,25 +23,25 @@ export function EquityCurve() {
  const chart = createChart(containerRef.current, {
  layout: {
  background: { type: ColorType.Solid, color: "transparent" },
- textColor: "#6b7280",
+ textColor: "rgba(255,255,255,0.3)",
  fontFamily: "JetBrains Mono, monospace",
  fontSize: 10,
  attributionLogo: false,
  },
  grid: {
- vertLines: { color: "#1e293b" },
- horzLines: { color: "#1e293b" },
+ vertLines: { color: "rgba(255,255,255,0.04)" },
+ horzLines: { color: "rgba(255,255,255,0.04)" },
  },
  timeScale: {
- borderColor: "#1e293b",
+ borderColor: "rgba(255,255,255,0.06)",
  timeVisible: false,
  },
  rightPriceScale: {
- borderColor: "#1e293b",
+ borderColor: "rgba(255,255,255,0.06)",
  },
  crosshair: {
- horzLine: { color: "#374151", labelBackgroundColor: "#1a2235" },
- vertLine: { color: "#374151", labelBackgroundColor: "#1a2235" },
+ horzLine: { color: "rgba(255,255,255,0.2)", labelBackgroundColor: "rgba(16,24,40,0.9)" },
+ vertLine: { color: "rgba(255,255,255,0.2)", labelBackgroundColor: "rgba(16,24,40,0.9)" },
  },
  handleScroll: { mouseWheel: true, pressedMouseMove: true },
  handleScale: { mouseWheel: true, pinch: true },
@@ -91,11 +91,11 @@ export function EquityCurve() {
 
  if (equityHistory.length === 0) {
  return (
- <div className="flex h-[340px] items-center justify-center">
+ <div className="flex h-full min-h-[200px] items-center justify-center">
  <p className="text-sm text-muted-foreground">No equity data yet</p>
  </div>
  );
  }
 
- return <div ref={containerRef} className="h-[340px] w-full" />;
+ return <div ref={containerRef} className="h-full w-full min-h-[200px]" />;
 }

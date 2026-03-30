@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import type { TradeRecord } from "@/types/trading";
 import { cn } from "@/lib/utils";
 
@@ -35,13 +34,7 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
  };
 
  return (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2, ease: "easeOut" }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="space-y-2 border-t border-border pt-2">
  {/* Textarea */}
  <textarea
@@ -98,6 +91,6 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
  </button>
  </div>
  </div>
- </motion.div>
+ </div>
  );
 }

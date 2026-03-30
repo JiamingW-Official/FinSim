@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
  TrendingUp,
@@ -456,10 +456,8 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
  </thead>
  <tbody className="divide-y divide-border">
  {positions.map((p) => (
- <motion.tr
+ <tr
  key={p.symbol}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
  className="hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-2 font-semibold text-foreground">{p.symbol}</td>
@@ -470,7 +468,7 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
  <td className={cn("px-3 py-2 tabular-nums font-medium", pctColor(p.pnl))}>{fmt$(p.pnl, true)}</td>
  <td className={cn("px-3 py-2 tabular-nums font-medium", pctColor(p.pnlPct))}>{fmtPct(p.pnlPct, true)}</td>
  <td className="px-3 py-2 tabular-nums text-muted-foreground">{p.weight.toFixed(1)}%</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -912,11 +910,8 @@ function TradeSuggestions({
  </div>
 
  {sorted.map((t, i) => (
- <motion.div
+ <div
  key={`${t.symbol}-${t.action}-${i}`}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.06 }}
  className={cn(
  "rounded-md border p-3",
  t.priority === "tax-loss"
@@ -966,7 +961,7 @@ function TradeSuggestions({
  </span>
  </span>
  </div>
- </motion.div>
+ </div>
  ))}
 
  {sorted.length === 0 && (
@@ -1088,13 +1083,7 @@ function AlertsNotifications({ positions }: { positions: (Position & { weight: n
 
  <AnimatePresence initial={false}>
  {expanded === g.key && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="divide-y divide-border border-t border-border">
  {g.alerts.map((a) => (
  <div
@@ -1118,7 +1107,7 @@ function AlertsNotifications({ positions }: { positions: (Position & { weight: n
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
  </AnimatePresence>
  </div>
@@ -1217,85 +1206,41 @@ export default function PortfolioMonitor() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
  <TabsContent value="snapshot" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <SectionCard title="Portfolio Snapshot" icon={<BarChart2 size={15} />}>
  <PortfolioSnapshot positions={enrichedPositions} />
  </SectionCard>
- </motion.div>
  </TabsContent>
 
  <TabsContent value="allocation" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <SectionCard title="Asset Allocation Monitor" icon={<Target size={15} />}>
  <AssetAllocationMonitor classes={assetClasses} />
  </SectionCard>
- </motion.div>
  </TabsContent>
 
  <TabsContent value="risk" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <SectionCard title="Risk Dashboard" icon={<Shield size={15} />}>
  <RiskDashboard positions={enrichedPositions} />
  </SectionCard>
- </motion.div>
  </TabsContent>
 
  <TabsContent value="attribution" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <SectionCard title="Performance Attribution" icon={<TrendingUp size={15} />}>
  <PerformanceAttribution />
  </SectionCard>
- </motion.div>
  </TabsContent>
 
  <TabsContent value="trades" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <SectionCard title="Trade Suggestions" icon={<Zap size={15} />}>
  <TradeSuggestions positions={enrichedPositions} />
  </SectionCard>
- </motion.div>
  </TabsContent>
 
  <TabsContent value="alerts" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <SectionCard title="Alerts &amp; Notifications" icon={<Bell size={15} />}>
  <AlertsNotifications positions={enrichedPositions} />
  </SectionCard>
- </motion.div>
  </TabsContent>
- </AnimatePresence>
  </Tabs>
  </div>
  );
