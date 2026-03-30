@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useWatchlistStore } from "@/stores/watchlist-store";
 import { useChartStore } from "@/stores/chart-store";
 import { useClockStore } from "@/stores/clock-store";
+import { useMarketDataStore } from "@/stores/market-data-store";
 
 // ── Seeded PRNG ──────────────────────────────────────────────────────────────
 
@@ -61,6 +62,17 @@ function MiniSpark({ ticker, positive }: { ticker: string; positive: boolean }) 
   );
 }
 
+// ── Price skeleton ────────────────────────────────────────────────────────────
+
+function PriceSkeleton() {
+  return (
+    <div className="flex flex-col items-end gap-0.5">
+      <div className="h-3 w-12 animate-pulse rounded bg-foreground/10" />
+      <div className="h-2.5 w-8 animate-pulse rounded bg-foreground/8" />
+    </div>
+  );
+}
+
 // ── Constants ────────────────────────────────────────────────────────────────
 
 const KNOWN_TICKERS = new Set([
@@ -82,6 +94,16 @@ export function WatchlistPanel() {
   const [input, setInput] = useState("");
   const [hoveredTicker, setHoveredTicker] = useState<string | null>(null);
   const marketSession = useClockStore((s) => s.marketSession);
+
+  // Real price data for the currently selected ticker
+  const realPrice = useMarketDataStore((s) => {
+    if (s.allData.length === 0 || s.revealedCount === 0) return null;
+    return s.allData[s.revealedCount - 1]?.close ?? null;
+  });
+  const prevPrice = useMarketDataStore((s) => {
+    if (s.allData.length < 2 || s.revealedCount < 2) return null;
+    return s.allData[s.revealedCount - 2]?.close ?? null;
+  });
 
   const sessionDotColor =
     marketSession === "open"
@@ -131,10 +153,35 @@ export function WatchlistPanel() {
           </div>
         )}
         {tickers.map((ticker) => {
-          const { price, changePct } = simulatePrice(ticker);
-          const positive = changePct >= 0;
           const isActive = ticker === currentTicker;
           const isHovered = ticker === hoveredTicker;
+
+          // For active ticker: use real market data if available; fallback to simulated
+          let displayPrice: number;
+          let displayChangePct: number;
+          let isLoadingReal = false;
+
+          if (isActive) {
+            if (realPrice !== null) {
+              displayPrice = realPrice;
+              displayChangePct =
+                prevPrice !== null && prevPrice !== 0
+                  ? ((realPrice - prevPrice) / prevPrice) * 100
+                  : 0;
+            } else {
+              // Real data not yet loaded — show skeleton
+              isLoadingReal = true;
+              const sim = simulatePrice(ticker);
+              displayPrice = sim.price;
+              displayChangePct = sim.changePct;
+            }
+          } else {
+            const sim = simulatePrice(ticker);
+            displayPrice = sim.price;
+            displayChangePct = sim.changePct;
+          }
+
+          const positive = displayChangePct >= 0;
 
           return (
             <button
@@ -142,20 +189,23 @@ export function WatchlistPanel() {
               onClick={() => setTicker(ticker)}
               onMouseEnter={() => setHoveredTicker(ticker)}
               onMouseLeave={() => setHoveredTicker(null)}
-              className={`group relative flex w-full items-center gap-1.5 px-2 py-1.5 text-left transition-colors hover:bg-foreground/[0.02] ${
-                isActive ? "bg-foreground/[0.04]" : ""
+              className={`group relative flex w-full items-center gap-1.5 px-2 py-1.5 text-left transition-colors ${
+                isActive
+                  ? "border-l-2 border-primary bg-primary/5 hover:bg-primary/8"
+                  : "border-l-2 border-transparent hover:bg-foreground/[0.02]"
               }`}
             >
-              {/* Active indicator */}
-              {isActive && (
-                <div className="absolute left-0 top-1/2 h-3 w-[2px] -translate-y-1/2 rounded-r bg-foreground/30" />
-              )}
-
               {/* Ticker + sparkline */}
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-1 text-[11px] font-medium leading-none text-foreground">
-                  <span className={`inline-block h-1.5 w-1.5 rounded-full shrink-0 ${sessionDotColor}`} />
-                  {ticker}
+                <div
+                  className={`flex items-center gap-1 text-[11px] font-medium leading-none ${
+                    isActive ? "text-foreground" : "text-foreground/70"
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-1.5 w-1.5 rounded-full shrink-0 ${sessionDotColor}`}
+                  />
+                  <span className={isActive ? "font-semibold" : ""}>{ticker}</span>
                 </div>
                 <div className="mt-0.5">
                   <MiniSpark ticker={ticker} positive={positive} />
@@ -163,18 +213,26 @@ export function WatchlistPanel() {
               </div>
 
               {/* Price + Change % — right-aligned */}
-              <div className="flex flex-col items-end gap-0.5">
-                <div className="text-right text-[11px] font-mono tabular-nums leading-none text-foreground">
-                  {price.toFixed(2)}
+              {isActive && isLoadingReal ? (
+                <PriceSkeleton />
+              ) : (
+                <div className="flex flex-col items-end gap-0.5">
+                  <div
+                    className={`text-right text-[11px] font-mono tabular-nums leading-none ${
+                      isActive ? "text-foreground font-semibold" : "text-foreground"
+                    }`}
+                  >
+                    {displayPrice.toFixed(2)}
+                  </div>
+                  <div
+                    className={`text-right text-[10px] font-mono tabular-nums leading-none ${
+                      positive ? "text-emerald-400/80" : "text-rose-400/70"
+                    }`}
+                  >
+                    {positive ? "+" : ""}{displayChangePct.toFixed(2)}%
+                  </div>
                 </div>
-                <div
-                  className={`text-right text-[10px] font-mono tabular-nums leading-none ${
-                    positive ? "text-emerald-400/80" : "text-rose-400/70"
-                  }`}
-                >
-                  {positive ? "+" : ""}{changePct.toFixed(1)}%
-                </div>
-              </div>
+              )}
 
               {/* Remove button */}
               {isHovered && (
