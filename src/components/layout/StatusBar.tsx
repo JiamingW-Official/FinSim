@@ -49,9 +49,9 @@ export function StatusBar() {
  </span>
  )}
  {currentBar && (
- <span>Sim: {new Date(currentBar.timestamp).toLocaleString("en-US", {
- month: "short", day: "numeric", hour: "numeric", minute: "2-digit",
- hour12: true, timeZone: "America/New_York",
+ <span className="tabular-nums">{new Date(currentBar.timestamp).toLocaleString("en-US", {
+ hour: "2-digit", minute: "2-digit", second: "2-digit",
+ hour12: false, timeZone: "America/New_York",
  })} ET</span>
  )}
  <div className="flex items-center gap-1">
