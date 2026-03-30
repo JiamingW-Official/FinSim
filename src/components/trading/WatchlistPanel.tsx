@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useWatchlistStore } from "@/stores/watchlist-store";
 import { useChartStore } from "@/stores/chart-store";
+import { useClockStore } from "@/stores/clock-store";
 
 // ── Seeded PRNG ──────────────────────────────────────────────────────────────
 
@@ -80,6 +81,16 @@ export function WatchlistPanel() {
   const [activeList, setActiveList] = useState<string>("Main");
   const [input, setInput] = useState("");
   const [hoveredTicker, setHoveredTicker] = useState<string | null>(null);
+  const marketSession = useClockStore((s) => s.marketSession);
+
+  const sessionDotColor =
+    marketSession === "open"
+      ? "bg-emerald-400/80"
+      : marketSession === "pre-market"
+      ? "bg-amber-400/70"
+      : marketSession === "after-hours"
+      ? "bg-sky-400/60"
+      : "bg-muted-foreground/20";
 
   const tickers = watchlist.map((w) => w.ticker);
 
@@ -142,7 +153,8 @@ export function WatchlistPanel() {
 
               {/* Ticker + price */}
               <div className="min-w-0 flex-1">
-                <div className="text-[11px] font-medium leading-none text-foreground">
+                <div className="flex items-center gap-1 text-[11px] font-medium leading-none text-foreground">
+                  <span className={`inline-block h-1.5 w-1.5 rounded-full shrink-0 ${sessionDotColor}`} />
                   {ticker}
                 </div>
                 <div className="mt-0.5 text-[10px] leading-none text-muted-foreground/60">

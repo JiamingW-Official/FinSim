@@ -63,8 +63,27 @@ function LiveInfoBar() {
  const ticker = useChartStore((s) => s.currentTicker);
  const portfolioValue = useTradingStore((s) => s.portfolioValue);
  const cash = useTradingStore((s) => s.cash);
+ const marketSession = useClockStore((s) => s.marketSession);
 
  const isUp = change >= 0;
+
+ const sessionColor =
+  marketSession === "pre-market"
+   ? "text-amber-400/70"
+   : marketSession === "open"
+   ? "text-emerald-400/80"
+   : marketSession === "after-hours"
+   ? "text-sky-400/60"
+   : "text-muted-foreground/30";
+
+ const sessionLabel =
+  marketSession === "pre-market"
+   ? "盘前"
+   : marketSession === "open"
+   ? "开盘"
+   : marketSession === "after-hours"
+   ? "盘后"
+   : "休市";
 
  if (price === 0) return null;
 
@@ -75,6 +94,9 @@ function LiveInfoBar() {
     <span className="text-sm font-semibold tabular-nums">${price.toFixed(2)}</span>
     <span className={cn("text-xs font-mono tabular-nums", isUp ? "text-emerald-400/80" : "text-rose-400/70")}>
      {isUp ? "+" : ""}{change.toFixed(2)} ({isUp ? "+" : ""}{changePct.toFixed(2)}%)
+    </span>
+    <span className={cn("text-[10px] font-mono px-1 rounded", sessionColor)}>
+     {sessionLabel}
     </span>
    </div>
    <div className="h-3 w-px bg-border/30" />
