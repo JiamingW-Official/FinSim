@@ -47,17 +47,19 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 // ── Live info bar ────────────────────────────────────────────────────────────
 function LiveInfoBar() {
- // Use a fine-grained selector so we only re-render when the current price changes,
- // not whenever the full allData array reference changes (e.g. on initial load).
- const { price, change, changePct } = useMarketDataStore((s) => {
+ // Three separate primitive selectors — Zustand compares primitives with Object.is,
+ // so these never cause spurious re-renders. An object selector would create a new
+ // reference every call → forceStoreRerender loop.
+ const price = useMarketDataStore((s) => {
   const idx = s.revealedCount > 0 ? s.revealedCount - 1 : s.allData.length - 1;
-  const cur = s.allData[idx];
-  const prev = s.allData[idx - 1];
-  const p = cur?.close ?? 0;
-  const chg = prev && prev.close > 0 ? p - prev.close : 0;
-  const chgPct = prev && prev.close > 0 ? (chg / prev.close) * 100 : 0;
-  return { price: p, change: chg, changePct: chgPct };
+  return s.allData[idx]?.close ?? 0;
  });
+ const prevClose = useMarketDataStore((s) => {
+  const idx = s.revealedCount > 0 ? s.revealedCount - 1 : s.allData.length - 1;
+  return s.allData[idx - 1]?.close ?? 0;
+ });
+ const change = prevClose > 0 ? price - prevClose : 0;
+ const changePct = prevClose > 0 ? (change / prevClose) * 100 : 0;
  const ticker = useChartStore((s) => s.currentTicker);
  const portfolioValue = useTradingStore((s) => s.portfolioValue);
  const cash = useTradingStore((s) => s.cash);

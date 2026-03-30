@@ -26,25 +26,27 @@ export const useMarketDataStore = create<MarketDataState>((set, get) => ({
  isPlaying: false,
  subBarStep: 2, // start fully revealed (all 3 sub-bars of last 15m bar)
 
- setAllData: (data) =>
- set((state) => {
+ setAllData: (data) => {
  // Bail out early if the incoming data is referentially identical or
  // structurally the same (same length + same last bar timestamp), so
  // that downstream useMemos keyed on `allData` don't recompute.
+ // Uses get() + early return to TRULY skip set() — returning {} from
+ // set((state)=>...) still notifies all subscribers (Zustand v5 bug).
+ const state = get();
  if (
   state.allData === data ||
   (state.allData.length === data.length &&
    data.length > 0 &&
    state.allData[data.length - 1]?.timestamp === data[data.length - 1]?.timestamp)
  ) {
-  return {};
+  return;
  }
- return {
+ set({
   allData: data,
   revealedCount: Math.min(INITIAL_REVEALED, data.length),
   subBarStep: 2,
- };
- }),
+ });
+ },
 
  setRevealedCount: (n) =>
  set((state) => ({
