@@ -1,14 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  AlertCircle,
-  Zap,
-  TrendingUp,
-  AlertTriangle,
-  Info,
-} from "lucide-react";
+import { AlertCircle, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { useTradingStore } from "@/stores/trading-store";
 import { useChartStore } from "@/stores/chart-store";
@@ -183,34 +176,24 @@ function SignalChips({
           </button>
         ))}
       </div>
-      <AnimatePresence>
-        {selectedSig && (
-          <motion.div
-            initial={{ opacity: 0, y: -4, height: 0 }}
-            animate={{ opacity: 1, y: 0, height: "auto" }}
-            exit={{ opacity: 0, y: -4, height: 0 }}
-            transition={{ duration: 0.15 }}
-            className="overflow-hidden"
-          >
-            <div
-              className={cn(
-                "rounded border px-2 py-1.5 text-[10px]",
-                selectedSig.direction === "bullish"
-                  ? "bg-emerald-500/5 border-emerald-500/20"
-                  : "bg-rose-500/5 border-rose-500/20",
-              )}
-            >
-              <div className="flex items-center justify-between mb-0.5">
-                <span className="font-semibold text-foreground/80">{selectedSig.shortLabel}</span>
-                <span className="text-amber-400 text-xs">
-                  {"★".repeat(selectedSig.strength)}{"☆".repeat(3 - selectedSig.strength)}
-                </span>
-              </div>
-              <p className="text-muted-foreground/70 leading-tight">{selectedSig.description}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {selectedSig && (
+        <div
+          className={cn(
+            "rounded border px-2 py-1.5 text-[10px]",
+            selectedSig.direction === "bullish"
+              ? "bg-emerald-500/5 border-emerald-500/20"
+              : "bg-rose-500/5 border-rose-500/20",
+          )}
+        >
+          <div className="flex items-center justify-between mb-0.5">
+            <span className="font-semibold text-foreground/80">{selectedSig.shortLabel}</span>
+            <span className="text-amber-400 text-xs">
+              {"★".repeat(selectedSig.strength)}{"☆".repeat(3 - selectedSig.strength)}
+            </span>
+          </div>
+          <p className="text-muted-foreground/70 leading-tight">{selectedSig.description}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -1008,15 +991,14 @@ export function AICoachPanel() {
         </div>
       </button>
 
-      <AnimatePresence>
+      <div
+        className={cn(
+          "overflow-hidden transition-all duration-200",
+          expanded ? "max-h-screen" : "max-h-0",
+        )}
+      >
         {expanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-hidden"
-          >
+          <div>
             {/* ── Mode selector ── */}
             <div className="flex items-center gap-1 px-3 py-1.5 border-b border-border/10 shrink-0">
               {MODES.map((m) => (
@@ -1061,7 +1043,7 @@ export function AICoachPanel() {
                   type="button"
                   onClick={handleAnalyze}
                   disabled={loading}
-                  className="ml-auto text-[9px] font-mono text-primary/60 hover:text-primary/80 transition-colors disabled:opacity-30"
+                  className="ml-auto text-[10px] font-mono text-primary/60 hover:text-primary transition-colors disabled:opacity-30"
                 >
                   {loading ? "···" : "▶ Run"}
                 </button>
@@ -1126,18 +1108,14 @@ export function AICoachPanel() {
                         {(summaryText || loading) && (
                           <div
                             ref={textScrollRef}
-                            className="flex-1 overflow-y-auto px-2 py-1.5 font-mono text-[10px] leading-relaxed text-foreground/60 bg-background/30 rounded border border-border/20 max-h-20"
+                            className="flex-1 overflow-y-auto px-2 py-1.5 font-mono text-[11px] leading-relaxed whitespace-pre-wrap text-foreground/70 bg-background/30 rounded border border-border/20 max-h-20"
                           >
                             {summaryText}
                             {loading && (
                               <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary/60" />
                             )}
                             {!loading && showCursor && (
-                              <motion.span
-                                className="ml-0.5 inline-block h-2 w-0.5 bg-primary/60"
-                                animate={{ opacity: [1, 0, 1] }}
-                                transition={{ repeat: 5, duration: 0.5, type: "tween" }}
-                              />
+                              <span className="ml-0.5 inline-block h-2 w-0.5 bg-primary/60 animate-pulse" />
                             )}
                           </div>
                         )}
@@ -1186,18 +1164,14 @@ export function AICoachPanel() {
                           {(summaryText || loading) && (
                             <div
                               ref={textScrollRef}
-                              className="flex-1 overflow-y-auto px-2 py-1.5 font-mono text-[10px] leading-relaxed text-foreground/60 bg-background/30 rounded border border-border/20 italic max-h-20"
+                              className="flex-1 overflow-y-auto px-2 py-1.5 font-mono text-[11px] leading-relaxed whitespace-pre-wrap text-foreground/70 bg-background/30 rounded border border-border/20 max-h-20"
                             >
                               {summaryText}
                               {loading && (
                                 <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary/60" />
                               )}
                               {!loading && showCursor && (
-                                <motion.span
-                                  className="ml-0.5 inline-block h-2 w-0.5 bg-primary/60"
-                                  animate={{ opacity: [1, 0, 1] }}
-                                  transition={{ repeat: 5, duration: 0.5, type: "tween" }}
-                                />
+                                <span className="ml-0.5 inline-block h-2 w-0.5 bg-primary/60 animate-pulse" />
                               )}
                             </div>
                           )}
@@ -1221,13 +1195,12 @@ export function AICoachPanel() {
                                   lower.includes("weak");
                                 return (
                                   <div key={i} className="flex gap-1.5 text-[9px] font-mono leading-tight">
-                                    {isBullish ? (
-                                      <TrendingUp className="h-2.5 w-2.5 text-emerald-400/70 shrink-0 mt-px" />
-                                    ) : isWarning ? (
-                                      <AlertTriangle className="h-2.5 w-2.5 text-amber-400/70 shrink-0 mt-px" />
-                                    ) : (
-                                      <Info className="h-2.5 w-2.5 text-primary/50 shrink-0 mt-px" />
-                                    )}
+                                    <span className={cn(
+                                      "shrink-0 mt-px",
+                                      isBullish ? "text-emerald-400/70" : isWarning ? "text-amber-400/70" : "text-primary/50"
+                                    )}>
+                                      {isBullish ? "↑" : isWarning ? "!" : "·"}
+                                    </span>
                                     <span className="text-muted-foreground/60">{insight}</span>
                                   </div>
                                 );
@@ -1285,9 +1258,9 @@ export function AICoachPanel() {
                 </div>
               )}
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </div>
     </div>
   );
 }

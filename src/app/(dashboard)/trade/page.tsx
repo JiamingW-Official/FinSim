@@ -87,14 +87,14 @@ function LiveInfoBar() {
  const pnlVsStart = ((portfolioValue - 100_000) / 100_000) * 100;
 
  return (
-  <div className="flex shrink-0 h-9 border-b border-border/30 px-3 items-center gap-0 bg-background/95 backdrop-blur-sm">
+  <div className="flex shrink-0 h-9 border-b border-border/30 px-3 items-center gap-0 bg-background/95 backdrop-blur-sm overflow-hidden">
 
    {/* Group 1: Ticker + Price + Change */}
-   <div className="flex items-center gap-2 px-4 pr-4 border-r border-border/20">
+   <div className="flex items-center gap-2 px-3 border-r border-border/20 shrink-0">
     <span className="text-[11px] font-bold tracking-tight text-foreground/90">{ticker}</span>
     <span className="text-[12px] font-mono font-bold tabular-nums text-foreground">${price.toFixed(2)}</span>
     <span className={cn(
-     "text-[10px] font-mono tabular-nums",
+     "text-[10px] font-mono tabular-nums min-w-0",
      isUp ? "text-emerald-400/80" : "text-rose-400/70"
     )}>
      {isUp ? "+" : ""}{change.toFixed(2)} ({isUp ? "+" : ""}{changePct.toFixed(2)}%)
@@ -104,24 +104,28 @@ function LiveInfoBar() {
    {/* Group 2: Portfolio + Cash */}
    <div className="flex items-center gap-4 px-3 border-r border-border/20">
     <div className="flex items-baseline gap-1">
-     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/20">Equity</span>
+     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/35">Equity</span>
      <span className="text-[12px] font-mono font-semibold tabular-nums text-foreground/80">${portfolioValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
     </div>
     <div className="flex items-baseline gap-1">
-     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/20">Cash</span>
+     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/35">Cash</span>
      <span className="text-[11px] font-mono tabular-nums text-foreground/60">${cash.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
     </div>
    </div>
 
    {/* Group 3: Season P&L + date */}
-   <div className="flex items-center gap-3 px-4">
-    <span className={cn(
-     "text-[10px] font-mono tabular-nums font-semibold",
-     pnlVsStart >= 0 ? "text-emerald-400/70" : "text-rose-400/70"
-    )}>
-     {pnlVsStart >= 0 ? "+" : ""}{pnlVsStart.toFixed(2)}%
-    </span>
-    <span className="text-[9px] font-mono text-muted-foreground/30 tabular-nums">
+   <div className="flex items-center gap-3 px-3">
+    <div className="flex items-baseline gap-1">
+     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/35">Season P&amp;L</span>
+     <span className={cn(
+      "text-[11px] font-mono tabular-nums font-semibold",
+      pnlVsStart >= 0 ? "text-emerald-400" : "text-rose-400"
+     )}>
+      {pnlVsStart >= 0 ? "+" : ""}{pnlVsStart.toFixed(2)}%
+     </span>
+    </div>
+    <span className="text-border/40 text-[10px]">|</span>
+    <span className="text-[10px] font-mono text-muted-foreground/45 tabular-nums">
      {formatLiveDate(gameDate)}
     </span>
    </div>
@@ -132,11 +136,10 @@ function LiveInfoBar() {
 
 // ── Shared tab trigger style ────────────────────────────────────────────────
 const tabCls =
- "rounded-none border-b-2 border-transparent data-[state=active]:border-primary/70 " +
- "data-[state=active]:bg-transparent data-[state=active]:shadow-none " +
- "px-2.5 py-1.5 text-[10px] font-mono tracking-wider uppercase " +
- "text-muted-foreground/35 data-[state=active]:text-foreground/85 data-[state=active]:font-semibold " +
- "transition-colors duration-150";
+ "shrink-0 rounded-none px-2.5 py-1.5 text-[9px] font-mono uppercase tracking-wider " +
+ "text-muted-foreground/40 data-[state=active]:text-foreground/80 " +
+ "data-[state=active]:border-b-2 data-[state=active]:border-primary/60 data-[state=active]:bg-transparent " +
+ "hover:text-muted-foreground/60 transition-colors duration-150";
 
 // ── Chart area wrapper with DrawingOverlay ────────────────────────────────────
 
@@ -158,7 +161,7 @@ function ChartWithDrawing({ children, flashClass }: { children: React.ReactNode;
  }, [measure]);
 
  return (
-  <div ref={containerRef} className={cn("relative flex-1", flashClass)} data-tutorial="chart">
+  <div ref={containerRef} className={cn("relative flex-1 min-w-0", flashClass)} data-tutorial="chart">
    {children}
    <DrawingOverlay width={dims.width} height={dims.height} />
   </div>
@@ -291,7 +294,7 @@ export default function TradePage() {
 
       {/* Chart area — flex-[5] gives it ~62% of remaining height */}
       <div className="flex flex-[5] min-h-0 overflow-hidden border-t border-border/20">
-       <DrawingToolbar />
+       <div className="shrink-0"><DrawingToolbar /></div>
        <ChartWithDrawing flashClass={flashClass}>
         {isLoading && <ChartSkeleton />}
         {error && (
@@ -307,19 +310,19 @@ export default function TradePage() {
        </ChartWithDrawing>
       </div>
 
-      <GameStatusBar />
+      <div className="shrink-0 z-10"><GameStatusBar /></div>
 
-      <NewsTicker />
+      <div className="shrink-0"><NewsTicker /></div>
 
-      {/* Bottom panel — flex-[2] gives chart more vertical space, min 160px */}
+      {/* Bottom panel — flex-[2] gives chart more vertical space, min 180px */}
       <div
-       className="flex-[2] min-h-[160px] shrink-0 overflow-hidden border-t border-border/40"
+       className="flex-[2] min-h-[180px] shrink-0 overflow-hidden border-t border-border/40"
        data-tutorial="positions"
       >
        <Tabs defaultValue="fundamentals" className="h-full flex flex-col">
         <TabsList className="bg-muted/5 border-b border-border/20 rounded-none p-0 h-auto shrink-0 w-full flex">
          <TabsTrigger value="fundamentals" className={tabCls}>Fundamentals</TabsTrigger>
-         <TabsTrigger value="orderbook" className={tabCls}>Book</TabsTrigger>
+         <TabsTrigger value="orderbook" className={tabCls}>Order Book</TabsTrigger>
          <TabsTrigger value="compare" className={tabCls}>Compare</TabsTrigger>
         </TabsList>
         <TabsContent value="fundamentals" className="flex-1 overflow-auto mt-0">
@@ -348,9 +351,9 @@ export default function TradePage() {
         <TabsTrigger value="positions" className={tabCls}>Pos</TabsTrigger>
         <TabsTrigger value="history" className={tabCls}>Hist</TabsTrigger>
         <TabsTrigger value="pending" className={tabCls}>
-         Ord{pendingCount > 0 && <span className="ml-0.5 font-mono text-[9px] tabular-nums text-muted-foreground/30">{pendingCount}</span>}
+         Orders{pendingCount > 0 && <span className="ml-0.5 font-mono text-[9px] tabular-nums text-muted-foreground/30">{pendingCount}</span>}
         </TabsTrigger>
-        <TabsTrigger value="margin" className={tabCls}>Mgn</TabsTrigger>
+        <TabsTrigger value="margin" className={tabCls}>Margin</TabsTrigger>
         <TabsTrigger value="replay" className={tabCls}>Replay</TabsTrigger>
        </TabsList>
 
@@ -415,7 +418,7 @@ export default function TradePage() {
      </div>
     </div>
 
-    <p className="shrink-0 border-t border-border/30 px-3 py-0.5 text-center text-[9px] font-mono text-muted-foreground/20">
+    <p className="shrink-0 border-t border-border/30 px-3 py-0.5 text-left text-[9px] font-mono text-muted-foreground/25">
      Simulated trading — not financial advice
     </p>
    </div>

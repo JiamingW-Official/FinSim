@@ -59,7 +59,7 @@ export function GameStatusBar() {
   const session   = SESSION_STYLES[marketSession] ?? SESSION_STYLES.closed;
 
   return (
-    <div className="h-8 shrink-0 border-t border-border/30 bg-background flex items-center px-3 gap-0">
+    <div className="h-8 shrink-0 border-t border-border/30 bg-background flex items-center px-3 gap-1">
 
       {/* ── LEFT: LIVE + speed + separator + real ET clock ── */}
       <div className="flex items-center gap-2 shrink-0" style={{ width: 160 }}>
@@ -68,9 +68,9 @@ export function GameStatusBar() {
         ) : (
           <>
             <span className="flex items-center gap-1">
-              <span className="relative flex h-1.5 w-1.5">
+              <span className="relative flex h-1.5 w-1.5 shrink-0">
+                <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-50" />
                 <span className="absolute inset-0 rounded-full bg-emerald-400" />
-                <span className="absolute inset-0 rounded-full bg-emerald-400 animate-pulse opacity-60" />
               </span>
               <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-emerald-400/90">LIVE</span>
             </span>
@@ -105,7 +105,7 @@ export function GameStatusBar() {
       </div>
 
       {/* ── RIGHT: countdown + day + session (all on one line) ── */}
-      <div className="flex items-center gap-2 shrink-0">
+      <div className="flex items-center gap-2 shrink-0" style={{ minWidth: 160, justifyContent: "flex-end" }}>
         {!isSeasonOver && countdown.display && countdown.display !== "--:--" && (
           <span className={cn(
             "font-mono text-[9px] tabular-nums px-1.5 py-0.5 rounded ring-1 ring-inset",
@@ -117,7 +117,7 @@ export function GameStatusBar() {
           )}>
             <span className="font-semibold">{countdown.currentLabel}</span>
             <span className="opacity-40 mx-0.5">·</span>
-            <span className="opacity-55">{countdown.label} {countdown.action} </span>
+            <span className="opacity-55">{countdown.label} {countdown.action}{" "}</span>
             <span className="font-bold">{countdown.display}</span>
           </span>
         )}

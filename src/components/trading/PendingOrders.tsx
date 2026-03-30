@@ -21,18 +21,15 @@ export function PendingOrders() {
       {/* Header */}
       <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/20 shrink-0">
         <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30">
-          Pending Orders
-        </span>
-        <span className="text-[9px] font-mono text-muted-foreground/30 tabular-nums">
-          {pendingOrders.length}
+          Pending Orders ({pendingOrders.length})
         </span>
       </div>
 
       {/* Empty state */}
       {pendingOrders.length === 0 ? (
-        <div className="flex items-center justify-center h-16">
+        <div className="flex flex-col items-center justify-center h-16 gap-1">
           <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/25">
-            No Pending Orders
+            No pending orders
           </span>
         </div>
       ) : (
@@ -50,30 +47,38 @@ export function PendingOrders() {
             const isVeryNear = proximityPct !== null && proximityPct < 0.5;
             const isNear = proximityPct !== null && proximityPct < 2;
 
-            const typeLabel = order.type.replace("_", " ").toUpperCase();
+            // Compact order type chip label
+            const typeMap: Record<string, string> = {
+              market: "MKT",
+              limit: "LMT",
+              stop: "SL",
+              stop_limit: "SL",
+              take_profit: "TP",
+            };
+            const typeLabel = typeMap[order.type] ?? order.type.replace("_", "").toUpperCase().slice(0, 3);
 
             return (
               <div
                 key={order.id}
                 className={cn(
-                  "flex items-center px-2 py-1.5 border-b border-border/10 gap-2 text-[10px] font-mono transition-colors hover:bg-muted/5",
+                  "flex items-center px-2 py-2 border-b border-border/10 gap-2 transition-colors hover:bg-muted/5",
                   isVeryNear && "bg-rose-500/5",
                 )}
               >
-                {/* Ticker */}
-                <span className="font-semibold text-foreground/80 w-10 shrink-0">
+                {/* Ticker — prominent */}
+                <span className="text-[11px] font-mono font-semibold text-foreground/80 w-10 shrink-0">
                   {order.ticker}
                 </span>
 
-                {/* Order type */}
-                <span className="text-muted-foreground/40 text-[8px] uppercase shrink-0">
+                {/* Order type chip */}
+                <span className="text-[8px] font-mono uppercase tracking-wider px-1 py-0.5 rounded bg-muted/20 text-muted-foreground/50 shrink-0">
                   {typeLabel}
                 </span>
 
-                {/* Side */}
+                {/* Side chip */}
                 <span
                   className={cn(
-                    "text-[8px] uppercase px-1 py-0.5 rounded shrink-0",
+                    "text-[8px] font-mono uppercase px-1 py-0.5 rounded shrink-0",
                     order.side === "buy"
                       ? "text-emerald-400/70 bg-emerald-500/10"
                       : "text-rose-400/70 bg-rose-500/10",
@@ -83,7 +88,7 @@ export function PendingOrders() {
                 </span>
 
                 {/* Qty × Price */}
-                <span className="flex-1 text-muted-foreground/60 tabular-nums truncate">
+                <span className="flex-1 text-[10px] font-mono tabular-nums text-muted-foreground/60 truncate">
                   {order.quantity} × ${triggerPrice > 0 ? triggerPrice.toFixed(2) : "MKT"}
                 </span>
 
@@ -105,11 +110,11 @@ export function PendingOrders() {
                   </span>
                 )}
 
-                {/* Cancel */}
+                {/* Cancel — × in rose on hover */}
                 <button
                   type="button"
                   onClick={() => cancelPendingOrder(order.id)}
-                  className="text-[10px] font-mono text-muted-foreground/25 hover:text-rose-400/70 transition-colors shrink-0 leading-none"
+                  className="text-[12px] font-mono text-muted-foreground/25 hover:text-rose-400 transition-colors shrink-0 leading-none px-0.5"
                   title="Cancel order"
                 >
                   ×

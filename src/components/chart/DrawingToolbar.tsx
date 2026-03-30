@@ -24,6 +24,11 @@ interface ToolConfig {
 
 const SELECTION_TOOLS: ToolConfig[] = [
   {
+    tool: "none",
+    title: "Pointer — exit drawing mode",
+    icon: <MousePointer2 className="h-3.5 w-3.5" />,
+  },
+  {
     tool: "eraser",
     title: "Eraser — click a drawing to remove it",
     icon: <Eraser className="h-3.5 w-3.5" />,
@@ -109,7 +114,8 @@ export function DrawingToolbar() {
   const { activeTool, drawings, setActiveTool, clearDrawings, removeDrawing } = useDrawingStore();
 
   const handleToolClick = (tool: DrawingTool) => {
-    setActiveTool(activeTool === tool ? "none" : tool);
+    // "none" (pointer) always resets; all other tools toggle off on re-click
+    setActiveTool(tool === "none" || activeTool === tool ? "none" : tool);
   };
 
   const handleUndo = () => {

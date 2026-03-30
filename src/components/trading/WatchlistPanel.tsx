@@ -84,6 +84,16 @@ const KNOWN_TICKERS = new Set([
 
 const POPULAR = ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "NVDA", "META"];
 
+const TICKER_NAMES: Record<string, string> = {
+  AAPL: "Apple",
+  MSFT: "Microsoft",
+  GOOG: "Alphabet",
+  AMZN: "Amazon",
+  TSLA: "Tesla",
+  NVDA: "NVIDIA",
+  META: "Meta",
+};
+
 const LISTS = ["Main", "Options", "Swing"] as const;
 
 // ── Component ────────────────────────────────────────────────────────────────
@@ -115,7 +125,7 @@ export function WatchlistPanel() {
       : "bg-muted-foreground/20";
 
   const tickers = watchlist.map((w) => w.ticker);
-  const quickAdd = POPULAR.filter((t) => !tickers.includes(t));
+  const quickAdd = POPULAR.filter((t) => !tickers.includes(t)).slice(0, 5);
 
   function handleAdd() {
     const t = newTicker.trim().toUpperCase();
@@ -136,7 +146,16 @@ export function WatchlistPanel() {
         {/* session indicator */}
         <div className="flex items-center gap-1">
           <span className={cn("inline-block h-1.5 w-1.5 rounded-full shrink-0", sessionDotColor)} />
-          <span className="text-[9px] font-mono text-muted-foreground/30 capitalize">
+          <span className={cn(
+            "text-[9px] font-mono capitalize",
+            marketSession === "open"
+              ? "text-emerald-400/60"
+              : marketSession === "pre-market"
+              ? "text-amber-400/60"
+              : marketSession === "after-hours"
+              ? "text-sky-400/50"
+              : "text-muted-foreground/25"
+          )}>
             {marketSession === "open"
               ? "Open"
               : marketSession === "pre-market"
@@ -214,14 +233,21 @@ export function WatchlistPanel() {
                   : "border-l-2 border-l-transparent"
               )}
             >
-              {/* Row 1: Ticker name + sparkline (right) */}
+              {/* Row 1: Ticker name (+ company sub-label) + sparkline (right) */}
               <div className="flex items-center justify-between mb-1">
-                <span className={cn(
-                  "text-[11px] font-semibold tracking-tight",
-                  isActive ? "text-foreground" : "text-foreground/65"
-                )}>
-                  {ticker}
-                </span>
+                <div className="flex flex-col min-w-0">
+                  <span className={cn(
+                    "text-[11px] font-semibold tracking-tight leading-none",
+                    isActive ? "text-foreground" : "text-foreground/65"
+                  )}>
+                    {ticker}
+                  </span>
+                  {TICKER_NAMES[ticker] && (
+                    <span className="text-[8px] font-mono text-muted-foreground/25 leading-none mt-0.5">
+                      {TICKER_NAMES[ticker]}
+                    </span>
+                  )}
+                </div>
                 {isActive && isLoadingReal ? (
                   <PriceSkeleton />
                 ) : (
@@ -278,8 +304,9 @@ export function WatchlistPanel() {
               <button
                 key={t}
                 onClick={() => addToWatchlist(t)}
-                className="rounded-full border border-border/20 px-1.5 py-0.5 text-[9px] font-mono text-muted-foreground/40 transition-colors hover:border-primary/20 hover:bg-primary/5 hover:text-primary/70"
+                className="rounded-full border border-border/20 px-1.5 py-0.5 text-[9px] font-mono text-muted-foreground/40 transition-colors hover:border-primary/20 hover:bg-primary/5 hover:text-primary/70 flex items-center gap-0.5"
               >
+                <span className="text-muted-foreground/30 leading-none">+</span>
                 {t}
               </button>
             ))}
@@ -294,8 +321,8 @@ export function WatchlistPanel() {
             value={newTicker}
             onChange={(e) => setNewTicker(e.target.value.toUpperCase())}
             onKeyDown={(e) => e.key === "Enter" && handleAdd()}
-            placeholder="Add ticker..."
-            className="flex-1 bg-transparent text-[10px] font-mono text-foreground/70 placeholder:text-muted-foreground/25 outline-none min-w-0"
+            placeholder="AAPL..."
+            className="flex-1 bg-transparent text-[10px] font-mono uppercase text-foreground/70 placeholder:text-muted-foreground/25 outline-none min-w-0"
           />
           <button
             onClick={handleAdd}

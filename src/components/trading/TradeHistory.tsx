@@ -21,32 +21,34 @@ export function TradeHistory() {
   return (
     <div className="flex flex-col h-full">
       {/* Summary stats row */}
-      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/30 shrink-0">
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30">
-            {tradeHistory.length} Trades
-          </span>
-          <span className="text-[9px] font-mono text-muted-foreground/40">
-            W/L{" "}
-            <span className="text-foreground/50">{winRate}%</span>
-          </span>
-        </div>
+      <div className="flex items-center gap-2 px-2 py-1.5 border-b border-border/30 shrink-0">
+        <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30">
+          {tradeHistory.length} trades
+        </span>
+        <span className="text-muted-foreground/20 text-[9px]">·</span>
+        <span className="text-[9px] font-mono text-muted-foreground/40">
+          <span className="text-foreground/50">{winRate}%</span>
+          {" "}win rate
+        </span>
         {sells.length > 0 && (
-          <span
-            className={cn(
-              "text-[10px] font-mono font-semibold",
-              totalPnl >= 0 ? "text-emerald-400" : "text-rose-400",
-            )}
-          >
-            {totalPnl >= 0 ? "+" : ""}
-            {formatCurrency(totalPnl)}
-          </span>
+          <>
+            <span className="text-muted-foreground/20 text-[9px]">·</span>
+            <span
+              className={cn(
+                "text-[9px] font-mono font-semibold",
+                totalPnl >= 0 ? "text-emerald-400" : "text-rose-400",
+              )}
+            >
+              {totalPnl >= 0 ? "+" : ""}
+              {formatCurrency(totalPnl)}
+            </span>
+          </>
         )}
       </div>
 
       {/* Trade list */}
       {tradeHistory.length === 0 ? (
-        <div className="flex items-center justify-center h-16">
+        <div className="flex flex-col items-center justify-center h-16 gap-1">
           <span className="text-[10px] font-mono text-muted-foreground/30 uppercase tracking-widest">
             No Trades Yet
           </span>
@@ -54,7 +56,7 @@ export function TradeHistory() {
       ) : (
         <div className="overflow-auto h-full">
           <table className="w-full" role="table">
-            <thead className="sticky top-0 z-10 bg-card">
+            <thead className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm">
               <tr className="border-b border-border/40">
                 <th
                   scope="col"
@@ -72,7 +74,7 @@ export function TradeHistory() {
                   scope="col"
                   className="px-2 py-1 text-center text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30 whitespace-nowrap"
                 >
-                  S
+                  Side
                 </th>
                 <th
                   scope="col"
@@ -89,21 +91,24 @@ export function TradeHistory() {
               </tr>
             </thead>
             <tbody>
-              {tradeHistory.slice(0, 50).map((trade) => (
+              {tradeHistory.slice(0, 50).map((trade, i) => (
                 <tr
                   key={trade.id}
-                  className="border-b border-border/20"
+                  className={cn(
+                    "border-b border-border/20 hover:bg-muted/5 transition-colors duration-100",
+                    i % 2 === 1 && "bg-muted/[0.02]",
+                  )}
                 >
-                  <td className="px-2 py-1 text-[10px] font-mono tabular-nums text-muted-foreground/50 whitespace-nowrap">
+                  <td className="px-2 py-1.5 text-[10px] font-mono tabular-nums text-muted-foreground/50 whitespace-nowrap">
                     {formatShortDay(trade.simulationDate)}
                   </td>
-                  <td className="px-2 py-1 text-[10px] font-medium whitespace-nowrap">
+                  <td className="px-2 py-1.5 text-[10px] font-medium font-mono whitespace-nowrap text-foreground/80">
                     {trade.ticker}
                   </td>
-                  <td className="px-2 py-1 text-center">
+                  <td className="px-2 py-1.5 text-center">
                     <span
                       className={cn(
-                        "text-[9px] font-mono font-medium px-1 py-0 rounded-sm",
+                        "text-[9px] font-mono font-medium px-1.5 py-0.5 rounded-sm",
                         trade.side === "buy"
                           ? "text-emerald-400/80 bg-emerald-500/10"
                           : "text-rose-400/80 bg-rose-500/10",
@@ -112,19 +117,19 @@ export function TradeHistory() {
                       {trade.side === "buy" ? "B" : "S"}
                     </span>
                   </td>
-                  <td className="px-2 py-1 text-right text-[10px] font-mono tabular-nums text-muted-foreground/70 whitespace-nowrap">
+                  <td className="px-2 py-1.5 text-right text-[10px] font-mono tabular-nums text-muted-foreground/70 whitespace-nowrap">
                     {trade.quantity} × {formatCurrency(trade.price)}
                   </td>
                   <td
                     className={cn(
-                      "px-2 py-1 text-right text-[10px] font-mono tabular-nums whitespace-nowrap",
+                      "px-2 py-1.5 text-right text-[10px] font-mono tabular-nums whitespace-nowrap font-semibold",
                       trade.side === "sell"
                         ? trade.realizedPnL > 0
                           ? "text-emerald-400"
                           : trade.realizedPnL < 0
                             ? "text-rose-400"
                             : "text-muted-foreground/50"
-                        : "text-muted-foreground/30",
+                        : "text-muted-foreground/25",
                     )}
                   >
                     {trade.side === "sell"

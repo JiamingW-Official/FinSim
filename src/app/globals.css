@@ -687,10 +687,23 @@
 }
 
 /* ── Hide TradingView attribution logo from lightweight-charts ── */
-.tv-lightweight-charts a[href*="tradingview"] {
+.tv-lightweight-charts a[href*="tradingview"],
+.tv-lightweight-charts a[href*="TradingView"] {
   display: none !important;
   pointer-events: none !important;
 }
 .tv-lightweight-charts > table > tbody > tr:last-child > td:last-child {
   display: none !important;
 }
+
+/* Chart border flash animations */
+@keyframes chart-flash-buy {
+  0%, 100% { box-shadow: none; }
+  50% { box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.4); }
+}
+@keyframes chart-flash-sell {
+  0%, 100% { box-shadow: none; }
+  50% { box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.4); }
+}
+.chart-border-flash-buy { animation: chart-flash-buy 0.5s ease-out; }
+.chart-border-flash-sell { animation: chart-flash-sell 0.5s ease-out; }

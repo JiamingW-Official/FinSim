@@ -237,9 +237,9 @@ export function FundamentalsPanel() {
           )}
 
           {/* AlphaBot insight + description */}
-          <div className="px-2 py-1.5">
+          <div className="px-2 py-1">
             {!isETF && (
-              <p className="text-[9px] font-mono italic text-muted-foreground/40 leading-snug mb-0.5">
+              <p className="text-[9px] font-mono italic text-muted-foreground/40 leading-snug mb-1 border border-border/20 rounded px-1.5 py-1">
                 {data.analystRating} · {data.analystCount} analysts
                 {targetUpside != null ? ` · PT $${data.priceTarget} (${targetUpside > 0 ? "+" : ""}${targetUpside}%)` : ""}
                 {pePremium !== 0 ? ` · ${pePremium > 0 ? "+" : ""}${pePremium}% vs sector P/E` : ""}
@@ -352,7 +352,7 @@ export function FundamentalsPanel() {
               <div className="grid grid-cols-2 gap-x-3 px-2 pt-1.5 mb-1">
                 {/* Left: Growth */}
                 <div className="space-y-[3px]">
-                  <div className="text-[8px] font-mono uppercase tracking-wider text-muted-foreground/30 font-medium pb-0.5 border-b border-border/20">Growth</div>
+                  <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 pb-0.5 border-b border-border/20">Growth</div>
                   {(
                     [
                       { label: "Rev YoY", value: data.revenueGrowthYoY, metric: "revenueGrowthYoY" },
@@ -375,7 +375,7 @@ export function FundamentalsPanel() {
 
                 {/* Right: Margins */}
                 <div className="space-y-[3px]">
-                  <div className="text-[8px] font-mono uppercase tracking-wider text-muted-foreground/30 font-medium pb-0.5 border-b border-border/20">Margins</div>
+                  <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 pb-0.5 border-b border-border/20">Margins</div>
                   {(
                     [
                       { label: "Gross", value: data.grossMargin, metric: "grossMargin" },
@@ -405,7 +405,7 @@ export function FundamentalsPanel() {
 
               {/* Balance Sheet — 3-col MetricCell grid */}
               <div className="px-0 pt-0.5">
-                <div className="text-[8px] font-mono uppercase tracking-wider text-muted-foreground/30 font-medium px-2 pb-0.5 border-b border-border/20">Balance Sheet</div>
+                <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 px-2 pb-0.5 border-b border-border/20">Balance Sheet</div>
                 <div className="grid grid-cols-3">
                   <MetricCell
                     label="ROE"
@@ -460,11 +460,11 @@ export function FundamentalsPanel() {
               {/* Earnings row */}
               <div className="grid grid-cols-2 gap-x-3">
                 <div>
-                  <div className="text-[8px] font-mono uppercase tracking-wider text-muted-foreground/30 mb-0.5">Next Earnings</div>
+                  <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 mb-0.5">Next Earnings</div>
                   <span className="text-[10px] font-mono text-primary">{data.nextEarningsDate}</span>
                 </div>
                 <div>
-                  <div className="text-[8px] font-mono uppercase tracking-wider text-muted-foreground/30 mb-0.5">Last Result</div>
+                  <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 mb-0.5">Last Result</div>
                   <span className={cn("inline-flex items-center gap-0.5 w-fit rounded px-1 py-0 text-[9px] font-mono font-medium leading-tight", earningsColor(data.lastEarningsResult))}>
                     {data.lastEarningsResult === "beat" ? (
                       <TrendingUp className="h-2 w-2 shrink-0" />
@@ -482,22 +482,33 @@ export function FundamentalsPanel() {
                 </div>
               </div>
 
-              {/* Short interest */}
-              <div className="grid grid-cols-2 gap-x-3 pt-0.5">
-                <div>
-                  <div className="text-[8px] font-mono uppercase tracking-wider text-muted-foreground/30 mb-0.5">Short Float</div>
-                  <span className={cn("text-[10px] font-mono tabular-nums",
+              {/* Short interest — compact 3-col metric grid */}
+              <div className="grid grid-cols-3 border border-border/15 rounded overflow-hidden mt-0.5">
+                <div className="flex flex-col px-2 py-1.5 border-r border-border/15">
+                  <span className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 leading-none mb-0.5">Short %</span>
+                  <span className={cn("text-[11px] font-mono tabular-nums leading-none",
                     data.shortFloat > 15 ? "text-red-400" : data.shortFloat > 5 ? "text-amber-400" : "text-foreground/70"
                   )}>
                     {fmt(data.shortFloat, 1)}%
                   </span>
                 </div>
-                <div>
-                  <div className="text-[8px] font-mono uppercase tracking-wider text-muted-foreground/30 mb-0.5">Squeeze Risk</div>
-                  <span className={cn("text-[10px] font-mono",
+                <div className="flex flex-col px-2 py-1.5 border-r border-border/15">
+                  <span className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 leading-none mb-0.5">Squeeze</span>
+                  <span className={cn("text-[11px] font-mono leading-none",
                     data.shortFloat > 15 ? "text-red-400" : data.shortFloat > 5 ? "text-amber-400" : "text-muted-foreground/30"
                   )}>
-                    {data.shortFloat > 15 ? "High" : data.shortFloat > 5 ? "Moderate" : "Low"}
+                    {data.shortFloat > 15 ? "High" : data.shortFloat > 5 ? "Mod" : "Low"}
+                  </span>
+                </div>
+                <div className="flex flex-col px-2 py-1.5">
+                  <span className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 leading-none mb-0.5">Insider</span>
+                  <span className={cn("text-[10px] font-mono leading-none",
+                    data.insiderTransactions === "Net Buying" ? "text-emerald-400" :
+                    data.insiderTransactions === "Net Selling" ? "text-red-400" :
+                    "text-muted-foreground/40"
+                  )}>
+                    {data.insiderTransactions === "Net Buying" ? "Buying" :
+                     data.insiderTransactions === "Net Selling" ? "Selling" : "Neutral"}
                   </span>
                 </div>
               </div>
@@ -506,7 +517,7 @@ export function FundamentalsPanel() {
               {(data.catalysts.length > 0 || data.risks.length > 0) && (
                 <div className="grid grid-cols-2 gap-x-3 pt-0.5">
                   <div className="space-y-[3px]">
-                    <div className="text-[8px] font-mono uppercase tracking-wider text-muted-foreground/30 pb-0.5 border-b border-border/20">Catalysts</div>
+                    <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 pb-0.5 border-b border-border/20">Catalysts</div>
                     {data.catalysts.map((c, i) => (
                       <div key={i} className="flex items-start gap-1">
                         <Zap className="mt-0.5 h-2 w-2 shrink-0 text-emerald-400" />
@@ -515,7 +526,7 @@ export function FundamentalsPanel() {
                     ))}
                   </div>
                   <div className="space-y-[3px]">
-                    <div className="text-[8px] font-mono uppercase tracking-wider text-muted-foreground/30 pb-0.5 border-b border-border/20">Risks</div>
+                    <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 pb-0.5 border-b border-border/20">Risks</div>
                     {data.risks.map((r, i) => (
                       <div key={i} className="flex items-start gap-1">
                         <AlertTriangle className="mt-0.5 h-2 w-2 shrink-0 text-amber-400" />

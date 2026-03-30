@@ -71,6 +71,11 @@ const CHART_TYPE_OPTIONS: { value: ChartType; label: string; title: string }[] =
 const intradayOptions = TIMEFRAME_OPTIONS.filter((o) => o.group === "intraday");
 const dailyOptions    = TIMEFRAME_OPTIONS.filter((o) => o.group === "daily");
 
+// Flat map: indicatorValue → display label (e.g. "sma20" → "SMA20")
+const INDICATOR_LABEL: Record<string, string> = Object.fromEntries(
+  INDICATOR_GROUPS.flatMap((g) => g.indicators.map((ind) => [ind.value, ind.label]))
+);
+
 function Sep() {
   return <span className="h-3 w-px bg-border/30 mx-1 shrink-0" />;
 }
@@ -104,7 +109,7 @@ export function ChartToolbar() {
   const isIntraday = ["5m", "15m", "1h"].includes(currentTimeframe);
 
   return (
-    <div className="flex items-center gap-1 h-8 border-b border-border/30 px-2 overflow-x-auto shrink-0 scrollbar-none">
+    <div className="flex items-center gap-1 h-9 border-b border-border/30 px-2 overflow-x-auto shrink-0 scrollbar-none">
       {/* LEFT: controls */}
       <div className="flex items-center gap-1 min-w-0 shrink-0">
 
@@ -300,14 +305,14 @@ export function ChartToolbar() {
             {activeIndicators.map((ind) => (
               <span
                 key={ind}
-                className="inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-[9px] font-mono bg-primary/10 text-primary/70"
+                className="inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-[9px] font-mono bg-primary/10 text-primary/70 uppercase"
               >
-                {ind}
+                {INDICATOR_LABEL[ind] ?? ind}
                 <button
                   type="button"
                   onClick={() => toggleIndicator(ind)}
-                  className="text-primary/40 hover:text-primary/80 leading-none"
-                  aria-label={`Remove ${ind}`}
+                  className="text-primary/40 hover:text-primary/80 leading-none ml-px"
+                  aria-label={`Remove ${INDICATOR_LABEL[ind] ?? ind}`}
                 >
                   ×
                 </button>

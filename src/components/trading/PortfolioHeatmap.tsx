@@ -104,7 +104,7 @@ function pctToColor(pct: number): string {
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const WIDTH = 260;
-const HEIGHT = 112; // h-28
+const HEIGHT = 100;
 
 export function PortfolioHeatmap() {
   const positions = useTradingStore((s) => s.positions);
@@ -149,9 +149,9 @@ export function PortfolioHeatmap() {
             const gy = cell.rect.y;
             const gw = cell.rect.w;
             const gh = cell.rect.h;
-            const showTicker = gw > 28 && gh > 18;
-            const showPct   = gw > 28 && gh > 32;
-            const showDollar = gw > 36 && gh > 46;
+            const showTicker = gw > 32 && gh > 20;
+            const showPct   = gw > 32 && gh > 34;
+            const showDollar = gw > 40 && gh > 50;
             const sign = cell.pct >= 0 ? "+" : "";
 
             return (

@@ -38,12 +38,11 @@ export function ShortSqueezeAlert({ className: _className }: ShortSqueezeAlertPr
   if (!fundamentals || shortFloat < 5 || !hasSqueezeRisk) return null;
 
   return (
-    <div className="flex items-center gap-2 px-2 py-1.5 bg-amber-500/5 border border-amber-500/15 rounded mx-2 mb-1">
+    <div className="flex items-center gap-1.5 px-3 py-1 border-t border-amber-500/10">
       <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
-      <span className="text-[9px] font-mono text-amber-400/80 flex-1">
-        {currentTicker}: Squeeze risk {squeezeScore}%
+      <span className="text-[9px] font-mono text-amber-400/70 truncate">
+        {currentTicker}: Squeeze risk {squeezeScore}% · DTC {daysToCover.toFixed(1)}d
       </span>
-      <span className="text-[8px] font-mono text-amber-400/40">{daysToCover.toFixed(1)}d DTC</span>
     </div>
   );
 }

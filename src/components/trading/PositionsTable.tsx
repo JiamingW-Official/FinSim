@@ -65,34 +65,34 @@ export function PositionsTable() {
         <span className="text-[10px] font-mono text-muted-foreground/30 uppercase tracking-widest">
           No Open Positions
         </span>
+        <span className="text-[9px] font-mono text-muted-foreground/20">
+          Execute a trade to get started.
+        </span>
       </div>
     );
   }
 
   return (
     <div className="overflow-x-auto">
-      {/* Portfolio summary header */}
-      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/40 bg-muted/5">
-        <span className="text-[10px] font-mono text-muted-foreground/40 uppercase tracking-wider">
-          {positions.length} Position{positions.length !== 1 ? "s" : ""}
+      {/* Portfolio summary header — compact single line */}
+      <div className="flex items-center gap-2 px-2 py-1.5 border-b border-border/40 bg-muted/5">
+        <span className="text-[9px] font-mono text-muted-foreground/40 uppercase tracking-wider">
+          {positions.length} open
         </span>
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] font-mono text-muted-foreground/50">
-            Mkt Value{" "}
-            <span className="text-foreground/70">
-              {formatCurrency(totalValue)}
-            </span>
-          </span>
-          <span
-            className={cn(
-              "text-[10px] font-mono font-semibold",
-              totalPnl >= 0 ? "text-emerald-400" : "text-rose-400",
-            )}
-          >
-            {totalPnl >= 0 ? "+" : ""}
-            {formatCurrency(totalPnl)}
-          </span>
-        </div>
+        <span className="text-muted-foreground/20 text-[9px]">·</span>
+        <span className="text-[9px] font-mono text-muted-foreground/50">
+          {formatCurrency(totalValue)}
+        </span>
+        <span className="text-muted-foreground/20 text-[9px]">·</span>
+        <span
+          className={cn(
+            "text-[9px] font-mono font-semibold",
+            totalPnl >= 0 ? "text-emerald-400" : "text-rose-400",
+          )}
+        >
+          {totalPnl >= 0 ? "+" : ""}
+          {formatCurrency(totalPnl)}
+        </span>
       </div>
 
       {/* Table */}
@@ -153,50 +153,55 @@ export function PositionsTable() {
             return (
               <tr
                 key={`${pos.ticker}-${pos.side}`}
-                className="border-b border-border/20 hover:bg-muted/5 transition-colors duration-100"
+                className={cn(
+                  "border-b border-border/20 hover:bg-muted/5 transition-colors duration-100",
+                  pnlPositive
+                    ? "border-l-2 border-l-emerald-500/40"
+                    : "border-l-2 border-l-rose-500/40",
+                )}
               >
                 {/* Ticker + side badge */}
-                <td className="px-2 py-1.5">
+                <td className="px-2 py-2">
                   <div className="flex items-center gap-1.5">
                     <span className="text-[11px] font-medium text-foreground font-mono">
                       {pos.ticker}
                     </span>
                     <span
                       className={cn(
-                        "text-[8px] px-1 py-0 rounded font-mono font-semibold",
+                        "text-[8px] px-1 py-0 rounded font-mono font-semibold uppercase tracking-wider",
                         pos.side === "long"
-                          ? "bg-emerald-500/10 text-emerald-400/80"
-                          : "bg-amber-500/10 text-amber-400/80",
+                          ? "text-emerald-400"
+                          : "text-amber-400",
                       )}
                     >
-                      {pos.side === "long" ? "LONG" : "SHORT"}
+                      {pos.side === "long" ? "long" : "short"}
                     </span>
                   </div>
                 </td>
 
                 {/* Qty */}
-                <td className="px-2 py-1.5 text-right">
+                <td className="px-2 py-2 text-right">
                   <span className="text-[11px] font-mono tabular-nums text-foreground/80">
                     {pos.quantity}
                   </span>
                 </td>
 
                 {/* Avg entry */}
-                <td className="px-2 py-1.5 text-right">
+                <td className="px-2 py-2 text-right">
                   <span className="text-[11px] font-mono tabular-nums text-foreground/80">
                     {formatCurrency(pos.avgPrice)}
                   </span>
                 </td>
 
                 {/* Last / current price */}
-                <td className="px-2 py-1.5 text-right">
+                <td className="px-2 py-2 text-right">
                   <span className="text-[11px] font-mono tabular-nums text-foreground/80">
                     {formatCurrency(pos.currentPrice)}
                   </span>
                 </td>
 
                 {/* P&L dollar */}
-                <td className="px-2 py-1.5 text-right">
+                <td className="px-2 py-2 text-right">
                   <span
                     className={cn(
                       "text-[11px] font-mono tabular-nums font-semibold",
@@ -209,7 +214,7 @@ export function PositionsTable() {
                 </td>
 
                 {/* P&L % */}
-                <td className="px-2 py-1.5 text-right">
+                <td className="px-2 py-2 text-right">
                   <span
                     className={cn(
                       "text-[11px] font-mono tabular-nums",
@@ -222,7 +227,7 @@ export function PositionsTable() {
                 </td>
 
                 {/* Close button */}
-                <td className="px-1 py-1.5 text-center">
+                <td className="px-1 py-2 text-center">
                   <button
                     type="button"
                     onClick={() =>
@@ -234,7 +239,7 @@ export function PositionsTable() {
                       )
                     }
                     className="h-5 w-5 inline-flex items-center justify-center rounded text-muted-foreground/30 hover:bg-rose-500/10 hover:text-rose-400 transition-colors duration-100"
-                    title={pos.side === "short" ? "Cover short" : "Close position"}
+                    title="Close position"
                   >
                     <X className="h-3 w-3" />
                   </button>

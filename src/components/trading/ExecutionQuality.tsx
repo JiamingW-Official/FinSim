@@ -6,7 +6,7 @@ import { formatCurrency, cn } from "@/lib/utils";
 
 const MIN_TRADES = 5;
 
-function MetricRow({
+function MetricCell({
   label,
   value,
   positive,
@@ -18,15 +18,15 @@ function MetricRow({
   negative?: boolean;
 }) {
   return (
-    <div className="flex flex-col py-0.5">
+    <div className="flex flex-col p-2 border border-border/20 rounded-lg">
       <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/35">
         {label}
       </span>
       <span
         className={cn(
-          "text-[11px] font-mono tabular-nums font-medium",
+          "text-[13px] font-mono tabular-nums font-semibold",
           positive
-            ? "text-green-500/80"
+            ? "text-emerald-500/80"
             : negative
             ? "text-red-400/80"
             : "text-foreground/80",
@@ -97,29 +97,29 @@ export function ExecutionQuality() {
           Need {MIN_TRADES - closedCount > 0 ? MIN_TRADES - closedCount : MIN_TRADES}+ trades for stats
         </p>
       ) : (
-        <div className="grid grid-cols-2 gap-x-3 gap-y-1">
-          <MetricRow
+        <div className="grid grid-cols-2 gap-2">
+          <MetricCell
             label="Win Rate"
             value={`${stats.winRate.toFixed(0)}%`}
             positive={stats.winRate >= 50}
             negative={stats.winRate < 40}
           />
-          <MetricRow
+          <MetricCell
             label="Profit Factor"
             value={
               stats.profitFactor >= 999
                 ? "∞"
                 : stats.profitFactor.toFixed(2) + "x"
             }
-            positive={stats.profitFactor >= 1.5}
+            positive={stats.profitFactor >= 1}
             negative={stats.profitFactor < 1}
           />
-          <MetricRow
+          <MetricCell
             label="Avg Win"
             value={`+${formatCurrency(stats.avgWin)}`}
             positive
           />
-          <MetricRow
+          <MetricCell
             label="Avg Loss"
             value={formatCurrency(stats.avgLoss)}
             negative={stats.avgLoss < 0}
