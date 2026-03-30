@@ -246,7 +246,7 @@ function AssetClassOverview() {
  {/* Asset Class Table */}
  <Card className="bg-card border-border p-5">
  <div className="flex items-center justify-between mb-4">
- <h3 className="text-sm font-semibold text-foreground">Asset Class Characteristics</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Asset Class Characteristics</h2>
  <div className="flex gap-1">
  {categories.map(cat => (
  <button
@@ -329,7 +329,7 @@ function AssetClassOverview() {
 
  {/* Scatter Plot */}
  <Card className="bg-card border-border p-5">
- <h3 className="text-sm font-semibold text-foreground mb-4">Return vs. Risk (Efficient Frontier)</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Return vs. Risk (Efficient Frontier)</h2>
  <div className="overflow-x-auto">
  <svg width={W} height={H} className="text-muted-foreground">
  {/* Grid lines */}
@@ -409,7 +409,7 @@ function AssetClassOverview() {
 
  {/* Correlation Matrix */}
  <Card className="bg-card border-border p-5">
- <h3 className="text-sm font-semibold text-foreground mb-1">Correlation Matrix</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Correlation Matrix</h2>
  <p className="text-xs text-muted-foreground mb-4">Red = high positive correlation, Blue = negative (diversifying)</p>
  <div className="overflow-x-auto">
  <svg width={600} height={360}>
@@ -575,7 +575,7 @@ function PortfolioBuilder() {
  <div className="lg:col-span-2 space-y-3">
  <Card className="bg-card border-border p-4">
  <div className="flex items-center justify-between mb-3">
- <h3 className="text-sm font-medium text-foreground">Allocation Sliders</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Allocation Sliders</h2>
  <Badge className={cn("text-xs", totalOk ? "bg-emerald-900/50 text-emerald-400 border-emerald-800" : "bg-red-900/50 text-red-400 border-red-800")}>
  Total: {total.toFixed(1)}%
  </Badge>
@@ -619,7 +619,7 @@ function PortfolioBuilder() {
  <div className="space-y-4">
  {/* Donut */}
  <Card className="bg-card border-border p-4">
- <h3 className="text-sm font-medium text-foreground mb-3">Allocation</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-3">Allocation</h2>
  <div className="flex justify-center">
  <svg width={160} height={160} viewBox="-80 -80 160 160">
  {slices.map((s, i) => (
@@ -650,7 +650,7 @@ function PortfolioBuilder() {
 
  {/* Metrics */}
  <Card className="bg-card border-border p-4">
- <h3 className="text-sm font-medium text-foreground mb-3">Portfolio Metrics</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-3">Portfolio Metrics</h2>
  <div className="space-y-3">
  {[
  { label: "Expected Return", value: fmtPct(metrics.expectedReturn), color: "text-emerald-400", icon: TrendingUp },
@@ -674,7 +674,7 @@ function PortfolioBuilder() {
 
  {/* Efficient Frontier overlay */}
  <Card className="bg-card border-border p-5">
- <h3 className="text-sm font-medium text-foreground mb-4">Your Portfolio on the Efficient Frontier</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Your Portfolio on the Efficient Frontier</h2>
  <svg width={EW} height={EH}>
  {/* Grid */}
  {[4, 6, 8, 10, 12, 14].map(r => (
@@ -828,7 +828,7 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
  {/* Monte Carlo Fan Chart */}
  <Card className="bg-card border-border p-5">
  <div className="flex items-center justify-between mb-1">
- <h3 className="text-sm font-medium text-foreground">Monte Carlo Simulation — 500 Scenarios, 30 Years</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Monte Carlo Simulation — 500 Scenarios, 30 Years</h2>
  <Badge className="bg-indigo-900/50 text-indigo-300 border-indigo-800 text-xs">
  Starting: $100K
  </Badge>
@@ -903,7 +903,7 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
 
  {/* Historical Scenarios */}
  <Card className="bg-card border-border p-5">
- <h3 className="text-sm font-medium text-foreground mb-1">Historical Stress Test</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Historical Stress Test</h2>
  <p className="text-xs text-muted-foreground mb-4">Portfolio return vs S&P 500 in each historical scenario</p>
 
  <div className="overflow-x-auto">
@@ -1130,7 +1130,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
 
  {/* Chart */}
  <Card className="bg-card border-border p-5">
- <h3 className="text-sm font-medium text-foreground mb-1">Portfolio Value Over 20 Years — $100K Starting</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Portfolio Value Over 20 Years — $100K Starting</h2>
  <div className="overflow-x-auto">
  <svg width={W} height={H}>
  {/* Grid */}
@@ -1171,7 +1171,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
 
  {/* Results table */}
  <Card className="bg-card border-border p-5">
- <h3 className="text-sm font-medium text-foreground mb-4">Strategy Comparison</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Strategy Comparison</h2>
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
@@ -1346,7 +1346,7 @@ function LifecyclePlanning() {
  <div className="space-y-4">
  {/* Controls */}
  <Card className="bg-card border-border p-5">
- <h3 className="text-sm font-medium text-foreground mb-4">Personal Parameters</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Personal Parameters</h2>
  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
  <div>
  <label className="text-xs text-muted-foreground block mb-2">Current Age: <span className="text-foreground font-medium">{currentAge}</span></label>
@@ -1386,7 +1386,7 @@ function LifecyclePlanning() {
 
  {/* Glide Path Chart */}
  <Card className="bg-card border-border p-5">
- <h3 className="text-sm font-medium text-foreground mb-1">Asset Allocation Glide Path</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Asset Allocation Glide Path</h2>
  <p className="text-xs text-muted-foreground mb-4">Recommended stock allocation at each age for your risk tolerance</p>
  <div className="overflow-x-auto">
  <svg width={GW} height={GH}>
@@ -1492,7 +1492,7 @@ function LifecyclePlanning() {
 
  {/* Target Date Fund Comparison */}
  <Card className="bg-card border-border p-5">
- <h3 className="text-sm font-medium text-foreground mb-4">Target Date Fund Comparison</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Target Date Fund Comparison</h2>
  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
  {TARGET_DATE_FUNDS.map(fund => {
  const DONUT_R = 44, INNER = 28;
@@ -1548,7 +1548,7 @@ function LifecyclePlanning() {
  <Card className="bg-card border-border p-5">
  <div className="flex items-start justify-between mb-1">
  <div>
- <h3 className="text-sm font-medium text-foreground">Sequence of Returns Risk</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Sequence of Returns Risk</h2>
  <p className="text-xs text-muted-foreground mt-0.5">
  Same average return, different order — dramatically different outcomes.
  Annual withdrawal: {fmtK(sorResult.annualWithdrawal)}
@@ -1632,72 +1632,35 @@ export default function AllocationPage() {
  // Shared weights state for cross-tab usage
  const [sharedWeights, setSharedWeights] = useState<number[]>(PRESETS[0].weights.map(w => w));
 
- return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="flex items-start justify-between"
- >
- <div>
- <div className="flex items-center gap-3 mb-1">
- <div className="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
- <PieChart className="w-4 h-4 text-indigo-400" />
- </div>
- <h1 className="text-xl font-medium text-foreground">Multi-Asset Allocation Simulator</h1>
- <Badge className="bg-indigo-900/50 text-indigo-300 border-indigo-800 text-xs">12 Asset Classes</Badge>
- </div>
- <p className="text-sm text-muted-foreground ml-11">
- Build, analyze, and optimize portfolios across equities, fixed income, and alternatives
- </p>
- </div>
- <div className="flex items-center gap-2 text-xs text-muted-foreground">
- <Info className="w-3.5 h-3.5" />
- <span>Educational simulation only</span>
- </div>
- </motion.div>
-
- {/* HERO — Quick Stats */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35, delay: 0.1 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary rounded-md bg-card p-6"
- >
- {(() => {
  const m = computePortfolioMetrics(sharedWeights);
- return [
- { label: "Expected Return", value: fmtPct(m.expectedReturn), color: "text-emerald-400", icon: TrendingUp, bg: "bg-emerald-500/5" },
- { label: "Portfolio Volatility", value: fmtPct(m.volatility), color: "text-amber-400", icon: Activity, bg: "bg-amber-500/10" },
- { label: "Sharpe Ratio", value: m.sharpe.toFixed(2), color: m.sharpe >= 0.5 ? "text-emerald-400" : "text-amber-400", icon: Zap, bg: "bg-indigo-500/10" },
- { label: "Market Beta", value: m.beta.toFixed(2), color: "text-primary", icon: BarChart3, bg: "bg-muted/10" },
- ];
- })().map(item => (
- <Card key={item.label} className="bg-card border-border p-3">
- <div className="flex items-center gap-2">
- <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center", item.bg)}>
- <item.icon className={cn("w-3.5 h-3.5", item.color)} />
+
+ return (
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Asset Allocation</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">PORTFOLIO MIX · REBALANCING · RISK BUDGET</p>
+
+ {/* Quick Stats */}
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+ {[
+ { label: "Expected Return", value: fmtPct(m.expectedReturn), color: "text-emerald-400", icon: TrendingUp },
+ { label: "Portfolio Volatility", value: fmtPct(m.volatility), color: "text-amber-400", icon: Activity },
+ { label: "Sharpe Ratio", value: m.sharpe.toFixed(2), color: m.sharpe >= 0.5 ? "text-emerald-400" : "text-amber-400", icon: Zap },
+ { label: "Market Beta", value: m.beta.toFixed(2), color: "text-primary", icon: BarChart3 },
+ ].map(item => (
+ <div key={item.label} className="rounded-lg border border-border bg-card p-4">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{item.label}</p>
+ <p className={cn("text-xl font-mono tabular-nums font-semibold", item.color)}>{item.value}</p>
  </div>
- <div>
- <p className="text-xs text-muted-foreground">{item.label}</p>
- <p className={cn("text-base font-medium", item.color)}>{item.value}</p>
- </div>
- </div>
- </Card>
  ))}
- </motion.div>
+ </div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ duration: 0.4, delay: 0.15 }}
- >
  <Tabs value={tab} onValueChange={setTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "overview", label: "Asset Classes", icon: Layers },
  { value: "builder", label: "Portfolio Builder", icon: PieChart },
@@ -1708,7 +1671,7 @@ export default function AllocationPage() {
  <TabsTrigger
  key={t.value}
  value={t.value}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground"
+ className="flex items-center gap-1.5 text-xs rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground px-3 py-2"
  >
  <t.icon className="w-3.5 h-3.5" />
  {t.label}
@@ -1716,57 +1679,26 @@ export default function AllocationPage() {
  ))}
  </TabsList>
 
- <TabsContent value="overview" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- {tab === "overview" && (
- <motion.div key="overview" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ <TabsContent value="overview" className="data-[state=inactive]:hidden mt-0">
  <AssetClassOverview />
- </motion.div>
- )}
- </AnimatePresence>
  </TabsContent>
 
- <TabsContent value="builder" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- {tab === "builder" && (
- <motion.div key="builder" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ <TabsContent value="builder" className="data-[state=inactive]:hidden mt-0">
  <PortfolioBuilder />
- </motion.div>
- )}
- </AnimatePresence>
  </TabsContent>
 
- <TabsContent value="scenarios" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- {tab === "scenarios" && (
- <motion.div key="scenarios" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ <TabsContent value="scenarios" className="data-[state=inactive]:hidden mt-0">
  <ReturnScenarios weights={sharedWeights} />
- </motion.div>
- )}
- </AnimatePresence>
  </TabsContent>
 
- <TabsContent value="rebalancing" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- {tab === "rebalancing" && (
- <motion.div key="rebalancing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ <TabsContent value="rebalancing" className="data-[state=inactive]:hidden mt-0">
  <RebalancingSimulator weights={sharedWeights} />
- </motion.div>
- )}
- </AnimatePresence>
  </TabsContent>
 
- <TabsContent value="lifecycle" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- {tab === "lifecycle" && (
- <motion.div key="lifecycle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ <TabsContent value="lifecycle" className="data-[state=inactive]:hidden mt-0">
  <LifecyclePlanning />
- </motion.div>
- )}
- </AnimatePresence>
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  </div>
  );

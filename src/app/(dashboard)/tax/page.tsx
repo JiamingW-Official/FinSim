@@ -140,13 +140,9 @@ function TaxOverviewTab() {
  return (
  <div className="space-y-4">
  {/* Quick calculator */}
- <Card>
- <CardHeader className="pb-3">
- <CardTitle className="flex items-center gap-2 text-base">
- Federal Income Tax Calculator (2024, Single Filer)
- </CardTitle>
- </CardHeader>
- <CardContent className="space-y-4">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Federal Income Tax Calculator (2024, Single Filer)</h2>
+ <div className="space-y-4">
  <div className="flex items-center justify-between">
  <span className="text-sm text-muted-foreground">Annual Taxable Income</span>
  <span className="text-lg font-semibold text-foreground">{formatCurrency(income)}</span>
@@ -172,15 +168,13 @@ function TaxOverviewTab() {
  <p className="text-lg font-medium text-orange-400">{formatPct(marginal)}</p>
  </div>
  </div>
- </CardContent>
- </Card>
+ </div>
+ </div>
 
  {/* Staircase SVG chart */}
- <Card>
- <CardHeader className="pb-3">
- <CardTitle className="text-base">Tax Bracket Waterfall Chart</CardTitle>
- </CardHeader>
- <CardContent>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Tax Bracket Waterfall Chart</h2>
+ <div>
  <div className="overflow-x-auto">
  <svg viewBox={`0 0 ${chartW} ${chartH + 30}`} className="w-full max-w-2xl" style={{ height: 200 }}>
  {bars.map((b, i) => (
@@ -231,15 +225,13 @@ function TaxOverviewTab() {
  </p>
  </div>
  </div>
- </CardContent>
- </Card>
+ </div>
+ </div>
 
  {/* Bracket breakdown */}
- <Card>
- <CardHeader className="pb-3">
- <CardTitle className="text-base">Bracket-by-Bracket Breakdown</CardTitle>
- </CardHeader>
- <CardContent>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Bracket-by-Bracket Breakdown</h2>
+ <div>
  <div className="space-y-2">
  {breakdown.map((row, i) => (
  <div key={i} className="flex items-center gap-3 rounded-md px-3 py-2 bg-muted/20">
@@ -269,15 +261,13 @@ function TaxOverviewTab() {
  <span className="text-sm font-medium text-destructive">{formatCurrency(total)}</span>
  </div>
  </div>
- </CardContent>
- </Card>
+ </div>
+ </div>
 
  {/* Capital gains rates */}
- <Card>
- <CardHeader className="pb-3">
- <CardTitle className="text-base">Long-Term Capital Gains Rates (2024, Single)</CardTitle>
- </CardHeader>
- <CardContent>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Long-Term Capital Gains Rates (2024, Single)</h2>
+ <div>
  <div className="grid grid-cols-3 gap-3">
  {CAPITAL_GAINS_BRACKETS.map((b, i) => {
  const active =
@@ -309,8 +299,8 @@ function TaxOverviewTab() {
  <strong className="text-foreground">{formatPct(cgRate)}</strong>. Short-term gains taxed as ordinary income
  ({formatPct(marginal)} marginal).
  </p>
- </CardContent>
- </Card>
+ </div>
+ </div>
  </div>
  );
 }
@@ -393,7 +383,7 @@ function TaxLossHarvestingTab() {
  {/* Portfolio positions */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="text-base">Portfolio Positions — Click Losers to Harvest</CardTitle>
+ <CardTitle className="text-xl font-serif tracking-tight">Portfolio Positions — Click Losers to Harvest</CardTitle>
  </CardHeader>
  <CardContent>
  <div className="space-y-2">
@@ -487,7 +477,7 @@ function TaxLossHarvestingTab() {
  {/* Wash sale rule */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="flex items-center gap-2 text-base">
+ <CardTitle className="text-xl font-serif tracking-tight">
  Wash Sale Rule — 30-Day Window Visualizer
  </CardTitle>
  </CardHeader>
@@ -618,7 +608,7 @@ function AccountOptimizerTab() {
  {/* Asset location grid */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="text-base">Asset Location Strategy — What Goes Where</CardTitle>
+ <CardTitle className="text-xl font-serif tracking-tight">Asset Location Strategy — What Goes Where</CardTitle>
  </CardHeader>
  <CardContent>
  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -660,7 +650,7 @@ function AccountOptimizerTab() {
  {/* Tax drag calculator */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="flex items-center gap-2 text-base">
+ <CardTitle className="text-xl font-serif tracking-tight">
  Taxable Account Tax Drag Calculator
  </CardTitle>
  </CardHeader>
@@ -698,7 +688,7 @@ function AccountOptimizerTab() {
  {/* Roth conversion analyzer */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="flex items-center gap-2 text-base">
+ <CardTitle className="text-xl font-serif tracking-tight">
  Roth Conversion Analyzer
  </CardTitle>
  </CardHeader>
@@ -843,7 +833,7 @@ function CapitalGainsPlannerTab() {
  {/* Positions table */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="text-base">Holding Period Tracker</CardTitle>
+ <CardTitle className="text-xl font-serif tracking-tight">Holding Period Tracker</CardTitle>
  </CardHeader>
  <CardContent>
  <div className="overflow-x-auto -mx-2">
@@ -907,7 +897,7 @@ function CapitalGainsPlannerTab() {
  {/* Qualified dividends */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="text-base">Qualified vs Ordinary Dividends</CardTitle>
+ <CardTitle className="text-xl font-serif tracking-tight">Qualified vs Ordinary Dividends</CardTitle>
  </CardHeader>
  <CardContent>
  <div className="grid grid-cols-2 gap-4">
@@ -1017,7 +1007,7 @@ function EstateGiftTab() {
  {/* Gift tax strategy */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="flex items-center gap-2 text-base">
+ <CardTitle className="text-xl font-serif tracking-tight">
  Annual Gift Tax Strategy
  </CardTitle>
  </CardHeader>
@@ -1055,7 +1045,7 @@ function EstateGiftTab() {
  {/* Estate tax calculator */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="flex items-center gap-2 text-base">
+ <CardTitle className="text-xl font-serif tracking-tight">
  Estate Tax Estimator
  </CardTitle>
  </CardHeader>
@@ -1136,7 +1126,7 @@ function EstateGiftTab() {
  {/* Step-up in basis */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="text-base">Step-Up in Basis — The Hidden Inheritance Benefit</CardTitle>
+ <CardTitle className="text-xl font-serif tracking-tight">Step-Up in Basis — The Hidden Inheritance Benefit</CardTitle>
  </CardHeader>
  <CardContent className="space-y-4">
  <p className="text-sm text-muted-foreground">
@@ -1210,7 +1200,7 @@ function EstateGiftTab() {
  {/* Charitable strategies */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="flex items-center gap-2 text-base">
+ <CardTitle className="text-xl font-serif tracking-tight">
  Charitable Giving Strategies
  </CardTitle>
  </CardHeader>
@@ -1270,7 +1260,7 @@ function EstateGiftTab() {
  {/* Estate planning timeline */}
  <Card>
  <CardHeader className="pb-3">
- <CardTitle className="text-base">Estate Planning Milestones Timeline</CardTitle>
+ <CardTitle className="text-xl font-serif tracking-tight">Estate Planning Milestones Timeline</CardTitle>
  </CardHeader>
  <CardContent>
  <svg viewBox="0 0 540 90" className="w-full" style={{ height: 90 }}>
@@ -1332,71 +1322,39 @@ function EstateGiftTab() {
 
 export default function TaxPage() {
  return (
- <div className="flex flex-col h-full overflow-y-auto bg-background">
- <div className="flex-1 p-4 md:p-4 space-y-4 max-w-6xl mx-auto w-full">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -10 }}
- animate={{ opacity: 1, y: 0 }}
- className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
- >
- <div>
- <h1 className="text-xl font-semibold text-foreground">Tax Optimization & Planning</h1>
- <p className="text-sm text-muted-foreground mt-1">
- 2024 US federal tax reference — brackets, capital gains, harvesting, and estate planning
- </p>
- </div>
- <div className="flex items-center gap-2 flex-wrap">
- <Badge variant="outline" className="text-xs text-muted-foreground">2024 Tax Year</Badge>
- <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Educational Only</span>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Tax Planning</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">CAPITAL GAINS · LOSS HARVESTING · TAX-EFFICIENT</p>
 
  {/* Quick-glance stats */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.05 }}
- className="grid grid-cols-2 md:grid-cols-5 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
+ <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
  {[
- { icon: BarChart3, label: "Tax Brackets", value: "7", sub: "Federal 2024", color: "text-foreground" },
- { icon: TrendingDown, label: "LT Cap Gains Max", value: "20%", sub: "vs 37% short-term", color: "text-green-400" },
- { icon: PiggyBank, label: "401k Limit", value: "$23,000", sub: "2024 contribution", color: "text-indigo-400" },
- { icon: Gift, label: "Gift Exclusion", value: "$18,000", sub: "Per recipient 2024", color: "text-pink-400" },
- { icon: DollarSign, label: "Estate Exemption", value: "$13.61M", sub: "Federal 2024", color: "text-orange-400" },
+ { label: "Tax Brackets", value: "7", sub: "Federal 2024" },
+ { label: "LT Cap Gains Max", value: "20%", sub: "vs 37% short-term" },
+ { label: "401k Limit", value: "$23,000", sub: "2024 contribution" },
+ { label: "Gift Exclusion", value: "$18,000", sub: "Per recipient 2024" },
+ { label: "Estate Exemption", value: "$13.61M", sub: "Federal 2024" },
  ].map((s, i) => (
- <Card key={i} className="bg-muted/30">
- <CardContent className="pt-3 pb-3">
- <div className="flex items-center gap-1.5 mb-1">
- <s.icon className={`h-3.5 w-3.5 ${s.color}`} />
- <p className="text-xs text-muted-foreground">{s.label}</p>
- </div>
- <p className={`text-lg font-medium ${s.color}`}>{s.value}</p>
+ <div key={i} className="rounded-lg border border-border bg-card p-4">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{s.label}</p>
+ <p className="text-xl font-mono tabular-nums font-semibold text-foreground">{s.value}</p>
  <p className="text-xs text-muted-foreground">{s.sub}</p>
- </CardContent>
- </Card>
+ </div>
  ))}
- </motion.div>
+ </div>
 
  {/* Disclaimer */}
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: 0.1 }}
- className="rounded-lg bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 flex items-center gap-2"
- >
+ <div className="rounded-lg border border-border bg-muted/30 px-4 py-2.5 mb-6">
  <p className="text-xs text-muted-foreground">
- <strong className="text-amber-400">Educational simulator only.</strong> Tax law is complex and varies by situation. Consult a qualified CPA or tax advisor before making tax decisions.
+ <strong className="text-foreground">Educational simulator only.</strong> Tax law is complex and varies by situation. Consult a qualified CPA or tax advisor before making tax decisions.
  </p>
- </motion.div>
+ </div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.12 }}
- >
  <Tabs defaultValue="overview">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
@@ -1412,17 +1370,16 @@ export default function TaxPage() {
  Capital Gains
  </TabsTrigger>
  <TabsTrigger value="estate" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
- Estate & Gifts
+ Estate &amp; Gifts
  </TabsTrigger>
  </TabsList>
 
- <TabsContent value="overview" className="mt-0"><TaxOverviewTab /></TabsContent>
- <TabsContent value="harvesting" className="mt-0"><TaxLossHarvestingTab /></TabsContent>
- <TabsContent value="accounts" className="mt-0"><AccountOptimizerTab /></TabsContent>
- <TabsContent value="capgains" className="mt-0"><CapitalGainsPlannerTab /></TabsContent>
- <TabsContent value="estate" className="mt-0"><EstateGiftTab /></TabsContent>
+ <TabsContent value="overview" className="mt-0 data-[state=inactive]:hidden"><TaxOverviewTab /></TabsContent>
+ <TabsContent value="harvesting" className="mt-0 data-[state=inactive]:hidden"><TaxLossHarvestingTab /></TabsContent>
+ <TabsContent value="accounts" className="mt-0 data-[state=inactive]:hidden"><AccountOptimizerTab /></TabsContent>
+ <TabsContent value="capgains" className="mt-0 data-[state=inactive]:hidden"><CapitalGainsPlannerTab /></TabsContent>
+ <TabsContent value="estate" className="mt-0 data-[state=inactive]:hidden"><EstateGiftTab /></TabsContent>
  </Tabs>
- </motion.div>
  </div>
  </div>
  );

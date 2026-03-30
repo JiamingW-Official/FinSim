@@ -437,19 +437,17 @@ export default function MarketDashPage() {
  }, []);
 
  return (
- <div className="h-full overflow-y-auto bg-background text-foreground">
- <div className="max-w-[1400px] mx-auto p-4 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col space-y-6">
 
- {/* ── Header ────────────────────────────────────────────────────── */}
- <div
- className="flex items-center justify-between"
- >
+ {/* ── Header */}
+ <div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Market Dashboard</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">live market overview · simulated data</p>
  <div className="flex items-center gap-3">
- <Globe className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h1 className="text-xl font-semibold tracking-tight">Market Dashboard</h1>
  <Badge
  className={cn(
- "text-xs text-muted-foreground font-medium px-2 py-0.5",
+ "text-xs font-medium px-2 py-0.5",
  marketStatus.label === "Open"
  ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
  : marketStatus.label === "Pre-Market"
@@ -463,17 +461,19 @@ export default function MarketDashPage() {
  <Radio className="h-2.5 w-2.5 mr-1 inline" />
  {marketStatus.label}
  </Badge>
- </div>
- <div className="text-xs text-muted-foreground flex items-center gap-1.5">
+ <span className="text-xs text-muted-foreground flex items-center gap-1.5">
  <Clock className="h-3.5 w-3.5" />
  Simulated data
+ </span>
  </div>
  </div>
+
+ <div className="border-t border-border" />
 
  {/* ═══════════════════════════════════════════════════════════════
  HERO — Market Overview
  ════════════════════════════════════════════════════════════════ */}
- <section className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6 space-y-5">
+ <section className="space-y-4">
  {/* Ticker tape */}
  <div className="relative overflow-hidden h-9 bg-background border border-border rounded-md flex items-center">
  <div className="flex gap-0 animate-[marquee_45s_linear_infinite] whitespace-nowrap">
@@ -518,12 +518,10 @@ export default function MarketDashPage() {
  {/* ═══════════════════════════════════════════════════════════════
  SECTION 2 — Sector Heatmap
  ════════════════════════════════════════════════════════════════ */}
+ <div className="border-t border-border" />
  <section>
- <div className="flex items-center gap-2 mb-2">
- <Layers className="h-3.5 w-3.5 text-muted-foreground" />
- <h2 className="text-xs font-semibold text-muted-foreground">Sector Heatmap</h2>
- <span className="text-[11px] text-muted-foreground">Click sector to see top movers</span>
- </div>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Sector Heatmap</h2>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">click sector to see top movers</p>
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
  {/* SVG treemap */}
  <Card className="bg-card border-border p-2">
@@ -656,11 +654,9 @@ export default function MarketDashPage() {
  {/* ═══════════════════════════════════════════════════════════════
  SECTION 3 — Most Active / Gainers / Losers
  ════════════════════════════════════════════════════════════════ */}
+ <div className="border-t border-border" />
  <section>
- <div className="flex items-center gap-2 mb-2">
- <Activity className="h-3.5 w-3.5 text-muted-foreground" />
- <h2 className="text-xs font-medium text-muted-foreground">Most Active Stocks</h2>
- </div>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Most Active Stocks</h2>
  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
  {/* Most Active by Volume */}
  <Card className="bg-card border-border p-2">
@@ -744,12 +740,11 @@ export default function MarketDashPage() {
  {/* ═══════════════════════════════════════════════════════════════
  SECTION 4 — Options Flow
  ════════════════════════════════════════════════════════════════ */}
+ <div className="border-t border-border" />
  <section>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Unusual Options Activity</h2>
  <div className="flex items-center justify-between mb-3">
  <div className="flex items-center gap-2">
- <Zap className="h-4 w-4 text-muted-foreground" />
- <h2 className="text-sm font-medium text-foreground">Unusual Options Activity</h2>
- </div>
  <div className="flex items-center gap-1.5">
  <Filter className="h-3.5 w-3.5 text-muted-foreground" />
  {(["all", "calls", "puts", "big"] as const).map((f) => (
@@ -768,6 +763,7 @@ export default function MarketDashPage() {
  {f === "all" ? "All" : f === "calls" ? "Calls" : f === "puts" ? "Puts" : ">$1M"}
  </Button>
  ))}
+ </div>
  </div>
  </div>
 
@@ -859,11 +855,9 @@ export default function MarketDashPage() {
  {/* ═══════════════════════════════════════════════════════════════
  SECTION 5 — Earnings & Events Calendar
  ════════════════════════════════════════════════════════════════ */}
+ <div className="border-t border-border" />
  <section>
- <div className="flex items-center gap-2 mb-3">
- <Calendar className="h-4 w-4 text-muted-foreground" />
- <h2 className="text-sm font-medium text-foreground">Earnings & Events Calendar</h2>
- </div>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Earnings & Events Calendar</h2>
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  {/* Earnings today */}
  <Card className="bg-card border-border p-3">
@@ -998,10 +992,7 @@ export default function MarketDashPage() {
  SECTION 6 — Market Breadth
  ════════════════════════════════════════════════════════════════ */}
  <section className="pb-6">
- <div className="flex items-center gap-2 mb-3">
- <Gauge className="h-4 w-4 text-muted-foreground" />
- <h2 className="text-sm font-medium text-foreground">Market Breadth</h2>
- </div>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Market Breadth</h2>
  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
  {/* A/D ratio card */}
  <Card className="bg-card border-border p-3">

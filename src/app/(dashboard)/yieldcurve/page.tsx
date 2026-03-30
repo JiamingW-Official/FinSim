@@ -726,72 +726,44 @@ export default function YieldCurvePage() {
  }, []);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
- {/* ── Header ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
- >
- <div>
- <div className="flex items-center gap-2 mb-1">
- <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h1 className="text-xl font-bold tracking-tight">Yield Curve Strategies</h1>
- </div>
- <p className="text-muted-foreground text-sm">
- Steepeners · Flatteners · Butterflies · Relative Value Curve Trades
- </p>
- </div>
- <div className="flex items-center gap-2">
- <Badge variant="outline" className={cn("text-xs text-muted-foreground", spreadColor(spread2s10s))}>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <div className="mb-6">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">RATES · TERM STRUCTURE · SPREADS</p>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Yield Curve</h1>
+ <div className="flex items-center gap-3 mt-2">
+ <span className={cn("font-mono tabular-nums text-xs font-medium", spreadColor(spread2s10s))}>
  2s10s: {spread2s10s > 0 ? "+" : ""}{spread2s10s.toFixed(0)} bps
- </Badge>
- <Badge variant="outline" className="text-xs text-muted-foreground">
- Updated: Mar 28, 2026
- </Badge>
+ </span>
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Updated Mar 28, 2026</span>
  </div>
- </motion.div>
+ </div>
 
- {/* ── Metric Cards ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
+ {/* Metric stats grid */}
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
  {[
- { label: "2s10s Spread", value: spread2s10s, prev: metrics[0].prev, unit: "bps", icon: TrendingUp },
- { label: "5s30s Spread", value: spread5s30s, prev: metrics[1].prev, unit: "bps", icon: BarChart3 },
- { label: "3m10y Spread", value: spread3m10y, prev: metrics[2].prev, unit: "bps", icon: Activity },
- {
- label: "Curve Regime",
- value: null,
- regime: curveRegime.name,
- regimeColor: curveRegime.color,
- icon: Layers,
- },
- ].map((m, i) => (
- <Card key={m.label} className="border-border">
- <CardContent className="p-3">
- <div className="flex items-start justify-between mb-1">
- <span className="text-xs text-muted-foreground">{m.label}</span>
- <m.icon className="h-3.5 w-3.5 text-muted-foreground" />
- </div>
+ { label: "2s10s Spread", value: spread2s10s, prev: metrics[0].prev },
+ { label: "5s30s Spread", value: spread5s30s, prev: metrics[1].prev },
+ { label: "3m10y Spread", value: spread3m10y, prev: metrics[2].prev },
+ { label: "Curve Regime", value: null as number | null, regime: curveRegime.name, regimeColor: curveRegime.color },
+ ].map((m) => (
+ <div key={m.label} className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">{m.label}</div>
  {m.value !== null && m.value !== undefined ? (
  <>
- <div className={cn("text-lg font-bold tabular-nums", spreadColor(m.value))}>
+ <div className={cn("text-xl font-mono font-bold tabular-nums", spreadColor(m.value))}>
  {m.value > 0 ? "+" : ""}{m.value.toFixed(0)} bps
  </div>
  {m.prev !== undefined && (
- <div className="flex items-center gap-1 mt-0.5">
+ <div className="flex items-center gap-1 mt-1">
  {m.value > m.prev ? (
  <TrendingUp className="h-3 w-3 text-green-400" />
  ) : (
  <TrendingDown className="h-3 w-3 text-red-400" />
  )}
  <span className="text-xs text-muted-foreground">
- {m.value > m.prev ? "+" : ""}{(m.value - m.prev).toFixed(0)} bps vs prior
+ {m.value > m.prev ? "+" : ""}{(m.value - m.prev).toFixed(0)} vs prior
  </span>
  </div>
  )}
@@ -801,62 +773,47 @@ export default function YieldCurvePage() {
  {m.regime}
  </div>
  )}
- </CardContent>
- </Card>
+ </div>
  ))}
- </motion.div>
+ </div>
 
- {/* ── Tabs ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.15 }}
- >
- <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="w-full md:w-auto grid grid-cols-4 md:flex">
- <TabsTrigger value="shape">Curve Shape</TabsTrigger>
- <TabsTrigger value="strategies">Strategies</TabsTrigger>
- <TabsTrigger value="historical">Historical</TabsTrigger>
- <TabsTrigger value="macro">Macro Signals</TabsTrigger>
+ <div className="border-t border-border mb-6" />
+
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col min-h-0">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsTrigger value="shape" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Curve Shape</TabsTrigger>
+ <TabsTrigger value="strategies" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Strategies</TabsTrigger>
+ <TabsTrigger value="historical" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Historical</TabsTrigger>
+ <TabsTrigger value="macro" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Macro Signals</TabsTrigger>
  </TabsList>
 
  {/* ── Tab: Curve Shape ── */}
- <TabsContent value="shape" className="mt-4 space-y-4">
+ <TabsContent value="shape" className="space-y-6 data-[state=inactive]:hidden">
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
- <Card className="lg:col-span-2 border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-semibold flex items-center gap-2">
- <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
- US Treasury Yield Curve
- </CardTitle>
- </CardHeader>
- <CardContent>
+ <div className="lg:col-span-2 rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">US Treasury Yield Curve</div>
  <YieldCurveChart curve={curve} />
- <div className="mt-3 grid grid-cols-5 gap-1">
+ <div className="mt-4 grid grid-cols-5 gap-2">
  {curve.map((p) => {
  const chg = (p.yield - p.prevYield) * 100;
  return (
  <div key={p.tenor} className="text-center">
- <div className="text-xs font-medium text-muted-foreground">{p.tenor}</div>
- <div className="text-sm font-medium tabular-nums">{p.yield.toFixed(2)}%</div>
- <div className={cn("text-xs tabular-nums", chg >= 0 ? "text-green-400" : "text-red-400")}>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{p.tenor}</div>
+ <div className="font-mono tabular-nums text-sm font-medium mt-0.5">{p.yield.toFixed(2)}%</div>
+ <div className={cn("font-mono tabular-nums text-xs", chg >= 0 ? "text-green-400" : "text-red-400")}>
  {chg >= 0 ? "+" : ""}{chg.toFixed(1)}
  </div>
  </div>
  );
  })}
  </div>
- </CardContent>
- </Card>
+ </div>
 
  <div className="space-y-4">
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-semibold">Regime Gauge</CardTitle>
- </CardHeader>
- <CardContent>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">Regime Gauge</div>
  <RegimeGauge spread={spread2s10s} />
- <div className="mt-2 text-center">
+ <div className="mt-3 text-center">
  <div className={cn("text-sm font-medium", curveRegime.color)}>
  {curveRegime.name}
  </div>
@@ -864,57 +821,51 @@ export default function YieldCurvePage() {
  {curveRegime.description}
  </p>
  </div>
- </CardContent>
- </Card>
+ </div>
 
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-semibold">Regime Statistics</CardTitle>
- </CardHeader>
- <CardContent className="space-y-2">
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">Regime Statistics</div>
+ <div className="space-y-2">
  {[
  { label: "Historical Frequency", value: `${curveRegime.historicalFreq}% of time` },
  { label: "Avg Duration", value: `${curveRegime.avgDuration} months` },
  { label: "Current 2s10s", value: `${spread2s10s > 0 ? "+" : ""}${spread2s10s.toFixed(0)} bps` },
  { label: "Current 5s30s", value: `${spread5s30s > 0 ? "+" : ""}${spread5s30s.toFixed(0)} bps` },
  ].map((row) => (
- <div key={row.label} className="flex justify-between items-center text-xs text-muted-foreground">
+ <div key={row.label} className="flex justify-between items-center text-xs">
  <span className="text-muted-foreground">{row.label}</span>
- <span className="font-medium">{row.value}</span>
+ <span className="font-mono tabular-nums font-medium text-foreground">{row.value}</span>
  </div>
  ))}
- </CardContent>
- </Card>
+ </div>
+ </div>
  </div>
  </div>
 
  {/* Spread metrics detail */}
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-medium">Key Spread Definitions</CardTitle>
- </CardHeader>
- <CardContent>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Key Spread Definitions</h2>
  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
  {metrics.slice(0, 3).map((m) => (
- <div key={m.label} className="p-3 rounded-lg bg-muted/30 border border-border space-y-1">
+ <div key={m.label} className="rounded-lg border border-border bg-muted/30 p-5 space-y-2">
  <div className="flex items-center justify-between">
- <span className="text-xs text-muted-foreground font-medium">{m.label}</span>
- <span className={cn("text-sm font-medium tabular-nums", spreadColor(m.spread))}>
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{m.label}</span>
+ <span className={cn("font-mono tabular-nums text-sm font-semibold", spreadColor(m.spread))}>
  {m.spread > 0 ? "+" : ""}{m.spread.toFixed(0)} bps
  </span>
  </div>
- <p className="text-xs text-muted-foreground">{m.description}</p>
+ <p className="text-xs text-muted-foreground leading-relaxed">{m.description}</p>
  </div>
  ))}
  </div>
- </CardContent>
- </Card>
+ </div>
  </TabsContent>
 
  {/* ── Tab: Strategies ── */}
- <TabsContent value="strategies" className="mt-4 space-y-4">
+ <TabsContent value="strategies" className="space-y-6 data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Curve Strategies</h2>
  {/* Strategy selector */}
- <div className="flex gap-2 flex-wrap">
+ <div className="flex gap-2 flex-wrap mb-2">
  {TRADE_IDEAS.map((t, i) => (
  <Button
  key={t.name}
@@ -937,23 +888,18 @@ export default function YieldCurvePage() {
  transition={{ duration: 0.3 }}
  className="grid grid-cols-1 lg:grid-cols-2 gap-4"
  >
- <Card className="border-border">
- <CardHeader className="pb-2">
- <div className="flex items-center gap-2">
- <CardTitle className="text-base">{trade.name}</CardTitle>
- <Badge variant="outline" className={cn("text-xs text-muted-foreground", typeColor(trade.type))}>
- {trade.type}
- </Badge>
- <Badge variant="outline" className={cn("text-xs text-muted-foreground", convictionColor(trade.conviction))}>
- {trade.conviction} conviction
- </Badge>
+ <div className="rounded-lg border border-border bg-card p-5 space-y-4">
+ <div>
+ <div className="flex items-center gap-2 mb-1">
+ <span className="text-base font-semibold text-foreground">{trade.name}</span>
+ <span className={cn("rounded border px-1.5 py-0.5 text-xs", typeColor(trade.type))}>{trade.type}</span>
+ <span className={cn("rounded border px-1.5 py-0.5 text-xs", convictionColor(trade.conviction))}>{trade.conviction}</span>
  </div>
  <p className="text-xs text-muted-foreground">{trade.description}</p>
- </CardHeader>
- <CardContent className="space-y-4">
+ </div>
  {/* Trade legs */}
  <div>
- <div className="text-xs text-muted-foreground mb-2 font-medium uppercase tracking-wide">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">
  Trade Legs
  </div>
  <div className="space-y-1.5">
@@ -966,68 +912,55 @@ export default function YieldCurvePage() {
  </div>
  </div>
 
- {/* Entry / Target / Stop */}
- <div className="grid grid-cols-3 gap-2">
+ <div className="grid grid-cols-3 gap-3">
  {[
  { label: "Entry", value: trade.entry, color: "text-yellow-400" },
  { label: "Target", value: trade.target, color: "text-green-400" },
  { label: "Stop", value: trade.stop, color: "text-red-400" },
  ].map((item) => (
- <div key={item.label} className="p-2 rounded bg-muted/30 border border-border text-center">
- <div className="text-xs text-muted-foreground">{item.label}</div>
- <div className={cn("text-sm font-medium tabular-nums", item.color)}>
+ <div key={item.label} className="rounded-lg border border-border bg-muted/30 p-3 text-center">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{item.label}</div>
+ <div className={cn("font-mono tabular-nums text-sm font-semibold", item.color)}>
  {item.value > 0 ? "+" : ""}{item.value} bps
  </div>
  </div>
  ))}
  </div>
 
- {/* R:R */}
- <div className="p-3 rounded-lg bg-primary/10 border border-border">
+ <div className="rounded-lg border border-border bg-muted/30 p-4">
  <div className="flex items-start gap-2">
  <Info className="h-3.5 w-3.5 text-primary mt-0.5 flex-shrink-0" />
  <div>
- <div className="text-xs font-medium text-primary mb-0.5">Rationale</div>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Rationale</div>
  <p className="text-xs text-muted-foreground leading-relaxed">{trade.rationale}</p>
  </div>
  </div>
  </div>
 
- {/* R:R calc */}
- <div className="flex items-center justify-between text-xs text-muted-foreground">
+ <div className="flex items-center justify-between text-xs">
  <span className="text-muted-foreground">Reward/Risk</span>
- <span className="font-medium text-green-400">
+ <span className="font-mono tabular-nums font-semibold text-green-400">
  {Math.abs((trade.target - trade.entry) / (trade.entry - trade.stop)).toFixed(1)}:1
  </span>
  </div>
- </CardContent>
- </Card>
+ </div>
 
- <Card className="border-border">
- <CardHeader className="pb-2">
- <CardTitle className="text-sm font-medium flex items-center gap-2">
- <Target className="h-3.5 w-3.5 text-muted-foreground/50" />
- P&L Profile (vs Spread Level)
- </CardTitle>
- </CardHeader>
- <CardContent>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">P&L Profile (vs Spread Level)</div>
  <SpreadPayoffChart
  type={trade.type}
  entry={trade.entry}
  target={trade.target}
  stop={trade.stop}
  />
- <div className="mt-3 p-3 rounded bg-muted/30 border border-border">
- <div className="text-xs text-muted-foreground font-medium mb-1 uppercase tracking-wide">
- DV01 Neutral Structure
- </div>
+ <div className="mt-4 rounded-lg border border-border bg-muted/30 p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">DV01 Neutral Structure</div>
  <p className="text-xs text-muted-foreground leading-relaxed">
  Position sized so each basis point move in the target spread = $10,000 P&L per $100M notional,
  insulating from parallel shifts.
  </p>
  </div>
- </CardContent>
- </Card>
+ </div>
  </motion.div>
  )
  )}
@@ -1376,7 +1309,7 @@ export default function YieldCurvePage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
 
  {/* ── Info tooltip handler ── */}
  {showInfo && (
