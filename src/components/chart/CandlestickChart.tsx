@@ -349,6 +349,7 @@ export function CandlestickChart() {
  borderColor: CHART_COLORS.borderColor,
  timeVisible: false,
  secondsVisible: false,
+ rightOffset: 2,
  tickMarkFormatter: (time: UTCTimestamp, type: TickMarkType) => {
   const d = new Date((time as number) * 1000);
   // ET = UTC - 5

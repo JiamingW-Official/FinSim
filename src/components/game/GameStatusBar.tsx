@@ -127,16 +127,16 @@ export function GameStatusBar() {
       <div className="flex items-center gap-2 shrink-0">
         {!isSeasonOver && countdown.display && countdown.display !== "--:--" && (
           <div className={cn(
-            "flex items-center gap-1.5 rounded px-2 py-0.5",
-            "font-mono text-[10px] tabular-nums ring-1 ring-inset",
+            "flex flex-col items-end rounded px-2 py-0.5",
+            "font-mono tabular-nums ring-1 ring-inset",
             countdown.urgent
               ? "bg-amber-400/10 text-amber-400/90 ring-amber-400/25 animate-pulse"
               : countdown.target === "close"
                 ? "bg-rose-500/[0.07] text-rose-400/65 ring-rose-500/10"
                 : "bg-emerald-500/[0.07] text-emerald-400/60 ring-emerald-500/10",
           )}>
-            <span className="opacity-60">{countdown.label}</span>
-            <span className="font-semibold">{countdown.display}</span>
+            <span className="text-[9px] opacity-55 leading-none">{countdown.label} · {countdown.action}</span>
+            <span className="text-[11px] font-bold leading-tight tracking-tight">{countdown.display}</span>
           </div>
         )}
 
