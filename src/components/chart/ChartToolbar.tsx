@@ -69,7 +69,7 @@ export function ChartToolbar() {
  } = useChartStore();
 
  return (
- <div className="flex flex-wrap items-center justify-between gap-y-0.5 border-b border-border bg-transparent px-3 py-1">
+ <div className="flex flex-wrap items-center justify-between gap-y-0.5 border-b border-border bg-transparent px-3 py-1.5">
  <div className="flex flex-wrap items-center gap-1">
  {/* Intraday timeframes */}
  <div className="flex items-center gap-0.5">
@@ -79,10 +79,10 @@ export function ChartToolbar() {
  type="button"
  onClick={() => setTimeframe(opt.value as Timeframe)}
  className={cn(
- "rounded px-1.5 py-0.5 text-[11px] font-medium transition-colors",
+ "rounded px-2 py-1 text-xs font-medium transition-colors",
  currentTimeframe === opt.value
- ? "bg-foreground/[0.06] text-foreground"
- : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
+ ? "bg-foreground/[0.08] text-foreground font-medium"
+ : "text-muted-foreground/55 hover:text-muted-foreground hover:bg-foreground/[0.03]",
  )}
  >
  {opt.label}
@@ -91,7 +91,7 @@ export function ChartToolbar() {
  </div>
 
  {/* Separator */}
- <div className="mx-0.5 h-3 w-px bg-border" />
+ <div className="mx-0.5 h-4 w-px bg-border/50" />
 
  {/* Daily / weekly timeframes */}
  <div className="flex items-center gap-0.5">
@@ -101,10 +101,10 @@ export function ChartToolbar() {
  type="button"
  onClick={() => setTimeframe(opt.value as Timeframe)}
  className={cn(
- "rounded px-1.5 py-0.5 text-[11px] font-medium transition-colors",
+ "rounded px-2 py-1 text-xs font-medium transition-colors",
  currentTimeframe === opt.value
- ? "bg-foreground/[0.06] text-foreground"
- : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
+ ? "bg-foreground/[0.08] text-foreground font-medium"
+ : "text-muted-foreground/55 hover:text-muted-foreground hover:bg-foreground/[0.03]",
  )}
  >
  {opt.label}
@@ -113,7 +113,7 @@ export function ChartToolbar() {
  </div>
 
  {/* Separator */}
- <div className="mx-0.5 h-3 w-px bg-border" />
+ <div className="mx-0.5 h-4 w-px bg-border/50" />
 
  {/* Chart Type Selector */}
  <div className="flex items-center gap-0.5">
@@ -124,10 +124,10 @@ export function ChartToolbar() {
  type="button"
  onClick={() => setChartType(opt.value)}
  className={cn(
- "rounded px-1.5 py-0.5 text-[11px] font-medium transition-colors",
+ "rounded px-2 py-1 text-xs font-medium transition-colors",
  chartType === opt.value
- ? "bg-foreground/[0.06] text-foreground"
- : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
+ ? "bg-foreground/[0.08] text-foreground font-medium"
+ : "text-muted-foreground/55 hover:text-muted-foreground hover:bg-foreground/[0.03]",
  )}
  >
  {opt.label}
@@ -141,7 +141,7 @@ export function ChartToolbar() {
  </div>
 
  {/* Separator */}
- <div className="mx-0.5 h-3 w-px bg-border" />
+ <div className="mx-0.5 h-4 w-px bg-border/50" />
 
  {/* Display Options */}
  <div className="flex items-center gap-0.5">
@@ -154,7 +154,7 @@ export function ChartToolbar() {
  "rounded p-0.5 transition-colors",
  showVolume
  ? "text-foreground"
- : "text-muted-foreground/30 hover:text-muted-foreground hover:bg-foreground/[0.03]",
+ : "text-muted-foreground/50 hover:text-muted-foreground hover:bg-foreground/[0.03]",
  )}
  aria-label="Toggle volume"
  >
@@ -175,7 +175,7 @@ export function ChartToolbar() {
  "rounded p-0.5 transition-colors",
  showGrid
  ? "text-foreground"
- : "text-muted-foreground/30 hover:text-muted-foreground hover:bg-foreground/[0.03]",
+ : "text-muted-foreground/50 hover:text-muted-foreground hover:bg-foreground/[0.03]",
  )}
  aria-label="Toggle grid"
  >
@@ -193,10 +193,10 @@ export function ChartToolbar() {
  type="button"
  onClick={() => setUseLog(!useLog)}
  className={cn(
- "rounded px-1 py-0.5 text-[11px] font-medium transition-colors",
+ "rounded px-2 py-1 text-xs font-medium transition-colors",
  useLog
- ? "bg-foreground/[0.06] text-foreground"
- : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
+ ? "bg-foreground/[0.08] text-foreground font-medium"
+ : "text-muted-foreground/55 hover:text-muted-foreground hover:bg-foreground/[0.03]",
  )}
  aria-label="Toggle log scale"
  >
@@ -210,7 +210,7 @@ export function ChartToolbar() {
  </div>
 
  {/* Separator */}
- <div className="mx-0.5 h-3 w-px bg-border" />
+ <div className="mx-0.5 h-4 w-px bg-border/50" />
 
  {/* Annotation Toggles */}
  <div className="flex items-center gap-0.5">
@@ -220,10 +220,10 @@ export function ChartToolbar() {
  type="button"
  onClick={() => setShowEarnings(!showEarnings)}
  className={cn(
- "flex items-center gap-0.5 rounded px-1 py-0.5 text-[11px] font-medium transition-colors",
+ "flex items-center gap-0.5 rounded px-2 py-1 text-xs font-medium transition-colors",
  showEarnings
- ? "bg-foreground/[0.06] text-foreground"
- : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
+ ? "bg-foreground/[0.08] text-foreground font-medium"
+ : "text-muted-foreground/55 hover:text-muted-foreground hover:bg-foreground/[0.03]",
  )}
  aria-label="Toggle earnings markers"
  >
@@ -242,10 +242,10 @@ export function ChartToolbar() {
  type="button"
  onClick={() => setShowDividends(!showDividends)}
  className={cn(
- "flex items-center gap-0.5 rounded px-1 py-0.5 text-[11px] font-medium transition-colors",
+ "flex items-center gap-0.5 rounded px-2 py-1 text-xs font-medium transition-colors",
  showDividends
- ? "bg-foreground/[0.06] text-foreground"
- : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
+ ? "bg-foreground/[0.08] text-foreground font-medium"
+ : "text-muted-foreground/55 hover:text-muted-foreground hover:bg-foreground/[0.03]",
  )}
  aria-label="Toggle dividend markers"
  >
@@ -268,10 +268,10 @@ export function ChartToolbar() {
  type="button"
  onClick={() => toggleIndicator(opt.value)}
  className={cn(
- "rounded px-1.5 py-0.5 text-[11px] font-medium transition-colors",
+ "rounded px-1.5 py-1 text-xs font-medium transition-colors",
  activeIndicators.includes(opt.value)
- ? "bg-foreground/[0.06] text-foreground"
- : "text-muted-foreground/30 hover:text-muted-foreground hover:bg-foreground/[0.03]",
+ ? "bg-primary/10 text-primary/80 font-medium"
+ : "text-muted-foreground/50 hover:text-muted-foreground hover:bg-foreground/[0.03]",
  )}
  >
  {opt.label}
@@ -290,7 +290,7 @@ export function ChartToolbar() {
  onChange={(e) => setTicker(e.target.value)}
  title="Select ticker"
  aria-label="Select ticker"
- className="rounded border border-border bg-transparent px-2 py-0.5 text-[11px] text-muted-foreground outline-none focus-visible:ring-1 focus-visible:ring-ring/50"
+ className="rounded border border-border/60 bg-transparent px-2 py-1 text-xs font-medium text-muted-foreground outline-none focus-visible:ring-1 focus-visible:ring-ring/50"
  >
  {WATCHLIST_STOCKS.map((stock) => (
  <option key={stock.ticker} value={stock.ticker}>

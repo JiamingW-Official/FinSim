@@ -101,7 +101,7 @@ export function PositionsTable() {
  if (positions.length === 0) {
  return (
  <div className="flex h-24 flex-col items-center justify-center gap-1.5">
- <Briefcase className="h-5 w-5 text-muted-foreground/40" />
+ <Briefcase className="h-6 w-6 text-muted-foreground/50" />
  <span className="text-xs font-medium text-muted-foreground">
  No open positions
  </span>
@@ -118,12 +118,12 @@ export function PositionsTable() {
  <thead>
  <tr className="border-b border-border text-muted-foreground">
  <th scope="col" className="w-4 px-1 py-1.5" />
- <th scope="col" className="px-2 py-1.5 text-left font-medium whitespace-nowrap">Ticker</th>
- <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">P&amp;L</th>
- <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">ATR Stop</th>
- <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Dist%</th>
- <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Bars</th>
- <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Borrow</th>
+ <th scope="col" className="px-3 py-2 text-left font-mono uppercase tracking-wider text-muted-foreground/40 whitespace-nowrap">Ticker</th>
+ <th scope="col" className="px-3 py-2 text-right font-mono uppercase tracking-wider text-muted-foreground/40 whitespace-nowrap">P&amp;L</th>
+ <th scope="col" className="px-3 py-2 text-right font-mono uppercase tracking-wider text-muted-foreground/40 whitespace-nowrap">ATR Stop</th>
+ <th scope="col" className="px-3 py-2 text-right font-mono uppercase tracking-wider text-muted-foreground/40 whitespace-nowrap">Dist%</th>
+ <th scope="col" className="px-3 py-2 text-right font-mono uppercase tracking-wider text-muted-foreground/40 whitespace-nowrap">Bars</th>
+ <th scope="col" className="px-3 py-2 text-right font-mono uppercase tracking-wider text-muted-foreground/40 whitespace-nowrap">Borrow</th>
  <th scope="col" className="w-8 px-1 py-1.5"><span className="sr-only">Actions</span></th>
  </tr>
  </thead>
@@ -201,7 +201,7 @@ export function PositionsTable() {
  </td>
 
  {/* Ticker + side badge stacked */}
- <td className="px-2 py-1.5">
+ <td className="px-3 py-2">
  <div className="font-semibold">{pos.ticker}</div>
  <Badge
  variant="outline"
@@ -220,7 +220,7 @@ export function PositionsTable() {
  {/* P&L */}
  <td
  className={cn(
- "px-2 py-1.5 text-right tabular-nums",
+ "px-3 py-2 text-right tabular-nums",
  pos.unrealizedPnL >= 0 ? "text-profit" : "text-loss",
  )}
  >
@@ -237,7 +237,7 @@ export function PositionsTable() {
  </td>
 
  {/* ATR Stop */}
- <td className="px-2 py-1.5 text-right tabular-nums">
+ <td className="px-3 py-2 text-right tabular-nums">
  {atrStop !== null ? (
  <span
  className={cn(
@@ -257,7 +257,7 @@ export function PositionsTable() {
  </td>
 
  {/* Distance to stop */}
- <td className="px-2 py-1.5 text-right tabular-nums">
+ <td className="px-3 py-2 text-right tabular-nums">
  {distToStop !== null ? (
  <span
  className={cn(
@@ -277,7 +277,7 @@ export function PositionsTable() {
  </td>
 
  {/* Bars held */}
- <td className="px-2 py-1.5 text-right tabular-nums">
+ <td className="px-3 py-2 text-right tabular-nums">
  <span
  className={cn(
  "text-xs",
@@ -289,7 +289,7 @@ export function PositionsTable() {
  </td>
 
  {/* Borrow cost (shorts only) */}
- <td className="px-2 py-1.5 text-right tabular-nums">
+ <td className="px-3 py-2 text-right tabular-nums">
  {pos.side === "short" ? (
  <span className="text-xs text-amber-500" title={`${rate.toFixed(2)}%/yr borrow rate`}>
  {formatCurrency(dailyBorrowCost)}/d
@@ -332,7 +332,7 @@ export function PositionsTable() {
  transition={{ duration: 0.15 }}
  >
  <td colSpan={8} className="px-3 pb-2 pt-0">
- <div className="rounded border border-border bg-accent/10 p-2 text-xs space-y-1">
+ <div className="border-l-2 border-l-foreground/10 pl-4 py-3 bg-transparent text-xs space-y-1">
  {/* Entry + current price */}
  <div className="flex gap-4 flex-wrap">
  <div>

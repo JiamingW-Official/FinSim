@@ -407,7 +407,7 @@ function WatchlistRow({
  <div className="group">
  <div
  className={cn(
- "flex items-center gap-0.5 px-2 py-1 hover:bg-muted/10 transition-colors",
+ "flex items-center gap-0.5 px-3 py-2 hover:bg-muted/10 transition-colors",
  isActive && "bg-muted/20",
  )}
  >
@@ -464,9 +464,9 @@ function WatchlistRow({
  className={cn(
  "text-xs tabular-nums",
  changePct > 0
- ? "text-emerald-500"
+ ? "text-emerald-400/80"
  : changePct < 0
- ? "text-red-500"
+ ? "text-rose-400/70"
  : "text-muted-foreground",
  )}
  >
@@ -907,7 +907,7 @@ export function WatchlistPanel() {
  ) : groupedSections ? (
  groupedSections.map((section) => (
  <div key={section.label}>
- <div className="px-3 py-1 text-[11px] text-muted-foreground/50 bg-muted/30 border-b border-border">
+ <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest text-muted-foreground/30 bg-transparent border-b border-border/25">
  {section.label}
  </div>
  {section.items.map((item) => {
@@ -943,7 +943,7 @@ export function WatchlistPanel() {
 
  {/* Add input */}
  <div className="border-t border-border px-3 py-2 shrink-0">
- <div className="flex items-center gap-1.5">
+ <div className="flex items-center gap-2">
  <div className="relative flex-1">
  <input
  type="text"

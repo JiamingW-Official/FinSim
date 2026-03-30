@@ -37,6 +37,49 @@ import { MarginDashboard } from "@/components/trading/MarginDashboard";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
+// ── Live info bar ────────────────────────────────────────────────────────────
+function LiveInfoBar() {
+  const allData = useMarketDataStore((s) => s.allData);
+  const revealedCount = useMarketDataStore((s) => s.revealedCount);
+  const ticker = useChartStore((s) => s.currentTicker);
+  const portfolioValue = useTradingStore((s) => s.portfolioValue);
+  const cash = useTradingStore((s) => s.cash);
+
+  const currentBar = revealedCount > 0 ? allData[revealedCount - 1] : allData[allData.length - 1];
+  const prevBar = revealedCount > 1 ? allData[revealedCount - 2] : allData[allData.length - 2];
+  const price = currentBar?.close ?? 0;
+  const change = prevBar && prevBar.close > 0 ? price - prevBar.close : 0;
+  const changePct = prevBar && prevBar.close > 0 ? (change / prevBar.close) * 100 : 0;
+  const isUp = change >= 0;
+
+  if (price === 0) return null;
+
+  return (
+    <div className="hidden md:flex shrink-0 border-b border-border/50 px-4 py-1.5 items-center gap-6 bg-muted/[0.02]">
+      {/* Ticker + Price */}
+      <div className="flex items-baseline gap-2.5">
+        <span className="text-xs font-semibold tracking-tight">{ticker}</span>
+        <span className="text-sm font-semibold tabular-nums">${price.toFixed(2)}</span>
+        <span className={`text-xs font-mono tabular-nums ${isUp ? "text-emerald-400/80" : "text-rose-400/70"}`}>
+          {isUp ? "+" : ""}{change.toFixed(2)} ({isUp ? "+" : ""}{changePct.toFixed(2)}%)
+        </span>
+      </div>
+      <div className="h-3 w-px bg-border/40" />
+      {/* Account stats */}
+      <div className="flex items-center gap-4">
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-[10px] font-mono text-muted-foreground/30 uppercase tracking-wider">Portfolio</span>
+          <span className="text-xs font-medium tabular-nums">${portfolioValue.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
+        </div>
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-[10px] font-mono text-muted-foreground/30 uppercase tracking-wider">Cash</span>
+          <span className="text-xs font-medium tabular-nums">${cash.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Shared tab trigger style ────────────────────────────────────────────────
 const tabTrigger =
  "rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground";
@@ -154,6 +197,9 @@ export default function TradePage() {
  <AlphaBotAlerts />
  <PositionAlerts />
 
+ {/* ── Live info bar ── */}
+ <LiveInfoBar />
+
  {/* ── Top view switcher — minimal, monochrome ── */}
  <div className="flex items-center gap-0.5 border-b border-border px-3 py-0.5 shrink-0">
  <button
@@ -256,7 +302,7 @@ export default function TradePage() {
 
  {/* Bottom panel: Fundamentals / Order Book / Compare */}
  <div
- className="h-28 shrink-0 overflow-hidden border-t border-border"
+ className="h-36 shrink-0 overflow-hidden border-t border-border"
  data-tutorial="positions"
  >
  <Tabs defaultValue="fundamentals" className="h-full flex flex-col">
@@ -287,7 +333,7 @@ export default function TradePage() {
  {/* ── Right sidebar (240px): Order Entry + tabs ── */}
  <div
  className="flex flex-col border-l border-border shrink-0"
- style={{ width: 240 }}
+ style={{ width: 280 }}
  data-tutorial="order-entry"
  >
  <Tabs defaultValue="order" className="flex flex-col h-full">
