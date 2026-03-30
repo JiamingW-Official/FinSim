@@ -1773,92 +1773,53 @@ function BuyVsSellSideTab() {
 // ── Main Page ────────────────────────────────────────────────────────────────
 export default function EquityResearch2Page() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-8 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="w-9 h-9 rounded-lg bg-primary/15 border border-border flex items-center justify-center">
- <Search className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-bold text-foreground">
- Equity Research Deep Dive
- </h1>
- <p className="text-sm text-foreground/45">
- Sell-side process · Financial modeling · Valuation · Buy vs. Sell-Side
- </p>
- </div>
- </div>
- <div className="flex gap-2 mt-3 flex-wrap">
- {[
- { label: "Research Process", icon: <Search className="w-3 h-3" />, color: "blue" },
- { label: "Financial Model", icon: <BarChart3 className="w-3 h-3" />, color: "cyan" },
- { label: "Valuation", icon: <Target className="w-3 h-3" />, color: "purple" },
- { label: "Buy vs. Sell", icon: <Scale className="w-3 h-3" />, color: "emerald" },
- ].map((chip) => (
- <div
- key={chip.label}
- className={cn(
- "flex items-center gap-1.5 text-xs text-muted-foreground px-3 py-1 rounded-full border",
- colorMap[chip.color]
- )}
- >
- {chip.icon}
- {chip.label}
- </div>
- ))}
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Equity Research II</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">SCREENING · COMPARABLES · MODELS</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="process" className="w-full mt-8">
- <TabsList className="grid grid-cols-4 w-full bg-foreground/5 border border-border rounded-lg h-10">
+ <Tabs defaultValue="process" className="w-full">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger
  value="process"
- className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary rounded-md"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- <Search className="w-3.5 h-3.5 mr-1.5" />
  Research Process
  </TabsTrigger>
  <TabsTrigger
  value="model"
- className="text-xs data-[state=active]:bg-cyan-500/20 data-[state=active]:text-muted-foreground rounded-md"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
  Financial Model
  </TabsTrigger>
  <TabsTrigger
  value="valuation"
- className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary rounded-md"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- <Target className="w-3.5 h-3.5 mr-1.5" />
  Valuation
  </TabsTrigger>
  <TabsTrigger
  value="buysell"
- className="text-xs data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-300 rounded-md"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- <Scale className="w-3.5 h-3.5 mr-1.5" />
  Buy vs. Sell
  </TabsTrigger>
  </TabsList>
 
- <TabsContent value="process" className="mt-6 data-[state=inactive]:hidden">
+ <TabsContent value="process" className="mt-0 data-[state=inactive]:hidden">
  <ResearchProcessTab />
  </TabsContent>
- <TabsContent value="model" className="mt-6 data-[state=inactive]:hidden">
+ <TabsContent value="model" className="mt-0 data-[state=inactive]:hidden">
  <FinancialModelTab />
  </TabsContent>
- <TabsContent value="valuation" className="mt-6 data-[state=inactive]:hidden">
+ <TabsContent value="valuation" className="mt-0 data-[state=inactive]:hidden">
  <ValuationFrameworkTab />
  </TabsContent>
- <TabsContent value="buysell" className="mt-6 data-[state=inactive]:hidden">
+ <TabsContent value="buysell" className="mt-0 data-[state=inactive]:hidden">
  <BuyVsSellSideTab />
  </TabsContent>
  </Tabs>

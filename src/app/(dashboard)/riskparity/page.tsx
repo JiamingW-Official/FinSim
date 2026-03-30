@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Shield,
  TrendingUp,
@@ -28,7 +27,6 @@ import {
  CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
 let s = 780;
@@ -396,66 +394,35 @@ export default function RiskParityPage() {
  const finalValues = BACKTEST[BACKTEST.length - 1];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex flex-col gap-1"
- >
- <div className="flex items-center gap-3">
- <div className="p-2 rounded-lg bg-muted/10">
- <Shield className="w-6 h-6 text-primary" />
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Portfolio Construction</p>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Risk Parity</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">EQUAL RISK · VOLATILITY TARGETING · DIVERSIFICATION</p>
  </div>
- <div>
- <h1 className="text-2xl font-semibold">Risk Parity Portfolio</h1>
- <p className="text-sm text-muted-foreground">
- Equal risk contribution across asset classes — Bridgewater All-Weather style
- </p>
- </div>
- <div className="ml-auto flex gap-2">
- <Badge variant="outline" className="text-primary border-primary/40">All-Weather</Badge>
- <Badge variant="outline" className="text-muted-foreground border-cyan-400/40">Leveraged</Badge>
- </div>
- </div>
- </motion.div>
 
  {/* Key Metrics */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-4"
- >
- {METRICS.map((m, i) => (
- <Card key={m.label} className="border-border">
- <CardContent className="pt-4 pb-3">
- <div className="flex items-start justify-between">
- <div>
- <p className="text-xs text-muted-foreground">{m.label}</p>
- <p className="text-lg font-medium font-mono mt-0.5">{m.value}</p>
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+ {METRICS.map((m) => (
+ <div key={m.label} className="rounded-lg border border-border bg-card p-5">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{m.label}</p>
+ <p className="font-mono tabular-nums text-xl font-semibold text-foreground">{m.value}</p>
+ <p className="text-xs text-muted-foreground mt-1 leading-tight">{m.description}</p>
  </div>
- <m.icon className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5" />
- </div>
- <p className="text-xs text-muted-foreground mt-1.5 leading-tight">{m.description}</p>
- </CardContent>
- </Card>
  ))}
- </motion.div>
+ </div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
- >
  <Tabs defaultValue="construction">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="construction">Construction</TabsTrigger>
- <TabsTrigger value="riskbudget">Risk Budget</TabsTrigger>
- <TabsTrigger value="performance">Performance</TabsTrigger>
- <TabsTrigger value="comparison">Comparison</TabsTrigger>
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsTrigger value="construction" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-2 bg-transparent">Construction</TabsTrigger>
+ <TabsTrigger value="riskbudget" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-2 bg-transparent">Risk Budget</TabsTrigger>
+ <TabsTrigger value="performance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-2 bg-transparent">Performance</TabsTrigger>
+ <TabsTrigger value="comparison" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-2 bg-transparent">Comparison</TabsTrigger>
  </TabsList>
 
  {/* ── Construction ── */}
@@ -878,7 +845,7 @@ export default function RiskParityPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

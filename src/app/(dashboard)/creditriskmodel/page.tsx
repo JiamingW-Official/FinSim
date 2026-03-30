@@ -758,23 +758,14 @@ export default function CreditRiskModelPage() {
  const divBenefit = (1 - Math.sqrt(portCorr)) * undiversifiedLoss * 0.3;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* HERO Header */}
- <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 bg-muted/10 rounded-lg border border-border">
- <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Credit Risk Modeling</h1>
- <p className="text-muted-foreground text-sm">
- Merton model · KMV distance to default · migration matrices · LGD/PD/EAD · portfolio credit risk
- </p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Credit Risk</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">PD · LGD · EAD · CREDIT VaR</p>
 
  {/* Top stat row */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  <StatCard
  icon={Activity}
  label="Merton PD"
@@ -803,7 +794,6 @@ export default function CreditRiskModelPage() {
  sub={`Debt: ${fmtM(merton.debtValue)}`}
  highlight="neutral"
  />
- </div>
  </div>
 
  {/* Tabs */}
@@ -1629,6 +1619,7 @@ export default function CreditRiskModelPage() {
  <p className="text-muted-foreground text-xs leading-relaxed">{item.desc}</p>
  </div>
  ))}
+ </div>
  </div>
  </div>
  );

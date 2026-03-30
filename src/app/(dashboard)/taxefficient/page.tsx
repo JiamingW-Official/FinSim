@@ -1263,7 +1263,7 @@ export default function TaxEfficientPage() {
  </div>
 
  {/* Tabs */}
- <Tabs defaultValue="location" className="mt-8 space-y-4">
+ <Tabs defaultValue="location" className="space-y-4">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="location" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Asset Location</TabsTrigger>
  <TabsTrigger value="tlh" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">TLH</TabsTrigger>
@@ -1284,6 +1284,7 @@ export default function TaxEfficientPage() {
  <CapitalGainsTab />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

@@ -210,8 +210,8 @@ function RoboLandscape() {
  return (
  <div className="space-y-4">
  {/* AUM Bar Chart */}
- <Card className="p-6 bg-card border-border border-l-4 border-l-primary">
- <h3 className="text-lg font-semibold text-muted-foreground mb-4">Assets Under Management (Billions)</h3>
+ <Card className="p-6 bg-card border-border">
+ <h3 className="text-xl font-serif tracking-tight text-foreground mb-4">Assets Under Management (Billions)</h3>
  <svg viewBox="0 0 620 200" className="w-full">
  {PROVIDERS.map((p, i) => {
  const barH = (p.aum / maxAUM) * 150;
@@ -1118,23 +1118,18 @@ export default function RoboAdvisorPage() {
  const [tab, setTab] = useState("landscape");
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <h1 className="text-lg font-medium text-foreground">Robo-Advisor & Wealth Tech</h1>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Robo-Advisor</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">AUTOMATED INVESTING · REBALANCING · GOALS</p>
  </div>
- <p className="text-sm text-muted-foreground">
- Automated investing, MPT portfolio construction, cost analysis, smart features, and the algorithmic future of wealth management.
- </p>
- </motion.div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs value={tab} onValueChange={setTab}>
+ <Tabs value={tab} onValueChange={setTab} className="flex-1 flex flex-col">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "landscape", label: "Robo Landscape" },
@@ -1193,6 +1188,7 @@ export default function RoboAdvisorPage() {
  </AnimatePresence>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

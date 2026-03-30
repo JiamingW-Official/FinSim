@@ -1286,5 +1286,6 @@ export default function GlobalEquityPage() {
  <TabsContent value="emdm" className="data-[state=inactive]:hidden mt-0"><EMvsDMTab /></TabsContent>
  </Tabs>
  </div>
+ </div>
  );
 }

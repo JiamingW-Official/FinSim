@@ -173,19 +173,9 @@ function WithdrawalStrategiesTab() {
 
  return (
  <div className="space-y-4">
- <div className="flex items-start gap-3">
- <div className="p-2 rounded-lg bg-muted/10">
- <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h2 className="text-lg font-semibold text-foreground">
- Withdrawal Strategies
- </h2>
- <p className="text-sm text-muted-foreground">
- The 4% rule (Bengen 1994), dynamic methods, and Monte Carlo
- simulation
- </p>
- </div>
+ <div className="mb-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Withdrawal Strategies</h2>
+ <p className="text-sm text-muted-foreground">The 4% rule (Bengen 1994), dynamic methods, and Monte Carlo simulation</p>
  </div>
 
  {/* 4% Rule Explainer */}
@@ -612,19 +602,9 @@ function SequenceRiskTab() {
 
  return (
  <div className="space-y-4">
- <div className="flex items-start gap-3">
- <div className="p-2 rounded-lg bg-red-500/5">
- <AlertTriangle className="w-5 h-5 text-red-400" />
- </div>
- <div>
- <h2 className="text-lg font-medium text-foreground">
- Sequence of Returns Risk
- </h2>
- <p className="text-sm text-muted-foreground">
- Why the order of returns matters — not just the average — in
- decumulation
- </p>
- </div>
+ <div className="mb-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Sequence of Returns Risk</h2>
+ <p className="text-sm text-muted-foreground">Why the order of returns matters — not just the average — in decumulation</p>
  </div>
 
  <Card className="p-4 bg-card border-border">
@@ -972,18 +952,9 @@ function SocialSecurityTab() {
 
  return (
  <div className="space-y-4">
- <div className="flex items-start gap-3">
- <div className="p-2 rounded-lg bg-muted/10">
- <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h2 className="text-lg font-medium text-foreground">
- Social Security Optimization
- </h2>
- <p className="text-sm text-muted-foreground">
- Breakeven analysis, spousal strategies, and taxability thresholds
- </p>
- </div>
+ <div className="mb-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Social Security Optimization</h2>
+ <p className="text-sm text-muted-foreground">Breakeven analysis, spousal strategies, and taxability thresholds</p>
  </div>
 
  {/* Benefit Amount Cards */}
@@ -1399,19 +1370,9 @@ function IncomeFlooringTab() {
 
  return (
  <div className="space-y-4">
- <div className="flex items-start gap-3">
- <div className="p-2 rounded-lg bg-muted/10">
- <Umbrella className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h2 className="text-lg font-medium text-foreground">
- Income Flooring
- </h2>
- <p className="text-sm text-muted-foreground">
- Guaranteed floor + growth portfolio: annuity types, longevity
- insurance, and the flexibility tradeoff
- </p>
- </div>
+ <div className="mb-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Income Flooring</h2>
+ <p className="text-sm text-muted-foreground">Guaranteed floor + growth portfolio: annuity types, longevity insurance, and the flexibility tradeoff</p>
  </div>
 
  {/* Floor-Upside Framework */}
@@ -1876,59 +1837,27 @@ export default function RetirementIncomePage() {
  ];
 
  return (
- <div className="flex flex-col h-full min-h-0">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="px-6 pt-6 pb-4 border-b border-border shrink-0 border-l-4 border-l-primary"
- >
- <div className="flex items-center gap-3">
- <div className="p-2.5 rounded-md bg-muted/10">
- <DollarSign className="w-6 h-6 text-primary" />
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Retirement Income</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">DRAWDOWN · SWR · ANNUITIES · SEQUENCE RISK</p>
  </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">
- Retirement Income Planning
- </h1>
- <p className="text-sm text-muted-foreground">
- Decumulation strategies, sequence risk, Social Security
- optimization, and income flooring
- </p>
- </div>
- <div className="ml-auto flex gap-2">
- <Badge className="bg-muted/10 text-primary text-xs">
- Decumulation
- </Badge>
- <Badge className="bg-muted/50 text-muted-foreground text-xs">
- Advanced
- </Badge>
- </div>
- </div>
- </motion.div>
 
- {/* Body */}
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ duration: 0.3, delay: 0.1 }}
- className="flex-1 min-h-0 overflow-y-auto px-6 py-4"
- >
- <Tabs defaultValue="withdrawal" className="w-full">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- {tabs.map((tab) => {
- const Icon = tab.icon;
- return (
+ <div className="border-t border-border mb-6" />
+
+ <Tabs defaultValue="withdrawal" className="w-full flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ {tabs.map((tab) => (
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="flex flex-col items-center gap-1 py-2 px-1 text-xs data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground rounded-lg transition-colors"
- ><span className="leading-tight text-center">
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ >
  {tab.label}
- </span></TabsTrigger>
- );
- })}
+ </TabsTrigger>
+ ))}
  </TabsList>
 
  <TabsContent
@@ -1956,7 +1885,7 @@ export default function RetirementIncomePage() {
  <IncomeFlooringTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

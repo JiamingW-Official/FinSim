@@ -1852,41 +1852,18 @@ function FundEconomics() {
 
 export default function HedgeFundPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-screen-xl mx-auto px-4 py-6 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex items-center gap-3"
- >
- <div className="flex items-center justify-center w-10 h-10 rounded-md bg-indigo-500/20 border border-indigo-500/30">
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Hedge Fund Strategies</h1>
- <p className="text-sm text-muted-foreground">
- Explore institutional strategies — L/S Equity, Global Macro, Merger Arb, CTA, and fund economics
- </p>
- </div>
- <div className="ml-auto flex items-center gap-2">
- <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Simulated Data</span>
- <Badge className="bg-muted text-muted-foreground text-xs">Institutional</Badge>
- </div>
- </motion.div>
-
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <div className="flex items-center gap-3 mb-2">
- <h2 className="text-lg font-medium text-foreground">Strategy Explorer &amp; Simulators</h2>
- </div>
- <p className="text-sm text-muted-foreground">
- Explore L/S Equity, Global Macro, Event Driven, CTA, and fund economics across institutional hedge fund strategies.
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Hedge Funds</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">
+ STRATEGIES · ALPHA · RISK-ADJUSTED RETURNS
  </p>
- </div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="explorer" className="mt-8">
+ <Tabs defaultValue="explorer">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "explorer", label: "Strategy Explorer" },
@@ -1926,8 +1903,10 @@ export default function HedgeFundPage() {
  </TabsContent>
  </Tabs>
 
+ <div className="border-t border-border my-6" />
+
  {/* Footer note */}
- <div className="flex items-start gap-2 rounded-md bg-foreground/[0.03] border border-border p-4">
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
  <p className="text-xs text-muted-foreground">
  All data is simulated for educational purposes. Hedge fund strategies carry significant risks
  including leverage risk, illiquidity, manager risk, and regulatory risk. Past performance of

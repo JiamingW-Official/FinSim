@@ -352,24 +352,16 @@ export default function TaxLossHarvestingPage() {
  });
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
- {/* Header */}
- <motion.div {...fadeUp(0)} className="space-y-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
- <div className="flex items-center gap-3">
- <div className="p-2 rounded-lg bg-green-500/10 border border-green-500/20">
- <Scissors className="w-5 h-5 text-green-500" />
- </div>
- <div>
- <h1 className="text-xl font-bold tracking-tight">Tax Loss Harvesting</h1>
- <p className="text-sm text-muted-foreground">
- Strategically realize losses to offset gains and reduce your tax bill
- </p>
- </div>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Tax Loss Harvesting</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">REALIZE LOSSES · OFFSET GAINS · WASH SALES</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Key metrics */}
- <motion.div {...fadeUp(0.05)} className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  {[
  {
  label: "Est. Tax Savings (YTD)",
@@ -414,22 +406,21 @@ export default function TaxLossHarvestingPage() {
  </CardContent>
  </Card>
  ))}
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div {...fadeUp(0.1)}>
- <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="mb-4 flex-wrap h-auto gap-1">
- <TabsTrigger value="opportunities" className="text-xs text-muted-foreground">
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsTrigger value="opportunities" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Harvesting Opportunities
  </TabsTrigger>
- <TabsTrigger value="washsale" className="text-xs text-muted-foreground">
+ <TabsTrigger value="washsale" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Wash Sale Rules
  </TabsTrigger>
- <TabsTrigger value="longterm" className="text-xs text-muted-foreground">
+ <TabsTrigger value="longterm" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Long-term Impact
  </TabsTrigger>
- <TabsTrigger value="directindexing" className="text-xs text-muted-foreground">
+ <TabsTrigger value="directindexing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Direct Indexing
  </TabsTrigger>
  </TabsList>
@@ -885,7 +876,7 @@ export default function TaxLossHarvestingPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

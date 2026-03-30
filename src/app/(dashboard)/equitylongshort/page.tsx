@@ -1250,45 +1250,17 @@ export default function EquityLongShortPage() {
  const [activeTab, setActiveTab] = useState("portfolio");
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="w-9 h-9 rounded-md bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">Equity Long/Short Strategies</h1>
- <p className="text-xs text-muted-foreground">
- Fundamental L/S · Pairs Trading · Short Selling · Hedge Fund Alpha Economics
- </p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Long/Short Equity</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">PAIRS · FACTOR EXPOSURE · NET LONG</p>
 
- {/* Quick stat chips */}
- <div className="flex flex-wrap gap-2 mt-3">
- <Badge variant="outline" className="text-xs border-indigo-500/30 text-indigo-400 bg-indigo-500/10">
- 130/30 · Market Neutral · Long-Biased
- </Badge>
- <Badge variant="outline" className="text-xs border-emerald-500/30 text-emerald-400 bg-emerald-500/5">
- Net Beta Management
- </Badge>
- <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-400 bg-amber-500/10">
- Cointegration-Based Pairs
- </Badge>
- <Badge variant="outline" className="text-xs border-rose-500/30 text-rose-400 bg-rose-500/10">
- 2 &amp; 20 Fee Structure
- </Badge>
- </div>
- </motion.div>
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "portfolio", label: "L/S Portfolio Structure" },
  { value: "short", label: "Short Selling" },
@@ -1328,6 +1300,7 @@ export default function EquityLongShortPage() {
  </motion.div>
  </AnimatePresence>
  </Tabs>
+ </div>
  </div>
  );
 }

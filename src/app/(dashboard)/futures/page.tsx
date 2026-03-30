@@ -1604,25 +1604,14 @@ function MarginOrderTab() {
 
 export default function FuturesPage() {
  return (
- <div className="flex flex-col gap-4 p-4 pb-8">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex flex-col gap-1"
- >
- <div className="flex items-center gap-2">
- <h1 className="text-lg font-medium text-foreground">Futures & Financial Derivatives</h1>
- <Badge variant="outline" className="text-xs text-muted-foreground border-muted-foreground/30">SIMULATED</Badge>
- </div>
- <p className="text-xs text-muted-foreground">
- Equity index, interest rate, currency, volatility futures — margin calculations and contract specifications.
- </p>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Futures Markets</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">INDICES · RATES · COMMODITIES · FX</p>
 
  {/* Tabs */}
- <Tabs defaultValue="equity" className="w-full mt-8">
+ <Tabs defaultValue="equity" className="w-full">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "equity", label: "Equity & Index" },
@@ -1634,7 +1623,7 @@ export default function FuturesPage() {
  <TabsTrigger
  key={t.value}
  value={t.value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-[11px] text-muted-foreground data-[state=active]:text-foreground"
  >
  <span className="hidden sm:inline">{t.label}</span>
  </TabsTrigger>
@@ -1673,6 +1662,7 @@ export default function FuturesPage() {
  </TabsContent>
  </AnimatePresence>
  </Tabs>
+ </div>
  </div>
  );
 }

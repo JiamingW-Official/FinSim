@@ -1040,47 +1040,15 @@ function RebalancingTab() {
 
 export default function PortfolioLabPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-6 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="space-y-1"
- >
- <div className="flex items-center gap-3">
- <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-indigo-500/15 border border-indigo-500/30">
- <BarChart3 className="h-5 w-5 text-indigo-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Portfolio Construction Lab</h1>
- <p className="text-sm text-muted-foreground">
- Mean-variance optimization · Black-Litterman · Risk budgeting · Rebalancing
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 pt-1">
- {[
- { label: "Efficient Frontier", icon: TrendingUp, color: "text-indigo-400" },
- { label: "Black-Litterman", icon: Activity, color: "text-primary" },
- { label: "Risk Budgeting", icon: Scale, color: "text-emerald-400" },
- { label: "Rebalancing", icon: RefreshCw, color: "text-amber-400" },
- ].map(({ label, icon: Icon, color }) => (
- <Badge key={label} variant="outline" className="text-xs text-muted-foreground gap-1">
- <Icon className={`h-3 w-3 ${color}`} />
- {label}
- </Badge>
- ))}
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Portfolio Lab</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">CONSTRUCTION · OPTIMIZATION · BACKTESTING</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
- >
  <Tabs defaultValue="frontier" className="space-y-4">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="frontier" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Efficient Frontier</TabsTrigger>
@@ -1102,7 +1070,6 @@ export default function PortfolioLabPage() {
  <RebalancingTab />
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  </div>
  );

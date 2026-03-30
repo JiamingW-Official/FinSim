@@ -1479,56 +1479,45 @@ export default function EquityResearch3Page() {
  void r();
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-8 space-y-4">
- {/* Header — Hero */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6">
- <div className="flex items-center gap-2 mb-1">
- <Microscope className="w-3.5 h-3.5 text-muted-foreground/50" />
- <span className="text-xs font-medium text-primary">Advanced Equity Research</span>
- </div>
- <h1 className="text-xl font-semibold text-foreground">
- SOTP · Primary Research · Forensic Accounting · Thesis Construction
- </h1>
- <p className="text-sm text-muted-foreground mt-1">
- Professional-grade frameworks used by top-tier buy-side analysts and fundamental short sellers.
- </p>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Equity Research III</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">DEEP DIVE · CATALYSTS · CONVICTION</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="sotp" className="w-full mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <Tabs defaultValue="sotp" className="w-full">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
- { value: "sotp", label: "SOTP & Conglomerates", icon: <PieChart className="w-3.5 h-3.5" /> },
- { value: "primary", label: "Primary Research", icon: <Search className="w-3.5 h-3.5" /> },
- { value: "forensic", label: "Forensic Accounting", icon: <Microscope className="w-3.5 h-3.5" /> },
- { value: "thesis", label: "Thesis Construction", icon: <Target className="w-3.5 h-3.5" /> },
+ { value: "sotp", label: "SOTP & Conglomerates" },
+ { value: "primary", label: "Primary Research" },
+ { value: "forensic", label: "Forensic Accounting" },
+ { value: "thesis", label: "Thesis Construction" },
  ].map((tab) => (
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-muted data-[state=active]:text-foreground rounded-lg"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- {tab.icon}
- <span className="hidden sm:inline">{tab.label}</span>
+ {tab.label}
  </TabsTrigger>
  ))}
  </TabsList>
 
- <div className="mt-4">
- <TabsContent value="sotp" className="data-[state=inactive]:hidden">
+ <TabsContent value="sotp" className="mt-0 data-[state=inactive]:hidden">
  <SOTPTab />
  </TabsContent>
- <TabsContent value="primary" className="data-[state=inactive]:hidden">
+ <TabsContent value="primary" className="mt-0 data-[state=inactive]:hidden">
  <PrimaryResearchTab />
  </TabsContent>
- <TabsContent value="forensic" className="data-[state=inactive]:hidden">
+ <TabsContent value="forensic" className="mt-0 data-[state=inactive]:hidden">
  <ForensicTab />
  </TabsContent>
- <TabsContent value="thesis" className="data-[state=inactive]:hidden">
+ <TabsContent value="thesis" className="mt-0 data-[state=inactive]:hidden">
  <ThesisTab />
  </TabsContent>
- </div>
  </Tabs>
  </div>
  </div>

@@ -631,26 +631,18 @@ export default function FXCarryPage() {
  const basketVol = 6.1;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex flex-col gap-1"
- >
- <div className="flex items-center gap-3">
- <Globe className="w-7 h-7 text-emerald-400" />
- <h1 className="text-lg font-medium">FX Carry Trade &amp; Currency Strategies</h1>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">FX Carry Trade</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">INTEREST DIFFERENTIALS · CARRY · ROLLOVER</p>
  </div>
- <p className="text-sm text-muted-foreground max-w-2xl">
- Exploit interest rate differentials across G10 currencies. Monitor carry basket performance,
- rate spreads, volatility regimes, and tail risk in a systematic carry portfolio.
- </p>
- </motion.div>
 
- {/* Key Metrics — Hero */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+ <div className="border-t border-border mb-6" />
+
+ {/* Key Metrics */}
+ <div className="rounded-lg border border-border bg-card p-5 grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
  <MetricCard
  label="G10 Carry Index (1yr)"
  value={`+${g10CarryReturn}%`}
@@ -686,18 +678,12 @@ export default function FXCarryPage() {
  </div>
 
  {/* Main Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.25 }}
- className="mt-8"
- >
- <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="portfolio">Carry Portfolio</TabsTrigger>
- <TabsTrigger value="rates">Interest Rate Differentials</TabsTrigger>
- <TabsTrigger value="risk">Risk Analysis</TabsTrigger>
- <TabsTrigger value="strategies">Strategy Types</TabsTrigger>
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Carry Portfolio</TabsTrigger>
+ <TabsTrigger value="rates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Interest Rate Differentials</TabsTrigger>
+ <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Analysis</TabsTrigger>
+ <TabsTrigger value="strategies" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Strategy Types</TabsTrigger>
  </TabsList>
 
  {/* ── Tab: Carry Portfolio ── */}
@@ -1014,7 +1000,7 @@ export default function FXCarryPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

@@ -1803,31 +1803,14 @@ export default function CommoditiesPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 lg:p-4">
- {/* HERO Header */}
- <div className="flex items-start justify-between mb-8 flex-wrap gap-4 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div>
- <h1 className="text-xl font-semibold text-foreground">Commodities Markets</h1>
- <p className="text-muted-foreground text-sm mt-1">
- Energy · Metals · Agriculture · Softs — 24 markets, futures curves, and trade ideas
- </p>
- </div>
- <div className="flex items-center gap-2 flex-wrap">
- <Badge variant="outline" className="border-emerald-500 text-emerald-400 text-xs">
- <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full inline-block mr-1 animate-pulse" />
- Markets Open
- </Badge>
- <Badge variant="outline" className="border-border text-muted-foreground text-xs">
- Mar 28, 2026
- </Badge>
- <Badge className="bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs">
- Supercycle: Boom Phase
- </Badge>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Commodities</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">ENERGY · METALS · AGRICULTURE · FUTURES</p>
 
  {/* Summary Stats Strip */}
- <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 mb-6">
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
  {[
  { label: "WTI Crude", val: "$78.42", chg: "+1.23%", up: true },
  { label: "Gold", val: "$2,318", chg: "+0.34%", up: true },
@@ -1838,10 +1821,10 @@ export default function CommoditiesPage() {
  { label: "Cocoa", val: "$8,432", chg: "-2.14%", up: false },
  { label: "Silver", val: "$27.84", chg: "+1.42%", up: true },
  ].map((item) => (
- <div key={item.label} className="bg-card border border-border rounded-lg p-2 text-center">
- <div className="text-muted-foreground text-xs">{item.label}</div>
- <div className="text-foreground font-medium text-sm">{item.val}</div>
- <div className={`text-xs font-mono ${item.up ? "text-emerald-400" : "text-red-400"}`}>{item.chg}</div>
+ <div key={item.label} className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{item.label}</div>
+ <div className="text-foreground font-mono tabular-nums text-sm mt-1">{item.val}</div>
+ <div className={`text-xs font-mono tabular-nums ${item.up ? "text-emerald-400" : "text-red-400"}`}>{item.chg}</div>
  </div>
  ))}
  </div>
@@ -1849,16 +1832,13 @@ export default function CommoditiesPage() {
  {/* Main Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- {tabs.map((tab) => {
- const Icon = tab.icon;
- return (
+ {tabs.map((tab) => (
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-[11px] text-muted-foreground data-[state=active]:text-foreground"
  >{tab.label}</TabsTrigger>
- );
- })}
+ ))}
  </TabsList>
 
  <TabsContent value="dashboard" className="data-[state=inactive]:hidden">
@@ -1945,6 +1925,7 @@ export default function CommoditiesPage() {
  </AnimatePresence>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

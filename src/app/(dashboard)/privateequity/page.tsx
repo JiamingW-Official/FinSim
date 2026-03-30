@@ -1502,30 +1502,15 @@ function DealSourcing() {
 
 export default function PrivateEquityPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-8 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex flex-col gap-1"
- >
- <div className="flex items-center gap-3">
- <div className="w-9 h-9 rounded-md bg-muted/10 border border-border flex items-center justify-center">
- <Briefcase className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-2xl font-semibold text-foreground">Private Equity &amp; LBO Analysis</h1>
- <p className="text-sm text-muted-foreground">Industry overview, LBO modeling, value creation, fund economics, deal sourcing</p>
- </div>
- </div>
- <div className="flex gap-3 mt-2">
- <Badge className="bg-muted/10 text-primary border-border">$7T Global AUM</Badge>
- <Badge className="bg-muted text-muted-foreground border-border">Buyout | VC | Growth</Badge>
- <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">IRR Modeling</Badge>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Private Equity</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">
+ LBO · VENTURE · GROWTH · BUYOUTS
+ </p>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
  <Tabs defaultValue="overview" className="w-full">
