@@ -169,7 +169,7 @@ function ChartSkeleton({ bars = 48 }: { bars?: number }) {
 export default function TradePage() {
  const { isLoading, error } = useMarketData();
  useKeyboardShortcuts();
- useGameClock();          // drives setInterval(tick, 100) — clock must run
+ useGameClock();          // drives setInterval(tick, 500) — clock must run
  useCompetitionAdvance();
  // Sync chart revealedCount to game clock — prevents showing future bars
  useGameClockBarSync();

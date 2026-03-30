@@ -33,7 +33,7 @@ interface ClockState {
   marketSession: string;
   /** Index into trading days array */
   tradingDayIndex: number;
-  /** Monotonically increasing counter, bumped every ~100ms */
+  /** Monotonically increasing counter (currently always 0 — not incremented) */
   tickVersion: number;
 }
 
@@ -90,7 +90,6 @@ export function useGameMarketData(
   const gameDate = useClockStore((s) => s.gameDate);
   const gameHour = useClockStore((s) => s.gameHour);
   const gameMinute = useClockStore((s) => s.gameMinute);
-  const tickVersion = useClockStore((s) => s.tickVersion);
 
   // Store actions
   const updateBars = useMarketDataStoreV2((s) => s.updateBars);
@@ -115,17 +114,10 @@ export function useGameMarketData(
   }, [ticker, dailyQuery.isLoading, setLoading]);
 
   // ── Compute visible bars ──────────────────────────────────────────────────
-  // Throttle: only recompute when a new bar boundary is crossed (~every 1s)
-  // We use tickVersion % 10 === 0 as a rough 1-second throttle (100ms ticks)
-  const shouldUpdate = tickVersion % 10 === 0;
-
+  // useMemo naturally deduplicates: only recomputes when gameDate/gameHour/
+  // gameMinute actually change (every ~10 real seconds at 6x speed).
   const bars = useMemo(() => {
-    // Gate on shouldUpdate to throttle; also depend on core inputs
     if (!dailyQuery.data || dailyQuery.data.length === 0) return [];
-
-    // Don't recompute if nothing meaningful changed
-    // (tickVersion is in deps via shouldUpdate, but we only proceed on boundaries)
-    void shouldUpdate;
 
     if (timeframe === "1d") {
       // Daily view: return all daily bars up to the current game date
@@ -173,15 +165,7 @@ export function useGameMarketData(
 
     return [];
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    ticker,
-    timeframe,
-    gameDate,
-    gameHour,
-    gameMinute,
-    shouldUpdate,
-    dailyQuery.data,
-  ]);
+  }, [ticker, timeframe, gameDate, gameHour, gameMinute, dailyQuery.data]);
 
   // ── Compute current price (interpolated within current bar) ───────────────
   const { currentPrice, dailyChange, dailyChangePct } = useMemo(() => {
