@@ -1069,11 +1069,11 @@ export function AICoachPanel() {
             </div>
 
             {/* ── Main content ── */}
-            <div className="flex flex-col gap-1.5 px-3 py-2">
+            <div className="flex flex-col px-3 py-2 gap-0">
 
               {/* ── Ideas tab ── */}
               {mode === "ideas" && (
-                <div className="space-y-1.5">
+                <div className="py-2 space-y-1.5">
                   <div className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/40">
                     Trade Ideas — All Tickers
                   </div>
@@ -1083,7 +1083,7 @@ export function AICoachPanel() {
 
               {/* ── Scan tab ── */}
               {mode === "scan" && (
-                <div className="space-y-1.5">
+                <div className="py-2 space-y-1.5">
                   <div className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/40">
                     Opportunity Scanner
                   </div>
@@ -1098,7 +1098,7 @@ export function AICoachPanel() {
               )}
 
               {/* ── Personalized Coach tab ── */}
-              {mode === "personalized" && <PersonalizedCoach />}
+              {mode === "personalized" && <div className="py-2"><PersonalizedCoach /></div>}
 
               {/* ── Loading state (before result) ── */}
               {loading && !result && mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
@@ -1109,7 +1109,7 @@ export function AICoachPanel() {
 
               {/* ── Error state ── */}
               {error && mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
-                <div className="flex items-start gap-1.5 text-[10px] font-mono text-rose-500/70 rounded border border-rose-500/20 bg-rose-500/5 px-2 py-1.5">
+                <div className="flex items-start gap-1.5 text-[10px] font-mono text-rose-500/70 rounded border border-rose-500/20 bg-rose-500/5 px-2 py-1.5 mt-2">
                   <AlertCircle className="h-3 w-3 mt-0.5 shrink-0" />
                   <span>{error}</span>
                 </div>
@@ -1117,159 +1117,171 @@ export function AICoachPanel() {
 
               {/* ── Analysis output ── */}
               {result && mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
-                <div className="space-y-1.5">
+                <div className="divide-y divide-border/[0.08]">
                   {/* Review mode */}
                   {mode === "review" && result.grade ? (
                     <>
-                      <ReviewDisplay result={result} />
-                      {(summaryText || loading) && (
-                        <div
-                          ref={textScrollRef}
-                          className="flex-1 overflow-y-auto px-2 py-1.5 font-mono text-[10px] leading-relaxed text-foreground/60 bg-background/30 rounded border border-border/20 max-h-20"
-                        >
-                          {summaryText}
-                          {loading && (
-                            <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary/60" />
-                          )}
-                          {!loading && showCursor && (
-                            <motion.span
-                              className="ml-0.5 inline-block h-2 w-0.5 bg-primary/60"
-                              animate={{ opacity: [1, 0, 1] }}
-                              transition={{ repeat: 5, duration: 0.5, type: "tween" }}
-                            />
-                          )}
-                        </div>
-                      )}
+                      <div className="px-0 py-2 space-y-1.5">
+                        <ReviewDisplay result={result} />
+                        {(summaryText || loading) && (
+                          <div
+                            ref={textScrollRef}
+                            className="flex-1 overflow-y-auto px-2 py-1.5 font-mono text-[10px] leading-relaxed text-foreground/60 bg-background/30 rounded border border-border/20 max-h-20"
+                          >
+                            {summaryText}
+                            {loading && (
+                              <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary/60" />
+                            )}
+                            {!loading && showCursor && (
+                              <motion.span
+                                className="ml-0.5 inline-block h-2 w-0.5 bg-primary/60"
+                                animate={{ opacity: [1, 0, 1] }}
+                                transition={{ repeat: 5, duration: 0.5, type: "tween" }}
+                              />
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </>
                   ) : (
                     <>
-                      {/* Setup name */}
-                      {result.setupName && (
-                        <div className={cn("rounded border px-2 py-1 text-center", regimeCls.bg, regimeCls.border)}>
-                          <div className={cn("text-[10px] font-mono font-semibold", regimeCls.text)}>
-                            {result.setupName}
+                      {/* Section 1: Score / regime / signals */}
+                      <div className="py-2 space-y-1.5">
+                        {result.setupName && (
+                          <div className={cn("rounded border px-2 py-1 text-center", regimeCls.bg, regimeCls.border)}>
+                            <div className={cn("text-[10px] font-mono font-semibold", regimeCls.text)}>
+                              {result.setupName}
+                            </div>
                           </div>
+                        )}
+                        {result.signals.length > 0 ? (
+                          <SentimentGauge
+                            score={result.score}
+                            bias={result.bias}
+                            signals={result.signals}
+                          />
+                        ) : (
+                          <ScoreGauge score={result.score} bias={result.bias} />
+                        )}
+                        {result.signals.length > 0 && (
+                          <SignalChips
+                            signals={result.signals}
+                            selectedId={selectedSignalId}
+                            onSelect={setSelectedSignalId}
+                          />
+                        )}
+                        <DivergenceAlert divergences={result.divergences} />
+                      </div>
+
+                      {/* Section 2: Level ladder */}
+                      {currentPrice > 0 && (
+                        <div className="py-2">
+                          <LevelLadder levels={result.levels} currentPrice={currentPrice} />
                         </div>
                       )}
 
-                      {/* Sentiment gauge or score gauge */}
-                      {result.signals.length > 0 ? (
-                        <SentimentGauge
-                          score={result.score}
-                          bias={result.bias}
-                          signals={result.signals}
-                        />
-                      ) : (
-                        <ScoreGauge score={result.score} bias={result.bias} />
-                      )}
-
-                      {/* Signal chips */}
-                      {result.signals.length > 0 && (
-                        <SignalChips
-                          signals={result.signals}
-                          selectedId={selectedSignalId}
-                          onSelect={setSelectedSignalId}
-                        />
-                      )}
-
-                      {/* Divergence alert */}
-                      <DivergenceAlert divergences={result.divergences} />
-
-                      {/* Level ladder */}
-                      {currentPrice > 0 && (
-                        <LevelLadder levels={result.levels} currentPrice={currentPrice} />
-                      )}
-
-                      {/* Typed summary */}
-                      {(summaryText || loading) && (
-                        <div
-                          ref={textScrollRef}
-                          className="flex-1 overflow-y-auto px-2 py-1.5 font-mono text-[10px] leading-relaxed text-foreground/60 bg-background/30 rounded border border-border/20 italic max-h-20"
-                        >
-                          {summaryText}
-                          {loading && (
-                            <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary/60" />
+                      {/* Section 3: Summary + insights */}
+                      {(summaryText || loading || (result.insights.length > 0 && !loading)) && (
+                        <div className="py-2 space-y-1.5">
+                          {(summaryText || loading) && (
+                            <div
+                              ref={textScrollRef}
+                              className="flex-1 overflow-y-auto px-2 py-1.5 font-mono text-[10px] leading-relaxed text-foreground/60 bg-background/30 rounded border border-border/20 italic max-h-20"
+                            >
+                              {summaryText}
+                              {loading && (
+                                <span className="ml-0.5 inline-block h-2 w-0.5 animate-pulse bg-primary/60" />
+                              )}
+                              {!loading && showCursor && (
+                                <motion.span
+                                  className="ml-0.5 inline-block h-2 w-0.5 bg-primary/60"
+                                  animate={{ opacity: [1, 0, 1] }}
+                                  transition={{ repeat: 5, duration: 0.5, type: "tween" }}
+                                />
+                              )}
+                            </div>
                           )}
-                          {!loading && showCursor && (
-                            <motion.span
-                              className="ml-0.5 inline-block h-2 w-0.5 bg-primary/60"
-                              animate={{ opacity: [1, 0, 1] }}
-                              transition={{ repeat: 5, duration: 0.5, type: "tween" }}
+                          {result.insights.length > 0 && !loading && (
+                            <div className="space-y-0.5">
+                              {result.insights.map((insight, i) => {
+                                const lower = insight.toLowerCase();
+                                const isBullish =
+                                  lower.includes("strong") ||
+                                  lower.includes("bullish") ||
+                                  lower.includes("upward") ||
+                                  lower.includes("rising") ||
+                                  lower.includes("buy") ||
+                                  lower.includes("momentum");
+                                const isWarning =
+                                  lower.includes("warning") ||
+                                  lower.includes("risk") ||
+                                  lower.includes("caution") ||
+                                  lower.includes("bearish") ||
+                                  lower.includes("downward") ||
+                                  lower.includes("weak");
+                                return (
+                                  <div key={i} className="flex gap-1.5 text-[9px] font-mono leading-tight">
+                                    {isBullish ? (
+                                      <TrendingUp className="h-2.5 w-2.5 text-emerald-400/70 shrink-0 mt-px" />
+                                    ) : isWarning ? (
+                                      <AlertTriangle className="h-2.5 w-2.5 text-amber-400/70 shrink-0 mt-px" />
+                                    ) : (
+                                      <Info className="h-2.5 w-2.5 text-primary/50 shrink-0 mt-px" />
+                                    )}
+                                    <span className="text-muted-foreground/60">{insight}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Section 4: Multi-TF + Confidence */}
+                      {mode === "trade" && !loading && (visibleData.length > 0 || currentPrice > 0) && (
+                        <div className="py-2 space-y-1.5">
+                          {visibleData.length > 0 && (
+                            <MultiTimeframePanel
+                              barIndex={visibleData.length}
+                              bias={result.bias}
+                            />
+                          )}
+                          {currentPrice > 0 && (
+                            <StrategyConfidenceMeter
+                              result={result}
+                              currentPrice={currentPrice}
                             />
                           )}
                         </div>
                       )}
 
-                      {/* Animated insights */}
-                      {result.insights.length > 0 && !loading && (
-                        <div className="space-y-0.5">
-                          {result.insights.map((insight, i) => {
-                            const lower = insight.toLowerCase();
-                            const isBullish =
-                              lower.includes("strong") ||
-                              lower.includes("bullish") ||
-                              lower.includes("upward") ||
-                              lower.includes("rising") ||
-                              lower.includes("buy") ||
-                              lower.includes("momentum");
-                            const isWarning =
-                              lower.includes("warning") ||
-                              lower.includes("risk") ||
-                              lower.includes("caution") ||
-                              lower.includes("bearish") ||
-                              lower.includes("downward") ||
-                              lower.includes("weak");
-                            return (
-                              <div key={i} className="flex gap-1.5 text-[9px] font-mono leading-tight">
-                                {isBullish ? (
-                                  <TrendingUp className="h-2.5 w-2.5 text-emerald-400/70 shrink-0 mt-px" />
-                                ) : isWarning ? (
-                                  <AlertTriangle className="h-2.5 w-2.5 text-amber-400/70 shrink-0 mt-px" />
-                                ) : (
-                                  <Info className="h-2.5 w-2.5 text-primary/50 shrink-0 mt-px" />
-                                )}
-                                <span className="text-muted-foreground/60">{insight}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-
-                      {/* Multi-TF Confluence */}
-                      {mode === "trade" && !loading && visibleData.length > 0 && (
-                        <MultiTimeframePanel
-                          barIndex={visibleData.length}
-                          bias={result.bias}
-                        />
-                      )}
-
-                      {/* Strategy Confidence Meter */}
-                      {mode === "trade" && !loading && currentPrice > 0 && (
-                        <StrategyConfidenceMeter
-                          result={result}
-                          currentPrice={currentPrice}
-                        />
-                      )}
-
-                      {/* Trade Plan */}
+                      {/* Section 5: Trade Plan */}
                       {result.tradePlan && mode === "trade" && !loading && (
-                        <TradePlanCard plan={result.tradePlan} conviction={result.conviction} />
+                        <div className="py-2">
+                          <TradePlanCard plan={result.tradePlan} conviction={result.conviction} />
+                        </div>
                       )}
                     </>
                   )}
 
-                  {/* Live Position Coach */}
+                  {/* Section 6: Live Position Coach */}
                   {openPosition && !loading && (
-                    <LivePositionCoach
-                      unrealizedPnL={openPosition.unrealizedPnL}
-                      unrealizedPnLPercent={openPosition.unrealizedPnLPercent}
-                      atrTrailingStop={atrTrailingStop}
-                      alignmentMsg={trendAlignmentMessage}
-                    />
+                    <div className="py-2">
+                      <LivePositionCoach
+                        unrealizedPnL={openPosition.unrealizedPnL}
+                        unrealizedPnLPercent={openPosition.unrealizedPnLPercent}
+                        atrTrailingStop={atrTrailingStop}
+                        alignmentMsg={trendAlignmentMessage}
+                      />
+                    </div>
                   )}
 
-                  {/* Trader profile */}
-                  <ProfileCard profile={result.traderProfile} />
+                  {/* Section 7: Trader profile */}
+                  {result.traderProfile && result.traderProfile.totalTrades >= 5 && (
+                    <div className="py-2">
+                      <ProfileCard profile={result.traderProfile} />
+                    </div>
+                  )}
                 </div>
               )}
             </div>

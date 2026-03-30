@@ -399,8 +399,8 @@ export default function TradePage() {
 
        {/* Margin tab */}
        <TabsContent value="margin" className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden">
-        <MarginDashboard />
-        <div className="mt-2 border-t border-border/20 pt-2">
+        <div className="p-2 space-y-2">
+         <MarginDashboard />
          <ErrorBoundary name="ExecutionQuality">
           <ExecutionQuality />
          </ErrorBoundary>

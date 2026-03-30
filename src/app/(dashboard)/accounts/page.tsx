@@ -1064,15 +1064,15 @@ export default function AccountsPage() {
 
  return (
  <div className="flex flex-col h-full overflow-y-auto">
+ <div className="max-w-4xl mx-auto w-full px-6 py-6 space-y-6">
  {/* Header */}
- <div className="shrink-0 border-b border-border px-6 py-4">
  <div className="flex items-center justify-between">
  <div>
- <h1 className="text-lg font-semibold text-foreground flex items-center gap-2">
+ <h1 className="text-[18px] font-semibold tracking-tight text-foreground flex items-center gap-2">
  <Wallet className="h-3.5 w-3.5 text-muted-foreground/50" />
  Accounts
  </h1>
- <p className="text-xs text-muted-foreground mt-0.5">
+ <p className="text-[12px] font-mono text-muted-foreground/50 mt-0.5">
  Manage multiple trading accounts, compare performance, and optimize tax allocation
  </p>
  </div>
@@ -1085,10 +1085,13 @@ export default function AccountsPage() {
  Add Account
  </Button>
  </div>
- </div>
 
  {/* HERO — Aggregate Portfolio */}
- <div className="shrink-0 mx-6 mt-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
+ <div className="rounded-lg border border-border/30 bg-card/50 overflow-hidden">
+ <div className="px-4 py-3 border-b border-border/20">
+ <h2 className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/40">Aggregate Portfolio</h2>
+ </div>
+ <div className="p-5">
  <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
  <div>
  <p className="text-xs text-muted-foreground mb-1">Total Portfolio</p>
@@ -1128,20 +1131,22 @@ export default function AccountsPage() {
  </div>
  </div>
  </div>
+ </div>
+ </div>
 
  {/* Tabs */}
- <Tabs defaultValue="overview" className="flex-1 flex flex-col min-h-0">
- <div className="shrink-0 px-6 pt-3">
- <TabsList className="h-8">
- <TabsTrigger value="overview" className="text-xs text-muted-foreground px-3">Overview</TabsTrigger>
- <TabsTrigger value="comparison" className="text-xs text-muted-foreground px-3">Comparison</TabsTrigger>
- <TabsTrigger value="transfer" className="text-xs text-muted-foreground px-3">Transfer & Allocation</TabsTrigger>
- <TabsTrigger value="settings" className="text-xs text-muted-foreground px-3">Settings</TabsTrigger>
+ <Tabs defaultValue="overview">
+ <div className="mb-4">
+ <TabsList className="bg-transparent border-b border-border/30 rounded-none p-0 h-auto">
+ <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Overview</TabsTrigger>
+ <TabsTrigger value="comparison" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Comparison</TabsTrigger>
+ <TabsTrigger value="transfer" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Transfer & Allocation</TabsTrigger>
+ <TabsTrigger value="settings" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Settings</TabsTrigger>
  </TabsList>
  </div>
 
  {/* ── Tab 1: Overview ──────────────────────────────────────────────── */}
- <TabsContent value="overview" className="flex-1 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
+ <TabsContent value="overview" className="mt-0 pt-4 data-[state=inactive]:hidden">
  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
  {accounts.map((acc) => (
  <AccountCard key={acc.id} account={acc} />
@@ -1150,7 +1155,7 @@ export default function AccountsPage() {
  </TabsContent>
 
  {/* ── Tab 2: Comparison ────────────────────────────────────────────── */}
- <TabsContent value="comparison" className="flex-1 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
+ <TabsContent value="comparison" className="mt-0 pt-4 data-[state=inactive]:hidden">
  <div className="space-y-4">
  {/* Bar chart */}
  <Card className="p-5 bg-card/60 border-border">
@@ -1277,7 +1282,7 @@ export default function AccountsPage() {
  </TabsContent>
 
  {/* ── Tab 3: Transfer & Allocation ─────────────────────────────────── */}
- <TabsContent value="transfer" className="flex-1 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
+ <TabsContent value="transfer" className="mt-0 pt-4 data-[state=inactive]:hidden">
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
  {/* Transfer form */}
  <div className="space-y-4">
@@ -1500,7 +1505,7 @@ export default function AccountsPage() {
  </TabsContent>
 
  {/* ── Tab 4: Settings ──────────────────────────────────────────────── */}
- <TabsContent value="settings" className="flex-1 overflow-y-auto px-6 py-4 data-[state=inactive]:hidden">
+ <TabsContent value="settings" className="mt-0 pt-4 data-[state=inactive]:hidden">
  <div className="space-y-3 max-w-2xl">
  {accounts.map((acc) => (
  <AccountSettingsRow
