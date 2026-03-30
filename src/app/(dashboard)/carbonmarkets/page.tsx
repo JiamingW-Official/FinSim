@@ -500,7 +500,7 @@ function ComplianceTab() {
  </thead>
  <tbody>
  {euPhases.map((row, i) => (
- <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
+ <tr key={i} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-3 text-indigo-400 font-medium">{row.phase}</td>
  <td className="py-2 px-3 text-muted-foreground">{row.years}</td>
  <td className="py-2 px-3 text-muted-foreground">{row.cap}</td>
@@ -546,7 +546,7 @@ function ComplianceTab() {
  </thead>
  <tbody>
  {ETS_SYSTEMS.map((ets, i) => (
- <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
+ <tr key={i} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-3 text-foreground font-medium">{ets.name}</td>
  <td className="py-2 px-3 text-muted-foreground">{ets.region}</td>
  <td className="py-2 px-3 text-muted-foreground">{ets.launched}</td>
@@ -675,7 +675,7 @@ function VoluntaryTab() {
  </thead>
  <tbody>
  {vcmVsCompliance.map((row, i) => (
- <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
+ <tr key={i} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-3 text-muted-foreground font-medium">{row.aspect}</td>
  <td className="py-2 px-3 text-muted-foreground">{row.voluntary}</td>
  <td className="py-2 px-3 text-muted-foreground">{row.compliance}</td>
@@ -950,7 +950,7 @@ function InvestmentTab() {
  </thead>
  <tbody>
  {CARBON_FUNDS.map((fund, i) => (
- <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
+ <tr key={i} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-3 text-foreground font-mono font-medium">{fund.ticker}</td>
  <td className="py-2 px-3 text-muted-foreground">{fund.name}</td>
  <td className="py-2 px-3 text-muted-foreground">{fund.aum}</td>
@@ -1094,7 +1094,7 @@ export default function CarbonMarketsPage() {
  </div>
 
  <Tabs defaultValue="compliance">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="compliance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Compliance Markets
  </TabsTrigger>

@@ -893,7 +893,7 @@ function Tab2StablecoinContent() {
  </thead>
  <tbody>
  {yieldStables.map((row, i) => (
- <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
+ <tr key={i} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-3 text-amber-400 font-medium">{row.name}</td>
  <td className="py-2 px-3 text-muted-foreground">{row.mechanism}</td>
  <td className="py-2 px-3 text-emerald-400 font-mono">{row.yield}</td>
@@ -1185,7 +1185,7 @@ function Tab3PrimeBrokerageContent() {
  </thead>
  <tbody>
  {pbProviders.map((pb, i) => (
- <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
+ <tr key={i} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-3 text-foreground font-medium">{pb.name}</td>
  <td className="py-2 px-3 text-muted-foreground">{pb.strengths}</td>
  {([pb.custody, pb.otc, pb.lending, pb.margin] as boolean[]).map((has, j) => (
@@ -1731,7 +1731,7 @@ export default function CryptoInstitutionalPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="etfs">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger
  value="etfs"
  className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"

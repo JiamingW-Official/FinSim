@@ -449,7 +449,7 @@ function BondUniverseTab({
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: i * 0.02 }}
  className={cn(
- "border-t border-border/20 hover:bg-muted/50 cursor-pointer transition-colors",
+ "border-t border-border hover:bg-muted/50 cursor-pointer transition-colors",
  selectedBond?.id === bond.id && "bg-muted"
  )}
  onClick={() => setSelectedBond(bond.id === selectedBond?.id ? null : bond)}
@@ -1447,7 +1447,7 @@ function TaxExemptTab() {
  const tsyAfterTax = 4.25 * (1 - marginalRate / 100);
  const vs = afterTax - tsyAfterTax;
  return (
- <tr key={b.label} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={b.label} className="border-b border-border hover:bg-muted/20">
  <td className="py-2 text-foreground">{b.label}</td>
  <td className="py-2 text-right text-muted-foreground">{b.coupon.toFixed(2)}%</td>
  <td className="py-2 text-right">
@@ -1625,7 +1625,7 @@ export default function FixedIncomePage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "universe", label: "Bond Universe" },
  { value: "yieldcurve", label: "Yield Curve" },

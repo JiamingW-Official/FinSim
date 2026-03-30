@@ -112,11 +112,11 @@ export function generateShareText(stats: {
 }): string {
   const pnlSign = stats.totalPnL >= 0 ? "+" : "";
   return [
-    `🎮 Alpha Deck Trading Sim`,
-    `📊 Lv.${stats.level} ${stats.title}`,
-    `💰 Portfolio: $${stats.portfolioValue.toLocaleString("en-US", { minimumFractionDigits: 2 })}`,
-    `📈 P&L: ${pnlSign}$${stats.totalPnL.toLocaleString("en-US", { minimumFractionDigits: 2 })}`,
-    `🎯 Win Rate: ${stats.winRate}% (${stats.totalTrades} trades)`,
-    `🏆 ${stats.achievements} achievements unlocked`,
+    ` Alpha Deck Trading Sim`,
+    ` Lv.${stats.level} ${stats.title}`,
+    ` Portfolio: $${stats.portfolioValue.toLocaleString("en-US", { minimumFractionDigits: 2 })}`,
+    ` P&L: ${pnlSign}$${stats.totalPnL.toLocaleString("en-US", { minimumFractionDigits: 2 })}`,
+    ` Win Rate: ${stats.winRate}% (${stats.totalTrades} trades)`,
+    ` ${stats.achievements} achievements unlocked`,
   ].join("\n");
 }

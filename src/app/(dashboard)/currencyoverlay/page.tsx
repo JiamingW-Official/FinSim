@@ -541,7 +541,7 @@ function FXExposureMonitor() {
  <>
  <motion.tr
  key={e.currency}
- className="border-b border-border/20 hover:bg-secondary/30 cursor-pointer transition-colors"
+ className="border-b border-border hover:bg-secondary/30 cursor-pointer transition-colors"
  onClick={() => setShowHedgeSlider(isExpanded ? null : e.currency)}
  layout
  >
@@ -942,7 +942,7 @@ function CarryTradeAnalyzer() {
  <tr
  key={p.pair}
  className={cn(
- "border-b border-border/20 cursor-pointer transition-colors",
+ "border-b border-border cursor-pointer transition-colors",
  selectedPair === p.pair ? "bg-muted/10" : "hover:bg-secondary/30"
  )}
  onClick={() => setSelectedPair(p.pair)}
@@ -1115,7 +1115,7 @@ function FXValuationModels() {
  </thead>
  <tbody>
  {pppData.map((d) => (
- <tr key={d.country} className="border-b border-border/20 hover:bg-secondary/30">
+ <tr key={d.country} className="border-b border-border hover:bg-secondary/30">
  <td className="py-2 px-3 font-medium">{d.country} <span className="text-muted-foreground">({d.currency})</span></td>
  <td className="py-2 px-3 text-right font-mono">{d.bigMacPrice}</td>
  <td className="py-2 px-3 text-right font-mono">{d.impliedRate.toFixed(4)}</td>
@@ -1430,7 +1430,7 @@ function OptionsFXHedging() {
  </thead>
  <tbody>
  {costData.map((row, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-secondary/30">
+ <tr key={i} className="border-b border-border hover:bg-secondary/30">
  <td className="py-2 px-4 font-medium">{row.instrument}</td>
  <td className="py-2 px-4 text-center font-mono text-amber-400">{row.cost}</td>
  <td className="py-2 px-4 text-center text-muted-foreground">{row.protection}</td>
@@ -1513,7 +1513,7 @@ function CrossCurrencySwapAnalytics() {
  </thead>
  <tbody>
  {basisPairData.map((row, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-secondary/30">
+ <tr key={i} className="border-b border-border hover:bg-secondary/30">
  <td className="py-2 px-3 font-medium">{row.pair}</td>
  <td className="py-2 px-3 text-center text-muted-foreground">{row.tenor}</td>
  <td className={cn("py-2 px-3 text-right font-mono", row.basis < -20 ? "text-red-400" : "text-amber-400")}>
@@ -1710,7 +1710,7 @@ export default function CurrencyOverlayPage() {
  {/* Navigation Tabs */}
  <div className="px-6 py-4">
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {tabs.map((tab) => (
  <TabsTrigger
  key={tab.id}

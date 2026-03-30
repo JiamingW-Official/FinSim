@@ -96,8 +96,8 @@ export const ARENA_RANKS: Record<ArenaRank, ArenaRankInfo> = {
   silver:   { rank: "silver",   label: "Silver",   emoji: "🥈", color: "text-muted-foreground",    bgColor: "bg-muted-foreground/10",    borderColor: "border-muted-foreground/30",    minElo: 800 },
   gold:     { rank: "gold",     label: "Gold",     emoji: "🥇", color: "text-amber-400",   bgColor: "bg-amber-500/10",   borderColor: "border-amber-500/30",   minElo: 1200 },
   platinum: { rank: "platinum", label: "Platinum", emoji: "💠", color: "text-primary",    bgColor: "bg-primary/10",    borderColor: "border-primary/30",    minElo: 1600 },
-  diamond:  { rank: "diamond",  label: "Diamond",  emoji: "💎", color: "text-muted-foreground",    bgColor: "bg-muted/30",    borderColor: "border-border",    minElo: 2000 },
-  master:   { rank: "master",   label: "Master",   emoji: "👑", color: "text-primary",  bgColor: "bg-primary/10",  borderColor: "border-border",  minElo: 2500 },
+  diamond:  { rank: "diamond",  label: "Diamond",  emoji: "", color: "text-muted-foreground",    bgColor: "bg-muted/30",    borderColor: "border-border",    minElo: 2000 },
+  master:   { rank: "master",   label: "Master",   emoji: "", color: "text-primary",  bgColor: "bg-primary/10",  borderColor: "border-border",  minElo: 2500 },
 };
 
 export const ARENA_RANK_ORDER: ArenaRank[] = ["bronze", "silver", "gold", "platinum", "diamond", "master"];

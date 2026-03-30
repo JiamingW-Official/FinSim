@@ -472,7 +472,7 @@ function CalendarTab() {
  {upcoming.slice(1).map((e, i) => (
  <div
  key={i}
- className="bg-card/50 border border-border/20 rounded px-2.5 py-1.5 flex items-center gap-2.5 text-[11px]"
+ className="bg-card/50 border border-border rounded px-2.5 py-1.5 flex items-center gap-2.5 text-[11px]"
  >
  <div className={cn("px-1.5 py-0.5 rounded text-[11px] font-medium", catColor(e.category))}>
  {e.ticker}
@@ -545,7 +545,7 @@ function CalendarTab() {
  <div
  key={idx}
  className={cn(
- "min-h-[80px] border-b border-r border-border/20 p-1.5",
+ "min-h-[80px] border-b border-r border-border p-1.5",
  idx % 7 === 6 && "border-r-0",
  !cell.day && "bg-muted/20",
  )}
@@ -745,7 +745,7 @@ function EarningsAnalysisTab() {
  </thead>
  <tbody>
  {history.map((row, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
+ <tr key={i} className="border-b border-border hover:bg-muted/20 transition-colors">
  <td className="px-3 py-2 font-medium text-foreground">{row.quarter}</td>
  <td className="px-3 py-2 text-right font-mono">${row.expectedEPS.toFixed(2)}</td>
  <td className="px-3 py-2 text-right font-mono">${row.actualEPS.toFixed(2)}</td>
@@ -893,7 +893,7 @@ function AnalystRatingsTab() {
  </thead>
  <tbody>
  {ratings.map((r, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
+ <tr key={i} className="border-b border-border hover:bg-muted/20 transition-colors">
  <td className="px-3 py-2 font-semibold text-foreground">{r.ticker}</td>
  <td className={cn("px-3 py-2 font-semibold", ratingColor(r.consensus))}>{r.consensus}</td>
  <td className="px-3 py-2 text-right font-mono text-foreground">{r.analysts}</td>
@@ -1214,7 +1214,7 @@ export default function EarningsPage() {
  {/* Tabs */}
  <div className="flex-1 min-h-0 overflow-hidden">
  <Tabs defaultValue="calendar" className="flex flex-col h-full">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto shrink-0 mx-4 mt-3 mb-0 w-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto shrink-0 mx-4 mt-3 mb-0 w-auto">
  <TabsTrigger value="calendar" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Earnings Calendar
  </TabsTrigger>

@@ -558,7 +558,7 @@ function EuEtsTab() {
  </thead>
  <tbody>
  {SECTOR_COVERAGE.map((row) => (
- <tr key={row.sector} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={row.sector} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 pr-4">
  <span className={`flex items-center gap-2 ${row.color}`}>
  {row.icon}
@@ -1298,7 +1298,7 @@ export default function CarbonMarkets2Page() {
 
  {/* Tabs */}
  <Tabs defaultValue="eu-ets">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="eu-ets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  EU ETS
  </TabsTrigger>

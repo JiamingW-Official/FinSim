@@ -572,9 +572,9 @@ function CategoryBadge({ cat }: { cat: ETFCategory }) {
 
 function ETFDetailPanel({ etf, onClose }: { etf: ETFRow; onClose: () => void }) {
  return (
- <div className="flex h-full w-80 shrink-0 flex-col overflow-y-auto border-l border-border/20 bg-card">
+ <div className="flex h-full w-80 shrink-0 flex-col overflow-y-auto border-l border-border bg-card">
  {/* Header */}
- <div className="flex items-start justify-between border-b border-border/20 px-4 py-3">
+ <div className="flex items-start justify-between border-b border-border px-4 py-3">
  <div>
  <div className="flex items-center gap-2">
  <span className="text-base font-semibold">{etf.symbol}</span>
@@ -592,14 +592,14 @@ function ETFDetailPanel({ etf, onClose }: { etf: ETFRow; onClose: () => void }) 
  </div>
 
  {/* Price */}
- <div className="flex items-baseline gap-3 px-4 py-3 border-b border-border/20">
+ <div className="flex items-baseline gap-3 px-4 py-3 border-b border-border">
  <span className="text-2xl font-semibold tabular-nums">${etf.price.toFixed(2)}</span>
  <ReturnChip value={etf.ytdReturn} />
  <span className="text-xs text-muted-foreground">YTD</span>
  </div>
 
  {/* Key stats */}
- <div className="grid grid-cols-2 gap-px border-b border-border/20 bg-border/30">
+ <div className="grid grid-cols-2 gap-px border-b border-border bg-border/30">
  {[
  { label: "AUM", value: `$${etf.aumB.toFixed(1)}B` },
  { label: "Expense Ratio", value: `${etf.expenseRatio.toFixed(3)}%` },
@@ -618,19 +618,19 @@ function ETFDetailPanel({ etf, onClose }: { etf: ETFRow; onClose: () => void }) 
  </div>
 
  {/* 52W range */}
- <div className="px-4 py-3 border-b border-border/20">
+ <div className="px-4 py-3 border-b border-border">
  <div className="mb-2 text-xs text-muted-foreground">52-Week Range</div>
  <RangeBar low={etf.w52Low} high={etf.w52High} current={etf.price} />
  </div>
 
  {/* Description */}
- <div className="px-4 py-3 border-b border-border/20">
+ <div className="px-4 py-3 border-b border-border">
  <div className="mb-1.5 text-xs text-muted-foreground">About</div>
  <p className="text-[11px] text-muted-foreground leading-relaxed">{etf.description}</p>
  </div>
 
  {/* Sparkline */}
- <div className="px-4 py-3 border-b border-border/20">
+ <div className="px-4 py-3 border-b border-border">
  <div className="mb-2 text-xs text-muted-foreground">52W Performance</div>
  <Sparkline etf={etf} width={248} height={48} />
  </div>
@@ -693,10 +693,10 @@ function ETFExplorer() {
  <div className="flex h-full overflow-hidden">
  <div className="flex flex-1 flex-col overflow-hidden">
  {/* Search */}
- <div className="shrink-0 px-4 py-3 border-b border-border/20">
+ <div className="shrink-0 px-4 py-3 border-b border-border">
  <div className="relative">
  <input
- className="w-full max-w-xs rounded-md border border-border/20 bg-muted/30 py-1.5 pl-8 pr-3 text-xs placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+ className="w-full max-w-xs rounded-md border border-border bg-muted/30 py-1.5 pl-8 pr-3 text-xs placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
  placeholder="Search ETFs..."
  value={search}
  onChange={(e) => setSearch(e.target.value)}
@@ -707,7 +707,7 @@ function ETFExplorer() {
  {/* Table */}
  <div className="flex-1 overflow-auto">
  <table className="w-full text-xs text-muted-foreground">
- <thead className="sticky top-0 bg-card z-10 border-b border-border/20">
+ <thead className="sticky top-0 bg-card z-10 border-b border-border">
  <tr>
  <Th k="symbol">Symbol</Th>
  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Name</th>
@@ -827,7 +827,7 @@ function FundComparison() {
  "flex items-center gap-1 rounded-md border px-2.5 py-1 text-xs text-muted-foreground font-medium transition-colors",
  isSel
  ? "border-transparent text-foreground"
- : "border-border/20 text-muted-foreground hover:border-primary/50 hover:text-foreground",
+ : "border-border text-muted-foreground hover:border-primary/50 hover:text-foreground",
  )}
  style={isSel ? { backgroundColor: COMPARE_COLORS[selIdx] } : {}}
  >
@@ -842,7 +842,7 @@ function FundComparison() {
  {selectedRows.length >= 2 && (
  <>
  {/* Performance chart */}
- <div className="rounded-lg border border-border/20 bg-card p-4">
+ <div className="rounded-lg border border-border bg-card p-4">
  <div className="mb-3 flex items-center justify-between">
  <span className="text-xs font-medium text-muted-foreground">
  Normalized Performance (52W, base 100)
@@ -906,10 +906,10 @@ function FundComparison() {
  </div>
 
  {/* Side-by-side stats */}
- <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
+ <div className="rounded-lg border border-border bg-card overflow-hidden">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20 bg-muted/20">
+ <tr className="border-b border-border bg-muted/20">
  <th className="px-4 py-2.5 text-left text-xs font-medium text-muted-foreground">Metric</th>
  {selectedRows.map((e, i) => (
  <th key={e.symbol} className="px-4 py-2.5 text-left text-xs font-medium" style={{ color: COMPARE_COLORS[i] }}>
@@ -959,13 +959,13 @@ function FundComparison() {
  </div>
 
  {/* Overlap analysis */}
- <div className="rounded-lg border border-border/20 bg-card px-4 py-3">
+ <div className="rounded-lg border border-border bg-card px-4 py-3">
  <div className="mb-2 text-xs font-medium text-muted-foreground">Holdings Overlap</div>
  <div className="flex flex-wrap gap-3">
  {overlapPairs.length === 0 ? (
  <span className="text-xs text-muted-foreground">No pairs to compare.</span>
  ) : overlapPairs.map((p) => (
- <div key={`${p.a}-${p.b}`} className="flex items-center gap-2 rounded-md border border-border/20 bg-muted/20 px-3 py-1.5">
+ <div key={`${p.a}-${p.b}`} className="flex items-center gap-2 rounded-md border border-border bg-muted/20 px-3 py-1.5">
  <span className="text-xs text-muted-foreground font-medium">{p.a} + {p.b}</span>
  <span className="text-xs text-muted-foreground">share</span>
  <span className={cn("text-xs font-medium", p.pct > 30 ? "text-amber-400" : "text-emerald-400")}>
@@ -1095,7 +1095,7 @@ function HoldingsXRay() {
  <select
  value={selectedSym}
  onChange={(e) => setSelectedSym(e.target.value)}
- className="rounded-md border border-border/20 bg-muted/30 px-3 py-1.5 text-xs text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+ className="rounded-md border border-border bg-muted/30 px-3 py-1.5 text-xs text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
  >
  {ETF_ROWS.map((e) => (
  <option key={e.symbol} value={e.symbol}>{e.symbol} — {e.name}</option>
@@ -1105,7 +1105,7 @@ function HoldingsXRay() {
 
  <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
  {/* Top 10 holdings */}
- <div className="rounded-lg border border-border/20 bg-card p-4">
+ <div className="rounded-lg border border-border bg-card p-4">
  <div className="mb-3 text-xs font-medium text-muted-foreground">
  Top 10 Holdings
  </div>
@@ -1130,7 +1130,7 @@ function HoldingsXRay() {
  </div>
 
  {/* Sector breakdown */}
- <div className="rounded-lg border border-border/20 bg-card p-4">
+ <div className="rounded-lg border border-border bg-card p-4">
  <div className="mb-3 text-xs font-medium text-muted-foreground">
  Sector Breakdown
  </div>
@@ -1149,7 +1149,7 @@ function HoldingsXRay() {
  </div>
 
  {/* Geographic exposure */}
- <div className="rounded-lg border border-border/20 bg-card p-4">
+ <div className="rounded-lg border border-border bg-card p-4">
  <div className="mb-3 text-xs font-medium text-muted-foreground">
  Geographic Exposure
  </div>
@@ -1170,7 +1170,7 @@ function HoldingsXRay() {
  </div>
 
  {/* Factor exposures radar */}
- <div className="rounded-lg border border-border/20 bg-card p-4">
+ <div className="rounded-lg border border-border bg-card p-4">
  <div className="mb-3 text-xs font-medium text-muted-foreground">
  Factor Exposures
  </div>
@@ -1258,7 +1258,7 @@ function ETFScreener() {
  "rounded-md border px-2.5 py-1 text-xs text-muted-foreground font-medium transition-colors",
  value === opt
  ? "border-primary bg-muted/10 text-foreground"
- : "border-border/20 text-muted-foreground hover:border-primary/40",
+ : "border-border text-muted-foreground hover:border-primary/40",
  )}
  >
  {opt}
@@ -1271,7 +1271,7 @@ function ETFScreener() {
  return (
  <div className="flex h-full flex-col overflow-y-auto px-6 py-4 gap-5">
  {/* Filters */}
- <div className="rounded-lg border border-border/20 bg-card px-4 py-4 space-y-3">
+ <div className="rounded-lg border border-border bg-card px-4 py-4 space-y-3">
  <div className="flex items-center gap-2 mb-1">
  <span className="text-xs font-medium text-muted-foreground">Filters</span>
  </div>
@@ -1313,7 +1313,7 @@ function ETFScreener() {
  ) : (
  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
  {filtered.map((etf) => (
- <div key={etf.symbol} className="rounded-lg border border-border/20 bg-card p-3 hover:border-primary/30 transition-colors">
+ <div key={etf.symbol} className="rounded-lg border border-border bg-card p-3 hover:border-primary/30 transition-colors">
  <div className="flex items-start justify-between mb-2">
  <div>
  <div className="flex items-center gap-2">
@@ -1356,7 +1356,7 @@ function ETFScreener() {
  const etf = ETF_ROWS.find((e) => e.symbol === rec.etf);
  if (!etf) return null;
  return (
- <div key={rec.goal} className="rounded-lg border border-border/20 bg-card p-4 hover:border-amber-400/30 transition-colors">
+ <div key={rec.goal} className="rounded-lg border border-border bg-card p-4 hover:border-amber-400/30 transition-colors">
  <div className="flex items-start justify-between mb-2">
  <div>
  <div className="text-xs font-medium text-amber-400 mb-1">{rec.goal}</div>
@@ -1386,7 +1386,7 @@ export default function ETFPage() {
  return (
  <div className="flex h-full flex-col overflow-hidden">
  {/* Header */}
- <div className="flex items-center gap-3 border-b border-border/20 border-l-4 border-l-primary px-6 py-4">
+ <div className="flex items-center gap-3 border-b border-border border-l-4 border-l-primary px-6 py-4">
  <div>
  <h1 className="text-lg font-medium leading-none">ETF Analysis</h1>
  <p className="mt-1 text-xs text-muted-foreground">
@@ -1396,7 +1396,7 @@ export default function ETFPage() {
  </div>
 
  <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col min-h-0 mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto shrink-0 mx-6 mt-3">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto shrink-0 mx-6 mt-3">
  <TabsTrigger value="explorer" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  ETF Explorer
  </TabsTrigger>

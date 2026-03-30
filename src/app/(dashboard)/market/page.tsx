@@ -317,7 +317,7 @@ function OverviewTab() {
  </thead>
  <tbody>
  {movers.gainers.map((s) => (
- <tr key={s.ticker} className="border-b border-border/20 last:border-0">
+ <tr key={s.ticker} className="border-b border-border last:border-0">
  <td className="py-1 font-mono font-medium">{s.ticker}</td>
  <td className="py-1 text-right font-mono tabular-nums">
  ${s.price.toFixed(2)}
@@ -344,7 +344,7 @@ function OverviewTab() {
  </thead>
  <tbody>
  {movers.losers.map((s) => (
- <tr key={s.ticker} className="border-b border-border/20 last:border-0">
+ <tr key={s.ticker} className="border-b border-border last:border-0">
  <td className="py-1 font-mono font-medium">{s.ticker}</td>
  <td className="py-1 text-right font-mono tabular-nums">
  ${s.price.toFixed(2)}
@@ -554,7 +554,7 @@ function CalendarTab() {
  {dayEvents.map((ev) => (
  <tr
  key={ev.id}
- className="border-b border-border/20 last:border-0 hover:bg-muted/20 transition-colors"
+ className="border-b border-border last:border-0 hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-2.5 text-muted-foreground whitespace-nowrap w-28">
  {ev.time}
@@ -678,7 +678,7 @@ function InsiderTab({ ticker }: { ticker: string }) {
  <div className="rounded-lg border bg-card overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground min-w-[560px]">
  <thead>
- <tr className="border-b border-border/20 text-xs text-muted-foreground">
+ <tr className="border-b border-border text-xs text-muted-foreground">
  <th className="text-left p-3 font-medium">Company</th>
  <th className="text-left p-3 font-medium">Insider</th>
  <th className="text-left p-3 font-medium">Title</th>
@@ -695,7 +695,7 @@ function InsiderTab({ ticker }: { ticker: string }) {
  <tr
  key={trade.id}
  className={cn(
- "border-b border-border/20 last:border-0",
+ "border-b border-border last:border-0",
  trade.type === "buy" ? "bg-emerald-500/[0.03]" : "bg-red-500/[0.03]",
  isLarge && "ring-1 ring-inset ring-amber-500/20",
  )}
@@ -809,7 +809,7 @@ function InstitutionalTab({ ticker }: { ticker: string }) {
  <div className="rounded-lg border bg-card overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground min-w-[560px]">
  <thead>
- <tr className="border-b border-border/20 text-xs text-muted-foreground">
+ <tr className="border-b border-border text-xs text-muted-foreground">
  <th className="text-left p-3 font-medium">Institution</th>
  <th className="text-right p-3 font-medium">Shares</th>
  <th className="text-right p-3 font-medium">Value</th>
@@ -822,7 +822,7 @@ function InstitutionalTab({ ticker }: { ticker: string }) {
  {data.holders.map((holder, i) => {
  const action = getAction(holder.quarterlyChange);
  return (
- <tr key={i} className="border-b border-border/20 last:border-0 hover:bg-muted/20 transition-colors">
+ <tr key={i} className="border-b border-border last:border-0 hover:bg-muted/20 transition-colors">
  <td className="p-3 font-medium">{holder.name}</td>
  <td className="p-3 text-right font-mono tabular-nums text-muted-foreground">
  {formatShares(holder.shares)}
@@ -934,7 +934,7 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
  <div className="rounded-lg border bg-card overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground min-w-[680px]">
  <thead>
- <tr className="border-b border-border/20 text-xs text-muted-foreground">
+ <tr className="border-b border-border text-xs text-muted-foreground">
  <th className="text-left p-3 font-medium">Ticker</th>
  <th className="text-left p-3 font-medium">Expiry</th>
  <th className="text-right p-3 font-medium">Strike</th>
@@ -954,7 +954,7 @@ function OptionsFlowTab({ ticker, currentPrice }: { ticker: string; currentPrice
  <tr
  key={i}
  className={cn(
- "border-b border-border/20 last:border-0 hover:bg-muted/20 transition-colors",
+ "border-b border-border last:border-0 hover:bg-muted/20 transition-colors",
  isWhale && "bg-amber-500/[0.04]",
  )}
  >
@@ -1194,7 +1194,7 @@ function CryptoTab() {
  <div className="rounded-lg border bg-card overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground min-w-[520px]">
  <thead>
- <tr className="border-b border-border/20 text-xs text-muted-foreground">
+ <tr className="border-b border-border text-xs text-muted-foreground">
  <th className="text-left p-3 font-medium">#</th>
  <th className="text-left p-3 font-medium">Asset</th>
  <th className="text-right p-3 font-medium">Price</th>
@@ -1205,7 +1205,7 @@ function CryptoTab() {
  </thead>
  <tbody>
  {assets.map((asset, i) => (
- <tr key={asset.symbol} className="border-b border-border/20 last:border-0 hover:bg-muted/20 transition-colors">
+ <tr key={asset.symbol} className="border-b border-border last:border-0 hover:bg-muted/20 transition-colors">
  <td className="p-3 text-muted-foreground">{i + 1}</td>
  <td className="p-3">
  <div className="flex items-center gap-2">
@@ -1273,7 +1273,7 @@ export default function MarketIntelligencePage() {
  return (
  <div className="flex flex-col gap-0 max-w-[1400px] mx-auto">
  {/* Top bar — Hero */}
- <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between px-4 pt-4 pb-3 border-b border-border/20 border-l-4 border-l-primary">
+ <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between px-4 pt-4 pb-3 border-b border-border border-l-4 border-l-primary">
  <div>
  <h1 className="text-lg font-medium">Market Terminal</h1>
  <p className="text-xs text-muted-foreground">
@@ -1306,7 +1306,7 @@ export default function MarketIntelligencePage() {
  </div>
 
  {/* Tab bar */}
- <div role="tablist" aria-label="Market sections" className="flex items-center gap-0 border-b border-border/20 overflow-x-auto px-4 shrink-0">
+ <div role="tablist" aria-label="Market sections" className="flex items-center gap-0 border-b border-border overflow-x-auto px-4 shrink-0">
  {TABS.map((tab) => (
  <button
  key={tab.id}

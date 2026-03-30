@@ -701,7 +701,7 @@ export default function IBDealsPage() {
  </div>
 
  <Tabs defaultValue="tracker" className="w-full">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "tracker", label: "Live Deal Tracker" },
  { value: "structure", label: "Deal Structuring" },

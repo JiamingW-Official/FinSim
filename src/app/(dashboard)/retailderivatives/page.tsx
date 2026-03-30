@@ -1340,7 +1340,7 @@ export default function RetailDerivativesPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="options" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="options" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Exchange-Traded Options
  </TabsTrigger>

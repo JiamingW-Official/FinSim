@@ -937,7 +937,7 @@ function QualityScreener() {
  initial={{ opacity: 0, y: 4 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ delay: i * 0.015 }}
- className="border-b border-border/60 hover:bg-muted/40 transition-colors"
+ className="border-b border-border hover:bg-muted/40 transition-colors"
  >
  <td className="px-3 py-2 font-mono font-semibold text-foreground">{stock.ticker}</td>
  <td className="px-3 py-2 text-muted-foreground">{stock.sector}</td>
@@ -1519,7 +1519,7 @@ function CompetitiveAnalysis() {
  <tbody>
  {competitors.map((comp, ci) => {
  return (
- <tr key={comp.ticker} className={cn("border-b border-border/60 hover:bg-muted/30", ci === 0 && "bg-indigo-950/30")}>
+ <tr key={comp.ticker} className={cn("border-b border-border hover:bg-muted/30", ci === 0 && "bg-indigo-950/30")}>
  <td className="px-3 py-2">
  <span className={cn("font-mono font-medium", ci === 0 ? "text-indigo-400" : "text-muted-foreground")}>{comp.ticker}</span>
  {ci === 0 && <span className="ml-2 text-xs bg-indigo-900/50 text-indigo-400 px-1.5 py-0.5 rounded">Selected</span>}
@@ -1615,7 +1615,7 @@ function CompetitiveAnalysis() {
  {compWithESG.map((c, i) => {
  const overall = Math.round((c.envScore + c.govScore) / 2);
  return (
- <tr key={c.ticker} className={cn("border-b border-border/60", i === 0 && "bg-indigo-950/30")}>
+ <tr key={c.ticker} className={cn("border-b border-border", i === 0 && "bg-indigo-950/30")}>
  <td className={cn("px-3 py-2 font-mono font-medium", i === 0 ? "text-indigo-400" : "text-muted-foreground")}>{c.ticker}</td>
  <td className="px-3 py-2 text-center text-muted-foreground">{c.envScore}</td>
  <td className="px-3 py-2 text-center text-muted-foreground">{c.govScore}</td>
@@ -1844,7 +1844,7 @@ export default function FundamentalsPage() {
  </motion.div>
 
  <Tabs defaultValue="screener" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="screener" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Search size={12} className="mr-1.5" />
  Quality Screener

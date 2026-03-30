@@ -619,7 +619,7 @@ export default function EsgPage() {
  transition={{ duration: 0.4, delay: 0.15 }}
  >
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="scores" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">ESG Scores</TabsTrigger>
  <TabsTrigger value="performance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Performance</TabsTrigger>
  <TabsTrigger value="climate" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Climate Risk</TabsTrigger>
@@ -654,7 +654,7 @@ export default function EsgPage() {
  {COMPANIES.map((c, i) => (
  <tr
  key={c.ticker}
- className={`border-b border-border/20 cursor-pointer transition-colors hover:bg-muted/10 ${selectedCompany.ticker === c.ticker ? "bg-emerald-500/5" : ""}`}
+ className={`border-b border-border cursor-pointer transition-colors hover:bg-muted/10 ${selectedCompany.ticker === c.ticker ? "bg-emerald-500/5" : ""}`}
  onClick={() => setSelectedCompany(c)}
  >
  <td className="px-3 py-2">
@@ -788,7 +788,7 @@ export default function EsgPage() {
  { label: "Beta vs SPX", esg: "0.91", nonEsg: "1.08", esgPos: true },
  { label: "Sortino Ratio", esg: "1.12", nonEsg: "0.88", esgPos: true },
  ].map((row, i) => (
- <div key={i} className="flex items-center justify-between pb-2 border-b border-border/20 last:border-0">
+ <div key={i} className="flex items-center justify-between pb-2 border-b border-border last:border-0">
  <span className="text-muted-foreground">{row.label}</span>
  <div className="flex gap-3">
  <span className={row.esgPos ? "text-emerald-400 font-medium" : "text-red-400 font-medium"}>
@@ -826,7 +826,7 @@ export default function EsgPage() {
  const labels = ["ESG Portfolio", "Non-ESG", "S&P 500"];
  const colors = ["text-emerald-400", "text-red-400", "text-indigo-400"];
  return (
- <tr key={key} className="border-b border-border/20">
+ <tr key={key} className="border-b border-border">
  <td className={`px-3 py-2 font-medium ${colors[ki]}`}>{labels[ki]}</td>
  {PERF_DATA.map((d) => (
  <td key={d.year} className={`px-3 py-2 text-right ${colors[ki]}`}>{d[key].toFixed(1)}</td>
@@ -873,7 +873,7 @@ export default function EsgPage() {
  </thead>
  <tbody>
  {CLIMATE_RISKS.map((r) => (
- <tr key={r.ticker} className="border-b border-border/20">
+ <tr key={r.ticker} className="border-b border-border">
  <td className="px-3 py-2">
  <div className="font-medium">{r.ticker}</div>
  <div className="text-muted-foreground">{r.company}</div>
@@ -1192,7 +1192,7 @@ export default function EsgPage() {
  </thead>
  <tbody>
  {screened.map((c) => (
- <tr key={c.ticker} className="border-b border-border/20">
+ <tr key={c.ticker} className="border-b border-border">
  <td className="px-3 py-2">
  <span className="font-medium">{c.ticker}</span>
  <span className="text-muted-foreground ml-1">{c.name}</span>
@@ -1235,7 +1235,7 @@ export default function EsgPage() {
  </thead>
  <tbody>
  {THEMATIC_ETFS.map((e) => (
- <tr key={e.ticker} className="border-b border-border/20">
+ <tr key={e.ticker} className="border-b border-border">
  <td className="px-3 py-2">
  <div className="font-medium">{e.ticker}</div>
  <div className="text-muted-foreground truncate max-w-[130px]">{e.name}</div>

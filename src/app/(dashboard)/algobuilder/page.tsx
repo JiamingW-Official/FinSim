@@ -991,7 +991,7 @@ export default function AlgoBuilderPage() {
 
  <div className="p-4">
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signal Library</TabsTrigger>
  <TabsTrigger value="constructor" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Strategy Constructor</TabsTrigger>
  <TabsTrigger value="backtest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtest Engine</TabsTrigger>
@@ -1033,7 +1033,7 @@ export default function AlgoBuilderPage() {
 
  {/* Selection info */}
  {selectedSignals.length > 0 && (
- <Card className="p-4 border-border/20 bg-muted/5">
+ <Card className="p-4 border-border bg-muted/5">
  <div className="flex items-start justify-between">
  <div>
  <p className="text-xs font-medium text-foreground mb-2">Selected for Strategy ({selectedSignals.length}/4)</p>
@@ -1846,7 +1846,7 @@ export default function AlgoBuilderPage() {
  initial={{ opacity: 0, x: -8 }}
  animate={{ opacity: 1, x: 0 }}
  exit={{ opacity: 0 }}
- className="border-b border-border/20 hover:bg-muted/20 transition-colors"
+ className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="py-2 pr-3 font-mono font-medium">{sig.ticker}</td>
  <td className="py-2 pr-3 text-muted-foreground max-w-[160px] truncate">{sig.signalType}</td>
@@ -1940,7 +1940,7 @@ export default function AlgoBuilderPage() {
  { label: "Concentration (top 3)", value: `${(25 + r() * 20).toFixed(0)}%` },
  { label: "Beta to Market", value: `${(0.5 + r() * 0.6).toFixed(2)}` },
  ].map(m => (
- <div key={m.label} className="flex justify-between text-xs text-muted-foreground py-1 border-b border-border/20 last:border-0">
+ <div key={m.label} className="flex justify-between text-xs text-muted-foreground py-1 border-b border-border last:border-0">
  <span className="text-muted-foreground">{m.label}</span>
  <span className="font-mono">{m.value}</span>
  </div>

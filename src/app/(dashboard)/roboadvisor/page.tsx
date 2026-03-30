@@ -264,7 +264,7 @@ function RoboLandscape() {
  <motion.tr
  key={p.name}
  className={cn(
- "border-b border-border/20 cursor-pointer transition-colors",
+ "border-b border-border cursor-pointer transition-colors",
  selected === p.name ? "bg-muted/60" : "hover:bg-muted/30"
  )}
  onClick={() => setSelected(selected === p.name ? null : p.name)}
@@ -1135,7 +1135,7 @@ export default function RoboAdvisorPage() {
 
  {/* Tabs */}
  <Tabs value={tab} onValueChange={setTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "landscape", label: "Robo Landscape" },
  { value: "construction", label: "Portfolio Construction" },

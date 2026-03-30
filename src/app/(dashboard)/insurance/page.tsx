@@ -448,7 +448,7 @@ function FundamentalsTab() {
  <motion.p
  initial={{ opacity: 0 }}
  animate={{ opacity: 1 }}
- className="text-xs text-foreground mt-2 leading-relaxed border-t border-border/20 pt-2"
+ className="text-xs text-foreground mt-2 leading-relaxed border-t border-border pt-2"
  >
  {c.detail}
  </motion.p>
@@ -744,7 +744,7 @@ function LifeTab() {
  </thead>
  <tbody>
  {products.map((p) => (
- <tr key={p.name} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={p.name} className="border-b border-border hover:bg-muted/20">
  <td className="px-4 py-2 font-medium">{p.name}</td>
  <td className="px-4 py-2 text-muted-foreground text-xs">{p.coverage}</td>
  <td className="px-4 py-2 text-xs text-muted-foreground">{p.premium}</td>
@@ -823,7 +823,7 @@ function LifeTab() {
  </thead>
  <tbody>
  {premiumTable.map((row) => (
- <tr key={row.term} className="border-b border-border/20">
+ <tr key={row.term} className="border-b border-border">
  <td className="px-3 py-1.5 font-medium">{row.term}-Year Term</td>
  <td className="px-3 py-1.5 text-right text-green-400">${row.monthly}/mo</td>
  <td className="px-3 py-1.5 text-right">${Number(row.annual).toLocaleString()}</td>
@@ -1370,7 +1370,7 @@ function ReinsuranceTab() {
  <span className="text-sm font-medium">{s.title}</span>
  </div>
  <p className="text-xs text-muted-foreground mb-2">{s.desc}</p>
- <div className="bg-muted/30 rounded px-3 py-2 text-xs text-foreground/80 border border-border/20">
+ <div className="bg-muted/30 rounded px-3 py-2 text-xs text-foreground/80 border border-border">
  <span className="font-medium text-muted-foreground">Example: </span>
  {s.example}
  </div>
@@ -1837,7 +1837,7 @@ function InvestmentTab() {
  </thead>
  <tbody>
  {allocationData.map((r) => (
- <tr key={r.type} className="border-b border-border/20">
+ <tr key={r.type} className="border-b border-border">
  <td className="px-3 py-2 font-medium">{r.type}</td>
  <td className="px-3 py-2 text-right text-foreground">{r.bonds}%</td>
  <td className="px-3 py-2 text-right text-green-400">{r.equities}%</td>
@@ -1980,7 +1980,7 @@ export default function InsurancePage() {
 
  {/* Tabs */}
  <Tabs defaultValue="fundamentals" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {tabs.map((tab) => (
  <TabsTrigger
  key={tab.value}

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useGameStore } from "@/stores/game-store";
 
 const EMOJI_POOL = [
-  "🚀", "⭐", "💎", "🔥", "✨", "💰", "🏆", "📈", "💯", "🎯",
+  "", "", "", "", "", "", "", "", "💯", "",
 ];
 
 interface EmojiParticle {

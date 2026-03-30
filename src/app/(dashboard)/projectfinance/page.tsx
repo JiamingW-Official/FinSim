@@ -474,7 +474,7 @@ function TabSPVStructure() {
  </thead>
  <tbody>
  {CONTRACTUAL_FRAMEWORK.map((row, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={i} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-4 py-2 text-muted-foreground font-medium">{row.contract}</td>
  <td className="px-4 py-2 text-muted-foreground">{row.counterparty}</td>
  <td className="px-4 py-2 text-muted-foreground">{row.purpose}</td>
@@ -854,7 +854,7 @@ function TabCashFlowModel() {
  </thead>
  <tbody>
  {cashFlows.map((row) => (
- <tr key={row.year} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={row.year} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-3 py-1.5 text-muted-foreground font-medium">Y{row.year}</td>
  <td className="px-3 py-1.5 text-right">
  <Badge
@@ -1430,7 +1430,7 @@ function TabDealMetrics() {
  </thead>
  <tbody>
  {SECTOR_DEBT_TABLE.map((row, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={i} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-4 py-2 text-muted-foreground font-medium">{row.sector}</td>
  <td className="px-4 py-2 text-right text-muted-foreground">{row.tenor}</td>
  <td className="px-4 py-2 text-right text-amber-400">{row.margin}</td>
@@ -1476,7 +1476,7 @@ function TabDealMetrics() {
  </thead>
  <tbody>
  {PPP_VS_MERCHANT.map((row, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={i} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-4 py-2 text-muted-foreground">{row.metric}</td>
  <td className="px-4 py-2 text-center text-muted-foreground">{row.ppp}</td>
  <td className="px-4 py-2 text-center text-amber-300">{row.merchant}</td>
@@ -1523,7 +1523,7 @@ export default function ProjectFinancePage() {
 
  {/* Tabs */}
  <Tabs defaultValue="spv" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="spv" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Layers size={14} className="mr-1.5" />
  SPV Structure

@@ -1380,7 +1380,7 @@ export default function LifeStagesPage() {
 
  {/* Tab content */}
  <Tabs value={tab} onValueChange={setTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {TABS.map((t) => (
  <TabsTrigger key={t.value} value={t.value} />
  ))}

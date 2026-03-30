@@ -619,7 +619,7 @@ function MarketOverviewTab() {
  <tbody>
  {TOP_ISSUERS.map((iss, i) => (
  <tr key={iss.ticker}
- className={cn("border-t border-border/20 hover:bg-muted/30 transition-colors",
+ className={cn("border-t border-border hover:bg-muted/30 transition-colors",
  i % 2 === 0 ? "" : "bg-card/50")}>
  <td className="px-4 py-2.5 font-medium text-foreground">{iss.name}</td>
  <td className="px-4 py-2.5 font-mono text-indigo-400">{iss.ticker}</td>
@@ -839,7 +839,7 @@ function InvestmentStrategiesTab() {
  { name: "Busted Converts", delta: "0.0–0.2", vega: "Low", credit: "High", liq: "Low", cx: "High", ret: "12–20%" },
  { name: "Equity Sub.", delta: "0.7–1.0", vega: "Low", credit: "Med", liq: "Med", cx: "Low", ret: "Market+" },
  ].map((r, i) => (
- <tr key={r.name} className={cn("border-t border-border/20 hover:bg-muted/30 transition-colors",
+ <tr key={r.name} className={cn("border-t border-border hover:bg-muted/30 transition-colors",
  i === selected ? "bg-indigo-900/10" : "")}>
  <td className="px-4 py-2.5 font-medium text-foreground">{r.name}</td>
  <td className="px-4 py-2.5 font-mono text-indigo-400">{r.delta}</td>
@@ -1088,7 +1088,7 @@ export default function ConvertiblesPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="mechanics" className="w-full">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "mechanics", label: "Mechanics", icon: <Layers size={13} /> },
  { value: "greeks", label: "Greeks", icon: <Activity size={13} /> },

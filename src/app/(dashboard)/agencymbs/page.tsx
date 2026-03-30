@@ -1743,7 +1743,7 @@ export default function AgencyMBSPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="agency" className="w-full">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "agency", label: "Agency Market", icon: <Building2 size={13} /> },
  { value: "prepayment", label: "Prepayment Analysis", icon: <TrendingDown size={13} /> },

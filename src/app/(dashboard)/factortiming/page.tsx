@@ -1402,7 +1402,7 @@ export default function FactorTimingPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {tabs.map((t) => (
  <TabsTrigger
  key={t.id}

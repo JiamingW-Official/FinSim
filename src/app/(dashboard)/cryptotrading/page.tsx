@@ -565,7 +565,7 @@ function IndicatorCard({ ind }: { ind: IndicatorData }) {
 
  return (
  <div
- className="bg-muted/60 border border-border/20 rounded-md p-4 cursor-pointer hover:border-border transition-colors"
+ className="bg-muted/60 border border-border rounded-md p-4 cursor-pointer hover:border-border transition-colors"
  onClick={() => setExpanded((e) => !e)}
  >
  <div className="flex items-start justify-between gap-3">
@@ -590,7 +590,7 @@ function IndicatorCard({ ind }: { ind: IndicatorData }) {
  </div>
  <p className="text-xs text-muted-foreground mt-2 leading-relaxed">{ind.description}</p>
  {expanded && (
- <div className="mt-3 pt-3 border-t border-border/20">
+ <div className="mt-3 pt-3 border-t border-border">
  <p className="text-xs text-muted-foreground leading-relaxed">{ind.interpretation}</p>
  </div>
  )}
@@ -611,7 +611,7 @@ function MetricRow({
  unit?: string;
 }) {
  return (
- <div className="flex items-center justify-between py-2 border-b border-border/20 last:border-0">
+ <div className="flex items-center justify-between py-2 border-b border-border last:border-0">
  <span className="text-sm text-muted-foreground">{label}</span>
  <div className="flex items-center gap-2">
  <span className="text-sm font-mono font-semibold text-foreground">{value}</span>
@@ -702,14 +702,14 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* S2F Historical Chart */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <h3 className="text-sm font-medium text-muted-foreground mb-1">S2F Model: BTC Price vs Model (2020–2026)</h3>
  <p className="text-xs text-muted-foreground mb-4">Actual BTC price (white) vs S2F model price (amber) — halvings drive supply shocks</p>
  <S2FChart rng={mulberry32(3333 + 7)} />
  </div>
 
  {/* Indicator Glossary */}
- <div className="bg-muted/40 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/40 border border-border rounded-md p-4">
  <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
  Important Caveats
  </h3>
@@ -745,14 +745,14 @@ export default function CryptoTradingPage() {
 
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {/* Exchange Flows */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-3">
  <h3 className="text-sm font-medium text-muted-foreground">Exchange Net Flows</h3>
  </div>
  <p className="text-xs text-muted-foreground mb-3">Negative = BTC leaving exchanges (accumulation). Positive = deposits (selling pressure).</p>
  <div className="space-y-1">
  {onChain.exchangeFlows.map((f) => (
- <div key={f.label} className="flex items-center justify-between py-2 border-b border-border/20 last:border-0">
+ <div key={f.label} className="flex items-center justify-between py-2 border-b border-border last:border-0">
  <span className="text-xs text-muted-foreground">{f.label}</span>
  <span className={cn("text-sm font-mono font-medium", f.value < 0 ? "text-emerald-400" : "text-red-400")}>
  {f.value < 0 ? "-" : "+"}{Math.abs(f.value / 1000).toFixed(1)}K BTC
@@ -767,7 +767,7 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* HODLer Behavior */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-3">
  <h3 className="text-sm font-medium text-muted-foreground">HODLer Behavior</h3>
  </div>
@@ -796,7 +796,7 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* Mining Metrics */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-3">
  <h3 className="text-sm font-medium text-muted-foreground">Mining Metrics</h3>
  </div>
@@ -813,14 +813,14 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* Whale Activity */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-3">
  <h3 className="text-sm font-medium text-muted-foreground">Whale Activity</h3>
  </div>
  <p className="text-xs text-muted-foreground mb-3">Large wallet movements — smart money behavior.</p>
  <div className="space-y-3">
  {onChain.whaleData.map((w) => (
- <div key={w.label} className="flex items-center justify-between py-2 border-b border-border/20 last:border-0">
+ <div key={w.label} className="flex items-center justify-between py-2 border-b border-border last:border-0">
  <div>
  <p className="text-xs text-muted-foreground">{w.label}</p>
  <p className="text-sm font-mono font-medium text-foreground">
@@ -835,7 +835,7 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* Stablecoin Supply Ratio */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-2">
  <h3 className="text-sm font-medium text-muted-foreground">Stablecoin Supply Ratio (SSR)</h3>
  </div>
@@ -882,13 +882,13 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* Perpetual Futures */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <h3 className="text-sm font-medium text-muted-foreground mb-1">Perpetual Futures</h3>
  <p className="text-xs text-muted-foreground mb-3">Funding rate: positive = longs pay shorts (bullish sentiment), negative = shorts pay longs (bearish).</p>
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  {["Pair", "Funding Rate", "Mark Price", "Spot Price", "Open Interest", "OI Chg 24h"].map((h) => (
  <th key={h} className="text-left text-muted-foreground font-medium pb-2 pr-4">{h}</th>
  ))}
@@ -896,7 +896,7 @@ export default function CryptoTradingPage() {
  </thead>
  <tbody>
  {derivatives.perps.map((p, i) => (
- <tr key={p.pair} className="border-b border-border/20 last:border-0">
+ <tr key={p.pair} className="border-b border-border last:border-0">
  <td className="py-2 pr-4 font-mono font-medium text-foreground">{p.pair}</td>
  <td className="py-2 pr-4"><FundingBadge rate={p.fundingRate} /></td>
  <td className="py-2 pr-4 font-mono text-muted-foreground">${fmt(p.markPrice, 0)}</td>
@@ -921,7 +921,7 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* Liquidation Heatmap */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <h3 className="text-sm font-medium text-muted-foreground mb-1">Liquidation Heatmap</h3>
  <p className="text-xs text-muted-foreground mb-3">
  Where leveraged positions are concentrated. Green = long liquidations, Red = short liquidations.
@@ -931,7 +931,7 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* Options Market */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <h3 className="text-sm font-medium text-muted-foreground mb-1">BTC Options — OI by Strike</h3>
  <p className="text-xs text-muted-foreground mb-1">
  Max Pain: <span className="font-mono text-amber-400">${fmtK(derivatives.maxPainStrike)}K</span>
@@ -945,7 +945,7 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* Basis Trade */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <div className="flex items-center justify-between mb-2">
  <h3 className="text-sm font-medium text-muted-foreground">Cash &amp; Carry (Basis Trade)</h3>
  <span className={cn(
@@ -992,7 +992,7 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* DCA vs Lump Sum */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <h3 className="text-sm font-medium text-muted-foreground mb-1">DCA vs Lump Sum — 4-Year BTC Simulation</h3>
  <p className="text-xs text-muted-foreground mb-3">
  $500/month DCA (blue) vs $24,000 lump sum at start (amber). DCA reduces timing risk during volatile drawdowns.
@@ -1017,7 +1017,7 @@ export default function CryptoTradingPage() {
  {/* Portfolio Strategies */}
  <div className="space-y-4">
  {portfolioStrategies.map((strategy) => (
- <div key={strategy.name} className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div key={strategy.name} className="bg-muted/60 border border-border rounded-md p-4">
  <div className="flex items-start justify-between gap-3">
  <div className="flex-1">
  <h3 className="text-sm font-medium text-foreground">{strategy.name}</h3>
@@ -1054,7 +1054,7 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* Tax-Loss Harvesting */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-2">
  <h3 className="text-sm font-medium text-muted-foreground">Tax-Loss Harvesting in Crypto</h3>
  </div>
@@ -1100,7 +1100,7 @@ export default function CryptoTradingPage() {
  </div>
 
  {/* 5% BTC in Traditional Portfolio */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-4">
+ <div className="bg-muted/60 border border-border rounded-md p-4">
  <h3 className="text-sm font-medium text-muted-foreground mb-1">Adding 5% BTC to a 60/40 Portfolio</h3>
  <p className="text-xs text-muted-foreground mb-3">
  Academic research suggests a small BTC allocation can improve risk-adjusted returns due to low correlation with traditional assets.
@@ -1124,7 +1124,7 @@ export default function CryptoTradingPage() {
  ].map((col, i) => (
  <div key={col.label} className={cn(
  "rounded-lg p-3 border",
- i === 1 ? "bg-emerald-400/5 border-emerald-400/20" : "bg-muted/30 border-border/20"
+ i === 1 ? "bg-emerald-400/5 border-emerald-400/20" : "bg-muted/30 border-border"
  )}>
  <p className={cn("text-xs font-medium mb-2", i === 1 ? "text-emerald-400" : "text-muted-foreground")}>{col.label}</p>
  {[
@@ -1133,7 +1133,7 @@ export default function CryptoTradingPage() {
  ["Volatility", col.volatility],
  ["Max Drawdown", col.maxDD],
  ].map(([k, v]) => (
- <div key={k} className="flex justify-between text-xs text-muted-foreground py-1 border-b border-border/20 last:border-0">
+ <div key={k} className="flex justify-between text-xs text-muted-foreground py-1 border-b border-border last:border-0">
  <span className="text-muted-foreground">{k}</span>
  <span className="font-mono font-medium text-foreground">{v}</span>
  </div>
@@ -1170,7 +1170,7 @@ export default function CryptoTradingPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="technical" className="mt-6">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="technical" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Tech Analysis
  </TabsTrigger>
@@ -1477,7 +1477,7 @@ function MarketSummaryStrip({ rng }: { rng: () => number }) {
  const fgColor = price > 75 ? "text-red-400" : price > 55 ? "text-amber-400" : "text-muted-foreground";
 
  return (
- <div key={a.symbol} className="bg-muted/60 border border-border/20 rounded-lg p-3">
+ <div key={a.symbol} className="bg-muted/60 border border-border rounded-lg p-3">
  <p className="text-xs text-muted-foreground truncate">{a.name}</p>
  <p className="text-sm font-mono font-medium text-foreground mt-0.5">
  {isFG

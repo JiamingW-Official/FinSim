@@ -938,7 +938,7 @@ function StrategyComparisonTab() {
  initial={{ opacity: 0, x: -8 }}
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: i * 0.05 }}
- className="border-b border-border/20 hover:bg-muted/30 transition-colors"
+ className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-4 py-2.5 font-medium text-foreground">{s.name}</td>
  <td className="px-4 py-2.5 text-right">
@@ -1076,7 +1076,7 @@ export default function OptionsIncomePage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-0">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {tabs.map((t) => (
  <TabsTrigger
  key={t.id}

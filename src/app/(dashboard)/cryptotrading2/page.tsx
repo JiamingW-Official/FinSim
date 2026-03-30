@@ -718,7 +718,7 @@ export default function CryptoTrading2Page() {
 
  {/* Main Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "market-structure", label: "Market Structure" },
  { value: "onchain", label: "On-Chain Signals" },
@@ -757,7 +757,7 @@ export default function CryptoTrading2Page() {
  body: "Basis = Futures Price − Spot Price. Positive basis (contango) is common in bull markets. Traders capture basis by buying spot and shorting futures, earning the annualized premium as delta-neutral yield.",
  },
  ].map((card) => (
- <Card key={card.title} className="bg-foreground/[0.03] border-border/20">
+ <Card key={card.title} className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm flex items-center gap-2">
  {card.icon}
@@ -772,7 +772,7 @@ export default function CryptoTrading2Page() {
  </div>
 
  {/* Perp Markets Table */}
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm flex items-center gap-2">
  Perpetual Futures Markets
@@ -782,7 +782,7 @@ export default function CryptoTrading2Page() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  {["Pair", "Mark Price", "Index Price", "Basis", "Funding/8h", "Open Interest", "24h Volume", "Trend"].map(
  (h) => (
  <th key={h} className="text-left text-foreground/40 font-medium px-4 py-3">
@@ -796,7 +796,7 @@ export default function CryptoTrading2Page() {
  {perpMarkets.map((m) => (
  <tr
  key={m.pair}
- className="border-b border-border/20 hover:bg-muted/30 transition-colors"
+ className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-4 py-3 font-medium text-foreground">{m.pair}</td>
  <td className="px-4 py-3 text-foreground/80">
@@ -848,7 +848,7 @@ export default function CryptoTrading2Page() {
 
  {/* Open Interest Chart + Funding Chart */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm">Open Interest by Pair</CardTitle>
  </CardHeader>
@@ -859,7 +859,7 @@ export default function CryptoTrading2Page() {
  </p>
  </CardContent>
  </Card>
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm">BTC-PERP Funding Rate History</CardTitle>
  </CardHeader>
@@ -915,7 +915,7 @@ export default function CryptoTrading2Page() {
  body: "Wallets with 1,000–10,000 BTC are tracked as whales. Increasing wallet count at these bands, especially near support levels, signals institutional accumulation.",
  },
  ].map((card) => (
- <Card key={card.title} className="bg-foreground/[0.03] border-border/20">
+ <Card key={card.title} className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm flex items-center gap-2">
  {card.icon}
@@ -930,7 +930,7 @@ export default function CryptoTrading2Page() {
  </div>
 
  {/* Signal Scorecard Table */}
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm flex items-center gap-2">
  On-Chain Signal Scorecard
@@ -940,7 +940,7 @@ export default function CryptoTrading2Page() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  {["Signal", "Category", "Current Value", "Signal", "Strength", "Interpretation"].map((h) => (
  <th key={h} className="text-left text-foreground/40 font-medium px-4 py-3">
  {h}
@@ -950,7 +950,7 @@ export default function CryptoTrading2Page() {
  </thead>
  <tbody>
  {onChainSignals.map((sig) => (
- <tr key={sig.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={sig.name} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-4 py-3 font-medium text-foreground">{sig.name}</td>
  <td className="px-4 py-3 text-foreground/50">{sig.category}</td>
  <td className="px-4 py-3 font-mono text-foreground/80">{sig.value}</td>
@@ -997,7 +997,7 @@ export default function CryptoTrading2Page() {
  animate={{ opacity: 1, y: 0 }}
  transition={{ duration: 0.25 }}
  >
- <Card className="bg-foreground/[0.03] border-border/20 h-full">
+ <Card className="bg-foreground/[0.03] border-border h-full">
  <CardHeader className="pb-3">
  <div className="flex items-start justify-between">
  <div>
@@ -1034,7 +1034,7 @@ export default function CryptoTrading2Page() {
  </div>
 
  {/* Strategy comparison table */}
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm flex items-center gap-2">
  Strategy Comparison
@@ -1044,7 +1044,7 @@ export default function CryptoTrading2Page() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  {["Strategy", "Return", "Risk", "Capital Req.", "Delta Neutral", "Execution Complexity"].map(
  (h) => (
  <th key={h} className="text-left text-foreground/40 font-medium px-4 py-3">
@@ -1061,7 +1061,7 @@ export default function CryptoTrading2Page() {
  ["Cross-Exchange Arb", "20–50% APY", "Medium", "$100K+", "Yes", "High"],
  ["Liquidation Hunting", "30–70% APY", "High", "$5K+", "No", "Very High"],
  ].map(([strat, ret, risk, cap, delta, comp]) => (
- <tr key={strat} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={strat} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-4 py-3 font-medium text-foreground">{strat}</td>
  <td className="px-4 py-3 text-green-400">{ret}</td>
  <td className="px-4 py-3">
@@ -1109,7 +1109,7 @@ export default function CryptoTrading2Page() {
  </div>
 
  {/* Risk Register */}
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm flex items-center gap-2">
  Crypto Risk Register
@@ -1119,7 +1119,7 @@ export default function CryptoTrading2Page() {
  {cryptoRisks.map((risk) => (
  <div
  key={risk.name}
- className="bg-foreground/[0.03] rounded-md p-4 border border-border/20 space-y-2"
+ className="bg-foreground/[0.03] rounded-md p-4 border border-border space-y-2"
  >
  <div className="flex items-start justify-between gap-2">
  <div>
@@ -1149,7 +1149,7 @@ export default function CryptoTrading2Page() {
 
  {/* Position Sizing + Portfolio Construction */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm flex items-center gap-2">
  Position Sizing Rules
@@ -1188,7 +1188,7 @@ export default function CryptoTrading2Page() {
  </CardContent>
  </Card>
 
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm flex items-center gap-2">
  Crypto Portfolio Construction
@@ -1244,7 +1244,7 @@ export default function CryptoTrading2Page() {
  body: "Crypto IV term structure typically slopes upward (contango) in calm markets — uncertainty grows with time. It inverts (backwardation) near major events (halvings, Fed decisions) or post-crash vol spikes.",
  },
  ].map((card) => (
- <Card key={card.title} className="bg-foreground/[0.03] border-border/20">
+ <Card key={card.title} className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm flex items-center gap-2">
  {card.icon}
@@ -1259,7 +1259,7 @@ export default function CryptoTrading2Page() {
  </div>
 
  {/* Vol Surface Heatmap */}
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm flex items-center gap-2">
  BTC Volatility Surface — Implied Vol Heatmap
@@ -1292,7 +1292,7 @@ export default function CryptoTrading2Page() {
 
  {/* Key Derivatives Metrics */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm flex items-center gap-2">
  Key Derivatives Metrics
@@ -1327,7 +1327,7 @@ export default function CryptoTrading2Page() {
  </CardContent>
  </Card>
 
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm flex items-center gap-2">
  Derivatives Trading Playbook

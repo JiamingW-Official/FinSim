@@ -669,7 +669,7 @@ export default function NeobanksPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="business-model" className="w-full">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="business-model" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Business Model
  </TabsTrigger>
@@ -710,7 +710,7 @@ export default function NeobanksPage() {
  </thead>
  <tbody>
  {NEOBANKS.map((nb) => (
- <tr key={nb.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={nb.name} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2.5 px-3">
  <div className="flex items-center gap-2">
  <span

@@ -1181,7 +1181,7 @@ function EarningsPlaysTab() {
  <tr
  key={s.ticker}
  onClick={() => setSelectedTicker(s.ticker)}
- className={`border-t border-border/20 cursor-pointer transition-colors ${selectedTicker === s.ticker ? "bg-muted/10" : "hover:bg-muted/30"}`}
+ className={`border-t border-border cursor-pointer transition-colors ${selectedTicker === s.ticker ? "bg-muted/10" : "hover:bg-muted/30"}`}
  >
  <td className="px-4 py-2.5 font-medium text-foreground">{s.ticker}</td>
  <td className="px-4 py-2.5 text-amber-400">±{s.avgMove}%</td>
@@ -1331,7 +1331,7 @@ function PortfolioHedgingTab() {
  </thead>
  <tbody>
  {positions.map((p) => (
- <tr key={p.ticker} className="border-b border-border/20">
+ <tr key={p.ticker} className="border-b border-border">
  <td className="py-1.5 text-foreground font-medium">{p.ticker}</td>
  <td className="text-right text-muted-foreground">{p.weight}%</td>
  <td className="text-right text-muted-foreground">{p.beta}</td>
@@ -1710,7 +1710,7 @@ function GreekManagementTab() {
  </thead>
  <tbody>
  {PORTFOLIO_POSITIONS.map((p) => (
- <tr key={p.id} className="border-b border-border/20">
+ <tr key={p.id} className="border-b border-border">
  <td className="py-2 px-2 text-foreground font-medium">{p.ticker}</td>
  <td className="py-2 px-2 text-muted-foreground">{p.strategy}</td>
  <td className={`py-2 px-2 font-mono ${p.delta > 0 ? "text-green-400" : "text-red-400"}`}>{p.delta > 0 ? "+" : ""}{p.delta.toFixed(1)}</td>

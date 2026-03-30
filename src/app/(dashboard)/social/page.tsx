@@ -478,7 +478,7 @@ function LeaderboardTab() {
  "px-2.5 py-0.5 rounded-full text-[11px] font-medium capitalize border transition-colors",
  assetFilter === f
  ? "border-primary/50 bg-muted/10 text-foreground"
- : "border-border text-muted-foreground hover:border-border/80 hover:text-foreground",
+ : "border-border text-muted-foreground hover:border-border hover:text-foreground",
  )}
  >
  {f === "multi" ? "Multi-Asset" : f.charAt(0).toUpperCase() + f.slice(1)}
@@ -487,7 +487,7 @@ function LeaderboardTab() {
  </div>
 
  {/* Podium */}
- <div className="bg-card border border-border/20 rounded-md p-4">
+ <div className="bg-card border border-border rounded-md p-4">
  <p className="text-xs font-semibold text-muted-foreground/60 mb-4 text-center">Top Performers</p>
  <div className="flex items-end justify-center gap-4">
  {top3[1] && <PodiumCard trader={top3[1]} place={2} />}
@@ -513,10 +513,10 @@ function LeaderboardTab() {
  )}
 
  {/* Table */}
- <div className="rounded-md border border-border/20 overflow-hidden">
+ <div className="rounded-md border border-border overflow-hidden">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border/20 bg-muted/30">
+ <tr className="border-b border-border bg-muted/30">
  <th className="py-2 px-3 text-left text-xs font-medium text-muted-foreground/60 w-8">#</th>
  <th className="py-2 px-3 text-left text-xs font-medium text-muted-foreground/60">Trader</th>
  <th className="py-2 px-3 text-right text-xs font-medium text-muted-foreground/60">Return</th>
@@ -535,7 +535,7 @@ function LeaderboardTab() {
  animate={{ opacity: 1, y: 0 }}
  transition={{ delay: idx * 0.02 }}
  className={cn(
- "border-b border-border/20 last:border-0 transition-colors",
+ "border-b border-border last:border-0 transition-colors",
  trader.isYou ? "bg-muted/5 hover:bg-primary/8" : "hover:bg-muted/30",
  )}
  >
@@ -585,7 +585,7 @@ function IdeaCard({
  return (
  <motion.div
  layout
- className="rounded-md border border-border/20 bg-card p-4 space-y-3 hover:border-border/80 transition-colors"
+ className="rounded-md border border-border bg-card p-4 space-y-3 hover:border-border transition-colors"
  >
  {/* Header */}
  <div className="flex items-start justify-between gap-2">
@@ -658,7 +658,7 @@ function IdeaCard({
  exit={{ opacity: 0, height: 0 }}
  className="overflow-hidden"
  >
- <div className="border-t border-border/20 pt-3 text-xs text-muted-foreground/70 leading-relaxed space-y-2">
+ <div className="border-t border-border pt-3 text-xs text-muted-foreground/70 leading-relaxed space-y-2">
  <p className="font-medium text-foreground/80">Full Thesis</p>
  <p>{idea.thesis}</p>
  </div>
@@ -867,13 +867,13 @@ function TradeIdeasTab() {
  </div>
 
  {/* Trending section */}
- <div className="bg-card border border-border/20 rounded-md p-4">
+ <div className="bg-card border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-3">
  <h3 className="text-xs font-medium text-muted-foreground/80">Trending Ideas</h3>
  </div>
  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
  {trending.map((idea) => (
- <div key={idea.id} className="rounded-lg border border-border/20 bg-muted/20 p-3 space-y-2">
+ <div key={idea.id} className="rounded-lg border border-border bg-muted/20 p-3 space-y-2">
  <div className="flex items-center gap-1.5">
  <Avatar initials={idea.trader.initials} color={idea.trader.avatarColor} size="sm" />
  <span className="text-[11px] font-medium">{idea.trader.username}</span>
@@ -923,7 +923,7 @@ function CopyTraderCard({
  return (
  <div className={cn(
  "rounded-md border p-4 space-y-3 transition-colors",
- following ? "border-primary/30 bg-primary/3" : "border-border/20 bg-card hover:border-border/70",
+ following ? "border-primary/30 bg-primary/3" : "border-border bg-card hover:border-border",
  )}>
  <div className="flex items-start justify-between">
  <div className="flex items-center gap-2.5">
@@ -984,7 +984,7 @@ function CopyTraderCard({
  exit={{ opacity: 0, height: 0 }}
  className="overflow-hidden"
  >
- <div className="border-t border-border/20 pt-3 space-y-1">
+ <div className="border-t border-border pt-3 space-y-1">
  <p className="text-xs font-medium text-muted-foreground/60 mb-2">Recent trades</p>
  {trader.recentTrades.map((trade, idx) => (
  <div key={idx} className="flex items-center justify-between text-xs text-muted-foreground">
@@ -1036,7 +1036,7 @@ function CopyTradingTab() {
  return (
  <div className="space-y-4">
  {/* Auto-copy settings */}
- <div className="bg-card border border-border/20 rounded-md p-4">
+ <div className="bg-card border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-4">
  <h3 className="text-xs font-medium text-muted-foreground/80">Auto-Copy Settings</h3>
  </div>
@@ -1212,7 +1212,7 @@ function CommunityStatsTab() {
  return (
  <div className="space-y-4">
  {/* Sentiment grid */}
- <div className="bg-card border border-border/20 rounded-md p-4">
+ <div className="bg-card border border-border rounded-md p-4">
  <div className="flex items-center justify-between mb-3">
  <div className="flex items-center gap-2">
  <h3 className="text-xs font-medium text-muted-foreground/80">Market Sentiment</h3>
@@ -1259,7 +1259,7 @@ function CommunityStatsTab() {
  </div>
 
  {/* Regime vote */}
- <div className="bg-card border border-border/20 rounded-md p-4">
+ <div className="bg-card border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-3">
  <h3 className="text-xs font-medium text-muted-foreground/80">Market Regime Vote</h3>
  </div>
@@ -1281,11 +1281,11 @@ function CommunityStatsTab() {
  : r === "bear"
  ? "border-rose-500/50 bg-rose-500/10 text-rose-400"
  : "border-amber-500/50 bg-amber-500/10 text-amber-400"
- : "border-border hover:border-border/80",
+ : "border-border hover:border-border",
  )}
  >
  <p className="text-lg mb-1">
- {r === "bull" ? "🐂" : r === "bear" ? "🐻" : "↔"}
+ {r === "bull" ? "Bull" : r === "bear" ? "Bear" : "↔"}
  </p>
  <p className="text-xs text-muted-foreground font-medium capitalize">{r}</p>
  <p className="text-xl font-medium mt-1">{pct}%</p>
@@ -1302,7 +1302,7 @@ function CommunityStatsTab() {
  </div>
 
  {/* Discussion bubble chart */}
- <div className="bg-card border border-border/20 rounded-md p-4">
+ <div className="bg-card border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-3">
  <h3 className="text-xs font-medium text-muted-foreground/80">Most Discussed This Week</h3>
  </div>
@@ -1310,7 +1310,7 @@ function CommunityStatsTab() {
  </div>
 
  {/* Return distribution histogram */}
- <div className="bg-card border border-border/20 rounded-md p-4">
+ <div className="bg-card border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-3">
  <h3 className="text-xs font-medium text-muted-foreground/80">Community P&L Distribution (This Month)</h3>
  </div>
@@ -1323,13 +1323,13 @@ function CommunityStatsTab() {
  </div>
 
  {/* Challenges */}
- <div className="bg-card border border-border/20 rounded-md p-4">
+ <div className="bg-card border border-border rounded-md p-4">
  <div className="flex items-center gap-2 mb-3">
  <h3 className="text-xs font-medium text-muted-foreground/80">Active Challenges</h3>
  </div>
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
  {CHALLENGES.map((c) => (
- <div key={c.id} className="rounded-lg border border-border/20 p-3 space-y-2 hover:border-border/70 transition-colors">
+ <div key={c.id} className="rounded-lg border border-border p-3 space-y-2 hover:border-border transition-colors">
  <div className="flex items-start justify-between">
  <span className="text-xs font-medium px-1.5 py-0.5 rounded bg-muted/10 text-foreground">{c.category}</span>
  <span className="text-xs text-muted-foreground">Ends in {c.endsIn}</span>
@@ -1363,7 +1363,7 @@ export default function SocialPage() {
  return (
  <div className="flex flex-col h-full min-h-0">
  {/* Header */}
- <div className="shrink-0 border-b border-border/20 px-6 py-6 border-l-4 border-l-primary">
+ <div className="shrink-0 border-b border-border px-6 py-6 border-l-4 border-l-primary">
  <div className="flex items-center gap-3">
  <div className="h-8 w-8 rounded-lg bg-muted/10 flex items-center justify-center">
  </div>
@@ -1378,7 +1378,7 @@ export default function SocialPage() {
  <div className="flex-1 min-h-0 overflow-y-auto">
  <div className="max-w-5xl mx-auto px-6 py-4">
  <Tabs value={tab} onValueChange={setTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-4 w-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4 w-auto">
  <TabsTrigger value="leaderboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <span>Leaderboard</span>
  </TabsTrigger>

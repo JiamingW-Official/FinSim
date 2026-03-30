@@ -567,7 +567,7 @@ export default function GreenFinancePage() {
 
  {/* Main Tabs */}
  <Tabs defaultValue="bonds" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="bonds" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <BarChart2 size={12} className="mr-1" /> Bond Market
  </TabsTrigger>
@@ -912,7 +912,7 @@ export default function GreenFinancePage() {
  orange: "bg-orange-500/10",
  };
  return (
- <tr key={i} className={cn("border-b border-border/20 hover:bg-muted/30 transition-colors")}>
+ <tr key={i} className={cn("border-b border-border hover:bg-muted/30 transition-colors")}>
  <td className="p-2">
  <span className={cn(
  "inline-block px-2 py-0.5 rounded text-xs text-muted-foreground font-medium",

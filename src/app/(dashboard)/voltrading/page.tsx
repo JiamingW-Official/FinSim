@@ -652,7 +652,7 @@ export default function VolTradingPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "surface", label: "Volatility Surface" },
  { value: "longvol", label: "Long Vol Strategies" },

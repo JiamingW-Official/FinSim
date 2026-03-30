@@ -6,8 +6,8 @@ import { useProfileStore } from "@/stores/profile-store";
 import { cn } from "@/lib/utils";
 
 const AVATAR_EMOJIS = [
-  "🐂", "🐻", "🦅", "🦊", "🐺", "🦁", "🐲", "🦄", "🎯", "💎",
-  "🔥", "⚡", "🚀", "📈", "🏆", "👑", "🎲", "🃏", "🛡️", "⭐",
+  "Bull", "Bear", "🦅", "🦊", "🐺", "🦁", "🐲", "🦄", "", "",
+  "", "", "", "", "", "", "", "", "", "",
 ];
 
 const AVATAR_COLORS = [

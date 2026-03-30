@@ -1229,7 +1229,7 @@ function FundEconomicsTab() {
  { label: "Portfolio Volatility (σ)", value: "12%", color: "text-muted-foreground" },
  { label: "Net Sharpe ≈ (10.8 − 5) / 12", value: "≈ 0.48", color: "text-indigo-400 font-medium" },
  ].map((row) => (
- <div key={row.label} className="flex justify-between items-center text-xs text-muted-foreground border-b border-border/20 pb-1">
+ <div key={row.label} className="flex justify-between items-center text-xs text-muted-foreground border-b border-border pb-1">
  <span className="text-muted-foreground">{row.label}</span>
  <span className={row.color}>{row.value}</span>
  </div>
@@ -1288,7 +1288,7 @@ export default function EquityLongShortPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "portfolio", label: "L/S Portfolio Structure" },
  { value: "short", label: "Short Selling" },

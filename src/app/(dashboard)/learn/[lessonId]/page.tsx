@@ -6,16 +6,16 @@ import { LessonPlayer } from "@/components/learn/LessonPlayer";
 import { notFound } from "next/navigation";
 
 export default function LessonPage({
-  params,
+ params,
 }: {
-  params: Promise<{ lessonId: string }>;
+ params: Promise<{ lessonId: string }>;
 }) {
-  const { lessonId } = use(params);
-  const lesson = getLessonById(lessonId);
+ const { lessonId } = use(params);
+ const lesson = getLessonById(lessonId);
 
-  if (!lesson) {
-    notFound();
-  }
+ if (!lesson) {
+ notFound();
+ }
 
-  return <LessonPlayer lesson={lesson} />;
+ return <LessonPlayer lesson={lesson} />;
 }

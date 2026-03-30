@@ -479,7 +479,7 @@ function ScreenerTab() {
  </div>
 
  {/* Distribution charts */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-foreground/[0.03] rounded-md border border-border/20">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-foreground/[0.03] rounded-md border border-border">
  <DistributionBar stocks={filtered.length > 0 ? filtered : ALL_STOCKS} field="pe" label="P/E Distribution" />
  <DistributionBar stocks={filtered.length > 0 ? filtered : ALL_STOCKS} field="revenueGrowth" label="Revenue Growth %" />
  <DistributionBar stocks={filtered.length > 0 ? filtered : ALL_STOCKS} field="roe" label="ROE %" />
@@ -487,9 +487,9 @@ function ScreenerTab() {
  </div>
 
  {/* Table */}
- <div className="overflow-x-auto rounded-md border border-border/20 bg-foreground/[0.02]">
+ <div className="overflow-x-auto rounded-md border border-border bg-foreground/[0.02]">
  <table className="w-full text-sm">
- <thead className="border-b border-border/20">
+ <thead className="border-b border-border">
  <tr>
  <ColHeader label="Ticker" field="ticker" sortField={sortField} sortDir={sortDir} onSort={handleSort} align="left" />
  <th className="px-3 py-2 text-xs font-medium text-foreground/50 text-left">Name</th>
@@ -512,7 +512,7 @@ function ScreenerTab() {
  animate={{ opacity: 1 }}
  exit={{ opacity: 0 }}
  transition={{ delay: i * 0.02 }}
- className="border-b border-border/20 hover:bg-muted/30 transition-colors"
+ className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2.5 font-semibold text-foreground">{stock.ticker}</td>
  <td className="px-3 py-2.5 text-foreground/60 whitespace-nowrap max-w-[140px] truncate">{stock.name}</td>
@@ -620,7 +620,7 @@ function ValueScreenTab() {
  "text-left p-4 rounded-md border transition-colors",
  activeScreen === vs.id
  ? "bg-muted/10 border-primary/50"
- : "bg-foreground/[0.03] border-border/20 hover:bg-muted/30"
+ : "bg-foreground/[0.03] border-border hover:bg-muted/30"
  )}
  >
  <div className="flex items-center gap-2 mb-1 text-foreground">{vs.icon}</div>
@@ -631,8 +631,8 @@ function ValueScreenTab() {
  </div>
 
  {/* Results */}
- <Card className="bg-foreground/[0.02] border-border/20">
- <CardHeader className="py-3 px-4 border-b border-border/20">
+ <Card className="bg-foreground/[0.02] border-border">
+ <CardHeader className="py-3 px-4 border-b border-border">
  <div className="flex items-center justify-between">
  <CardTitle className="text-sm font-semibold text-foreground">
  {screen.name} — {results.length} matches
@@ -646,7 +646,7 @@ function ValueScreenTab() {
  <div className="overflow-x-auto">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <th className="px-4 py-2 text-left text-xs font-medium text-foreground/40">Ticker</th>
  <th className="px-4 py-2 text-left text-xs font-medium text-foreground/40">Sector</th>
  {screen.metrics.map((m) => (
@@ -666,7 +666,7 @@ function ValueScreenTab() {
  </tr>
  )}
  {results.map((stock) => (
- <tr key={stock.ticker} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={stock.ticker} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-4 py-2.5">
  <span className="font-semibold text-foreground">{stock.ticker}</span>
  <span className="block text-[11px] text-foreground/40">{stock.name}</span>
@@ -757,7 +757,7 @@ function GrowthScreenTab() {
  "text-left p-4 rounded-md border transition-colors",
  activeScreen === gs.id
  ? colorMap[gs.color]
- : "bg-foreground/[0.03] border-border/20 hover:bg-muted/30"
+ : "bg-foreground/[0.03] border-border hover:bg-muted/30"
  )}
  >
  <div className="flex items-center gap-2 mb-1">
@@ -769,8 +769,8 @@ function GrowthScreenTab() {
  ))}
  </div>
 
- <Card className="bg-foreground/[0.02] border-border/20">
- <CardHeader className="py-3 px-4 border-b border-border/20">
+ <Card className="bg-foreground/[0.02] border-border">
+ <CardHeader className="py-3 px-4 border-b border-border">
  <CardTitle className="text-sm font-medium text-foreground flex items-center justify-between">
  <span>{screen.name} Results — {results.length} matches</span>
  <Zap size={14} className="text-yellow-400" />
@@ -780,7 +780,7 @@ function GrowthScreenTab() {
  <div className="overflow-x-auto">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  {["Ticker", "Sector", "Rev Growth", "EPS Growth", "Rev Accel", "P/E", "ROE %", "Earn. Quality"].map((h) => (
  <th key={h} className={cn("px-4 py-2 text-xs font-medium text-foreground/40", h === "Ticker" || h === "Sector" ? "text-left" : "text-right")}>
  {h}
@@ -797,7 +797,7 @@ function GrowthScreenTab() {
  </tr>
  )}
  {results.map((stock) => (
- <tr key={stock.ticker} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={stock.ticker} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-4 py-2.5">
  <span className="font-medium text-foreground">{stock.ticker}</span>
  <span className="block text-[11px] text-foreground/40">{stock.name}</span>
@@ -885,7 +885,7 @@ function QualityScreenTab() {
  "text-left p-3 rounded-md border transition-colors",
  activeScreen === qs.id
  ? "bg-emerald-600/20 border-emerald-500/50"
- : "bg-foreground/[0.03] border-border/20 hover:bg-muted/30"
+ : "bg-foreground/[0.03] border-border hover:bg-muted/30"
  )}
  >
  <Shield size={14} className={activeScreen === qs.id ? "text-emerald-400 mb-1" : "text-foreground/30 mb-1"} />
@@ -904,7 +904,7 @@ function QualityScreenTab() {
  { label: "Avg FCF Yield", value: (results.reduce((a, s) => a + s.fcfYield, 0) / results.length).toFixed(1) + "%" },
  { label: "Avg Bal. Strength", value: Math.round(results.reduce((a, s) => a + s.balanceStrength, 0) / results.length) + "/100" },
  ].map((stat) => (
- <Card key={stat.label} className="bg-foreground/[0.03] border-border/20">
+ <Card key={stat.label} className="bg-foreground/[0.03] border-border">
  <CardContent className="p-3">
  <p className="text-xs text-foreground/40">{stat.label}</p>
  <p className="text-lg font-medium text-foreground mt-0.5">{stat.value}</p>
@@ -914,8 +914,8 @@ function QualityScreenTab() {
  </div>
  )}
 
- <Card className="bg-foreground/[0.02] border-border/20">
- <CardHeader className="py-3 px-4 border-b border-border/20">
+ <Card className="bg-foreground/[0.02] border-border">
+ <CardHeader className="py-3 px-4 border-b border-border">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <CheckCircle2 size={14} className="text-emerald-400" />
  {screen.name} — {results.length} stocks
@@ -925,7 +925,7 @@ function QualityScreenTab() {
  <div className="overflow-x-auto">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  {["Ticker", "Sector", "ROIC %", "ROE %", "FCF Yield", "D/E", "Curr. Ratio", "Earn. Quality", "Bal. Strength"].map((h) => (
  <th key={h} className={cn("px-4 py-2 text-xs font-medium text-foreground/40", h === "Ticker" || h === "Sector" ? "text-left" : "text-right")}>
  {h}
@@ -942,7 +942,7 @@ function QualityScreenTab() {
  </tr>
  )}
  {results.map((stock) => (
- <tr key={stock.ticker} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={stock.ticker} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-4 py-2.5">
  <span className="font-medium text-foreground">{stock.ticker}</span>
  <span className="block text-[11px] text-foreground/40">{stock.name}</span>
@@ -1037,8 +1037,8 @@ function CustomScreenTab() {
  >
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
  {/* Filter panel */}
- <Card className="bg-foreground/[0.02] border-border/20 lg:col-span-1">
- <CardHeader className="py-3 px-4 border-b border-border/20">
+ <Card className="bg-foreground/[0.02] border-border lg:col-span-1">
+ <CardHeader className="py-3 px-4 border-b border-border">
  <div className="flex items-center justify-between">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <Sliders size={14} className="text-muted-foreground/50" />
@@ -1177,14 +1177,14 @@ function CustomScreenTab() {
  <div className="lg:col-span-2 space-y-3">
  {/* Match summary */}
  <div className="grid grid-cols-3 gap-3">
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardContent className="p-3">
  <p className="text-xs text-foreground/40">Matches</p>
  <p className="text-2xl font-semibold text-foreground">{results.length}</p>
  <p className="text-xs text-foreground/30">of 25 stocks</p>
  </CardContent>
  </Card>
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardContent className="p-3">
  <p className="text-xs text-foreground/40">Avg P/E</p>
  <p className="text-lg font-medium text-foreground">
@@ -1192,7 +1192,7 @@ function CustomScreenTab() {
  </p>
  </CardContent>
  </Card>
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardContent className="p-3">
  <p className="text-xs text-foreground/40">Avg ROE</p>
  <p className="text-lg font-medium text-emerald-400">
@@ -1203,7 +1203,7 @@ function CustomScreenTab() {
  </div>
 
  {/* Match progress bar */}
- <div className="p-3 bg-foreground/[0.03] rounded-md border border-border/20">
+ <div className="p-3 bg-foreground/[0.03] rounded-md border border-border">
  <div className="flex items-center justify-between mb-2">
  <span className="text-xs text-foreground/50">Filter match rate</span>
  <span className="text-xs font-mono text-foreground/70">{results.length}/25</span>
@@ -1212,8 +1212,8 @@ function CustomScreenTab() {
  </div>
 
  {/* Results table */}
- <Card className="bg-foreground/[0.02] border-border/20">
- <CardHeader className="py-3 px-4 border-b border-border/20">
+ <Card className="bg-foreground/[0.02] border-border">
+ <CardHeader className="py-3 px-4 border-b border-border">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <Filter size={14} className="text-muted-foreground/50" />
  Custom Screen Results
@@ -1228,7 +1228,7 @@ function CustomScreenTab() {
  <div className="overflow-x-auto max-h-[420px] overflow-y-auto">
  <table className="w-full text-sm">
  <thead className="sticky top-0 bg-card/95 backdrop-blur-sm z-10">
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  {["Ticker", "Sector", "P/E", "ROE %", "D/E", "Rev Growth", "FCF Yield", "Gross Margin", "Beta"].map((h) => (
  <th key={h} className={cn("px-3 py-2 text-xs font-medium text-foreground/40", h === "Ticker" || h === "Sector" ? "text-left" : "text-right")}>
  {h}
@@ -1245,7 +1245,7 @@ function CustomScreenTab() {
  animate={{ opacity: 1, x: 0 }}
  exit={{ opacity: 0, x: 8 }}
  transition={{ delay: i * 0.03 }}
- className="border-b border-border/20 hover:bg-muted/30 transition-colors"
+ className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2.5 font-medium text-foreground">{stock.ticker}</td>
  <td className="px-3 py-2.5"><SectorBadge sector={stock.sector} /></td>
@@ -1340,7 +1340,7 @@ export default function StockScreenerPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="screener">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="screener" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <BarChart3 size={12} className="mr-1.5" /> Screener
  </TabsTrigger>

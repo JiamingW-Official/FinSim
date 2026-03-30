@@ -407,7 +407,7 @@ function YieldDashboard() {
  initial={{ opacity: 0, y: 4 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ delay: idx * 0.02 }}
- className="border-b border-border/20 hover:bg-muted/30 transition-colors"
+ className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="p-3 font-medium text-foreground">{opp.protocol}</td>
  <td className="p-3 text-muted-foreground">{opp.pair}</td>
@@ -655,7 +655,7 @@ function LiquidityPoolSimulator() {
  </thead>
  <tbody>
  {scenarios.map((sc) => (
- <tr key={sc.ratio} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={sc.ratio} className="border-b border-border hover:bg-muted/30">
  <td className="p-3">
  <span className={cn("font-medium", sc.ratio < 1 ? "text-rose-400" : sc.ratio > 1 ? "text-emerald-400" : "text-muted-foreground")}>
  {sc.ratio === 1 ? "No change" : sc.ratio > 1 ? `+${((sc.ratio - 1) * 100).toFixed(0)}%` : `-${((1 - sc.ratio) * 100).toFixed(0)}%`}
@@ -939,7 +939,7 @@ function StakingCalculator() {
  </thead>
  <tbody>
  {slashScenarios.map((sc) => (
- <tr key={sc.behavior} className="border-t border-border/20">
+ <tr key={sc.behavior} className="border-t border-border">
  <td className="p-2 text-muted-foreground">{sc.behavior}</td>
  <td className="p-2 text-right text-amber-400">{sc.probability}</td>
  <td className="p-2 text-right text-rose-400">{sc.slash}</td>
@@ -1177,7 +1177,7 @@ function LendingAnalyzer() {
  <SectionTitle><AlertTriangle size={14} className="text-rose-400" /> Historical Protocol Hacks</SectionTitle>
  <div className="space-y-2">
  {PROTOCOL_HACKS.map((hack) => (
- <div key={hack.protocol} className="flex items-center gap-3 p-2 rounded-lg border border-border/20">
+ <div key={hack.protocol} className="flex items-center gap-3 p-2 rounded-lg border border-border">
  <div className="flex-1">
  <span className="text-sm font-medium text-foreground">{hack.protocol}</span>
  <span className="text-xs text-muted-foreground ml-2">{hack.date}</span>
@@ -1351,7 +1351,7 @@ function YieldStrategyBuilder() {
  initial={{ opacity: 0, x: -10 }}
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: i * 0.05 }}
- className="flex items-center gap-3 p-2 rounded-lg bg-foreground/5 border border-border/20"
+ className="flex items-center gap-3 p-2 rounded-lg bg-foreground/5 border border-border"
  >
  <span className="w-6 h-6 rounded-full bg-foreground/10 text-muted-foreground text-xs flex items-center justify-center shrink-0">{i + 1}</span>
  <div className="flex-1">
@@ -1558,7 +1558,7 @@ function ProtocolRankings() {
  <>
  <tr
  key={p.name}
- className="border-b border-border/20 hover:bg-muted/30 transition-colors cursor-pointer"
+ className="border-b border-border hover:bg-muted/30 transition-colors cursor-pointer"
  onClick={() => setExpandedRow(expandedRow === idx ? null : idx)}
  >
  <td className="p-3 text-muted-foreground font-mono">{p.rank}</td>
@@ -1661,7 +1661,7 @@ function ProtocolRankings() {
  </thead>
  <tbody>
  {DEFI_VS_CEFI.map((row) => (
- <tr key={row.product} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={row.product} className="border-b border-border hover:bg-muted/30">
  <td className="p-2 text-foreground">{row.product}</td>
  <td className="p-2 text-right">
  {row.defiRate > 0 ? (
@@ -1744,7 +1744,7 @@ export default function DefiPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="yield" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "yield", label: "Yield Dashboard", icon: <BarChart3 size={13} /> },
  { value: "lp", label: "LP Simulator", icon: <Droplets size={13} /> },

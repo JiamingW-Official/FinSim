@@ -641,7 +641,7 @@ function SwapCurveTab() {
  </thead>
  <tbody>
  {TENOR_LABELS.map((label, i) => (
- <tr key={`tr-${i}`} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={`tr-${i}`} className="border-b border-border hover:bg-muted/30">
  <td className="py-1.5 font-mono text-foreground/70">{label}</td>
  <td className="py-1.5 font-mono text-right text-foreground">
  {parRates[i].toFixed(3)}%
@@ -1440,7 +1440,7 @@ function DurationHedgingTab() {
  </thead>
  <tbody>
  {scenarios.filter((_, i) => i % 2 === 0).map((s, i) => (
- <tr key={`sr-${i}`} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={`sr-${i}`} className="border-b border-border hover:bg-muted/30">
  <td className="py-1 font-mono text-foreground/70">
  {s.shift > 0 ? `+${s.shift}` : s.shift} bps
  </td>
@@ -1505,7 +1505,7 @@ export default function RatesLabPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="swap-pricer" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="swap-pricer" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Swap Pricer
  </TabsTrigger>

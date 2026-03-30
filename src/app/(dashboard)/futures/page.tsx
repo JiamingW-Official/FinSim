@@ -539,7 +539,7 @@ function EquityFuturesTab() {
  key={f.symbol}
  initial={{ opacity: 0 }}
  animate={{ opacity: 1 }}
- className="border-b border-border/20 hover:bg-muted/20 cursor-pointer transition-colors"
+ className="border-b border-border hover:bg-muted/20 cursor-pointer transition-colors"
  onClick={() => setSelectedFuture(selectedFuture?.symbol === f.symbol ? null : f)}
  >
  <td className="px-3 py-2.5">
@@ -621,7 +621,7 @@ function EquityFuturesTab() {
  {ssfs.map((s) => {
  const premPct = (s.premium / s.spotPrice) * 100;
  return (
- <tr key={s.ticker} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
+ <tr key={s.ticker} className="border-b border-border hover:bg-muted/20 transition-colors">
  <td className="px-3 py-2.5 font-medium text-xs text-foreground">{s.ticker}</td>
  <td className="px-3 py-2.5 tabular-nums text-xs text-muted-foreground font-medium">{fmtPrice(s.spotPrice)}</td>
  <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{fmtPrice(s.futuresPrice)}</td>
@@ -685,7 +685,7 @@ function InterestRateFuturesTab() {
  </thead>
  <tbody>
  {irFutures.map((f) => (
- <tr key={f.symbol} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
+ <tr key={f.symbol} className="border-b border-border hover:bg-muted/20 transition-colors">
  <td className="px-3 py-2.5 font-medium text-xs text-green-400">{f.symbol}</td>
  <td className="px-3 py-2.5 text-xs text-muted-foreground">{f.name}</td>
  <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{f.price.toFixed(3)}</td>
@@ -781,7 +781,7 @@ function InterestRateFuturesTab() {
  </thead>
  <tbody>
  {fomc.map((m, i) => (
- <tr key={i} className="border-b border-border/20">
+ <tr key={i} className="border-b border-border">
  <td className="py-2 pr-4 font-medium text-foreground">{m.date}</td>
  <td className="py-2 pr-4 tabular-nums text-amber-400 font-medium">{m.impliedRate.toFixed(2)}%</td>
  <td className="py-2 pr-4">
@@ -823,7 +823,7 @@ function InterestRateFuturesTab() {
  </thead>
  <tbody>
  {intl.map((f) => (
- <tr key={f.symbol + f.country} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
+ <tr key={f.symbol + f.country} className="border-b border-border hover:bg-muted/20 transition-colors">
  <td className="px-3 py-2.5 font-medium text-xs text-foreground">{f.symbol}</td>
  <td className="px-3 py-2.5 text-xs text-muted-foreground">{f.name}</td>
  <td className="px-3 py-2.5">
@@ -888,7 +888,7 @@ function CurrencyCryptoTab() {
  </thead>
  <tbody>
  {fxFutures.map((f) => (
- <tr key={f.symbol} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
+ <tr key={f.symbol} className="border-b border-border hover:bg-muted/20 transition-colors">
  <td className="px-3 py-2.5 font-medium text-xs text-foreground">{f.symbol}</td>
  <td className="px-3 py-2.5 text-xs font-medium text-foreground">{f.pair}</td>
  <td className="px-3 py-2.5 tabular-nums text-xs font-medium text-foreground">{fmtPrice(f.price)}</td>
@@ -1100,7 +1100,7 @@ function VolatilityTab() {
  </thead>
  <tbody>
  {[{ month: "Spot", label: "VIX Spot", price: vixSpot, change: 0, oi: 0 }, ...vixFutures].map((f) => (
- <tr key={f.month} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={f.month} className="border-b border-border hover:bg-muted/20">
  <td className="px-3 py-2 font-medium text-foreground">{f.label ?? f.month}</td>
  <td className="px-3 py-2 tabular-nums font-medium text-amber-400">{f.price.toFixed(2)}</td>
  <td className="px-3 py-2 tabular-nums">
@@ -1162,7 +1162,7 @@ function VolatilityTab() {
  <th className="px-3 py-2 text-center font-medium text-muted-foreground">Strike</th>
  <th className="px-3 py-2 text-right font-medium text-muted-foreground" colSpan={2}>Put</th>
  </tr>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <th className="px-3 py-1.5 text-left text-xs text-muted-foreground">Price</th>
  <th className="px-3 py-1.5 text-left text-xs text-muted-foreground">IV</th>
  <th className="px-3 py-1.5 text-center text-xs font-medium text-foreground">Strike</th>
@@ -1174,7 +1174,7 @@ function VolatilityTab() {
  {vixOpts.map((o) => {
  const atm = Math.abs(o.strike - vixSpot) < 2;
  return (
- <tr key={o.strike} className={cn("border-b border-border/20", atm && "bg-amber-500/5")}>
+ <tr key={o.strike} className={cn("border-b border-border", atm && "bg-amber-500/5")}>
  <td className="px-3 py-2 tabular-nums text-emerald-400 font-medium">{o.callPrice.toFixed(2)}</td>
  <td className="px-3 py-2 tabular-nums text-muted-foreground">{o.iv.toFixed(1)}%</td>
  <td className={cn("px-3 py-2 text-center font-medium", atm ? "text-amber-400" : "text-foreground")}>{o.strike}</td>
@@ -1518,7 +1518,7 @@ function MarginOrderTab() {
  const posInitMargin = p.spec.initialMargin * p.qty;
  const posMaintMargin = p.spec.maintenanceMargin * p.qty;
  return (
- <tr key={p.spec.symbol} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={p.spec.symbol} className="border-b border-border hover:bg-muted/20">
  <td className="px-3 py-2.5 font-medium text-foreground">{p.spec.symbol}</td>
  <td className="px-3 py-2.5 tabular-nums">{p.qty}</td>
  <td className="px-3 py-2.5 tabular-nums text-red-400">${posInitMargin.toLocaleString()}</td>
@@ -1623,7 +1623,7 @@ export default function FuturesPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="equity" className="w-full mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "equity", label: "Equity & Index" },
  { value: "rates", label: "Interest Rates" },

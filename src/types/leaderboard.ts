@@ -45,7 +45,7 @@ export const LEAGUES: Record<LeagueTier, LeagueInfo> = {
   diamond: {
     tier: "diamond",
     label: "Diamond",
-    emoji: "💎",
+    emoji: "",
     color: "text-muted-foreground",
     bgColor: "bg-muted/30",
     borderColor: "border-border",
@@ -54,7 +54,7 @@ export const LEAGUES: Record<LeagueTier, LeagueInfo> = {
   alpha: {
     tier: "alpha",
     label: "Alpha",
-    emoji: "👑",
+    emoji: "",
     color: "text-primary",
     bgColor: "bg-primary/10",
     borderColor: "border-border",

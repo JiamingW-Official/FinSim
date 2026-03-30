@@ -745,7 +745,7 @@ export default function InfrastructurePage() {
 
  {/* ── Tabs ── */}
  <Tabs defaultValue="asset-types">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="asset-types">Asset Types</TabsTrigger>
  <TabsTrigger value="return-profile">Return Profile</TabsTrigger>
  <TabsTrigger value="valuation">Valuation</TabsTrigger>
@@ -780,7 +780,7 @@ export default function InfrastructurePage() {
  {ASSET_TYPES.map((asset, i) => (
  <tr
  key={asset.name}
- className={`border-b border-border/20 cursor-pointer transition-colors ${selectedAsset?.name === asset.name ? "bg-muted/10" : i % 2 === 0 ? "bg-transparent" : "bg-muted/10"} hover:bg-muted/20`}
+ className={`border-b border-border cursor-pointer transition-colors ${selectedAsset?.name === asset.name ? "bg-muted/10" : i % 2 === 0 ? "bg-transparent" : "bg-muted/10"} hover:bg-muted/20`}
  onClick={() => setSelectedAsset(selectedAsset?.name === asset.name ? null : asset)}
  >
  <td className="px-4 py-3">

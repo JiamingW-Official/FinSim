@@ -246,7 +246,7 @@ const signalColor = (sig: string) => {
 const signalBg = (sig: string) => {
  if (sig === "cheap" || sig === "buy") return "bg-emerald-500/5 text-emerald-400 border border-emerald-500/20";
  if (sig === "rich" || sig === "sell") return "bg-red-500/5 text-red-400 border border-red-500/20";
- return "bg-muted/40 text-muted-foreground border border-border/20";
+ return "bg-muted/40 text-muted-foreground border border-border";
 };
 
 const zColor = (z: number) => {
@@ -588,7 +588,7 @@ function CarryRollSVG({ data }: { data: CarryRollPoint[] }) {
 
 function StatChip({ label, value, sub }: { label: string; value: string; sub?: string }) {
  return (
- <div className="rounded-lg bg-muted/60 border border-border/20 px-3 py-2 flex flex-col gap-0.5">
+ <div className="rounded-lg bg-muted/60 border border-border px-3 py-2 flex flex-col gap-0.5">
  <span className="text-xs text-muted-foreground ">{label}</span>
  <span className="text-sm font-semibold text-foreground">{value}</span>
  {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -646,7 +646,7 @@ export default function FixedIncomeRVPage() {
  <div className="w-8 h-8 rounded-lg bg-indigo-500/15 flex items-center justify-center">
  </div>
  <h1 className="text-lg font-semibold tracking-tight">Fixed Income Relative Value</h1>
- <span className="ml-auto text-xs text-muted-foreground bg-muted/60 border border-border/20 rounded px-2 py-0.5">
+ <span className="ml-auto text-xs text-muted-foreground bg-muted/60 border border-border rounded px-2 py-0.5">
  As of Mar 28, 2026
  </span>
  </div>
@@ -673,7 +673,7 @@ export default function FixedIncomeRVPage() {
  {/* Tabs */}
  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
  <Tabs defaultValue="curve">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-4">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4">
  <TabsTrigger value="curve" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Yield Curve Trades
  </TabsTrigger>
@@ -695,7 +695,7 @@ export default function FixedIncomeRVPage() {
  <TabsContent value="curve" className="data-[state=inactive]:hidden">
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
  {/* Left: curve visual */}
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center justify-between mb-3">
  <h2 className="text-sm font-medium">Current Yield Curve</h2>
  <span className="text-xs text-muted-foreground">US Treasuries — 3M to 30Y</span>
@@ -710,7 +710,7 @@ export default function FixedIncomeRVPage() {
  "text-xs text-muted-foreground px-2.5 py-1 rounded border transition-colors",
  curveHighlight === h
  ? "bg-indigo-500/20 border-indigo-500/50 text-indigo-300"
- : "bg-muted/50 border-border/20 text-muted-foreground hover:text-muted-foreground"
+ : "bg-muted/50 border-border text-muted-foreground hover:text-muted-foreground"
  )}
  >
  {h === null ? "Reset" : h.charAt(0).toUpperCase() + h.slice(1)}
@@ -727,7 +727,7 @@ export default function FixedIncomeRVPage() {
  "rounded-md border p-4 transition-colors cursor-pointer",
  curveHighlight === "steepener"
  ? "bg-emerald-900/10 border-emerald-500/30"
- : "bg-card/60 border-border/20 hover:border-border/60"
+ : "bg-card/60 border-border hover:border-border"
  )}
  onClick={() => setCurveHighlight(curveHighlight === "steepener" ? null : "steepener")}
  >
@@ -766,7 +766,7 @@ export default function FixedIncomeRVPage() {
  "rounded-md border p-4 transition-colors cursor-pointer",
  curveHighlight === "flattener"
  ? "bg-red-900/10 border-red-500/30"
- : "bg-card/60 border-border/20 hover:border-border/60"
+ : "bg-card/60 border-border hover:border-border"
  )}
  onClick={() => setCurveHighlight(curveHighlight === "flattener" ? null : "flattener")}
  >
@@ -802,7 +802,7 @@ export default function FixedIncomeRVPage() {
  "rounded-md border p-4 transition-colors cursor-pointer",
  curveHighlight === "butterfly"
  ? "bg-yellow-900/10 border-yellow-500/30"
- : "bg-card/60 border-border/20 hover:border-border/60"
+ : "bg-card/60 border-border hover:border-border"
  )}
  onClick={() => setCurveHighlight(curveHighlight === "butterfly" ? null : "butterfly")}
  >
@@ -852,7 +852,7 @@ export default function FixedIncomeRVPage() {
  <TabsContent value="spreads" className="data-[state=inactive]:hidden">
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
  {/* Z-Score chart */}
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <h2 className="text-sm font-medium mb-1">OAS Z-Score vs 3Y History</h2>
  <p className="text-xs text-muted-foreground mb-3">
  Green bars = cheap (wide vs history) &bull; Red = rich (tight vs history) &bull; ±1σ band shaded
@@ -861,12 +861,12 @@ export default function FixedIncomeRVPage() {
  </div>
 
  {/* Spread table */}
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <h2 className="text-sm font-medium mb-3">OAS by Rating / Sector</h2>
  <div className="overflow-x-auto">
  <table className="w-full text-[11px]">
  <thead>
- <tr className="border-b border-border/60">
+ <tr className="border-b border-border">
  {["Rating", "Sector", "OAS (bps)", "1Y Avg", "3Y Avg", "Z-Score", "Signal"].map((h) => (
  <th key={h} className="text-left text-muted-foreground py-2 pr-3 font-medium">
  {h}
@@ -881,7 +881,7 @@ export default function FixedIncomeRVPage() {
  initial={{ opacity: 0, x: -8 }}
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: i * 0.04 }}
- className="border-b border-border/20 hover:bg-muted/20"
+ className="border-b border-border hover:bg-muted/20"
  >
  <td className="py-2 pr-3 font-mono font-medium text-foreground">{r.rating}</td>
  <td className="py-2 pr-3 text-muted-foreground">{r.sector}</td>
@@ -906,7 +906,7 @@ export default function FixedIncomeRVPage() {
 
  {/* IG vs HY comparison */}
  <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-xs font-medium text-foreground">IG Credit</span>
  </div>
@@ -916,7 +916,7 @@ export default function FixedIncomeRVPage() {
  Slightly RICH to history — limited upside from spread compression
  </div>
  </div>
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-xs font-medium text-orange-400">HY Credit</span>
  </div>
@@ -926,7 +926,7 @@ export default function FixedIncomeRVPage() {
  FAIR value — select issuer opportunities in BB-rated
  </div>
  </div>
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-xs font-medium text-emerald-400">IG vs HY Differential</span>
  </div>
@@ -949,12 +949,12 @@ export default function FixedIncomeRVPage() {
 
  {/* ── Tab 3: Cross-Market RV ────────────────────────────────────────── */}
  <TabsContent value="crossmarket" className="data-[state=inactive]:hidden">
- <div className="rounded-md bg-card/60 border border-border/20 p-4 mb-4">
+ <div className="rounded-md bg-card/60 border border-border p-4 mb-4">
  <h2 className="text-sm font-medium mb-3">Treasury / Agency / Muni Value Matrix</h2>
  <div className="overflow-x-auto">
  <table className="w-full text-[11px]">
  <thead>
- <tr className="border-b border-border/60">
+ <tr className="border-b border-border">
  {["Instrument", "Type", "Yield", "TEY (37%)", "Sprd vs Tsy", "OTR/OTS Prem", "View"].map(
  (h) => (
  <th key={h} className="text-left text-muted-foreground py-2 pr-4 font-medium">
@@ -972,7 +972,7 @@ export default function FixedIncomeRVPage() {
  animate={{ opacity: 1, y: 0 }}
  transition={{ delay: i * 0.03 }}
  className={cn(
- "border-b border-border/20 hover:bg-muted/20",
+ "border-b border-border hover:bg-muted/20",
  row.type === "Muni" && "bg-indigo-500/3",
  row.type === "TIPS" && "bg-cyan-500/3"
  )}
@@ -1019,7 +1019,7 @@ export default function FixedIncomeRVPage() {
 
  {/* RV Boxes */}
  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-xs text-muted-foreground font-medium">Agency Premium</span>
  </div>
@@ -1034,7 +1034,7 @@ export default function FixedIncomeRVPage() {
  </div>
  </div>
 
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-xs text-muted-foreground font-medium">Muni Tax Equiv. Yield</span>
  </div>
@@ -1051,7 +1051,7 @@ export default function FixedIncomeRVPage() {
  </div>
  </div>
 
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-xs text-muted-foreground font-medium">10Y TIPS Breakeven</span>
  </div>
@@ -1079,7 +1079,7 @@ export default function FixedIncomeRVPage() {
  <TabsContent value="sector" className="data-[state=inactive]:hidden">
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
  {/* Chart */}
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <h2 className="text-sm font-medium mb-1">Sector Spread: Current vs 6M Average</h2>
  <p className="text-xs text-muted-foreground mb-3">
  <span className="text-emerald-400">■</span> Cheap &nbsp;
@@ -1090,7 +1090,7 @@ export default function FixedIncomeRVPage() {
  </div>
 
  {/* Table */}
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <h2 className="text-sm font-medium mb-3">Spread per Turn of Leverage</h2>
  <p className="text-xs text-muted-foreground mb-3">
  Spread/leverage ratio normalizes compensation across sectors with different capital structures.
@@ -1098,7 +1098,7 @@ export default function FixedIncomeRVPage() {
  <div className="overflow-x-auto">
  <table className="w-full text-[11px]">
  <thead>
- <tr className="border-b border-border/60">
+ <tr className="border-b border-border">
  {["Sector", "OAS (bps)", "6M Avg", "Leverage", "Sprd/Turn Lev", "Signal"].map((h) => (
  <th key={h} className="text-left text-muted-foreground py-2 pr-3 font-medium">
  {h}
@@ -1113,7 +1113,7 @@ export default function FixedIncomeRVPage() {
  initial={{ opacity: 0, x: -8 }}
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: i * 0.05 }}
- className="border-b border-border/20 hover:bg-muted/20"
+ className="border-b border-border hover:bg-muted/20"
  >
  <td className="py-2 pr-3 font-medium text-foreground">{s.sector}</td>
  <td className="py-2 pr-3 font-mono">{s.currentSpread}</td>
@@ -1137,7 +1137,7 @@ export default function FixedIncomeRVPage() {
 
  {/* Rotation recommendations */}
  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <span className="text-xs font-medium text-emerald-400">Overweight Recommendation</span>
  </div>
@@ -1157,7 +1157,7 @@ export default function FixedIncomeRVPage() {
  </div>
  </div>
 
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <span className="text-xs font-medium text-red-400">Underweight / Trim</span>
  </div>
@@ -1190,7 +1190,7 @@ export default function FixedIncomeRVPage() {
  <TabsContent value="carry" className="data-[state=inactive]:hidden">
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
  {/* SVG */}
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <h2 className="text-sm font-medium mb-1">Riding the Yield Curve — 6M Horizon</h2>
  <p className="text-xs text-muted-foreground mb-3">
  Carry (coupon accrual) + Roll-down (yield decline as bond ages) = Total expected return in bps
@@ -1199,12 +1199,12 @@ export default function FixedIncomeRVPage() {
  </div>
 
  {/* Table */}
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <h2 className="text-sm font-medium mb-3">Carry &amp; Roll Breakdown Table</h2>
  <div className="overflow-x-auto">
  <table className="w-full text-[11px]">
  <thead>
- <tr className="border-b border-border/60">
+ <tr className="border-b border-border">
  {["Tenor", "Yield", "Carry (6M)", "Roll-Down", "Total (bps)", "Ann. Return"].map(
  (h) => (
  <th key={h} className="text-left text-muted-foreground py-2 pr-3 font-medium">
@@ -1223,7 +1223,7 @@ export default function FixedIncomeRVPage() {
  initial={{ opacity: 0, x: -8 }}
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: i * 0.06 }}
- className="border-b border-border/20 hover:bg-muted/20"
+ className="border-b border-border hover:bg-muted/20"
  >
  <td className="py-2 pr-3 font-medium text-foreground">{row.tenor}</td>
  <td className="py-2 pr-3 font-mono">{row.yield.toFixed(2)}%</td>
@@ -1255,7 +1255,7 @@ export default function FixedIncomeRVPage() {
 
  {/* Carry concepts */}
  <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-xs font-medium text-indigo-400">Carry</span>
  </div>
@@ -1264,7 +1264,7 @@ export default function FixedIncomeRVPage() {
  curve, longer bonds have higher carry. Formula: (Coupon − Repo Rate) × Time.
  </p>
  </div>
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-xs font-medium text-orange-400">Roll-Down</span>
  </div>
@@ -1273,7 +1273,7 @@ export default function FixedIncomeRVPage() {
  becomes a 4.5Y bond priced at the (typically lower) 4.5Y yield — generating capital gain.
  </p>
  </div>
- <div className="rounded-md bg-card/60 border border-border/20 p-4">
+ <div className="rounded-md bg-card/60 border border-border p-4">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-xs font-medium text-muted-foreground">Riding the Curve</span>
  </div>

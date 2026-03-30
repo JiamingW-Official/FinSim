@@ -151,7 +151,7 @@ function MetricCard({ label, value, sub, trend }: {
 }) {
  const trendColor = trend === "up" ? "text-green-400" : trend === "down" ? "text-red-400" : "text-muted-foreground";
  return (
- <div className="bg-muted/60 border border-border/20 rounded-md p-4 flex flex-col gap-2">
+ <div className="bg-muted/60 border border-border rounded-md p-4 flex flex-col gap-2">
  <div className="flex items-center gap-2 text-muted-foreground text-xs">
  <span>{label}</span>
  </div>
@@ -214,7 +214,7 @@ function StructureTab() {
  </div>
 
  {/* Trust Flow Diagram */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-5">
+ <div className="bg-muted/60 border border-border rounded-md p-5">
  <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
  CMBS Trust Structure
  </h3>
@@ -260,7 +260,7 @@ function StructureTab() {
 
  {/* Capital Stack */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
- <div className="bg-muted/60 border border-border/20 rounded-md p-5">
+ <div className="bg-muted/60 border border-border rounded-md p-5">
  <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
  Capital Stack (8 Tranches)
  </h3>
@@ -303,7 +303,7 @@ function StructureTab() {
  })()}
  </AnimatePresence>
 
- <div className="bg-muted/60 border border-border/20 rounded-md p-4 space-y-3">
+ <div className="bg-muted/60 border border-border rounded-md p-4 space-y-3">
  <h4 className="text-xs font-medium text-muted-foreground ">Servicer Roles</h4>
  {[
  { role: "Master Servicer", desc: "Collects P&I from all performing loans; advances scheduled payments to certificate holders when borrowers are current.", color: "text-foreground" },
@@ -364,14 +364,14 @@ function LoanAnalysisTab() {
  return (
  <div className="space-y-4">
  {/* Loans table */}
- <div className="bg-muted/60 border border-border/20 rounded-md overflow-hidden">
- <div className="px-5 py-3 border-b border-border/20 flex items-center gap-2">
+ <div className="bg-muted/60 border border-border rounded-md overflow-hidden">
+ <div className="px-5 py-3 border-b border-border flex items-center gap-2">
  <span className="text-sm font-medium text-foreground">Sample Loan Pool (8 Loans)</span>
  </div>
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  {["ID", "Property Type", "City", "DSCR", "LTV%", "Coupon%", "Bal($M)", "Maturity", "IO Mo.", "Status"].map((h) => (
  <th key={h} className="px-3 py-2.5 text-left text-muted-foreground font-medium whitespace-nowrap">{h}</th>
  ))}
@@ -379,7 +379,7 @@ function LoanAnalysisTab() {
  </thead>
  <tbody>
  {LOANS.map((loan, i) => (
- <tr key={loan.id} className={cn("border-b border-border/20 hover:bg-muted/20 transition-colors", i % 2 === 0 ? "" : "bg-muted/30")}>
+ <tr key={loan.id} className={cn("border-b border-border hover:bg-muted/20 transition-colors", i % 2 === 0 ? "" : "bg-muted/30")}>
  <td className="px-3 py-2 font-mono text-muted-foreground">{loan.id}</td>
  <td className="px-3 py-2">
  <span className="inline-flex items-center gap-1">
@@ -417,7 +417,7 @@ function LoanAnalysisTab() {
  {/* Scatter + NOI stress */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {/* DSCR vs LTV Scatter */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-5">
+ <div className="bg-muted/60 border border-border rounded-md p-5">
  <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
  DSCR vs LTV Scatter
  </h3>
@@ -466,7 +466,7 @@ function LoanAnalysisTab() {
  </div>
 
  {/* NOI Stress Test */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-5 space-y-4">
+ <div className="bg-muted/60 border border-border rounded-md p-5 space-y-4">
  <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
  NOI Stress Testing — Occupancy
  </h3>
@@ -509,7 +509,7 @@ function LoanAnalysisTab() {
  </div>
 
  {/* Property Sector Heatmap */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-5">
+ <div className="bg-muted/60 border border-border rounded-md p-5">
  <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
  Property Sector Heatmap
  </h3>
@@ -582,7 +582,7 @@ function PerformanceTab() {
  </div>
 
  {/* Delinquency bar chart */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-5">
+ <div className="bg-muted/60 border border-border rounded-md p-5">
  <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
  12-Month Delinquency Rate (30+ Days)
  </h3>
@@ -621,7 +621,7 @@ function PerformanceTab() {
 
  {/* Vintage loss rates + Prepayment speeds */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
- <div className="bg-muted/60 border border-border/20 rounded-md p-5">
+ <div className="bg-muted/60 border border-border rounded-md p-5">
  <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
  Realized Loss Rate by Vintage
  </h3>
@@ -644,7 +644,7 @@ function PerformanceTab() {
  <p className="text-xs text-muted-foreground mt-3">2020 vintage elevated due to pandemic hotel/retail stress.</p>
  </div>
 
- <div className="bg-muted/60 border border-border/20 rounded-md p-5">
+ <div className="bg-muted/60 border border-border rounded-md p-5">
  <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
  Prepayment Speeds by Property Type (CPR%)
  </h3>
@@ -727,7 +727,7 @@ function TradingTab() {
  </div>
 
  {/* CMBX Spread Chart */}
- <div className="bg-muted/60 border border-border/20 rounded-md p-5">
+ <div className="bg-muted/60 border border-border rounded-md p-5">
  <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
  CMBX Index Spreads — 12 Month (IG vs HY)
  </h3>
@@ -764,13 +764,13 @@ function TradingTab() {
 
  {/* Bid/Ask liquidity table + Extension risk */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
- <div className="bg-muted/60 border border-border/20 rounded-md p-5">
+ <div className="bg-muted/60 border border-border rounded-md p-5">
  <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
  Bid/Ask Liquidity by Tranche
  </h3>
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <th className="py-2 text-left text-muted-foreground">Tranche</th>
  <th className="py-2 text-right text-muted-foreground">Bid (bps)</th>
  <th className="py-2 text-right text-muted-foreground">Ask (bps)</th>
@@ -780,7 +780,7 @@ function TradingTab() {
  </thead>
  <tbody>
  {liquidity.map((l) => (
- <tr key={l.tranche} className="border-b border-border/20">
+ <tr key={l.tranche} className="border-b border-border">
  <td className="py-2 text-muted-foreground font-medium">{l.tranche}</td>
  <td className="py-2 text-right text-green-400 font-mono">+{l.bid}</td>
  <td className="py-2 text-right text-red-400 font-mono">+{l.ask}</td>
@@ -793,7 +793,7 @@ function TradingTab() {
  <p className="text-xs text-muted-foreground mt-3">Wider bid/ask in mezzanine tranches reflects reduced dealer appetite for credit risk.</p>
  </div>
 
- <div className="bg-muted/60 border border-border/20 rounded-md p-5 space-y-4">
+ <div className="bg-muted/60 border border-border rounded-md p-5 space-y-4">
  <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
  Extension Risk Analysis — Office Sector
  </h3>
@@ -805,7 +805,7 @@ function TradingTab() {
  { label: "Discount to par (SASB)", value: "-22%", note: "Trophy NYC office" },
  { label: "B-piece implied loss", value: "35–65%", note: "Scenario analysis" },
  ].map((item) => (
- <div key={item.label} className="flex items-start justify-between gap-3 border-b border-border/20 pb-2">
+ <div key={item.label} className="flex items-start justify-between gap-3 border-b border-border pb-2">
  <div>
  <div className="text-xs text-muted-foreground">{item.label}</div>
  <div className="text-xs text-muted-foreground">{item.note}</div>
@@ -823,7 +823,7 @@ function TradingTab() {
  </div>
 
  {/* Trading desk workflow */}
- <div className="bg-muted/60 border border-border/20 rounded-md overflow-hidden">
+ <div className="bg-muted/60 border border-border rounded-md overflow-hidden">
  <button
  onClick={() => setShowWorkflow(!showWorkflow)}
  className="w-full flex items-center justify-between px-5 py-4 text-sm font-medium text-foreground hover:bg-muted/30 transition-colors"
@@ -896,7 +896,7 @@ export default function CMBSPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="structure">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "structure", label: "CMBS Structure" },
  { value: "loans", label: "Loan Analysis" },

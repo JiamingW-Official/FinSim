@@ -453,7 +453,7 @@ function OverviewTab() {
  return (
  <div className="space-y-4">
  {isDemoData && (
- <div className="rounded-lg border border-border/20 bg-muted/30 px-4 py-2.5 text-xs text-muted-foreground">
+ <div className="rounded-lg border border-border bg-muted/30 px-4 py-2.5 text-xs text-muted-foreground">
  Showing demo portfolio (AAPL/MSFT/TSLA/SPY). Open positions in the trade tab to see live data.
  </div>
  )}
@@ -657,7 +657,7 @@ function ScenariosTab() {
  </div>
  </div>
 
- <div className="rounded-lg border border-border/20 bg-muted/20 p-3 space-y-2">
+ <div className="rounded-lg border border-border bg-muted/20 p-3 space-y-2">
  <p className="text-xs text-muted-foreground font-medium">Estimated Impact</p>
  <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
  <div>
@@ -673,7 +673,7 @@ function ScenariosTab() {
  <p className="font-medium text-red-500">${vixImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
  </div>
  </div>
- <div className="flex items-center justify-between border-t border-border/20 pt-2">
+ <div className="flex items-center justify-between border-t border-border pt-2">
  <span className="text-xs text-muted-foreground font-medium">Total Estimated Loss</span>
  <span className="text-sm font-medium text-red-500">
  ${totalCustomImpact.toLocaleString("en-US", { maximumFractionDigits: 0 })}
@@ -784,7 +784,7 @@ function PositionSizingTab() {
  </div>
 
  <div className="grid grid-cols-3 gap-3">
- <div className="rounded-lg border border-border/20 p-3 text-center">
+ <div className="rounded-lg border border-border p-3 text-center">
  <p className="text-[11px] text-muted-foreground">Full Kelly</p>
  <p className="text-lg font-medium">{(kellyFraction * 100).toFixed(1)}%</p>
  <p className="text-xs text-muted-foreground">${fullKellyDollar.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
@@ -795,7 +795,7 @@ function PositionSizingTab() {
  <p className="text-xs text-muted-foreground">${halfKellyDollar.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
  <p className="text-xs text-muted-foreground mt-0.5">{halfKellyShares} shares @ ${pricePerShare}</p>
  </div>
- <div className="rounded-lg border border-border/20 p-3 text-center">
+ <div className="rounded-lg border border-border p-3 text-center">
  <p className="text-[11px] text-muted-foreground">Quarter Kelly</p>
  <p className="text-lg font-medium">{(kellyFraction * 25).toFixed(1)}%</p>
  <p className="text-xs text-muted-foreground">${quarterKellyDollar.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
@@ -850,11 +850,11 @@ function PositionSizingTab() {
  <Slider value={[stopPct]} onValueChange={(vals: number[]) => setStopPct(vals[0])} min={0.5} max={20} step={0.5} />
  </div>
  <div className="grid grid-cols-2 gap-3">
- <div className="rounded-lg border border-border/20 p-3">
+ <div className="rounded-lg border border-border p-3">
  <p className="text-xs text-muted-foreground">Position Size</p>
  <p className="text-xl font-medium">${ffPositionSize.toLocaleString("en-US", { maximumFractionDigits: 0 })}</p>
  </div>
- <div className="rounded-lg border border-border/20 p-3">
+ <div className="rounded-lg border border-border p-3">
  <p className="text-xs text-muted-foreground">Number of Shares</p>
  <p className="text-xl font-medium">{ffShares.toLocaleString()}</p>
  <p className="text-xs text-muted-foreground">Max loss: ${riskDollar.toFixed(0)}</p>
@@ -904,12 +904,12 @@ function PositionSizingTab() {
  </div>
  </div>
  <div className="grid grid-cols-2 gap-3">
- <div className="rounded-lg border border-border/20 p-3">
+ <div className="rounded-lg border border-border p-3">
  <p className="text-xs text-muted-foreground">Stop Distance</p>
  <p className="text-xl font-medium">${(atr * atrMultiplier).toFixed(2)}</p>
  <p className="text-xs text-muted-foreground">ATR × {atrMultiplier}</p>
  </div>
- <div className="rounded-lg border border-border/20 p-3">
+ <div className="rounded-lg border border-border p-3">
  <p className="text-xs text-muted-foreground">Shares to Buy</p>
  <p className="text-xl font-medium">{atrShares}</p>
  <p className="text-xs text-muted-foreground">
@@ -1003,7 +1003,7 @@ function DrawdownTab() {
  <CardContent>
  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
  {ddStats.map((s) => (
- <div key={s.label} className="rounded-lg border border-border/20 p-3">
+ <div key={s.label} className="rounded-lg border border-border p-3">
  <p className="text-[11px] text-muted-foreground">{s.label}</p>
  <p className="mt-1 text-base font-medium">{s.value}</p>
  <p className="text-[11px] text-muted-foreground">{s.sub}</p>
@@ -1049,7 +1049,7 @@ function StressTestsTab() {
 
  return (
  <div className="space-y-4">
- <div className="rounded-lg border border-border/20 bg-muted/20 px-4 py-2.5 text-xs text-muted-foreground">
+ <div className="rounded-lg border border-border bg-muted/20 px-4 py-2.5 text-xs text-muted-foreground">
  Stress tests apply historical drawdown percentages to the current portfolio value. All scenarios assume
  market-wide selloff; individual position betas may amplify or dampen actual impact.
  </div>
@@ -1068,7 +1068,7 @@ function StressTestsTab() {
  <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs text-muted-foreground font-medium ${rl.cls}`}>{rl.label}</span>
  </div>
  <p className="text-[11px] text-muted-foreground leading-relaxed">{s.context}</p>
- <div className="border-t border-border/20 pt-2 space-y-1">
+ <div className="border-t border-border pt-2 space-y-1">
  <div className="flex justify-between text-xs text-muted-foreground">
  <span className="text-muted-foreground">Market Drop</span>
  <span className="font-medium text-red-500">{s.drop}%</span>
@@ -1210,7 +1210,7 @@ export default function RiskPage() {
  </div>
 
  <Tabs defaultValue="overview" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "overview", label: "Overview" },
  { value: "scenarios", label: "Scenarios" },

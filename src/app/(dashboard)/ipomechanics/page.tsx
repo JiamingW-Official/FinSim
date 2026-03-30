@@ -457,7 +457,7 @@ function IPOTimelineTab() {
  className={cn(
  "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs text-muted-foreground font-medium border transition-colors",
  selectedStep?.id === step.id
- ? "border-foreground/30 text-foreground"
+ ? "border-border text-foreground"
  : "border-border text-foreground/50 hover:text-foreground/80 hover:border-border"
  )}
  style={
@@ -612,7 +612,7 @@ function IPOTimelineTab() {
  >
  <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
  {S1_SECTIONS.map((sec) => (
- <div key={sec.item} className="bg-foreground/[0.03] border border-border/20 rounded-lg p-3">
+ <div key={sec.item} className="bg-foreground/[0.03] border border-border rounded-lg p-3">
  <div className="flex items-center gap-2 mb-1">
  <span className="text-xs font-mono text-foreground">{sec.item}</span>
  <span className="text-xs font-medium text-foreground/90">{sec.title}</span>
@@ -1042,7 +1042,7 @@ function BookBuildingTab() {
  { item: "Selling Concession (60%)", value: "$21M → Selling brokers", highlight: true },
  { item: "Net Proceeds to Issuer", value: "$465M", highlight: false },
  ].map((row) => (
- <div key={row.item} className={cn("flex justify-between text-xs text-muted-foreground py-1 border-b border-border/20", row.highlight && "bg-foreground/[0.03] px-2 rounded")}>
+ <div key={row.item} className={cn("flex justify-between text-xs text-muted-foreground py-1 border-b border-border", row.highlight && "bg-foreground/[0.03] px-2 rounded")}>
  <span className="text-foreground/60">{row.item}</span>
  <span className="text-foreground/85 font-medium">{row.value}</span>
  </div>
@@ -1058,7 +1058,7 @@ function BookBuildingTab() {
  { role: "Co-Managers", share: "10–20%", desc: "Regional or specialist banks; smaller economics" },
  { role: "Selling Group Members", share: "Selling concession only", desc: "Retail brokers, no underwriting risk" },
  ].map((r) => (
- <div key={r.role} className="bg-foreground/[0.03] border border-border/20 rounded-lg p-3">
+ <div key={r.role} className="bg-foreground/[0.03] border border-border rounded-lg p-3">
  <div className="flex justify-between items-center mb-1">
  <span className="text-xs font-medium text-foreground/80">{r.role}</span>
  <span className="text-xs text-foreground">{r.share}</span>
@@ -1116,14 +1116,14 @@ function MarketAnalysisTab() {
  <div className="space-y-4">
  {/* Notable IPOs Table */}
  <div className="bg-card border border-border rounded-md overflow-hidden">
- <div className="p-4 border-b border-border/20">
+ <div className="p-4 border-b border-border">
  <h3 className="text-sm font-medium text-foreground/80">10 Notable IPOs — Performance Data</h3>
  <p className="text-xs text-foreground/45 mt-0.5">Click column headers to sort. 1-year returns are vs offer price.</p>
  </div>
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20 bg-foreground/[0.03]">
+ <tr className="border-b border-border bg-foreground/[0.03]">
  <th className="px-4 py-2.5 text-left text-foreground/50">Company</th>
  <th className="px-3 py-2.5 text-left text-foreground/50">Sector</th>
  <th className="px-3 py-2.5 text-right text-foreground/50">Year</th>
@@ -1153,7 +1153,7 @@ function MarketAnalysisTab() {
  decline: "text-red-400",
  };
  return (
- <tr key={ipo.ticker} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={ipo.ticker} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-4 py-2.5">
  <div className="font-medium text-foreground/90">{ipo.company}</div>
  <div className="text-foreground/40">{ipo.ticker}</div>
@@ -1339,14 +1339,14 @@ function AlternativesTab() {
  <div className="space-y-4">
  {/* 3-Way Comparison Table */}
  <div className="bg-card border border-border rounded-md overflow-hidden">
- <div className="p-4 border-b border-border/20">
+ <div className="p-4 border-b border-border">
  <h3 className="text-sm font-medium text-foreground/80">Traditional IPO vs Direct Listing vs SPAC — 15 Dimensions</h3>
  <p className="text-xs text-foreground/45 mt-0.5">Click a row to highlight the best option</p>
  </div>
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20 bg-foreground/[0.03]">
+ <tr className="border-b border-border bg-foreground/[0.03]">
  <th className="px-4 py-2.5 text-left text-foreground/50 w-36">Dimension</th>
  <th className="px-3 py-2.5 text-left text-foreground">Traditional IPO</th>
  <th className="px-3 py-2.5 text-left text-green-400/80">Direct Listing</th>
@@ -1366,7 +1366,7 @@ function AlternativesTab() {
  <tr
  key={dim.dimension}
  onClick={() => setSelectedDim(isSelected ? null : i)}
- className={cn("border-b border-border/20 cursor-pointer transition-colors", isSelected ? "bg-foreground/5" : "hover:bg-muted/30")}
+ className={cn("border-b border-border cursor-pointer transition-colors", isSelected ? "bg-foreground/5" : "hover:bg-muted/30")}
  >
  <td className="px-4 py-2.5 font-medium text-foreground/80">{dim.dimension}</td>
  <td className={cn("px-3 py-2.5 text-foreground/65", dim.advantage === "traditional" && advColors.traditional)}>
@@ -1640,7 +1640,7 @@ export default function IPOMechanicsPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="timeline" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-5">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-5">
  <TabsTrigger value="timeline" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  IPO Timeline
  </TabsTrigger>

@@ -137,7 +137,7 @@ function CompareRow({
  better: 1 | 2 | "tie";
 }) {
  return (
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <td className="py-2.5 px-3 text-xs text-muted-foreground">{label}</td>
  <td
  className={cn(
@@ -724,7 +724,7 @@ function RWATab() {
  </thead>
  <tbody>
  {RWA_PROTOCOLS.map((p) => (
- <tr key={p.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={p.name} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2.5 px-3 text-xs font-medium text-foreground">{p.name}</td>
  <td className="py-2.5 px-3 text-xs text-muted-foreground">{p.focus}</td>
  <td className="py-2.5 px-3 text-xs text-center text-emerald-400">{p.tvl}</td>
@@ -1003,7 +1003,7 @@ function IntentTab() {
  </thead>
  <tbody>
  {INTENT_PROTOCOLS.map((p) => (
- <tr key={p.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={p.name} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2.5 px-3 text-xs font-medium text-foreground">{p.name}</td>
  <td className="py-2.5 px-3 text-xs text-muted-foreground">{p.mechanism}</td>
  <td className="py-2.5 px-3 text-center">
@@ -1348,7 +1348,7 @@ function RestakingTab() {
  </thead>
  <tbody>
  {LRTS.map((l) => (
- <tr key={l.token} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={l.token} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2.5 px-3 text-xs font-medium text-foreground">{l.name}</td>
  <td className="py-2.5 px-3 text-center">
  <Badge className="bg-muted/10 text-foreground border-border text-xs">{l.token}</Badge>
@@ -1404,7 +1404,7 @@ function RestakingTab() {
  exit={{ height: 0, opacity: 0 }}
  className="overflow-hidden"
  >
- <div className="px-3 pb-3 text-xs text-muted-foreground border-t border-border/20 pt-2">
+ <div className="px-3 pb-3 text-xs text-muted-foreground border-t border-border pt-2">
  {barrier.desc}
  </div>
  </motion.div>
@@ -1549,7 +1549,7 @@ export default function DeFi2Page() {
 
  {/* Tabs */}
  <Tabs defaultValue="liquidity" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="liquidity" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Droplets size={13} className="mr-1.5" />Liquidity Innovations
  </TabsTrigger>

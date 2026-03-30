@@ -494,7 +494,7 @@ export default function DebtCapitalMarketsPage() {
  {/* Tabs */}
  <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.4 }} className="mt-8">
  <Tabs defaultValue="issuance" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="issuance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <BarChart3 size={13} /> New Issuance
  </TabsTrigger>
@@ -557,7 +557,7 @@ export default function DebtCapitalMarketsPage() {
  </thead>
  <tbody>
  {DEALS.map((deal) => (
- <tr key={deal.id} className="border-b border-border/20 hover:bg-muted/10 transition-colors">
+ <tr key={deal.id} className="border-b border-border hover:bg-muted/10 transition-colors">
  <td className="px-3 py-2">
  <div>
  <p className="font-medium text-foreground truncate max-w-[100px]">{deal.issuer}</p>
@@ -610,7 +610,7 @@ export default function DebtCapitalMarketsPage() {
  className={`text-left p-3 rounded-md border transition-colors duration-200 ${
  activeStep === i
  ? `${step.bgColor} border-current`
- : "bg-muted/20 border-border hover:border-border/80 hover:bg-muted/30"
+ : "bg-muted/20 border-border hover:border-border hover:bg-muted/30"
  }`}
  onClick={() => setActiveStep(activeStep === i ? null : i)}
  >
@@ -738,7 +738,7 @@ export default function DebtCapitalMarketsPage() {
  initial={{ opacity: 0, height: 0 }}
  animate={{ opacity: 1, height: "auto" }}
  transition={{ duration: 0.2 }}
- className="mt-2 pt-2 border-t border-border/20"
+ className="mt-2 pt-2 border-t border-border"
  >
  <p className="text-xs text-foreground/80 mb-2">{role.description}</p>
  <ul className="space-y-0.5">
@@ -806,7 +806,7 @@ export default function DebtCapitalMarketsPage() {
  </thead>
  <tbody>
  {LEAGUE_TABLE.map((row) => (
- <tr key={row.rank} className="border-b border-border/20 hover:bg-muted/10 transition-colors">
+ <tr key={row.rank} className="border-b border-border hover:bg-muted/10 transition-colors">
  <td className="px-4 py-2.5">
  {row.rank <= 3 ? (
  <span className={`font-medium text-xs ${row.rank === 1 ? "text-amber-400" : row.rank === 2 ? "text-muted-foreground" : "text-amber-700"}`}>
@@ -893,7 +893,7 @@ export default function DebtCapitalMarketsPage() {
  { term: "Make-Whole Call", def: "IG bonds can be redeemed at PV of future cash flows vs. Treasury + spread" },
  { term: "Change of Control Put", def: "Investor can put bonds back at 101 if M&A changes issuer's credit profile" },
  ].map((item) => (
- <div key={item.term} className="border-b border-border/20 pb-2 last:border-0 last:pb-0">
+ <div key={item.term} className="border-b border-border pb-2 last:border-0 last:pb-0">
  <p className="text-xs font-medium text-foreground">{item.term}</p>
  <p className="text-xs text-muted-foreground mt-0.5">{item.def}</p>
  </div>

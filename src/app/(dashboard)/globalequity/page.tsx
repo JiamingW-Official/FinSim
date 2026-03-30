@@ -387,7 +387,7 @@ function MarketOverviewTab() {
  initial={{ opacity: 0, y: 6 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ delay: i * 0.04 }}
- className="border-b border-border/20 hover:bg-muted/30 transition-colors"
+ className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2.5">
  <div>
@@ -562,7 +562,7 @@ function ValuationTab() {
  </CardHeader>
  <CardContent className="space-y-2">
  {cheapest.map(v => (
- <div key={v.code} className="flex items-center justify-between py-1 border-b border-border/60 last:border-0">
+ <div key={v.code} className="flex items-center justify-between py-1 border-b border-border last:border-0">
  <div>
  <span className="text-sm font-medium text-foreground">{v.country}</span>
  <Badge variant="outline" className={cn("ml-2 text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-border text-foreground")}>{v.type}</Badge>
@@ -584,7 +584,7 @@ function ValuationTab() {
  </CardHeader>
  <CardContent className="space-y-2">
  {expensive.map(v => (
- <div key={v.code} className="flex items-center justify-between py-1 border-b border-border/60 last:border-0">
+ <div key={v.code} className="flex items-center justify-between py-1 border-b border-border last:border-0">
  <div>
  <span className="text-sm font-medium text-foreground">{v.country}</span>
  <Badge variant="outline" className={cn("ml-2 text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-border text-foreground")}>{v.type}</Badge>
@@ -626,7 +626,7 @@ function ValuationTab() {
  animate={{ opacity: 1 }}
  exit={{ opacity: 0 }}
  transition={{ delay: i * 0.03 }}
- className="border-b border-border/20 hover:bg-muted/20 transition-colors"
+ className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-2 font-medium text-foreground">{v.country}</td>
  <td className="px-3 py-2">
@@ -893,7 +893,7 @@ function CurrencyImpactTab() {
  initial={{ opacity: 0, x: -6 }}
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: i * 0.05 }}
- className="border-b border-border/20 hover:bg-muted/20 transition-colors"
+ className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-2.5 font-medium text-foreground">{row.country}</td>
  <td className="px-3 py-2.5">
@@ -1203,7 +1203,7 @@ function EMvsDMTab() {
  initial={{ opacity: 0 }}
  animate={{ opacity: 1 }}
  transition={{ delay: i * 0.04 }}
- className="border-b border-border/20 hover:bg-muted/20 transition-colors"
+ className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-2 font-medium text-foreground whitespace-nowrap">{d.name}</td>
  <td className="px-3 py-2">
@@ -1280,7 +1280,7 @@ export default function GlobalEquityPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="overview" className="mt-8 space-y-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Market Overview</TabsTrigger>
  <TabsTrigger value="valuation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Valuation</TabsTrigger>
  <TabsTrigger value="countries" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Country Deep Dives</TabsTrigger>

@@ -352,7 +352,7 @@ function StatCard({ label, value, sub, color = "text-indigo-400" }: {
  label: string; value: string; sub?: string; color?: string;
 }) {
  return (
- <div className="bg-muted/50 rounded-md p-3 border border-border/20">
+ <div className="bg-muted/50 rounded-md p-3 border border-border">
  <div className={cn("text-xl font-semibold", color)}>{value}</div>
  <div className="text-xs text-muted-foreground mt-0.5">{label}</div>
  {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
@@ -365,7 +365,7 @@ function InfoRow({ icon: Icon, title, body }: {
  icon: React.ElementType; title: string; body: string;
 }) {
  return (
- <div className="flex gap-3 p-3 rounded-lg bg-muted/40 border border-border/20">
+ <div className="flex gap-3 p-3 rounded-lg bg-muted/40 border border-border">
  <div>
  <div className="text-xs font-semibold text-foreground">{title}</div>
  <div className="text-xs text-muted-foreground mt-0.5">{body}</div>
@@ -435,7 +435,7 @@ function PortfoliosTab() {
  <div className="text-xs text-muted-foreground mt-2">Berkshire model: even CR&gt;100 is fine if float generates returns</div>
  </div>
  </div>
- <div className="text-xs text-muted-foreground p-3 bg-muted/30 rounded-lg border border-border/20">
+ <div className="text-xs text-muted-foreground p-3 bg-muted/30 rounded-lg border border-border">
  <span className="text-amber-400 font-medium">Combined Ratio = </span>
  Loss Ratio + Expense Ratio. Below 100% = underwriting profit. The float (premiums held before claims paid) is invested, creating a second profit engine independent of underwriting results.
  </div>
@@ -494,7 +494,7 @@ function AnnuitiesTab() {
  {ANNUITY_TYPES.map((row, i) => (
  <React.Fragment key={`frag-${i}`}>
  <tr
- className="border-b border-border/20 cursor-pointer hover:bg-muted/30 transition-colors"
+ className="border-b border-border cursor-pointer hover:bg-muted/30 transition-colors"
  onClick={() => setExpandedRow(expandedRow === i ? null : i)}
  >
  <td className="py-2 pr-3 font-medium text-foreground">{row.type}</td>
@@ -597,7 +597,7 @@ function AnnuitiesTab() {
  </div>
  </div>
  </div>
- <div className="mt-3 p-2 bg-muted/30 rounded-lg border border-border/20">
+ <div className="mt-3 p-2 bg-muted/30 rounded-lg border border-border">
  <div className="text-xs text-muted-foreground">
  <span className="text-muted-foreground font-medium">1035 Exchange: </span>
  IRS allows annuity-to-annuity transfers without triggering taxable events. Enables switching to better-priced products while preserving tax-deferred status. Used to avoid surrender charges by waiting for charge-free windows.
@@ -657,14 +657,14 @@ function SettlementsILSTab() {
  </svg>
 
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
- <div className="bg-muted/50 rounded-md p-3 border border-border/20">
+ <div className="bg-muted/50 rounded-md p-3 border border-border">
  <div className="text-xs font-medium text-indigo-400 mb-2">Pricing Formula</div>
  <div className="font-mono text-xs text-foreground bg-card/60 p-2 rounded">
  Value ≈ Face × P(death&lt;n) / (1+r)^LE
  </div>
  <div className="text-xs text-muted-foreground mt-2">Where LE = life expectancy (years), r = discount rate (10–15%), P(death&lt;n) = actuarial probability from mortality tables. Typical purchase price: 15–35% of face value.</div>
  </div>
- <div className="bg-muted/50 rounded-md p-3 border border-border/20">
+ <div className="bg-muted/50 rounded-md p-3 border border-border">
  <div className="text-xs font-medium text-amber-400 mb-2">Key Risks</div>
  <div className="space-y-1">
  {[
@@ -682,7 +682,7 @@ function SettlementsILSTab() {
  </div>
  </div>
 
- <div className="p-2 bg-muted/30 rounded-lg border border-border/20 text-xs text-muted-foreground">
+ <div className="p-2 bg-muted/30 rounded-lg border border-border text-xs text-muted-foreground">
  <span className="text-red-400 font-medium">Viatical vs Life Settlement: </span>
  Viatical settlements involve terminally ill policyholders (life expectancy &lt;2yr), with payouts of 50–80% of face value. Life settlements involve senior (65+) policyholders with chronic (not terminal) illness. Ethical concerns center on whether financial incentives conflict with appropriate end-of-life care.
  </div>
@@ -702,7 +702,7 @@ function SettlementsILSTab() {
  { name: "Sidecars", desc: "Quota-share arrangements where outside capital participates in a reinsurer's book. Rapid deployment post-catastrophe when reinsurance prices spike. Typical 1-3yr life.", color: "text-indigo-400" },
  { name: "Collateralized Re", desc: "Private, fully collateralized reinsurance contract. Higher returns (8–15%) but less liquid than cat bonds. Forms largest segment of ILS market.", color: "text-foreground" },
  ].map((t) => (
- <div key={t.name} className="bg-muted/50 rounded-md p-3 border border-border/20">
+ <div key={t.name} className="bg-muted/50 rounded-md p-3 border border-border">
  <div className={cn("text-xs text-muted-foreground font-medium mb-1", t.color)}>{t.name}</div>
  <div className="text-xs text-muted-foreground">{t.desc}</div>
  </div>
@@ -723,7 +723,7 @@ function SettlementsILSTab() {
  { type: "Buyout", desc: "Full transfer of pension liabilities and assets to insurer. Members become direct policyholders of the insurer. Pension fund extinguished. Typical cost: 102–110% of liability value.", badge: "Full" },
  { type: "Longevity Swap", desc: "Pension fund pays fixed payments; insurer pays actual pension costs. Pension retains investment risk, transfers only longevity risk. Most capital-efficient PRT structure.", badge: "Risk only" },
  ].map((p, i) => (
- <div key={i} className="bg-muted/50 rounded-md p-3 border border-border/20">
+ <div key={i} className="bg-muted/50 rounded-md p-3 border border-border">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-xs font-medium text-foreground">{p.type}</span>
  <Badge variant="outline" className="border-indigo-500/30 text-indigo-400 text-xs">{p.badge}</Badge>
@@ -778,7 +778,7 @@ function StockAnalysisTab() {
  </thead>
  <tbody>
  {INSURANCE_STOCKS.map((stock, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
+ <tr key={i} className="border-b border-border hover:bg-muted/20 transition-colors">
  <td className="py-2 pr-4 font-medium text-foreground">{stock.name}</td>
  <td className="py-2 pr-4 text-indigo-400 font-mono">{stock.ticker}</td>
  <td className="py-2 pr-4 text-muted-foreground">{stock.type}</td>
@@ -894,7 +894,7 @@ export default function InsuranceInvestingPage() {
  { icon: Activity, label: "$112B+ ILS outstanding", color: "text-amber-400" },
  { icon: BookOpen, label: "Berkshire float model", color: "text-foreground" },
  ].map(({ icon: Icon, label, color }) => (
- <div key={label} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/60 border border-border/20 text-xs text-muted-foreground">
+ <div key={label} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/60 border border-border text-xs text-muted-foreground">
  <Icon className={cn("w-3 h-3", color)} />
  <span className="text-muted-foreground">{label}</span>
  </div>
@@ -910,7 +910,7 @@ export default function InsuranceInvestingPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "portfolios", label: "Insurer Portfolios" },
  { value: "annuities", label: "Annuities" },

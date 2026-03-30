@@ -917,7 +917,7 @@ function GreeksExplorer() {
  <p className="text-[11px]">d₂ = d₁ - σ√T</p>
  <p className="text-[11px]">Call = S×N(d₁) - K×e<sup>-rT</sup>×N(d₂)</p>
  <p className="text-[11px]">Put = K×e<sup>-rT</sup>×N(-d₂) - S×N(-d₁)</p>
- <div className="mt-2 pt-2 border-t border-border/20 space-y-1 text-muted-foreground">
+ <div className="mt-2 pt-2 border-t border-border space-y-1 text-muted-foreground">
  <p>d₁ = {result.d1.toFixed(4)}</p>
  <p>d₂ = {result.d2.toFixed(4)}</p>
  <p>N(d₁) = {normalCDF(result.d1).toFixed(4)}</p>
@@ -1282,7 +1282,7 @@ function GreeksQuiz() {
  animate={{ opacity: 1, scale: 1 }}
  className="flex flex-col items-center justify-center gap-3 py-12"
  >
- <div className="text-2xl">{pct >= 80 ? "🏆" : pct >= 60 ? "📈" : "📚"}</div>
+ <div className="text-2xl">{pct >= 80 ? "" : pct >= 60 ? "" : ""}</div>
  <div className="text-center">
  <p className="text-2xl font-semibold text-foreground">{score}/{QUIZ_QUESTIONS.length} Correct</p>
  <p className="text-muted-foreground mt-1">{pct}% — {pct >= 80 ? "Greek Master!" : pct >= 60 ? "Solid understanding" : "Keep studying!"}</p>
@@ -1530,7 +1530,7 @@ export default function GreeksPage() {
  <div className="flex-1 overflow-y-auto mt-8">
  <Tabs defaultValue="explorer" className="h-full">
  <div className="px-6 pt-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="explorer" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Calculator className="size-3.5" />
  Greeks Explorer

@@ -1762,7 +1762,7 @@ function SRTab() {
  <h3 className="text-sm font-medium text-foreground mb-3">Auto-Detected S/R Levels</h3>
  <div className="space-y-1.5 max-h-56 overflow-y-auto">
  {srLevels.slice(-12).reverse().map((lvl, i) => (
- <div key={i} className="flex items-center gap-2 py-1 border-b border-border/20">
+ <div key={i} className="flex items-center gap-2 py-1 border-b border-border">
  <div className={cn("w-1.5 h-1.5 rounded-full flex-shrink-0", lvl.type === "resistance" ? "bg-red-400" : "bg-green-400")} />
  <span className="text-xs font-mono text-foreground w-14">${lvl.price.toFixed(2)}</span>
  <span className={cn("text-xs capitalize", lvl.type === "resistance" ? "text-red-400" : "text-green-400")}>{lvl.type}</span>
@@ -1787,7 +1787,7 @@ function SRTab() {
  <h3 className="text-sm font-medium text-foreground mb-3">Classic Pivot Points</h3>
  <div className="space-y-1.5">
  {pivotLevels.map((pl) => (
- <div key={pl.label} className="flex items-center gap-2 py-1 border-b border-border/20">
+ <div key={pl.label} className="flex items-center gap-2 py-1 border-b border-border">
  <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: pl.color }} />
  <span className="text-xs font-medium w-8" style={{ color: pl.color }}>{pl.label}</span>
  <span className="text-xs font-mono text-foreground">${pl.price.toFixed(2)}</span>
@@ -1809,7 +1809,7 @@ function SRTab() {
  </h3>
  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
  {fibLevels.map((f) => (
- <div key={f.label} className="p-2 rounded bg-muted/60 border border-border/20">
+ <div key={f.label} className="p-2 rounded bg-muted/60 border border-border">
  <div className="flex items-center gap-1.5 mb-1">
  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: f.color }} />
  <span className="text-xs font-medium text-foreground">{f.label}</span>
@@ -1866,7 +1866,7 @@ export default function TechAnalysisPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {TAB_CONFIG.map(({ id, label }) => (
  <TabsTrigger
  key={id}

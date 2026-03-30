@@ -998,7 +998,7 @@ export default function PaymentSystemsPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="rails" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Payment Rails
  </TabsTrigger>
@@ -1042,7 +1042,7 @@ export default function PaymentSystemsPage() {
  initial={{ opacity: 0, x: -10 }}
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: i * 0.05 }}
- className="border-b border-border/20 hover:bg-muted/30"
+ className="border-b border-border hover:bg-muted/30"
  >
  <td className="px-3 py-2 font-semibold" style={{ color: r.color }}>
  {r.name}
@@ -1415,7 +1415,7 @@ export default function PaymentSystemsPage() {
  ["Settlement", "Real-time gross", "Real-time gross"],
  ["Target market", "Commercial/retail", "Community banks/CUs"],
  ].map(([feat, rtp, fednow], i) => (
- <tr key={feat} className={cn("border-b border-border/20", i % 2 === 0 && "bg-muted/20")}>
+ <tr key={feat} className={cn("border-b border-border", i % 2 === 0 && "bg-muted/20")}>
  <td className="px-3 py-2 text-muted-foreground font-medium">{feat}</td>
  <td className="px-3 py-2 text-center text-muted-foreground">{rtp}</td>
  <td className="px-3 py-2 text-center text-muted-foreground">{fednow}</td>
@@ -1618,7 +1618,7 @@ export default function PaymentSystemsPage() {
  initial={{ opacity: 0 }}
  animate={{ opacity: 1 }}
  transition={{ delay: i * 0.07 }}
- className="border-b border-border/20 hover:bg-muted/30"
+ className="border-b border-border hover:bg-muted/30"
  >
  <td className="px-3 py-2 font-medium text-foreground">
  {c.from} → {c.to}

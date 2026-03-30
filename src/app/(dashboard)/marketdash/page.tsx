@@ -456,7 +456,7 @@ export default function MarketDashPage() {
  ? "bg-amber-500/20 text-amber-400 border-amber-500/30"
  : marketStatus.label === "After-Hours"
  ? "bg-sky-500/20 text-sky-400 border-sky-500/30"
- : "bg-muted/50 text-muted-foreground border-border/20"
+ : "bg-muted/50 text-muted-foreground border-border"
  )}
  variant="outline"
  >
@@ -624,7 +624,7 @@ export default function MarketDashPage() {
  </thead>
  <tbody>
  {(SECTOR_MOVERS[selectedSector] ?? []).map((m) => (
- <tr key={m.ticker} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={m.ticker} className="border-b border-border hover:bg-muted/30">
  <td className="py-1.5 font-mono font-medium text-foreground">{m.ticker}</td>
  <td className="py-1.5 text-muted-foreground">{m.name}</td>
  <td className="py-1.5 text-right tabular-nums">${m.price.toFixed(2)}</td>
@@ -670,7 +670,7 @@ export default function MarketDashPage() {
  </div>
  <div className="space-y-1">
  {ACTIVE_STOCKS.map((s) => (
- <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border/20 last:border-0 text-xs text-muted-foreground">
+ <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border last:border-0 text-xs text-muted-foreground">
  <span className="font-mono font-medium w-14 text-foreground">{s.ticker}</span>
  <span className="text-muted-foreground flex-1 text-center">{s.vol}</span>
  <span className="text-muted-foreground flex-1 text-center">{s.avgVol}</span>
@@ -693,7 +693,7 @@ export default function MarketDashPage() {
  </div>
  <div className="space-y-1">
  {TOP_GAINERS.map((s) => (
- <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border/20 last:border-0 text-xs text-muted-foreground">
+ <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border last:border-0 text-xs text-muted-foreground">
  <span className="font-mono font-medium w-14 text-foreground">{s.ticker}</span>
  <span className="text-muted-foreground tabular-nums flex-1">${s.price.toFixed(2)}</span>
  <div className="flex items-center gap-1">
@@ -717,7 +717,7 @@ export default function MarketDashPage() {
  </div>
  <div className="space-y-1">
  {TOP_LOSERS.map((s) => (
- <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border/20 last:border-0 text-xs text-muted-foreground">
+ <div key={s.ticker} className="flex items-center justify-between py-1 border-b border-border last:border-0 text-xs text-muted-foreground">
  <span className="font-mono font-medium w-14 text-foreground">{s.ticker}</span>
  <span className="text-muted-foreground tabular-nums flex-1">${s.price.toFixed(2)}</span>
  <div className="flex items-center gap-1">
@@ -802,7 +802,7 @@ export default function MarketDashPage() {
  animate={{ opacity: 1 }}
  exit={{ opacity: 0 }}
  className={cn(
- "border-b border-border/20 hover:bg-muted/30 transition-colors",
+ "border-b border-border hover:bg-muted/30 transition-colors",
  row.unusual && "bg-amber-500/5"
  )}
  >
@@ -910,7 +910,7 @@ export default function MarketDashPage() {
 
  <div className="space-y-2">
  {EARNINGS_TODAY.map((e) => (
- <div key={e.ticker} className="flex items-center justify-between text-xs text-muted-foreground py-1.5 border-b border-border/20 last:border-0">
+ <div key={e.ticker} className="flex items-center justify-between text-xs text-muted-foreground py-1.5 border-b border-border last:border-0">
  <div className="flex items-center gap-2 min-w-0">
  <span className="font-mono font-medium text-foreground w-12">{e.ticker}</span>
  <span className="text-muted-foreground truncate">{e.name}</span>
@@ -949,7 +949,7 @@ export default function MarketDashPage() {
  <h3 className="text-xs font-medium text-muted-foreground mb-3">Key Macro Events This Week</h3>
  <div className="space-y-3">
  {MACRO_EVENTS.map((ev) => (
- <div key={ev.title} className="flex gap-3 p-2.5 rounded-lg bg-muted/50 border border-border/20">
+ <div key={ev.title} className="flex gap-3 p-2.5 rounded-lg bg-muted/50 border border-border">
  <div className="shrink-0">
  <Badge
  variant="outline"

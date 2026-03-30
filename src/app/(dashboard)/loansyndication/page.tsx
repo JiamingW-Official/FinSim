@@ -442,13 +442,13 @@ function discountToPar(price: number): string {
 function roleColor(role: SyndicationRole): string {
  if (role === "Bookrunning") return "bg-muted/10 text-foreground border-border";
  if (role === "Co-Lead") return "bg-muted/10 text-foreground border-border";
- return "bg-muted/40 text-muted-foreground border-border/20";
+ return "bg-muted/40 text-muted-foreground border-border";
 }
 
 function statusColor(status: DealStatus): string {
  if (status === "Active") return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
  if (status === "Pricing") return "bg-amber-500/20 text-amber-400 border-amber-500/30";
- if (status === "Closed") return "bg-muted/40 text-muted-foreground border-border/20";
+ if (status === "Closed") return "bg-muted/40 text-muted-foreground border-border";
  return "bg-red-500/20 text-red-400 border-red-500/30";
 }
 
@@ -725,7 +725,7 @@ function BookBuildingTab() {
  </thead>
  <tbody>
  {investors.map((inv, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={i} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 pr-4 font-medium text-foreground">{inv.name}</td>
  <td className="py-2 pr-4 text-muted-foreground text-xs">{inv.type}</td>
  <td className="py-2 pr-4 text-right text-muted-foreground">{fmtM(inv.commitM)}</td>
@@ -1153,7 +1153,7 @@ function LeagueTableTab() {
  </thead>
  <tbody>
  {displayed.map((entry) => (
- <tr key={entry.rank} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={entry.rank} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-3 pr-3">
  <span className={`text-sm font-medium ${
  entry.rank === 1 ? "text-amber-400"
@@ -1285,7 +1285,7 @@ export default function LoanSyndicationPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="pipeline">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="pipeline" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Pipeline
  </TabsTrigger>

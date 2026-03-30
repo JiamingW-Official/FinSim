@@ -387,7 +387,7 @@ export default function VolatilityArbPage() {
  </div>
 
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="vol-spread" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Vol Spread Dashboard
  </TabsTrigger>
@@ -501,7 +501,7 @@ export default function VolatilityArbPage() {
  </thead>
  <tbody>
  {volRows.map((row) => (
- <tr key={row.ticker} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={row.ticker} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 pr-4 font-mono font-semibold">{row.ticker}</td>
  <td className="text-right pr-4 font-mono" style={{ color: volColor(row.iv) }}>
  {(row.iv * 100).toFixed(1)}
@@ -541,7 +541,7 @@ export default function VolatilityArbPage() {
  </div>
 
  {/* Current Opportunity Indicator */}
- <div className="mt-4 p-3 rounded-lg bg-muted/30 border border-border/60">
+ <div className="mt-4 p-3 rounded-lg bg-muted/30 border border-border">
  <div className="flex items-center gap-2 mb-2">
  <span className="text-sm font-medium">Current Opportunity Assessment</span>
  </div>
@@ -848,7 +848,7 @@ export default function VolatilityArbPage() {
  </thead>
  <tbody>
  {dispRows.map((row) => (
- <tr key={row.ticker} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={row.ticker} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 pr-4 font-mono font-medium">{row.ticker}</td>
  <td className="text-right pr-4 text-muted-foreground">{(row.weight * 100).toFixed(0)}%</td>
  <td className="text-right pr-4 font-mono" style={{ color: volColor(row.iv) }}>
@@ -935,7 +935,7 @@ export default function VolatilityArbPage() {
  </thead>
  <tbody>
  {calendarRows.map((row) => (
- <tr key={row.ticker} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={row.ticker} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 pr-4 font-mono font-medium">{row.ticker}</td>
  <td className="text-right pr-4 font-mono text-muted-foreground">
  {(row.frontIV * 100).toFixed(1)}%
@@ -990,7 +990,7 @@ export default function VolatilityArbPage() {
  </thead>
  <tbody>
  {rrRows.map((row) => (
- <tr key={row.ticker} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={row.ticker} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 pr-4 font-mono font-medium">{row.ticker}</td>
  <td className="text-right pr-4 font-mono text-green-400">
  {(row.call25d * 100).toFixed(1)}%

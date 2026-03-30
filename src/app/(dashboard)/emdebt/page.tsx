@@ -299,7 +299,7 @@ function SovereignTab() {
  key={b.country}
  onClick={() => setSelected(selected === b.country ? null : b.country)}
  className={cn(
- "border-b border-border/60 cursor-pointer transition-colors",
+ "border-b border-border cursor-pointer transition-colors",
  selected === b.country ? "bg-muted/40" : "hover:bg-muted/40"
  )}
  >
@@ -517,7 +517,7 @@ function HardLocalTab() {
  </thead>
  <tbody>
  {embiFunds.map((f, i) => (
- <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
+ <tr key={i} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-3 text-foreground font-medium">{f.name}</td>
  <td className="py-2 px-3 text-right font-mono text-emerald-400">{fmtPct(f.yield, 2)}</td>
  <td className="py-2 px-3 text-right text-muted-foreground">{f.duration} yr</td>
@@ -555,7 +555,7 @@ function HardLocalTab() {
  </thead>
  <tbody>
  {fxCarry.map((c) => (
- <tr key={c.country} className="border-b border-border/60 hover:bg-muted/30">
+ <tr key={c.country} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-3 text-foreground font-medium">{c.country}</td>
  <td className="py-2 px-3 text-right font-mono text-muted-foreground">{fmtPct(c.localYield, 2)}</td>
  <td className="py-2 px-3 text-right font-mono text-rose-400">−{fmtPct(c.hedgeCost, 1)}</td>
@@ -929,7 +929,7 @@ function CurrencyImpactTab() {
  </thead>
  <tbody>
  {fxScenarios.map((sc) => (
- <tr key={sc.country} className="border-b border-border/60 hover:bg-muted/30">
+ <tr key={sc.country} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-3 text-foreground font-medium">
  {sc.country}
  <span className="ml-1.5 text-muted-foreground text-xs">{sc.iso}</span>
@@ -1203,7 +1203,7 @@ export default function EmDebtPage() {
  </div>
 
  <Tabs defaultValue="sovereign" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="sovereign" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Sovereign Dashboard
  </TabsTrigger>

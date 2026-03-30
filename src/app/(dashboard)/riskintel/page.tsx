@@ -865,7 +865,7 @@ export default function RiskIntelPage() {
  </motion.div>
 
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { id: "overview", label: "Risk Overview" },
  { id: "correlation",label: "Correlation" },
@@ -1527,7 +1527,7 @@ export default function RiskIntelPage() {
  { label: "% Time in drawdown", val: "43%" },
  { label: "Ulcer Index", val: "6.2" },
  ].map((r) => (
- <div key={r.label} className="flex justify-between border-b border-border/20 pb-1.5">
+ <div key={r.label} className="flex justify-between border-b border-border pb-1.5">
  <span className="text-muted-foreground">{r.label}</span>
  <span className="text-foreground font-mono">{r.val}</span>
  </div>
@@ -1760,7 +1760,7 @@ export default function RiskIntelPage() {
  { label: "Commodity contrib.", val: (POSITIONS.filter(p => p.sector === "Commodities").reduce((s, p) => s + (p.weight / 100) * customEquity[0] * 0.25, 0)).toFixed(1) + "%" },
  { label: "Credit spread impact", val: (-customSpread[0] / 500 * 5).toFixed(1) + "%" },
  ].map((r) => (
- <div key={r.label} className="flex justify-between border-b border-border/20 pb-1">
+ <div key={r.label} className="flex justify-between border-b border-border pb-1">
  <span className="text-muted-foreground">{r.label}</span>
  <span className="font-mono text-muted-foreground">{r.val}</span>
  </div>
@@ -2024,7 +2024,7 @@ export default function RiskIntelPage() {
  { label: "Net exposure", val: "$97,200 (TLT hedges 2.8%)" },
  { label: "Margin call price (AAPL)", val: "N/A — no margin" },
  ].map((r) => (
- <div key={r.label} className="flex justify-between border-b border-border/20 pb-1">
+ <div key={r.label} className="flex justify-between border-b border-border pb-1">
  <span className="text-muted-foreground">{r.label}</span>
  <span className="text-muted-foreground font-mono">{r.val}</span>
  </div>

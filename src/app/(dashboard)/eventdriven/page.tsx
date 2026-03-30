@@ -1142,7 +1142,7 @@ export default function EventDrivenPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="merger" className="w-full mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "merger", label: "Merger Arb" },
  { value: "activism", label: "Activism" },

@@ -361,7 +361,7 @@ function ScalingLandscape() {
  </thead>
  <tbody>
  {L2_PROTOCOLS.map((p) => (
- <tr key={p.name} className="border-b border-border/60 hover:bg-muted/40 transition-colors">
+ <tr key={p.name} className="border-b border-border hover:bg-muted/40 transition-colors">
  <td className="px-4 py-3">
  <div className="flex items-center gap-2">
  <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: p.color }} />
@@ -566,7 +566,7 @@ function RollupTechnology() {
  </thead>
  <tbody>
  {ROLLUP_COMPARE.map((row) => (
- <tr key={row.feature} className="border-b border-border/60 hover:bg-muted/40">
+ <tr key={row.feature} className="border-b border-border hover:bg-muted/40">
  <td className="px-4 py-2.5 text-muted-foreground font-medium text-xs">{row.feature}</td>
  <td className="px-4 py-2.5 text-xs text-muted-foreground">{row.optimistic}</td>
  <td className="px-4 py-2.5 text-xs text-muted-foreground">{row.zk}</td>
@@ -747,7 +747,7 @@ function L2TokenEconomics() {
  </thead>
  <tbody>
  {TOKEN_DATA.map((t) => (
- <tr key={t.token} className="border-b border-border/60 hover:bg-muted/40">
+ <tr key={t.token} className="border-b border-border hover:bg-muted/40">
  <td className="px-4 py-3">
  <div className="flex items-center gap-2">
  <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: t.color }} />
@@ -934,7 +934,7 @@ function DeveloperEcosystem() {
  </thead>
  <tbody>
  {evmFeatures.map((f) => (
- <tr key={f.label} className="border-b border-border/60 hover:bg-muted/40">
+ <tr key={f.label} className="border-b border-border hover:bg-muted/40">
  <td className="px-4 py-2.5 text-xs text-muted-foreground">{f.label}</td>
  {(["arbitrum", "optimism", "zksync", "starknet"] as const).map((k) => (
  <td key={k} className="px-4 py-2.5 text-center">
@@ -968,7 +968,7 @@ function DeveloperEcosystem() {
  </thead>
  <tbody>
  {ECOSYSTEM.map((row) => (
- <tr key={row.label} className="border-b border-border/60 hover:bg-muted/40">
+ <tr key={row.label} className="border-b border-border hover:bg-muted/40">
  <td className="px-4 py-2.5 text-xs text-muted-foreground">{row.label}</td>
  <td className="px-4 py-2.5 text-right font-mono text-xs text-foreground">
  {typeof row.arbitrum === "number"
@@ -1165,7 +1165,7 @@ function InvestmentThesis() {
  </thead>
  <tbody>
  {VALUATION_DATA.map((v) => (
- <tr key={v.name} className="border-b border-border/60 hover:bg-muted/40">
+ <tr key={v.name} className="border-b border-border hover:bg-muted/40">
  <td className="px-4 py-3">
  <div className="flex items-center gap-2">
  <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: v.color }} />
@@ -1295,7 +1295,7 @@ export default function Layer2Page() {
 
  {/* Tabs */}
  <Tabs defaultValue="scaling" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {tabs.map((tab) => (
  <TabsTrigger
  key={tab.id}

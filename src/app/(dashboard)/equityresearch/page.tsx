@@ -875,7 +875,7 @@ function ResearchProcessTab() {
  </div>
 
  {/* Flowchart */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <p className="text-xs text-muted-foreground mb-3 font-medium">Process Flowchart</p>
  <ProcessFlowchart />
  </div>
@@ -886,7 +886,7 @@ function ResearchProcessTab() {
  <button
  key={step.id}
  onClick={() => setActiveStep(activeStep === step.id ? null : step.id)}
- className="text-left rounded-md bg-muted/50 border border-border/20 p-4 hover:border-muted-foreground/60 transition-colors"
+ className="text-left rounded-md bg-muted/50 border border-border p-4 hover:border-muted-foreground/60 transition-colors"
  >
  <div className="flex items-center gap-3 mb-1">
  <div
@@ -921,7 +921,7 @@ function ResearchProcessTab() {
  </div>
 
  {/* Checklist */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <p className="text-xs text-muted-foreground mb-3 font-medium">Thesis Validation Checklist</p>
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
  {[
@@ -950,7 +950,7 @@ function FinancialModelingTab() {
  return (
  <div className="space-y-4">
  {/* 3-Statement Linkage */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <Layers size={15} className="text-indigo-400" />
  <p className="text-sm font-medium text-foreground">3-Statement Model Linkage</p>
@@ -963,7 +963,7 @@ function FinancialModelingTab() {
  </div>
 
  {/* Key Driver Assumptions */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <Activity size={15} className="text-muted-foreground" />
  <p className="text-sm font-medium text-foreground">Key Driver Assumptions — {TICKER}</p>
@@ -971,7 +971,7 @@ function FinancialModelingTab() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Driver</th>
  <th className="text-right py-2 px-3 text-muted-foreground font-medium">Base</th>
  <th className="text-right py-2 px-3 text-emerald-400 font-medium">Bull</th>
@@ -981,7 +981,7 @@ function FinancialModelingTab() {
  </thead>
  <tbody>
  {DRIVER_ASSUMPTIONS.map((row, i) => (
- <tr key={`driver-${i}`} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={`driver-${i}`} className="border-b border-border hover:bg-muted/20">
  <td className="py-2 pr-4 text-muted-foreground font-medium">{row.driver}</td>
  <td className="py-2 px-3 text-right text-foreground font-mono">{row.base}</td>
  <td className="py-2 px-3 text-right text-emerald-400 font-mono">{row.bull}</td>
@@ -1008,7 +1008,7 @@ function FinancialModelingTab() {
  </div>
 
  {/* Tornado Chart */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <BarChart3 size={15} className="text-muted-foreground/50" />
  <p className="text-sm font-medium text-foreground">Sensitivity Analysis — Tornado Chart</p>
@@ -1047,7 +1047,7 @@ function ValuationTab() {
  return (
  <div className="space-y-4">
  {/* DCF Sensitivity Matrix */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <Calculator size={15} className="text-muted-foreground/50" />
  <p className="text-sm font-medium text-foreground">DCF Sensitivity — WACC vs Terminal Growth ($/share)</p>
@@ -1060,7 +1060,7 @@ function ValuationTab() {
  </div>
 
  {/* P/E Relative Valuation */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <Scale size={15} className="text-muted-foreground" />
  <p className="text-sm font-medium text-foreground">P/E Relative Valuation Context</p>
@@ -1087,7 +1087,7 @@ function ValuationTab() {
  </div>
 
  {/* EV/EBITDA Comps Table */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <div className="flex items-center justify-between mb-3">
  <div className="flex items-center gap-2">
  <Layers size={15} className="text-emerald-400" />
@@ -1111,7 +1111,7 @@ function ValuationTab() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20 text-muted-foreground">
+ <tr className="border-b border-border text-muted-foreground">
  <th className="text-left py-2 pr-3 font-medium">Company</th>
  <th className="text-right py-2 px-2 font-medium">Mkt Cap ($B)</th>
  <th className="text-right py-2 px-2 font-medium">EV/EBITDA</th>
@@ -1129,7 +1129,7 @@ function ValuationTab() {
  <tr
  key={`comp-${i}`}
  className={cn(
- "border-b border-border/20 hover:bg-muted/20",
+ "border-b border-border hover:bg-muted/20",
  isNvda && "bg-indigo-500/10"
  )}
  >
@@ -1162,7 +1162,7 @@ function ValuationTab() {
  );
  })}
  {/* Median row */}
- <tr className="border-t border-border/20 bg-muted/20">
+ <tr className="border-t border-border bg-muted/20">
  <td className="py-2 pr-3 text-muted-foreground font-medium text-xs italic">Median</td>
  <td className="py-2 px-2 text-right text-muted-foreground font-mono">—</td>
  <td className="py-2 px-2 text-right text-muted-foreground font-mono font-medium">{medEvEbitda.toFixed(1)}x</td>
@@ -1281,7 +1281,7 @@ function ReportStructureTab() {
  {sections.map((sec, i) => (
  <div
  key={`sec-${i}`}
- className="rounded-md bg-muted/50 border border-border/20 overflow-hidden"
+ className="rounded-md bg-muted/50 border border-border overflow-hidden"
  >
  <button
  className="w-full flex items-center gap-3 p-4 text-left hover:bg-muted/20 transition-colors"
@@ -1368,7 +1368,7 @@ function ReportStructureTab() {
  </div>
 
  {/* Catalyst Calendar */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <Clock size={15} className="text-amber-400" />
  <p className="text-sm font-medium text-foreground">Catalyst Calendar — {TICKER}</p>
@@ -1448,7 +1448,7 @@ function AnalystRatingsTab() {
  { label: "Low Target", value: `$${lowPT}`, sub: "RBC Capital", color: "text-red-400" },
  { label: "Coverage", value: `${ANALYST_RATINGS.length}`, sub: "sell-side analysts", color: "text-muted-foreground" },
  ].map((stat, i) => (
- <div key={`stat-${i}`} className="rounded-md bg-muted/50 border border-border/20 p-3 text-center">
+ <div key={`stat-${i}`} className="rounded-md bg-muted/50 border border-border p-3 text-center">
  <p className="text-xs text-muted-foreground mb-1">{stat.label}</p>
  <p className={cn("text-xl font-medium", stat.color)}>{stat.value}</p>
  <p className="text-xs text-muted-foreground mt-0.5">{stat.sub}</p>
@@ -1457,12 +1457,12 @@ function AnalystRatingsTab() {
  </div>
 
  {/* Rating distribution */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <RatingDistributionChart ratings={ANALYST_RATINGS} />
  </div>
 
  {/* Individual ratings table */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <Star size={15} className="text-amber-400" />
  <p className="text-sm font-medium text-foreground">Individual Analyst Ratings</p>
@@ -1470,7 +1470,7 @@ function AnalystRatingsTab() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20 text-muted-foreground">
+ <tr className="border-b border-border text-muted-foreground">
  <th className="text-left py-2 pr-3 font-medium">Firm</th>
  <th className="text-left py-2 px-2 font-medium">Analyst</th>
  <th className="text-center py-2 px-2 font-medium">Rating</th>
@@ -1485,7 +1485,7 @@ function AnalystRatingsTab() {
  const pctDiff = (((r.priceTarget - CURRENT_PRICE) / CURRENT_PRICE) * 100).toFixed(1);
  const isUp = r.priceTarget > CURRENT_PRICE;
  return (
- <tr key={`rating-${i}`} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={`rating-${i}`} className="border-b border-border hover:bg-muted/20">
  <td className="py-2 pr-3 text-foreground font-medium">{r.firm}</td>
  <td className="py-2 px-2 text-muted-foreground">{r.analyst}</td>
  <td className="py-2 px-2 text-center">
@@ -1526,7 +1526,7 @@ function AnalystRatingsTab() {
  </div>
 
  {/* Price Target Accuracy chart */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <Target size={15} className="text-rose-400" />
  <p className="text-sm font-medium text-foreground">12-Month Price Target Accuracy by Firm</p>
@@ -1535,7 +1535,7 @@ function AnalystRatingsTab() {
  </div>
 
  {/* Earnings Revision Momentum */}
- <div className="rounded-md bg-muted/50 border border-border/20 p-4">
+ <div className="rounded-md bg-muted/50 border border-border p-4">
  <div className="flex items-center gap-2 mb-3">
  <TrendingUp size={15} className="text-emerald-400" />
  <p className="text-sm font-medium text-foreground">EPS Estimate Revision Momentum</p>
@@ -1639,7 +1639,7 @@ export default function EquityResearchPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="process" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "process", label: "Research Process", icon: <Search size={13} /> },
  { value: "modeling", label: "Financial Modeling", icon: <BarChart3 size={13} /> },

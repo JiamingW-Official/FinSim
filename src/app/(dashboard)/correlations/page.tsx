@@ -1306,7 +1306,7 @@ function OptimalPairsTab() {
  className="space-y-5"
  >
  {/* Intro card */}
- <Card className="bg-muted/10 border-border/20">
+ <Card className="bg-muted/10 border-border">
  <CardContent className="pt-4 pb-4">
  <div className="flex items-start gap-3">
  <Star size={16} className="text-foreground mt-0.5 flex-shrink-0" />
@@ -1528,7 +1528,7 @@ export default function CorrelationsPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="matrix" className="space-y-5">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "matrix", label: "Correlation Matrix", icon: <BarChart3 size={13} /> },
  { value: "rolling", label: "Rolling Corr", icon: <Activity size={13} /> },

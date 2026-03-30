@@ -356,7 +356,7 @@ export default function BankingRegPage() {
  </motion.div>
 
  <Tabs defaultValue="capital" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="capital" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Basel III/IV Capital
  </TabsTrigger>
@@ -418,21 +418,21 @@ export default function BankingRegPage() {
  </CardTitle>
  </CardHeader>
  <CardContent className="space-y-3 text-xs text-muted-foreground">
- <div className="bg-muted/50 rounded-lg p-3 border border-border/20">
+ <div className="bg-muted/50 rounded-lg p-3 border border-border">
  <div className="flex items-center justify-between mb-1">
  <span className="font-medium text-sky-400">LCR — Liquidity Coverage Ratio</span>
  <Badge className="bg-sky-900/40 text-sky-300 text-xs">≥ 100%</Badge>
  </div>
  <p>HQLA / Net cash outflows over 30-day stress. Ensures short-term liquidity. Level 1 (cash, sovereign) and Level 2 (corporate bonds) assets.</p>
  </div>
- <div className="bg-muted/50 rounded-lg p-3 border border-border/20">
+ <div className="bg-muted/50 rounded-lg p-3 border border-border">
  <div className="flex items-center justify-between mb-1">
  <span className="font-medium text-amber-400">NSFR — Net Stable Funding Ratio</span>
  <Badge className="bg-amber-900/40 text-amber-300 text-xs">≥ 100%</Badge>
  </div>
  <p>Available stable funding / Required stable funding over 1-year horizon. Discourages over-reliance on short-term wholesale funding.</p>
  </div>
- <div className="bg-muted/50 rounded-lg p-3 border border-border/20">
+ <div className="bg-muted/50 rounded-lg p-3 border border-border">
  <div className="flex items-center justify-between mb-1">
  <span className="font-medium text-emerald-400">SLR — Supplementary Leverage Ratio</span>
  <Badge className="bg-emerald-900/40 text-emerald-300 text-xs">≥ 3%</Badge>
@@ -668,7 +668,7 @@ export default function BankingRegPage() {
  className="flex items-start gap-2 text-xs text-muted-foreground"
  >
  <span className={cn("font-mono text-xs shrink-0 mt-0.5 w-12", `text-[${f.color}]`)} style={{ color: f.color }}>{f.date}</span>
- <div className="flex-1 bg-muted/50 rounded-md px-2 py-1.5 border border-border/20">
+ <div className="flex-1 bg-muted/50 rounded-md px-2 py-1.5 border border-border">
  <div className="flex items-center justify-between mb-0.5">
  <span className="font-medium text-foreground">{f.bank}</span>
  <span style={{ color: f.color }} className="text-xs font-mono">{f.assets}</span>
@@ -770,7 +770,7 @@ export default function BankingRegPage() {
  { agency: "NCUA", role: "Credit union supervision and deposit insurance (NCUSIF)", color: "#ec4899" },
  { agency: "FinCEN", role: "BSA/AML compliance, suspicious activity reports (SARs)", color: "#a78bfa" },
  ].map((a, i) => (
- <div key={i} className="bg-muted/40 rounded-lg px-3 py-2 border border-border/20">
+ <div key={i} className="bg-muted/40 rounded-lg px-3 py-2 border border-border">
  <div className="flex items-center gap-2 mb-1">
  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: a.color }} />
  <span className="text-xs font-medium text-foreground">{a.agency}</span>

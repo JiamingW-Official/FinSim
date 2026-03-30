@@ -333,7 +333,7 @@ function PodStructureTab() {
  const statusBg = pod.status === "active" ? "bg-emerald-900/30 border-emerald-800" : pod.status === "flat" ? "bg-amber-900/30 border-amber-800" : "bg-red-900/30 border-red-800";
  const seedColor = pod.seeding === "internal" ? "bg-indigo-900/40 text-indigo-300 border-indigo-800" : pod.seeding === "external" ? "bg-cyan-900/40 text-muted-foreground border-cyan-800" : "bg-muted/60 text-foreground border-border";
  return (
- <tr key={pod.id} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={pod.id} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 pr-3">
  <p className="font-medium text-foreground">{pod.name}</p>
  <p className="text-muted-foreground">{pod.strategy}</p>
@@ -755,7 +755,7 @@ function RiskManagementTab() {
  {stressScenarios.map((sc) => {
  const pnlColor = sc.portfolioLoss.startsWith("+") ? "text-emerald-400" : "text-red-400";
  return (
- <tr key={sc.name} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={sc.name} className="border-b border-border hover:bg-muted/20">
  <td className="py-2 pr-4 text-muted-foreground">{sc.name}</td>
  <td className={`text-right px-3 font-mono font-medium ${pnlColor}`}>{sc.portfolioLoss}</td>
  <td className="text-right px-3 font-mono text-red-500">{sc.hedgeLoss}</td>
@@ -1031,7 +1031,7 @@ export default function MultiStrategyPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="pods" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Pod Structure
  </TabsTrigger>

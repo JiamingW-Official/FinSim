@@ -603,7 +603,7 @@ function StrategyExplorer() {
  "text-left rounded-md border p-3 transition-colors",
  selected === st.id
  ? "border-transparent bg-foreground/10"
- : "border-border/20 bg-foreground/[0.03] hover:bg-muted/30"
+ : "border-border bg-foreground/[0.03] hover:bg-muted/30"
  )}
  style={selected === st.id ? { boxShadow: `0 0 0 1.5px ${st.color}` } : undefined}
  >
@@ -679,7 +679,7 @@ function StrategyExplorer() {
 
  {/* Two-column: chart + table */}
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Risk-Return Scatter (Bubble Size = AUM)</CardTitle>
  </CardHeader>
@@ -688,7 +688,7 @@ function StrategyExplorer() {
  </CardContent>
  </Card>
 
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Annual Returns by Strategy</CardTitle>
  </CardHeader>
@@ -704,7 +704,7 @@ function StrategyExplorer() {
  </thead>
  <tbody>
  {STRATEGIES.map((st) => (
- <tr key={st.id} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={st.id} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-1.5 pr-3 text-muted-foreground whitespace-nowrap">
  <span
  className="inline-block w-1.5 h-1.5 rounded-full mr-1.5"
@@ -840,7 +840,7 @@ function LSEquitySimulator() {
 
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
  {/* Longs table */}
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
  Long Book (10 positions)
@@ -863,7 +863,7 @@ function LSEquitySimulator() {
  const pl = p.shares * (p.currentPrice - p.entryPrice);
  const plPct = ((p.currentPrice - p.entryPrice) / p.entryPrice) * 100;
  return (
- <tr key={p.ticker} className="border-b border-border/20">
+ <tr key={p.ticker} className="border-b border-border">
  <td className="py-1.5 text-foreground font-medium">{p.ticker}</td>
  <td className="py-1.5 text-right text-muted-foreground">{p.shares.toLocaleString()}</td>
  <td className="py-1.5 text-right text-muted-foreground">${p.entryPrice.toFixed(1)}</td>
@@ -881,7 +881,7 @@ function LSEquitySimulator() {
  </Card>
 
  {/* Shorts table */}
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
  Short Book (5 positions)
@@ -904,7 +904,7 @@ function LSEquitySimulator() {
  const pl = p.shares * (p.entryPrice - p.currentPrice);
  const plPct = ((p.entryPrice - p.currentPrice) / p.entryPrice) * 100;
  return (
- <tr key={p.ticker} className="border-b border-border/20">
+ <tr key={p.ticker} className="border-b border-border">
  <td className="py-1.5 text-foreground font-medium">{p.ticker}</td>
  <td className="py-1.5 text-right text-muted-foreground">{p.shares.toLocaleString()}</td>
  <td className="py-1.5 text-right text-muted-foreground">${p.entryPrice.toFixed(2)}</td>
@@ -924,7 +924,7 @@ function LSEquitySimulator() {
 
  {/* Pair trade + factor exposure */}
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Pair Trade — Long AAPL / Short MSFT</CardTitle>
  </CardHeader>
@@ -944,7 +944,7 @@ function LSEquitySimulator() {
  </CardContent>
  </Card>
 
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Factor Exposure & Portfolio Heat</CardTitle>
  </CardHeader>
@@ -1072,7 +1072,7 @@ function GlobalMacroSimulator() {
  const progress = Math.min(100, Math.max(0, ((theme.current - theme.entry) / (theme.target - theme.entry)) * 100));
 
  return (
- <Card key={theme.id} className="bg-foreground/[0.03] border-border/20">
+ <Card key={theme.id} className="bg-foreground/[0.03] border-border">
  <CardContent className="p-4 space-y-3">
  <div className="flex items-start justify-between gap-2">
  <div>
@@ -1116,7 +1116,7 @@ function GlobalMacroSimulator() {
 
  {/* Regime + CB */}
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Macro Regime Detector</CardTitle>
  </CardHeader>
@@ -1133,7 +1133,7 @@ function GlobalMacroSimulator() {
  "w-full text-left rounded-lg border p-2.5 text-xs text-muted-foreground transition-colors",
  activeRegime === i
  ? "border-transparent bg-foreground/10"
- : "border-border/20 hover:bg-muted/30"
+ : "border-border hover:bg-muted/30"
  )}
  style={activeRegime === i ? { boxShadow: `0 0 0 1.5px ${r.color}` } : undefined}
  >
@@ -1155,13 +1155,13 @@ function GlobalMacroSimulator() {
  </CardContent>
  </Card>
 
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Central Bank Positioning</CardTitle>
  </CardHeader>
  <CardContent className="pt-0 space-y-2">
  {CB_STANCES.map((cb) => (
- <div key={cb.bank} className="rounded-lg bg-foreground/[0.04] border border-border/20 p-3">
+ <div key={cb.bank} className="rounded-lg bg-foreground/[0.04] border border-border p-3">
  <div className="flex items-center justify-between mb-1">
  <span className="text-xs font-medium text-foreground">{cb.bank}</span>
  <div className="flex items-center gap-2">
@@ -1269,7 +1269,7 @@ function EventDriven() {
  return (
  <div className="space-y-5">
  {/* Deal table */}
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Active Merger Arb Positions</CardTitle>
  </CardHeader>
@@ -1296,7 +1296,7 @@ function EventDriven() {
  <tr
  key={i}
  className={cn(
- "border-b border-border/20 cursor-pointer transition-colors",
+ "border-b border-border cursor-pointer transition-colors",
  selected === i ? "bg-foreground/[0.08]" : "hover:bg-muted/30"
  )}
  onClick={() => setSelected(i === selected ? null : i)}
@@ -1352,7 +1352,7 @@ function EventDriven() {
  const kelly = Math.max(0, (p * b - (1 - p)) / b) * 100;
 
  return (
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardContent className="p-5">
  <h4 className="text-sm font-medium text-foreground mb-3">
  Deal Analysis — {deal.target} / {deal.acquirer}
@@ -1389,7 +1389,7 @@ function EventDriven() {
  )}
  </AnimatePresence>
 
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Merger Arb — 10-Year Track Record</CardTitle>
  </CardHeader>
@@ -1489,7 +1489,7 @@ function CTASimulator() {
  return (
  <div className="space-y-5">
  {/* Signals table */}
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Trend Following Signals & Position Sizing</CardTitle>
  </CardHeader>
@@ -1508,7 +1508,7 @@ function CTASimulator() {
  </thead>
  <tbody>
  {TREND_MARKETS.map((m) => (
- <tr key={m.name} className="border-b border-border/20">
+ <tr key={m.name} className="border-b border-border">
  <td className="py-1.5 text-foreground font-medium">{m.name}</td>
  <td className="py-1.5 text-muted-foreground">{m.asset}</td>
  <td className={cn("py-1.5 text-right font-medium", m.momentum12m >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -1531,7 +1531,7 @@ function CTASimulator() {
 
  {/* Parameter sweep */}
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Parameter Sweep — Trend Period vs Sharpe</CardTitle>
  </CardHeader>
@@ -1545,7 +1545,7 @@ function CTASimulator() {
  "flex-1 rounded-lg border py-2 text-sm font-medium transition-colors",
  trendPeriod === p
  ? "border-primary bg-muted/10 text-foreground"
- : "border-border/20 text-muted-foreground hover:text-muted-foreground hover:bg-muted/30"
+ : "border-border text-muted-foreground hover:text-muted-foreground hover:bg-muted/30"
  )}
  >
  {p}D
@@ -1574,7 +1574,7 @@ function CTASimulator() {
  </CardContent>
  </Card>
 
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Crisis Alpha — CTA vs S&P 500</CardTitle>
  </CardHeader>
@@ -1667,7 +1667,7 @@ function FundEconomics() {
  return (
  <div className="space-y-5">
  {/* Interactive sliders */}
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Fee Calculator (2&amp;20 Structure)</CardTitle>
  </CardHeader>
@@ -1746,7 +1746,7 @@ function FundEconomics() {
 
  {/* HWM table + break-even */}
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">High Water Mark — Investor Protection</CardTitle>
  </CardHeader>
@@ -1763,7 +1763,7 @@ function FundEconomics() {
  </thead>
  <tbody>
  {hwmScenarios.map((row) => (
- <tr key={row.year} className="border-b border-border/20">
+ <tr key={row.year} className="border-b border-border">
  <td className="py-1.5 text-muted-foreground">{row.year}</td>
  <td className={cn("py-1.5 text-right font-medium", row.nav >= row.hwm ? "text-emerald-400" : "text-red-400")}>
  ${row.nav}
@@ -1790,7 +1790,7 @@ function FundEconomics() {
  </CardContent>
  </Card>
 
- <Card className="bg-foreground/[0.03] border-border/20">
+ <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground">Fund Economics — Break-Even &amp; Scale</CardTitle>
  </CardHeader>
@@ -1815,7 +1815,7 @@ function FundEconomics() {
  const mf = aum * 0.02;
  const pf = aum * 0.10 * 0.20; // assume 10% gross return, 5% hurdle
  return (
- <tr key={aum} className="border-b border-border/20">
+ <tr key={aum} className="border-b border-border">
  <td className="py-1.5 text-muted-foreground">${aum.toLocaleString()}M</td>
  <td className="py-1.5 text-right text-muted-foreground">${mf.toFixed(1)}M</td>
  <td className="py-1.5 text-right text-amber-400">${pf.toFixed(1)}M</td>
@@ -1887,7 +1887,7 @@ export default function HedgeFundPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="explorer" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "explorer", label: "Strategy Explorer" },
  { value: "ls_equity", label: "L/S Equity" },
@@ -1927,7 +1927,7 @@ export default function HedgeFundPage() {
  </Tabs>
 
  {/* Footer note */}
- <div className="flex items-start gap-2 rounded-md bg-foreground/[0.03] border border-border/20 p-4">
+ <div className="flex items-start gap-2 rounded-md bg-foreground/[0.03] border border-border p-4">
  <p className="text-xs text-muted-foreground">
  All data is simulated for educational purposes. Hedge fund strategies carry significant risks
  including leverage risk, illiquidity, manager risk, and regulatory risk. Past performance of

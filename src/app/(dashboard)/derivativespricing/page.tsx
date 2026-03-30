@@ -548,7 +548,7 @@ function MonteCarlo() {
  </thead>
  <tbody>
  {convergence.map(row => (
- <tr key={row.n} className="border-b border-border/20">
+ <tr key={row.n} className="border-b border-border">
  <td className="py-0.5 text-muted-foreground">{row.n}</td>
  <td className="text-right text-foreground">${row.price.toFixed(4)}</td>
  <td className={`text-right ${Math.abs(row.price - bsPrice) < 0.5 ? "text-emerald-400" : "text-amber-400"}`}>
@@ -734,7 +734,7 @@ function ExoticOptions() {
  const ref = i < 2 ? null : (i % 2 === 0 ? results.vanillaCall : results.vanillaPut);
  const diff = ref !== null ? row.price - ref : null;
  return (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={i} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 text-foreground text-xs font-medium">{row.name}</td>
  <td className="py-2 text-muted-foreground font-mono text-xs">{row.formula}</td>
  <td className="py-2 text-right font-mono font-medium text-foreground">${row.price.toFixed(4)}</td>
@@ -971,7 +971,7 @@ export default function DerivativesPricingPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="bs" className="w-full mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-4">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4">
  <TabsTrigger value="bs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Black-Scholes Lab
  </TabsTrigger>

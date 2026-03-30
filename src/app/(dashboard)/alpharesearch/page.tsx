@@ -479,7 +479,7 @@ export default function AlphaResearchPage() {
  {/* Tabs */}
  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.4 }}>
  <Tabs defaultValue="library">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="library" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signal Library</TabsTrigger>
  <TabsTrigger value="backtest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtesting</TabsTrigger>
  <TabsTrigger value="decay" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Alpha Decay</TabsTrigger>
@@ -540,7 +540,7 @@ export default function AlphaResearchPage() {
  {filteredSignals.map((sig, i) => {
  const catColor = CATEGORY_COLORS[sig.category];
  return (
- <tr key={sig.id} className={`border-b border-border/20 hover:bg-muted/20 transition-colors ${i % 2 === 0 ? "" : "bg-muted/10"}`}>
+ <tr key={sig.id} className={`border-b border-border hover:bg-muted/20 transition-colors ${i % 2 === 0 ? "" : "bg-muted/10"}`}>
  <td className="px-4 py-2.5 font-medium text-sm">{sig.name}</td>
  <td className="px-4 py-2.5">
  <span className="text-xs px-2 py-0.5 rounded-full capitalize font-medium" style={{ backgroundColor: catColor + "22", color: catColor }}>
@@ -732,7 +732,7 @@ export default function AlphaResearchPage() {
  { signal: "B/M Value", freq: "Quarterly","cost":"Low TC", net: "+", color: "#22c55e" },
  { signal: "ROE Quality", freq: "Quarterly","cost":"Low TC", net: "++",color: "#f59e0b" },
  ].map((row) => (
- <div key={row.signal} className="flex items-center justify-between py-1 border-b border-border/20 last:border-0">
+ <div key={row.signal} className="flex items-center justify-between py-1 border-b border-border last:border-0">
  <span className="text-xs font-medium" style={{ color: row.color }}>{row.signal}</span>
  <div className="flex gap-2 items-center">
  <Badge variant="outline" className="text-xs text-muted-foreground h-5">{row.freq}</Badge>
@@ -805,7 +805,7 @@ export default function AlphaResearchPage() {
  </thead>
  <tbody>
  {FACTOR_ZOO.map((f, i) => (
- <tr key={f.name} className={`border-b border-border/20 hover:bg-muted/20 transition-colors ${i % 2 === 0 ? "" : "bg-muted/10"}`}>
+ <tr key={f.name} className={`border-b border-border hover:bg-muted/20 transition-colors ${i % 2 === 0 ? "" : "bg-muted/10"}`}>
  <td className="px-4 py-2 text-sm font-medium">{f.name}</td>
  <td className="px-4 py-2">
  <span className="text-xs text-muted-foreground">{f.category}</span>

@@ -360,7 +360,7 @@ function ProviderComparisonTable() {
  <tr
  key={p.abbr}
  onClick={() => setSelected(selected === p.abbr ? null : p.abbr)}
- className={`border-b border-border/20 cursor-pointer transition-colors ${
+ className={`border-b border-border cursor-pointer transition-colors ${
  selected === p.abbr ? "bg-foreground/10" : "hover:bg-muted/30"
  }`}
  >
@@ -608,7 +608,7 @@ function FrameworkMatrix() {
  </thead>
  <tbody>
  {FRAMEWORKS.map((f) => (
- <tr key={f.abbr} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={f.abbr} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="px-4 py-3">
  <div className="flex items-center gap-2">
  <span className="w-2 h-2 rounded-full" style={{ background: f.color }} />
@@ -793,13 +793,13 @@ function GreenwashTaxonomyCard() {
  },
  {
  type: "Selective Omission",
- icon: "🔍",
+ icon: "",
  color: "#f59e0b",
  examples: ["Highlighting recycling while ignoring Scope 3", "Touting EV models while 95% ICE sales", "ESG fund excludes weapons but includes tar sands"],
  },
  {
  type: "False Impression",
- icon: "🎭",
+ icon: "",
  color: "#8b5cf6",
  examples: ["Green imagery on fossil fuel ads (HSBC)", "Sustainable Collection label on fast fashion", "ESG fund name on non-integrated portfolio"],
  },
@@ -862,7 +862,7 @@ function GreenwashCasesTable() {
  </thead>
  <tbody>
  {GREENWASH_CASES.map((c) => (
- <tr key={c.company} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={c.company} className="border-b border-border hover:bg-muted/30">
  <td className="px-3 py-2 font-medium text-foreground max-w-[120px]">{c.company}</td>
  <td className="px-3 py-2 text-muted-foreground">{c.year}</td>
  <td className="px-3 py-2 text-muted-foreground">{c.regulator}</td>
@@ -1202,7 +1202,7 @@ export default function ESGDataPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "providers", label: "ESG Rating Providers" },
  { value: "frameworks", label: "Disclosure Frameworks" },
@@ -1252,7 +1252,7 @@ export default function ESGDataPage() {
  { provider: "Bloomberg", freq: "Annual disclosure cycle", lag: "Aligned with company fiscal year end" },
  { provider: "ISS ESG", freq: "Annual + controversy alerts", lag: "60 days post-disclosure" },
  ].map((r) => (
- <div key={r.provider} className="flex gap-2 border-b border-border/20 pb-1 last:border-0">
+ <div key={r.provider} className="flex gap-2 border-b border-border pb-1 last:border-0">
  <span className="text-muted-foreground font-medium w-24 shrink-0">{r.provider}</span>
  <span className="text-muted-foreground flex-1">{r.freq}</span>
  <span className="text-muted-foreground shrink-0 text-xs">{r.lag}</span>
@@ -1275,7 +1275,7 @@ export default function ESGDataPage() {
  { sector: "Gambling", msci: "Controversy overlay", sus: "Product flag", sp: "Indirect exposure" },
  { sector: "Nuclear", msci: "Separate flag", sus: "Country/capacity flag", sp: "Social acceptance scored" },
  ].map((r) => (
- <div key={r.sector} className="flex gap-2 border-b border-border/20 pb-1 last:border-0">
+ <div key={r.sector} className="flex gap-2 border-b border-border pb-1 last:border-0">
  <span className="text-red-300 font-medium w-20 shrink-0">{r.sector}</span>
  <span className="text-muted-foreground flex-1 text-xs">{r.msci} | {r.sus} | {r.sp}</span>
  </div>
@@ -1447,7 +1447,7 @@ export default function ESGDataPage() {
  { org: "GRESB", role: "Real estate and infrastructure ESG benchmarking", cost: "$1.5K–$5K" },
  { org: "B Lab", role: "B Corp certification (governance + impact)", cost: "$1K–$50K" },
  ].map((v) => (
- <div key={v.org} className="flex gap-2 border-b border-border/20 pb-1.5 last:border-0">
+ <div key={v.org} className="flex gap-2 border-b border-border pb-1.5 last:border-0">
  <div className="flex-1">
  <div className="font-medium text-foreground">{v.org}</div>
  <div className="text-muted-foreground text-xs">{v.role}</div>

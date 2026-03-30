@@ -443,7 +443,7 @@ export default function PortfolioOptimizerPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="frontier" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <TrendingUp size={13} /> Efficient Frontier
  </TabsTrigger>
@@ -464,7 +464,7 @@ export default function PortfolioOptimizerPage() {
  {/* ─── TAB 1: Efficient Frontier ──────────────────────────────────── */}
  <TabsContent value="frontier" className="mt-4 space-y-4">
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
- <Card className="lg:col-span-2 border-border/20 border-l-4 border-l-primary">
+ <Card className="lg:col-span-2 border-border border-l-4 border-l-primary">
  <CardHeader className="pb-2 p-4">
  <CardTitle className="text-lg flex items-center gap-2">
  <TrendingUp size={16} className="text-muted-foreground/50" />
@@ -580,7 +580,7 @@ export default function PortfolioOptimizerPage() {
  {/* Stats sidebar */}
  <div className="space-y-3">
  {portfolios.map(({ label, pt, color, icon }) => (
- <Card key={label} className="border-border/20">
+ <Card key={label} className="border-border">
  <CardContent className="p-4 space-y-2">
  <div className="flex items-center gap-2 font-medium text-sm" style={{ color }}>
  {icon} {label}
@@ -620,7 +620,7 @@ export default function PortfolioOptimizerPage() {
  </div>
 
  {/* Interpretation note */}
- <Card className="border-border/20 bg-muted/5">
+ <Card className="border-border bg-muted/5">
  <CardContent className="p-4 flex gap-3 text-sm">
  <Info size={16} className="text-foreground mt-0.5 shrink-0" />
  <div className="text-muted-foreground">
@@ -635,7 +635,7 @@ export default function PortfolioOptimizerPage() {
  <TabsContent value="assets" className="mt-4 space-y-4">
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  {/* Asset table */}
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base flex items-center gap-2">
  <BarChart3 size={16} className="text-muted-foreground/50" />
@@ -646,7 +646,7 @@ export default function PortfolioOptimizerPage() {
  <div className="overflow-x-auto">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border/20 text-xs text-muted-foreground">
+ <tr className="border-b border-border text-xs text-muted-foreground">
  <th className="text-left pb-2 font-medium">Asset</th>
  <th className="text-right pb-2 font-medium">E(R)</th>
  <th className="text-right pb-2 font-medium">Volatility</th>
@@ -658,7 +658,7 @@ export default function PortfolioOptimizerPage() {
  {ASSETS.map((a) => {
  const sharpe = (a.expectedReturn - 0.045) / a.volatility;
  return (
- <tr key={a.ticker} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={a.ticker} className="border-b border-border hover:bg-muted/20">
  <td className="py-2">
  <div className="flex items-center gap-2">
  <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: a.color }} />
@@ -708,7 +708,7 @@ export default function PortfolioOptimizerPage() {
  </Card>
 
  {/* Correlation heatmap */}
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base flex items-center gap-2">
  <Activity size={16} className="text-muted-foreground/50" />
@@ -802,7 +802,7 @@ export default function PortfolioOptimizerPage() {
  </div>
 
  {/* Covariance table */}
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base">Covariance Matrix (annualized)</CardTitle>
  <p className="text-xs text-muted-foreground">C[i,j] = ρ[i,j] × σᵢ × σⱼ — measures co-movement in return units²</p>
@@ -811,7 +811,7 @@ export default function PortfolioOptimizerPage() {
  <div className="overflow-x-auto">
  <table className="text-xs text-muted-foreground font-mono w-full">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <th className="text-left pb-2 text-muted-foreground font-medium pr-4">Asset</th>
  {ASSETS.map((a) => (
  <th key={a.ticker} className="text-right pb-2 font-medium pr-3" style={{ color: a.color }}>
@@ -822,7 +822,7 @@ export default function PortfolioOptimizerPage() {
  </thead>
  <tbody>
  {COV.map((row, i) => (
- <tr key={ASSETS[i].ticker} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={ASSETS[i].ticker} className="border-b border-border hover:bg-muted/20">
  <td className="py-1.5 font-medium pr-4" style={{ color: ASSETS[i].color }}>{ASSETS[i].ticker}</td>
  {row.map((v, j) => (
  <td key={j} className="py-1.5 text-right pr-3" style={{ color: i === j ? ASSETS[i].color : (v >= 0 ? "#93c5fd" : "#fca5a5") }}>
@@ -842,7 +842,7 @@ export default function PortfolioOptimizerPage() {
  {/* ─── TAB 3: Optimal Portfolios ─────────────────────────────────── */}
  <TabsContent value="portfolios" className="mt-4 space-y-4">
  {/* Comparison table */}
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base flex items-center gap-2">
  <PieChart size={16} className="text-muted-foreground/50" />
@@ -853,7 +853,7 @@ export default function PortfolioOptimizerPage() {
  <div className="overflow-x-auto">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border/20 text-xs text-muted-foreground">
+ <tr className="border-b border-border text-xs text-muted-foreground">
  <th className="text-left pb-2 font-medium">Strategy</th>
  {ASSETS.map((a) => (
  <th key={a.ticker} className="text-right pb-2 font-medium" style={{ color: a.color }}>
@@ -870,7 +870,7 @@ export default function PortfolioOptimizerPage() {
  {portfolios.map(({ label, pt, color }) => {
  const varPct = portfolioVariance(pt.weights) * 100;
  return (
- <tr key={label} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={label} className="border-b border-border hover:bg-muted/20">
  <td className="py-2 font-medium" style={{ color }}>
  {label}
  </td>
@@ -901,7 +901,7 @@ export default function PortfolioOptimizerPage() {
  </Card>
 
  {/* Weight comparison bar chart */}
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base">Weight Comparison — All Strategies</CardTitle>
  <p className="text-xs text-muted-foreground">Each group = one asset, bars = portfolio strategies</p>
@@ -997,7 +997,7 @@ export default function PortfolioOptimizerPage() {
  tradeoff: "Sub-optimal in mean-variance sense but low parameter sensitivity.",
  },
  ].map((s) => (
- <Card key={s.title} className="border-border/20">
+ <Card key={s.title} className="border-border">
  <CardContent className="p-4 space-y-1">
  <div className="font-medium text-sm" style={{ color: s.color }}>{s.title}</div>
  <p className="text-xs text-muted-foreground">{s.desc}</p>
@@ -1012,7 +1012,7 @@ export default function PortfolioOptimizerPage() {
  <TabsContent value="constraints" className="mt-4 space-y-4">
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
  {/* Sliders panel */}
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base flex items-center gap-2">
  <Shield size={16} className="text-muted-foreground/50" />
@@ -1086,7 +1086,7 @@ export default function PortfolioOptimizerPage() {
  </Card>
 
  {/* Constrained vs unconstrained frontier */}
- <Card className="lg:col-span-2 border-border/20">
+ <Card className="lg:col-span-2 border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base">Constrained vs. Unconstrained Frontier</CardTitle>
  <p className="text-xs text-muted-foreground">Purple = unconstrained frontier · Teal = constrained frontier (with current limits)</p>
@@ -1200,7 +1200,7 @@ export default function PortfolioOptimizerPage() {
  <TabsContent value="resampling" className="mt-4 space-y-4">
  {/* Resampled frontier concept visualization */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base flex items-center gap-2">
  <RefreshCw size={16} className="text-muted-foreground/50" />
@@ -1306,7 +1306,7 @@ export default function PortfolioOptimizerPage() {
  </CardContent>
  </Card>
 
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base flex items-center gap-2">
  <AlertTriangle size={16} className="text-amber-500" />
@@ -1319,7 +1319,7 @@ export default function PortfolioOptimizerPage() {
  <p className="text-xs text-muted-foreground font-medium mb-2">Sensitivity to Parameter Errors</p>
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20 text-muted-foreground">
+ <tr className="border-b border-border text-muted-foreground">
  <th className="text-left pb-1">Parameter</th>
  <th className="text-right pb-1">Impact</th>
  <th className="text-right pb-1">Typical Error</th>
@@ -1331,7 +1331,7 @@ export default function PortfolioOptimizerPage() {
  { param: "Correlations", impact: "High", error: "±0.10–0.20", color: "#f97316" },
  { param: "Volatilities", impact: "Moderate", error: "±2–4% p.a.", color: "#f59e0b" },
  ].map((row) => (
- <tr key={row.param} className="border-b border-border/20">
+ <tr key={row.param} className="border-b border-border">
  <td className="py-1.5">{row.param}</td>
  <td className="py-1.5 text-right font-medium" style={{ color: row.color }}>{row.impact}</td>
  <td className="py-1.5 text-right text-muted-foreground font-mono">{row.error}</td>
@@ -1374,7 +1374,7 @@ export default function PortfolioOptimizerPage() {
  </div>
 
  {/* Black-Litterman overview */}
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base flex items-center gap-2">
  <BookOpen size={16} className="text-muted-foreground/50" />
@@ -1447,7 +1447,7 @@ export default function PortfolioOptimizerPage() {
  </Card>
 
  {/* Resampling methodology */}
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base">Resampled Efficient Frontier — Methodology</CardTitle>
  </CardHeader>
@@ -1499,7 +1499,7 @@ export default function PortfolioOptimizerPage() {
  </Card>
 
  {/* Comparison of robustness methods */}
- <Card className="border-border/20">
+ <Card className="border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base">Robustness Methods Comparison</CardTitle>
  </CardHeader>
@@ -1507,7 +1507,7 @@ export default function PortfolioOptimizerPage() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20 text-muted-foreground">
+ <tr className="border-b border-border text-muted-foreground">
  <th className="text-left pb-2 font-medium">Method</th>
  <th className="text-center pb-2 font-medium">Complexity</th>
  <th className="text-center pb-2 font-medium">Requires Views</th>
@@ -1524,7 +1524,7 @@ export default function PortfolioOptimizerPage() {
  { method: "Robust MVO (minimax)", complexity: "High", views: "No", stability: "Good", best: "Worst-case guarantee over parameter uncertainty set" },
  { method: "Shrinkage (Ledoit-Wolf)", complexity: "Medium", views: "No", stability: "Good", best: "Improving covariance estimation with limited history" },
  ].map((row, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={i} className="border-b border-border hover:bg-muted/20">
  <td className="py-2 font-medium text-foreground">{row.method}</td>
  <td className="py-2 text-center">
  <Badge variant="secondary" className="text-xs text-muted-foreground">

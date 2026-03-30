@@ -307,7 +307,7 @@ function DeltaHedgingTab() {
  </thead>
  <tbody>
  {[30, 21, 14, 7, 1].map((dte, row) => (
- <tr key={dte} className="border-b border-border/20">
+ <tr key={dte} className="border-b border-border">
  <td className="py-2 pr-4 text-muted-foreground font-medium">{dte} DTE</td>
  {gridData[row].map((cell, col) => (
  <td key={col} className="py-2 px-3 text-center">
@@ -478,7 +478,7 @@ function GammaPnLTab() {
  </thead>
  <tbody>
  {simulation.hedgeEvents.slice(0, 15).map((ev) => (
- <tr key={ev.idx} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={ev.idx} className="border-b border-border hover:bg-muted/30">
  <td className="py-1.5 pr-3 text-muted-foreground">{ev.idx}</td>
  <td className="py-1.5 pr-3 text-right font-mono text-foreground">${ev.price.toFixed(2)}</td>
  <td className="py-1.5 pr-3 text-right font-mono text-foreground">{ev.delta.toFixed(3)}</td>
@@ -676,7 +676,7 @@ function VolArbitrageTab() {
  </thead>
  <tbody>
  {surfaceStrikes.map((k, ki) => (
- <tr key={k} className="border-b border-border/20">
+ <tr key={k} className="border-b border-border">
  <td className={`py-2 pr-4 font-medium ${k === 100 ? "text-amber-300" : "text-muted-foreground"}`}>
  {k === 100 ? "★ " : ""}{k}
  </td>
@@ -899,7 +899,7 @@ function MMRiskTab() {
  <h3 className="text-foreground font-medium mb-4">Stress Scenarios — P&amp;L Impact ($)</h3>
  <div className="space-y-2">
  {stressScenarios.map((sc) => (
- <div key={sc.name} className="grid grid-cols-6 gap-2 text-xs text-muted-foreground py-2 border-b border-border/20 items-center">
+ <div key={sc.name} className="grid grid-cols-6 gap-2 text-xs text-muted-foreground py-2 border-b border-border items-center">
  <div className={`text-${sc.color}-300 font-medium col-span-1`}>{sc.name}</div>
  <div className="text-right font-mono">
  <span className="text-muted-foreground text-xs">Δ </span>
@@ -995,7 +995,7 @@ export default function GammaScalpingPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="delta" className="w-full mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "delta", label: "Delta Hedging" },
  { value: "gamma", label: "Gamma P&L" },

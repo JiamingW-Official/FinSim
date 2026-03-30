@@ -355,7 +355,7 @@ function DigitalTwinTab() {
  { label: "FI Number", value: fmtK(fiNumber) },
  { label: "Years to FI", value: String(fiYears) },
  ].map(({ label, value }) => (
- <div key={label} className="rounded-lg border border-border/60 p-3 space-y-0.5">
+ <div key={label} className="rounded-lg border border-border p-3 space-y-0.5">
  <p className="text-xs text-muted-foreground">{label}</p>
  <p className="text-base font-semibold font-mono">{value}</p>
  </div>
@@ -667,7 +667,7 @@ function CompoundCalculatorTab() {
  ].map(({ label, value, highlight }) => (
  <div
  key={label}
- className={`rounded-lg border p-3 space-y-0.5 ${highlight ? "border-primary/40 bg-muted/5" : "border-border/60"}`}
+ className={`rounded-lg border p-3 space-y-0.5 ${highlight ? "border-primary/40 bg-muted/5" : "border-border"}`}
  >
  <p className="text-xs text-muted-foreground">{label}</p>
  <p className={`text-base font-semibold font-mono ${highlight ? "text-foreground" : ""}`}>{value}</p>
@@ -927,7 +927,7 @@ function ScenarioSimulatorTab() {
  className={`rounded-lg border p-3 text-left transition-colors hover:border-primary/50 ${
  scenario.active === s.id
  ? "border-primary bg-muted/10"
- : "border-border/60 bg-card"
+ : "border-border bg-card"
  }`}
  >
  <p className="text-xs text-muted-foreground font-medium leading-tight">{s.label}</p>
@@ -1255,7 +1255,7 @@ function TaxCalculatorTab() {
  { label: "Total Tax Burden", value: fmtK(result.totalTax) },
  { label: "Take-Home Pay", value: fmtK(result.takeHome) },
  ].map(({ label, value }) => (
- <div key={label} className="rounded-lg border border-border/60 p-3 space-y-0.5">
+ <div key={label} className="rounded-lg border border-border p-3 space-y-0.5">
  <p className="text-xs text-muted-foreground">{label}</p>
  <p className="text-sm font-medium font-mono">{value}</p>
  </div>
@@ -1304,7 +1304,7 @@ function TaxCalculatorTab() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/60">
+ <tr className="border-b border-border">
  <th className="text-left text-muted-foreground font-medium pb-2">Bracket</th>
  <th className="text-right text-muted-foreground font-medium pb-2">Rate</th>
  <th className="text-right text-muted-foreground font-medium pb-2">Income in Bracket</th>
@@ -1313,7 +1313,7 @@ function TaxCalculatorTab() {
  </thead>
  <tbody>
  {result.breakdown.map((b, i) => (
- <tr key={i} className="border-b border-border/20">
+ <tr key={i} className="border-b border-border">
  <td className="py-1.5 font-mono">
  ${fmt(b.min)} – {b.max === Infinity ? "+" : `$${fmt(b.max)}`}
  </td>
@@ -1585,7 +1585,7 @@ function LoanCalculatorTab() {
  { label: "Total Cost (base)", value: fmtK(result.totalCostBase) },
  { label: "Payoff Date (base)", value: fmtDate(payoffDateBase) },
  ].map(({ label, value }) => (
- <div key={label} className="rounded-lg border border-border/60 p-3 space-y-0.5">
+ <div key={label} className="rounded-lg border border-border p-3 space-y-0.5">
  <p className="text-xs text-muted-foreground">{label}</p>
  <p className="text-sm font-medium font-mono">{value}</p>
  </div>
@@ -1609,7 +1609,7 @@ function LoanCalculatorTab() {
  ].map(({ label, value, positive }) => (
  <div
  key={label}
- className={`rounded-lg border p-3 space-y-0.5 ${positive ? "border-green-500/30 bg-green-500/5" : "border-border/60"}`}
+ className={`rounded-lg border p-3 space-y-0.5 ${positive ? "border-green-500/30 bg-green-500/5" : "border-border"}`}
  >
  <p className="text-xs text-muted-foreground">{label}</p>
  <p className={`text-sm font-medium font-mono ${positive ? "text-green-500" : ""}`}>{value}</p>
@@ -1645,7 +1645,7 @@ function LoanCalculatorTab() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/60">
+ <tr className="border-b border-border">
  <th className="text-left text-muted-foreground font-medium pb-2">Month</th>
  <th className="text-right text-muted-foreground font-medium pb-2">Payment</th>
  <th className="text-right text-muted-foreground font-medium pb-2">Principal</th>
@@ -1655,7 +1655,7 @@ function LoanCalculatorTab() {
  </thead>
  <tbody>
  {result.baseSchedule.map((row) => (
- <tr key={row.month} className="border-b border-border/20">
+ <tr key={row.month} className="border-b border-border">
  <td className="py-1.5">{row.month}</td>
  <td className="py-1.5 text-right font-mono">{fmtK(result.monthlyPayment)}</td>
  <td className="py-1.5 text-right font-mono text-foreground">{fmtK(row.principal)}</td>
@@ -2004,7 +2004,7 @@ function MacroSimulatorTab() {
  <button
  key={s.id}
  onClick={() => setVars(s.vars)}
- className="rounded-lg border border-border/60 bg-card p-3 text-left transition-colors hover:border-primary/50 hover:bg-muted/5"
+ className="rounded-lg border border-border bg-card p-3 text-left transition-colors hover:border-primary/50 hover:bg-muted/5"
  >
  <p className="text-xs text-muted-foreground font-medium leading-tight">{s.label}</p>
  <p className="text-xs text-muted-foreground mt-1 leading-tight">{s.desc}</p>
@@ -2012,7 +2012,7 @@ function MacroSimulatorTab() {
  ))}
  <button
  onClick={() => setVars(MACRO_DEFAULTS)}
- className="rounded-lg border border-border/60 bg-card p-3 text-left transition-colors hover:border-primary/50 hover:bg-muted/5"
+ className="rounded-lg border border-border bg-card p-3 text-left transition-colors hover:border-primary/50 hover:bg-muted/5"
  >
  <p className="text-xs text-muted-foreground font-medium leading-tight">Reset to Default</p>
  <p className="text-xs text-muted-foreground mt-1 leading-tight">Current macro baseline</p>
@@ -2137,9 +2137,9 @@ function MacroSimulatorTab() {
  );
  })}
 
- <div className="border-t border-border/60 pt-3 mt-3">
+ <div className="border-t border-border pt-3 mt-3">
  <div className="grid grid-cols-3 gap-4">
- <div className="rounded-lg border border-border/60 p-3 space-y-0.5">
+ <div className="rounded-lg border border-border p-3 space-y-0.5">
  <p className="text-xs text-muted-foreground">Portfolio P&L</p>
  <p className={`text-base font-medium font-mono ${totalImpact >= 0 ? "text-green-500" : "text-red-400"}`}>
  {totalImpact >= 0 ? "+" : ""}{fmtK(totalImpact)}
@@ -2191,7 +2191,7 @@ export default function ToolsPage() {
  return (
  <div className="flex flex-col h-full overflow-hidden">
  {/* Header */}
- <div className="flex items-center gap-3 px-6 pt-4 pb-3 border-b border-border/20 shrink-0">
+ <div className="flex items-center gap-3 px-6 pt-4 pb-3 border-b border-border shrink-0">
  <div>
  <h1 className="text-base font-medium leading-tight">Financial Tools</h1>
  <p className="text-xs text-muted-foreground mt-0.5">

@@ -399,9 +399,9 @@ function ComparisonMatrix() {
  <tbody>
  {COMP_ROWS.map((row, ri) => (
  <tr key={`cr-${ri}`} className={ri % 2 === 0 ? "bg-card/40" : ""}>
- <td className="py-2 px-3 text-muted-foreground font-medium border-b border-border/20">{row.label}</td>
+ <td className="py-2 px-3 text-muted-foreground font-medium border-b border-border">{row.label}</td>
  {row.data.map((cell, ci) => (
- <td key={`cc-${ri}-${ci}`} className="py-2 px-2 text-center text-muted-foreground border-b border-border/20">{cell}</td>
+ <td key={`cc-${ri}-${ci}`} className="py-2 px-2 text-center text-muted-foreground border-b border-border">{cell}</td>
  ))}
  </tr>
  ))}
@@ -509,7 +509,7 @@ export default function RealAssets2Page() {
 
  {/* Tabs */}
  <Tabs defaultValue="timber">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="timber" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Timberland &amp; Farmland
  </TabsTrigger>
@@ -655,9 +655,9 @@ export default function RealAssets2Page() {
  <tbody>
  {TF_COMPARE.map((row, i) => (
  <tr key={`tf-${i}`} className={i % 2 === 0 ? "bg-card/40" : ""}>
- <td className="py-2 px-3 text-muted-foreground font-medium border-b border-border/20">{row.factor}</td>
- <td className="py-2 px-3 text-muted-foreground border-b border-border/20">{row.timber}</td>
- <td className="py-2 px-3 text-muted-foreground border-b border-border/20">{row.farmland}</td>
+ <td className="py-2 px-3 text-muted-foreground font-medium border-b border-border">{row.factor}</td>
+ <td className="py-2 px-3 text-muted-foreground border-b border-border">{row.timber}</td>
+ <td className="py-2 px-3 text-muted-foreground border-b border-border">{row.farmland}</td>
  </tr>
  ))}
  </tbody>

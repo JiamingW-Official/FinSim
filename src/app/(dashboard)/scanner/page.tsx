@@ -495,13 +495,13 @@ function PatternScannerTab() {
  type="button"
  onClick={handleScan}
  disabled={scanning}
- className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-foreground-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+ className="inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-1.5 text-[11px] font-semibold tracking-wide uppercase transition-all hover:bg-foreground/90 disabled:opacity-50"
  >
  <RefreshCw className={cn("h-3 w-3", scanning && "animate-spin")} />
  {scanning ? "Scanning…" : "Scan All"}
  </button>
 
- <div className="flex items-center gap-1 rounded-md border border-border/20 p-0.5">
+ <div className="flex items-center gap-1 rounded-md border border-border p-0.5">
  {FILTER_OPTIONS.map((opt) => (
  <button
  key={opt.id}
@@ -510,8 +510,8 @@ function PatternScannerTab() {
  className={cn(
  "rounded px-2.5 py-1 text-[11px] font-medium transition-colors",
  filter === opt.id
- ? "bg-muted/10 text-foreground"
- : "text-muted-foreground hover:text-foreground",
+ ? "bg-foreground text-background font-semibold"
+ : "text-muted-foreground/50 hover:text-foreground",
  )}
  >
  {opt.label}
@@ -526,22 +526,22 @@ function PatternScannerTab() {
 
  {/* Table */}
  {filteredResults.length === 0 ? (
- <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border/20 py-16 text-center">
+ <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border py-16 text-center">
  <ScanLine className="h-8 w-8 text-muted-foreground/30" />
  <p className="text-sm text-muted-foreground">No patterns found for this filter.</p>
  <p className="text-[11px] text-muted-foreground/60">Try "All" or click "Scan All" to refresh.</p>
  </div>
  ) : (
- <div className="overflow-hidden rounded-lg border border-border/20">
+ <div className="overflow-hidden rounded-xl border border-border">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border/20 bg-muted/30">
- <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Ticker</th>
- <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Pattern</th>
- <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Direction</th>
- <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">Reliability</th>
- <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">Price</th>
- <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">% Change</th>
+ <tr className="border-b border-border bg-muted/5">
+ <th className="px-4 py-3 text-left text-[10px] font-mono font-medium tracking-[0.15em] uppercase text-muted-foreground/40">Ticker</th>
+ <th className="px-4 py-3 text-left text-[10px] font-mono font-medium tracking-[0.15em] uppercase text-muted-foreground/40">Pattern</th>
+ <th className="px-4 py-3 text-left text-[10px] font-mono font-medium tracking-[0.15em] uppercase text-muted-foreground/40">Direction</th>
+ <th className="px-4 py-3 text-right text-[10px] font-mono font-medium tracking-[0.15em] uppercase text-muted-foreground/40">Reliability</th>
+ <th className="px-4 py-3 text-right text-[10px] font-mono font-medium tracking-[0.15em] uppercase text-muted-foreground/40">Price</th>
+ <th className="px-4 py-3 text-right text-[10px] font-mono font-medium tracking-[0.15em] uppercase text-muted-foreground/40">% Chg</th>
  </tr>
  </thead>
  <tbody>
@@ -549,10 +549,10 @@ function PatternScannerTab() {
  <tr
  key={`${r.ticker}-${r.name}-${i}`}
  onClick={() => handleRowClick(r.ticker)}
- className="cursor-pointer border-b border-border/20 transition-colors last:border-0 hover:bg-muted/10"
+ className="cursor-pointer border-b border-border/40 transition-colors last:border-0 hover:bg-foreground/[0.02]"
  >
  <td className="px-3 py-2.5">
- <span className="font-medium text-foreground">{r.ticker}</span>
+ <span className="font-mono font-semibold text-sm text-foreground">{r.ticker}</span>
  </td>
  <td className="px-3 py-2.5">
  <span className="text-xs text-foreground/80">{r.name}</span>
@@ -686,7 +686,7 @@ function TechnicalScannerTab() {
  type="button"
  onClick={handleScan}
  disabled={scanning}
- className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-foreground-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+ className="inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-1.5 text-[11px] font-semibold tracking-wide uppercase transition-all hover:bg-foreground/90 disabled:opacity-50"
  >
  <RefreshCw className={cn("h-3 w-3", scanning && "animate-spin")} />
  {scanning ? "Scanning…" : "Scan All"}
@@ -715,7 +715,7 @@ function TechnicalScannerTab() {
  : c.direction === "bearish"
  ? "border-rose-500/50 bg-rose-500/10 text-rose-500"
  : "border-amber-500/50 bg-amber-500/10 text-amber-500"
- : "border-border/20 text-muted-foreground hover:border-border hover:text-foreground",
+ : "border-border text-muted-foreground hover:border-border hover:text-foreground",
  )}
  >
  {c.label}
@@ -725,7 +725,7 @@ function TechnicalScannerTab() {
  <button
  type="button"
  onClick={() => setSelectedConditions(new Set())}
- className="rounded-full border border-border/20 px-2.5 py-0.5 text-xs text-muted-foreground hover:text-foreground"
+ className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground hover:text-foreground"
  >
  Clear
  </button>
@@ -734,16 +734,16 @@ function TechnicalScannerTab() {
 
  {/* Table */}
  {filteredResults.length === 0 ? (
- <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border/20 py-16 text-center">
+ <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border py-16 text-center">
  <Zap className="h-8 w-8 text-muted-foreground/30" />
  <p className="text-sm text-muted-foreground">No conditions triggered.</p>
  <p className="text-[11px] text-muted-foreground/60">Adjust filters or click "Scan All" to refresh.</p>
  </div>
  ) : (
- <div className="overflow-hidden rounded-lg border border-border/20">
+ <div className="overflow-hidden rounded-xl border border-border">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border/20 bg-muted/30">
+ <tr className="border-b border-border bg-muted/30">
  <th
  className="cursor-pointer px-3 py-2 text-left text-xs font-medium text-muted-foreground hover:text-foreground"
  onClick={() => handleSort("ticker")}
@@ -772,11 +772,11 @@ function TechnicalScannerTab() {
  <tr
  key={`${r.ticker}-${r.condition}-${i}`}
  onClick={() => handleRowClick(r.ticker)}
- className="cursor-pointer border-b border-border/20 transition-colors last:border-0 hover:bg-muted/10"
+ className="cursor-pointer border-b border-border/40 transition-colors last:border-0 hover:bg-foreground/[0.02]"
  >
  <td className="px-3 py-2.5">
  <div className="flex flex-col gap-0.5">
- <span className="font-medium text-foreground">{r.ticker}</span>
+ <span className="font-mono font-semibold text-sm text-foreground">{r.ticker}</span>
  <span className="text-xs tabular-nums text-muted-foreground">${r.currentPrice.toFixed(2)}</span>
  </div>
  </td>
@@ -901,7 +901,7 @@ function SetupFinderTab() {
  type="button"
  onClick={handleScan}
  disabled={scanning}
- className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-foreground-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+ className="inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-1.5 text-[11px] font-semibold tracking-wide uppercase transition-all hover:bg-foreground/90 disabled:opacity-50"
  >
  <RefreshCw className={cn("h-3 w-3", scanning && "animate-spin")} />
  {scanning ? "Scanning…" : "Scan All"}
@@ -914,16 +914,16 @@ function SetupFinderTab() {
 
  {/* Table */}
  {setups.length === 0 ? (
- <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border/20 py-16 text-center">
+ <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border py-16 text-center">
  <ScanLine className="h-8 w-8 text-muted-foreground/30" />
  <p className="text-sm text-muted-foreground">No high-conviction setups detected.</p>
  <p className="text-[11px] text-muted-foreground/60">Market may be in low-conviction ranging state.</p>
  </div>
  ) : (
- <div className="overflow-hidden rounded-lg border border-border/20">
+ <div className="overflow-hidden rounded-xl border border-border">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border/20 bg-muted/30">
+ <tr className="border-b border-border bg-muted/30">
  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Ticker</th>
  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Setup</th>
  <th className="px-3 py-2 text-right text-xs font-medium text-muted-foreground">Entry Zone</th>
@@ -938,7 +938,7 @@ function SetupFinderTab() {
  <tr
  key={`${s.ticker}-${s.setupName}-${i}`}
  onClick={() => handleRowClick(s.ticker)}
- className="cursor-pointer border-b border-border/20 transition-colors last:border-0 hover:bg-muted/10"
+ className="cursor-pointer border-b border-border/40 transition-colors last:border-0 hover:bg-foreground/[0.02]"
  >
  <td className="px-3 py-2.5">
  <div className="flex flex-col gap-0.5">
@@ -1007,18 +1007,16 @@ export default function ScannerPage() {
  return (
  <div className="flex flex-col h-full overflow-hidden">
  {/* Header */}
- <div className="flex shrink-0 items-center gap-3 border-b border-border/20 px-6 py-6 border-l-4 border-l-primary">
- <ScanLine className="h-3.5 w-3.5 text-muted-foreground/50" />
- <div>
- <h1 className="text-base font-medium leading-none">Scanner</h1>
- <p className="mt-1 text-[11px] text-muted-foreground">
- Scan all 10 tickers for patterns, technical conditions, and high-conviction setups
- </p>
+ <div className="shrink-0 border-b border-border px-6 pt-6 pb-5">
+ <p className="page-overline">Tools</p>
+ <div className="flex items-end justify-between">
+ <h1 className="page-title">Market <span className="page-title-light">Scanner</span></h1>
+ <span className="page-subtitle">10 tickers · patterns · setups</span>
  </div>
  </div>
 
  {/* Tab bar */}
- <div className="shrink-0 border-b border-border/20 px-6">
+ <div className="shrink-0 border-b border-border px-6">
  <div className="flex gap-1">
  {TABS.map((tab) => (
  <button
@@ -1026,9 +1024,9 @@ export default function ScannerPage() {
  type="button"
  onClick={() => setActiveTab(tab.id)}
  className={cn(
- "relative border-b-2 px-3 py-2.5 text-xs text-muted-foreground font-medium transition-colors",
+ "relative border-b-2 px-3 py-2.5 text-xs font-medium transition-colors",
  activeTab === tab.id
- ? "border-primary text-foreground"
+ ? "border-foreground text-foreground font-semibold"
  : "border-transparent text-muted-foreground hover:text-foreground",
  )}
  >

@@ -710,7 +710,7 @@ export default function CryptoExchangePage() {
  </div>
 
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="spot" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Spot Trading
  </TabsTrigger>
@@ -1185,7 +1185,7 @@ export default function CryptoExchangePage() {
  </thead>
  <tbody>
  {top20.map((coin, i) => (
- <tr key={coin.symbol} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={coin.symbol} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 pr-3 text-muted-foreground">{i + 1}</td>
  <td className="py-2 pr-3">
  <div className="flex items-center gap-2">
@@ -1288,7 +1288,7 @@ export default function CryptoExchangePage() {
  </h3>
  <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
  {newListings.map((listing) => (
- <div key={listing.symbol} className="bg-muted/60 rounded-lg p-3 border border-border/20">
+ <div key={listing.symbol} className="bg-muted/60 rounded-lg p-3 border border-border">
  <div className="flex items-center justify-between mb-2">
  <span className="text-sm font-medium text-foreground">{listing.symbol}</span>
  <Badge variant="outline" className="text-xs border-amber-500/40 text-amber-400 px-1 py-0">NEW</Badge>
@@ -1352,7 +1352,7 @@ export default function CryptoExchangePage() {
  </thead>
  <tbody>
  {dexPools.map((pool, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={i} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 pr-4">
  <span className="px-2 py-0.5 rounded bg-muted text-muted-foreground">{pool.protocol}</span>
  </td>
@@ -1502,7 +1502,7 @@ export default function CryptoExchangePage() {
  const pnl = h.amount * (h.currentPrice - h.avgPrice);
  const pnlPct = ((h.currentPrice - h.avgPrice) / h.avgPrice) * 100;
  return (
- <tr key={h.token} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={h.token} className="border-b border-border hover:bg-muted/30">
  <td className="py-3 pr-4">
  <div className="flex items-center gap-2">
  <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-xs font-medium">
@@ -1527,7 +1527,7 @@ export default function CryptoExchangePage() {
  );
  })}
  {/* USDT row */}
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <td className="py-3 pr-4">
  <div className="flex items-center gap-2">
  <div className="w-6 h-6 rounded-full bg-emerald-900 flex items-center justify-center text-emerald-400 text-xs font-medium">$</div>

@@ -125,7 +125,7 @@ const SUB_SECTORS = [
  risk: "Core",
  inflationLink: "CPI-indexed tariffs",
  desc: "Long-term concession agreements with regulated toll escalation. Monopolistic catchment areas and high barriers to entry.",
- icon: "🛣️",
+ icon: "",
  },
  {
  name: "Airports",
@@ -135,7 +135,7 @@ const SUB_SECTORS = [
  risk: "Core+",
  inflationLink: "Regulatory price controls",
  desc: "Aeronautical revenues regulated; commercial revenues (retail, parking) provide inflation upside. Traffic risk key variable.",
- icon: "✈️",
+ icon: "",
  },
  {
  name: "Utilities",
@@ -145,7 +145,7 @@ const SUB_SECTORS = [
  risk: "Core",
  inflationLink: "RAB-based regulation",
  desc: "Regulated asset base (RAB) methodology sets allowed returns. Electricity/gas distribution with captive customer base.",
- icon: "⚡",
+ icon: "",
  },
  {
  name: "Renewables",
@@ -155,7 +155,7 @@ const SUB_SECTORS = [
  risk: "Core+",
  inflationLink: "CfD/PPA contracts",
  desc: "Solar and wind projects with long-dated power purchase agreements. Policy support via IRA, CfDs, and capacity markets.",
- icon: "🌿",
+ icon: "",
  },
  {
  name: "Cell Towers",
@@ -165,7 +165,7 @@ const SUB_SECTORS = [
  risk: "Core+",
  inflationLink: "Escalator clauses",
  desc: "Long-term master lease agreements with mobile network operators. Tenant escalators typically 2-3% annually.",
- icon: "📡",
+ icon: "",
  },
  {
  name: "Data Centers",
@@ -175,7 +175,7 @@ const SUB_SECTORS = [
  risk: "Value-Add",
  inflationLink: "Market leases",
  desc: "Hyperscaler demand driving explosive growth. Power availability and connectivity critical. AI workloads key demand driver.",
- icon: "🖥️",
+ icon: "",
  },
  {
  name: "Water",
@@ -185,7 +185,7 @@ const SUB_SECTORS = [
  risk: "Core",
  inflationLink: "CPI-linked tariffs",
  desc: "Highly regulated water/wastewater utilities. Essential service with near-zero demand elasticity. Low risk, stable cashflows.",
- icon: "💧",
+ icon: "",
  },
  {
  name: "Hospitals",
@@ -195,7 +195,7 @@ const SUB_SECTORS = [
  risk: "Core+",
  inflationLink: "Availability payments",
  desc: "Government availability payment structures in PPP/PFI frameworks. Healthcare demand driven by demographics.",
- icon: "🏥",
+ icon: "",
  },
 ];
 
@@ -284,10 +284,10 @@ function AssetClassesTab() {
  Social: "#f43f5e",
  };
  const segments = [
- { name: "Economic", x: 20, w: 160, icons: "🛣️ ✈️ ⚡" },
- { name: "Energy", x: 195, w: 160, icons: "🌿 ☀️ 🔋" },
- { name: "Digital", x: 370, w: 150, icons: "📡 🖥️ 🌐" },
- { name: "Social", x: 535, w: 145, icons: "💧 🏥 🏫" },
+ { name: "Economic", x: 20, w: 160, icons: " " },
+ { name: "Energy", x: 195, w: 160, icons: " " },
+ { name: "Digital", x: 370, w: 150, icons: " " },
+ { name: "Social", x: 535, w: 145, icons: " " },
  ];
 
  return (
@@ -636,14 +636,14 @@ const PPP_MODELS = [
 ];
 
 const DUE_DILIGENCE = [
- { item: "Technical due diligence", icon: "🔧", detail: "EPC contractor capability, design review, construction schedule" },
- { item: "Financial model audit", icon: "📊", detail: "DSCR sensitivity, downside scenarios, base/bear/stress cases" },
- { item: "Market study", icon: "📈", detail: "Traffic/demand forecasts, competitive analysis, tariff benchmarking" },
+ { item: "Technical due diligence", icon: "", detail: "EPC contractor capability, design review, construction schedule" },
+ { item: "Financial model audit", icon: "", detail: "DSCR sensitivity, downside scenarios, base/bear/stress cases" },
+ { item: "Market study", icon: "", detail: "Traffic/demand forecasts, competitive analysis, tariff benchmarking" },
  { item: "Legal review", icon: "⚖️", detail: "Concession agreement, permits, environmental approvals, title" },
- { item: "Insurance review", icon: "🛡️", detail: "Construction all-risk, operating, liability, business interruption" },
- { item: "Environmental & social", icon: "🌱", detail: "ESHS framework, IFC Performance Standards compliance" },
- { item: "Sponsor assessment", icon: "👥", detail: "Track record, financial capacity, equity commitment" },
- { item: "Offtake analysis", icon: "📋", detail: "Counterparty credit quality, contract tenor, termination provisions" },
+ { item: "Insurance review", icon: "", detail: "Construction all-risk, operating, liability, business interruption" },
+ { item: "Environmental & social", icon: "", detail: "ESHS framework, IFC Performance Standards compliance" },
+ { item: "Sponsor assessment", icon: "", detail: "Track record, financial capacity, equity commitment" },
+ { item: "Offtake analysis", icon: "", detail: "Counterparty credit quality, contract tenor, termination provisions" },
 ];
 
 const RESERVE_ACCOUNTS = [
@@ -1670,7 +1670,7 @@ export default function InfraInvestingPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="asset-classes" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Asset Classes
  </TabsTrigger>

@@ -388,7 +388,7 @@ function Tab1BNPLModel() {
  </thead>
  <tbody>
  {BNPL_PLAYERS.map((p, i) => (
- <tr key={p.name} className={cn("border-b border-border/20", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
+ <tr key={p.name} className={cn("border-b border-border", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
  <td className="py-2.5 px-3 font-semibold text-foreground">{p.name}</td>
  <td className="py-2.5 px-3 text-foreground">{p.gmv}</td>
  <td className="py-2.5 px-3 text-emerald-300">{p.takeRate}</td>
@@ -422,10 +422,10 @@ function Tab1BNPLModel() {
 // Real-time Decisioning Pipeline SVG
 function DecisioningPipelineSVG() {
  const steps = [
- { label: "Application\nSubmit", sub: "Email / Device / IP", color: "#3b82f6", icon: "📱" },
- { label: "Identity\nVerify", sub: "KYC / AML check", color: "#8b5cf6", icon: "🔍" },
- { label: "Alt Data\nIngest", sub: "1,500+ features", color: "#f59e0b", icon: "⚡" },
- { label: "ML Model\nScore", sub: "XGBoost ensemble", color: "#06b6d4", icon: "🤖" },
+ { label: "Application\nSubmit", sub: "Email / Device / IP", color: "#3b82f6", icon: "" },
+ { label: "Identity\nVerify", sub: "KYC / AML check", color: "#8b5cf6", icon: "" },
+ { label: "Alt Data\nIngest", sub: "1,500+ features", color: "#f59e0b", icon: "" },
+ { label: "ML Model\nScore", sub: "XGBoost ensemble", color: "#06b6d4", icon: "" },
  { label: "Rules\nEngine", sub: "Policy overlays", color: "#ec4899", icon: "⚖️" },
  { label: "Instant\nDecision", sub: "< 200ms", color: "#10b981", icon: "✓" },
  ];
@@ -954,7 +954,7 @@ function Tab3EmbeddedFinance() {
  { metric: "Default rate reduction", value: "1.1%", base: "3.2%", lift: "-66%", note: "platform data advantage" },
  { metric: "Cross-sell conversion", value: "31%", base: "8%", lift: "+3.9x", note: "existing customer vs cold outreach" },
  ].map((row) => (
- <div key={row.metric} className="flex items-center justify-between py-2 border-b border-border/20">
+ <div key={row.metric} className="flex items-center justify-between py-2 border-b border-border">
  <div>
  <p className="text-xs text-muted-foreground font-medium">{row.metric}</p>
  <p className="text-xs text-muted-foreground">{row.note}</p>
@@ -1370,7 +1370,7 @@ export default function BNPLLendingPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {TABS.map((tab) => (
  <TabsTrigger
  key={tab.id}

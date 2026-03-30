@@ -861,11 +861,11 @@ function GSIBTab() {
  <CardContent>
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
  {[
- { name: "Size", weight: "20%", desc: "Total exposures as in the leverage ratio", icon: "📊" },
- { name: "Interconnectedness", weight: "20%", desc: "Intra-financial system assets, liabilities, WPI securities outstanding", icon: "🔗" },
- { name: "Substitutability", weight: "20%", desc: "Assets under custody, payments activity, underwriting activity", icon: "🔄" },
- { name: "Global Activity", weight: "20%", desc: "Cross-jurisdictional claims and liabilities", icon: "🌐" },
- { name: "Complexity", weight: "20%", desc: "OTC derivatives notional, Level 3 assets, trading/AFS securities", icon: "⚙️" },
+ { name: "Size", weight: "20%", desc: "Total exposures as in the leverage ratio", icon: "" },
+ { name: "Interconnectedness", weight: "20%", desc: "Intra-financial system assets, liabilities, WPI securities outstanding", icon: "" },
+ { name: "Substitutability", weight: "20%", desc: "Assets under custody, payments activity, underwriting activity", icon: "" },
+ { name: "Global Activity", weight: "20%", desc: "Cross-jurisdictional claims and liabilities", icon: "" },
+ { name: "Complexity", weight: "20%", desc: "OTC derivatives notional, Level 3 assets, trading/AFS securities", icon: "" },
  ].map((cat, i) => (
  <div key={i} className="rounded-lg bg-muted/50 border border-border p-3 text-center">
  <div className="text-2xl mb-1">{cat.icon}</div>
@@ -913,7 +913,7 @@ function GSIBTab() {
  {GSIBS.map((row, i) => (
  <tr
  key={i}
- className="border-b border-border/20 hover:bg-muted/30 cursor-pointer transition-colors"
+ className="border-b border-border hover:bg-muted/30 cursor-pointer transition-colors"
  onClick={() => setSelectedBank(b => b?.bank === row.bank ? null : row)}
  >
  <td className="p-2 font-medium text-foreground">{row.bank}</td>
@@ -1347,7 +1347,7 @@ export default function SystemicRiskPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="contagion" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "contagion", label: "Contagion Mechanisms" },
  { value: "gsibs", label: "G-SIBs & TBTF" },

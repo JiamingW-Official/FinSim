@@ -343,10 +343,10 @@ function ParametricFlowSVG() {
  const W = 660;
  const H = 120;
  const steps = [
- { label: "Trigger Event\nOccurs", x: 60, icon: "⚡" },
- { label: "Data Source\nVerifies Index", x: 200, icon: "📡" },
- { label: "Smart Contract\nEvaluates", x: 340, icon: "⚙️" },
- { label: "Automatic\nPayout", x: 480, icon: "💸" },
+ { label: "Trigger Event\nOccurs", x: 60, icon: "" },
+ { label: "Data Source\nVerifies Index", x: 200, icon: "" },
+ { label: "Smart Contract\nEvaluates", x: 340, icon: "" },
+ { label: "Automatic\nPayout", x: 480, icon: "" },
  { label: "No Loss\nAdjustment", x: 610, icon: "✓" },
  ];
 
@@ -677,7 +677,7 @@ function BusinessModelsTab() {
  "text-left rounded-md border p-4 transition-colors",
  selected === cat.id
  ? "border-primary/50 bg-muted/5"
- : "border-border bg-card hover:border-border/80",
+ : "border-border bg-card hover:border-border",
  )}
  >
  <div className="flex items-start justify-between gap-2 mb-2">
@@ -753,7 +753,7 @@ function BusinessModelsTab() {
  </thead>
  <tbody>
  {INCUMBENT_VS_CHALLENGER.map((row, i) => (
- <tr key={row.dimension} className={cn("border-b border-border/20", i % 2 === 0 ? "bg-muted/10" : "")}>
+ <tr key={row.dimension} className={cn("border-b border-border", i % 2 === 0 ? "bg-muted/10" : "")}>
  <td className="py-1.5 pr-4 font-medium text-foreground">{row.dimension}</td>
  <td className={cn("py-1.5 pr-4", row.winner === "incumbent" ? "text-foreground font-medium" : "text-muted-foreground")}>
  {row.incumbent}
@@ -814,7 +814,7 @@ function ParametricTab() {
  <h3 className="text-xs text-muted-foreground font-medium mb-3">Weather Trigger Examples</h3>
  <div className="space-y-2">
  {WEATHER_TRIGGERS.map((wt) => (
- <div key={wt.peril} className="rounded-lg border border-border/60 bg-muted/10 p-3">
+ <div key={wt.peril} className="rounded-lg border border-border bg-muted/10 p-3">
  <div className="flex items-center gap-2 mb-1.5">
  <Zap className="h-3.5 w-3.5 text-amber-400 shrink-0" />
  <span className="text-[11px] font-medium text-foreground">{wt.peril}</span>
@@ -1165,7 +1165,7 @@ function MarketDynamicsTab() {
  <h3 className="text-xs text-muted-foreground font-medium mb-3">Incumbent M&A & Partnership Activity</h3>
  <div className="space-y-2">
  {MA_ACTIVITY.map((deal) => (
- <div key={`${deal.acquirer}-${deal.target}`} className="flex items-center gap-3 rounded-lg bg-muted/10 border border-border/20 p-2.5">
+ <div key={`${deal.acquirer}-${deal.target}`} className="flex items-center gap-3 rounded-lg bg-muted/10 border border-border p-2.5">
  <span className="text-xs text-muted-foreground font-mono shrink-0">{deal.year}</span>
  <div className="flex-1 min-w-0">
  <span className="text-[11px] font-medium text-foreground">{deal.acquirer}</span>

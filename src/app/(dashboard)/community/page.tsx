@@ -615,7 +615,7 @@ function AnalystRatingsTab() {
  initial={{ opacity: 0, x: -8 }}
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: i * 0.04, duration: 0.18 }}
- className="rounded-lg border border-border/20 bg-card p-3 space-y-2"
+ className="rounded-lg border border-border bg-card p-3 space-y-2"
  >
  {/* Row 1 */}
  <div className="flex items-center gap-2 flex-wrap">
@@ -689,7 +689,7 @@ function TrendingTab() {
  initial={{ opacity: 0, y: -6 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ delay: i * 0.04, duration: 0.16 }}
- className="rounded-lg border border-border/20 bg-card p-3 space-y-1.5"
+ className="rounded-lg border border-border bg-card p-3 space-y-1.5"
  >
  <div className="flex items-start justify-between gap-2">
  <div className="flex-1 min-w-0">
@@ -727,7 +727,7 @@ function TrendingTab() {
  initial={{ opacity: 0, x: -8 }}
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: i * 0.04, duration: 0.16 }}
- className="rounded-lg border border-border/20 bg-card p-2.5"
+ className="rounded-lg border border-border bg-card p-2.5"
  >
  <div className="flex items-center gap-2">
  <span className="text-xs font-medium text-foreground w-10 shrink-0">{a.ticker}</span>
@@ -794,7 +794,7 @@ function TopTradersTab() {
  initial={{ opacity: 0, y: -8 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ delay: i * 0.04, duration: 0.18 }}
- className="rounded-lg border border-border/20 bg-card p-3 space-y-2"
+ className="rounded-lg border border-border bg-card p-3 space-y-2"
  >
  {/* Header */}
  <div className="flex items-center gap-2">
@@ -920,7 +920,7 @@ function TopTradersTab() {
  <div className="text-xs font-medium text-muted-foreground/60 mb-2">Recent Trades</div>
  <div className="space-y-1">
  {profileTrader.tradeHistory.map((t, idx) => (
- <div key={idx} className="flex items-center justify-between text-xs text-muted-foreground py-1 border-b border-border/20 last:border-0">
+ <div key={idx} className="flex items-center justify-between text-xs text-muted-foreground py-1 border-b border-border last:border-0">
  <span className="font-medium text-foreground">{t.ticker}</span>
  <span className="text-muted-foreground/50">{t.date}</span>
  <span className={cn("font-mono font-medium", t.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -944,7 +944,7 @@ export default function CommunityPage() {
  return (
  <div className="flex flex-col h-full min-h-0">
  {/* HERO header */}
- <div className="shrink-0 border-b border-border/20 border-l-4 border-l-primary px-6 py-4">
+ <div className="shrink-0 border-b border-border border-l-4 border-l-primary px-6 py-4">
  <div className="flex items-center gap-2">
  <div>
  <h1 className="text-lg font-semibold text-foreground leading-none">Community</h1>
@@ -958,7 +958,7 @@ export default function CommunityPage() {
  {/* Tabs */}
  <div className="flex-1 min-h-0 overflow-hidden">
  <Tabs defaultValue="ideas" className="h-full flex flex-col">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto shrink-0 mx-6 mt-4 mb-0 w-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto shrink-0 mx-6 mt-4 mb-0 w-auto">
  <TabsTrigger value="ideas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Trade Ideas
  </TabsTrigger>

@@ -1612,7 +1612,7 @@ export default function PensionFundsPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="dbvsdc">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="dbvsdc" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  DB vs DC Plans
  </TabsTrigger>

@@ -24,55 +24,55 @@ import { useOnboardingStore } from "@/stores/onboarding-store";
 import { cn } from "@/lib/utils";
 
 export default function DashboardLayout({
-  children,
+ children,
 }: {
-  children: React.ReactNode;
+ children: React.ReactNode;
 }) {
-  const colorblindMode = usePreferencesStore((s) => s.colorblindMode);
-  const hasHydrated = useOnboardingStore((s) => s._hasHydrated);
-  const hasCompletedOnboarding = useOnboardingStore((s) => s.hasCompletedOnboarding);
+ const colorblindMode = usePreferencesStore((s) => s.colorblindMode);
+ const hasHydrated = useOnboardingStore((s) => s._hasHydrated);
+ const hasCompletedOnboarding = useOnboardingStore((s) => s.hasCompletedOnboarding);
 
-  return (
-    <Providers>
-      <GlobalSearchProvider>
-        <ShortcutsModalProvider>
-          {/* Skip to main content — visible on focus for keyboard/screen reader users */}
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[9999] focus:rounded-md focus:bg-primary focus:px-3 focus:py-1.5 focus:text-xs focus:font-medium focus:text-primary-foreground focus:shadow-sm"
-          >
-            Skip to content
-          </a>
+ return (
+ <Providers>
+ <GlobalSearchProvider>
+ <ShortcutsModalProvider>
+ {/* Skip to main content — visible on focus for keyboard/screen reader users */}
+ <a
+ href="#main-content"
+ className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[9999] focus:rounded-md focus:bg-primary focus:px-3 focus:py-1.5 focus:text-xs focus:font-medium focus:text-primary-foreground focus:"
+ >
+ Skip to content
+ </a>
 
-          <div className={cn("flex h-screen flex-col overflow-hidden bg-background", colorblindMode && "colorblind-mode")}>
-            <TopBar />
-            <div className="flex flex-1 overflow-hidden">
-              <Sidebar />
-              <main
-                id="main-content"
-                className="relative flex-1 overflow-hidden bg-background pb-16 md:pb-0"
-              >
-                <PageTransition>{children}</PageTransition>
-              </main>
-            </div>
-            <StatusBar />
-            {/* Mobile bottom navigation — only visible below md breakpoint */}
-            <MobileNav />
-            <AchievementPopup />
-            <LevelUpOverlay />
-            <TutorialOverlay />
-            <DailyRewardsPopup />
-            <SeasonXPToast />
-            <KeyboardShortcutGuide />
-            <StreakCelebration />
-            <TradeConfetti />
-            <FloatingEmojis />
-            {hasHydrated && !hasCompletedOnboarding && <OnboardingModal />}
-            {/* Global keyboard shortcuts handler */}
-            <GlobalKeyboardShortcuts />
-          </div>
-        </ShortcutsModalProvider>
-      </GlobalSearchProvider>
-    </Providers>
-  );
+ <div className={cn("flex h-screen flex-col overflow-hidden bg-background", colorblindMode && "colorblind-mode")}>
+ <TopBar />
+ <div className="flex flex-1 overflow-hidden">
+ <Sidebar />
+ <main
+ id="main-content"
+ className="relative flex-1 overflow-hidden bg-background pb-16 md:pb-0"
+ >
+ <PageTransition>{children}</PageTransition>
+ </main>
+ </div>
+ <StatusBar />
+ {/* Mobile bottom navigation — only visible below md breakpoint */}
+ <MobileNav />
+ <AchievementPopup />
+ <LevelUpOverlay />
+ <TutorialOverlay />
+ <DailyRewardsPopup />
+ <SeasonXPToast />
+ <KeyboardShortcutGuide />
+ <StreakCelebration />
+ <TradeConfetti />
+ <FloatingEmojis />
+ {hasHydrated && !hasCompletedOnboarding && <OnboardingModal />}
+ {/* Global keyboard shortcuts handler */}
+ <GlobalKeyboardShortcuts />
+ </div>
+ </ShortcutsModalProvider>
+ </GlobalSearchProvider>
+ </Providers>
+ );
 }

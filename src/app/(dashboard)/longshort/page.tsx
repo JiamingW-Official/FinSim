@@ -527,7 +527,7 @@ export default function LongShortPage() {
  </div>
  <button
  onClick={() => setRefreshKey((k) => k + 1)}
- className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground px-3 py-1.5 rounded-lg border border-border hover:border-foreground/20 transition-colors"
+ className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground px-3 py-1.5 rounded-lg border border-border hover:border-border transition-colors"
  >
  Regenerate
  </button>
@@ -546,7 +546,7 @@ export default function LongShortPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="builder" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio Builder</TabsTrigger>
  <TabsTrigger value="factor" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Factor Exposure</TabsTrigger>
  <TabsTrigger value="pnl" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">P&L Attribution</TabsTrigger>
@@ -570,7 +570,7 @@ export default function LongShortPage() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <th className="text-left px-3 py-2 text-muted-foreground font-medium">Ticker</th>
  <th className="text-left px-3 py-2 text-muted-foreground font-medium">Sector</th>
  <th className="text-right px-3 py-2 text-muted-foreground font-medium">Wt%</th>
@@ -586,7 +586,7 @@ export default function LongShortPage() {
  key={p.ticker}
  initial={{ opacity: 0, x: -8 }}
  animate={{ opacity: 1, x: 0 }}
- className="border-b border-border/20 hover:bg-muted/20 transition-colors"
+ className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-1.5 font-medium text-foreground">{p.ticker}</td>
  <td className="px-3 py-1.5 text-muted-foreground truncate max-w-[80px]">{p.sector}</td>
@@ -618,7 +618,7 @@ export default function LongShortPage() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <th className="text-left px-3 py-2 text-muted-foreground font-medium">Ticker</th>
  <th className="text-left px-3 py-2 text-muted-foreground font-medium">Sector</th>
  <th className="text-right px-3 py-2 text-muted-foreground font-medium">Wt%</th>
@@ -634,7 +634,7 @@ export default function LongShortPage() {
  key={p.ticker}
  initial={{ opacity: 0, x: 8 }}
  animate={{ opacity: 1, x: 0 }}
- className="border-b border-border/20 hover:bg-muted/20 transition-colors"
+ className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-1.5 font-medium text-foreground">{p.ticker}</td>
  <td className="px-3 py-1.5 text-muted-foreground truncate max-w-[80px]">{p.sector}</td>
@@ -715,7 +715,7 @@ export default function LongShortPage() {
  <TrafficLight status={f.neutral ? "ok" : Math.abs(f.portfolio) < 0.5 ? "warn" : "fail"} />
  </div>
  ))}
- <div className="mt-3 pt-3 border-t border-border/20 text-xs text-muted-foreground space-y-1">
+ <div className="mt-3 pt-3 border-t border-border text-xs text-muted-foreground space-y-1">
  <div className="flex items-center gap-1.5">Pass: |β| &lt; 0.3</div>
  <div className="flex items-center gap-1.5">Warn: 0.3 ≤ |β| &lt; 0.5</div>
  <div className="flex items-center gap-1.5">Fail: |β| ≥ 0.5</div>
@@ -776,13 +776,13 @@ export default function LongShortPage() {
  <CardTitle className="text-sm">Book Breakdown</CardTitle>
  </CardHeader>
  <CardContent className="space-y-3 text-xs text-muted-foreground">
- <div className="flex justify-between items-center pb-2 border-b border-border/20">
+ <div className="flex justify-between items-center pb-2 border-b border-border">
  <span className="text-muted-foreground flex items-center gap-1.5">Long Book P&L</span>
  <span className={cn("font-medium", metrics.longPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
  {metrics.longPnl >= 0 ? "+" : ""}${(metrics.longPnl / 1000).toFixed(1)}k
  </span>
  </div>
- <div className="flex justify-between items-center pb-2 border-b border-border/20">
+ <div className="flex justify-between items-center pb-2 border-b border-border">
  <span className="text-muted-foreground flex items-center gap-1.5">Short Book P&L</span>
  <span className={cn("font-medium", metrics.shortPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
  {metrics.shortPnl >= 0 ? "+" : ""}${(metrics.shortPnl / 1000).toFixed(1)}k
@@ -875,7 +875,7 @@ export default function LongShortPage() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <th className="text-left px-3 py-2 text-muted-foreground font-medium">Long</th>
  <th className="text-left px-3 py-2 text-muted-foreground font-medium">Short</th>
  <th className="text-left px-3 py-2 text-muted-foreground font-medium">L Sector</th>
@@ -886,7 +886,7 @@ export default function LongShortPage() {
  </thead>
  <tbody>
  {pairs.map((p) => (
- <tr key={`${p.longTicker}${p.shortTicker}`} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={`${p.longTicker}${p.shortTicker}`} className="border-b border-border hover:bg-muted/20">
  <td className="px-3 py-1.5 font-medium text-emerald-400">{p.longTicker}</td>
  <td className="px-3 py-1.5 font-medium text-red-400">{p.shortTicker}</td>
  <td className="px-3 py-1.5 text-muted-foreground">{p.longSector}</td>
@@ -1024,7 +1024,7 @@ export default function LongShortPage() {
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <th className="text-left px-4 py-2.5 text-muted-foreground font-medium">Scenario</th>
  <th className="text-right px-4 py-2.5 text-muted-foreground font-medium">Long P&L</th>
  <th className="text-right px-4 py-2.5 text-muted-foreground font-medium">Short P&L</th>
@@ -1037,7 +1037,7 @@ export default function LongShortPage() {
  {riskMetrics.stressResults.map((r) => {
  const navImpact = (r.netPnl / 10) * 100;
  return (
- <tr key={r.scenario} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={r.scenario} className="border-b border-border hover:bg-muted/20">
  <td className="px-4 py-2 font-medium text-foreground">{r.scenario}</td>
  <td className={cn("px-4 py-2 text-right", r.longPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
  {r.longPnl >= 0 ? "+" : ""}${(r.longPnl / 1e6).toFixed(2)}M
@@ -1103,7 +1103,7 @@ export default function LongShortPage() {
  <motion.p
  initial={{ opacity: 0 }}
  animate={{ opacity: 1 }}
- className="text-xs text-muted-foreground text-center pt-2 border-t border-border/20"
+ className="text-xs text-muted-foreground text-center pt-2 border-t border-border"
  >
  Simulated portfolio — seed 752001. All prices, P&L, and risk metrics are synthetic for educational purposes only.
  </motion.p>

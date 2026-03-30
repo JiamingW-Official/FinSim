@@ -454,7 +454,7 @@ export default function ConvertibleBondsPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="scanner">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "scanner", label: "CB Scanner" },
  { value: "parity", label: "Parity Chart" },
@@ -500,7 +500,7 @@ export default function ConvertibleBondsPage() {
  key={cb.id}
  onClick={() => setSelectedCbId(i)}
  className={cn(
- "border-b border-border/20 cursor-pointer transition-colors",
+ "border-b border-border cursor-pointer transition-colors",
  isSelected ? "bg-amber-500/10" : "hover:bg-muted/30"
  )}
  >
@@ -767,7 +767,7 @@ export default function ConvertibleBondsPage() {
  { feature: "Typical issuer", prcs: "Banks, utilities", decs: "Energy, industrials", aces: "Growth companies" },
  { feature: "Investor appeal", prcs: "Income-focused", decs: "High income", aces: "Growth + income" },
  ].map((row) => (
- <tr key={row.feature} className="border-b border-border/20">
+ <tr key={row.feature} className="border-b border-border">
  <td className="py-2 pr-4 text-foreground/60">{row.feature}</td>
  <td className="py-2 pr-4 text-amber-400/80">{row.prcs}</td>
  <td className="py-2 pr-4 text-amber-400/80">{row.decs}</td>
@@ -858,7 +858,7 @@ export default function ConvertibleBondsPage() {
  </thead>
  <tbody>
  {arbScenarios.map((sc) => (
- <tr key={sc.stockMove} className="border-b border-border/20">
+ <tr key={sc.stockMove} className="border-b border-border">
  <td className={cn("py-2 pr-3 font-mono font-medium", sc.stockMove > 0 ? "text-emerald-400" : sc.stockMove < 0 ? "text-rose-400" : "text-foreground/50")}>
  {sc.stockMove > 0 ? "+" : ""}{sc.stockMove}%
  </td>

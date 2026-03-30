@@ -467,7 +467,7 @@ export default function InsuranceLinkedPage() {
  transition={{ duration: 0.4, delay: 0.16 }}
  >
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="catbonds" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Cat Bonds
  </TabsTrigger>
@@ -517,7 +517,7 @@ export default function InsuranceLinkedPage() {
  </thead>
  <tbody>
  {CAT_BONDS.map((b, i) => (
- <tr key={b.name} className={cn("border-b border-border/20 hover:bg-muted/30 transition-colors", i % 2 === 0 ? "" : "bg-muted/10")}>
+ <tr key={b.name} className={cn("border-b border-border hover:bg-muted/30 transition-colors", i % 2 === 0 ? "" : "bg-muted/10")}>
  <td className="px-4 py-2.5 font-medium text-foreground whitespace-nowrap">{b.name}</td>
  <td className="px-4 py-2.5 text-muted-foreground">{b.sponsor}</td>
  <td className="px-4 py-2.5"><PerilBadge peril={b.peril} /></td>
@@ -605,7 +605,7 @@ export default function InsuranceLinkedPage() {
  </thead>
  <tbody>
  {ILS_FUNDS.map((f, i) => (
- <tr key={f.name} className={cn("border-b border-border/20 hover:bg-muted/30 transition-colors", i % 2 === 0 ? "" : "bg-muted/10")}>
+ <tr key={f.name} className={cn("border-b border-border hover:bg-muted/30 transition-colors", i % 2 === 0 ? "" : "bg-muted/10")}>
  <td className="px-4 py-2.5 font-medium text-foreground whitespace-nowrap">{f.name}</td>
  <td className="px-4 py-2.5">
  <Badge variant="outline" className="text-xs text-muted-foreground">{f.strategy}</Badge>
@@ -656,7 +656,7 @@ export default function InsuranceLinkedPage() {
  { label: "VaR 95%", value: "6.0%", color: "text-amber-400" },
  { label: "CVaR 99%", value: "9.2%", color: "text-red-400" },
  ].map(({ label, value, color }) => (
- <div key={label} className="bg-muted/30 rounded-lg p-3 text-center border border-border/20">
+ <div key={label} className="bg-muted/30 rounded-lg p-3 text-center border border-border">
  <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
  <div className={cn("text-base font-medium", color)}>{value}</div>
  </div>
@@ -742,7 +742,7 @@ export default function InsuranceLinkedPage() {
  </thead>
  <tbody>
  {matrix.map((row, ri) => (
- <tr key={labels[ri]} className="border-t border-border/20">
+ <tr key={labels[ri]} className="border-t border-border">
  <td className="py-1.5 pr-3 text-muted-foreground font-medium whitespace-nowrap">{labels[ri]}</td>
  {row.map((v, ci) => {
  const isHigh = v > 0.5 && ri !== ci;
@@ -801,7 +801,7 @@ export default function InsuranceLinkedPage() {
  : pct < 3 ? { label: "Moderate", cls: "bg-amber-500/10 text-amber-400 border-amber-500/20" }
  : { label: "Significant", cls: "bg-red-500/5 text-red-400 border-red-500/20" };
  return (
- <tr key={`${e.year}-${e.event}`} className={cn("border-b border-border/20 hover:bg-muted/30 transition-colors", i % 2 === 0 ? "" : "bg-muted/10")}>
+ <tr key={`${e.year}-${e.event}`} className={cn("border-b border-border hover:bg-muted/30 transition-colors", i % 2 === 0 ? "" : "bg-muted/10")}>
  <td className="px-4 py-2.5 text-muted-foreground">{e.year}</td>
  <td className="px-4 py-2.5 font-medium text-foreground whitespace-nowrap">{e.event}</td>
  <td className="px-4 py-2.5 text-muted-foreground">{e.region}</td>
@@ -859,7 +859,7 @@ export default function InsuranceLinkedPage() {
  { label: "Best Annual Return", value: "+16.4%", sub: "2023 (post-Ian rebound)", color: "text-green-400" },
  { label: "Avg Equity Corr.", value: "0.04", sub: "Near-zero beta", color: "text-foreground" },
  ].map(({ label, value, sub, color }) => (
- <div key={label} className="bg-muted/30 rounded-lg p-3 border border-border/20">
+ <div key={label} className="bg-muted/30 rounded-lg p-3 border border-border">
  <div className="text-xs text-muted-foreground mb-1">{label}</div>
  <div className={cn("text-lg font-medium", color)}>{value}</div>
  <div className="text-xs text-muted-foreground">{sub}</div>

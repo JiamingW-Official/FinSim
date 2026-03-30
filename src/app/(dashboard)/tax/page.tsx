@@ -367,7 +367,7 @@ function TaxLossHarvestingTab() {
  </p>
  </CardContent>
  </Card>
- <Card className="bg-muted/10 border-border/20">
+ <Card className="bg-muted/10 border-border">
  <CardContent className="pt-4 pb-3">
  <p className="text-xs text-muted-foreground">Tax Savings</p>
  <p className="text-lg font-medium text-foreground">{formatCurrency(stats.taxSavings)}</p>
@@ -859,7 +859,7 @@ function CapitalGainsPlannerTab() {
  </thead>
  <tbody>
  {positions.map((p) => (
- <tr key={p.id} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={p.id} className="border-b border-border hover:bg-muted/20">
  <td className="py-2.5 px-2 font-mono font-medium">{p.ticker}</td>
  <td className="py-2.5 px-2 text-muted-foreground">{p.purchaseDate}</td>
  <td className="py-2.5 px-2">
@@ -985,7 +985,7 @@ function EstateGiftTab() {
  <div className="space-y-4">
  {/* Key 2024 numbers */}
  <div className="grid grid-cols-3 gap-3">
- <Card className="bg-muted/10 border-border/20">
+ <Card className="bg-muted/10 border-border">
  <CardContent className="pt-4 pb-3">
  <div className="flex items-center gap-1.5 mb-1">
  <p className="text-xs text-muted-foreground">Annual Gift Exclusion</p>
@@ -1398,7 +1398,7 @@ export default function TaxPage() {
  transition={{ delay: 0.12 }}
  >
  <Tabs defaultValue="overview">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Overview
  </TabsTrigger>

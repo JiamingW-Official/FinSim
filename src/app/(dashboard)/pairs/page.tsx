@@ -138,7 +138,7 @@ function zColor(z: number) {
 function zBg(z: number) {
  const abs = Math.abs(z);
  if (abs >= 2) return z > 0 ? "bg-green-500/10 border-green-500/30" : "bg-red-500/5 border-red-500/30";
- if (abs < 0.5) return "bg-muted/30 border-border/20";
+ if (abs < 0.5) return "bg-muted/30 border-border";
  return "bg-amber-500/10 border-amber-500/30";
 }
 
@@ -496,25 +496,25 @@ export default function PairsPage() {
  return (
  <div className="flex flex-col h-full bg-background">
  {/* Header */}
- <div className="flex items-center gap-3 px-6 py-6 border-b border-border/20 border-l-4 border-l-primary shrink-0">
- <GitCompare className="h-3.5 w-3.5 text-muted-foreground/50" />
- <div>
- <h1 className="text-lg font-semibold">Pairs Trading</h1>
- <p className="text-xs text-muted-foreground">Statistical arbitrage via mean-reverting spreads</p>
+ <div className="shrink-0 border-b border-border px-6 pt-6 pb-5">
+ <p className="page-overline">Tools</p>
+ <div className="flex items-end justify-between">
+ <h1 className="page-title">Pairs <span className="page-title-light">Trading</span></h1>
+ <span className="page-subtitle">Statistical arbitrage · mean-reverting spreads</span>
  </div>
  </div>
 
  {/* Tab bar */}
- <div className="flex gap-0 border-b border-border/20 shrink-0 px-6">
+ <div className="flex gap-0 border-b border-border shrink-0 px-6">
  {TABS.map(tab => (
  <button
  key={tab.id}
  onClick={() => setActiveTab(tab.id)}
  className={cn(
- "px-4 py-2.5 text-sm font-medium border-b-2 transition-colors",
+ "px-4 py-2.5 text-xs font-medium border-b-2 transition-colors",
  activeTab === tab.id
- ? "border-primary text-foreground"
- : "border-transparent text-muted-foreground hover:text-foreground",
+ ? "border-foreground text-foreground font-semibold"
+ : "border-transparent text-muted-foreground/50 hover:text-foreground",
  )}
  >
  {tab.label}
@@ -538,10 +538,7 @@ export default function PairsPage() {
  return (
  <div
  key={`${pair.tickerA}-${pair.tickerB}`}
- className={cn(
- "rounded-lg border p-4 cursor-pointer transition-colors hover:border-primary/40",
- zBg(currentZ),
- )}
+ className="rounded-xl border border-border/60 p-4 cursor-pointer transition-all duration-150 hover:border-foreground/25 hover:bg-foreground/[0.02]"
  onClick={() => {
  setTickerA(pair.tickerA);
  setTickerB(pair.tickerB);
@@ -550,33 +547,33 @@ export default function PairsPage() {
  >
  <div className="flex items-center gap-4 flex-wrap">
  {/* Pair label */}
- <div className="w-28">
- <span className="text-sm font-semibold text-foreground">{pair.tickerA}</span>
- <span className="text-muted-foreground mx-1">/</span>
- <span className="text-sm font-semibold text-foreground">{pair.tickerB}</span>
+ <div className="min-w-[7.5rem]">
+ <span className="font-serif text-lg font-bold text-foreground">{pair.tickerA}</span>
+ <span className="text-muted-foreground/30 mx-1.5 font-light">/</span>
+ <span className="font-serif text-lg font-bold text-foreground">{pair.tickerB}</span>
  </div>
 
  {/* Stats chips */}
- <div className="flex gap-3 flex-wrap flex-1 text-xs text-muted-foreground">
- <div className="flex flex-col">
- <span className="text-muted-foreground">Correlation</span>
- <span className="font-semibold text-foreground">{pair.correlation.toFixed(2)}</span>
+ <div className="flex gap-6 flex-wrap flex-1">
+ <div className="flex flex-col gap-0.5">
+ <span className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/35">Corr</span>
+ <span className="font-mono font-semibold text-sm text-foreground tabular-nums">{pair.correlation.toFixed(2)}</span>
  </div>
- <div className="flex flex-col">
- <span className="text-muted-foreground">Coint. p-val</span>
- <span className={cn("font-medium", pair.cointegPValue < 0.05 ? "text-green-400" : "text-amber-400")}>
+ <div className="flex flex-col gap-0.5">
+ <span className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/35">Coint. p</span>
+ <span className={cn("font-mono font-semibold text-sm tabular-nums", pair.cointegPValue < 0.05 ? "text-emerald-400" : "text-amber-400")}>
  {pair.cointegPValue.toFixed(3)}
  </span>
  </div>
- <div className="flex flex-col">
- <span className="text-muted-foreground">Current Z</span>
- <span className={cn("font-medium tabular-nums", zColor(currentZ))}>
+ <div className="flex flex-col gap-0.5">
+ <span className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/35">Z-Score</span>
+ <span className={cn("font-mono font-bold text-sm tabular-nums", zColor(currentZ))}>
  {currentZ > 0 ? "+" : ""}{currentZ.toFixed(2)}
  </span>
  </div>
- <div className="flex flex-col">
- <span className="text-muted-foreground">Signal</span>
- <span className={cn("font-medium", zColor(currentZ))}>{signalLabel}</span>
+ <div className="flex flex-col gap-0.5">
+ <span className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/35">Signal</span>
+ <span className={cn("font-mono text-xs font-semibold", zColor(currentZ))}>{signalLabel}</span>
  </div>
  </div>
 
@@ -670,7 +667,7 @@ export default function PairsPage() {
  </div>
 
  {/* Spread chart */}
- <div className="rounded-lg border border-border/20 p-4 bg-card/30">
+ <div className="rounded-lg border border-border p-4 bg-card/30">
  <SpreadChart
  spread={analysisData.spread}
  zScores={analysisData.zScores}
@@ -679,12 +676,12 @@ export default function PairsPage() {
  </div>
 
  {/* Rolling corr chart */}
- <div className="rounded-lg border border-border/20 p-4 bg-card/30">
+ <div className="rounded-lg border border-border p-4 bg-card/30">
  <RollingCorrChart corr={analysisData.corr} />
  </div>
 
  {/* Spread formula */}
- <div className="rounded-lg border border-border/20 bg-muted/20 p-3 text-xs text-muted-foreground font-mono">
+ <div className="rounded-lg border border-border bg-muted/20 p-3 text-xs text-muted-foreground font-mono">
  Spread = Price_{tickerA} - {analysisData.beta.toFixed(4)} × Price_{tickerB} - {analysisData.alpha.toFixed(2)}
  </div>
  </div>
@@ -714,7 +711,7 @@ export default function PairsPage() {
  { label: "Open Trades", value: String(openTrades.length), color: "text-foreground" },
  { label: "Total P&L", value: `$${totalPnl >= 0 ? "+" : ""}${totalPnl.toFixed(0)}`, color: totalPnl >= 0 ? "text-green-400" : "text-red-400" },
  ].map(({ label, value, color }) => (
- <div key={label} className="rounded-lg border border-border/20 bg-card/30 p-3">
+ <div key={label} className="rounded-lg border border-border bg-card/30 p-3">
  <div className="text-xs text-muted-foreground">{label}</div>
  <div className={cn("text-lg font-medium tabular-nums mt-0.5", color)}>{value}</div>
  </div>
@@ -722,12 +719,12 @@ export default function PairsPage() {
  </div>
 
  {/* Z-score chart */}
- <div className="rounded-lg border border-border/20 p-4 bg-card/30">
+ <div className="rounded-lg border border-border p-4 bg-card/30">
  <ZScoreChart zScores={analysisData.zScores} />
  </div>
 
  {/* Position sizing */}
- <div className="rounded-lg border border-border/20 bg-card/30 p-4 space-y-3">
+ <div className="rounded-lg border border-border bg-card/30 p-4 space-y-3">
  <h3 className="text-sm font-medium">Position Sizing (Equal-Dollar)</h3>
  <div className="text-xs text-muted-foreground space-y-1">
  <p>Account size: $10,000 | Risk per trade: 2% = $200</p>
@@ -779,7 +776,7 @@ export default function PairsPage() {
  {tradeLogs.length > 0 && (
  <div className="space-y-2">
  <h3 className="text-sm font-medium">Trade Log</h3>
- <div className="rounded-lg border border-border/20 overflow-hidden">
+ <div className="rounded-lg border border-border overflow-hidden">
  <table className="w-full text-xs text-muted-foreground">
  <thead className="bg-muted/30">
  <tr>
@@ -790,7 +787,7 @@ export default function PairsPage() {
  </thead>
  <tbody>
  {tradeLogs.map(t => (
- <tr key={t.id} className="border-t border-border/20">
+ <tr key={t.id} className="border-t border-border">
  <td className="px-3 py-2 font-mono">{t.id}</td>
  <td className="px-3 py-2">
  <span className={t.direction === "long_a" ? "text-green-400" : "text-red-400"}>
@@ -879,7 +876,7 @@ Coca-Cola / PepsiCo: Consumer staple duopoly. Both track consumer spending but d
 S&P 500 ETF (SPY) / Nasdaq ETF (QQQ): One of the most traded institutional pairs. QQQ is more tech-heavy; spreads widen during tech sector rotations.`,
  },
  ].map(({ title, content }) => (
- <div key={title} className="rounded-lg border border-border/20 bg-card/30 p-5 space-y-2">
+ <div key={title} className="rounded-lg border border-border bg-card/30 p-5 space-y-2">
  <h3 className="text-sm font-medium text-foreground">{title}</h3>
  <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{content}</p>
  </div>

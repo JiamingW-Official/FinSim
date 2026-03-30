@@ -330,7 +330,7 @@ function CreditMigrationMatrix() {
  </thead>
  <tbody>
  {matrix.map((row, ri) => (
- <tr key={ri} className="border-t border-border/20">
+ <tr key={ri} className="border-t border-border">
  <td className={cn("py-1 px-2 font-semibold font-mono", ri === 7 ? "text-red-400" : "text-indigo-400")}>{ratings[ri]}</td>
  {row.map((v, ci) => (
  <td key={ci} className={cn("py-1 px-2 text-center font-mono", cellColor(v, ri, ci), ri === ci ? "text-indigo-300 font-semibold" : ci === 7 ? "text-red-300" : "text-muted-foreground")}>
@@ -666,7 +666,7 @@ function ModelInventoryTable() {
  </thead>
  <tbody>
  {models.map((m, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={i} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-2 text-foreground font-medium">{m.name}</td>
  <td className="py-2 px-2 text-muted-foreground">{m.type}</td>
  <td className={cn("py-2 px-2 font-medium", tierColor(m.tier))}>{m.tier}</td>
@@ -769,7 +769,7 @@ export default function RiskModelsPage() {
  </div>
 
  <Tabs defaultValue="market" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="market" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Market Risk
  </TabsTrigger>
@@ -1149,7 +1149,7 @@ export default function RiskModelsPage() {
  </thead>
  <tbody>
  {STRESS_SCENARIOS.map((sc, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/30">
+ <tr key={i} className="border-b border-border hover:bg-muted/30">
  <td className="py-2 px-2 font-medium" style={{ color: sc.color }}>{sc.name}</td>
  <td className="py-2 px-2 text-muted-foreground">{sc.type}</td>
  <td className={cn("py-2 px-2 font-mono", sc.equity < 0 ? "text-red-400" : "text-emerald-400")}>

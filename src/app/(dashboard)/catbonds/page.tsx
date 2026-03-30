@@ -838,7 +838,7 @@ function PricingReturnsTab() {
  const multiple = b.spread / 100 / b.expectedLoss;
  const totalYield = sofr + b.spread / 100;
  return (
- <tr key={b.name} className={cn("border-b border-border/20", i % 2 === 0 ? "bg-muted/10" : "")}>
+ <tr key={b.name} className={cn("border-b border-border", i % 2 === 0 ? "bg-muted/10" : "")}>
  <td className="px-4 py-2 font-medium text-foreground">{b.name}</td>
  <td className="px-3 py-2 text-right text-muted-foreground">{b.peril}</td>
  <td className="px-3 py-2 text-right text-red-400">{b.expectedLoss.toFixed(1)}%</td>
@@ -1000,7 +1000,7 @@ function PerilAnalysisTab() {
  </thead>
  <tbody>
  {PERIL_EVENTS.map((e, i) => (
- <tr key={e.returnPeriod} className={cn("border-b border-border/20", i % 2 === 0 ? "bg-muted/10" : "")}>
+ <tr key={e.returnPeriod} className={cn("border-b border-border", i % 2 === 0 ? "bg-muted/10" : "")}>
  <td className="px-4 py-2 font-medium text-foreground">{e.returnPeriod}-year</td>
  <td className="px-3 py-2 text-right text-amber-400">{e.probability.toFixed(1)}%</td>
  <td className="px-3 py-2 text-right text-foreground">${e.usHurricane}B</td>
@@ -1406,7 +1406,7 @@ export default function CatBondsPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-0">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "market", label: "ILS Market", icon: <BarChart3 size={12} /> },
  { value: "mechanics", label: "Mechanics", icon: <Layers size={12} /> },

@@ -603,7 +603,7 @@ export default function MicrostructureDepthPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="spread" className="w-full mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-4">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4">
  <TabsTrigger value="spread" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Spread Analysis
  </TabsTrigger>
@@ -664,7 +664,7 @@ export default function MicrostructureDepthPage() {
  <div className="overflow-x-auto">
  <SpreadComparisonChart />
  </div>
- <div className="mt-3 p-3 bg-muted/50 rounded-lg border border-border/20">
+ <div className="mt-3 p-3 bg-muted/50 rounded-lg border border-border">
  <p className="text-xs text-muted-foreground leading-relaxed">
  <span className="text-foreground font-medium">Realized spread</span> measures actual dealer revenue after mid-quote reversion.
  <span className="text-amber-400 font-medium ml-1">Effective spread</span> is twice the distance from trade price to mid — the true round-trip cost.
@@ -767,7 +767,7 @@ export default function MicrostructureDepthPage() {
  { label: "Buy Pressure", value: `${(buyVolumes.reduce((a, b) => a + b, 0) / 1000).toFixed(0)}k`, sub: "total buy volume" },
  { label: "Sell Pressure", value: `${(sellVolumes.reduce((a, b) => a + b, 0) / 1000).toFixed(0)}k`, sub: "total sell volume" },
  ].map((s) => (
- <div key={s.label} className="bg-muted/50 rounded-lg p-2 border border-border/20">
+ <div key={s.label} className="bg-muted/50 rounded-lg p-2 border border-border">
  <p className="text-xs text-muted-foreground">{s.label}</p>
  <p className="text-base font-semibold text-foreground">{s.value}</p>
  <p className="text-xs text-muted-foreground">{s.sub}</p>
@@ -790,7 +790,7 @@ export default function MicrostructureDepthPage() {
  {toxicFlowRows.map((row) => (
  <div
  key={row.symbol}
- className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border/20 cursor-pointer hover:border-border/20 transition-colors"
+ className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border cursor-pointer hover:border-border transition-colors"
  onClick={() => setSelectedSymbol(spreadSymbols.indexOf(row.symbol))}
  >
  <span className="text-xs font-mono font-semibold text-foreground w-12 shrink-0">{row.symbol}</span>
@@ -865,7 +865,7 @@ export default function MicrostructureDepthPage() {
  { rule: "Lee-Ready (combined)", desc: "Quote rule primary; tick rule for midpoint trades", accuracy: 88 },
  { rule: "Bulk Volume Classification", desc: "σ-normalized price changes map to [0,1] buy probability", accuracy: 91 },
  ].map((r) => (
- <div key={r.rule} className="p-2 rounded bg-muted/40 border border-border/20">
+ <div key={r.rule} className="p-2 rounded bg-muted/40 border border-border">
  <div className="flex items-center justify-between mb-1">
  <span className="text-foreground font-medium">{r.rule}</span>
  <Badge variant="outline" className="text-xs px-1.5 border-green-500/30 text-green-400">{r.accuracy}%</Badge>
@@ -946,7 +946,7 @@ export default function MicrostructureDepthPage() {
  { label: "% of Trade", value: `${(slippageBps / 100).toFixed(3)}%`, color: "text-orange-400" },
  { label: "√(Q/ADV)", value: `${Math.sqrt(qm / adv).toFixed(3)}`, color: "text-foreground" },
  ].map((s) => (
- <div key={s.label} className="p-3 rounded-lg bg-muted/50 border border-border/20 text-center">
+ <div key={s.label} className="p-3 rounded-lg bg-muted/50 border border-border text-center">
  <p className="text-xs text-muted-foreground mb-1">{s.label}</p>
  <p className={cn("text-sm font-medium", s.color)}>{s.value}</p>
  </div>
@@ -973,7 +973,7 @@ export default function MicrostructureDepthPage() {
  const maxLambda = Math.max(...kyleLambdaAssets.map((a) => a.lambda));
  const pct = (asset.lambda / maxLambda) * 100;
  return (
- <div key={asset.name} className="p-3 rounded-lg bg-muted/50 border border-border/20">
+ <div key={asset.name} className="p-3 rounded-lg bg-muted/50 border border-border">
  <div className="flex items-center justify-between mb-1">
  <span className="text-xs font-medium text-foreground">{asset.name}</span>
  <Badge
@@ -1058,7 +1058,7 @@ export default function MicrostructureDepthPage() {
  <div className="overflow-x-auto">
  <ACTrajectoryChart />
  </div>
- <div className="mt-2 p-2 bg-muted/40 border border-border/20 rounded text-xs text-muted-foreground">
+ <div className="mt-2 p-2 bg-muted/40 border border-border rounded text-xs text-muted-foreground">
  The AC model trades off <span className="text-green-400">price impact cost</span> (prefers slow execution) vs <span className="text-amber-400">price risk</span> (prefers fast execution). The concave optimal path front-loads execution versus a linear schedule, especially at high risk-aversion γ.
  </div>
  </CardContent>
@@ -1093,16 +1093,16 @@ export default function MicrostructureDepthPage() {
  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
  {[
  { strategy: "TWAP", bps: (twapCosts.reduce((a, b) => a + b) / twapCosts.length).toFixed(2), icon: "⏱" },
- { strategy: "VWAP", bps: (vwapCosts.reduce((a, b) => a + b) / vwapCosts.length).toFixed(2), icon: "📊" },
- { strategy: "IS", bps: (isCosts.reduce((a, b) => a + b) / isCosts.length).toFixed(2), icon: "🎯" },
- { strategy: "Market Order", bps: (rnd() * 5 + 6).toFixed(2), icon: "⚡" },
- { strategy: "Limit + Cancel", bps: (rnd() * 1.5 + 0.5).toFixed(2), icon: "📋" },
- { strategy: "Dark Pool", bps: (rnd() * 2 + 0.8).toFixed(2), icon: "🌑" },
+ { strategy: "VWAP", bps: (vwapCosts.reduce((a, b) => a + b) / vwapCosts.length).toFixed(2), icon: "" },
+ { strategy: "IS", bps: (isCosts.reduce((a, b) => a + b) / isCosts.length).toFixed(2), icon: "" },
+ { strategy: "Market Order", bps: (rnd() * 5 + 6).toFixed(2), icon: "" },
+ { strategy: "Limit + Cancel", bps: (rnd() * 1.5 + 0.5).toFixed(2), icon: "" },
+ { strategy: "Dark Pool", bps: (rnd() * 2 + 0.8).toFixed(2), icon: "" },
  ].map((s) => {
  const bpsNum = Number(s.bps);
  const costPerM = (bpsNum * 100).toFixed(0);
  return (
- <div key={s.strategy} className="p-3 rounded-lg bg-muted/50 border border-border/20 text-center">
+ <div key={s.strategy} className="p-3 rounded-lg bg-muted/50 border border-border text-center">
  <p className="text-lg mb-0.5">{s.icon}</p>
  <p className="text-[11px] text-muted-foreground font-medium mb-1">{s.strategy}</p>
  <p className={cn("text-sm font-medium", bpsNum < 2 ? "text-green-400" : bpsNum < 4 ? "text-amber-400" : "text-red-400")}>{s.bps} bps</p>

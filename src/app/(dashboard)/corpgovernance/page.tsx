@@ -689,7 +689,7 @@ export default function CorpGovernancePage() {
 
  {/* Tabs */}
  <Tabs defaultValue="board">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="board" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Board Composition</TabsTrigger>
  <TabsTrigger value="activist" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Activist Campaigns</TabsTrigger>
  <TabsTrigger value="proxy" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Proxy Vote Sim</TabsTrigger>
@@ -764,7 +764,7 @@ export default function CorpGovernancePage() {
  </thead>
  <tbody>
  {BOARD_COMPANIES.map((c) => (
- <tr key={c.ticker} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={c.ticker} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 font-medium text-foreground">{c.name} <span className="text-muted-foreground">({c.ticker})</span></td>
  <td className="text-center py-2 text-muted-foreground">{c.boardSize}</td>
  <td className={cn("text-center py-2 font-medium", scoreColor(c.independentPct))}>{c.independentPct}%</td>

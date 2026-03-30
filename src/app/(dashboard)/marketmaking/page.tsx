@@ -785,7 +785,7 @@ function TabAMM() {
  {comparisons.map((c) => (
  <div
  key={c.metric}
- className="grid grid-cols-3 gap-2 text-xs text-muted-foreground py-1.5 border-b border-border/20 hover:bg-muted/30 rounded px-1"
+ className="grid grid-cols-3 gap-2 text-xs text-muted-foreground py-1.5 border-b border-border hover:bg-muted/30 rounded px-1"
  >
  <span className="text-muted-foreground font-medium">{c.metric}</span>
  <span
@@ -1241,7 +1241,7 @@ export default function MarketMakingPage() {
 
  {/* Tabs */}
  <Tabs value={tab} onValueChange={setTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-4">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4">
  {tabs.map((t) => (
  <TabsTrigger
  key={t.id}

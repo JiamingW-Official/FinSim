@@ -350,7 +350,7 @@ function QuotingTab() {
  animate={{ opacity: 1, y: 0 }}
  transition={{ delay: i * 0.04 }}
  className={cn(
- "border-b border-border/20",
+ "border-b border-border",
  isAtm && "bg-muted/60"
  )}
  >
@@ -430,7 +430,7 @@ function QuotingTab() {
  </thead>
  <tbody>
  {tickTable.map((row, i) => (
- <tr key={i} className="border-b border-border/20">
+ <tr key={i} className="border-b border-border">
  <td className="py-1.5 text-muted-foreground">{row.program}</td>
  <td className="py-1.5 text-amber-400 font-mono font-medium">{row.minTick}</td>
  <td className="py-1.5 text-muted-foreground">{row.note}</td>
@@ -780,7 +780,7 @@ function InventoryTab() {
  </thead>
  <tbody>
  {pinRiskData.map((row) => (
- <tr key={row.strike} className="border-b border-border/20">
+ <tr key={row.strike} className="border-b border-border">
  <td className="py-2 font-mono text-foreground">${row.strike}</td>
  <td className="py-2 text-muted-foreground">{row.daysOut}d</td>
  <td className="py-2">
@@ -998,7 +998,7 @@ function AdverseSelectionTab() {
  </thead>
  <tbody>
  {orderTypes.map((o) => (
- <tr key={o.type} className="border-b border-border/20">
+ <tr key={o.type} className="border-b border-border">
  <td className="py-2 text-muted-foreground font-medium">{o.type}</td>
  <td className="py-2 text-muted-foreground font-mono">{o.size}</td>
  <td className={cn("py-2 font-medium", o.color)}>{o.inference}</td>
@@ -1076,7 +1076,7 @@ function AdverseSelectionTab() {
  </div>
  <div className="space-y-3">
  {informationExamples.map((ex) => (
- <div key={ex.scenario} className="p-4 bg-muted/50 rounded-md border border-border/20">
+ <div key={ex.scenario} className="p-4 bg-muted/50 rounded-md border border-border">
  <div className="text-sm font-medium text-foreground mb-2">{ex.scenario}</div>
  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
  <div>
@@ -1292,7 +1292,7 @@ function EconomicsTab() {
  </thead>
  <tbody>
  {pfofData.map((r) => (
- <tr key={r.broker} className="border-b border-border/20">
+ <tr key={r.broker} className="border-b border-border">
  <td className="py-1.5 text-muted-foreground">{r.broker}</td>
  <td className={cn("py-1.5 font-mono font-medium", r.pfof2022 === "$0.0000" ? "text-muted-foreground" : "text-emerald-400")}>
  {r.pfof2022}
@@ -1507,7 +1507,7 @@ export default function OptionsMmPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {tabs.map((tab) => (
  <TabsTrigger
  key={tab.id}

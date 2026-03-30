@@ -455,7 +455,7 @@ export default function MomentumBuilderPage() {
  </div>
 
  <Tabs defaultValue="builder" className="w-full mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="builder" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signal Builder</TabsTrigger>
  <TabsTrigger value="screener" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Universe</TabsTrigger>
  <TabsTrigger value="backtest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtest</TabsTrigger>
@@ -596,7 +596,7 @@ export default function MomentumBuilderPage() {
  </Card>
 
  {/* Strategy summary card */}
- <Card className="bg-muted/5 border-border/20">
+ <Card className="bg-muted/5 border-border">
  <CardContent className="pt-4 space-y-3">
  <div className="flex items-center gap-2 text-sm font-medium text-foreground">
  Strategy Profile
@@ -674,7 +674,7 @@ export default function MomentumBuilderPage() {
  initial={{ opacity: 0 }}
  animate={{ opacity: 1 }}
  transition={{ delay: idx * 0.01 }}
- className={`border-b border-border/20 hover:bg-muted/30 transition-colors ${
+ className={`border-b border-border hover:bg-muted/30 transition-colors ${
  isTop ? "bg-green-950/30" : isBot ? "bg-red-950/30" : ""
  }`}
  >
@@ -840,7 +840,7 @@ export default function MomentumBuilderPage() {
  return (
  <tr
  key={row.year}
- className={`border-b border-border/20 hover:bg-muted/20 ${crashYear ? "bg-red-950/20" : ""}`}
+ className={`border-b border-border hover:bg-muted/20 ${crashYear ? "bg-red-950/20" : ""}`}
  >
  <td className="p-2 font-mono">
  <span className="flex items-center gap-1">
@@ -893,7 +893,7 @@ export default function MomentumBuilderPage() {
  </thead>
  <tbody>
  {holdingRows.map(row => (
- <tr key={row.period} className="border-b border-border/20 hover:bg-muted/20">
+ <tr key={row.period} className="border-b border-border hover:bg-muted/20">
  <td className="p-2 font-mono font-medium">{row.period}</td>
  <td className="p-2 text-right font-mono text-foreground">{row.ic.toFixed(4)}</td>
  <td className={`p-2 text-right font-mono ${Math.abs(row.tStat) >= 2 ? "text-green-400" : "text-amber-400"}`}>

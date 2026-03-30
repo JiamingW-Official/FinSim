@@ -687,7 +687,7 @@ function SwapCurveBuilder() {
  {forwardRates.map((r, i) => (
  <tr
  key={i}
- className="border-t border-border/20 hover:bg-muted/30 cursor-pointer transition-colors"
+ className="border-t border-border hover:bg-muted/30 cursor-pointer transition-colors"
  onClick={() => setSelectedIdx(selectedIdx === i ? null : i)}
  >
  <td className="py-1.5 pr-4 text-foreground/80 font-medium">{r.label}</td>
@@ -1650,7 +1650,7 @@ function InflationSwapsPage() {
  const swapRate = INFL_TENORS.find((t) => t.label === row.label)?.rate ?? breakeven;
  const basis = breakeven - swapRate;
  return (
- <tr key={i} className="border-t border-border/20">
+ <tr key={i} className="border-t border-border">
  <td className="py-1.5 pr-4 text-foreground/80 font-medium">{row.label}</td>
  <td className="py-1.5 pr-4 text-right tabular-nums text-sky-300">{row.tipsYield.toFixed(2)}%</td>
  <td className="py-1.5 pr-4 text-right tabular-nums text-foreground/60">{row.nominalYield.toFixed(2)}%</td>
@@ -1705,7 +1705,7 @@ export default function SwapsPage() {
 
  <div className="px-6 py-6 max-w-6xl mx-auto space-y-4">
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {TABS.map((tab) => (
  <TabsTrigger
  key={tab.id}

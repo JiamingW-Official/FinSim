@@ -444,7 +444,7 @@ function Tab1CustodyArchitecture() {
  </thead>
  <tbody>
  {MPC_MULTISIG_ROWS.map((row, i) => (
- <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={i} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="text-muted-foreground py-2 pr-4 font-medium">{row.feature}</td>
  <td className="text-center py-2 px-3">
  <div className="flex items-center justify-center gap-1">
@@ -648,7 +648,7 @@ function Tab2InstitutionalSolutions() {
  {CUSTODIANS.map((c, i) => (
  <tr
  key={i}
- className="border-b border-border/20 hover:bg-muted/30 cursor-pointer transition-colors"
+ className="border-b border-border hover:bg-muted/30 cursor-pointer transition-colors"
  onClick={() => setSelectedCustodian(selectedCustodian?.name === c.name ? null : c)}
  >
  <td className="py-2 pr-3 font-semibold text-foreground">{c.name}</td>
@@ -749,7 +749,7 @@ function Tab2InstitutionalSolutions() {
  { label: "Cosmos (ATOM)", value: "14–19%", note: "High inflation offset" },
  { label: "Slashing Insurance", value: "Available", note: "Unslashed, Nexus Mutual" },
  ].map((row, i) => (
- <div key={i} className="flex items-center justify-between text-xs text-muted-foreground border-b border-border/20 pb-1.5">
+ <div key={i} className="flex items-center justify-between text-xs text-muted-foreground border-b border-border pb-1.5">
  <span className="text-muted-foreground">{row.label}</span>
  <div className="text-right">
  <span className="text-emerald-400 font-medium">{row.value}</span>
@@ -1010,7 +1010,7 @@ function Tab3RegulatoryFramework() {
  { label: "Insurance Required", value: "Professional indemnity insurance" },
  { label: "Annual Report", value: "Audited financial statements required" },
  ].map((row, i) => (
- <div key={i} className="flex justify-between text-xs text-muted-foreground border-b border-border/20 pb-1.5">
+ <div key={i} className="flex justify-between text-xs text-muted-foreground border-b border-border pb-1.5">
  <span className="text-muted-foreground">{row.label}</span>
  <span className="text-foreground font-medium">{row.value}</span>
  </div>
@@ -1256,7 +1256,7 @@ function Tab4SecurityInsurance() {
  { label: "Remediation SLA", value: "Critical: 24–72h", note: "High: 7 days; Medium: 30 days" },
  { label: "Reports", value: "Provided to auditors", note: "Required for SOC 2 + insurance" },
  ].map((row, i) => (
- <div key={i} className="flex items-center justify-between text-xs text-muted-foreground border-b border-border/20 pb-1.5">
+ <div key={i} className="flex items-center justify-between text-xs text-muted-foreground border-b border-border pb-1.5">
  <span className="text-muted-foreground">{row.label}</span>
  <div className="text-right">
  <span className="text-foreground font-medium">{row.value}</span>
@@ -1279,7 +1279,7 @@ function Tab4SecurityInsurance() {
  { label: "Failover Testing", value: "Semi-annual", note: "Full DR drill required" },
  { label: "Runbook Documentation", value: "Required", note: "All recovery procedures documented" },
  ].map((row, i) => (
- <div key={i} className="flex items-center justify-between text-xs text-muted-foreground border-b border-border/20 pb-1.5">
+ <div key={i} className="flex items-center justify-between text-xs text-muted-foreground border-b border-border pb-1.5">
  <span className="text-muted-foreground">{row.label}</span>
  <div className="text-right">
  <span className="text-foreground font-medium">{row.value}</span>
@@ -1337,7 +1337,7 @@ export default function DigitalCustodyPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="architecture" className="mt-8">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="architecture" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Lock size={12} className="mr-1.5" /> Custody Architecture
  </TabsTrigger>

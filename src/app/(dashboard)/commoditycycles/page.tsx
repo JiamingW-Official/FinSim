@@ -957,7 +957,7 @@ function CycleCard({
  </div>
  </div>
  </div>
- <div className="mt-3 flex gap-4 text-xs text-muted-foreground border-t border-border/20 pt-3">
+ <div className="mt-3 flex gap-4 text-xs text-muted-foreground border-t border-border pt-3">
  <span>
  Start: <span className="text-foreground">{cycle.startYear}</span>
  </span>
@@ -1015,7 +1015,7 @@ export default function CommodityCyclesPage() {
  </motion.div>
 
  <Tabs defaultValue="supercycle">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "supercycle", label: "Super Cycle History", icon: <BarChart3 size={14} /> },
  { value: "energy", label: "Energy Complex", icon: <Flame size={14} /> },
@@ -1187,7 +1187,7 @@ export default function CommodityCyclesPage() {
  {ENERGY_ROWS.map((row) => (
  <tr
  key={row.name}
- className="border-b border-border/20 hover:bg-muted/30"
+ className="border-b border-border hover:bg-muted/30"
  >
  <td className="py-2 pr-4 font-medium text-foreground">
  {row.name}
@@ -1342,7 +1342,7 @@ export default function CommodityCyclesPage() {
  {METALS_ROWS.map((row) => (
  <tr
  key={row.name}
- className="border-b border-border/20 hover:bg-muted/30"
+ className="border-b border-border hover:bg-muted/30"
  >
  <td className="py-2 pr-4">
  <span className="font-medium text-foreground">
@@ -1394,7 +1394,7 @@ export default function CommodityCyclesPage() {
  {
  name: "Copper",
  ticker: "HG",
- icon: "⚡",
+ icon: "",
  bg: "orange",
  insight:
  "Copper is the 'metal of electrification'. Every EV needs 83 kg vs 22 kg for ICE vehicles. Grid expansion for renewables requires 250% more copper/km than traditional infrastructure. Analysts forecast a 4.7 Mt deficit by 2030.",
@@ -1402,7 +1402,7 @@ export default function CommodityCyclesPage() {
  {
  name: "Lithium",
  ticker: "LIT",
- icon: "🔋",
+ icon: "",
  bg: "emerald",
  insight:
  "Lithium prices crashed 80%+ from 2022 highs as Chinese battery makers over-built inventory. Spot carbonate now near $14K/t vs $80K peak. Long-term fundamentals remain intact as GWh demand grows 5x by 2030.",
@@ -1410,7 +1410,7 @@ export default function CommodityCyclesPage() {
  {
  name: "Gold",
  ticker: "GC",
- icon: "🏅",
+ icon: "",
  bg: "yellow",
  insight:
  "Gold has reclaimed all-time highs above $2,300/oz driven by central bank purchases (record 1,037t in 2023), de-dollarization trends, and geopolitical hedging demand from BRICS nations.",
@@ -1418,7 +1418,7 @@ export default function CommodityCyclesPage() {
  {
  name: "Iron Ore",
  ticker: "TIO",
- icon: "🏗️",
+ icon: "",
  bg: "slate",
  insight:
  "Iron ore remains tightly linked to China's property sector, which accounts for ~35% of steel demand. Ongoing property developer defaults and population decline put structural downward pressure on long-term pricing.",
@@ -1537,7 +1537,7 @@ export default function CommodityCyclesPage() {
  {AGRI_ROWS.map((row) => (
  <tr
  key={row.name}
- className="border-b border-border/20 hover:bg-muted/30"
+ className="border-b border-border hover:bg-muted/30"
  >
  <td className="py-2 pr-4">
  <span className="font-medium text-foreground">
@@ -1726,7 +1726,7 @@ export default function CommodityCyclesPage() {
  {INVESTMENT_VEHICLES.map((v) => (
  <tr
  key={v.ticker}
- className="border-b border-border/20 hover:bg-muted/30"
+ className="border-b border-border hover:bg-muted/30"
  >
  <td className="py-2 pr-4">
  <span className="font-medium text-foreground">

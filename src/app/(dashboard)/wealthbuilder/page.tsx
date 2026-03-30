@@ -356,11 +356,11 @@ interface AssetLiability {
 }
 
 const NET_WORTH_MILESTONES = [
- { label: "$100K", value: 100_000, emoji: "🌱" },
- { label: "$250K", value: 250_000, emoji: "🌿" },
- { label: "$500K", value: 500_000, emoji: "🌳" },
- { label: "$1M", value: 1_000_000, emoji: "💎" },
- { label: "$5M", value: 5_000_000, emoji: "🏆" },
+ { label: "$100K", value: 100_000, emoji: "" },
+ { label: "$250K", value: 250_000, emoji: "" },
+ { label: "$500K", value: 500_000, emoji: "" },
+ { label: "$1M", value: 1_000_000, emoji: "" },
+ { label: "$5M", value: 5_000_000, emoji: "" },
 ];
 
 // Percentile table: [networth_by_age_bracket]
@@ -1253,10 +1253,10 @@ function RiskInsuranceTab() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const FIRE_MILESTONES = [
- { label: "F-You Money", multiplier: 1, desc: "1 year of expenses — enough to walk away from a bad job", color: "#3b82f6", emoji: "💪" },
- { label: "Lean FIRE", multiplier: 17, desc: "17× — minimal lifestyle, $30K/yr or less", color: "#22d3ee", emoji: "🌿" },
- { label: "FIRE", multiplier: 25, desc: "25× — 4% withdrawal rate, standard FI", color: "#10b981", emoji: "🔥" },
- { label: "Fat FIRE", multiplier: 40, desc: "40× — comfortable lifestyle, $100K+/yr expenses", color: "#f59e0b", emoji: "🏝" },
+ { label: "F-You Money", multiplier: 1, desc: "1 year of expenses — enough to walk away from a bad job", color: "#3b82f6", emoji: "" },
+ { label: "Lean FIRE", multiplier: 17, desc: "17× — minimal lifestyle, $30K/yr or less", color: "#22d3ee", emoji: "" },
+ { label: "FIRE", multiplier: 25, desc: "25× — 4% withdrawal rate, standard FI", color: "#10b981", emoji: "" },
+ { label: "Fat FIRE", multiplier: 40, desc: "40× — comfortable lifestyle, $100K+/yr expenses", color: "#f59e0b", emoji: "" },
 ];
 
 function SWRHistoricalChart() {
@@ -1582,7 +1582,7 @@ export default function WealthBuilderPage() {
  {/* Content */}
  <div className="max-w-screen-2xl mx-auto px-6 py-6">
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {TABS.map((tab) => (
  <TabsTrigger
  key={tab.id}

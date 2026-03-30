@@ -614,7 +614,7 @@ function MarketDataTab() {
  </thead>
  <tbody>
  {TOP_ISSUERS.map((row) => (
- <tr key={row.issuer} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={row.issuer} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-2 text-foreground text-xs font-medium">{row.issuer}</td>
  <td className="py-2 text-center">
  <span className="text-xs px-1.5 py-0.5 bg-muted rounded text-muted-foreground">{row.country}</span>
@@ -691,7 +691,7 @@ function ABSComparisonTab() {
  <tbody>
  {COMPARISON_FACTORS.map((row, i) => (
  <tr key={row.factor} className={cn(
- "border-b border-border/20",
+ "border-b border-border",
  i % 2 === 0 ? "bg-card" : "bg-card/50"
  )}>
  <td className="py-2 pr-4 text-muted-foreground font-medium">{row.factor}</td>
@@ -861,7 +861,7 @@ export default function CoveredBondsPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="structure" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {tabs.map((tab) => (
  <TabsTrigger
  key={tab.id}

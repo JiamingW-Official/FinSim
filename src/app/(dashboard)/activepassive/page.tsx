@@ -188,7 +188,7 @@ function SPIVAChart() {
  <tr
  key={row.category}
  className={cn(
- "border-b border-border/20 cursor-default transition-colors",
+ "border-b border-border cursor-default transition-colors",
  hoveredRow === i ? "bg-muted/40" : "hover:bg-muted/20"
  )}
  onMouseEnter={() => setHoveredRow(i)}
@@ -369,7 +369,7 @@ function EvidenceTab() {
  </div>
  <div className="space-y-2">
  {brightSpots.map((item) => (
- <div key={item.category} className="flex gap-3 items-start py-2 border-b border-border/20 last:border-0">
+ <div key={item.category} className="flex gap-3 items-start py-2 border-b border-border last:border-0">
  <div>
  <span className="text-sm font-medium text-foreground">{item.category}:</span>
  <span className="text-xs text-muted-foreground ml-1">{item.evidence}</span>
@@ -481,7 +481,7 @@ function IndexMechanicsTab() {
  Free float excludes insider holdings, government stakes (&gt;10%), and cross-holdings.
  NVDA&apos;s float-adjusted weight differs from total market cap weight by ~2–4%.
  </p>
- <div className="mt-3 p-3 rounded-lg bg-muted/50 border border-border/20">
+ <div className="mt-3 p-3 rounded-lg bg-muted/50 border border-border">
  <p className="text-xs text-muted-foreground font-medium mb-1">S&P 500 Top 5 Concentration (2025)</p>
  {[
  { name: "NVDA", w: 6.8 },
@@ -513,7 +513,7 @@ function IndexMechanicsTab() {
  { event: "Quarterly Rebalance", impact: "Front-runners buy additions before index close; index pays premium" },
  { event: "Goodhart's Law", impact: "When a measure becomes a target, it ceases to be a good measure — index inclusion changes security behavior" },
  ].map((item) => (
- <div key={item.event} className="p-2.5 rounded-lg bg-muted/40 border border-border/20">
+ <div key={item.event} className="p-2.5 rounded-lg bg-muted/40 border border-border">
  <p className="text-xs font-medium text-foreground">{item.event}</p>
  <p className="text-xs text-muted-foreground mt-0.5">{item.impact}</p>
  </div>
@@ -575,7 +575,7 @@ function IndexMechanicsTab() {
  </div>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  {indexProviders.map((p) => (
- <div key={p.name} className="p-3 rounded-lg bg-muted/50 border border-border/20">
+ <div key={p.name} className="p-3 rounded-lg bg-muted/50 border border-border">
  <div className="flex items-center justify-between mb-2">
  <span className="font-medium text-foreground text-sm">{p.name}</span>
  <span className="text-xs text-muted-foreground">{p.aum} AUM</span>
@@ -1049,11 +1049,11 @@ function FeeImpactTab() {
  });
 
  const whenActive = [
- { situation: "Illiquid / Private Markets", reason: "No passive index available. Active underwriting and sourcing is the only option for private credit, PE, real estate debt.", icon: "🏗️" },
- { situation: "Micro-Cap & Deep Value", reason: "Index funds can't efficiently hold $50M market cap stocks. Small active managers can exploit mispricing before institutional flows arrive.", icon: "🔬" },
- { situation: "Closed-End Funds at Discount", reason: "CEFs occasionally trade 15–25% below NAV. Buying at discount with mean-reversion thesis is an active strategy with clear edge.", icon: "📉" },
- { situation: "Tax-Loss Harvesting", reason: "Active direct indexing harvests individual stock losses to offset gains. Robo-advisors offer this at sub-0.30% cost now.", icon: "🧮" },
- { situation: "Alternatives / Real Assets", reason: "Infrastructure, timber, farmland, litigation finance — no passive exposure exists. Active manager selection is unavoidable.", icon: "🌲" },
+ { situation: "Illiquid / Private Markets", reason: "No passive index available. Active underwriting and sourcing is the only option for private credit, PE, real estate debt.", icon: "" },
+ { situation: "Micro-Cap & Deep Value", reason: "Index funds can't efficiently hold $50M market cap stocks. Small active managers can exploit mispricing before institutional flows arrive.", icon: "" },
+ { situation: "Closed-End Funds at Discount", reason: "CEFs occasionally trade 15–25% below NAV. Buying at discount with mean-reversion thesis is an active strategy with clear edge.", icon: "" },
+ { situation: "Tax-Loss Harvesting", reason: "Active direct indexing harvests individual stock losses to offset gains. Robo-advisors offer this at sub-0.30% cost now.", icon: "" },
+ { situation: "Alternatives / Real Assets", reason: "Infrastructure, timber, farmland, litigation finance — no passive exposure exists. Active manager selection is unavoidable.", icon: "" },
  ];
 
  const behavioral = [
@@ -1263,7 +1263,7 @@ export default function ActivePassivePage() {
 
  {/* Tabs */}
  <Tabs defaultValue="evidence">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "evidence", label: "The Evidence" },
  { value: "mechanics", label: "Index Mechanics" },

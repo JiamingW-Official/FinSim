@@ -429,10 +429,10 @@ function PerformanceTable({
  ];
 
  return (
- <div className="overflow-x-auto rounded-lg border border-border/20">
+ <div className="overflow-x-auto rounded-lg border border-border">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border/20 bg-muted/20">
+ <tr className="border-b border-border bg-muted/20">
  <th className="py-2 pl-3 pr-4 text-left text-xs font-semibold text-muted-foreground">Sector</th>
  {COLS.map((c) => (
  <th key={c.key} className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground">{c.label}</th>
@@ -446,7 +446,7 @@ function PerformanceTable({
  key={p.name}
  onClick={() => onSelect(p.name)}
  className={cn(
- "cursor-pointer border-b border-border/20 transition-colors last:border-0",
+ "cursor-pointer border-b border-border transition-colors last:border-0",
  selectedSector === p.name ? "bg-accent/50" : "hover:bg-muted/20",
  )}
  >
@@ -493,7 +493,7 @@ function SectorHeatmap({
  const PAD = 2;
 
  return (
- <div className="rounded-lg border border-border/20 bg-card p-3">
+ <div className="rounded-lg border border-border bg-card p-3">
  <div className="mb-2 flex items-center justify-between">
  <span className="text-xs font-medium text-muted-foreground">Sector Heatmap (1D, sized by Market Cap)</span>
  <div className="flex items-center gap-1 text-xs text-muted-foreground">
@@ -557,7 +557,7 @@ function RelativeStrengthChart({ perfs }: { perfs: SectorPerf[] }) {
  const MID = LBL_W + BAR_W / 2;
 
  return (
- <div className="rounded-lg border border-border/20 bg-card p-3">
+ <div className="rounded-lg border border-border bg-card p-3">
  <div className="mb-2 text-xs font-medium text-muted-foreground">Relative Strength vs S&P 500 (1Y Alpha)</div>
  <svg viewBox={`0 0 ${W} ${sorted.length * BAR_H + 10}`} className="w-full" style={{ height: sorted.length * BAR_H + 10 }}>
  {/* Zero line */}
@@ -618,7 +618,7 @@ function TopStocksPanel({ sectorName, perfs }: { sectorName: string; perfs: Sect
  const perf = perfs.find((p) => p.name === sectorName);
 
  return (
- <div className="rounded-lg border border-border/20 bg-card p-3">
+ <div className="rounded-lg border border-border bg-card p-3">
  <div className="mb-2 flex items-center justify-between">
  <span className="text-xs font-medium text-muted-foreground">Top Holdings — {sectorName}</span>
  {perf && (
@@ -629,7 +629,7 @@ function TopStocksPanel({ sectorName, perfs }: { sectorName: string; perfs: Sect
  </div>
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <th className="pb-1 text-left text-xs font-medium text-muted-foreground">Ticker</th>
  <th className="pb-1 text-left text-xs font-medium text-muted-foreground">Name</th>
  <th className="pb-1 text-right text-xs font-medium text-muted-foreground">1D Chg</th>
@@ -638,7 +638,7 @@ function TopStocksPanel({ sectorName, perfs }: { sectorName: string; perfs: Sect
  </thead>
  <tbody>
  {rows.map((r) => (
- <tr key={r.ticker} className="border-b border-border/20 last:border-0">
+ <tr key={r.ticker} className="border-b border-border last:border-0">
  <td className="py-1 font-mono font-medium text-foreground">{r.ticker}</td>
  <td className="py-1 text-muted-foreground">{r.name}</td>
  <td className="py-1 text-right">
@@ -808,7 +808,7 @@ function FactorBarChart({ factorRets }: { factorRets: Record<Factor, number> }) 
  const W = 480, BAR_H = 28, LBL_W = 110, MID = LBL_W + 160;
 
  return (
- <div className="rounded-lg border border-border/20 bg-card p-3">
+ <div className="rounded-lg border border-border bg-card p-3">
  <div className="mb-2 text-xs font-medium text-muted-foreground">Factor Returns This Quarter</div>
  <svg viewBox={`0 0 ${W} ${entries.length * BAR_H + 16}`} className="w-full" style={{ height: entries.length * BAR_H + 16 }}>
  <line x1={MID} y1={0} x2={MID} y2={entries.length * BAR_H + 16} stroke="#ffffff18" strokeWidth={1} />
@@ -850,10 +850,10 @@ function FactorBarChart({ factorRets }: { factorRets: Record<Factor, number> }) 
 
 function FactorLoadingsTable({ factorData }: { factorData: SectorFactorData[] }) {
  return (
- <div className="overflow-x-auto rounded-lg border border-border/20">
+ <div className="overflow-x-auto rounded-lg border border-border">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20 bg-muted/20">
+ <tr className="border-b border-border bg-muted/20">
  <th className="py-2 pl-3 pr-4 text-left text-xs font-medium text-muted-foreground">Sector</th>
  {FACTORS.map((f) => (
  <th key={f} className="px-2 py-2 text-center text-xs font-medium text-muted-foreground">{f}</th>
@@ -862,7 +862,7 @@ function FactorLoadingsTable({ factorData }: { factorData: SectorFactorData[] })
  </thead>
  <tbody>
  {factorData.map((row) => (
- <tr key={row.name} className="border-b border-border/20 last:border-0 hover:bg-muted/10">
+ <tr key={row.name} className="border-b border-border last:border-0 hover:bg-muted/10">
  <td className="py-1.5 pl-3 pr-4 text-xs text-muted-foreground font-medium">{row.name}</td>
  {FACTORS.map((f) => {
  const v = row.loadings[f];
@@ -898,7 +898,7 @@ function StyleBox() {
  }
 
  return (
- <div className="rounded-lg border border-border/20 bg-card p-3">
+ <div className="rounded-lg border border-border bg-card p-3">
  <div className="mb-2 text-xs font-medium text-muted-foreground">Style Box (Value/Growth × Size)</div>
  <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxWidth: W }}>
  {/* 3×3 grid */}
@@ -953,7 +953,7 @@ function CorrelationMatrix({ mat }: { mat: number[][] }) {
  const H = LBL_W + n * CELL;
 
  return (
- <div className="overflow-x-auto rounded-lg border border-border/20 bg-card p-3">
+ <div className="overflow-x-auto rounded-lg border border-border bg-card p-3">
  <div className="mb-2 text-xs font-medium text-muted-foreground">Sector Correlation Matrix</div>
  <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ minWidth: W, height: H }}>
  {/* Column headers */}
@@ -1026,10 +1026,10 @@ function PortfolioWeightsTable({
  ];
 
  return (
- <div className="overflow-x-auto rounded-lg border border-border/20">
+ <div className="overflow-x-auto rounded-lg border border-border">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20 bg-muted/20">
+ <tr className="border-b border-border bg-muted/20">
  <th className="py-2 pl-3 pr-4 text-left text-xs font-medium text-muted-foreground">Sector ETF</th>
  {cols.map((c) => (
  <th key={c.key} className="px-3 py-2 text-right text-xs font-medium text-muted-foreground" title={c.desc}>
@@ -1040,7 +1040,7 @@ function PortfolioWeightsTable({
  </thead>
  <tbody>
  {weights.map((w) => (
- <tr key={w.etf} className="border-b border-border/20 last:border-0 hover:bg-muted/10">
+ <tr key={w.etf} className="border-b border-border last:border-0 hover:bg-muted/10">
  <td className="py-1.5 pl-3 pr-4">
  <span className="font-mono text-xs font-medium text-foreground">{w.etf}</span>
  <span className="ml-1 text-xs text-muted-foreground">{w.name}</span>
@@ -1070,10 +1070,10 @@ function EtfComparisonTable({
  onToggleWatch: (etf: string) => void;
 }) {
  return (
- <div className="overflow-x-auto rounded-lg border border-border/20">
+ <div className="overflow-x-auto rounded-lg border border-border">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
- <tr className="border-b border-border/20 bg-muted/20">
+ <tr className="border-b border-border bg-muted/20">
  <th className="py-2 pl-3 pr-4 text-left text-xs font-medium text-muted-foreground">ETF</th>
  <th className="px-2 py-2 text-right text-xs font-medium text-muted-foreground">AUM ($B)</th>
  <th className="px-2 py-2 text-right text-xs font-medium text-muted-foreground">Exp Ratio</th>
@@ -1087,7 +1087,7 @@ function EtfComparisonTable({
  </thead>
  <tbody>
  {etfs.map((e) => (
- <tr key={e.etf} className="border-b border-border/20 last:border-0 hover:bg-muted/10">
+ <tr key={e.etf} className="border-b border-border last:border-0 hover:bg-muted/10">
  <td className="py-1.5 pl-3 pr-4">
  <div className="flex items-center gap-1.5">
  <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: e.color }} />
@@ -1162,7 +1162,7 @@ export default function SectorsPage() {
  return (
  <div className="flex h-full flex-col overflow-hidden">
  {/* Header */}
- <div className="flex shrink-0 items-center gap-3 border-b border-border/20 px-6 py-6 border-l-4 border-l-primary">
+ <div className="flex shrink-0 items-center gap-3 border-b border-border px-6 py-6 border-l-4 border-l-primary">
  <div>
  <h1 className="text-lg font-semibold leading-none">Sector Analysis</h1>
  <p className="mt-0.5 text-xs text-muted-foreground">11 GICS Sectors — Performance, Rotation, Factors & ETFs</p>
@@ -1177,8 +1177,8 @@ export default function SectorsPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="performance" className="flex flex-1 flex-col overflow-hidden">
- <div className="shrink-0 border-b border-border/20 px-6">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <div className="shrink-0 border-b border-border px-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "performance", label: "Sector Performance" },
  { value: "rotation", label: "Rotation Model" },
@@ -1224,7 +1224,7 @@ export default function SectorsPage() {
  {/* Right column */}
  <div className="space-y-4">
  {/* Current leaders */}
- <div className="rounded-lg border border-border/20 bg-card p-4">
+ <div className="rounded-lg border border-border bg-card p-4">
  <div className="mb-3 text-xs font-medium text-muted-foreground">Current Phase Leaders</div>
  <div className="flex flex-wrap gap-2">
  {CURRENT_LEADERS.map((l) => {
@@ -1243,7 +1243,7 @@ export default function SectorsPage() {
  </div>
 
  {/* Rotation scores */}
- <div className="rounded-lg border border-border/20 bg-card p-4">
+ <div className="rounded-lg border border-border bg-card p-4">
  <div className="mb-3 text-xs font-medium text-muted-foreground">Rotation Score Ranking</div>
  <div className="space-y-1.5">
  {rotScores.map((r, i) => {
@@ -1269,11 +1269,11 @@ export default function SectorsPage() {
  </div>
 
  {/* Historical cycles */}
- <div className="rounded-lg border border-border/20 bg-card p-4">
+ <div className="rounded-lg border border-border bg-card p-4">
  <div className="mb-3 text-xs font-medium text-muted-foreground">Historical Rotation — Past 3 Cycles</div>
  <div className="grid gap-3 sm:grid-cols-3">
  {HISTORICAL_CYCLES.map((cyc) => (
- <div key={cyc.name} className="rounded border border-border/20 bg-muted/10 p-3">
+ <div key={cyc.name} className="rounded border border-border bg-muted/10 p-3">
  <div className="mb-2 text-xs font-medium text-muted-foreground">{cyc.name}</div>
  <div className="flex flex-col gap-1">
  {cyc.leaders.map((l, li) => {
@@ -1304,7 +1304,7 @@ export default function SectorsPage() {
  </div>
 
  {/* Factor winners badges + tilt recommendations */}
- <div className="rounded-lg border border-border/20 bg-card p-4">
+ <div className="rounded-lg border border-border bg-card p-4">
  <div className="mb-3 text-xs font-medium text-muted-foreground">Current Factor Winners</div>
  <div className="mb-3 flex flex-wrap gap-2">
  {winnerFactors.length === 0 ? (
@@ -1358,7 +1358,7 @@ export default function SectorsPage() {
  <PortfolioWeightsTable weights={portWeights} />
  </div>
  {/* Methodology note */}
- <div className="rounded-lg border border-border/20 bg-muted/10 p-3 text-xs text-muted-foreground space-y-1">
+ <div className="rounded-lg border border-border bg-muted/10 p-3 text-xs text-muted-foreground space-y-1">
  <div className="flex items-center gap-1.5 font-medium text-xs text-foreground/60">Portfolio Construction Methods</div>
  <div><span className="font-medium text-foreground/50">Equal Weight:</span> 1/N allocation — simple, fully diversified across all 11 sectors.</div>
  <div><span className="font-medium text-foreground/50">Momentum Weight:</span> Higher allocation to sectors with stronger recent performance.</div>

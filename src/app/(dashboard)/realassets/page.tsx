@@ -686,7 +686,7 @@ function InfrastructureTab() {
  {INFRA_ASSETS.map((a, i) => (
  <tr
  key={a.name}
- className={`border-b border-border/20 hover:bg-muted/20 cursor-pointer transition-colors ${
+ className={`border-b border-border hover:bg-muted/20 cursor-pointer transition-colors ${
  i % 2 === 0 ? "" : "bg-muted/10"
  } ${selected?.name === a.name ? "bg-muted/10" : ""}`}
  onClick={() => setSelected(selected?.name === a.name ? null : a)}
@@ -782,7 +782,7 @@ function RealEstateTab() {
  {filtered.map((r, i) => (
  <tr
  key={r.name}
- className={`border-b border-border/20 hover:bg-muted/20 transition-colors ${
+ className={`border-b border-border hover:bg-muted/20 transition-colors ${
  i % 2 === 0 ? "" : "bg-muted/10"
  }`}
  >
@@ -1104,7 +1104,7 @@ function CommoditiesTab() {
  {filtered.map((c, i) => (
  <tr
  key={c.symbol}
- className={`border-b border-border/20 hover:bg-muted/20 transition-colors ${
+ className={`border-b border-border hover:bg-muted/20 transition-colors ${
  i % 2 === 0 ? "" : "bg-muted/10"
  }`}
  onMouseEnter={() => setHoveredComm(c)}
@@ -1356,7 +1356,7 @@ function TimberFarmlandTab() {
  {TIMBER_FARM.map((item, i) => (
  <tr
  key={item.name}
- className={`border-b border-border/20 hover:bg-muted/20 cursor-pointer transition-colors ${
+ className={`border-b border-border hover:bg-muted/20 cursor-pointer transition-colors ${
  i % 2 === 0 ? "" : "bg-muted/10"
  } ${selected?.name === item.name ? "bg-muted/10" : ""}`}
  onClick={() => setSelected(selected?.name === item.name ? null : item)}
@@ -1768,7 +1768,7 @@ export default function RealAssetsPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="infrastructure" className="w-full">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="infrastructure" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Infrastructure
  </TabsTrigger>

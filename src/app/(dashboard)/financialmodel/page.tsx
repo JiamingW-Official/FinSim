@@ -619,7 +619,7 @@ function ISRow({
  : "";
 
  return (
- <tr className={cn("border-b border-border/20 hover:bg-muted/30", highlightClass)}>
+ <tr className={cn("border-b border-border hover:bg-muted/30", highlightClass)}>
  <td
  className={cn(
  "py-1.5 px-3 text-xs text-muted-foreground sticky left-0 bg-card",
@@ -928,7 +928,7 @@ export default function FinancialModelPage() {
  return (
  <div className="flex flex-col h-full min-h-screen bg-background text-foreground">
  {/* Header */}
- <div className="shrink-0 border-b border-border/20 border-l-4 border-l-primary bg-card/60 backdrop-blur-sm px-6 py-4">
+ <div className="shrink-0 border-b border-border border-l-4 border-l-primary bg-card/60 backdrop-blur-sm px-6 py-4">
  <div className="flex items-center justify-between flex-wrap gap-3">
  <div>
  <h1 className="text-lg font-medium tracking-tight flex items-center gap-2">
@@ -985,7 +985,7 @@ export default function FinancialModelPage() {
  {/* Tabs */}
  <div className="flex-1 overflow-hidden">
  <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full flex flex-col">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto shrink-0">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto shrink-0">
  {[
  { value: "income", label: "Income Statement" },
  { value: "balance", label: "Balance Sheet" },
@@ -1019,7 +1019,7 @@ export default function FinancialModelPage() {
  { key: "operatingMargin" as const, label: "Operating Margin", min: 0, max: 60 },
  { key: "taxRate" as const, label: "Tax Rate", min: 0, max: 40 },
  ].map(({ key, label, min, max }) => (
- <div key={key} className="bg-foreground/[0.03] border border-border/20 rounded-md p-3">
+ <div key={key} className="bg-foreground/[0.03] border border-border rounded-md p-3">
  <p className="text-xs text-muted-foreground mb-1.5">{label} (Forecast)</p>
  <EditableCell
  value={isAssumptions[key]}
@@ -1032,7 +1032,7 @@ export default function FinancialModelPage() {
  </div>
 
  {/* IS Table */}
- <div className="overflow-x-auto rounded-md border border-border/20 bg-card">
+ <div className="overflow-x-auto rounded-md border border-border bg-card">
  <table className="w-full text-xs text-muted-foreground border-collapse">
  <thead>
  <tr className="bg-foreground/[0.04] border-b border-border">
@@ -1089,14 +1089,14 @@ export default function FinancialModelPage() {
 
  {/* Mini charts */}
  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <p className="text-xs text-muted-foreground mb-3 font-medium">Revenue Trend ($B)</p>
  <MiniBarChart
  data={isRows.map((r) => ({ label: String(r.year).slice(2), value: r.revenue }))}
  color="#3b82f6"
  />
  </div>
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <p className="text-xs text-muted-foreground mb-3 font-medium">EPS Trend ($)</p>
  <MiniBarChart
  data={isRows.map((r) => ({ label: String(r.year).slice(2), value: r.eps }))}
@@ -1134,7 +1134,7 @@ export default function FinancialModelPage() {
 
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
  {/* Assets */}
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>Assets</SectionHeading>
  <table className="w-full text-xs text-muted-foreground">
  <tbody>
@@ -1147,7 +1147,7 @@ export default function FinancialModelPage() {
  { label: "Intangibles & Goodwill", value: companyData.historicalIntangibles },
  { label: "Total Assets", value: bsData.totalAssets, bold: true, highlight: true },
  ].map(({ label, value, bold, highlight }) => (
- <tr key={label} className={cn("border-b border-border/20", highlight && "bg-muted/5")}>
+ <tr key={label} className={cn("border-b border-border", highlight && "bg-muted/5")}>
  <td className={cn("py-1.5 text-muted-foreground", bold && "font-medium text-foreground")}>{label}</td>
  <td className={cn("py-1.5 text-right font-mono", bold && "font-medium text-foreground")}>{fmt(value)}</td>
  </tr>
@@ -1157,7 +1157,7 @@ export default function FinancialModelPage() {
  </div>
 
  {/* Liabilities */}
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>Liabilities</SectionHeading>
  <table className="w-full text-xs text-muted-foreground">
  <tbody>
@@ -1168,7 +1168,7 @@ export default function FinancialModelPage() {
  { label: "Deferred Revenue", value: companyData.historicalDeferredRev },
  { label: "Total Liabilities", value: bsData.totalLiab, bold: true, highlight: true },
  ].map(({ label, value, bold, highlight }) => (
- <tr key={label} className={cn("border-b border-border/20", highlight && "bg-red-500/5")}>
+ <tr key={label} className={cn("border-b border-border", highlight && "bg-red-500/5")}>
  <td className={cn("py-1.5 text-muted-foreground", bold && "font-medium text-foreground")}>{label}</td>
  <td className={cn("py-1.5 text-right font-mono", bold && "font-medium text-foreground")}>{fmt(value)}</td>
  </tr>
@@ -1184,7 +1184,7 @@ export default function FinancialModelPage() {
  { label: "Total Equity", value: bsData.totalEquity, bold: true, highlight: true },
  { label: "Total Liab. + Equity", value: bsData.totalLiab + bsData.totalEquity, bold: true },
  ].map(({ label, value, bold, highlight }) => (
- <tr key={label} className={cn("border-b border-border/20", highlight && "bg-emerald-500/5")}>
+ <tr key={label} className={cn("border-b border-border", highlight && "bg-emerald-500/5")}>
  <td className={cn("py-1.5 text-muted-foreground", bold && "font-medium text-foreground")}>{label}</td>
  <td className={cn("py-1.5 text-right font-mono", bold && "font-medium text-foreground")}>{fmt(value)}</td>
  </tr>
@@ -1195,7 +1195,7 @@ export default function FinancialModelPage() {
 
  {/* Ratios & Days */}
  <div className="space-y-4">
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>Working Capital Days</SectionHeading>
  {[
  { label: "Days Sales Outstanding (DSO)", value: bsData.dso.toFixed(1) + " days" },
@@ -1203,13 +1203,13 @@ export default function FinancialModelPage() {
  { label: "Days Payable Outstanding (DPO)", value: bsData.dpo.toFixed(1) + " days" },
  { label: "Cash Conversion Cycle (CCC)", value: bsData.ccc.toFixed(1) + " days", bold: true },
  ].map(({ label, value, bold }) => (
- <div key={label} className="flex justify-between items-center py-1.5 border-b border-border/20">
+ <div key={label} className="flex justify-between items-center py-1.5 border-b border-border">
  <span className={cn("text-xs", bold ? "text-foreground font-medium" : "text-muted-foreground")}>{label}</span>
  <span className={cn("text-xs font-mono", bold ? "text-foreground font-medium" : "text-muted-foreground")}>{value}</span>
  </div>
  ))}
  </div>
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>Key Ratios</SectionHeading>
  {[
  { label: "Current Ratio", value: bsData.currentRatio.toFixed(2) + "x", good: bsData.currentRatio >= 1.5 },
@@ -1217,7 +1217,7 @@ export default function FinancialModelPage() {
  { label: "Debt / Equity", value: bsData.debtEquity.toFixed(2) + "x", good: bsData.debtEquity < 1 },
  { label: "Net Debt", value: fmt(companyData.historicalDebt - companyData.historicalCash), good: companyData.historicalDebt < companyData.historicalCash },
  ].map(({ label, value, good }) => (
- <div key={label} className="flex justify-between items-center py-1.5 border-b border-border/20">
+ <div key={label} className="flex justify-between items-center py-1.5 border-b border-border">
  <span className="text-xs text-muted-foreground">{label}</span>
  <span className={cn("text-xs font-mono font-medium", good ? "text-emerald-400" : "text-amber-400")}>{value}</span>
  </div>
@@ -1233,7 +1233,7 @@ export default function FinancialModelPage() {
  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
  {/* CF statement */}
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>Cash Flow Statement (LTM, $B)</SectionHeading>
  <table className="w-full text-xs text-muted-foreground">
  <tbody>
@@ -1244,7 +1244,7 @@ export default function FinancialModelPage() {
  { label: " + Working Capital ∆", value: cfData.wcChange },
  { label: "Operating Cash Flow", value: cfData.operatingCF, bold: true, highlight: "blue" },
  ].map(({ label, value, bold, highlight }) => (
- <tr key={label} className={cn("border-b border-border/20", highlight === "blue" && "bg-muted/5")}>
+ <tr key={label} className={cn("border-b border-border", highlight === "blue" && "bg-muted/5")}>
  <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-medium")}>{label}</td>
  <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-medium")}>{fmt(value)}</td>
  </tr>
@@ -1255,7 +1255,7 @@ export default function FinancialModelPage() {
  { label: " Acquisitions & Other", value: -1.5 },
  { label: "Investing Cash Flow", value: cfData.investingCF, bold: true, highlight: "purple" },
  ].map(({ label, value, bold, highlight }) => (
- <tr key={label} className={cn("border-b border-border/20", highlight === "purple" && "bg-muted/5")}>
+ <tr key={label} className={cn("border-b border-border", highlight === "purple" && "bg-muted/5")}>
  <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-medium")}>{label}</td>
  <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-medium")}>{fmt(value)}</td>
  </tr>
@@ -1267,7 +1267,7 @@ export default function FinancialModelPage() {
  { label: " Dividends Paid", value: cfData.dividends },
  { label: "Financing Cash Flow", value: cfData.financingCF, bold: true, highlight: "amber" },
  ].map(({ label, value, bold, highlight }) => (
- <tr key={label} className={cn("border-b border-border/20", highlight === "amber" && "bg-amber-500/5")}>
+ <tr key={label} className={cn("border-b border-border", highlight === "amber" && "bg-amber-500/5")}>
  <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-medium")}>{label}</td>
  <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-medium")}>{fmt(value)}</td>
  </tr>
@@ -1278,7 +1278,7 @@ export default function FinancialModelPage() {
 
  {/* FCF metrics */}
  <div className="space-y-4">
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>Free Cash Flow</SectionHeading>
  <div className="flex flex-col gap-3 mt-2">
  {[
@@ -1288,14 +1288,14 @@ export default function FinancialModelPage() {
  { label: "FCF Yield", value: fmtPct(cfData.fcfYield), color: cfData.fcfYield > 3 ? "text-emerald-400" : "text-amber-400" },
  { label: "FCF Conversion", value: fmtPct(cfData.fcfConversion), color: cfData.fcfConversion > 80 ? "text-emerald-400" : "text-amber-400" },
  ].map(({ label, value, color, big }) => (
- <div key={label} className="flex justify-between items-center border-b border-border/20 pb-2">
+ <div key={label} className="flex justify-between items-center border-b border-border pb-2">
  <span className={cn("text-xs", big ? "font-medium text-foreground" : "text-muted-foreground")}>{label}</span>
  <span className={cn("text-xs text-muted-foreground font-mono font-medium", color, big && "text-base")}>{value}</span>
  </div>
  ))}
  </div>
  </div>
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>FCF Trend ($B)</SectionHeading>
  <MiniBarChart
  data={isRows.map((r, i) => ({
@@ -1322,7 +1322,7 @@ export default function FinancialModelPage() {
  { label: "Projection Years", value: projYears, setter: setProjYears, min: 3, max: 10, step: 1, suffix: "yrs" },
  { label: "Exit EV/EBITDA", value: exitMultiple, setter: setExitMultiple, min: 8, max: 40, step: 0.5, suffix: "x" },
  ].map(({ label, value, setter, min, max, step, suffix }) => (
- <div key={label} className="bg-foreground/[0.03] border border-border/20 rounded-md p-3">
+ <div key={label} className="bg-foreground/[0.03] border border-border rounded-md p-3">
  <p className="text-xs text-muted-foreground mb-1.5">{label}</p>
  <div className="flex flex-col gap-1.5">
  <EditableCell
@@ -1348,7 +1348,7 @@ export default function FinancialModelPage() {
  </div>
 
  {/* DCF table */}
- <div className="overflow-x-auto rounded-md border border-border/20 bg-card mb-6">
+ <div className="overflow-x-auto rounded-md border border-border bg-card mb-6">
  <table className="w-full text-xs text-muted-foreground border-collapse">
  <thead>
  <tr className="bg-foreground/[0.04] border-b border-border">
@@ -1359,13 +1359,13 @@ export default function FinancialModelPage() {
  </tr>
  </thead>
  <tbody>
- <tr className="border-b border-border/20">
+ <tr className="border-b border-border">
  <td className="py-1.5 px-3 text-muted-foreground sticky left-0 bg-card">Projected FCF</td>
  {dcfData.fcfRows.map((r) => (
  <td key={r.year} className="py-1.5 px-3 text-right font-mono text-muted-foreground">{fmt(r.fcf)}</td>
  ))}
  </tr>
- <tr className="border-b border-border/20 bg-muted/5">
+ <tr className="border-b border-border bg-muted/5">
  <td className="py-1.5 px-3 text-muted-foreground sticky left-0 bg-card/80">PV of FCF</td>
  {dcfData.fcfRows.map((r) => (
  <td key={r.year} className="py-1.5 px-3 text-right font-mono text-foreground">{fmt(r.pv)}</td>
@@ -1377,7 +1377,7 @@ export default function FinancialModelPage() {
 
  {/* DCF summary */}
  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>Gordon Growth Model</SectionHeading>
  {[
  { label: "PV of FCFs", value: fmt(dcfData.pvSum) },
@@ -1387,13 +1387,13 @@ export default function FinancialModelPage() {
  { label: "Net Debt", value: fmt(dcfData.netDebt) },
  { label: "Intrinsic Value/Share", value: fmtM(dcfData.intrinsicGGM), big: true },
  ].map(({ label, value, big }) => (
- <div key={label} className="flex justify-between py-1.5 border-b border-border/20">
+ <div key={label} className="flex justify-between py-1.5 border-b border-border">
  <span className={cn("text-xs", big ? "text-foreground font-medium" : "text-muted-foreground")}>{label}</span>
  <span className={cn("text-xs font-mono", big ? "text-emerald-400 text-sm font-semibold" : "text-muted-foreground")}>{value}</span>
  </div>
  ))}
  </div>
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>EV/EBITDA Exit Multiple</SectionHeading>
  {[
  { label: "PV of FCFs", value: fmt(dcfData.pvSum) },
@@ -1403,13 +1403,13 @@ export default function FinancialModelPage() {
  { label: "Net Debt", value: fmt(dcfData.netDebt) },
  { label: "Intrinsic Value/Share", value: fmtM(dcfData.intrinsicMult), big: true },
  ].map(({ label, value, big }) => (
- <div key={label} className="flex justify-between py-1.5 border-b border-border/20">
+ <div key={label} className="flex justify-between py-1.5 border-b border-border">
  <span className={cn("text-xs", big ? "text-foreground font-medium" : "text-muted-foreground")}>{label}</span>
  <span className={cn("text-xs font-mono", big ? "text-foreground text-sm font-semibold" : "text-muted-foreground")}>{value}</span>
  </div>
  ))}
  </div>
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>Margin of Safety</SectionHeading>
  <div className="flex flex-col gap-3 mt-2">
  <div className="flex justify-between">
@@ -1439,7 +1439,7 @@ export default function FinancialModelPage() {
  </div>
 
  {/* Football field chart */}
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <p className="text-xs font-medium text-muted-foreground mb-4">Football Field — Implied Price Ranges</p>
  <div className="overflow-x-auto">
  <FootballFieldChart rows={footballRows} currentPrice={companyData.currentPrice} width={540} />
@@ -1452,7 +1452,7 @@ export default function FinancialModelPage() {
  <TabsContent value="comps" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
  {/* Comps table */}
- <div className="overflow-x-auto rounded-md border border-border/20 bg-card mb-6">
+ <div className="overflow-x-auto rounded-md border border-border bg-card mb-6">
  <table className="w-full text-xs text-muted-foreground border-collapse">
  <thead>
  <tr className="bg-foreground/[0.04] border-b border-border">
@@ -1465,7 +1465,7 @@ export default function FinancialModelPage() {
  {compsData.map((p) => {
  const isSelected = p.ticker === company;
  return (
- <tr key={p.ticker} className={cn("border-b border-border/20", isSelected && "bg-muted/10")}>
+ <tr key={p.ticker} className={cn("border-b border-border", isSelected && "bg-muted/10")}>
  <td className={cn("py-1.5 px-3 font-medium", isSelected ? "text-foreground" : "text-muted-foreground")}>
  {p.ticker} {isSelected && <span className="text-[11px] bg-muted/10 text-foreground px-1 rounded">Selected</span>}
  </td>
@@ -1502,7 +1502,7 @@ export default function FinancialModelPage() {
 
  {/* Implied valuation */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <SectionHeading>Implied Share Price — {company}</SectionHeading>
  <table className="w-full text-xs text-muted-foreground mt-1">
  <thead>
@@ -1523,7 +1523,7 @@ export default function FinancialModelPage() {
  ].map(({ label, median, implied }) => {
  const upside = (implied / companyData.currentPrice - 1) * 100;
  return (
- <tr key={label} className="border-b border-border/20">
+ <tr key={label} className="border-b border-border">
  <td className="py-1.5 text-muted-foreground">{label}</td>
  <td className="py-1.5 text-right font-mono text-muted-foreground">{median}</td>
  <td className="py-1.5 text-right font-mono text-foreground font-medium">{fmtM(implied)}</td>
@@ -1536,7 +1536,7 @@ export default function FinancialModelPage() {
  </tbody>
  </table>
  </div>
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <p className="text-xs font-medium text-muted-foreground mb-3">Comps Football Field</p>
  <div className="overflow-x-auto">
  <FootballFieldChart rows={compsFootballRows} currentPrice={companyData.currentPrice} width={380} />
@@ -1572,7 +1572,7 @@ export default function FinancialModelPage() {
  { label: "FCF", value: fmt(sc.fcf) },
  { label: "Implied Price", value: fmtM(sc.impliedPrice) },
  ].map(({ label, value }) => (
- <div key={label} className="flex justify-between py-1 border-b border-border/20">
+ <div key={label} className="flex justify-between py-1 border-b border-border">
  <span className="text-xs text-muted-foreground">{label}</span>
  <span className="text-xs font-mono text-foreground">{value}</span>
  </div>
@@ -1587,7 +1587,7 @@ export default function FinancialModelPage() {
 
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
  {/* Tornado chart */}
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <p className="text-xs font-medium text-muted-foreground mb-1">Tornado Chart — Sensitivity of DCF Value</p>
  <p className="text-xs text-muted-foreground mb-3">Each bar shows impact of ±1 standard deviation change</p>
  <div className="overflow-x-auto">
@@ -1596,7 +1596,7 @@ export default function FinancialModelPage() {
  </div>
 
  {/* Monte Carlo */}
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <p className="text-xs font-medium text-muted-foreground mb-1">Monte Carlo — 500 Simulations</p>
  <p className="text-xs text-muted-foreground mb-3">Random variation on WACC ±2%, growth ±10%, margins ±5%</p>
  <div className="overflow-x-auto">
@@ -1625,7 +1625,7 @@ export default function FinancialModelPage() {
  </div>
 
  {/* Break-even analysis */}
- <div className="bg-foreground/[0.03] border border-border/20 rounded-md p-4">
+ <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
  <p className="text-xs font-medium text-muted-foreground mb-1">Break-Even Analysis</p>
  <p className="text-xs text-muted-foreground mb-3">Revenue growth rate required for stock to be fairly valued (DCF = Current Price)</p>
  <div className="flex items-center gap-4 flex-wrap">

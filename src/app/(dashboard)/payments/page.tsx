@@ -322,7 +322,7 @@ function PaymentRailsTab() {
  {PAYMENT_RAILS.map((rail) => (
  <tr
  key={rail.name}
- className={`border-b border-border/20 cursor-pointer transition-colors ${selected === rail.name ? "bg-muted/60" : "hover:bg-muted/30"}`}
+ className={`border-b border-border cursor-pointer transition-colors ${selected === rail.name ? "bg-muted/60" : "hover:bg-muted/30"}`}
  onClick={() => setSelected(selected === rail.name ? null : rail.name)}
  >
  <td className="py-3 px-4">
@@ -840,7 +840,7 @@ function CBDCTab() {
  </thead>
  <tbody>
  {filtered.map((proj) => (
- <tr key={proj.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={proj.name} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-3 px-4 text-foreground font-medium">{proj.country}</td>
  <td className="py-3 px-3 text-muted-foreground">{proj.name}</td>
  <td className="py-3 px-3">
@@ -1000,7 +1000,7 @@ function PaymentStocksTab() {
  </thead>
  <tbody>
  {PAYMENT_STOCKS.map((stock) => (
- <tr key={stock.ticker} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
+ <tr key={stock.ticker} className="border-b border-border hover:bg-muted/30 transition-colors">
  <td className="py-3 px-4">
  <div className="flex items-center gap-2">
  <div className="w-2 h-2 rounded-full" style={{ background: stock.color }} />
@@ -1167,7 +1167,7 @@ export default function PaymentsPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="rails">
- <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="rails" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Payment Rails
  </TabsTrigger>
