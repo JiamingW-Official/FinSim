@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Cpu,
  Cloud,
@@ -477,12 +476,8 @@ function SaasTab() {
  </div>
 
  {/* Selected company detail */}
- <AnimatePresence>
  {selectedCompany && (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 12 }}
+ <div
  className="rounded-md border border-primary/30 bg-muted/5 p-4"
  >
  <div className="flex items-center justify-between mb-4">
@@ -512,9 +507,8 @@ function SaasTab() {
  <MiniBar label="Gross Margin" value={selectedCompany.grossMargin} max={100} color="bg-orange-500" />
  <MiniBar label="Rule of 40" value={selectedCompany.rule40} max={maxRule40} color={selectedCompany.rule40 >= 40 ? "bg-emerald-500" : "bg-amber-500"} suffix="" />
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
 
  {/* NRR Leaderboard */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -1137,13 +1131,8 @@ function MegaCapTab() {
  </div>
 
  {/* Selected company detail */}
- <AnimatePresence mode="wait">
- <motion.div
+ <div
  key={company.ticker}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="grid grid-cols-1 md:grid-cols-2 gap-3"
  >
  {/* Left: metrics */}
@@ -1216,8 +1205,7 @@ function MegaCapTab() {
  </div>
  </div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
 
  {/* Comparison table */}
  <div>
@@ -1400,13 +1388,9 @@ function FintechTab() {
  </tr>
  </thead>
  <tbody>
- <AnimatePresence>
  {filtered.map((c) => (
- <motion.tr
+ <tr
  key={c.ticker}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2.5">
@@ -1435,9 +1419,8 @@ function FintechTab() {
  {c.pe > 0 ? `${c.pe}x` : "N/M"}
  </span>
  </td>
- </motion.tr>
+ </tr>
  ))}
- </AnimatePresence>
  </tbody>
  </table>
  </div>
@@ -1521,38 +1504,14 @@ function FintechTab() {
 
 export default function TechSectorPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
- {/* Page header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex items-center justify-between"
- >
- <div className="flex items-center gap-3">
- <div className="w-10 h-10 rounded-md bg-muted/10 border border-primary/30 flex items-center justify-center">
- <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Technology Sector</h1>
- <p className="text-sm text-muted-foreground">SaaS · AI/Infra · Semiconductors · Mega-Cap · Fintech</p>
- </div>
- </div>
- <div className="flex items-center gap-2">
- <Badge variant="outline" className="text-primary border-primary/40">
- 2026 Data
- </Badge>
- <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Educational</span>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Technology Sector</h1>
+ <p className="text-sm text-muted-foreground mb-6">SaaS · AI/Infra · Semiconductors · Mega-Cap · Fintech</p>
 
  {/* Top-level overview strip */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
- className="grid grid-cols-2 md:grid-cols-5 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
+ <div className="grid grid-cols-2 md:grid-cols-5 gap-3 rounded-lg bg-card/40 border border-border p-5 mb-4"
  >
  {[
  { label: "S&P 500 Tech Weight", value: "32%", sub: "Historically high concentration", icon: <Target className="w-3.5 h-3.5 text-primary" /> },
@@ -1570,29 +1529,26 @@ export default function TechSectorPage() {
  </div>
  </div>
  ))}
- </motion.div>
+ </div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
- >
  <Tabs defaultValue="saas" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="saas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="saas" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  SaaS Metrics
  </TabsTrigger>
- <TabsTrigger value="ai" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="ai" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  AI &amp; Infrastructure
  </TabsTrigger>
- <TabsTrigger value="semi" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="semi" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Semiconductor Cycle
  </TabsTrigger>
- <TabsTrigger value="megacap" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="megacap" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Mega-Cap Tech
  </TabsTrigger>
- <TabsTrigger value="fintech" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="fintech" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Fintech &amp; Internet
  </TabsTrigger>
  </TabsList>
@@ -1613,7 +1569,6 @@ export default function TechSectorPage() {
  <FintechTab />
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  </div>
  );

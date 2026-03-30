@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import {
  DollarSign,
  TrendingUp,
@@ -71,7 +71,7 @@ function StatCard({
 function SectionHeading({ title, sub }: { title: string; sub?: string }) {
  return (
  <div className="mb-4">
- <h3 className="text-base font-semibold text-foreground">{title}</h3>
+ <h2 className="text-xl font-serif tracking-tight">{title}</h2>
  {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
  </div>
  );
@@ -659,20 +659,12 @@ function PricingMechanicsTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- <motion.div
- key={selectedRatchet}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -4 }}
- className="mt-3 rounded-lg bg-muted/40 border border-border p-3 text-xs text-primary"
- >
+  <div key={selectedRatchet} className="mt-3 rounded-lg bg-muted/40 border border-border p-3 text-xs text-primary">
  <span className="font-medium">{ratchetLevels[selectedRatchet].label}:</span>{" "}
  At {ratchetLevels[selectedRatchet].leverage} net leverage the borrower pays SOFR+
  {ratchetLevels[selectedRatchet].spread}bps. Tested each quarter based on compliance certificate.
  {selectedRatchet === ratchetLevels.length - 1 && " This is the floor — maximum benefit from deleveraging."}
- </motion.div>
- </AnimatePresence>
+ </div>
  </div>
 
  {/* Financial maintenance covenants */}
@@ -863,23 +855,14 @@ function SyndicationProcessTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- {activeStep !== null && (
- <motion.div
- key={activeStep}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -6 }}
- className="rounded-lg border border-border bg-muted/30 p-4"
- style={{ borderColor: timeline[activeStep].color + "40" }}
- >
+  {activeStep !== null && (
+ <div key={activeStep} className="rounded-lg border border-border bg-muted/30 p-4">
  <div className="text-sm font-medium mb-1" style={{ color: timeline[activeStep].color }}>
  {timeline[activeStep].step} <span className="text-muted-foreground font-normal text-xs">({timeline[activeStep].weeks})</span>
  </div>
  <p className="text-xs text-muted-foreground">{timeline[activeStep].desc}</p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
 
  {/* Syndication types */}
@@ -1300,72 +1283,43 @@ export default function SyndicatedLendingPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="rounded-lg bg-indigo-500/10 border border-indigo-500/20 p-2">
- <Building2 size={20} className="text-indigo-400" />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Syndicated Lending</h1>
- <p className="text-xs text-muted-foreground">
- How large corporate loans are arranged, priced, and distributed among multiple banks
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- <InfoPill text="Multi-bank facilities" color="violet" />
- <InfoPill text="SOFR + spread" color="blue" />
- <InfoPill text="$4–6T annual volume" color="emerald" />
- <InfoPill text="CLO-dominated" color="amber" />
- <InfoPill text="Cov-lite evolution" color="orange" />
- </div>
- </motion.div>
-
- {/* Tabs */}
- <Tabs defaultValue="structure" className="mt-8 space-y-4">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- {tabs.map((t) => {
- const Icon = t.icon;
- return (
- <TabsTrigger
- key={t.value}
- value={t.value}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground text-muted-foreground py-2 px-3"
- >
- <Icon size={13} />
- {t.label}
- </TabsTrigger>
- );
- })}
- </TabsList>
-
- <TabsContent value="structure" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
- <DealStructureTab />
- </motion.div>
- </TabsContent>
- <TabsContent value="pricing" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
- <PricingMechanicsTab />
- </motion.div>
- </TabsContent>
- <TabsContent value="syndication" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
- <SyndicationProcessTab />
- </motion.div>
- </TabsContent>
- <TabsContent value="market" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
- <MarketDynamicsTab />
- </motion.div>
- </TabsContent>
- </Tabs>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+   <h1 className="text-3xl font-bold tracking-tight mb-1">Syndicated Lending</h1>
+   <p className="text-sm text-muted-foreground">
+    How large corporate loans are arranged, priced, and distributed among multiple banks
+   </p>
+   <div className="border-t border-border my-6" />
+   <Tabs defaultValue="structure" className="flex-1 flex flex-col">
+    <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+     {tabs.map((t) => {
+      const Icon = t.icon;
+      return (
+       <TabsTrigger
+        key={t.value}
+        value={t.value}
+        className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5"
+       >
+        <Icon size={13} />
+        {t.label}
+       </TabsTrigger>
+      );
+     })}
+    </TabsList>
+    <TabsContent value="structure" className="data-[state=inactive]:hidden mt-6">
+     <DealStructureTab />
+    </TabsContent>
+    <TabsContent value="pricing" className="data-[state=inactive]:hidden mt-6">
+     <PricingMechanicsTab />
+    </TabsContent>
+    <TabsContent value="syndication" className="data-[state=inactive]:hidden mt-6">
+     <SyndicationProcessTab />
+    </TabsContent>
+    <TabsContent value="market" className="data-[state=inactive]:hidden mt-6">
+     <MarketDynamicsTab />
+    </TabsContent>
+   </Tabs>
+  </div>
  </div>
  );
 }

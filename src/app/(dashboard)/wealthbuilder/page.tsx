@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -1555,73 +1554,44 @@ export default function WealthBuilderPage() {
  const [activeTab, setActiveTab] = useState("accumulation");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- {/* Header */}
- <div className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-10 border-l-4 border-l-primary">
- <div className="max-w-screen-2xl mx-auto px-6 py-6">
- <div className="flex items-center justify-between">
- <div className="flex items-center gap-3">
- <div className="w-9 h-9 rounded-md bg-emerald-600 flex items-center justify-center">
- <TrendingUp size={18} className="text-foreground" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">Wealth Builder</h1>
- <p className="text-xs text-muted-foreground">Comprehensive financial independence planning toolkit</p>
- </div>
- </div>
- <div className="flex items-center gap-2">
- <Badge className="bg-green-900/50 text-green-400 border-green-800">
- <Star size={10} className="mr-1" />
- Planning Mode
- </Badge>
- </div>
- </div>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Wealth Builder</h1>
+ <p className="text-sm text-muted-foreground">Comprehensive financial independence planning toolkit</p>
+ <div className="border-t border-border my-6" />
 
- {/* Content */}
- <div className="max-w-screen-2xl mx-auto px-6 py-6">
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {TABS.map((tab) => (
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
- <span className="hidden sm:inline">{tab.label}</span>
+ {tab.label}
  </TabsTrigger>
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait" initial={false}>
- <motion.div
- key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
- >
- <TabsContent value="accumulation" className="mt-0 data-[state=inactive]:hidden">
+ <TabsContent value="accumulation" className="mt-4 data-[state=inactive]:hidden">
  <WealthAccumulationTab />
  </TabsContent>
- <TabsContent value="networth" className="mt-0 data-[state=inactive]:hidden">
+ <TabsContent value="networth" className="mt-4 data-[state=inactive]:hidden">
  <NetWorthTab />
  </TabsContent>
- <TabsContent value="passive" className="mt-0 data-[state=inactive]:hidden">
+ <TabsContent value="passive" className="mt-4 data-[state=inactive]:hidden">
  <PassiveIncomeTab />
  </TabsContent>
- <TabsContent value="tax" className="mt-0 data-[state=inactive]:hidden">
+ <TabsContent value="tax" className="mt-4 data-[state=inactive]:hidden">
  <TaxOptimizationTab />
  </TabsContent>
- <TabsContent value="risk" className="mt-0 data-[state=inactive]:hidden">
+ <TabsContent value="risk" className="mt-4 data-[state=inactive]:hidden">
  <RiskInsuranceTab />
  </TabsContent>
- <TabsContent value="fire" className="mt-0 data-[state=inactive]:hidden">
+ <TabsContent value="fire" className="mt-4 data-[state=inactive]:hidden">
  <FIRoadmapTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
  </Tabs>
  </div>
  </div>

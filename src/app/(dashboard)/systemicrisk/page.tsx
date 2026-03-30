@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -718,21 +717,13 @@ function InfoCard({ title, children }: { title: string; children: React.ReactNod
  </div>
  {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
- <AnimatePresence>
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="px-4 pb-4 text-sm text-muted-foreground border-t border-border pt-3 space-y-2">
  {children}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
 }
@@ -933,15 +924,11 @@ function GSIBTab() {
  </table>
  </div>
  {selectedBank && (
- <motion.div
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- className="mt-3 rounded-lg bg-muted/50 border border-border p-3 text-sm text-muted-foreground"
- >
+ <div className="mt-3 rounded-lg bg-muted/50 border border-border p-3 text-sm text-muted-foreground">
  <strong className="text-foreground">{selectedBank.bank}</strong> — {selectedBank.country} |&nbsp;
  G-SIB surcharge <strong style={{ color: bucketColor(selectedBank.bucket) }}>{selectedBank.surcharge}</strong> on top of minimum 8% CET1 requirement.
  Total minimum capital: <strong className="text-foreground">{selectedBank.totalCapital}</strong> (CET1 + surcharge + conservation buffer).
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
@@ -1004,9 +991,8 @@ function MetricsTab() {
  {/* Metrics grid */}
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
  {SRISK_METRICS.map((m, i) => (
- <motion.div
+ <div
  key={i}
- whileHover={{ scale: 1.01 }}
  className="rounded-lg border border-border bg-card/60 p-4 cursor-pointer"
  style={{ borderColor: activeMetric?.symbol === m.symbol ? riskColors[m.riskLevel] : undefined }}
  onClick={() => setActiveMetric(am => am?.symbol === m.symbol ? null : m)}
@@ -1027,18 +1013,12 @@ function MetricsTab() {
  </div>
  </div>
  <p className="text-xs text-muted-foreground">{m.description}</p>
- </motion.div>
+ </div>
  ))}
  </div>
 
  {/* Detail panel */}
- <AnimatePresence>
  {activeMetric && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- >
  <Card className="bg-muted/30 border-border">
  <CardContent className="pt-4">
  <div className="flex items-start gap-3">
@@ -1052,9 +1032,7 @@ function MetricsTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
  )}
- </AnimatePresence>
 
  {/* FSOC Dashboard */}
  <Card className="bg-card/50 border-border">
@@ -1130,7 +1108,7 @@ function MacroPruTab() {
  <CardContent>
  <div className="space-y-3">
  {MACRO_PRU_TOOLS.map((tool, i) => (
- <motion.div
+ <div
  key={i}
  className="rounded-lg border border-border bg-muted/30 p-3 cursor-pointer hover:border-border transition-colors duration-150"
  style={{ borderColor: selectedTool?.acronym === tool.acronym ? typeColor(tool.type) : undefined }}
@@ -1156,19 +1134,12 @@ function MacroPruTab() {
  </div>
  </div>
 
- <AnimatePresence>
  {selectedTool?.acronym === tool.acronym && (
- <motion.p
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- className="text-xs text-muted-foreground mt-2 border-t border-border pt-2"
- >
+ <p className="text-xs text-muted-foreground mt-2 border-t border-border pt-2">
  {tool.description}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
- </motion.div>
+ </div>
  ))}
  </div>
  </CardContent>
@@ -1311,25 +1282,16 @@ function MacroPruTab() {
 // ---------------------------------------------------------------------------
 export default function SystemicRiskPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-red-950/50 border border-red-900/50">
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Systemic Risk &amp; Financial Stability</h1>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Systemic Risk &amp; Financial Stability</h1>
  <p className="text-sm text-muted-foreground">How financial crises propagate — contagion, G-SIBs, systemic metrics, macroprudential regulation</p>
- </div>
  </div>
 
  {/* Summary chips */}
- <div className="flex flex-wrap gap-2 mt-3">
+ <div className="flex flex-wrap gap-2 mb-6">
  {[
  { label: "G-SIBs Monitored", value: "30+", color: "text-foreground border-border bg-muted/40" },
  { label: "Global SRISK", value: "$318B", color: "text-red-400 border-red-800 bg-red-950/30" },
@@ -1337,17 +1299,18 @@ export default function SystemicRiskPage() {
  { label: "Shadow Banking", value: "$68T", color: "text-orange-400 border-orange-800 bg-orange-950/30" },
  { label: "LCR Requirement", value: "≥100%", color: "text-green-400 border-green-800 bg-green-950/30" },
  ].map((chip, i) => (
- <div key={i} className={`rounded-full border px-3 py-1 text-xs text-muted-foreground flex items-center gap-1.5 ${chip.color}`}>
+ <div key={i} className={`rounded-full border px-3 py-1 text-xs flex items-center gap-1.5 ${chip.color}`}>
  <span className="text-muted-foreground">{chip.label}:</span>
  <span className="font-medium">{chip.value}</span>
  </div>
  ))}
  </div>
- </motion.div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="contagion" className="mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <Tabs defaultValue="contagion">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {[
  { value: "contagion", label: "Contagion Mechanisms" },
  { value: "gsibs", label: "G-SIBs & TBTF" },
@@ -1357,37 +1320,30 @@ export default function SystemicRiskPage() {
  <TabsTrigger
  key={value}
  value={value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
  {label}
  </TabsTrigger>
  ))}
  </TabsList>
 
- <TabsContent value="contagion" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <TabsContent value="contagion" className="data-[state=inactive]:hidden mt-6">
  <ContagionTab />
- </motion.div>
  </TabsContent>
 
- <TabsContent value="gsibs" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <TabsContent value="gsibs" className="data-[state=inactive]:hidden mt-6">
  <GSIBTab />
- </motion.div>
  </TabsContent>
 
- <TabsContent value="metrics" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <TabsContent value="metrics" className="data-[state=inactive]:hidden mt-6">
  <MetricsTab />
- </motion.div>
  </TabsContent>
 
- <TabsContent value="macropru" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <TabsContent value="macropru" className="data-[state=inactive]:hidden mt-6">
  <MacroPruTab />
- </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

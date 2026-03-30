@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Building2,
  DollarSign,
@@ -661,34 +660,18 @@ export default function PrimeBrokeragePage() {
  const availabilityBg = (av: LendableSecurity["availability"]) =>
  av === "Easy" ? "bg-emerald-400/10 text-emerald-400" : av === "Hard" ? "bg-amber-400/10 text-amber-400" : "bg-rose-400/10 text-rose-400";
 
- const tabVariants = {
- hidden: { opacity: 0, y: 12 },
- visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
- exit: { opacity: 0, y: -8, transition: { duration: 0.15 } },
- };
-
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <div className="flex items-start justify-between gap-4 flex-wrap">
- <div>
- <div className="flex items-center gap-2 mb-1">
- <Building2 className="w-6 h-6 text-indigo-400" />
- <h1 className="text-2xl font-bold text-foreground">Prime Brokerage</h1>
- </div>
- <p className="text-muted-foreground text-sm max-w-xl">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Prime Brokerage</h1>
+ <p className="text-sm text-muted-foreground">
  Securities lending, margin financing, rehypothecation, custody, and institutional-grade operational services for hedge funds.
  </p>
- </div>
- <div className="flex gap-2 flex-wrap">
- <Badge className="bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 text-xs">Institutional</Badge>
- <Badge className="bg-cyan-500/15 text-muted-foreground border border-cyan-500/30 text-xs">Prime Finance</Badge>
- <Badge className="bg-muted text-muted-foreground text-xs">Seed 840</Badge>
- </div>
- </div>
+ <div className="border-t border-border my-6" />
 
  {/* KPI Strip */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  {[
  { label: "Total Lendable Inventory", value: "$4.2T", sub: "Across 12,000+ securities", icon: <Layers className="w-4 h-4 text-indigo-400" />, color: "text-indigo-400" },
  { label: "HTB Securities", value: `${htbCount} / ${securities.length}`, sub: "In demo portfolio", icon: <AlertTriangle className="w-4 h-4 text-amber-400" />, color: "text-amber-400" },
@@ -710,30 +693,26 @@ export default function PrimeBrokeragePage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-card border border-border w-full flex gap-1 h-auto p-1 flex-wrap">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {[
- { value: "lending", label: "Securities Lending", icon: <RefreshCw className="w-3.5 h-3.5" /> },
- { value: "margin", label: "Margin & Leverage", icon: <Scale className="w-3.5 h-3.5" /> },
- { value: "rehypo", label: "Rehypothecation", icon: <ArrowRight className="w-3.5 h-3.5" /> },
- { value: "services", label: "PB Services", icon: <Building2 className="w-3.5 h-3.5" /> },
+ { value: "lending", label: "Securities Lending" },
+ { value: "margin", label: "Margin & Leverage" },
+ { value: "rehypo", label: "Rehypothecation" },
+ { value: "services", label: "PB Services" },
  ].map((tab) => (
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground flex-1"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
- {tab.icon}
- <span className="hidden sm:inline">{tab.label}</span>
- <span className="sm:hidden">{tab.label.split(" ")[0]}</span>
+ {tab.label}
  </TabsTrigger>
  ))}
  </TabsList>
 
  {/* ── Tab 1: Securities Lending ───────────────────────────────────────── */}
  <TabsContent value="lending" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- {activeTab === "lending" && (
- <motion.div key="lending" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
+ <div className="space-y-4 mt-4">
  <div className="grid md:grid-cols-2 gap-4">
  {/* Lendable Inventory Table */}
  <Card className="bg-card border-border border-l-4 border-l-primary">
@@ -861,16 +840,12 @@ export default function PrimeBrokeragePage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
- )}
- </AnimatePresence>
+ </div>
  </TabsContent>
 
  {/* ── Tab 2: Margin & Leverage ────────────────────────────────────────── */}
  <TabsContent value="margin" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- {activeTab === "margin" && (
- <motion.div key="margin" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
+ <div className="space-y-4 mt-4">
  <div className="grid md:grid-cols-3 gap-4">
  {/* Leverage Slider */}
  <Card className="bg-card border-border md:col-span-1">
@@ -998,16 +973,12 @@ export default function PrimeBrokeragePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- )}
- </AnimatePresence>
+ </div>
  </TabsContent>
 
  {/* ── Tab 3: Rehypothecation ──────────────────────────────────────────── */}
  <TabsContent value="rehypo" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- {activeTab === "rehypo" && (
- <motion.div key="rehypo" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
+ <div className="space-y-4 mt-4">
  {/* Chain Diagram + Regulatory Note */}
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -1118,16 +1089,12 @@ export default function PrimeBrokeragePage() {
  </Card>
  </div>
  </div>
- </motion.div>
- )}
- </AnimatePresence>
+ </div>
  </TabsContent>
 
  {/* ── Tab 4: PB Services ──────────────────────────────────────────────── */}
  <TabsContent value="services" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- {activeTab === "services" && (
- <motion.div key="services" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
+ <div className="space-y-4 mt-4">
  <div className="grid md:grid-cols-2 gap-4">
  {/* Service Scorecard */}
  <Card className="bg-card border-border">
@@ -1259,11 +1226,10 @@ export default function PrimeBrokeragePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- )}
- </AnimatePresence>
+ </div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

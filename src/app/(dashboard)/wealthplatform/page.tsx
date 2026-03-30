@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -1111,45 +1110,25 @@ export default function WealthPlatformPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <div className="flex items-center justify-between border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
- <div>
- <h1 className="text-xl font-semibold tracking-tight">
- Wealth Management Platform
- </h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Comprehensive financial planning · Asset allocation · Tax optimization · Estate planning
- </p>
- </div>
- <div className="flex items-center gap-2">
- <Badge variant="outline" className="border-indigo-500/40 text-indigo-300 text-xs">
- Fiduciary Mode
- </Badge>
- <Button size="sm" variant="outline" className="border-border text-muted-foreground hover:bg-muted gap-1.5 text-xs">
- <Download className="w-3.5 h-3.5" />
- Export Report
- </Button>
- </div>
- </div>
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Wealth Management Platform</h1>
+ <p className="text-sm text-muted-foreground mb-6">Comprehensive financial planning · Asset allocation · Tax optimization · Estate planning</p>
 
  {/* Tabs */}
  <Tabs defaultValue="profile" className="space-y-4">
- <TabsList className="bg-card border border-border p-1 rounded-lg gap-1">
- <TabsTrigger value="profile" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5 px-3">
- <User className="w-3.5 h-3.5" />
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="profile" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Client Profile
  </TabsTrigger>
- <TabsTrigger value="allocation" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5 px-3">
- <PieChart className="w-3.5 h-3.5" />
+ <TabsTrigger value="allocation" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Asset Allocation
  </TabsTrigger>
- <TabsTrigger value="tax" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5 px-3">
- <Shield className="w-3.5 h-3.5" />
+ <TabsTrigger value="tax" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Tax Planning
  </TabsTrigger>
- <TabsTrigger value="reporting" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5 px-3">
- <FileText className="w-3.5 h-3.5" />
+ <TabsTrigger value="reporting" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Reporting
  </TabsTrigger>
  </TabsList>
@@ -1806,6 +1785,7 @@ export default function WealthPlatformPage() {
  </div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

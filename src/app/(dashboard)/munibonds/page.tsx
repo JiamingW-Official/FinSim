@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
  Building2,
  Shield,
@@ -450,12 +449,7 @@ function ScreenerTab() {
  </div>
 
  {selected && (
- <motion.div
- key={selected.id}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 rounded-lg bg-muted/50 border border-border"
- >
+ <div key={selected.id} className="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 rounded-lg bg-muted/50 border border-border">
  <div>
  <p className="text-xs text-muted-foreground mb-1">Tax-Equiv Yield (37%)</p>
  <p className="text-xl font-semibold text-indigo-400">{selected.teyAt37.toFixed(2)}%</p>
@@ -477,7 +471,7 @@ function ScreenerTab() {
  }
  </p>
  </div>
- </motion.div>
+ </div>
  )}
 
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -963,78 +957,40 @@ function AMTTab() {
 // ── Page Root ─────────────────────────────────────────────────────────────────
 export default function MuniBondsPage() {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="p-4 space-y-4 max-w-7xl mx-auto"
- >
- {/* Header */}
- <div className="flex items-start justify-between gap-4 flex-wrap">
- <div>
- <div className="flex items-center gap-3 mb-1">
- <Building2 className="w-6 h-6 text-indigo-400" />
- <h1 className="text-2xl font-semibold text-foreground">Municipal Bonds</h1>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+   <h1 className="text-3xl font-bold tracking-tight mb-1">Municipal Bonds</h1>
+   <p className="text-sm text-muted-foreground">
+    Tax-advantaged debt issued by states, cities, and public agencies. Interest is typically
+    exempt from federal — and often state — income tax, making munis particularly attractive
+    for high-bracket investors.
+   </p>
+   <div className="border-t border-border my-6" />
+   <Tabs defaultValue="screener" className="flex-1 flex flex-col">
+    <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+     <TabsTrigger value="screener" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Bond Screener</TabsTrigger>
+     <TabsTrigger value="calculator" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">TEY Calculator</TabsTrigger>
+     <TabsTrigger value="analysis" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Credit Analysis</TabsTrigger>
+     <TabsTrigger value="fiscal" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">State Fiscal Health</TabsTrigger>
+     <TabsTrigger value="amt" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">AMT Risk</TabsTrigger>
+    </TabsList>
+    <TabsContent value="screener" className="data-[state=inactive]:hidden mt-6">
+     <ScreenerTab />
+    </TabsContent>
+    <TabsContent value="calculator" className="data-[state=inactive]:hidden mt-6">
+     <CalculatorTab />
+    </TabsContent>
+    <TabsContent value="analysis" className="data-[state=inactive]:hidden mt-6">
+     <AnalysisTab />
+    </TabsContent>
+    <TabsContent value="fiscal" className="data-[state=inactive]:hidden mt-6">
+     <StateFiscalTab />
+    </TabsContent>
+    <TabsContent value="amt" className="data-[state=inactive]:hidden mt-6">
+     <AMTTab />
+    </TabsContent>
+   </Tabs>
+  </div>
  </div>
- <p className="text-sm text-muted-foreground max-w-2xl">
- Tax-advantaged debt issued by states, cities, and public agencies. Interest is typically
- exempt from federal — and often state — income tax, making munis particularly attractive
- for high-bracket investors.
- </p>
- </div>
- <div className="flex gap-2 shrink-0">
- <Badge className="bg-indigo-500/20 text-indigo-400 border-indigo-500/30">Tax-Free</Badge>
- <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">Investment Grade</Badge>
- </div>
- </div>
-
- {/* Stats Row — Hero */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- {[
- { label: "Avg Muni Yield", value: "3.94%", sub: "across 8 bonds", icon: TrendingUp, color: "text-emerald-400" },
- { label: "Avg TEY (37%)", value: "6.45%", sub: "vs equivalent taxable", icon: Calculator, color: "text-indigo-400" },
- { label: "Avg Duration", value: "8.8 yrs", sub: "interest rate sensitivity", icon: Shield, color: "text-muted-foreground" },
- { label: "AMT Bonds", value: "2 / 8", sub: "private activity bonds", icon: AlertTriangle, color: "text-amber-400" },
- ].map((stat, i) => (
- <Card key={`stat-${i}`} className="bg-card border-border">
- <CardContent className="pt-4">
- <div className="flex items-center gap-2 mb-1">
- <stat.icon className={cn("w-4 h-4", stat.color)} />
- <span className="text-xs text-muted-foreground">{stat.label}</span>
- </div>
- <div className={cn("text-xl font-medium", stat.color)}>{stat.value}</div>
- <div className="text-xs text-muted-foreground mt-0.5">{stat.sub}</div>
- </CardContent>
- </Card>
- ))}
- </div>
-
- {/* Tabs */}
- <Tabs defaultValue="screener">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="screener">Bond Screener</TabsTrigger>
- <TabsTrigger value="calculator">TEY Calculator</TabsTrigger>
- <TabsTrigger value="analysis">Credit Analysis</TabsTrigger>
- <TabsTrigger value="fiscal">State Fiscal Health</TabsTrigger>
- <TabsTrigger value="amt">AMT Risk</TabsTrigger>
- </TabsList>
-
- <TabsContent value="screener" className="data-[state=inactive]:hidden mt-4">
- <ScreenerTab />
- </TabsContent>
- <TabsContent value="calculator" className="data-[state=inactive]:hidden mt-4">
- <CalculatorTab />
- </TabsContent>
- <TabsContent value="analysis" className="data-[state=inactive]:hidden mt-4">
- <AnalysisTab />
- </TabsContent>
- <TabsContent value="fiscal" className="data-[state=inactive]:hidden mt-4">
- <StateFiscalTab />
- </TabsContent>
- <TabsContent value="amt" className="data-[state=inactive]:hidden mt-4">
- <AMTTab />
- </TabsContent>
- </Tabs>
- </motion.div>
  );
 }

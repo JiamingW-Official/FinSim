@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion } from "framer-motion";
 import {
  Droplets,
  TrendingUp,
@@ -1212,10 +1211,7 @@ function RiskTab() {
  )}
  </button>
  {expandedRisk === rf.name && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="px-3 pb-3 border-t border-border"
  >
  <p className="text-xs text-muted-foreground mt-3 leading-relaxed">{rf.description}</p>
@@ -1223,7 +1219,7 @@ function RiskTab() {
  <Shield className="w-3 h-3 text-emerald-400 mt-0.5 flex-shrink-0" />
  <p className="text-xs text-emerald-300 leading-relaxed">{rf.mitigation}</p>
  </div>
- </motion.div>
+ </div>
  )}
  </div>
  ))}
@@ -1370,22 +1366,12 @@ function RiskTab() {
 
 export default function DeFiProtocolsPage() {
  return (
- <div className="flex flex-col h-full min-h-0 bg-background">
- {/* Header */}
- <div
- className="flex-shrink-0 px-6 pt-6 pb-4 border-b border-border border-l-4 border-l-primary"
- >
- <div className="flex items-center justify-between">
- <div className="flex items-center gap-3">
- <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
- <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">DeFi Protocols</h1>
- <p className="text-xs text-muted-foreground">AMM mechanics, lending, yield optimization, liquidity mining & risk</p>
- </div>
- </div>
- <div className="flex items-center gap-2">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">DeFi Protocols</h1>
+ <p className="text-sm text-muted-foreground mb-2">AMM mechanics, lending, yield optimization, liquidity mining &amp; risk</p>
+ <div className="flex items-center gap-2 mb-6">
  <Badge variant="outline" className="text-xs border-emerald-500/40 text-emerald-400">
  <DollarSign className="w-3 h-3 mr-1" />
  {fmtUSD(PROTOCOLS.reduce((s, p) => s + p.tvl, 0))} TVL
@@ -1395,56 +1381,43 @@ export default function DeFiProtocolsPage() {
  {PROTOCOLS.length} Protocols
  </Badge>
  </div>
- </div>
- </div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <div className="flex-1 min-h-0 overflow-y-auto mt-8">
- <Tabs defaultValue="amm" className="h-full flex flex-col">
- <div className="flex-shrink-0 px-6 pt-4 pb-0">
- <TabsList className="grid grid-cols-5 w-full">
- <TabsTrigger value="amm" className="text-xs text-muted-foreground flex items-center gap-1.5">
- <Droplets className="w-3.5 h-3.5" />
- <span className="hidden sm:inline">AMM Mechanics</span>
- <span className="sm:hidden">AMM</span>
+ <Tabs defaultValue="amm" className="flex flex-col gap-4">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="amm" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ AMM Mechanics
  </TabsTrigger>
- <TabsTrigger value="lending" className="text-xs text-muted-foreground flex items-center gap-1.5">
- <Lock className="w-3.5 h-3.5" />
- <span className="hidden sm:inline">Lending</span>
- <span className="sm:hidden">Lend</span>
+ <TabsTrigger value="lending" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Lending
  </TabsTrigger>
- <TabsTrigger value="yield" className="text-xs text-muted-foreground flex items-center gap-1.5">
- <TrendingUp className="w-3.5 h-3.5" />
- <span className="hidden sm:inline">Yield Optimization</span>
- <span className="sm:hidden">Yield</span>
+ <TabsTrigger value="yield" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Yield Optimization
  </TabsTrigger>
- <TabsTrigger value="mining" className="text-xs text-muted-foreground flex items-center gap-1.5">
- <Zap className="w-3.5 h-3.5" />
- <span className="hidden sm:inline">Liquidity Mining</span>
- <span className="sm:hidden">Mining</span>
+ <TabsTrigger value="mining" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Liquidity Mining
  </TabsTrigger>
- <TabsTrigger value="risk" className="text-xs text-muted-foreground flex items-center gap-1.5">
- <Shield className="w-3.5 h-3.5" />
- <span className="hidden sm:inline">Risk Framework</span>
- <span className="sm:hidden">Risk</span>
+ <TabsTrigger value="risk" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Risk Framework
  </TabsTrigger>
  </TabsList>
- </div>
 
- <div className="flex-1 min-h-0 overflow-y-auto px-6 pb-6">
- <TabsContent value="amm" className="mt-4 data-[state=inactive]:hidden">
+ <div>
+ <TabsContent value="amm" className="mt-0 data-[state=inactive]:hidden">
  <AMMTab />
  </TabsContent>
- <TabsContent value="lending" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="lending" className="mt-0 data-[state=inactive]:hidden">
  <LendingTab />
  </TabsContent>
- <TabsContent value="yield" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="yield" className="mt-0 data-[state=inactive]:hidden">
  <YieldTab />
  </TabsContent>
- <TabsContent value="mining" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="mining" className="mt-0 data-[state=inactive]:hidden">
  <LiquidityMiningTab />
  </TabsContent>
- <TabsContent value="risk" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="risk" className="mt-0 data-[state=inactive]:hidden">
  <RiskTab />
  </TabsContent>
  </div>

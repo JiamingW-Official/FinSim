@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -656,14 +655,9 @@ function EventImpactTab() {
  </Card>
 
  {/* detail panel */}
- <AnimatePresence mode="wait">
  {selectedEvent && (
- <motion.div
+ <div
  key={selectedEvent.id}
- initial={{ opacity: 0, x: 24 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: 24 }}
- transition={{ duration: 0.2 }}
  className="xl:col-span-2"
  >
  <Card className="bg-card border-border h-full">
@@ -731,9 +725,8 @@ function EventImpactTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  </div>
  );
@@ -763,8 +756,7 @@ function SanctionsTradeTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div key={activeSection} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key={activeSection}>
  {activeSection === "swift" && (
  <div className="space-y-4">
  {/* SWIFT mechanism SVG */}
@@ -1020,8 +1012,7 @@ function SanctionsTradeTab() {
  </Card>
  </div>
  )}
- </motion.div>
- </AnimatePresence>
+ </div>
  </div>
  );
 }
@@ -1239,12 +1230,8 @@ function PortfolioPositioningTab() {
  </div>
 
  {/* Selected scenario detail */}
- <AnimatePresence mode="wait">
- <motion.div
+ <div
  key={selectedScenario.id}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 8 }}
  >
  <Card className="bg-card border-red-900/40">
  <CardHeader className="pb-2">
@@ -1294,8 +1281,7 @@ function PortfolioPositioningTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
 
  {/* Hedge strategy table */}
  <Card className="bg-card border-border">
@@ -1458,35 +1444,25 @@ function PortfolioPositioningTab() {
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function GeopoliticsPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 rounded-lg bg-red-900/30 border border-red-800/50">
- <Globe className="w-5 h-5 text-red-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Geopolitics & Financial Markets</h1>
- <p className="text-sm text-muted-foreground">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Geopolitics &amp; Financial Markets</h1>
+ <p className="text-sm text-muted-foreground mb-6">
  How geopolitical events move markets — sanctions, trade wars, currency weaponization, and risk premiums
  </p>
- </div>
- </div>
- </motion.div>
 
- <Tabs defaultValue="events" className="mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="events" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Event Impact
+ <div className="border-t border-border my-6" />
+
+ <Tabs defaultValue="events">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="events" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Event Impact
  </TabsTrigger>
- <TabsTrigger value="sanctions" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Sanctions & Trade
+ <TabsTrigger value="sanctions" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Sanctions &amp; Trade
  </TabsTrigger>
- <TabsTrigger value="premium" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Premium
+ <TabsTrigger value="premium" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Risk Premium
  </TabsTrigger>
- <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio Positioning
+ <TabsTrigger value="portfolio" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Portfolio Positioning
  </TabsTrigger>
  </TabsList>
 
@@ -1503,6 +1479,7 @@ export default function GeopoliticsPage() {
  <PortfolioPositioningTab />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

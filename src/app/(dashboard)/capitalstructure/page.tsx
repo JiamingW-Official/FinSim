@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Layers,
  TrendingDown,
@@ -789,22 +788,12 @@ export default function CapitalStructurePage() {
  const ltv = ((debtCapital / ev) * 100).toFixed(0);
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="p-4 sm:p-4 space-y-5 max-w-5xl mx-auto"
- >
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col space-y-5">
  {/* HERO Header */}
- <div className="flex items-start justify-between gap-4 flex-wrap border-l-4 border-l-primary rounded-md bg-card p-6">
  <div>
- <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
- <Layers className="w-6 h-6 text-primary" />
- Capital Structure &amp; Distressed Investing
- </h1>
- <p className="text-muted-foreground text-sm mt-1">
- Waterfall analysis, Merton credit model, covenant tracking, and distressed debt screening
- </p>
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Capital Structure &amp; Distressed Investing</h1>
+ <p className="text-sm text-muted-foreground">Waterfall analysis, Merton credit model, covenant tracking, and distressed debt screening</p>
  </div>
  <div className="flex gap-2 flex-wrap">
  <Badge className="bg-muted/10 text-primary border-border text-xs">
@@ -813,7 +802,6 @@ export default function CapitalStructurePage() {
  <Badge className="bg-muted/60 text-muted-foreground border-border text-xs">
  <ShieldCheck className="w-3 h-3 mr-1" /> LTV {ltv}%
  </Badge>
- </div>
  </div>
 
  {/* KPI strip */}
@@ -894,17 +882,17 @@ export default function CapitalStructurePage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="waterfall" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="waterfall" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Waterfall
  </TabsTrigger>
- <TabsTrigger value="merton" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="merton" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Merton Model
  </TabsTrigger>
- <TabsTrigger value="covenants" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="covenants" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Covenants
  </TabsTrigger>
- <TabsTrigger value="screener" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="screener" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Distressed Screener
  </TabsTrigger>
  </TabsList>
@@ -1089,6 +1077,7 @@ export default function CapitalStructurePage() {
  Liquidation EV
  </Button>
  </div>
- </motion.div>
+ </div>
+ </div>
  );
 }

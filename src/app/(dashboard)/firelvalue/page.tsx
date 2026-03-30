@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -515,11 +514,7 @@ function YieldCurveTab() {
  </svg>
 
  {selectedNode !== null && (
- <motion.div
- initial={{ opacity: 0, y: -6 }}
- animate={{ opacity: 1, y: 0 }}
- className="mt-2 bg-muted/50 border border-border rounded-lg p-3 grid grid-cols-4 gap-3"
- >
+ <div className="mt-2 bg-muted/50 border border-border rounded-lg p-3 grid grid-cols-4 gap-3">
  <div>
  <p className="text-xs text-muted-foreground">Tenor</p>
  <p className="text-sm font-semibold text-foreground">{curve[selectedNode].tenor}</p>
@@ -542,7 +537,7 @@ function YieldCurveTab() {
  {curve[selectedNode].years.toFixed(1)}y
  </p>
  </div>
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
@@ -660,14 +655,8 @@ function YieldCurveTab() {
  Scenario P&amp;L Analysis
  </button>
 
- <AnimatePresence>
  {showScenarios && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="space-y-1.5">
  {scenarios.map((sc) => {
  const pnl = calcScenarioPnL(sc);
@@ -698,9 +687,8 @@ function YieldCurveTab() {
  );
  })}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </CardContent>
  </Card>
  </div>
@@ -1609,11 +1597,7 @@ function SwapSpreadsTab() {
 
  {/* Selected tenor detail */}
  {selected && (
- <motion.div
- key={selectedTenor}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
@@ -1681,7 +1665,7 @@ function SwapSpreadsTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
 
  {/* Spread term structure chart */}
@@ -1805,91 +1789,46 @@ function SwapSpreadsTab() {
 
 export default function FIRelValuePage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header — Hero */}
- <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 rounded-lg bg-muted/60 border border-border">
- <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">Fixed Income Relative Value</h1>
- <p className="text-sm text-muted-foreground">
- Bond spread analysis, duration-neutral trades, swap spreads & butterfly strategies
- </p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Fixed Income Relative Value</h1>
+ <p className="text-sm text-muted-foreground">Bond spread analysis, duration-neutral trades, swap spreads &amp; butterfly strategies</p>
+ <div className="border-t border-border my-6" />
 
- {/* Quick info chips */}
- <div className="flex flex-wrap gap-2 mt-3">
- <div className="flex items-center gap-1.5 bg-muted/50 border border-border rounded-full px-3 py-1">
- <Activity className="w-3 h-3 text-primary" />
- <span className="text-[11px] text-primary">Live Yield Curve</span>
- </div>
- <div className="flex items-center gap-1.5 bg-muted/50 border border-border rounded-full px-3 py-1">
- <Target className="w-3 h-3 text-primary" />
- <span className="text-[11px] text-primary">OTR/OFR Arb</span>
- </div>
- <div className="flex items-center gap-1.5 bg-amber-900/30 border border-amber-800/40 rounded-full px-3 py-1">
- <ArrowLeftRight className="w-3 h-3 text-amber-400" />
- <span className="text-[11px] text-amber-300">Swap Spreads</span>
- </div>
- <div className="flex items-center gap-1.5 bg-emerald-900/30 border border-emerald-800/40 rounded-full px-3 py-1">
- <Calculator className="w-3 h-3 text-emerald-400" />
- <span className="text-[11px] text-emerald-300">DV01 Neutral</span>
- </div>
- </div>
- </div>
-
- {/* Tabs */}
- <Tabs defaultValue="yieldcurve" className="w-full mt-8">
- <TabsList className="bg-card border border-border h-auto p-1 flex flex-wrap gap-1 mb-4">
- <TabsTrigger
- value="yieldcurve"
- className="data-[state=active]:bg-primary/80 data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5"
- >
- <Activity className="w-3.5 h-3.5 mr-1.5" />
+ <Tabs defaultValue="yieldcurve" className="w-full">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="yieldcurve" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Yield Curve
  </TabsTrigger>
- <TabsTrigger
- value="spreadtrades"
- className="data-[state=active]:bg-amber-700 data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5"
- >
- <Layers className="w-3.5 h-3.5 mr-1.5" />
+ <TabsTrigger value="spreadtrades" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Spread Trades
  </TabsTrigger>
- <TabsTrigger
- value="butterfly"
- className="data-[state=active]:bg-primary/80 data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5"
- >
- <Target className="w-3.5 h-3.5 mr-1.5" />
+ <TabsTrigger value="butterfly" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Butterfly
  </TabsTrigger>
- <TabsTrigger
- value="swapspreads"
- className="data-[state=active]:bg-emerald-700 data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5"
- >
- <ArrowLeftRight className="w-3.5 h-3.5 mr-1.5" />
+ <TabsTrigger value="swapspreads" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Swap Spreads
  </TabsTrigger>
  </TabsList>
 
- <TabsContent value="yieldcurve" className="data-[state=inactive]:hidden">
+ <TabsContent value="yieldcurve" className="mt-4 data-[state=inactive]:hidden">
  <YieldCurveTab />
  </TabsContent>
 
- <TabsContent value="spreadtrades" className="data-[state=inactive]:hidden">
+ <TabsContent value="spreadtrades" className="mt-4 data-[state=inactive]:hidden">
  <SpreadTradesTab />
  </TabsContent>
 
- <TabsContent value="butterfly" className="data-[state=inactive]:hidden">
+ <TabsContent value="butterfly" className="mt-4 data-[state=inactive]:hidden">
  <ButterflyTab />
  </TabsContent>
 
- <TabsContent value="swapspreads" className="data-[state=inactive]:hidden">
+ <TabsContent value="swapspreads" className="mt-4 data-[state=inactive]:hidden">
  <SwapSpreadsTab />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

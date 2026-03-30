@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  ShieldAlert,
  BarChart2,
@@ -704,20 +703,11 @@ function ConceptCard({ title, icon, children, defaultOpen = false }: ConceptCard
  </CardTitle>
  </CardHeader>
  </button>
- <AnimatePresence initial={false}>
  {open && (
- <motion.div
- key="content"
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <CardContent>{children}</CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </Card>
  );
 }
@@ -747,39 +737,36 @@ function Chip({ label, value, color = "text-foreground" }: { label: string; valu
 
 export default function RiskModelsPage() {
  return (
- <div className="p-4 space-y-4 max-w-6xl mx-auto">
- {/* Header */}
- <div className="flex items-start gap-4">
- <div className="p-3 rounded-md bg-red-500/5 border border-red-500/20">
- </div>
- <div>
- <h1 className="text-2xl font-semibold text-foreground">Financial Risk Models</h1>
- <p className="text-muted-foreground text-sm mt-1">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Financial Risk Models</h1>
+ <p className="text-sm text-muted-foreground mb-6">
  VaR frameworks, credit risk methodology, stress testing, and model risk governance — the quantitative foundations of risk management.
  </p>
- </div>
- </div>
 
  {/* Summary chips */}
- <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
  <Chip label="99% VaR Confidence" value="2.326σ" color="text-indigo-400" />
  <Chip label="FRTB ES Level" value="97.5%" color="text-amber-400" />
  <Chip label="Basel Green Zone" value="≤ 4 Exceptions" color="text-emerald-400" />
  <Chip label="SR 11-7 Pillars" value="3 Tiers" color="text-foreground" />
  </div>
 
+ <div className="border-t border-border my-6" />
+
  <Tabs defaultValue="market" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="market" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="market" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Market Risk
  </TabsTrigger>
- <TabsTrigger value="credit" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="credit" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Credit Risk
  </TabsTrigger>
- <TabsTrigger value="stress" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="stress" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Stress Testing
  </TabsTrigger>
- <TabsTrigger value="modelrisk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="modelrisk" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Model Risk
  </TabsTrigger>
  </TabsList>
@@ -1420,6 +1407,7 @@ export default function RiskModelsPage() {
  </div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

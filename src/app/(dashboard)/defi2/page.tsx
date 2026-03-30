@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Droplets,
  TrendingUp,
@@ -38,6 +37,9 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+
+// Suppress unused import warnings
+void Unlock; void Percent; void Eye; void Coins;
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
 
@@ -503,7 +505,7 @@ function LiquidityTab() {
  <SectionTitle><AlertTriangle size={14} className="text-rose-400" />MEV Extraction Taxonomy</SectionTitle>
  <div className="space-y-2">
  {MEV_TYPES.map((m, i) => (
- <motion.div
+ <div
  key={m.name}
  className={cn(
  "rounded-lg border p-3 cursor-pointer",
@@ -529,19 +531,12 @@ function LiquidityTab() {
  <ChevronDown size={12} className={cn("text-muted-foreground transition-transform", expandedMev === i && "rotate-180")} />
  </div>
  </div>
- <AnimatePresence>
  {expandedMev === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <p className="text-xs text-muted-foreground mt-2 pt-2 border-t border-border">{m.desc}</p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1377,7 +1372,7 @@ function RestakingTab() {
  <SectionTitle><Building2 size={14} className="text-amber-400" />Institutional DeFi Entry Barriers</SectionTitle>
  <div className="space-y-2">
  {institutionalBarriers.map((barrier, i) => (
- <motion.div
+ <div
  key={barrier.title}
  className="rounded-md border border-border bg-foreground/5 cursor-pointer"
  onClick={() => setExpandedInst(expandedInst === i ? null : i)}
@@ -1396,21 +1391,14 @@ function RestakingTab() {
  <ChevronRight size={12} className={cn("text-muted-foreground transition-transform", expandedInst === i && "rotate-90")} />
  </div>
  </div>
- <AnimatePresence>
  {expandedInst === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="px-3 pb-3 text-xs text-muted-foreground border-t border-border pt-2">
  {barrier.desc}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1524,70 +1512,46 @@ void NOISE;
 
 export default function DeFi2Page() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="rounded-md bg-indigo-500/15 border border-indigo-500/30 p-2.5">
- <GitBranch size={22} className="text-indigo-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">DeFi 2.0 & Advanced Protocols</h1>
- <p className="text-sm text-muted-foreground">Liquidity optimization, real-world assets on-chain, intent-based trading, restaking, and institutional DeFi</p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- {["Concentrated Liquidity", "veTokenomics", "RWA", "Intent Orders", "EigenLayer", "Institutional DeFi"].map((tag) => (
- <Badge key={tag} className="bg-foreground/5 text-muted-foreground border-border text-xs">{tag}</Badge>
- ))}
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">DeFi 2.0 &amp; Advanced Protocols</h1>
+ <p className="text-sm text-muted-foreground mb-6">Liquidity optimization, real-world assets on-chain, intent-based trading, restaking, and institutional DeFi</p>
 
  {/* Tabs */}
- <Tabs defaultValue="liquidity" className="mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
- <TabsTrigger value="liquidity" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
- <Droplets size={13} className="mr-1.5" />Liquidity Innovations
+ <Tabs defaultValue="liquidity">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
+ <TabsTrigger value="liquidity" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Liquidity Innovations
  </TabsTrigger>
- <TabsTrigger value="rwa" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
- <Globe size={13} className="mr-1.5" />Real-World Assets
+ <TabsTrigger value="rwa" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Real-World Assets
  </TabsTrigger>
- <TabsTrigger value="intent" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
- <Zap size={13} className="mr-1.5" />Intent-Based Trading
+ <TabsTrigger value="intent" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Intent-Based Trading
  </TabsTrigger>
- <TabsTrigger value="restaking" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
- <Layers size={13} className="mr-1.5" />Restaking & Institutional
+ <TabsTrigger value="restaking" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Restaking &amp; Institutional
  </TabsTrigger>
  </TabsList>
 
  <TabsContent value="liquidity" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
  <LiquidityTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="rwa" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
  <RWATab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="intent" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
  <IntentTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="restaking" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
  <RestakingTab />
- </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

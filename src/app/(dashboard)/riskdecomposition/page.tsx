@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -327,12 +326,7 @@ function RiskDecompositionTab() {
  <span className="font-semibold text-indigo-400">{SYSTEMATIC_RISK}%</span>
  </div>
  <div className="w-full bg-muted rounded-full h-4 overflow-hidden">
- <motion.div
- className="h-full bg-indigo-500 rounded-full"
- initial={{ width: 0 }}
- animate={{ width: `${SYSTEMATIC_RISK}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
- />
+ <div className="h-full bg-indigo-500 rounded-full" style={{ width: `${SYSTEMATIC_RISK}%` }} />
  </div>
  </div>
  <div className="mb-6">
@@ -341,12 +335,7 @@ function RiskDecompositionTab() {
  <span className="font-semibold text-muted-foreground">{IDIOSYNCRATIC_RISK}%</span>
  </div>
  <div className="w-full bg-muted rounded-full h-4 overflow-hidden">
- <motion.div
- className="h-full bg-muted rounded-full"
- initial={{ width: 0 }}
- animate={{ width: `${IDIOSYNCRATIC_RISK}%` }}
- transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
- />
+ <div className="h-full bg-muted rounded-full" style={{ width: `${IDIOSYNCRATIC_RISK}%` }} />
  </div>
  </div>
  <p className="text-xs text-muted-foreground leading-relaxed">
@@ -693,13 +682,9 @@ function StressTestingTab() {
  </td>
  <td className="py-2.5 text-right text-muted-foreground">{sc.recoveryDays.toLocaleString()}</td>
  </tr>
- <AnimatePresence>
  {selected === i && (
- <motion.tr
+ <tr
  key={`detail-${i}`}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
  className="bg-muted/40"
  >
  <td colSpan={6} className="py-3 px-4">
@@ -732,9 +717,8 @@ function StressTestingTab() {
  </div>
  </div>
  </td>
- </motion.tr>
+ </tr>
  )}
- </AnimatePresence>
  </>
  ))}
  </tbody>
@@ -758,12 +742,7 @@ function StressTestingTab() {
  <div key={sc.name} className="flex items-center gap-3">
  <div className="w-36 text-xs text-muted-foreground truncate flex-shrink-0">{sc.year}</div>
  <div className="flex-1 bg-muted rounded-full h-5 overflow-hidden relative">
- <motion.div
- className="h-full bg-red-600/80 rounded-full"
- initial={{ width: 0 }}
- animate={{ width: `${barW}%` }}
- transition={{ duration: 0.6, ease: "easeOut" }}
- />
+ <div className="h-full bg-red-600/80 rounded-full" style={{ width: `${barW}%` }} />
  <span className="absolute right-2 top-0.5 text-xs text-muted-foreground">
  {sc.portfolioReturn.toFixed(1)}%
  </span>
@@ -1260,71 +1239,47 @@ export default function RiskDecompositionPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <div className="flex items-center gap-3 mb-6">
- <div className="w-9 h-9 rounded-lg bg-indigo-600/20 flex items-center justify-center">
- <Shield className="w-5 h-5 text-indigo-400" />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Portfolio Risk Decomposition</h1>
- <p className="text-sm text-muted-foreground">Attribution analysis, stress testing, VaR, and risk budgeting</p>
- </div>
- <div className="ml-auto flex items-center gap-2">
- <Badge variant="outline" className="text-muted-foreground border-border text-xs">
- 10 Positions
- </Badge>
- <Badge className="bg-indigo-600/20 text-indigo-300 border-0 text-xs">
- AUM $1.24M
- </Badge>
- </div>
- </div>
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Portfolio Risk Decomposition</h1>
+ <p className="text-sm text-muted-foreground mb-6">Attribution analysis, stress testing, VaR, and risk budgeting</p>
 
  {/* Tabs */}
  <Tabs defaultValue="decomposition">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {tabs.map((t) => (
  <TabsTrigger
  key={t.id}
  value={t.id}
- className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
- <t.icon className="w-3.5 h-3.5" />
  {t.label}
  </TabsTrigger>
  ))}
  </TabsList>
 
  <TabsContent value="decomposition" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
  <RiskDecompositionTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="marginal" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
  <MarginalContributionTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="stress" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
  <StressTestingTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="var" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
  <ValueAtRiskTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="budgeting" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
  <RiskBudgetingTab />
- </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

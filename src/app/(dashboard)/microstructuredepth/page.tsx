@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Activity,
  AlertTriangle,
@@ -562,22 +561,11 @@ export default function MicrostructureDepthPage() {
  const avgVPIN = useMemo(() => (toxicFlowRows.reduce((a, b) => a + b.vpinScore, 0) / toxicFlowRows.length).toFixed(3), []);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-muted/10 border border-border">
- </div>
- <div>
- <h1 className="text-2xl font-semibold text-foreground">Market Microstructure Deep Dive</h1>
- <p className="text-sm text-muted-foreground">Bid-ask decomposition · Adverse selection · Inventory risk · Optimal execution</p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Market Microstructure Deep Dive</h1>
+ <p className="text-sm text-muted-foreground mb-4">Bid-ask decomposition, adverse selection, inventory risk, and optimal execution</p>
  {/* KPI chips */}
  <div className="flex flex-wrap gap-2 mt-3">
  {[
@@ -593,27 +581,20 @@ export default function MicrostructureDepthPage() {
  </div>
  ))}
  </div>
- </motion.div>
-
- {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Microstructure Deep Dive</h2>
- <p className="text-sm text-muted-foreground">Bid-ask decomposition, adverse selection models, inventory risk, Kyle lambda, and optimal execution strategies.</p>
- </div>
 
  {/* Tabs */}
- <Tabs defaultValue="spread" className="w-full mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4">
- <TabsTrigger value="spread" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <Tabs defaultValue="spread" className="w-full mt-6">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
+ <TabsTrigger value="spread" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Spread Analysis
  </TabsTrigger>
- <TabsTrigger value="orderflow" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="orderflow" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Order Flow
  </TabsTrigger>
- <TabsTrigger value="impact" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="impact" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Price Impact
  </TabsTrigger>
- <TabsTrigger value="execution" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="execution" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Execution Models
  </TabsTrigger>
  </TabsList>
@@ -694,12 +675,8 @@ export default function MicrostructureDepthPage() {
  </div>
  </CardHeader>
  <CardContent>
- <AnimatePresence>
  {showRollDetail && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="mb-3 overflow-hidden"
  >
  <div className="p-3 bg-muted/5 border border-border rounded-lg">
@@ -709,9 +686,8 @@ export default function MicrostructureDepthPage() {
  Negative serial covariance in trade-to-trade price changes implies a bid-ask bounce. The Roll measure estimates the effective half-spread from observable price data without requiring quote data.
  </p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  <div className="space-y-2">
  {rollAutocovariances.map((cov, i) => (
  <div key={i} className="flex items-center gap-2">
@@ -1145,6 +1121,7 @@ export default function MicrostructureDepthPage() {
  </Card>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

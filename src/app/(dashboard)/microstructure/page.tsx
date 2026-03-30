@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Activity,
  BarChart3,
@@ -222,12 +221,6 @@ const ORDER_TYPES: OrderTypeRow[] = [
  bestFor: "Dark pool execution, midpoint liquidity seeking",
  },
 ];
-
-// ── Framer variants ────────────────────────────────────────────────────────────
-const fadeUp = {
- hidden: { opacity: 0, y: 20 },
- visible: { opacity: 1, y: 0 },
-};
 
 // ── SVG helpers ────────────────────────────────────────────────────────────────
 function clamp(v: number, lo: number, hi: number) {
@@ -675,43 +668,15 @@ export default function MicrostructurePage() {
  const selectedOrderData = ORDER_TYPES.find((o) => o.abbr === selectedOrder);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
- {/* ── Header ── */}
- <motion.div
- variants={fadeUp}
- initial="hidden"
- animate="visible"
- transition={{ duration: 0.4 }}
- className="flex flex-col md:flex-row md:items-center md:justify-between gap-3"
- >
- <div>
- <h1 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
- <Activity className="w-7 h-7 text-primary" />
- Equity Market Microstructure
- </h1>
- <p className="text-sm text-muted-foreground mt-1">
- Bid-ask spreads, price impact, market quality metrics, and execution dynamics
- </p>
- </div>
- <div className="flex items-center gap-2">
- <Badge variant="outline" className="text-xs text-muted-foreground gap-1">
- <RefreshCw className="w-3 h-3" />
- Live Snapshot
- </Badge>
- <Badge variant="outline" className="text-xs gap-1 text-green-400 border-green-400/30">
- <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
- Market Open
- </Badge>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Equity Market Microstructure</h1>
+ <p className="text-sm text-muted-foreground mb-6">Bid-ask spreads, price impact, market quality metrics, and execution dynamics</p>
 
  {/* ── Key Metrics Row — Hero ── */}
- <motion.div
- variants={fadeUp}
- initial="hidden"
- animate="visible"
- transition={{ duration: 0.4, delay: 0.08 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-md border border-border bg-card border-l-4 border-l-primary p-6"
+ <div
+ className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-md border border-border bg-card border-l-4 border-l-primary p-6 mb-4"
  >
  {[
  {
@@ -765,21 +730,15 @@ export default function MicrostructurePage() {
  </CardContent>
  </Card>
  ))}
- </motion.div>
+ </div>
 
  {/* ── Tabs ── */}
- <motion.div
- variants={fadeUp}
- initial="hidden"
- animate="visible"
- transition={{ duration: 0.4, delay: 0.16 }}
- >
  <Tabs defaultValue="orderbook">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="orderbook" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Order Book</TabsTrigger>
- <TabsTrigger value="pricediscovery" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Price Discovery</TabsTrigger>
- <TabsTrigger value="liquidity" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Liquidity</TabsTrigger>
- <TabsTrigger value="fragmentation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Fragmentation</TabsTrigger>
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
+ <TabsTrigger value="orderbook" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Order Book</TabsTrigger>
+ <TabsTrigger value="pricediscovery" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Price Discovery</TabsTrigger>
+ <TabsTrigger value="liquidity" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Liquidity</TabsTrigger>
+ <TabsTrigger value="fragmentation" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Fragmentation</TabsTrigger>
  </TabsList>
 
  {/* ── Order Book Tab ── */}
@@ -1013,11 +972,7 @@ export default function MicrostructurePage() {
 
  {/* Expanded order detail */}
  {selectedOrderData && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="mt-4 p-3 rounded-lg bg-muted/30 border border-border"
  >
  <div className="text-sm font-medium mb-2">{selectedOrderData.name}</div>
@@ -1049,7 +1004,7 @@ export default function MicrostructurePage() {
  </ul>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
@@ -1326,18 +1281,12 @@ export default function MicrostructurePage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
 
  {/* ── Footer disclaimer ── */}
- <motion.div
- variants={fadeUp}
- initial="hidden"
- animate="visible"
- transition={{ duration: 0.4, delay: 0.24 }}
- className="text-xs text-muted-foreground text-center pb-2"
- >
+ <div className="text-xs text-muted-foreground text-center pb-2 mt-4">
  Order book data is synthetic for educational purposes. Market microstructure concepts are based on academic literature and industry practice.
- </motion.div>
+ </div>
+ </div>
  </div>
  );
 }

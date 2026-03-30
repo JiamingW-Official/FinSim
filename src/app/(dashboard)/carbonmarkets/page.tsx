@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// framer-motion removed
 import {
  Leaf,
  Globe,
@@ -402,19 +402,11 @@ function InfoCard({ title, children }: { title: string; children: React.ReactNod
  <span className="text-sm font-medium text-foreground">{title}</span>
  {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
- <AnimatePresence>
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="px-4 py-3 bg-background text-sm text-muted-foreground space-y-2">{children}</div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
 }
@@ -575,7 +567,7 @@ function ComplianceTab() {
  <span className="text-muted-foreground">{sec.pct}%</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div initial={{ width: 0 }} animate={{ width: `${sec.pct}%` }} transition={{ duration: 0.8, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: sec.color }} />
+ <div className="h-full rounded-full" style={{ backgroundColor: sec.color, width: `${sec.pct}%` }} />
  </div>
  </div>
  ))}
@@ -760,7 +752,7 @@ function QualityTab() {
  <span className="text-muted-foreground text-right max-w-[200px]">{row.note}</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div initial={{ width: 0 }} animate={{ width: `${row.risk}%` }} transition={{ duration: 0.8, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: row.color }} />
+ <div className="h-full rounded-full" style={{ backgroundColor: row.color, width: `${row.risk}%` }} />
  </div>
  </div>
  ))}
@@ -842,7 +834,7 @@ function QualityTab() {
  <span className="text-muted-foreground">{r.pct}% of rated credits</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div initial={{ width: 0 }} animate={{ width: `${r.pct * 4}%` }} transition={{ duration: 0.6, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: r.color }} />
+ <div className="h-full rounded-full" style={{ backgroundColor: r.color, width: `${r.pct * 4}%` }} />
  </div>
  </div>
  ))}
@@ -1020,7 +1012,7 @@ function InvestmentTab() {
  <span className="text-muted-foreground">Risk Score: {pr.severity}/100</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div initial={{ width: 0 }} animate={{ width: `${pr.severity}%` }} transition={{ duration: 0.7, ease: "easeOut" }} className="h-full rounded-full bg-red-500/70" />
+ <div className="h-full rounded-full bg-red-500/70" style={{ width: `${pr.severity}%` }} />
  </div>
  <div className="text-xs text-muted-foreground">{pr.example}</div>
  </div>
@@ -1076,63 +1068,55 @@ function InvestmentTab() {
 // ══════════════════════════════════════════════════════════════════════════════
 export default function CarbonMarketsPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-center gap-3 mb-2 flex-wrap">
- <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Carbon Markets</h1>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Carbon Markets</h1>
  <p className="text-sm text-muted-foreground">ETS compliance, voluntary credits, quality assessment, and investment strategies</p>
  </div>
- <div className="ml-auto flex gap-2 flex-wrap">
+
+ <div className="flex gap-2 mb-6 flex-wrap">
  <Badge className="bg-emerald-900/40 text-emerald-400 border-emerald-700 text-xs">EUA EUR 62/t</Badge>
  <Badge className="bg-muted/60 text-foreground border-border text-xs">VCM $2B market</Badge>
  <Badge className="bg-amber-900/40 text-amber-400 border-amber-700 text-xs">2030 target $150-250/t</Badge>
  </div>
- </div>
- </div>
+
+ <div className="border-t border-border mb-6" />
 
  <Tabs defaultValue="compliance">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
- <TabsTrigger value="compliance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="compliance" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Compliance Markets
  </TabsTrigger>
- <TabsTrigger value="voluntary" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="voluntary" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Voluntary Markets
  </TabsTrigger>
- <TabsTrigger value="quality" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="quality" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Credit Quality
  </TabsTrigger>
- <TabsTrigger value="investment" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="investment" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Investment Strategies
  </TabsTrigger>
  </TabsList>
 
- <TabsContent value="compliance" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <TabsContent value="compliance" className="data-[state=inactive]:hidden mt-6">
  <ComplianceTab />
- </motion.div>
  </TabsContent>
 
- <TabsContent value="voluntary" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <TabsContent value="voluntary" className="data-[state=inactive]:hidden mt-6">
  <VoluntaryTab />
- </motion.div>
  </TabsContent>
 
- <TabsContent value="quality" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <TabsContent value="quality" className="data-[state=inactive]:hidden mt-6">
  <QualityTab />
- </motion.div>
  </TabsContent>
 
- <TabsContent value="investment" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <TabsContent value="investment" className="data-[state=inactive]:hidden mt-6">
  <InvestmentTab />
- </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

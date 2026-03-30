@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useCallback } from "react";
 import {
- Activity,
  BarChart3,
  BookOpen,
  TrendingUp,
@@ -28,7 +27,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ─────────────────────────────────────────────────────────────
 
@@ -228,12 +226,9 @@ function QuotingTab() {
  <h3 className="text-sm font-semibold text-foreground mb-4">Spread Component Waterfall</h3>
  <div className="space-y-3">
  {spreadComponents.map((c, i) => (
- <motion.div
+ <div
  key={c.label}
- initial={{ opacity: 0, x: -20 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.08 }}
- className="flex items-center gap-3"
+    className="flex items-center gap-3"
  >
  <div className="w-36 text-xs text-muted-foreground font-medium">{c.label}</div>
  <div className="flex-1 h-7 bg-muted rounded overflow-hidden">
@@ -244,7 +239,7 @@ function QuotingTab() {
  </div>
  <div className="w-10 text-xs text-muted-foreground text-right">{Math.round(c.pct * 100)}%</div>
  <div className="w-48 text-xs text-muted-foreground hidden xl:block">{c.desc}</div>
- </motion.div>
+ </div>
  ))}
  </div>
  <div className="mt-4 p-3 bg-muted/60 rounded-lg text-xs text-muted-foreground">
@@ -306,14 +301,9 @@ function QuotingTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+  <div
  key={animKey}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.3 }}
- >
+     >
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead>
@@ -344,12 +334,9 @@ function QuotingTab() {
  const put = puts[i];
  const isAtm = call.moneyness === "ATM";
  return (
- <motion.tr
+ <tr
  key={call.strike}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.04 }}
- className={cn(
+    className={cn(
  "border-b border-border",
  isAtm && "bg-muted/60"
  )}
@@ -385,15 +372,14 @@ function QuotingTab() {
  <td className="py-1.5 px-2 text-right text-rose-300 font-mono">{fmt2(put.ask)}</td>
  </>
  )}
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
  </table>
  </div>
- </motion.div>
- </AnimatePresence>
  </div>
+  </div>
 
  {/* Spread Determinants */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1260,11 +1246,9 @@ function EconomicsTab() {
  <div key={p.name} className="flex items-center gap-3">
  <div className="w-36 text-xs text-muted-foreground font-medium truncate">{p.name}</div>
  <div className="flex-1 h-5 bg-muted rounded overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${p.share * 100}%` }}
- transition={{ duration: 0.8, delay: 0.1 }}
- className={cn("h-full rounded", p.color, "opacity-70")}
+ <div
+  style={{ width: `${p.share * 100}%` }}
+  className={cn("h-full rounded", p.color, "opacity-70")}
  />
  </div>
  <div className="w-10 text-xs text-muted-foreground text-right">{Math.round(p.share * 100)}%</div>
@@ -1360,12 +1344,9 @@ function EconomicsTab() {
  <div className="absolute left-4 top-0 bottom-0 w-px bg-muted" />
  <div className="space-y-4 pl-10">
  {latencyTimeline.map((item, i) => (
- <motion.div
+ <div
  key={item.year}
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.1 }}
- className="relative flex items-start gap-4"
+    className="relative flex items-start gap-4"
  >
  <div
  className={cn(
@@ -1387,7 +1368,7 @@ function EconomicsTab() {
  </div>
  <span className="text-xs text-muted-foreground">{item.tech}</span>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1471,48 +1452,20 @@ export default function OptionsMmPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-8">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-8"
- >
- <div className="flex items-center gap-3 mb-3">
- <div className="w-10 h-10 rounded-md bg-muted/10 flex items-center justify-center">
- <Activity className="text-foreground" size={20} />
- </div>
- <div>
- <h1 className="text-2xl font-semibold text-foreground">Options Market Making</h1>
- <p className="text-sm text-muted-foreground">
- How market makers quote, manage inventory, detect adverse selection, and generate profits
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2">
- {[
- { label: "Bid-Ask Mechanics", color: "border-border text-foreground" },
- { label: "Greeks Risk", color: "border-amber-800 text-amber-400" },
- { label: "VPIN / Flow Toxicity", color: "border-rose-800 text-rose-400" },
- { label: "PFOF & Rebates", color: "border-border text-foreground" },
- ].map((tag) => (
- <Badge key={tag.label} variant="outline" className={cn("text-xs text-muted-foreground", tag.color)}>
- {tag.label}
- </Badge>
- ))}
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Options Market Making</h1>
+ <p className="text-sm text-muted-foreground mb-6">How market makers quote, manage inventory, detect adverse selection, and generate profits</p>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
  {tabs.map((tab) => (
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
  {tab.label}
  </TabsTrigger>

@@ -38,7 +38,7 @@ import {
  CardHeader,
  CardTitle,
 } from "@/components/ui/card";
-import { motion } from "framer-motion";
+// framer-motion removed
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -548,11 +548,7 @@ function PipelineTab() {
  </button>
 
  {expanded && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- className="border-t border-border bg-card/50"
+ <div className="border-t border-border bg-card/50"
  >
  <div className="px-4 py-4 grid grid-cols-2 md:grid-cols-4 gap-4">
  <div>
@@ -590,7 +586,7 @@ function PipelineTab() {
  <p className="text-sm font-medium text-foreground">{deal.sector}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
  </div>
  );
@@ -1087,10 +1083,7 @@ function CovenantTab() {
  {isExpanded ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
  {isExpanded && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- className="border-t border-border grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border"
+ <div className="border-t border-border grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border"
  >
  <div className="p-4 bg-red-500/5">
  <p className="text-xs font-medium text-red-400 mb-1">Cov-Lite</p>
@@ -1100,7 +1093,7 @@ function CovenantTab() {
  <p className="text-xs font-medium text-emerald-400 mb-1">Full Covenant</p>
  <p className="text-sm text-muted-foreground">{cov.fullCov}</p>
  </div>
- </motion.div>
+ </div>
  )}
  </div>
  );
@@ -1257,51 +1250,38 @@ function LeagueTableTab() {
 
 export default function LoanSyndicationPage() {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="min-h-screen bg-background text-foreground p-4 md:p-4"
- >
- {/* Header */}
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  <div className="mb-6">
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 rounded-lg bg-muted/10">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Loan Syndication &amp; Leveraged Finance</h1>
+ <p className="text-sm text-muted-foreground">Primary syndication pipeline, book building, pricing grids, secondary trading and covenant analysis.</p>
  </div>
- <h1 className="text-lg font-medium text-foreground">Loan Syndication & Leveraged Finance</h1>
- </div>
- <p className="text-sm text-muted-foreground ml-12">
- Primary syndication pipeline, book building, pricing grids, secondary trading and covenant analysis.
- </p>
- </div>
-
- {/* Top KPIs — Hero */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
+ <div className="flex flex-wrap gap-4 mb-6">
  <StatCard icon={DollarSign} label="Pipeline Value" value="$8.1B" sub="5 active deals" color="text-foreground" />
  <StatCard icon={TrendingUp} label="Avg Leverage" value="4.3x" sub="blended portfolio" color="text-amber-400" />
  <StatCard icon={RefreshCw} label="Book Coverage" value="2.1x" sub="avg oversubscription" color="text-emerald-400" />
  <StatCard icon={Shield} label="Cov-Lite %" value="78%" sub="of new issuance" color="text-foreground" />
  </div>
+ <div className="border-t border-border mb-6" />
 
- {/* Tabs */}
  <Tabs defaultValue="pipeline">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
- <TabsTrigger value="pipeline" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="pipeline" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Pipeline
  </TabsTrigger>
- <TabsTrigger value="bookbuilding" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="bookbuilding" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Book Building
  </TabsTrigger>
- <TabsTrigger value="pricing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="pricing" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Pricing Grid
  </TabsTrigger>
- <TabsTrigger value="secondary" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="secondary" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Secondary
  </TabsTrigger>
- <TabsTrigger value="covenants" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="covenants" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Covenants
  </TabsTrigger>
- <TabsTrigger value="league" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="league" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  League Table
  </TabsTrigger>
  </TabsList>
@@ -1330,6 +1310,7 @@ export default function LoanSyndicationPage() {
  <LeagueTableTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
+ </div>
  );
 }

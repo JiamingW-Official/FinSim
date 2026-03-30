@@ -682,61 +682,44 @@ export default function CleantechPage() {
 
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* HERO Header */}
- <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 bg-emerald-500/5 rounded-lg">
- <Leaf className="w-5 h-5 text-emerald-400" />
- </div>
- <h1 className="text-xl font-semibold text-foreground">Clean Technology & Energy Transition</h1>
- </div>
- <p className="text-muted-foreground text-sm ml-12">
- Renewable capacity, cost trajectories, investment vehicles, and policy landscape
- </p>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Clean Technology & Energy Transition</h1>
+ <p className="text-sm text-muted-foreground mb-6">Renewable capacity, cost trajectories, investment vehicles, and policy landscape</p>
 
  {/* KPI Bar */}
- <div
- className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"
- >
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  {[
- { label: "Global Solar GW", value: capacityLatest.solar.toLocaleString(), icon: Sun, color: "text-amber-400", sub: `+${solarGrowth}% since 2015` },
- { label: "Global Wind GW", value: capacityLatest.wind.toLocaleString(), icon: Wind, color: "text-primary", sub: `+${windGrowth}% since 2015` },
- { label: "Storage GW (Grid)", value: capacityLatest.storage.toLocaleString(), icon: Battery, color: "text-emerald-400", sub: "Grid-scale deployed" },
- { label: "Onshore Wind LCOE", value: "$26/MWh", icon: TrendingDown, color: "text-orange-400", sub: "Cheapest energy ever" },
+ { label: "Global Solar GW", value: capacityLatest.solar.toLocaleString(), sub: `+${solarGrowth}% since 2015` },
+ { label: "Global Wind GW", value: capacityLatest.wind.toLocaleString(), sub: `+${windGrowth}% since 2015` },
+ { label: "Storage GW (Grid)", value: capacityLatest.storage.toLocaleString(), sub: "Grid-scale deployed" },
+ { label: "Onshore Wind LCOE", value: "$26/MWh", sub: "Cheapest energy ever" },
  ].map((kpi) => (
- <div key={kpi.label}>
- <Card className="bg-card border-border">
- <CardContent className="p-4">
- <div className="flex items-center justify-between mb-2">
- <span className="text-muted-foreground text-xs">{kpi.label}</span>
- <kpi.icon className={`w-4 h-4 ${kpi.color}`} />
- </div>
- <div className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</div>
- <div className="text-muted-foreground text-xs mt-1">{kpi.sub}</div>
- </CardContent>
- </Card>
+ <div key={kpi.label} className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{kpi.label}</div>
+ <div className="text-2xl font-mono font-bold mt-1">{kpi.value}</div>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mt-1">{kpi.sub}</div>
  </div>
  ))}
  </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto">
- <TabsTrigger value="overview" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground text-xs">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
+ <TabsTrigger value="overview" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Energy Transition
  </TabsTrigger>
- <TabsTrigger value="solarwind" className="data-[state=active]:bg-amber-600 data-[state=active]:text-foreground text-xs">
+ <TabsTrigger value="solarwind" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Solar & Wind
  </TabsTrigger>
- <TabsTrigger value="storage" className="data-[state=active]:bg-green-600 data-[state=active]:text-foreground text-xs">
+ <TabsTrigger value="storage" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Energy Storage
  </TabsTrigger>
- <TabsTrigger value="vehicles" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
+ <TabsTrigger value="vehicles" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Investment Vehicles
  </TabsTrigger>
- <TabsTrigger value="policy" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
+ <TabsTrigger value="policy" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Policy & Subsidies
  </TabsTrigger>
  </TabsList>
@@ -1407,6 +1390,7 @@ export default function CleantechPage() {
  Alpha Deck educational simulation. Data and projections are illustrative, derived from IEA, BloombergNEF, and IRENA
  public reports. Not financial advice. Actual investments involve market risk.
  </span>
+ </div>
  </div>
  </div>
  );

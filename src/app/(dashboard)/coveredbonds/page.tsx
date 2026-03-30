@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Shield,
  Building2,
@@ -144,7 +143,7 @@ function SectionCard({ title, icon, children, className }: {
  <div className={cn("bg-card border border-border rounded-md p-5", className)}>
  <div className="flex items-center gap-2 mb-4">
  <span className="text-foreground">{icon}</span>
- <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+ <h2 className="text-xl font-serif tracking-tight">{title}</h2>
  </div>
  {children}
  </div>
@@ -237,15 +236,9 @@ function StructureTab() {
  <div key={d.type} className="flex items-center gap-3">
  <div className="w-28 text-xs text-muted-foreground shrink-0">{d.type}</div>
  <div className="flex-1 h-6 bg-muted rounded overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${d.pct}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
- className="h-full rounded flex items-center pl-2"
- style={{ backgroundColor: d.color }}
- >
+ <div className="h-full rounded flex items-center pl-2">
  <span className="text-foreground text-xs font-semibold">{d.pct}%</span>
- </motion.div>
+ </div>
  </div>
  <div className="w-16 text-xs text-muted-foreground shrink-0">LTV {d.ltv}</div>
  <div className="w-20 text-right">
@@ -438,15 +431,8 @@ function FrameworksTab() {
  ))}
  </div>
 
- <AnimatePresence>
- {selectedFw && (
- <motion.div
- key={selectedFw.id}
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- transition={{ duration: 0.25 }}
- >
+  {selectedFw && (
+ <div key={selectedFw.id}>
  <div className="bg-card border rounded-md p-5 overflow-hidden" style={{ borderColor: selectedFw.color + "60" }}>
  <div className="flex items-center gap-3 mb-4">
  <span className="text-2xl">{selectedFw.flag}</span>
@@ -472,9 +458,8 @@ function FrameworksTab() {
  </div>
  <p className="text-muted-foreground text-sm leading-relaxed">{selectedFw.notes}</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
 
  {/* Bail-in exemption */}
  <SectionCard title="Bail-in Exemption Mechanics" icon={<Shield size={16} />}>
@@ -829,90 +814,37 @@ export default function CoveredBondsPage() {
  ] as const;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* HERO Header */}
- <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 bg-muted/10 border border-border rounded-lg">
- <Shield size={20} className="text-foreground" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Covered Bonds</h1>
- <p className="text-muted-foreground text-sm">Dual recourse, cover pool mechanics, and European frameworks</p>
- </div>
- </div>
-
- {/* Quick facts strip */}
- <div className="flex flex-wrap gap-2 mt-3">
- {[
- { label: "Market Size", value: "~€3.2tn", color: "text-foreground" },
- { label: "Primary Markets", value: "EU (82%)", color: "text-foreground" },
- { label: "Typical Rating", value: "AAA", color: "text-green-400" },
- { label: "Bail-in", value: "Exempt (BRRD)", color: "text-amber-400" },
- { label: "LCR", value: "Level 1B HQLA", color: "text-muted-foreground" },
- ].map(({ label, value, color }) => (
- <div key={label} className="flex items-center gap-1.5 bg-card border border-border rounded-lg px-3 py-1.5 text-xs text-muted-foreground">
- <span className="text-muted-foreground">{label}:</span>
- <span className={cn("font-medium", color)}>{value}</span>
- </div>
- ))}
- </div>
- </div>
-
- {/* Tabs */}
- <Tabs defaultValue="structure" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- {tabs.map((tab) => (
- <TabsTrigger
- key={tab.id}
- value={tab.id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
- >
- {tab.label}
- </TabsTrigger>
- ))}
- </TabsList>
-
- <TabsContent value="structure" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
- >
- <StructureTab />
- </motion.div>
- </TabsContent>
-
- <TabsContent value="frameworks" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
- >
- <FrameworksTab />
- </motion.div>
- </TabsContent>
-
- <TabsContent value="market" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
- >
- <MarketDataTab />
- </motion.div>
- </TabsContent>
-
- <TabsContent value="comparison" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
- >
- <ABSComparisonTab />
- </motion.div>
- </TabsContent>
- </Tabs>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+   <h1 className="text-3xl font-bold tracking-tight mb-1">Covered Bonds</h1>
+   <p className="text-sm text-muted-foreground">Dual recourse, cover pool mechanics, and European frameworks</p>
+   <div className="border-t border-border my-6" />
+   <Tabs defaultValue="structure" className="flex-1 flex flex-col">
+    <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+     {tabs.map((tab) => (
+      <TabsTrigger
+       key={tab.id}
+       value={tab.id}
+       className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
+      >
+       {tab.label}
+      </TabsTrigger>
+     ))}
+    </TabsList>
+    <TabsContent value="structure" className="data-[state=inactive]:hidden mt-6">
+     <StructureTab />
+    </TabsContent>
+    <TabsContent value="frameworks" className="data-[state=inactive]:hidden mt-6">
+     <FrameworksTab />
+    </TabsContent>
+    <TabsContent value="market" className="data-[state=inactive]:hidden mt-6">
+     <MarketDataTab />
+    </TabsContent>
+    <TabsContent value="comparison" className="data-[state=inactive]:hidden mt-6">
+     <ABSComparisonTab />
+    </TabsContent>
+   </Tabs>
+  </div>
  </div>
  );
 }

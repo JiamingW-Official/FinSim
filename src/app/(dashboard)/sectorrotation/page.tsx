@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -518,13 +517,8 @@ function BusinessCycleClock() {
 
  {/* Phase details */}
  <div className="space-y-4">
- <AnimatePresence mode="wait">
- <motion.div
+ <div
  key={activePhase}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="space-y-4"
  >
  <Card className="bg-card border-border" style={{ borderLeftColor: activeData.color, borderLeftWidth: 3 }}>
@@ -581,8 +575,7 @@ function BusinessCycleClock() {
  </p>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
  </div>
  </div>
 
@@ -862,7 +855,7 @@ function RotationSignals() {
  {ROTATION_SIGNALS.map((sig) => {
  const isOpen = expanded === sig.id;
  return (
- <motion.div key={sig.id} layout>
+ <div key={sig.id}>
  <Card
  className={cn(
  "bg-card border-border cursor-pointer transition-colors hover:border-muted-foreground",
@@ -885,31 +878,23 @@ function RotationSignals() {
  </div>
  <p className="text-xs text-muted-foreground italic">{sig.implication}</p>
 
- <AnimatePresence>
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="pt-2 border-t border-border mt-1">
  <div className="flex items-start gap-2 text-xs text-muted-foreground">
  <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-primary" />
  <p>{sig.detail}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
 
  <p className="text-xs text-muted-foreground">
  {isOpen ? "Click to collapse" : "Click for analysis"}
  </p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -1413,16 +1398,17 @@ function ETFImplementation() {
 
 export default function SectorRotationPage() {
  return (
- <div className="space-y-4 p-4">
- {/* Page header */}
- <div className="flex items-start justify-between gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="flex items-start justify-between gap-4 mb-1">
  <div>
- <h1 className="text-xl font-semibold text-foreground">Sector Rotation Strategy</h1>
- <p className="text-sm text-muted-foreground mt-1">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Sector Rotation Strategy</h1>
+ <p className="text-sm text-muted-foreground">
  Business cycle investing — allocate to sectors and factors that historically outperform each economic phase
  </p>
  </div>
- <div className="flex items-center gap-2">
+ <div className="flex items-center gap-2 shrink-0">
  <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30 text-sm px-3 py-1">
  Phase: {CURRENT_PHASE}
  </Badge>
@@ -1433,8 +1419,10 @@ export default function SectorRotationPage() {
  </div>
  </div>
 
+ <div className="border-t border-border my-6" />
+
  {/* Summary stat chips */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  {[
  { label: "Current Phase", value: CURRENT_PHASE, sub: "Late-cycle", icon: <Clock className="w-4 h-4" />, color: "#f59e0b" },
  { label: "Best Sector", value: "XLV", sub: "Healthcare +4.2% avg", icon: <TrendingUp className="w-4 h-4" />, color: "#10b981" },
@@ -1455,21 +1443,21 @@ export default function SectorRotationPage() {
  </div>
 
  {/* Main tabs */}
- <Tabs defaultValue="clock" className="mt-8 space-y-4">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="clock" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <Tabs defaultValue="clock" className="space-y-4">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="clock" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Business Cycle Clock
  </TabsTrigger>
- <TabsTrigger value="performance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="performance" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Sector Performance
  </TabsTrigger>
- <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="signals" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Rotation Signals
  </TabsTrigger>
- <TabsTrigger value="factors" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="factors" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Factor Rotation
  </TabsTrigger>
- <TabsTrigger value="etf" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="etf" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  ETF Implementation
  </TabsTrigger>
  </TabsList>
@@ -1490,6 +1478,7 @@ export default function SectorRotationPage() {
  <ETFImplementation />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

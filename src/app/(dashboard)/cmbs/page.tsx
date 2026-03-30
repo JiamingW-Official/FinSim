@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Building2,
  TrendingUp,
@@ -261,7 +260,7 @@ function StructureTab() {
  {/* Capital Stack */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
  <div className="bg-muted/60 border border-border rounded-md p-5">
- <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
+ <h3 className="text-xl font-serif tracking-tight mb-4 flex items-center gap-2">
  Capital Stack (8 Tranches)
  </h3>
  <svg viewBox="0 0 200 370" className="w-full max-w-[200px] mx-auto" aria-label="Capital stack">
@@ -277,12 +276,11 @@ function StructureTab() {
  </div>
 
  <div className="space-y-3">
- <AnimatePresence>
- {expanded && (() => {
+  {expanded && (() => {
  const t = TRANCHES.find((x) => x.name === expanded);
  if (!t) return null;
  return (
- <motion.div key={expanded} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-card/80 border rounded-md p-4 space-y-2" style={{ borderColor: t.color + "66" }}>
+ <div key={expanded} className="bg-card/80 border rounded-md p-4 space-y-2">
  <div className="flex items-center justify-between">
  <span className="font-semibold text-sm" style={{ color: t.color }}>{t.name} — {t.rating}</span>
  <button onClick={() => setExpanded(null)} className="text-muted-foreground hover:text-muted-foreground text-xs">✕</button>
@@ -298,10 +296,9 @@ function StructureTab() {
  <div className="font-medium text-foreground">+{t.spread} bps</div>
  </div>
  </div>
- </motion.div>
+ </div>
  );
  })()}
- </AnimatePresence>
 
  <div className="bg-muted/60 border border-border rounded-md p-4 space-y-3">
  <h4 className="text-xs font-medium text-muted-foreground ">Servicer Roles</h4>
@@ -418,7 +415,7 @@ function LoanAnalysisTab() {
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {/* DSCR vs LTV Scatter */}
  <div className="bg-muted/60 border border-border rounded-md p-5">
- <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+ <h3 className="text-xl font-serif tracking-tight mb-3 flex items-center gap-2">
  DSCR vs LTV Scatter
  </h3>
  <svg viewBox={`0 0 ${scatterW} ${scatterH}`} className="w-full h-auto" aria-label="DSCR vs LTV scatter">
@@ -467,7 +464,7 @@ function LoanAnalysisTab() {
 
  {/* NOI Stress Test */}
  <div className="bg-muted/60 border border-border rounded-md p-5 space-y-4">
- <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
+ <h3 className="text-xl font-serif tracking-tight flex items-center gap-2">
  NOI Stress Testing — Occupancy
  </h3>
  <div className="space-y-2">
@@ -510,7 +507,7 @@ function LoanAnalysisTab() {
 
  {/* Property Sector Heatmap */}
  <div className="bg-muted/60 border border-border rounded-md p-5">
- <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
+ <h3 className="text-xl font-serif tracking-tight mb-4 flex items-center gap-2">
  Property Sector Heatmap
  </h3>
  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -583,7 +580,7 @@ function PerformanceTab() {
 
  {/* Delinquency bar chart */}
  <div className="bg-muted/60 border border-border rounded-md p-5">
- <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
+ <h3 className="text-xl font-serif tracking-tight mb-4 flex items-center gap-2">
  12-Month Delinquency Rate (30+ Days)
  </h3>
  <svg viewBox={`0 0 ${chartW} ${chartH + 20}`} className="w-full h-auto" aria-label="Delinquency bar chart">
@@ -622,7 +619,7 @@ function PerformanceTab() {
  {/* Vintage loss rates + Prepayment speeds */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  <div className="bg-muted/60 border border-border rounded-md p-5">
- <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
+ <h3 className="text-xl font-serif tracking-tight mb-4 flex items-center gap-2">
  Realized Loss Rate by Vintage
  </h3>
  <div className="space-y-2.5">
@@ -645,7 +642,7 @@ function PerformanceTab() {
  </div>
 
  <div className="bg-muted/60 border border-border rounded-md p-5">
- <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
+ <h3 className="text-xl font-serif tracking-tight mb-4 flex items-center gap-2">
  Prepayment Speeds by Property Type (CPR%)
  </h3>
  <div className="space-y-2.5">
@@ -728,7 +725,7 @@ function TradingTab() {
 
  {/* CMBX Spread Chart */}
  <div className="bg-muted/60 border border-border rounded-md p-5">
- <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
+ <h3 className="text-xl font-serif tracking-tight mb-4 flex items-center gap-2">
  CMBX Index Spreads — 12 Month (IG vs HY)
  </h3>
  <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full h-auto" aria-label="CMBX spread chart">
@@ -765,7 +762,7 @@ function TradingTab() {
  {/* Bid/Ask liquidity table + Extension risk */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  <div className="bg-muted/60 border border-border rounded-md p-5">
- <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
+ <h3 className="text-xl font-serif tracking-tight mb-4 flex items-center gap-2">
  Bid/Ask Liquidity by Tranche
  </h3>
  <table className="w-full text-xs text-muted-foreground">
@@ -794,7 +791,7 @@ function TradingTab() {
  </div>
 
  <div className="bg-muted/60 border border-border rounded-md p-5 space-y-4">
- <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
+ <h3 className="text-xl font-serif tracking-tight flex items-center gap-2">
  Extension Risk Analysis — Office Sector
  </h3>
  <div className="space-y-3">
@@ -833,15 +830,8 @@ function TradingTab() {
  </span>
  {showWorkflow ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
- <AnimatePresence>
- {showWorkflow && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+  {showWorkflow && (
+ <div className="overflow-hidden">
  <div className="px-5 pb-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
  {[
  { step: "1. Pre-Trade", items: ["Pull Bloomberg CMBX screens", "Check TREPP watchlist updates", "Review S&P/Fitch servicer reports", "Size position vs. risk limits"], color: "border-border text-foreground" },
@@ -862,9 +852,8 @@ function TradingTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  </div>
  );
@@ -873,70 +862,44 @@ function TradingTab() {
 // ── Page ─────────────────────────────────────────────────────────────────────
 export default function CMBSPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 lg:p-8">
- {/* HERO Header */}
- <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-start gap-4">
- <div className="p-3 rounded-md bg-muted/10 border border-border">
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Commercial Mortgage-Backed Securities</h1>
- <p className="text-sm text-muted-foreground mt-1">
- CMBS structure, DSCR/LTV analysis, property sectors, IO periods, and CMBS trading mechanics
- </p>
- <div className="flex flex-wrap gap-2 mt-2">
- <InfoBadge text="Structured Credit" color="blue" />
- <InfoBadge text="CRE Finance" color="purple" />
- <InfoBadge text="Fixed Income" color="green" />
- <InfoBadge text="CMBX Index" color="amber" />
- </div>
- </div>
- </div>
- </motion.div>
-
- {/* Tabs */}
- <Tabs defaultValue="structure">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
- {[
- { value: "structure", label: "CMBS Structure" },
- { value: "loans", label: "Loan Analysis" },
- { value: "performance", label: "Performance" },
- { value: "trading", label: "Trading & Spreads" },
- ].map(({ value, label }) => (
- <TabsTrigger
- key={value}
- value={value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
- >
- {label}
- </TabsTrigger>
- ))}
- </TabsList>
-
- <TabsContent value="structure" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
- <StructureTab />
- </motion.div>
- </TabsContent>
-
- <TabsContent value="loans" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
- <LoanAnalysisTab />
- </motion.div>
- </TabsContent>
-
- <TabsContent value="performance" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
- <PerformanceTab />
- </motion.div>
- </TabsContent>
-
- <TabsContent value="trading" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
- <TradingTab />
- </motion.div>
- </TabsContent>
- </Tabs>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+   <h1 className="text-3xl font-bold tracking-tight mb-1">Commercial Mortgage-Backed Securities</h1>
+   <p className="text-sm text-muted-foreground">
+    CMBS structure, DSCR/LTV analysis, property sectors, IO periods, and CMBS trading mechanics
+   </p>
+   <div className="border-t border-border my-6" />
+   <Tabs defaultValue="structure" className="flex-1 flex flex-col">
+    <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+     {[
+      { value: "structure", label: "CMBS Structure" },
+      { value: "loans", label: "Loan Analysis" },
+      { value: "performance", label: "Performance" },
+      { value: "trading", label: "Trading & Spreads" },
+     ].map(({ value, label }) => (
+      <TabsTrigger
+       key={value}
+       value={value}
+       className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
+      >
+       {label}
+      </TabsTrigger>
+     ))}
+    </TabsList>
+    <TabsContent value="structure" className="data-[state=inactive]:hidden mt-6">
+     <StructureTab />
+    </TabsContent>
+    <TabsContent value="loans" className="data-[state=inactive]:hidden mt-6">
+     <LoanAnalysisTab />
+    </TabsContent>
+    <TabsContent value="performance" className="data-[state=inactive]:hidden mt-6">
+     <PerformanceTab />
+    </TabsContent>
+    <TabsContent value="trading" className="data-[state=inactive]:hidden mt-6">
+     <TradingTab />
+    </TabsContent>
+   </Tabs>
+  </div>
  </div>
  );
 }

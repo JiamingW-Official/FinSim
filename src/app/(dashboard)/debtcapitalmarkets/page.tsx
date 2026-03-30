@@ -24,7 +24,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
 
@@ -425,41 +424,19 @@ export default function DebtCapitalMarketsPage() {
  hySpreadChg: +12,
  }), []);
 
- const fadeUp = {
- initial: { opacity: 0, y: 20 },
- animate: { opacity: 1, y: 0 },
- transition: { duration: 0.4 },
- };
-
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col space-y-6">
  {/* Header */}
- <motion.div {...fadeUp}>
- <div className="flex items-start justify-between gap-4 flex-wrap">
  <div>
- <h1 className="text-lg font-medium text-foreground flex items-center gap-2">
- <Building2 size={24} className="text-muted-foreground/50" />
- Debt Capital Markets
- </h1>
- <p className="text-muted-foreground text-sm mt-1">
- Corporate bond issuance, syndicate mechanics, pricing dynamics & league tables
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Debt Capital Markets</h1>
+ <p className="text-sm text-muted-foreground">
+ Corporate bond issuance, syndicate mechanics, pricing dynamics &amp; league tables
  </p>
  </div>
- <div className="flex items-center gap-2">
- <Badge variant="outline" className="text-xs text-muted-foreground border-border">
- <div className="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5 animate-pulse" />
- Live Market
- </Badge>
- <Badge variant="outline" className="text-xs text-muted-foreground border-border">
- YTD 2026
- </Badge>
- </div>
- </div>
- </motion.div>
 
  {/* Key Metrics — Hero */}
- <motion.div {...fadeUp} transition={{ delay: 0.05, duration: 0.4 }}>
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+ <div className="rounded-lg border border-border bg-card p-5 grid grid-cols-2 md:grid-cols-4 gap-3">
  <MetricChip
  label="IG Credit Spread (bps)"
  value={`${metrics.igSpread}`}
@@ -489,22 +466,20 @@ export default function DebtCapitalMarketsPage() {
  icon={<DollarSign size={16} />}
  />
  </div>
- </motion.div>
 
  {/* Tabs */}
- <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.4 }} className="mt-8">
  <Tabs defaultValue="issuance" className="space-y-4">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="issuance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="issuance" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  <BarChart3 size={13} /> New Issuance
  </TabsTrigger>
- <TabsTrigger value="pricing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="pricing" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  <Clock size={13} /> Pricing Process
  </TabsTrigger>
- <TabsTrigger value="bookbuild" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="bookbuild" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  <BookOpen size={13} /> Book Building
  </TabsTrigger>
- <TabsTrigger value="leagues" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="leagues" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  <Award size={13} /> League Tables
  </TabsTrigger>
  </TabsList>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -843,29 +842,16 @@ export default function RiskIntelPage() {
  const corrExplanation = corrKey ? CORR_EXPLANATIONS[corrKey] : null;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 lg:p-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Page header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 bg-red-500/5 rounded-lg">
- </div>
- <h1 className="text-2xl font-semibold tracking-tight">Portfolio Risk Intelligence</h1>
- <Badge variant="outline" className="text-xs text-muted-foreground border-border ml-auto">
- 10-position portfolio · $100k notional
- </Badge>
- </div>
- <p className="text-muted-foreground text-sm ml-11">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Portfolio Risk Intelligence</h1>
+ <p className="text-sm text-muted-foreground mb-6">
  Comprehensive risk analytics: concentration, correlation, drawdown, stress testing &amp; position sizing
  </p>
- </motion.div>
 
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {[
  { id: "overview", label: "Risk Overview" },
  { id: "correlation",label: "Correlation" },
@@ -876,7 +862,7 @@ export default function RiskIntelPage() {
  <TabsTrigger
  key={id}
  value={id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
  {label}
  </TabsTrigger>
@@ -887,12 +873,7 @@ export default function RiskIntelPage() {
  TAB 1: Risk Overview
  ================================================================ */}
  <TabsContent value="overview" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  {/* Overall score banner */}
  <Card className="bg-card border-border border-l-4 border-l-primary">
  <CardContent className="p-4">
@@ -1175,12 +1156,7 @@ export default function RiskIntelPage() {
  TAB 2: Correlation Matrix
  ================================================================ */}
  <TabsContent value="correlation" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="space-y-5"
- >
+ <div className="space-y-5">
  {/* Controls */}
  <div className="flex flex-wrap items-center gap-3">
  <Button
@@ -1276,15 +1252,8 @@ export default function RiskIntelPage() {
  </CardTitle>
  </CardHeader>
  <CardContent className="px-4 pb-4">
- <AnimatePresence mode="wait">
  {selectedCell ? (
- <motion.div
- key={`${selectedCell.i}-${selectedCell.j}`}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -4 }}
- className="space-y-2"
- >
+ <div className="space-y-2">
  <div className="flex items-center gap-2">
  <Badge className="bg-muted text-foreground border-border font-mono text-xs">
  {POSITIONS[selectedCell.i].ticker}
@@ -1317,18 +1286,12 @@ export default function RiskIntelPage() {
  During crisis: correlation spikes as all risk assets fall together. Safe havens (GLD, TLT) maintain or deepen negative correlations.
  </div>
  )}
- </motion.div>
+ </div>
  ) : (
- <motion.p
- key="placeholder"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- className="text-xs text-muted-foreground italic"
- >
+ <p className="text-xs text-muted-foreground italic">
  Click any off-diagonal cell in the heatmap to see a detailed explanation of why these two positions are correlated.
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
  </CardContent>
  </Card>
 
@@ -1396,19 +1359,14 @@ export default function RiskIntelPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ================================================================
  TAB 3: Drawdown Analysis
  ================================================================ */}
  <TabsContent value="drawdown" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="space-y-5"
- >
+ <div className="space-y-5">
  {/* Stats row */}
  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
  {[

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Droplets,
  TrendingUp,
@@ -134,11 +133,6 @@ function MetricCard({
  delay: number;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay, duration: 0.4 }}
- >
  <Card className="border-border bg-card">
  <CardContent className="pt-5 pb-4">
  <div className="flex items-start gap-3">
@@ -153,7 +147,6 @@ function MetricCard({
  </div>
  </CardContent>
  </Card>
- </motion.div>
  );
 }
 
@@ -948,37 +941,23 @@ export default function DeFiYieldPage() {
  );
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex flex-col gap-1"
- >
- <div className="flex items-center gap-3">
- <div className="p-2 rounded-md bg-primary/10">
- <Droplets className="w-6 h-6 text-primary" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">DeFi Yield Strategies</h1>
- <p className="text-sm text-muted-foreground">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">DeFi Yield Strategies</h1>
+ <p className="text-sm text-muted-foreground mb-6">
  Liquidity mining, lending protocols, yield aggregators — maximize returns in decentralized finance
  </p>
- </div>
- </div>
- </motion.div>
 
- {/* Key Metrics — Hero */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+ {/* Key Metrics */}
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
  <MetricCard
  icon={DollarSign}
  label="Total Value Locked"
  value={`$${metrics.totalTVL}B`}
  sub="Across all DeFi protocols"
  color="bg-primary/10 text-primary"
- delay={0.05}
+ delay={0}
  />
  <MetricCard
  icon={Percent}
@@ -986,7 +965,7 @@ export default function DeFiYieldPage() {
  value={`${metrics.stablecoinAPY}%`}
  sub="USDC/DAI lending pools"
  color="bg-emerald-400/10 text-emerald-400"
- delay={0.1}
+ delay={0}
  />
  <MetricCard
  icon={Lock}
@@ -994,7 +973,7 @@ export default function DeFiYieldPage() {
  value={`${metrics.ethStakingYield}%`}
  sub="Lido / native staking"
  color="bg-primary/10 text-primary"
- delay={0.15}
+ delay={0}
  />
  <MetricCard
  icon={Zap}
@@ -1002,42 +981,34 @@ export default function DeFiYieldPage() {
  value="22% APY"
  sub={metrics.bestOpportunity}
  color="bg-yellow-400/10 text-yellow-400"
- delay={0.2}
+ delay={0}
  />
  </div>
 
  {/* Alert bar */}
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.25 }}
- className="mt-8 flex items-center gap-2 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-4 py-2.5"
- >
+ <div className="flex items-center gap-2 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-4 py-2.5 mb-6">
  <AlertTriangle className="w-4 h-4 text-yellow-400 shrink-0" />
  <p className="text-xs text-yellow-200/80">
  <span className="font-medium text-yellow-400">Risk Reminder:</span> DeFi protocols carry smart contract risk, impermanent loss, and regulatory uncertainty. Never invest more than you can afford to lose.
  </p>
- </motion.div>
+ </div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Main Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.3 }}
- >
  <Tabs defaultValue="protocols">
- <TabsList className="mb-4">
- <TabsTrigger value="protocols" className="flex items-center gap-1.5">
- <Layers className="w-3.5 h-3.5" /> Protocols
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-4">
+ <TabsTrigger value="protocols" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Protocols
  </TabsTrigger>
- <TabsTrigger value="strategies" className="flex items-center gap-1.5">
- <TrendingUp className="w-3.5 h-3.5" /> Strategies
+ <TabsTrigger value="strategies" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Strategies
  </TabsTrigger>
- <TabsTrigger value="risk" className="flex items-center gap-1.5">
- <Shield className="w-3.5 h-3.5" /> Risk Analysis
+ <TabsTrigger value="risk" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Risk Analysis
  </TabsTrigger>
- <TabsTrigger value="calculator" className="flex items-center gap-1.5">
- <Calculator className="w-3.5 h-3.5" /> Yield Calculator
+ <TabsTrigger value="calculator" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Yield Calculator
  </TabsTrigger>
  </TabsList>
 
@@ -1057,7 +1028,6 @@ export default function DeFiYieldPage() {
  <YieldCalculatorTab />
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  </div>
  );

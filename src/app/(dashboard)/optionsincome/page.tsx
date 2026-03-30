@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
@@ -249,7 +248,7 @@ function CoveredCallTab() {
  }, [spotPrice, K, premium, shares]);
 
  return (
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
+ <div className="space-y-5">
  <InfoBox>
  A <strong>Covered Call</strong> means you own 100 shares and sell a call option against them. You collect premium
  upfront, capping your upside at the strike price but reducing your cost basis.
@@ -325,7 +324,7 @@ function CoveredCallTab() {
  </ul>
  </div>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -360,7 +359,7 @@ function CashSecuredPutTab() {
  }, [spotPrice, K, premium]);
 
  return (
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
+ <div className="space-y-5">
  <InfoBox>
  A <strong>Cash-Secured Put</strong> sells a put option while holding enough cash to buy 100 shares if assigned.
  Part of the <strong>Wheel Strategy</strong>: CSP → assignment → Covered Call → repeat.
@@ -438,7 +437,7 @@ function CashSecuredPutTab() {
  </ul>
  </div>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -492,7 +491,7 @@ function IronCondorTab() {
  }, [spotPrice, longPutK, shortPutK, shortCallK, longCallK, netCredit]);
 
  return (
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
+ <div className="space-y-5">
  <InfoBox>
  An <strong>Iron Condor</strong> sells an OTM put spread + OTM call spread. You profit if the stock stays
  within a range, collecting both premiums as credit. Defined risk on both sides.
@@ -591,7 +590,7 @@ function IronCondorTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -654,7 +653,7 @@ function CalendarSpreadTab() {
  }, [spotPrice, K, frontPrem, backPrem, frontDte, backDte, sigma2, isCall]);
 
  return (
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
+ <div className="space-y-5">
  <InfoBox>
  A <strong>Calendar Spread</strong> sells a near-term option and buys a longer-dated option at the same strike.
  You profit from the front month decaying faster (theta) and IV differences between months (contango).
@@ -763,7 +762,7 @@ function CalendarSpreadTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -890,7 +889,7 @@ function StrategyComparisonTab() {
  ];
 
  return (
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
+ <div className="space-y-5">
  <InfoBox>
  Compare annualized yields, probability of profit, and risk profiles across all four income strategies at
  different IV levels. Higher IV = fatter premiums but also larger expected moves.
@@ -933,11 +932,8 @@ function StrategyComparisonTab() {
  </thead>
  <tbody>
  {strategies.map((s, i) => (
- <motion.tr
+ <tr
  key={s.name}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.05 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-4 py-2.5 font-medium text-foreground">{s.name}</td>
@@ -963,7 +959,7 @@ function StrategyComparisonTab() {
  {s.bestFor}
  </Badge>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -973,11 +969,8 @@ function StrategyComparisonTab() {
  {/* Greeks Summary */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  {strategies.map((s, i) => (
- <motion.div
+ <div
  key={s.name}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.07 }}
  className="rounded-lg border border-border bg-card p-4"
  >
  <div className="text-sm font-medium text-foreground mb-3">{s.name} — Greeks</div>
@@ -994,7 +987,7 @@ function StrategyComparisonTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1037,7 +1030,7 @@ function StrategyComparisonTab() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -1059,31 +1052,24 @@ export default function OptionsIncomePage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="space-y-1">
- <div className="flex items-center gap-3">
- <div className="w-8 h-8 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center">
- <TrendingUp size={16} className="text-green-400" />
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Options Income Strategies</h1>
+ <p className="text-sm text-muted-foreground">Education and simulator for premium-selling strategies</p>
  </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Options Income Strategies</h1>
- <p className="text-sm text-muted-foreground">Education & simulator for premium-selling strategies</p>
- </div>
- </div>
- </motion.div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-0">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {tabs.map((t) => (
  <TabsTrigger
  key={t.id}
  value={t.id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
- <span className="hidden sm:inline">{t.label}</span>
+ {t.label}
  </TabsTrigger>
  ))}
  </TabsList>

@@ -149,7 +149,7 @@ export default function TradePage() {
  return (
  <>
  {/* ── Desktop layout (md+): 3-panel columns ── */}
- <div className="hidden md:flex h-full flex-col">
+ <div className="hidden md:flex h-full flex-col overflow-hidden">
  <TradeShareCard />
  <AlphaBotAlerts />
  <PositionAlerts />
@@ -204,7 +204,7 @@ export default function TradePage() {
  </div>
 
  {/* ── Center: Chart + Controls (chart is king) ── */}
- <div className="flex flex-1 flex-col overflow-hidden">
+ <div className="flex flex-1 flex-col overflow-hidden min-w-0">
  <ChartToolbar data-tutorial="indicators" />
  <IndicatorInfoPanel />
 
@@ -271,10 +271,10 @@ export default function TradePage() {
  Compare
  </TabsTrigger>
  </TabsList>
- <TabsContent value="fundamentals" className="flex-1 overflow-auto mt-0">
+ <TabsContent value="fundamentals" className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden">
  <FundamentalsPanel />
  </TabsContent>
- <TabsContent value="orderbook" className="flex-1 overflow-auto mt-0">
+ <TabsContent value="orderbook" className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden">
  <OrderBookPanel />
  </TabsContent>
  <TabsContent value="compare" className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden">
@@ -286,7 +286,7 @@ export default function TradePage() {
 
  {/* ── Right sidebar (240px): Order Entry + tabs ── */}
  <div
- className="flex flex-col border-l border-border shrink-0"
+ className="flex flex-col border-l border-border shrink-0 overflow-hidden"
  style={{ width: 240 }}
  data-tutorial="order-entry"
  >

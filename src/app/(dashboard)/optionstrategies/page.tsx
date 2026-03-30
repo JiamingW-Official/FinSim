@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
  TrendingUp, TrendingDown, BarChart2, RefreshCw,
@@ -551,13 +550,9 @@ function StrategyBuilderTab() {
  </div>
  </div>
 
- <AnimatePresence>
  {legs.map((leg, idx) => (
- <motion.div
+ <div
  key={leg.id}
- initial={{ opacity: 0, y: -10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, x: -20 }}
  className="bg-foreground/5 border border-border rounded-md p-4 space-y-3"
  >
  <div className="flex items-center justify-between">
@@ -648,9 +643,8 @@ function StrategyBuilderTab() {
  />
  </div>
  </div>
- </motion.div>
+ </div>
  ))}
- </AnimatePresence>
 
  {legs.length === 0 && (
  <div className="text-center py-10 text-muted-foreground text-sm border border-dashed border-border rounded-md">
@@ -671,7 +665,7 @@ function StrategyBuilderTab() {
  </div>
 
  {legs.length > 0 && (
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
+ <div className="space-y-4">
  {/* Stats */}
  <div className="grid grid-cols-3 gap-2">
  <div className="bg-foreground/5 rounded-md p-3 text-center">
@@ -720,7 +714,7 @@ function StrategyBuilderTab() {
  <GreeksPill label="V Vega" value={netGreeks.vega} decimals={2} />
  </div>
  </div>
- </motion.div>
+ </div>
  )}
  </div>
  </div>
@@ -752,8 +746,7 @@ function StrategyCard({ strategy }: { strategy: StrategyInfo }) {
  }, 0);
 
  return (
- <motion.div
- layout
+ <div
  className="bg-foreground/5 border border-border rounded-md overflow-hidden"
  >
  <button
@@ -777,13 +770,8 @@ function StrategyCard({ strategy }: { strategy: StrategyInfo }) {
  </div>
  </button>
 
- <AnimatePresence>
  {expanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 border-t border-border pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -826,10 +814,9 @@ function StrategyCard({ strategy }: { strategy: StrategyInfo }) {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ </div>
  );
 }
 
@@ -855,19 +842,14 @@ function StrategyLibraryTab() {
  </div>
 
  <div className="space-y-3">
- <AnimatePresence mode="wait">
- <motion.div
+ <div
  key={category}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
  className="space-y-3"
  >
  {filtered.map((s) => (
  <StrategyCard key={s.id} strategy={s} />
  ))}
- </motion.div>
- </AnimatePresence>
+ </div>
  </div>
  </div>
  );
@@ -1023,14 +1005,11 @@ function RollingStrategiesTab() {
 
  <div className="space-y-4">
  {scenarios.map((s, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.05 }}
  >
  <RollCard scenario={s} />
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1062,10 +1041,8 @@ function IVCrushViz({ ivBefore, ivAfter }: { ivBefore: number; ivAfter: number }
  <span className="text-red-400 font-medium">-{crushPct.toFixed(0)}% crush</span>
  </div>
  <div className="h-3 bg-foreground/5 rounded-full overflow-hidden">
- <motion.div
- initial={{ width: "100%" }}
- animate={{ width: `${(ivAfter / ivBefore) * 100}%` }}
- transition={{ duration: 1.5, ease: "easeOut" }}
+ <div
+ style={{ width: `${(ivAfter / ivBefore) * 100}%` }}
  className="h-full bg-red-500 rounded-full"
  />
  </div>
@@ -1851,58 +1828,39 @@ export default function OptionsStrategiesPage() {
  const [activeTab, setActiveTab] = useState("builder");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -10 }}
- animate={{ opacity: 1, y: 0 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="w-8 h-8 rounded-lg bg-muted/10 flex items-center justify-center">
- </div>
- <h1 className="text-xl font-medium text-foreground">Options Strategies</h1>
- </div>
- <p className="text-sm text-muted-foreground ml-11">
- Advanced simulator — build positions, explore 20 strategies, master Greeks and portfolio hedging
- </p>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Options Strategies</h1>
+ <p className="text-sm text-muted-foreground mb-6">Advanced simulator — build positions, explore 20 strategies, master Greeks and portfolio hedging</p>
 
- {/* Tab navigation */}
- <div className="flex gap-1 flex-wrap mb-6 bg-foreground/5 rounded-md p-1">
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
  {TABS.map(({ id, label }) => (
- <button
- key={id}
- onClick={() => setActiveTab(id)}
- className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs text-muted-foreground font-medium transition-colors ${
- activeTab === id
- ? "bg-primary text-foreground-foreground"
- : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
- }`}
- >
+ <TabsTrigger key={id} value={id} className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  {label}
- </button>
+ </TabsTrigger>
  ))}
- </div>
-
- {/* Tab Content */}
- <AnimatePresence mode="wait">
- <motion.div
- key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.15 }}
- >
- {activeTab === "builder" && <StrategyBuilderTab />}
- {activeTab === "library" && <StrategyLibraryTab />}
- {activeTab === "rolling" && <RollingStrategiesTab />}
- {activeTab === "earnings" && <EarningsPlaysTab />}
- {activeTab === "hedging" && <PortfolioHedgingTab />}
- {activeTab === "greeks" && <GreekManagementTab />}
- </motion.div>
- </AnimatePresence>
+ </TabsList>
+ <TabsContent value="builder" className="mt-0 data-[state=inactive]:hidden">
+ <StrategyBuilderTab />
+ </TabsContent>
+ <TabsContent value="library" className="mt-0 data-[state=inactive]:hidden">
+ <StrategyLibraryTab />
+ </TabsContent>
+ <TabsContent value="rolling" className="mt-0 data-[state=inactive]:hidden">
+ <RollingStrategiesTab />
+ </TabsContent>
+ <TabsContent value="earnings" className="mt-0 data-[state=inactive]:hidden">
+ <EarningsPlaysTab />
+ </TabsContent>
+ <TabsContent value="hedging" className="mt-0 data-[state=inactive]:hidden">
+ <PortfolioHedgingTab />
+ </TabsContent>
+ <TabsContent value="greeks" className="mt-0 data-[state=inactive]:hidden">
+ <GreekManagementTab />
+ </TabsContent>
+ </Tabs>
  </div>
  </div>
  );

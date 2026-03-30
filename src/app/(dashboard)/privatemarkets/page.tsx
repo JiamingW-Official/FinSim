@@ -26,7 +26,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -1832,9 +1831,8 @@ function PortfolioOptimizer() {
  {/* Allocation bar */}
  <div className="flex h-6 rounded-lg overflow-hidden mt-3 gap-0.5">
  {alloc.map((a) => (
- <motion.div
+ <div
  key={a.name}
- layout
  className="flex items-center justify-center text-xs font-medium text-foreground/80 overflow-hidden"
  style={{
  width: `${a.pct}%`,
@@ -1843,7 +1841,7 @@ function PortfolioOptimizer() {
  }}
  >
  {a.pct >= 5 ? `${a.pct}%` : ""}
- </motion.div>
+ </div>
  ))}
  </div>
  <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
@@ -1895,11 +1893,9 @@ function PortfolioOptimizer() {
  <span className="text-xs text-muted-foreground">{lp.lockup}</span>
  </div>
  <div className="flex-1 h-5 bg-muted/20 rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full bg-primary/70"
- initial={{ width: 0 }}
- animate={{ width: `${(lp.premium / 4.0) * 100}%` }}
- transition={{ duration: 0.6 }}
+ style={{ width: `${(lp.premium / 4.0) * 100}%` }}
  />
  </div>
  <span className="text-xs font-medium text-primary w-14 text-right">
@@ -1974,15 +1970,8 @@ function DDAccordion() {
  )}
  </button>
 
- <AnimatePresence initial={false}>
  {openIdx === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.22 }}
- style={{ overflow: "hidden" }}
- >
+ <div style={{ overflow: "hidden" }}>
  <div className="px-4 pb-4 pt-1 border-t border-border">
  {showRedFlags ? (
  <ul className="space-y-2 mt-2">
@@ -2004,9 +1993,8 @@ function DDAccordion() {
  </ul>
  )}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  ))}
  </div>
@@ -2123,28 +2111,14 @@ export default function PrivateMarketsPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background p-4 md:p-4">
- {/* Page header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 rounded-md bg-primary/10">
- <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Private Markets & Alternatives</h1>
- <p className="text-sm text-muted-foreground">
+ <div className="flex h-full flex-col overflow-y-auto">
+ {/* Hero */}
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Private Markets &amp; Alternatives</h1>
+ <p className="text-sm text-muted-foreground mb-4">
  Private equity, venture capital, real assets, and hedge fund strategies
  </p>
- </div>
- </div>
-
- {/* Summary stats */}
- <div className="flex flex-wrap gap-3 mt-4">
+ <div className="flex flex-wrap gap-3 mb-4">
  <StatChip label="Global PE AUM" value="$5.8T" color="blue" />
  <StatChip label="Global VC AUM" value="$1.1T" color="blue" />
  <StatChip label="Hedge Fund AUM" value="$4.2T" color="green" />
@@ -2152,16 +2126,16 @@ export default function PrivateMarketsPage() {
  <StatChip label="Avg Lockup" value="7-10yr" color="amber" />
  <StatChip label="Min Investment" value="$1M+" color="default" />
  </div>
- </motion.div>
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
  <Tabs defaultValue="pe">
- <TabsList className="flex flex-wrap gap-1 h-auto bg-muted/30 p-1 rounded-md mb-6">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
  {tabs.map((t) => (
  <TabsTrigger
  key={t.value}
  value={t.value}
- className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg px-3 py-1.5"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
  {t.label}
  </TabsTrigger>
@@ -2522,6 +2496,7 @@ export default function PrivateMarketsPage() {
  </div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

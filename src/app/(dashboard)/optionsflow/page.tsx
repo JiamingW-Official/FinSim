@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Activity,
  TrendingUp,
@@ -450,38 +449,17 @@ export default function OptionsFlowPage() {
  const darkPoolVolPct = (15 + (RND[200] * 10)).toFixed(1);
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
 
  {/* ── Header ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="space-y-1"
- >
- <div className="flex items-center gap-3">
- <div className="p-2 rounded-lg bg-muted/10 border border-border">
- <Eye className="w-3.5 h-3.5 text-muted-foreground/50" />
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Options Flow &amp; Dark Pool Tracker</h1>
+ <p className="text-sm text-muted-foreground">Simulated smart money signals — unusual options activity, institutional flow, and sweep orders</p>
  </div>
- <div>
- <h1 className="text-2xl font-semibold tracking-tight">
- Options Flow &amp; Dark Pool Tracker
- </h1>
- <p className="text-sm text-muted-foreground">
- Simulated smart money signals — unusual options activity, institutional flow, and sweep orders
- </p>
- </div>
- </div>
- </motion.div>
 
  {/* ── Key Metrics ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.05 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-4"
- >
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
  {[
  {
  label: "Total Premium Traded",
@@ -519,41 +497,32 @@ export default function OptionsFlowPage() {
  border: "border-sky-500/20",
  sub: "of total market volume",
  },
- ].map((m, i) => (
- <motion.div
- key={m.label}
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35, delay: 0.08 + i * 0.05 }}
- >
+ ].map((m) => (
+ <div key={m.label}>
  <Card className={`border ${m.border} bg-card`}>
  <CardContent className="pt-4 pb-4">
  <div className="flex items-start justify-between">
  <div className="space-y-1">
- <p className="text-xs text-muted-foreground">{m.label}</p>
- <p className={`text-xl font-semibold ${m.color}`}>{m.value}</p>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{m.label}</p>
+ <p className={`text-2xl font-mono font-bold ${m.color}`}>{m.value}</p>
  <p className="text-xs text-muted-foreground">{m.sub}</p>
  </div>
  <div className={`p-2 rounded-lg ${m.bg} ${m.color}`}>{m.icon}</div>
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
- </motion.div>
+ </div>
 
  {/* ── Tabs ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.15 }}
- >
+ <div>
  <Tabs defaultValue="flow">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="flow">Options Flow</TabsTrigger>
- <TabsTrigger value="darkpools">Dark Pools</TabsTrigger>
- <TabsTrigger value="sweeps">Sweep Orders</TabsTrigger>
- <TabsTrigger value="sentiment">Sentiment</TabsTrigger>
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="flow" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Options Flow</TabsTrigger>
+ <TabsTrigger value="darkpools" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Dark Pools</TabsTrigger>
+ <TabsTrigger value="sweeps" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Sweep Orders</TabsTrigger>
+ <TabsTrigger value="sentiment" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Sentiment</TabsTrigger>
  </TabsList>
 
  {/* ── Options Flow Tab ── */}

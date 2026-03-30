@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Activity,
  BarChart3,
@@ -491,11 +490,6 @@ const STABLECOINS = [
 
 // ── Main page ──────────────────────────────────────────────────────────────────
 
-const fadeIn = {
- hidden: { opacity: 0, y: 16 },
- visible: { opacity: 1, y: 0 },
-};
-
 export default function OnchainPage() {
  const [activeTab, setActiveTab] = useState("network");
 
@@ -531,46 +525,30 @@ export default function OnchainPage() {
  const netFlow = exchangeInflow - exchangeOutflow;
 
  return (
- <div className="flex flex-col gap-3 p-4 min-h-screen bg-background text-foreground">
- {/* Header */}
- <motion.div
- initial="hidden"
- animate="visible"
- variants={fadeIn}
- transition={{ duration: 0.4 }}
- className="flex items-center justify-between"
- >
- <div>
- <h1 className="text-lg font-medium text-foreground flex items-center gap-2">
- <Network className="w-6 h-6 text-indigo-400" />
- On-Chain Analytics
- </h1>
- <p className="text-sm text-muted-foreground mt-1">
- Blockchain intelligence — BTC &amp; ETH network data, DeFi metrics, miner &amp; validator health
- </p>
- </div>
- <div className="flex items-center gap-2">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="flex items-start justify-between mb-1">
+ <h1 className="text-3xl font-bold tracking-tight">On-Chain Analytics</h1>
  <Badge variant="outline" className="text-emerald-400 border-emerald-800 bg-emerald-900/20 text-xs">
  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 inline-block" />
  Live · 28 Mar 2026
  </Badge>
  </div>
- </motion.div>
+ <p className="text-sm text-muted-foreground mb-6">
+ Blockchain intelligence — BTC &amp; ETH network data, DeFi metrics, miner &amp; validator health
+ </p>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <motion.div
- initial="hidden"
- animate="visible"
- variants={fadeIn}
- transition={{ duration: 0.4, delay: 0.1 }}
- >
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="network" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Network Health</TabsTrigger>
- <TabsTrigger value="holders" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Holder Analysis</TabsTrigger>
- <TabsTrigger value="defi" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">DeFi Metrics</TabsTrigger>
- <TabsTrigger value="mining" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Mining &amp; Validators</TabsTrigger>
- <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Market Signals</TabsTrigger>
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="network" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Network Health</TabsTrigger>
+ <TabsTrigger value="holders" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Holder Analysis</TabsTrigger>
+ <TabsTrigger value="defi" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">DeFi Metrics</TabsTrigger>
+ <TabsTrigger value="mining" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Mining &amp; Validators</TabsTrigger>
+ <TabsTrigger value="signals" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Market Signals</TabsTrigger>
  </TabsList>
 
  {/* ── Tab 1: Network Health ─────────────────────────────────────────── */}
@@ -1343,7 +1321,7 @@ export default function OnchainPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

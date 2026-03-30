@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  DollarSign,
  TrendingUp,
@@ -288,20 +287,13 @@ function LPLedTab() {
  />
  </div>
  <p className="text-xs text-muted-foreground">{r.desc}</p>
- <AnimatePresence>
  {expandedSeller === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <p className="mt-2 text-xs text-emerald-300 border-t border-border pt-2">
  Example: {r.example}
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </button>
  ))}
  </div>
@@ -723,14 +715,8 @@ function GPLedTab() {
  Multi Asset
  </button>
  </div>
- <AnimatePresence mode="wait">
  {selectedCV === "single" ? (
- <motion.div
- key="single"
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
- >
+ <div>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  <div>
  <p className="text-xs text-muted-foreground mb-3">
@@ -759,14 +745,9 @@ function GPLedTab() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  ) : (
- <motion.div
- key="multi"
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
- >
+ <div>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  <div>
  <p className="text-xs text-muted-foreground mb-3">
@@ -798,9 +779,8 @@ function GPLedTab() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
 
  {/* Preferred Equity */}
@@ -1014,21 +994,14 @@ function NAVFinancingTab() {
  <InfoPill text="Use case" color={u.color} />
  </div>
  <p className="text-xs text-muted-foreground">{u.desc}</p>
- <AnimatePresence>
  {expandedUseCase === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="mt-2 rounded bg-rose-900/20 border border-rose-700/30 p-2">
  <p className="text-xs text-rose-300 font-medium mb-1">Key Risk</p>
  <p className="text-xs text-muted-foreground">{u.risk}</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </button>
  ))}
  </div>
@@ -1643,40 +1616,15 @@ function MarketDynamicsTab() {
 
 export default function PESecondariesPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-muted/60 border border-border">
- <Repeat className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Private Equity Secondaries</h1>
- <p className="text-sm text-muted-foreground">
- LP-led transactions, GP-led continuation vehicles, NAV financing &amp; market dynamics
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- <InfoPill text="$130B+ Annual Volume" color="violet" />
- <InfoPill text="LP-Led & GP-Led" color="blue" />
- <InfoPill text="NAV Financing" color="emerald" />
- <InfoPill text="Liquidity Solution" color="amber" />
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Private Equity Secondaries</h1>
+ <p className="text-sm text-muted-foreground">LP-led transactions, GP-led continuation vehicles, NAV financing &amp; market dynamics</p>
+ <div className="border-t border-border my-6" />
 
- {/* Overview strip */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.1 }}
- className="rounded-md border border-border border-l-4 border-l-primary bg-muted/30 p-6 mb-6"
- >
+ {/* Overview */}
+ <div className="rounded-lg border border-border bg-muted/30 p-5 mb-6">
  <div className="flex items-start gap-2">
  <Info className="w-3.5 h-3.5 text-muted-foreground/50 flex-shrink-0 mt-0.5" />
  <div className="text-xs text-muted-foreground space-y-1">
@@ -1688,68 +1636,42 @@ export default function PESecondariesPage() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="lpled">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- {[
- { value: "lpled", label: "LP-Led Secondaries", icon: <DollarSign className="w-3.5 h-3.5" /> },
- { value: "gpled", label: "GP-Led Secondaries", icon: <Layers className="w-3.5 h-3.5" /> },
- { value: "nav", label: "NAV Financing", icon: <ShieldCheck className="w-3.5 h-3.5" /> },
- { value: "market", label: "Market Dynamics", icon: <BarChart3 className="w-3.5 h-3.5" /> },
- ].map((t) => (
- <TabsTrigger
- key={t.value}
- value={t.value}
- className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-foreground"
- >
- {t.icon}
- {t.label}
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="lpled" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ LP-Led Secondaries
  </TabsTrigger>
- ))}
+ <TabsTrigger value="gpled" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ GP-Led Secondaries
+ </TabsTrigger>
+ <TabsTrigger value="nav" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ NAV Financing
+ </TabsTrigger>
+ <TabsTrigger value="market" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Market Dynamics
+ </TabsTrigger>
  </TabsList>
 
- <TabsContent value="lpled" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
+ <TabsContent value="lpled" className="mt-4 data-[state=inactive]:hidden">
  <LPLedTab />
- </motion.div>
  </TabsContent>
 
- <TabsContent value="gpled" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
+ <TabsContent value="gpled" className="mt-4 data-[state=inactive]:hidden">
  <GPLedTab />
- </motion.div>
  </TabsContent>
 
- <TabsContent value="nav" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
+ <TabsContent value="nav" className="mt-4 data-[state=inactive]:hidden">
  <NAVFinancingTab />
- </motion.div>
  </TabsContent>
 
- <TabsContent value="market" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
+ <TabsContent value="market" className="mt-4 data-[state=inactive]:hidden">
  <MarketDynamicsTab />
- </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Building2,
  TrendingUp,
@@ -418,7 +417,7 @@ function SectionCard({ title, icon, children, className }: {
  <div className={cn("bg-card border border-border rounded-md p-5", className)}>
  <div className="flex items-center gap-2 mb-4">
  <span className="text-foreground">{icon}</span>
- <h3 className="font-semibold text-foreground text-sm">{title}</h3>
+ <h2 className="text-xl font-serif tracking-tight">{title}</h2>
  </div>
  {children}
  </div>
@@ -507,15 +506,7 @@ function AgencyMarketTab() {
  </div>
 
  {/* Selected agency detail */}
- <AnimatePresence mode="wait">
- <motion.div
- key={selectedAgency.name}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- className="bg-muted/60 rounded-md p-4 border border-border"
- >
+  <div key={selectedAgency.name} className="bg-muted/60 rounded-md p-4 border border-border">
  <div className="flex items-center gap-3 mb-3">
  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: selectedAgency.color }} />
  <span className="font-medium text-foreground text-sm">{selectedAgency.fullName}</span>
@@ -540,8 +531,7 @@ function AgencyMarketTab() {
  <div className="text-xs text-muted-foreground mb-1">Government Backstop</div>
  <div className="text-xs text-muted-foreground leading-relaxed">{selectedAgency.backstop}</div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
 
  {/* Market share pie representation as stacked bar */}
  <div className="mt-4">
@@ -659,21 +649,13 @@ function AgencyMarketTab() {
  </tbody>
  </table>
  </div>
- <AnimatePresence>
- {expandedPool && (
- <motion.div
- key={expandedPool}
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- className="overflow-hidden"
- >
+  {expandedPool && (
+ <div key={expandedPool} className="overflow-hidden">
  <div className="mt-2 bg-muted/60 rounded-lg p-3 border border-border text-xs text-muted-foreground leading-relaxed">
  {POOL_CHARS.find((p) => p.label === expandedPool)?.desc}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </SectionCard>
 
  {/* Dollar roll economics */}
@@ -1104,15 +1086,8 @@ function CMOStructuresTab() {
  {isOpen ? <ChevronUp size={14} className="text-muted-foreground" /> : <ChevronDown size={14} className="text-muted-foreground" />}
  </div>
  </button>
- <AnimatePresence>
- {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+  {isOpen && (
+ <div className="overflow-hidden">
  <div className="px-4 pb-4 pt-1 border-t border-border">
  <p className="text-sm text-muted-foreground leading-relaxed mb-3">{tranche.description}</p>
  <div className="flex gap-3 flex-wrap">
@@ -1121,9 +1096,8 @@ function CMOStructuresTab() {
  <InfoChip label="Avg Life" value={tranche.avgLife} color="purple" />
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
  })}
@@ -1720,70 +1694,44 @@ function ConvexityRiskTab() {
 
 export default function AgencyMBSPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
- {/* Header */}
- <div className="mb-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="w-9 h-9 rounded-md bg-muted/10 border border-border flex items-center justify-center">
- <Building2 size={18} className="text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Agency MBS</h1>
- <p className="text-sm text-muted-foreground">
- Fannie / Freddie / Ginnie pass-throughs, CMOs, IO/PO strips, prepayment modeling &amp; convexity risk
- </p>
- </div>
- <div className="ml-auto flex gap-2">
- <Badge className="bg-muted/10 text-foreground border-border text-xs">Agency Guaranteed</Badge>
- <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/25 text-xs">~$9T Market</Badge>
- <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/25 text-xs">Prepayment Risk</Badge>
- </div>
- </div>
- </div>
-
- {/* Tabs */}
- <Tabs defaultValue="agency" className="w-full">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
- {[
- { value: "agency", label: "Agency Market", icon: <Building2 size={13} /> },
- { value: "prepayment", label: "Prepayment Analysis", icon: <TrendingDown size={13} /> },
- { value: "cmo", label: "CMO Structures", icon: <Layers size={13} /> },
- { value: "convexity", label: "Convexity & Risk", icon: <Activity size={13} /> },
- ].map((tab) => (
- <TabsTrigger
- key={tab.value}
- value={tab.value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
- >
- {tab.label}
- </TabsTrigger>
- ))}
- </TabsList>
-
- <TabsContent value="agency" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
- <AgencyMarketTab />
- </motion.div>
- </TabsContent>
-
- <TabsContent value="prepayment" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
- <PrepaymentAnalysisTab />
- </motion.div>
- </TabsContent>
-
- <TabsContent value="cmo" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
- <CMOStructuresTab />
- </motion.div>
- </TabsContent>
-
- <TabsContent value="convexity" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
- <ConvexityRiskTab />
- </motion.div>
- </TabsContent>
- </Tabs>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+   <h1 className="text-3xl font-bold tracking-tight mb-1">Agency MBS</h1>
+   <p className="text-sm text-muted-foreground">
+    Fannie / Freddie / Ginnie pass-throughs, CMOs, IO/PO strips, prepayment modeling &amp; convexity risk
+   </p>
+   <div className="border-t border-border my-6" />
+   <Tabs defaultValue="agency" className="flex-1 flex flex-col">
+    <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+     {[
+      { value: "agency", label: "Agency Market" },
+      { value: "prepayment", label: "Prepayment Analysis" },
+      { value: "cmo", label: "CMO Structures" },
+      { value: "convexity", label: "Convexity & Risk" },
+     ].map((tab) => (
+      <TabsTrigger
+       key={tab.value}
+       value={tab.value}
+       className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
+      >
+       {tab.label}
+      </TabsTrigger>
+     ))}
+    </TabsList>
+    <TabsContent value="agency" className="data-[state=inactive]:hidden mt-6">
+     <AgencyMarketTab />
+    </TabsContent>
+    <TabsContent value="prepayment" className="data-[state=inactive]:hidden mt-6">
+     <PrepaymentAnalysisTab />
+    </TabsContent>
+    <TabsContent value="cmo" className="data-[state=inactive]:hidden mt-6">
+     <CMOStructuresTab />
+    </TabsContent>
+    <TabsContent value="convexity" className="data-[state=inactive]:hidden mt-6">
+     <ConvexityRiskTab />
+    </TabsContent>
+   </Tabs>
+  </div>
  </div>
  );
 }

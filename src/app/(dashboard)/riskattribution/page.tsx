@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  PieChart,
  TrendingUp,
@@ -1036,23 +1035,13 @@ const TABS = [
 
 export default function RiskAttributionPage() {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="p-4 space-y-4 max-w-5xl mx-auto"
- >
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <div className="flex items-start gap-4">
- <div className="rounded-md bg-indigo-500/20 border border-indigo-500/30 p-3">
- </div>
- <div>
- <h1 className="text-2xl font-semibold text-foreground">Portfolio Risk Attribution</h1>
- <p className="text-sm text-muted-foreground mt-1">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Portfolio Risk Attribution</h1>
+ <p className="text-sm text-muted-foreground mb-6">
  Decompose sources of active return and risk — BHB attribution, factor exposures, active share, and scenario stress testing.
  </p>
- </div>
- </div>
 
  {/* Summary KPIs */}
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -1084,14 +1073,14 @@ export default function RiskAttributionPage() {
 
  {/* Tabs */}
  <Tabs defaultValue="bhb">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {TABS.map(({ id, label }) => (
  <TabsTrigger
  key={id}
  value={id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
- <span className="hidden sm:inline">{label}</span>
+ {label}
  </TabsTrigger>
  ))}
  </TabsList>
@@ -1115,6 +1104,7 @@ export default function RiskAttributionPage() {
  <HistoryTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
+ </div>
  );
 }

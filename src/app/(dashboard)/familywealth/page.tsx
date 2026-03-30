@@ -30,7 +30,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 752005;
@@ -370,15 +369,8 @@ function WealthTransferTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
  )}
  </button>
- <AnimatePresence>
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="px-4 pb-4 pt-2 bg-muted/10 border-t border-border space-y-3">
  <div>
  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
@@ -398,9 +390,8 @@ function WealthTransferTab() {
  </InfoBox>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
  })}
@@ -535,15 +526,8 @@ function FamilyGovernanceTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
  )}
  </button>
- <AnimatePresence>
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="px-4 pb-4 pt-3 bg-muted/10 border-t border-border">
  <ul className="space-y-1.5">
  {comp.items.map((item) => (
@@ -554,9 +538,8 @@ function FamilyGovernanceTab() {
  ))}
  </ul>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
  })}
@@ -926,15 +909,8 @@ function PhilanthropyTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
  )}
  </button>
- <AnimatePresence>
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="px-4 pb-4 pt-3 bg-muted/10 border-t border-border space-y-3">
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  <div>
@@ -955,9 +931,8 @@ function PhilanthropyTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
  })}
@@ -1170,15 +1145,8 @@ function BusinessRealEstateTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
  )}
  </button>
- <AnimatePresence>
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="px-4 pb-4 pt-3 bg-muted/10 border-t border-border">
  <ul className="space-y-1.5">
  {phase.steps.map((step) => (
@@ -1189,9 +1157,8 @@ function BusinessRealEstateTab() {
  ))}
  </ul>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
  })}
@@ -1221,28 +1188,21 @@ export default function FamilyWealthPage() {
  void rand;
 
  return (
- <div className="min-h-screen bg-background">
- <div className="max-w-5xl mx-auto px-4 py-8 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <div className="flex items-start justify-between">
- <div>
- <h1 className="text-2xl font-bold text-foreground tracking-tight">Family Wealth Management</h1>
- <p className="text-sm text-muted-foreground mt-1">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Family Wealth Management</h1>
+ <p className="text-sm text-muted-foreground">
  Multi-generational wealth transfer, governance, education funding, philanthropy, and business succession
  </p>
+ <div className="flex items-center gap-2 mt-2">
+ <Badge variant="outline" className="text-xs border-border text-primary">Estate Planning</Badge>
+ <Badge variant="outline" className="text-xs border-border text-primary">Family Office</Badge>
  </div>
- <div className="flex items-center gap-2 shrink-0">
- <Badge variant="outline" className="text-xs border-border text-primary">
- Estate Planning
- </Badge>
- <Badge variant="outline" className="text-xs border-border text-primary">
- Family Office
- </Badge>
- </div>
- </div>
+ <div className="border-t border-border my-6" />
 
- {/* Summary Stats — Hero */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+ {/* Summary Stats */}
+ <div className="rounded-lg border border-border bg-muted/30 p-5 grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  <StatChip label="UHNW Families (US)" value="~180,000" color="blue" />
  <StatChip label="Avg Gen-3 Wealth Retained" value="~10%" color="red" />
  <StatChip label="Families with Wealth Plan" value="33%" color="amber" />
@@ -1250,7 +1210,7 @@ export default function FamilyWealthPage() {
  </div>
 
  {/* Alert */}
- <div className="mt-8 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 flex items-start gap-3">
+ <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 flex items-start gap-3 mb-6">
  <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
  <div className="text-sm text-muted-foreground">
  <span className="font-medium text-foreground">2026 Exemption Sunset:</span> The federal estate and gift tax
@@ -1260,28 +1220,13 @@ export default function FamilyWealthPage() {
  </div>
 
  {/* Tabs */}
- <Tabs defaultValue="transfer" className="space-y-4">
- <TabsList className="grid grid-cols-5 h-auto gap-1 bg-muted/40 p-1">
- <TabsTrigger value="transfer" className="text-xs text-muted-foreground py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
- <Gift className="w-3.5 h-3.5" />
- <span>Wealth Transfer</span>
- </TabsTrigger>
- <TabsTrigger value="governance" className="text-xs text-muted-foreground py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
- <Users className="w-3.5 h-3.5" />
- <span>Governance</span>
- </TabsTrigger>
- <TabsTrigger value="education" className="text-xs text-muted-foreground py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
- <GraduationCap className="w-3.5 h-3.5" />
- <span>Education</span>
- </TabsTrigger>
- <TabsTrigger value="philanthropy" className="text-xs text-muted-foreground py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
- <Heart className="w-3.5 h-3.5" />
- <span>Philanthropy</span>
- </TabsTrigger>
- <TabsTrigger value="business" className="text-xs text-muted-foreground py-2 flex flex-col items-center gap-1 data-[state=active]:bg-background">
- <Building2 className="w-3.5 h-3.5" />
- <span>Business & RE</span>
- </TabsTrigger>
+ <Tabs defaultValue="transfer">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="transfer" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Wealth Transfer</TabsTrigger>
+ <TabsTrigger value="governance" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Governance</TabsTrigger>
+ <TabsTrigger value="education" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Education</TabsTrigger>
+ <TabsTrigger value="philanthropy" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Philanthropy</TabsTrigger>
+ <TabsTrigger value="business" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Business & RE</TabsTrigger>
  </TabsList>
 
  <TabsContent value="transfer" className="data-[state=inactive]:hidden">

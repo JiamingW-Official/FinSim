@@ -22,7 +22,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+// framer-motion removed
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -1002,41 +1002,30 @@ export default function TransitionFinancePage() {
  void gapData;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
- <Leaf className="w-5 h-5 text-emerald-400" />
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Transition Finance &amp; Climate Risk</h1>
+ <p className="text-sm text-muted-foreground">Financing the energy transition · carbon pricing · stranded assets · green taxonomy</p>
  </div>
- <h1 className="text-xl font-semibold text-foreground">
- Transition Finance &amp; Climate Risk
- </h1>
- </div>
- <p className="text-muted-foreground text-sm ml-12">
- Financing the energy transition · carbon pricing · stranded assets · green taxonomy
- </p>
- </motion.div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8 space-y-4">
- <TabsList className="bg-card border border-border h-auto p-1 flex-wrap gap-1">
- <TabsTrigger value="landscape" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
- <Globe className="w-3.5 h-3.5 mr-1" />Climate Finance
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="landscape" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Climate Finance
  </TabsTrigger>
- <TabsTrigger value="carbon" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
- <BarChart2 className="w-3.5 h-3.5 mr-1" />Carbon Markets
+ <TabsTrigger value="carbon" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Carbon Markets
  </TabsTrigger>
- <TabsTrigger value="stranded" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
- <AlertTriangle className="w-3.5 h-3.5 mr-1" />Stranded Assets
+ <TabsTrigger value="stranded" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Stranded Assets
  </TabsTrigger>
- <TabsTrigger value="bonds" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
- <DollarSign className="w-3.5 h-3.5 mr-1" />Bonds &amp; Taxonomy
+ <TabsTrigger value="bonds" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Bonds &amp; Taxonomy
  </TabsTrigger>
  </TabsList>
 
@@ -1640,7 +1629,7 @@ export default function TransitionFinancePage() {
  </CardHeader>
  <CardContent className="space-y-2">
  {HARD_TO_ABATE.map((s, i) => (
- <motion.div
+ <div
  key={s.sector}
  className="bg-muted/50 rounded-lg overflow-hidden cursor-pointer"
  onClick={() => setExpandedSector(expandedSector === i ? null : i)}
@@ -1680,7 +1669,7 @@ export default function TransitionFinancePage() {
  </div>
  </div>
  )}
- </motion.div>
+ </div>
  ))}
  </CardContent>
  </Card>
@@ -1730,6 +1719,7 @@ export default function TransitionFinancePage() {
  </Card>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

@@ -27,7 +27,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+// framer-motion removed
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -679,29 +679,16 @@ export default function IBDealsPage() {
 
  // ── Render ─────────────────────────────────────────────────────────────────
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <Briefcase className="text-muted-foreground/50" size={28} />
- <h1 className="text-2xl font-semibold tracking-tight">Investment Banking Deal Simulator</h1>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Investment Banking Deal Simulator</h1>
+ <p className="text-sm text-muted-foreground">Live M&amp;A tracker, deal structuring, fairness opinions, regulatory review, LBO models, and league tables.</p>
  </div>
- <p className="text-sm text-muted-foreground">
- Live M&A tracker, deal structuring, fairness opinions, regulatory review, LBO models, and league tables.
- </p>
- </motion.div>
-
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6 mb-8">
- <h2 className="text-lg font-medium text-foreground mb-1">Deal Simulator Suite</h2>
- <p className="text-sm text-muted-foreground">Track live M&amp;A deals, structure transactions, run fairness opinions, regulatory reviews, LBO models, and league tables.</p>
- </div>
+ <div className="border-t border-border mb-6" />
 
  <Tabs defaultValue="tracker" className="w-full">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {[
  { value: "tracker", label: "Live Deal Tracker" },
  { value: "structure", label: "Deal Structuring" },
@@ -713,7 +700,7 @@ export default function IBDealsPage() {
  <TabsTrigger
  key={t.value}
  value={t.value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
  {t.label}
  </TabsTrigger>
@@ -813,11 +800,8 @@ export default function IBDealsPage() {
  </thead>
  <tbody>
  {filteredDeals.map((d, i) => (
- <motion.tr
+ <tr
  key={d.id}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: i * 0.03 }}
  className="border-t border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-4 py-2 font-medium text-foreground">{d.acquirer}</td>
@@ -845,7 +829,7 @@ export default function IBDealsPage() {
  )}
  </td>
  <td className="px-4 py-2 text-muted-foreground">{d.announced}</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -950,11 +934,9 @@ export default function IBDealsPage() {
  <div key={country} className="flex items-center gap-2">
  <span className="text-xs text-muted-foreground w-8">{country}</span>
  <div className="flex-1 bg-muted rounded-full h-3 overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(vol / maxVal) * 100}%` }}
- transition={{ duration: 0.6 }}
+ <div
  className="h-full bg-primary rounded-full"
+ style={{ width: `${(vol / maxVal) * 100}%` }}
  />
  </div>
  <span className="text-xs text-muted-foreground w-12 text-right">{fmtB(vol)}</span>
@@ -1754,11 +1736,9 @@ export default function IBDealsPage() {
  <div key={item.label} className="flex items-center gap-3">
  <span className="text-xs text-muted-foreground w-48">{item.label}</span>
  <div className="flex-1 bg-muted rounded-full h-4 overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${pct}%` }}
- transition={{ duration: 0.6 }}
+ <div
  className={cn("h-full rounded-full", item.color)}
+ style={{ width: `${pct}%` }}
  />
  </div>
  <span className="text-xs font-medium text-foreground w-20 text-right">{fmtB(item.value)}</span>
@@ -1807,13 +1787,7 @@ export default function IBDealsPage() {
  </div>
 
  {/* League table */}
- <AnimatePresence mode="wait">
- <motion.div
- key={leagueTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
+ <div
  className="bg-card border border-border rounded-md overflow-hidden"
  >
  <div className="p-4 border-b border-border flex items-center gap-2">
@@ -1840,11 +1814,8 @@ export default function IBDealsPage() {
  </thead>
  <tbody>
  {data.map((entry, i) => (
- <motion.tr
+ <tr
  key={entry.bank}
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.04 }}
  className="border-t border-border hover:bg-muted/20"
  >
  <td className="px-4 py-2 text-center">
@@ -1872,15 +1843,14 @@ export default function IBDealsPage() {
  </div>
  </td>
  <td className="px-4 py-2 text-right text-amber-400">{fmtM(entry.fees)}</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
  </div>
  );
  })()}
- </motion.div>
- </AnimatePresence>
+ </div>
 
  {/* Fee wallet */}
  <div className="bg-card border border-border rounded-md p-4">
@@ -1952,6 +1922,7 @@ export default function IBDealsPage() {
  </div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

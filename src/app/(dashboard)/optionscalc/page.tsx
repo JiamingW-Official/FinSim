@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Calculator,
  Layers,
@@ -1365,45 +1364,23 @@ export default function OptionsCalcPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
- {/* Header */}
- <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 bg-muted/10 rounded-lg">
- <Calculator size={20} className="text-primary" />
- </div>
- <div>
- <h1 className="text-2xl font-semibold text-foreground">Options Strategies Calculator</h1>
- <p className="text-sm text-muted-foreground">Black-Scholes pricing · Interactive payoff diagrams · Multi-leg strategies</p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- <Badge variant="outline" className="border-border text-primary text-xs">Black-Scholes</Badge>
- <Badge variant="outline" className="border-border text-primary text-xs">Greeks</Badge>
- <Badge variant="outline" className="border-emerald-700 text-emerald-400 text-xs">10 Strategies</Badge>
- <Badge variant="outline" className="border-amber-700 text-amber-400 text-xs">Vol Analysis</Badge>
- <Badge variant="outline" className="border-teal-700 text-emerald-400 text-xs">Risk Metrics</Badge>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Options Strategies Calculator</h1>
+ <p className="text-sm text-muted-foreground mb-6">Black-Scholes pricing, interactive payoff diagrams, and multi-leg strategies</p>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- {tabs.map(tab => {
- const Icon = tab.icon;
- return (
- <TabsTrigger key={tab.id} value={tab.id} className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground px-3 py-1.5">
- <Icon size={12} />
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
+ {tabs.map(tab => (
+ <TabsTrigger key={tab.id} value={tab.id} className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  {tab.label}
  </TabsTrigger>
- );
- })}
+ ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div key={activeTab} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
- <TabsContent value="single" className="mt-4 data-[state=inactive]:hidden">
+   <TabsContent value="single" className="mt-4 data-[state=inactive]:hidden">
  <SingleOptionTab />
  </TabsContent>
  <TabsContent value="builder" className="mt-4 data-[state=inactive]:hidden">
@@ -1418,9 +1395,7 @@ export default function OptionsCalcPage() {
  <TabsContent value="greeks" className="mt-4 data-[state=inactive]:hidden">
  <GreeksDashboardTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
- </Tabs>
+  </Tabs>
  </div>
  </div>
  );

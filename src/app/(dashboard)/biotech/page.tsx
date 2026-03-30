@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  FlaskConical,
  TrendingUp,
@@ -371,9 +370,9 @@ function PipelineTracker() {
  const isSelected = selectedCompany?.ticker === co.ticker;
 
  return (
- <motion.div
+ <div
  key={co.ticker}
- layout
+
  className={cn(
  "rounded-lg border transition-colors cursor-pointer",
  isSelected
@@ -417,13 +416,8 @@ function PipelineTracker() {
  <PipelineSVG pipeline={co.pipeline} />
  </div>
 
- <AnimatePresence>
  {isSelected && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- className="overflow-hidden"
+ <div className="overflow-hidden"
  >
  <div className="px-4 pb-4 border-t border-border pt-4">
  <div className="grid grid-cols-1 gap-2">
@@ -494,10 +488,9 @@ function PipelineTracker() {
  </div>
  )}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -1738,29 +1731,16 @@ function StraddlePayoffSVG({
 
 export default function BiotechPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="w-9 h-9 bg-emerald-900/50 border border-emerald-700 rounded-lg flex items-center justify-center">
- <FlaskConical className="w-5 h-5 text-emerald-400" />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Biotech & Pharma Investing</h1>
- <p className="text-xs text-muted-foreground">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Biotech &amp; Pharma Investing</h1>
+ <p className="text-sm text-muted-foreground mb-6">
  Clinical pipeline tracker · Drug economics · Valuation · Binary events
  </p>
- </div>
- </div>
 
- {/* HERO — Top KPIs */}
- <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-4 border-l-4 border-l-primary rounded-md bg-card p-6">
+ {/* Top KPIs */}
+ <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
  {[
  { label: "Companies Tracked", value: "15", sub: "Across all subsectors", color: "text-primary" },
  { label: "Upcoming Catalysts", value: "12", sub: "Next 12 months", color: "text-amber-400" },
@@ -1768,32 +1748,31 @@ export default function BiotechPage() {
  { label: "Avg Dev Cost", value: "$2.6B", sub: "All-in incl. failures", color: "text-rose-400" },
  { label: "M&A Premium", value: "50–100%", sub: "Big pharma acquisitions", color: "text-primary" },
  ].map((kpi) => (
- <div key={kpi.label} className="bg-muted/30 border border-border rounded-lg p-3">
+ <div key={kpi.label} className="rounded-lg border border-border bg-card p-5">
  <div className={cn("text-lg font-medium", kpi.color)}>{kpi.value}</div>
- <div className="text-xs text-muted-foreground font-medium">{kpi.label}</div>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mt-1">{kpi.label}</div>
  <div className="text-xs text-muted-foreground">{kpi.sub}</div>
  </div>
  ))}
  </div>
- </motion.div>
- <div className="mt-8" />
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
  <Tabs defaultValue="pipeline">
- <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
  {[
- { value: "pipeline", label: "Pipeline Tracker", icon: <Pill className="w-3.5 h-3.5" /> },
- { value: "economics", label: "Drug Economics", icon: <DollarSign className="w-3.5 h-3.5" /> },
- { value: "valuation", label: "Valuation", icon: <BarChart3 className="w-3.5 h-3.5" /> },
- { value: "sector", label: "Sector Analysis", icon: <Layers className="w-3.5 h-3.5" /> },
- { value: "binary", label: "Binary Events", icon: <Zap className="w-3.5 h-3.5" /> },
+ { value: "pipeline", label: "Pipeline Tracker" },
+ { value: "economics", label: "Drug Economics" },
+ { value: "valuation", label: "Valuation" },
+ { value: "sector", label: "Sector Analysis" },
+ { value: "binary", label: "Binary Events" },
  ].map((tab) => (
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
- {tab.icon}
  {tab.label}
  </TabsTrigger>
  ))}

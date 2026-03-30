@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Eye,
  EyeOff,
@@ -373,15 +372,6 @@ const PRICE_IMPROVEMENT_DATA = [
 ];
 
 // ── Component helpers ──────────────────────────────────────────────────────────
-const fadeUp = {
- hidden: { opacity: 0, y: 16 },
- visible: (i: number) => ({
- opacity: 1,
- y: 0,
- transition: { delay: i * 0.05, duration: 0.35 },
- }),
-};
-
 function StatChip({
  label,
  value,
@@ -526,12 +516,8 @@ function DarkPoolLandscapeTab() {
  </h3>
  <div className="space-y-1.5 overflow-y-auto max-h-64 pr-1">
  {DARK_POOLS.map((pool, i) => (
- <motion.div
+ <div
  key={pool.name}
- custom={i}
- variants={fadeUp}
- initial="hidden"
- animate="visible"
  className={cn(
  "flex items-center gap-2 rounded-lg px-3 py-2 cursor-pointer transition-colors",
  selected === pool.name
@@ -561,22 +547,15 @@ function DarkPoolLandscapeTab() {
  >
  {pool.type === "Broker-Dealer" ? "BD" : pool.type === "Exchange-Owned" ? "EX" : "IND"}
  </Badge>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
  </div>
 
  {/* Selected pool detail */}
- <AnimatePresence>
  {selectedPool && (
- <motion.div
- key={selectedPool.name}
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- className="overflow-hidden"
- >
+ <div>
  <div
  className="rounded-md p-4 border"
  style={{ borderColor: selectedPool.color + "44", background: selectedPool.color + "11" }}
@@ -623,9 +602,8 @@ function DarkPoolLandscapeTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
 
  {/* ATS vs Exchange comparison */}
  <div className="bg-muted/50 rounded-md p-4 border border-border">
@@ -638,12 +616,9 @@ function DarkPoolLandscapeTab() {
  <div key={c.label} className="flex items-center gap-3">
  <div className="w-32 text-xs text-muted-foreground shrink-0">{c.label}</div>
  <div className="flex-1 bg-muted/40 rounded-full h-5 relative overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full"
- style={{ background: c.color }}
- initial={{ width: 0 }}
- animate={{ width: `${c.share}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+ style={{ background: c.color, width: `${c.share}%` }}
  />
  </div>
  <div className="text-xs font-medium text-foreground w-10 text-right tabular-nums">
@@ -716,10 +691,8 @@ function WhyDarkPoolsTab() {
  {/* Reason selector */}
  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
  {reasons.map((r, i) => (
- <motion.button
+ <button
  key={r.title}
- whileHover={{ scale: 1.02 }}
- whileTap={{ scale: 0.98 }}
  onClick={() => setActiveReason(i)}
  className={cn(
  "rounded-md p-3 text-left border transition-colors",
@@ -737,18 +710,12 @@ function WhyDarkPoolsTab() {
  {r.icon}
  </div>
  <div className="text-xs font-medium text-foreground">{r.title}</div>
- </motion.button>
+ </button>
  ))}
  </div>
 
  {/* Active reason content */}
- <AnimatePresence mode="wait">
- <motion.div
- key={activeReason}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.25 }}
+ <div
  className="rounded-md p-5 border"
  style={{
  borderColor: reasons[activeReason].color + "44",
@@ -787,8 +754,7 @@ function WhyDarkPoolsTab() {
  </div>
  ))}
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
 
  {/* Price improvement table */}
  <div className="bg-muted/50 rounded-md p-4 border border-border">
@@ -944,13 +910,7 @@ function OrderTypesTab() {
  </div>
 
  {/* Order detail */}
- <AnimatePresence mode="wait">
- <motion.div
- key={selected}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- transition={{ duration: 0.2 }}
+ <div
  className="grid grid-cols-1 md:grid-cols-2 gap-4"
  >
  <div className="bg-muted/50 rounded-md p-4 border border-border">
@@ -1025,8 +985,7 @@ function OrderTypesTab() {
  </div>
  </div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
 
  {/* Order routing decision tree SVG */}
  <div className="bg-muted/50 rounded-md p-4 border border-border">
@@ -1167,10 +1126,8 @@ function HFTInteractionTab() {
  {/* HFT concerns grid */}
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
  {hftConcerns.map((c) => (
- <motion.div
+ <div
  key={c.title}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
  className="rounded-md p-4 border"
  style={{ borderColor: c.color + "44", background: c.color + "0d" }}
  >
@@ -1184,7 +1141,7 @@ function HFTInteractionTab() {
  <h3 className="text-sm font-medium text-foreground">{c.title}</h3>
  </div>
  <p className="text-xs text-muted-foreground leading-relaxed">{c.description}</p>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1538,45 +1495,30 @@ function LitVsDarkTab() {
 // ── Main Page ──────────────────────────────────────────────────────────────────
 export default function DarkPoolsPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
- {/* Page header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start gap-4"
- >
- <div className="w-12 h-12 rounded-md bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center shrink-0">
- <EyeOff className="w-6 h-6 text-indigo-400" />
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Dark Pools & Market Microstructure</h1>
+ <p className="text-sm text-muted-foreground">Alternative Trading Systems, HFT dynamics, order routing, and the hidden plumbing of equity markets.</p>
  </div>
- <div>
- <h1 className="text-xl font-bold text-foreground">
- Dark Pools & Market Microstructure
- </h1>
- <p className="text-sm text-muted-foreground mt-1">
- Alternative Trading Systems, HFT dynamics, order routing, and the hidden plumbing of equity markets.
- </p>
- </div>
- </motion.div>
 
  {/* Tabs */}
- <Tabs defaultValue="landscape" className="mt-8 space-y-4">
- <TabsList className="bg-card/80 border border-border flex flex-wrap h-auto gap-1 p-1">
+ <Tabs defaultValue="landscape" className="mt-6 space-y-4">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {[
- { value: "landscape", label: "Dark Pool Landscape", icon: <Layers className="w-3.5 h-3.5" /> },
- { value: "why", label: "Why They Exist", icon: <Info className="w-3.5 h-3.5" /> },
- { value: "orders", label: "Order Types", icon: <BookOpen className="w-3.5 h-3.5" /> },
- { value: "hft", label: "HFT Interaction", icon: <Zap className="w-3.5 h-3.5" /> },
- { value: "litvsdark", label: "Lit vs Dark", icon: <Scale className="w-3.5 h-3.5" /> },
+ { value: "landscape", label: "Dark Pool Landscape" },
+ { value: "why", label: "Why They Exist" },
+ { value: "orders", label: "Order Types" },
+ { value: "hft", label: "HFT Interaction" },
+ { value: "litvsdark", label: "Lit vs Dark" },
  ].map((tab) => (
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground px-3 py-1.5 rounded-md"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground"
  >
- {tab.icon}
- <span className="hidden sm:inline">{tab.label}</span>
+ {tab.label}
  </TabsTrigger>
  ))}
  </TabsList>

@@ -28,7 +28,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 763;
@@ -165,11 +164,7 @@ function MetricCard({
  color: string;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardContent className="p-4 flex items-start gap-3">
  <div className={cn("rounded-lg p-2 mt-0.5", color)}>{icon}</div>
@@ -180,7 +175,7 @@ function MetricCard({
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -479,15 +474,8 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
  </div>
  </button>
 
- <AnimatePresence initial={false}>
  {expanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="px-4 pb-4 pt-2 grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-border">
  <div>
  <div className="text-xs font-semibold text-green-400 mb-1.5 flex items-center gap-1">
@@ -522,9 +510,8 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
  <p className="text-xs text-muted-foreground">{strategy.taxTreatment}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
 }
@@ -696,12 +683,7 @@ function TaxStrategyPanel() {
  return (
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {strategies.map((s, i) => (
- <motion.div
- key={i}
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.06 }}
- >
+ <div key={i}>
  <Card className="bg-card border-border h-full">
  <CardContent className="p-4">
  <div className="flex items-start gap-3">
@@ -729,7 +711,7 @@ function TaxStrategyPanel() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  );
@@ -874,85 +856,58 @@ export default function WealthPreservationPage() {
  const divScore = Math.round(rand() * 8 + 82); // 82–90
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+   <h1 className="text-3xl font-bold tracking-tight mb-1">Wealth Preservation Strategies</h1>
+   <p className="text-sm text-muted-foreground">
+    Advanced frameworks for protecting, growing, and transferring high-net-worth portfolios
+   </p>
+   <div className="border-t border-border my-6" />
 
- {/* ── Header ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
- <div>
- <div className="flex items-center gap-3 mb-1">
- <div className="rounded-md p-2.5 bg-indigo-500/10">
- <Shield className="w-6 h-6 text-indigo-400" />
- </div>
- <h1 className="text-xl font-bold text-foreground">Wealth Preservation Strategies</h1>
- </div>
- <p className="text-muted-foreground text-sm ml-14">
- Advanced frameworks for protecting, growing, and transferring high-net-worth portfolios
- </p>
- </div>
- <div className="flex gap-2">
- <Badge variant="outline" className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20">
- HNW Focus
- </Badge>
- <Badge variant="outline" className="bg-emerald-500/5 text-emerald-400 border-emerald-500/20">
- $5M+ AUM
- </Badge>
- </div>
- </motion.div>
+   {/* Key Metrics */}
+   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <MetricCard
+     icon={<Target className="w-4 h-4 text-emerald-400" />}
+     label="Real Return Target"
+     value="4.5%"
+     sub="After inflation & taxes"
+     color="bg-emerald-500/5"
+    />
+    <MetricCard
+     icon={<Shield className="w-4 h-4 text-amber-400" />}
+     label="Inflation Hedge %"
+     value={`${hedgePct}%`}
+     sub="Of total portfolio"
+     color="bg-amber-500/10"
+    />
+    <MetricCard
+     icon={<Scale className="w-3.5 h-3.5 text-muted-foreground/50" />}
+     label="Tax Efficiency Score"
+     value={`${taxScore}/100`}
+     sub="vs. 58 avg unoptimized"
+     color="bg-primary/10"
+    />
+    <MetricCard
+     icon={<PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />}
+     label="Diversification Score"
+     value={`${divScore}/100`}
+     sub="Across 5 asset classes"
+     color="bg-primary/10"
+    />
+   </div>
 
- {/* ── Key Metrics ── */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
- <MetricCard
- icon={<Target className="w-4 h-4 text-emerald-400" />}
- label="Real Return Target"
- value="4.5%"
- sub="After inflation & taxes"
- color="bg-emerald-500/5"
- />
- <MetricCard
- icon={<Shield className="w-4 h-4 text-amber-400" />}
- label="Inflation Hedge %"
- value={`${hedgePct}%`}
- sub="Of total portfolio"
- color="bg-amber-500/10"
- />
- <MetricCard
- icon={<Scale className="w-3.5 h-3.5 text-muted-foreground/50" />}
- label="Tax Efficiency Score"
- value={`${taxScore}/100`}
- sub="vs. 58 avg unoptimized"
- color="bg-primary/10"
- />
- <MetricCard
- icon={<PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />}
- label="Diversification Score"
- value={`${divScore}/100`}
- sub="Across 5 asset classes"
- color="bg-primary/10"
- />
- </div>
-
- {/* ── Tabs ── */}
- <Tabs defaultValue="allocation">
- <TabsList className="w-full md:w-auto grid grid-cols-2 md:grid-cols-4 gap-1">
- <TabsTrigger value="allocation">Asset Allocation</TabsTrigger>
- <TabsTrigger value="tax">Tax Strategy</TabsTrigger>
- <TabsTrigger value="inflation">Inflation Hedges</TabsTrigger>
- <TabsTrigger value="succession">Succession Planning</TabsTrigger>
- </TabsList>
+   {/* Tabs */}
+   <Tabs defaultValue="allocation" className="flex-1 flex flex-col">
+    <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+     <TabsTrigger value="allocation" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Asset Allocation</TabsTrigger>
+     <TabsTrigger value="tax" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Tax Strategy</TabsTrigger>
+     <TabsTrigger value="inflation" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Inflation Hedges</TabsTrigger>
+     <TabsTrigger value="succession" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Succession Planning</TabsTrigger>
+    </TabsList>
 
  {/* ── Asset Allocation Tab ── */}
  <TabsContent value="allocation" className="mt-6 space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
+ <div>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  {/* Pie chart */}
  <Card className="bg-card border-border">
@@ -1021,17 +976,12 @@ export default function WealthPreservationPage() {
  ))}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tax Strategy Tab ── */}
  <TabsContent value="tax" className="mt-6">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  <div className="p-4 bg-amber-500/5 border border-amber-500/20 rounded-lg">
  <div className="flex items-start gap-2">
  <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
@@ -1042,17 +992,12 @@ export default function WealthPreservationPage() {
  </div>
  </div>
  <TaxStrategyPanel />
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Inflation Hedges Tab ── */}
  <TabsContent value="inflation" className="mt-6">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  <div className="p-4 bg-red-500/5 border border-red-500/20 rounded-lg">
  <div className="flex items-start gap-2">
  <Info className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
@@ -1063,17 +1008,12 @@ export default function WealthPreservationPage() {
  </div>
  </div>
  <InflationHedgesPanel />
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Succession Planning Tab ── */}
  <TabsContent value="succession" className="mt-6">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
  <Card className="bg-card border-border">
  <CardContent className="p-4 text-center">
@@ -1121,10 +1061,10 @@ export default function WealthPreservationPage() {
  </div>
  </div>
  </div>
- </motion.div>
- </TabsContent>
- </Tabs>
  </div>
+   </TabsContent>
+   </Tabs>
+  </div>
  </div>
  );
 }

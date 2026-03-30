@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Flame,
  Zap,
@@ -801,12 +800,9 @@ function Tab2() {
  <div key={c.ticker} className="flex items-center gap-3">
  <div className="w-12 font-medium text-foreground text-xs">{c.ticker}</div>
  <div className="flex-1 h-6 bg-muted/60 rounded-md overflow-hidden relative">
- <motion.div
- layout
+ <div
  className="h-full rounded-md"
- style={{ backgroundColor: fcf > 15 ? "#34d399" : fcf > 8 ? "#fbbf24" : "#60a5fa" }}
- animate={{ width: `${Math.min(fcf * 4, 100)}%` }}
- transition={{ duration: 0.4, ease: "easeOut" }}
+ style={{ backgroundColor: fcf > 15 ? "#34d399" : fcf > 8 ? "#fbbf24" : "#60a5fa", width: `${Math.min(fcf * 4, 100)}%` }}
  />
  <span className="absolute left-2 top-0 h-full flex items-center text-[11px] font-medium text-background">
  {fcf.toFixed(1)}% FCF yield
@@ -1190,11 +1186,9 @@ function Tab4() {
  <span className="text-emerald-400">Rate Base +{u.rateBaseGrowth}%/yr</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full bg-primary rounded-full"
- initial={{ width: 0 }}
- animate={{ width: `${(u.capex / 9) * 100}%` }}
- transition={{ delay: 0.1, duration: 0.6 }}
+ style={{ width: `${(u.capex / 9) * 100}%` }}
  />
  </div>
  </div>
@@ -1551,65 +1545,31 @@ export default function EnergyPage() {
  void rv();
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- {/* Header */}
- <div className="border-b border-border border-l-4 border-l-primary bg-background/80 backdrop-blur sticky top-0 z-10">
- <div className="max-w-7xl mx-auto px-4 py-4">
- <div className="flex items-center justify-between">
- <div className="flex items-center gap-3">
- <div className="w-9 h-9 rounded-lg bg-amber-500/20 flex items-center justify-center">
- <Flame className="w-5 h-5 text-amber-400" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">Energy Sector</h1>
- <p className="text-xs text-muted-foreground">Oil &amp; Gas · Clean Energy · Utilities · Energy Transition</p>
- </div>
- </div>
- <div className="flex items-center gap-2">
- <Badge variant="outline" className="border-amber-500/40 text-amber-400 text-xs">
- WTI $78.42
- </Badge>
- <Badge variant="outline" className="border-rose-500/40 text-rose-400 text-xs">
- Nat Gas $2.84
- </Badge>
- <Badge variant="outline" className="border-emerald-500/40 text-emerald-400 text-xs">
- Solar LCOE $24
- </Badge>
- </div>
- </div>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Energy Sector</h1>
+ <p className="text-sm text-muted-foreground mb-6">Oil &amp; Gas · Clean Energy · Utilities · Energy Transition</p>
 
- {/* Body */}
- <div className="max-w-7xl mx-auto px-4 py-6 mt-8">
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- {[
- { value: "overview", label: "Market Overview", icon: <Flame className="w-3.5 h-3.5" /> },
- { value: "ep", label: "Upstream E&P", icon: <Droplets className="w-3.5 h-3.5" /> },
- { value: "clean", label: "Clean Energy", icon: <Sun className="w-3.5 h-3.5" /> },
- { value: "utilities", label: "Utilities", icon: <Zap className="w-3.5 h-3.5" /> },
- { value: "transition", label: "Energy Transition", icon: <Leaf className="w-3.5 h-3.5" /> },
- ].map((t) => (
- <TabsTrigger
- key={t.value}
- value={t.value}
- className="data-[state=active]:bg-amber-500/20 data-[state=active]:text-amber-300 text-muted-foreground flex items-center gap-1.5 px-3 py-1.5 text-xs"
- >
- {t.icon}
- {t.label}
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
+ <TabsTrigger value="overview" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Market Overview
  </TabsTrigger>
- ))}
+ <TabsTrigger value="ep" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Upstream E&P
+ </TabsTrigger>
+ <TabsTrigger value="clean" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Clean Energy
+ </TabsTrigger>
+ <TabsTrigger value="utilities" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Utilities
+ </TabsTrigger>
+ <TabsTrigger value="transition" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
+ Energy Transition
+ </TabsTrigger>
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
- key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
- >
  <TabsContent value="overview" className="mt-0 data-[state=inactive]:hidden">
  <Tab1 />
  </TabsContent>
@@ -1625,8 +1585,6 @@ export default function EnergyPage() {
  <TabsContent value="transition" className="mt-0 data-[state=inactive]:hidden">
  <Tab5 />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
  </Tabs>
  </div>
  </div>

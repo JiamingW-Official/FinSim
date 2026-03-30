@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -375,39 +374,27 @@ export default function HFDueDiligencePage() {
  legal: Scale,
  };
 
- const fadeUp = {
- hidden: { opacity: 0, y: 20 },
- visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.4 } }),
- };
-
  return (
- <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="space-y-1">
- <div className="flex items-center gap-3">
- <div className="p-2 rounded-lg bg-muted">
- <Search className="h-5 w-5 text-muted-foreground" />
- </div>
- <div>
- <h1 className="text-2xl font-semibold tracking-tight">Hedge Fund Due Diligence</h1>
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Hedge Fund Due Diligence</h1>
  <p className="text-sm text-muted-foreground">Institutional allocator framework — quantitative &amp; operational DD on target fund</p>
- </div>
- <div className="ml-auto flex items-center gap-2">
+ <div className="flex gap-2 mt-2">
  <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/30">Fund: Meridian Capital</Badge>
  <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/30">L/S Equity</Badge>
  </div>
- </div>
- </motion.div>
+ <div className="border-t border-border my-6" />
 
  {/* Key Metrics */}
- <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
  {KEY_METRICS.map((m) => (
  <MetricCard key={m.label} label={m.label} value={m.value} sub={m.sub} icon={m.icon} highlight={m.highlight} />
  ))}
- </motion.div>
+ </div>
 
  {/* DD Summary Bar */}
- <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible" className="mt-8">
+ <div className="mb-6">
  <Card className="bg-card border-border">
  <CardContent className="p-4">
  <div className="flex flex-wrap items-center gap-4">
@@ -435,16 +422,15 @@ export default function HFDueDiligencePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible">
  <Tabs defaultValue="quant">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="quant">Quantitative DD</TabsTrigger>
- <TabsTrigger value="operational">Operational DD</TabsTrigger>
- <TabsTrigger value="track">Track Record</TabsTrigger>
- <TabsTrigger value="redflags">Red Flags</TabsTrigger>
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="quant" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Quantitative DD</TabsTrigger>
+ <TabsTrigger value="operational" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Operational DD</TabsTrigger>
+ <TabsTrigger value="track" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Track Record</TabsTrigger>
+ <TabsTrigger value="redflags" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">Red Flags</TabsTrigger>
  </TabsList>
 
  {/* ── Quantitative DD ── */}
@@ -727,7 +713,7 @@ export default function HFDueDiligencePage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

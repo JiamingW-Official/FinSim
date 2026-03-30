@@ -1,16 +1,11 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
- BookOpen,
  TrendingUp,
- PieChart,
  BarChart2,
- Lightbulb,
  ArrowUpDown,
  ArrowUp,
  ArrowDown,
@@ -342,15 +337,10 @@ function TradeLogTab() {
  </tr>
  </thead>
  <tbody>
- <AnimatePresence mode="popLayout">
- {sorted.map((trade, idx) => (
- <motion.tr
+  {sorted.map((trade, idx) => (
+ <tr
  key={trade.id}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.15, delay: idx * 0.02 }}
- className="border-b border-border hover:bg-muted/30 transition-colors"
+     className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2.5 font-medium text-foreground">{trade.symbol}</td>
  <td className="px-3 py-2.5">
@@ -400,10 +390,9 @@ function TradeLogTab() {
  </span>
  )}
  </td>
- </motion.tr>
+ </tr>
  ))}
- </AnimatePresence>
- </tbody>
+  </tbody>
  </table>
  </div>
  <div className="text-xs text-muted-foreground">
@@ -1220,19 +1209,16 @@ function ImprovementAreasTab() {
  <div className="text-sm font-medium text-foreground mb-3">Lessons Learned</div>
  <div className="space-y-3">
  {LESSONS.map((lesson, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.08 }}
- className="bg-card border border-border rounded-lg p-4 flex gap-3"
+    className="bg-card border border-border rounded-lg p-4 flex gap-3"
  >
  <lesson.icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${lesson.color}`} />
  <div>
  <div className="text-sm font-medium text-foreground mb-1">{lesson.title}</div>
  <div className="text-xs text-muted-foreground leading-relaxed">{lesson.body}</div>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1249,84 +1235,47 @@ export default function OptionsJournalPage() {
  const winRate = Math.round((wins / TRADES.length) * 1000) / 10;
 
  return (
- <div className="flex flex-col h-full min-h-0 overflow-y-auto bg-background">
- {/* Header */}
- <div className="border-b border-border border-l-4 border-l-primary px-6 py-6 flex-shrink-0">
- <div className="flex items-center justify-between flex-wrap gap-3">
- <div className="flex items-center gap-3">
- <div className="p-2 bg-primary/10 rounded-lg">
- <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" />
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Options Journal</h1>
+ <p className="text-sm text-muted-foreground mb-6">Performance tracker and trade analysis</p>
+
+ {/* Stats row */}
+ <div className="flex gap-6 mb-6">
+ <div>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Total P&L</div>
+ <div className={`font-bold tabular-nums ${totalPnl >= 0 ? "text-emerald-400" : "text-red-400"}`}>{fmtDollar(totalPnl)}</div>
  </div>
  <div>
- <h1 className="text-xl font-semibold text-foreground">Options Journal</h1>
- <p className="text-xs text-muted-foreground">Performance tracker & trade analysis</p>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Win Rate</div>
+ <div className={`font-medium ${winRate >= 50 ? "text-emerald-400" : "text-red-400"}`}>{winRate}%</div>
  </div>
- </div>
- <div className="flex gap-4 text-sm">
- <div className="text-right">
- <div className="text-xs text-muted-foreground">Total P&L</div>
- <div
- className={`font-bold tabular-nums ${totalPnl >= 0 ? "text-emerald-400" : "text-red-400"}`}
- >
- {fmtDollar(totalPnl)}
- </div>
- </div>
- <div className="text-right">
- <div className="text-xs text-muted-foreground">Win Rate</div>
- <div className={`font-medium ${winRate >= 50 ? "text-emerald-400" : "text-red-400"}`}>
- {winRate}%
- </div>
- </div>
- <div className="text-right">
- <div className="text-xs text-muted-foreground">Trades</div>
+ <div>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Trades</div>
  <div className="font-medium text-foreground">{TRADES.length}</div>
  </div>
  </div>
- </div>
- </div>
 
- {/* Tabs */}
- <div className="flex-1 min-h-0 overflow-y-auto">
- <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full flex flex-col">
- <TabsList className="flex-shrink-0 mx-6 mt-4 bg-card border border-border w-fit h-auto flex-wrap gap-1 p-1 rounded-lg">
- <TabsTrigger
- value="tradelog"
- className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
- >
- <BookOpen className="w-3.5 h-3.5 mr-1.5" />
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
+ <TabsTrigger value="tradelog" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Trade Log
  </TabsTrigger>
- <TabsTrigger
- value="performance"
- className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
- >
- <TrendingUp className="w-3.5 h-3.5 mr-1.5" />
+ <TabsTrigger value="performance" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Performance
  </TabsTrigger>
- <TabsTrigger
- value="strategies"
- className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
- >
- <PieChart className="w-3.5 h-3.5 mr-1.5" />
+ <TabsTrigger value="strategies" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Strategy Breakdown
  </TabsTrigger>
- <TabsTrigger
- value="greeks"
- className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
- >
- <BarChart2 className="w-3.5 h-3.5 mr-1.5" />
+ <TabsTrigger value="greeks" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Greek P&L
  </TabsTrigger>
- <TabsTrigger
- value="improvements"
- className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
- >
- <Lightbulb className="w-3.5 h-3.5 mr-1.5" />
+ <TabsTrigger value="improvements" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground">
  Improvement Areas
  </TabsTrigger>
  </TabsList>
 
- <div className="flex-1 overflow-y-auto px-6 py-4">
  <TabsContent value="tradelog" className="mt-0 data-[state=inactive]:hidden">
  <TradeLogTab />
  </TabsContent>
@@ -1342,7 +1291,6 @@ export default function OptionsJournalPage() {
  <TabsContent value="improvements" className="mt-0 data-[state=inactive]:hidden">
  <ImprovementAreasTab />
  </TabsContent>
- </div>
  </Tabs>
  </div>
  </div>
