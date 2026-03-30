@@ -1,0 +1,543 @@
+export interface OptionStrategy {
+  name: string;
+  legs: { type: "call" | "put"; position: "long" | "short"; strikeOffset: number }[];
+  maxProfit: string;
+  maxLoss: string;
+  breakeven: string;
+  bestFor: string;
+  marketOutlook: string;
+  greeksProfile: { delta: string; gamma: string; theta: string; vega: string };
+  riskLevel: number;
+  complexity: number;
+  educationalNote: string;
+}
+
+export const OPTIONS_STRATEGIES: OptionStrategy[] = [
+  {
+    name: "Long Call",
+    legs: [{ type: "call", position: "long", strikeOffset: 0 }],
+    maxProfit: "Unlimited. Increases dollar-for-dollar with the stock above the breakeven price at expiration.",
+    maxLoss: "Limited to the premium paid for the call option.",
+    breakeven: "Strike price + premium paid.",
+    bestFor: "Bullish conviction with defined risk. Useful when you expect a significant upward move before expiration.",
+    marketOutlook: "Bullish. The more bullish you are, the further out-of-the-money you can buy for greater leverage.",
+    greeksProfile: {
+      delta: "Positive (0.3 to 0.8 depending on moneyness). Increases as stock rises.",
+      gamma: "Positive. Highest when ATM. Delta accelerates as stock moves in your favor.",
+      theta: "Negative. Time decay works against you, accelerating near expiration.",
+      vega: "Positive. Rising implied volatility increases the option's value.",
+    },
+    riskLevel: 2,
+    complexity: 1,
+    educationalNote:
+      "Long calls are the most basic bullish options strategy. The key mistake beginners make is buying short-dated, far OTM calls for their cheap price. These have extremely low probability of profit. Prefer ATM or slightly OTM calls with at least 45 days to expiration to give the trade time to work.",
+  },
+  {
+    name: "Long Put",
+    legs: [{ type: "put", position: "long", strikeOffset: 0 }],
+    maxProfit: "Substantial. Increases as the stock falls toward zero, minus the premium paid.",
+    maxLoss: "Limited to the premium paid for the put option.",
+    breakeven: "Strike price - premium paid.",
+    bestFor: "Bearish conviction or portfolio hedging. Defined risk alternative to shorting stock.",
+    marketOutlook: "Bearish. Expect the stock to decline significantly before expiration.",
+    greeksProfile: {
+      delta: "Negative (-0.3 to -0.8). Becomes more negative as stock falls.",
+      gamma: "Positive. Delta accelerates in your favor as stock drops.",
+      theta: "Negative. Time decay erodes the option's value daily.",
+      vega: "Positive. Rising IV benefits the position, which often occurs during sell-offs.",
+    },
+    riskLevel: 2,
+    complexity: 1,
+    educationalNote:
+      "Long puts are often cheaper than expected during calm markets because implied volatility is low. However, puts tend to become more expensive precisely when fear rises and you most want protection. Consider buying puts as insurance before you need them, not after a sell-off has already begun.",
+  },
+  {
+    name: "Covered Call",
+    legs: [{ type: "call", position: "short", strikeOffset: 2 }],
+    maxProfit: "Premium received + (strike price - stock purchase price). Capped at the short strike.",
+    maxLoss: "Stock price - premium received. Significant if the stock drops substantially.",
+    breakeven: "Stock purchase price - premium received.",
+    bestFor: "Generating income on existing long stock positions. Mildly bullish to neutral outlook.",
+    marketOutlook: "Neutral to mildly bullish. You expect the stock to trade sideways or rise modestly.",
+    greeksProfile: {
+      delta: "Positive but reduced (stock delta 1.0 minus call delta). Net delta around 0.3-0.7.",
+      gamma: "Negative. The position's delta decreases as the stock rises toward the strike.",
+      theta: "Positive. Time decay works in your favor as the short call loses value.",
+      vega: "Negative. A rise in IV hurts the position because your short call gains value.",
+    },
+    riskLevel: 2,
+    complexity: 1,
+    educationalNote:
+      "Covered calls are often called a 'beginner-friendly' income strategy, but understand the tradeoff: you cap your upside in exchange for premium income. If you sell calls too aggressively (close to ATM), you risk having your shares called away during a rally. Sell 30-45 DTE calls at a strike above your cost basis.",
+  },
+  {
+    name: "Protective Put",
+    legs: [{ type: "put", position: "long", strikeOffset: -2 }],
+    maxProfit: "Unlimited upside on the stock minus the cost of the put.",
+    maxLoss: "Limited to (stock price - put strike) + premium paid. The put acts as a floor.",
+    breakeven: "Stock purchase price + premium paid.",
+    bestFor: "Protecting unrealized gains on a stock position. Insurance against a crash.",
+    marketOutlook: "Long-term bullish but concerned about a short-term pullback.",
+    greeksProfile: {
+      delta: "Positive (stock delta 1.0 plus negative put delta). Net around 0.3-0.7.",
+      gamma: "Positive. Protection improves if the stock drops sharply.",
+      theta: "Negative. The insurance cost increases over time as the put decays.",
+      vega: "Positive. A spike in volatility increases the put's value, offsetting stock losses.",
+    },
+    riskLevel: 1,
+    complexity: 1,
+    educationalNote:
+      "Protective puts are like buying car insurance: you hope you never need them, but they protect you from catastrophe. The main challenge is cost. Buying puts continuously can significantly reduce returns over time. Use them selectively around earnings, elections, or other high-risk events.",
+  },
+  {
+    name: "Bull Call Spread",
+    legs: [
+      { type: "call", position: "long", strikeOffset: 0 },
+      { type: "call", position: "short", strikeOffset: 2 },
+    ],
+    maxProfit: "Difference between strikes minus net premium paid.",
+    maxLoss: "Limited to the net premium paid (debit).",
+    breakeven: "Lower strike + net premium paid.",
+    bestFor: "Moderately bullish outlook with a defined risk/reward. Reduces cost versus a naked long call.",
+    marketOutlook: "Moderately bullish. You expect the stock to rise to or above the upper strike by expiration.",
+    greeksProfile: {
+      delta: "Positive but moderate. Less delta than a single long call due to the short leg.",
+      gamma: "Low to moderate. The two legs partially offset each other's gamma.",
+      theta: "Near neutral initially, becomes slightly positive as the trade moves in the money.",
+      vega: "Low. The long and short legs offset most vega exposure.",
+    },
+    riskLevel: 2,
+    complexity: 2,
+    educationalNote:
+      "Bull call spreads are one of the most capital-efficient ways to express a bullish view. By selling the upper strike call, you reduce cost but cap your gain. Choose strike widths based on your conviction: narrow spreads ($1-2 wide) have lower cost but need precise moves; wide spreads ($5-10) are more forgiving.",
+  },
+  {
+    name: "Bear Put Spread",
+    legs: [
+      { type: "put", position: "long", strikeOffset: 0 },
+      { type: "put", position: "short", strikeOffset: -2 },
+    ],
+    maxProfit: "Difference between strikes minus net premium paid.",
+    maxLoss: "Limited to the net premium paid (debit).",
+    breakeven: "Upper strike - net premium paid.",
+    bestFor: "Moderately bearish outlook with defined risk. Cheaper than buying a naked put.",
+    marketOutlook: "Moderately bearish. Expect the stock to fall to or below the lower strike.",
+    greeksProfile: {
+      delta: "Negative but moderate. Less negative delta than a single long put.",
+      gamma: "Low to moderate. Partially offsetting from the two legs.",
+      theta: "Near neutral. The short leg offsets much of the long leg's time decay.",
+      vega: "Low. Mostly vega-neutral due to offsetting legs.",
+    },
+    riskLevel: 2,
+    complexity: 2,
+    educationalNote:
+      "Bear put spreads are the mirror image of bull call spreads. They work best when you have a specific downside target in mind. Place the short put at or near your target price. If the stock stays above your long put strike, you lose the entire premium. Always know your max loss before entering.",
+  },
+  {
+    name: "Iron Condor",
+    legs: [
+      { type: "put", position: "short", strikeOffset: -2 },
+      { type: "put", position: "long", strikeOffset: -4 },
+      { type: "call", position: "short", strikeOffset: 2 },
+      { type: "call", position: "long", strikeOffset: 4 },
+    ],
+    maxProfit: "Limited to the net premium received when entering the trade.",
+    maxLoss: "Width of one spread minus the net premium received.",
+    breakeven: "Lower short strike - premium received AND upper short strike + premium received. Two breakeven points.",
+    bestFor: "Range-bound markets with elevated implied volatility. Income generation.",
+    marketOutlook: "Neutral. You expect the stock to stay within a defined range through expiration.",
+    greeksProfile: {
+      delta: "Near zero. The position is roughly delta-neutral at inception.",
+      gamma: "Negative. Rapid stock movement in either direction hurts the position.",
+      theta: "Positive. Time decay benefits the position as all options lose value.",
+      vega: "Negative. A drop in IV benefits the position as the short options lose value.",
+    },
+    riskLevel: 3,
+    complexity: 3,
+    educationalNote:
+      "Iron condors are the bread and butter of income-oriented options traders. The key is strike selection: wider short strikes give higher probability of profit but less premium. Target 30-45 DTE and 1 standard deviation for the short strikes. Always manage early if the position reaches 50% of max profit.",
+  },
+  {
+    name: "Iron Butterfly",
+    legs: [
+      { type: "put", position: "short", strikeOffset: 0 },
+      { type: "put", position: "long", strikeOffset: -3 },
+      { type: "call", position: "short", strikeOffset: 0 },
+      { type: "call", position: "long", strikeOffset: 3 },
+    ],
+    maxProfit: "Net premium received. Achieved if the stock closes exactly at the short strikes at expiration.",
+    maxLoss: "Width of one spread minus net premium received.",
+    breakeven: "Short strike - premium received AND short strike + premium received.",
+    bestFor: "Pinning action expected. High IV with an expectation the stock will not move much.",
+    marketOutlook: "Very neutral. You expect the stock to stay very close to the current price.",
+    greeksProfile: {
+      delta: "Near zero at inception. Becomes directional as the stock moves away from the short strike.",
+      gamma: "Highly negative. This is the biggest risk. Fast moves are very costly.",
+      theta: "Strongly positive. Maximum time decay benefit of any common spread.",
+      vega: "Strongly negative. Wants IV to drop. Best entered when IV is elevated.",
+    },
+    riskLevel: 3,
+    complexity: 3,
+    educationalNote:
+      "Iron butterflies collect more premium than iron condors but have a much narrower profit zone. They are best used when you expect a stock to pin at a specific level, such as a round number or max pain level near expiration. Manage aggressively if the stock moves away from center.",
+  },
+  {
+    name: "Long Straddle",
+    legs: [
+      { type: "call", position: "long", strikeOffset: 0 },
+      { type: "put", position: "long", strikeOffset: 0 },
+    ],
+    maxProfit: "Unlimited to the upside. Substantial to the downside (stock can go to zero).",
+    maxLoss: "Limited to the total premium paid for both options.",
+    breakeven: "Strike + total premium AND strike - total premium. Two breakeven points.",
+    bestFor: "Expecting a large move in either direction. Earnings plays, binary events, FDA decisions.",
+    marketOutlook: "Neutral on direction but expecting high volatility. The bigger the move, the better.",
+    greeksProfile: {
+      delta: "Near zero initially. Becomes positive or negative depending on stock direction.",
+      gamma: "Highly positive. You benefit from acceleration as the stock moves in either direction.",
+      theta: "Highly negative. Time decay is your worst enemy. Both options bleed value daily.",
+      vega: "Highly positive. A rise in IV benefits both legs significantly.",
+    },
+    riskLevel: 3,
+    complexity: 2,
+    educationalNote:
+      "Straddles are often used around earnings, but beware: the market prices expected moves into options before events. If the stock moves less than expected (even if it moves a lot in absolute terms), you can lose money. Check the implied move versus historical moves before entering. Buying straddles when IV is already elevated is usually a losing proposition.",
+  },
+  {
+    name: "Long Strangle",
+    legs: [
+      { type: "call", position: "long", strikeOffset: 2 },
+      { type: "put", position: "long", strikeOffset: -2 },
+    ],
+    maxProfit: "Unlimited to the upside. Substantial to the downside.",
+    maxLoss: "Limited to the total premium paid. Cheaper than a straddle.",
+    breakeven: "Upper strike + total premium AND lower strike - total premium.",
+    bestFor: "Expecting a very large move in either direction. Cheaper alternative to a straddle.",
+    marketOutlook: "Neutral on direction but expecting a very significant price swing.",
+    greeksProfile: {
+      delta: "Near zero. Both legs are OTM so neither has high delta initially.",
+      gamma: "Positive but lower than a straddle since both legs are OTM.",
+      theta: "Negative. Both OTM options decay, though less dollar amount than a straddle.",
+      vega: "Positive. Benefits from rising IV.",
+    },
+    riskLevel: 3,
+    complexity: 2,
+    educationalNote:
+      "Strangles require an even bigger move than straddles to be profitable because both options start out-of-the-money. However, they cost less. A common mistake is buying strangles too far OTM to save money, which dramatically reduces the probability of profit. Keep strikes within 1 standard deviation.",
+  },
+  {
+    name: "Calendar Spread",
+    legs: [
+      { type: "call", position: "short", strikeOffset: 0 },
+      { type: "call", position: "long", strikeOffset: 0 },
+    ],
+    maxProfit: "Occurs when the stock is at the strike price at the near-term expiration. The near-term option decays faster than the long-term option.",
+    maxLoss: "Limited to the net debit paid. Lost if the stock moves far from the strike.",
+    breakeven: "Depends on the IV of the back-month option at the front-month's expiration. Approximately strike price plus or minus the net debit.",
+    bestFor: "Neutral outlook with an expectation that the stock will trade near a specific price. Exploiting time decay differential.",
+    marketOutlook: "Neutral. You want the stock to stay near the strike price.",
+    greeksProfile: {
+      delta: "Near zero at inception. Becomes directional as the stock moves.",
+      gamma: "Slightly negative. Front-month short gamma slightly exceeds back-month long gamma.",
+      theta: "Positive. The front-month option decays faster than the back-month.",
+      vega: "Positive. Rising IV benefits the trade because the back-month option has more vega.",
+    },
+    riskLevel: 2,
+    complexity: 3,
+    educationalNote:
+      "Calendar spreads profit from the differential time decay between a near-term and far-term option at the same strike. They also benefit from rising IV. Ideal entry is when front-month IV is relatively high compared to back-month IV. Close the trade when the front month expires or at 25-50% profit.",
+  },
+  {
+    name: "Diagonal Spread",
+    legs: [
+      { type: "call", position: "short", strikeOffset: 2 },
+      { type: "call", position: "long", strikeOffset: 0 },
+    ],
+    maxProfit: "Occurs when the stock is at the short strike at the near-term expiration. Combines directional bias with time decay.",
+    maxLoss: "Limited to the net debit paid if the stock drops significantly.",
+    breakeven: "Depends on the remaining value of the back-month option. Roughly lower strike plus net debit.",
+    bestFor: "Mildly bullish outlook with an income component. Combines calendar spread with a directional bias.",
+    marketOutlook: "Mildly bullish. You want the stock to rise gradually to the short strike.",
+    greeksProfile: {
+      delta: "Slightly positive. The ITM/ATM long call has more delta than the OTM short call.",
+      gamma: "Low. The different expirations smooth out gamma exposure.",
+      theta: "Positive. Benefits from differential time decay.",
+      vega: "Positive. The longer-dated option has more vega sensitivity.",
+    },
+    riskLevel: 2,
+    complexity: 3,
+    educationalNote:
+      "Diagonal spreads are sometimes called 'poor man's covered calls' because they mimic covered call behavior using a LEAPS call instead of stock. The LEAPS call costs a fraction of the stock price. Buy a deep ITM call (70+ delta) with 6-12 months to expiry, and sell near-term OTM calls against it monthly.",
+  },
+  {
+    name: "Ratio Call Spread",
+    legs: [
+      { type: "call", position: "long", strikeOffset: 0 },
+      { type: "call", position: "short", strikeOffset: 2 },
+      { type: "call", position: "short", strikeOffset: 2 },
+    ],
+    maxProfit: "Difference between strikes plus net credit (or minus net debit). Achieved at the short strike at expiration.",
+    maxLoss: "Unlimited above the short strikes because you are net short one call.",
+    breakeven: "Lower strike + net debit (if any) AND upper short strike + max profit amount.",
+    bestFor: "Moderately bullish outlook with a specific target. Can be entered for zero cost or a credit.",
+    marketOutlook: "Moderately bullish with a ceiling. You expect the stock to rise to but not far beyond the short strike.",
+    greeksProfile: {
+      delta: "Positive initially but decreases and can turn negative if the stock rises too far.",
+      gamma: "Turns negative as the stock approaches the short strikes.",
+      theta: "Positive once the stock is between the strikes. Benefits from time decay on the extra short leg.",
+      vega: "Can be negative, especially as the stock rises. Rising IV hurts the extra short leg.",
+    },
+    riskLevel: 4,
+    complexity: 4,
+    educationalNote:
+      "Ratio spreads have naked option risk because you sell more options than you buy. The extra short call creates unlimited upside risk. Only use this strategy if you have strong conviction the stock will not rally far above your short strike. Always have a plan to manage the position if the stock surges.",
+  },
+  {
+    name: "Collar",
+    legs: [
+      { type: "put", position: "long", strikeOffset: -2 },
+      { type: "call", position: "short", strikeOffset: 2 },
+    ],
+    maxProfit: "Capped at the short call strike - stock price + net premium (or minus net cost).",
+    maxLoss: "Limited to stock price - long put strike + net cost of collar.",
+    breakeven: "Stock purchase price adjusted by the net credit or debit of the options.",
+    bestFor: "Protecting a stock position while reducing the cost of protection. Conservative hedging.",
+    marketOutlook: "Neutral to mildly bullish. Willing to cap upside in exchange for downside protection.",
+    greeksProfile: {
+      delta: "Positive but reduced. Net delta of stock + put + short call is typically 0.3-0.6.",
+      gamma: "Low. The long put and short call partially offset each other's gamma.",
+      theta: "Near neutral. The short call's positive theta offsets the long put's negative theta.",
+      vega: "Near neutral. The legs offset each other's vega exposure.",
+    },
+    riskLevel: 1,
+    complexity: 2,
+    educationalNote:
+      "Collars are popular among executives and concentrated stockholders because they provide defined risk in both directions. A zero-cost collar means the put premium equals the call premium. The trade-off is clear: you sacrifice upside potential for downside protection. Think of it as portfolio insurance with a deductible.",
+  },
+  {
+    name: "Jade Lizard",
+    legs: [
+      { type: "put", position: "short", strikeOffset: -3 },
+      { type: "call", position: "short", strikeOffset: 2 },
+      { type: "call", position: "long", strikeOffset: 4 },
+    ],
+    maxProfit: "Net premium received. Achieved if the stock stays between the short put and short call strikes.",
+    maxLoss: "To the downside: short put strike - premium received. No upside risk if structured correctly (premium > call spread width).",
+    breakeven: "Short put strike - net premium received.",
+    bestFor: "Neutral to mildly bullish outlook. Eliminates upside risk that exists in a short strangle.",
+    marketOutlook: "Neutral to slightly bullish. Comfortable selling downside risk but want upside protection.",
+    greeksProfile: {
+      delta: "Slightly positive. The short put has more delta impact than the call spread.",
+      gamma: "Negative. Short gamma from the put and call spread.",
+      theta: "Positive. Benefits from time decay on all short premium.",
+      vega: "Negative. Wants IV to decrease.",
+    },
+    riskLevel: 3,
+    complexity: 4,
+    educationalNote:
+      "The jade lizard is a creative strategy that combines a short put with a call credit spread. When structured so the total premium exceeds the call spread width, there is zero risk to the upside. The only risk is the stock falling below the short put. This makes it an improved version of a short strangle.",
+  },
+  {
+    name: "Short Straddle",
+    legs: [
+      { type: "call", position: "short", strikeOffset: 0 },
+      { type: "put", position: "short", strikeOffset: 0 },
+    ],
+    maxProfit: "Limited to the total premium received. Achieved if the stock closes exactly at the strike at expiration.",
+    maxLoss: "Unlimited to the upside. Substantial to the downside (stock to zero minus premium).",
+    breakeven: "Strike + total premium AND strike - total premium.",
+    bestFor: "High IV environments where you expect the stock to stay near its current price. Premium collection.",
+    marketOutlook: "Very neutral. You are betting the stock will not move significantly.",
+    greeksProfile: {
+      delta: "Near zero. Roughly delta-neutral at inception.",
+      gamma: "Highly negative. The greatest risk factor. Large moves are very painful.",
+      theta: "Highly positive. Maximum time decay income of any basic strategy.",
+      vega: "Highly negative. Wants IV to collapse. Ideal after an IV spike.",
+    },
+    riskLevel: 5,
+    complexity: 2,
+    educationalNote:
+      "Short straddles have unlimited risk and are only appropriate for experienced traders with strict risk management. The high premium collected can be psychologically appealing but one large move can wipe out months of gains. Always have a defined exit plan and never let a losing straddle run unchecked.",
+  },
+  {
+    name: "Short Strangle",
+    legs: [
+      { type: "call", position: "short", strikeOffset: 2 },
+      { type: "put", position: "short", strikeOffset: -2 },
+    ],
+    maxProfit: "Limited to the total premium received.",
+    maxLoss: "Unlimited to the upside. Substantial to the downside.",
+    breakeven: "Upper strike + total premium AND lower strike - total premium.",
+    bestFor: "High IV environments. Wider profit zone than a straddle but less premium collected.",
+    marketOutlook: "Neutral. You expect the stock to stay within the range of the short strikes.",
+    greeksProfile: {
+      delta: "Near zero. Both OTM options contribute minimal delta.",
+      gamma: "Negative. Large moves in either direction hurt the position.",
+      theta: "Positive. Both options decay, providing daily income.",
+      vega: "Negative. Benefits from a decrease in implied volatility.",
+    },
+    riskLevel: 5,
+    complexity: 2,
+    educationalNote:
+      "Short strangles offer a wider profit zone than straddles in exchange for less premium. The 1 standard deviation strangle (roughly 16 delta on each side) is a popular setup with about a 68% theoretical probability of profit. Despite this high probability, the unlimited risk means that position sizing and active management are essential.",
+  },
+  {
+    name: "Put Credit Spread",
+    legs: [
+      { type: "put", position: "short", strikeOffset: -1 },
+      { type: "put", position: "long", strikeOffset: -3 },
+    ],
+    maxProfit: "Limited to the net premium received.",
+    maxLoss: "Width of the spread minus the net premium received.",
+    breakeven: "Short put strike - net premium received.",
+    bestFor: "Mildly bullish to neutral outlook. Income generation with defined risk.",
+    marketOutlook: "Neutral to bullish. You expect the stock to stay above the short put strike.",
+    greeksProfile: {
+      delta: "Positive. You benefit from the stock rising or staying flat.",
+      gamma: "Negative. Accelerating downside movement hurts more as the stock drops.",
+      theta: "Positive. Time decay works in your favor.",
+      vega: "Negative. Decreasing IV benefits the position.",
+    },
+    riskLevel: 2,
+    complexity: 2,
+    educationalNote:
+      "Put credit spreads (also called bull put spreads) are one of the most popular income strategies. They profit from time decay, the stock moving up, or IV decreasing. Key tip: choose the short strike below a strong support level. Close at 50% of max profit or 21 DTE, whichever comes first, to manage risk efficiently.",
+  },
+  {
+    name: "Call Credit Spread",
+    legs: [
+      { type: "call", position: "short", strikeOffset: 1 },
+      { type: "call", position: "long", strikeOffset: 3 },
+    ],
+    maxProfit: "Limited to the net premium received.",
+    maxLoss: "Width of the spread minus the net premium received.",
+    breakeven: "Short call strike + net premium received.",
+    bestFor: "Mildly bearish to neutral outlook. Income generation with defined risk.",
+    marketOutlook: "Neutral to bearish. You expect the stock to stay below the short call strike.",
+    greeksProfile: {
+      delta: "Negative. You benefit from the stock falling or staying flat.",
+      gamma: "Negative. Accelerating upside movement hurts as the stock rises.",
+      theta: "Positive. Time decay benefits you.",
+      vega: "Negative. Decreasing IV is favorable.",
+    },
+    riskLevel: 2,
+    complexity: 2,
+    educationalNote:
+      "Call credit spreads (bear call spreads) are the bearish counterpart to put credit spreads. Place the short strike above a strong resistance level. These work especially well after a stock has rallied sharply and you expect it to consolidate or pull back. Manage at 50% profit or 21 DTE.",
+  },
+  {
+    name: "Long Call Butterfly",
+    legs: [
+      { type: "call", position: "long", strikeOffset: -2 },
+      { type: "call", position: "short", strikeOffset: 0 },
+      { type: "call", position: "short", strikeOffset: 0 },
+      { type: "call", position: "long", strikeOffset: 2 },
+    ],
+    maxProfit: "Width of one wing minus net debit paid. Achieved if stock closes exactly at the middle strike.",
+    maxLoss: "Limited to the net debit paid.",
+    breakeven: "Lower strike + net debit AND upper strike - net debit.",
+    bestFor: "Pinning trades near expiration. Low-cost speculation on a specific target price.",
+    marketOutlook: "Very neutral. You expect the stock to close at or very near a specific price.",
+    greeksProfile: {
+      delta: "Near zero at inception. Becomes directional as stock moves away from center.",
+      gamma: "Negative near expiration (short gamma from the two center options).",
+      theta: "Positive near expiration if the stock is near the center strike.",
+      vega: "Slightly negative. Benefits from decreasing IV.",
+    },
+    riskLevel: 2,
+    complexity: 3,
+    educationalNote:
+      "Butterflies offer an excellent risk-to-reward ratio because your max loss is the small debit paid. However, the profit zone is narrow. They work best as expiration trades when you have a specific price target. Consider entering 7-14 DTE at max pain or a round number. The cheap cost allows you to speculate without significant risk.",
+  },
+  {
+    name: "Broken Wing Butterfly",
+    legs: [
+      { type: "put", position: "long", strikeOffset: -4 },
+      { type: "put", position: "short", strikeOffset: -1 },
+      { type: "put", position: "short", strikeOffset: -1 },
+      { type: "put", position: "long", strikeOffset: 0 },
+    ],
+    maxProfit: "Width of the narrow wing minus net debit (or plus net credit if entered for a credit).",
+    maxLoss: "Width of the wide wing minus the max profit, on the broken wing side. No risk (or profit) on the other side.",
+    breakeven: "Depends on the specific strike placement and whether entered for credit or debit.",
+    bestFor: "Directional butterfly with reduced or zero risk on one side. Advanced income strategy.",
+    marketOutlook: "Mildly directional. You eliminate risk on one side in exchange for wider risk on the other.",
+    greeksProfile: {
+      delta: "Slightly directional depending on the skew of the wings.",
+      gamma: "Negative near the short strikes.",
+      theta: "Positive if the stock stays between the short strikes.",
+      vega: "Slightly negative.",
+    },
+    riskLevel: 3,
+    complexity: 4,
+    educationalNote:
+      "Broken wing butterflies are a favorite among professional traders because they can be structured for zero risk on one side. By making one wing wider than the other, you shift risk to one direction. This is useful when you have a directional lean but want the characteristics of a butterfly.",
+  },
+  {
+    name: "Short Put (Cash Secured)",
+    legs: [{ type: "put", position: "short", strikeOffset: -2 }],
+    maxProfit: "Limited to the premium received.",
+    maxLoss: "Put strike price minus premium received (the stock could go to zero). Substantial.",
+    breakeven: "Strike price - premium received.",
+    bestFor: "Acquiring stock at a lower price while earning premium. Bullish on the underlying.",
+    marketOutlook: "Bullish to neutral. You would be happy to own the stock at the strike price.",
+    greeksProfile: {
+      delta: "Positive. You benefit from the stock staying flat or rising.",
+      gamma: "Negative. Accelerating downside movement increases your delta exposure.",
+      theta: "Positive. Time decay works in your favor.",
+      vega: "Negative. Decreasing IV benefits you.",
+    },
+    riskLevel: 3,
+    complexity: 1,
+    educationalNote:
+      "Cash-secured puts are a systematic way to buy stocks at a discount. Sell puts at a strike price where you would happily own the stock. If assigned, your effective purchase price is the strike minus the premium. If not assigned, you keep the premium as income. Warren Buffett has used this approach with large positions.",
+  },
+  {
+    name: "Long Put Butterfly",
+    legs: [
+      { type: "put", position: "long", strikeOffset: -2 },
+      { type: "put", position: "short", strikeOffset: 0 },
+      { type: "put", position: "short", strikeOffset: 0 },
+      { type: "put", position: "long", strikeOffset: 2 },
+    ],
+    maxProfit: "Width of one wing minus net debit. Achieved if stock closes at the middle strike at expiration.",
+    maxLoss: "Limited to the net debit paid.",
+    breakeven: "Lower strike + net debit AND upper strike - net debit.",
+    bestFor: "Bearish pinning trades. Low-cost bearish speculation on a specific target.",
+    marketOutlook: "Neutral to slightly bearish. Targeting a specific price near the center strike.",
+    greeksProfile: {
+      delta: "Near zero at inception.",
+      gamma: "Negative near the short strikes as expiration approaches.",
+      theta: "Positive if the stock is near the center strike.",
+      vega: "Slightly negative.",
+    },
+    riskLevel: 2,
+    complexity: 3,
+    educationalNote:
+      "Put butterflies function identically to call butterflies in terms of profit profile. The choice between call and put butterflies often comes down to pricing efficiency and bid-ask spreads. In practice, use whichever type offers tighter spreads and better fills for your target price.",
+  },
+  {
+    name: "Double Diagonal",
+    legs: [
+      { type: "put", position: "short", strikeOffset: -2 },
+      { type: "put", position: "long", strikeOffset: -2 },
+      { type: "call", position: "short", strikeOffset: 2 },
+      { type: "call", position: "long", strikeOffset: 2 },
+    ],
+    maxProfit: "Depends on the IV of the back-month options at front-month expiration. Typically limited but can be significant with favorable IV movement.",
+    maxLoss: "Limited to the net debit paid.",
+    breakeven: "Complex. Depends on the back-month option values at front-month expiration.",
+    bestFor: "Neutral outlook with rising IV expectations. Combines two diagonal spreads.",
+    marketOutlook: "Neutral. You expect the stock to stay within a range and IV to remain stable or rise.",
+    greeksProfile: {
+      delta: "Near zero. The position is roughly delta-neutral.",
+      gamma: "Slightly negative from the front-month short options.",
+      theta: "Positive. Front-month options decay faster than back-month.",
+      vega: "Positive. Rising IV benefits the back-month options more than the front-month.",
+    },
+    riskLevel: 3,
+    complexity: 5,
+    educationalNote:
+      "Double diagonals combine two calendar-like trades. They benefit from time decay and rising IV simultaneously. The complexity of managing four legs across two expirations means this strategy is best for experienced traders with options analytics tools. Close the front month and re-sell or close the entire position at 25-50% profit.",
+  },
+];

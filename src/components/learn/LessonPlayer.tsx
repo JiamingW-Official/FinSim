@@ -16,15 +16,16 @@ import { QuizStepComponent } from "./QuizStep";
 import { PracticeStepComponent } from "./PracticeStep";
 import { LessonComplete } from "./LessonComplete";
 
-interface LessonPlayerProps {
-  lesson: Lesson;
-}
+interface LessonPlayerProps { lesson: Lesson; }
+interface QuizResult { correct: boolean; timeMs: number; difficulty: number; }
 
-interface QuizResult {
-  correct: boolean;
-  timeMs: number;
-  difficulty: number;
-}
+const STEP_LABELS: Record<string, string> = {
+  "teach": "Learn",
+  "quiz-mc": "Quiz",
+  "quiz-tf": "True / False",
+  "quiz-scenario": "Scenario",
+  "practice": "Practice",
+};
 
 export function LessonPlayer({ lesson }: LessonPlayerProps) {
   const router = useRouter();
@@ -44,77 +45,49 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
   const steps = lesson.steps;
   const step = steps[currentStepIndex];
 
-  // Keyboard shortcuts
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Enter" && !showComplete) {
-        if (step?.type === "teach") {
-          advance();
-        }
-      }
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  });
-
   const advance = useCallback(() => {
     if (currentStepIndex < steps.length - 1) {
       setCurrentStepIndex((i) => i + 1);
     } else {
-      // Lesson complete — compute full score breakdown
       const accuracy = totalQuizzes > 0 ? Math.round((correctCount / totalQuizzes) * 100) : 100;
-
-      // Quiz points: weighted by difficulty (TF=1, MC=2, Scenario=3)
-      let quizPts = 0;
-      let quizMax = 0;
+      let quizPts = 0, quizMax = 0;
       for (const r of quizResults) {
-        const weight = r.difficulty;
-        quizMax += weight * 10;
-        if (r.correct) quizPts += weight * 10;
+        quizMax += r.difficulty * 10;
+        if (r.correct) quizPts += r.difficulty * 10;
       }
-
-      // Speed bonus: faster answers earn more (max 50 per question for <1s)
       const speedBns = quizResults.reduce((sum, r) => {
         if (!r.correct) return sum;
         return sum + Math.max(0, Math.round((5000 - r.timeMs) / 100));
       }, 0);
-
-      // Combo bonus: reward long correct streaks
       const comboBns = bestCombo >= 3 ? (bestCombo - 2) * 10 : 0;
-
-      // Practice bonus
       const practiceBns = practiceProfit > 0 ? 30 : 0;
-
       const totalPts = quizPts + speedBns + comboBns + practiceBns;
-      const maxPts = Math.max(quizMax + 50 + 30 + 30, 1); // theoretical max: quiz + speed + combo + practice
-
+      const maxPts = Math.max(quizMax + 50 + 30 + 30, 1);
       const breakdown: LessonScoreBreakdown = {
-        quizPoints: quizPts,
-        quizMaxPoints: quizMax,
-        speedBonus: speedBns,
-        comboBonus: comboBns,
-        practiceBonus: practiceBns,
-        totalPoints: totalPts,
-        maxPoints: maxPts,
-        grade: calculateGrade(totalPts / maxPts),
-        accuracy,
-        bestCombo,
+        quizPoints: quizPts, quizMaxPoints: quizMax, speedBonus: speedBns,
+        comboBonus: comboBns, practiceBonus: practiceBns,
+        totalPoints: totalPts, maxPoints: maxPts,
+        grade: calculateGrade(totalPts / maxPts), accuracy, bestCombo,
       };
       setFinalBreakdown(breakdown);
       completeLesson(lesson.id, breakdown, lesson.xpReward);
       setShowComplete(true);
     }
-  }, [currentStepIndex, steps.length, totalQuizzes, correctCount, completeLesson, lesson]);
+  }, [currentStepIndex, steps.length, totalQuizzes, correctCount, completeLesson, lesson, quizResults, bestCombo, practiceProfit]);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Enter" && !showComplete && step?.type === "teach") advance();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  });
 
   const handleQuizCorrect = useCallback((timeMs: number, difficulty: number) => {
     setCorrectCount((c) => c + 1);
     setTotalQuizzes((t) => t + 1);
     setQuizResults((r) => [...r, { correct: true, timeMs, difficulty }]);
-    setCurrentCombo((c) => {
-      const next = c + 1;
-      setBestCombo((b) => Math.max(b, next));
-      return next;
-    });
+    setCurrentCombo((c) => { const next = c + 1; setBestCombo((b) => Math.max(b, next)); return next; });
     advance();
   }, [advance]);
 
@@ -126,117 +99,92 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
     advance();
   }, [advance, loseHeart]);
 
-  const handleClose = () => {
-    router.push("/learn");
-  };
+  const handleClose = () => router.push("/learn");
+
+  const stepLabel = STEP_LABELS[step?.type ?? "teach"] ?? "Learn";
 
   const renderStep = (s: LessonStep) => {
     switch (s.type) {
-      case "teach":
-        return <TeachStepComponent step={s} onContinue={advance} />;
-      case "quiz-mc":
-      case "quiz-tf":
-      case "quiz-scenario":
-        return (
-          <QuizStepComponent
-            step={s}
-            onCorrect={handleQuizCorrect}
-            onWrong={handleQuizWrong}
-          />
-        );
-      case "practice":
-        return <PracticeStepComponent step={s} onContinue={advance} />;
-      default:
-        return null;
+      case "teach": return <TeachStepComponent step={s} onContinue={advance} />;
+      case "quiz-mc": case "quiz-tf": case "quiz-scenario":
+        return <QuizStepComponent step={s} onCorrect={handleQuizCorrect} onWrong={handleQuizWrong} />;
+      case "practice": return <PracticeStepComponent step={s} onContinue={advance} />;
+      default: return null;
     }
   };
 
   return (
     <div className="flex h-full flex-col bg-background">
-      {/* Top bar: progress + hearts + close */}
-      <div className="flex flex-col border-b border-border px-4 pt-3 pb-2.5 gap-2">
-        {/* Row 1: close | title | combo | hearts */}
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={handleClose}
-            className="rounded-lg p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/30 shrink-0"
-            title="Back to lessons"
-          >
-            <X className="h-5 w-5" />
+      {/* ── Top chrome ── */}
+      <div className="shrink-0 px-4 pt-3 pb-0 border-b border-border/50">
+        {/* Row 1: close | progress | combo | hearts */}
+        <div className="flex items-center gap-3 mb-2.5">
+          <button type="button" onClick={handleClose}
+            className="shrink-0 text-muted-foreground/40 hover:text-foreground transition-colors p-0.5"
+            title="Back to lessons">
+            <X className="h-4 w-4" />
           </button>
 
-          <span className="flex-1 min-w-0 text-xs font-semibold text-muted-foreground truncate">
-            {lesson.title}
-          </span>
+          {/* Segmented progress bar */}
+          <div className="flex-1 flex gap-0.5 h-1.5 min-w-0">
+            {steps.map((s, i) => {
+              const color = s.type === "teach" ? "bg-emerald-500" : s.type === "practice" ? "bg-amber-400" : "bg-blue-400";
+              return (
+                <div key={i} className="flex-1 rounded-full overflow-hidden bg-border/40">
+                  <motion.div
+                    className={cn("h-full rounded-full", color)}
+                    initial={{ width: "0%" }}
+                    animate={{ width: i < currentStepIndex ? "100%" : i === currentStepIndex ? "55%" : "0%" }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  />
+                </div>
+              );
+            })}
+          </div>
 
+          {/* Combo badge */}
           {currentCombo >= 2 && (
             <motion.div
               key={currentCombo}
-              initial={{ scale: 0, rotate: -15 }}
+              initial={{ scale: 0, rotate: -20 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ type: "spring", stiffness: 500, damping: 12 }}
-              className="flex items-center gap-1 rounded-full bg-amber-500/20 border border-amber-500/30 px-2 py-0.5 shrink-0"
+              className="shrink-0 flex items-center gap-1 rounded-full bg-amber-500/15 border border-amber-500/25 px-2 py-0.5"
             >
-              <span className="text-xs">🔥</span>
-              <span className="text-xs font-semibold text-amber-400">x{currentCombo}</span>
+              <span className="text-[10px] font-bold text-amber-400 font-mono">×{currentCombo}</span>
             </motion.div>
           )}
 
           <HeartsDisplay />
         </div>
 
-        {/* Row 2: step-type segmented progress bar */}
-        <div className="flex items-center gap-0.5">
-          {steps.map((s, i) => {
-            const color =
-              s.type === "teach"
-                ? "bg-emerald-500"
-                : s.type === "practice"
-                  ? "bg-amber-500"
-                  : "bg-primary";
-            return (
-              <div key={i} className="h-1.5 flex-1 rounded-full overflow-hidden bg-muted/50">
-                <motion.div
-                  className={cn("h-full rounded-full", color)}
-                  initial={{ width: "0%" }}
-                  animate={{
-                    width: i < currentStepIndex ? "100%" : i === currentStepIndex ? "50%" : "0%",
-                  }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                />
-              </div>
-            );
-          })}
-          <span className="ml-2 text-xs font-semibold tabular-nums text-muted-foreground/50 shrink-0">
-            {currentStepIndex + 1}/{steps.length}
+        {/* Row 2: lesson title + step count */}
+        <div className="flex items-center justify-between pb-2.5">
+          <span className="text-[10px] font-mono text-muted-foreground/30 truncate max-w-[70%]">{lesson.title}</span>
+          <span className="text-[10px] font-mono tabular-nums text-muted-foreground/25 shrink-0">
+            {currentStepIndex + 1}<span className="text-muted-foreground/15">/{steps.length}</span>
           </span>
         </div>
       </div>
 
-      {/* Main content */}
-      <div className="flex flex-1 items-start justify-center overflow-y-auto px-4 py-6">
-        <div className="w-full max-w-lg">
+      {/* ── Main content ── */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-lg mx-auto px-5 py-8">
           {!showComplete && (
             <StepTransition stepKey={`step-${currentStepIndex}`}>
-              <div className="glass rounded-lg border border-border/20 p-5">
-                {/* Step type badge */}
-                <div className="mb-3">
-                  <span className={cn(
-                    "step-badge",
-                    step.type === "teach" && "step-badge-teach",
-                    (step.type === "quiz-mc" || step.type === "quiz-tf" || step.type === "quiz-scenario") && "step-badge-quiz",
-                    step.type === "practice" && "step-badge-practice",
-                  )}>
-                    {step.type === "teach" ? "📖 LEARN"
-                      : step.type === "practice" ? "🎮 PRACTICE"
-                      : step.type === "quiz-scenario" ? "🎭 SCENARIO"
-                      : step.type === "quiz-tf" ? "✅ TRUE / FALSE"
-                      : "❓ QUIZ"}
-                  </span>
-                </div>
-                {renderStep(step)}
+              {/* Step type editorial overline */}
+              <div className="flex items-center gap-3 mb-7">
+                <span className={cn(
+                  "font-mono text-[10px] uppercase tracking-[0.35em] font-bold shrink-0",
+                  step?.type === "teach" && "text-emerald-500/60",
+                  (step?.type === "quiz-mc" || step?.type === "quiz-tf" || step?.type === "quiz-scenario") && "text-blue-400/60",
+                  step?.type === "practice" && "text-amber-400/60",
+                )}>
+                  {stepLabel}
+                </span>
+                <span className="h-px flex-1 bg-border/35" />
               </div>
+              {renderStep(step)}
             </StepTransition>
           )}
         </div>
@@ -245,11 +193,7 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
       {/* Lesson complete overlay */}
       <AnimatePresence>
         {showComplete && finalBreakdown && (
-          <LessonComplete
-            breakdown={finalBreakdown}
-            xpEarned={lesson.xpReward}
-            onContinue={handleClose}
-          />
+          <LessonComplete breakdown={finalBreakdown} xpEarned={lesson.xpReward} onContinue={handleClose} />
         )}
       </AnimatePresence>
     </div>

@@ -1,0 +1,536 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-space), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains);
+  --font-serif: var(--font-instrument), 'Georgia', serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-profit: #10b981;
+  --color-loss: #ef4444;
+  --color-warning: #f59e0b;
+  --color-warning-strong: #f97316;
+  --color-profit-light: #34d399;
+  --color-short: #a855f7;
+}
+
+/* ============================================
+   DESIGN TOKENS (always dark — no light mode)
+   ============================================ */
+
+:root {
+  --radius: 0.375rem;
+  --background: #090d14;
+  --foreground: #c8d1db;
+  --card: #0d1117;
+  --card-foreground: #c8d1db;
+  --popover: #0d1117;
+  --popover-foreground: #c8d1db;
+  --primary: #10b981;
+  --primary-foreground: #090d14;
+  --secondary: #151b27;
+  --secondary-foreground: #c8d1db;
+  --muted: #151b27;
+  --muted-foreground: #5a6370;
+  --accent: #151b27;
+  --accent-foreground: #c8d1db;
+  --destructive: #ef4444;
+  --border: #1c2333;
+  --input: #1c2333;
+  --ring: #10b981;
+  --chart-1: #10b981;
+  --chart-2: #ef4444;
+  --chart-3: #3b82f6;
+  --chart-4: #f59e0b;
+  --chart-5: #8b5cf6;
+  --sidebar: #070a10;
+  --sidebar-foreground: #c8d1db;
+  --sidebar-primary: #10b981;
+  --sidebar-primary-foreground: #090d14;
+  --sidebar-accent: #151b27;
+  --sidebar-accent-foreground: #c8d1db;
+  --sidebar-border: #1c2333;
+  --sidebar-ring: #10b981;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* Tighter default letter-spacing for Inter */
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em;
+  }
+  /* Uniform border opacity globally */
+  [class*="border-border"] {
+    border-color: var(--border);
+  }
+}
+
+/* ============================================
+   COLORBLIND MODE
+   ============================================ */
+
+.colorblind-mode {
+  --color-profit: #3b82f6;
+  --color-loss: #f97316;
+}
+
+/* ============================================
+   SURFACE UTILITIES
+   ============================================ */
+
+.glass {
+  background: rgba(13, 17, 23, 0.85);
+  border: 1px solid rgba(28, 35, 51, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+.glass-subtle {
+  background: rgba(13, 17, 23, 0.6);
+}
+
+/* ============================================
+   INTERACTIVE HOVER EFFECTS
+   ============================================ */
+
+.card-hover-glow {
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+.card-hover-glow:hover {
+  background: rgba(255, 255, 255, 0.015);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* ============================================
+   PRICE & TRADE FLASH ANIMATIONS
+   ============================================ */
+
+.price-flash-up {
+  animation: flash-green 0.4s ease-out;
+}
+
+.price-flash-down {
+  animation: flash-red 0.4s ease-out;
+}
+
+@keyframes flash-green {
+  0% { color: var(--primary); }
+  100% { color: inherit; }
+}
+
+@keyframes flash-red {
+  0% { color: var(--destructive); }
+  100% { color: inherit; }
+}
+
+.trade-flash-buy {
+  animation: trade-buy 0.6s ease-out;
+}
+
+.trade-flash-sell {
+  animation: trade-sell 0.6s ease-out;
+}
+
+@keyframes trade-buy {
+  0% { background-color: rgba(16, 185, 129, 0.15); }
+  100% { background-color: transparent; }
+}
+
+@keyframes trade-sell {
+  0% { background-color: rgba(239, 68, 68, 0.15); }
+  100% { background-color: transparent; }
+}
+
+/* ============================================
+   CHART BORDER FLASH (trade execution)
+   ============================================ */
+
+.chart-border-flash-buy {
+  animation: chart-flash-green 0.5s ease-out;
+}
+
+.chart-border-flash-sell {
+  animation: chart-flash-red 0.5s ease-out;
+}
+
+@keyframes chart-flash-green {
+  0% { box-shadow: inset 0 0 0 2px rgba(16, 185, 129, 0.4); }
+  100% { box-shadow: inset 0 0 0 0px transparent; }
+}
+
+@keyframes chart-flash-red {
+  0% { box-shadow: inset 0 0 0 2px rgba(239, 68, 68, 0.4); }
+  100% { box-shadow: inset 0 0 0 0px transparent; }
+}
+
+/* ============================================
+   CHART TICKER TRANSITION
+   ============================================ */
+
+.chart-fade-overlay {
+  animation: chart-fade 0.4s ease-out forwards;
+}
+
+@keyframes chart-fade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ============================================
+   XP & LEVEL-UP ANIMATIONS
+   ============================================ */
+
+.xp-float-up {
+  animation: xp-float 1.2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes xp-float {
+  0% { opacity: 1; transform: translateY(0); }
+  70% { opacity: 1; transform: translateY(-16px); }
+  100% { opacity: 0; transform: translateY(-24px); }
+}
+
+.xp-bar-pulse {
+  animation: xp-pulse 0.6s ease-out;
+}
+
+@keyframes xp-pulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* ============================================
+   CONFETTI (lesson complete)
+   ============================================ */
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-particle {
+  animation: confetti-fall 2.5s ease-out forwards;
+}
+
+/* ============================================
+   LEARNING UI — Step Badges
+   ============================================ */
+
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.step-badge-teach {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.25);
+  color: #34d399;
+}
+
+.step-badge-quiz {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.25);
+  color: #60a5fa;
+}
+
+.step-badge-practice {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.25);
+  color: #fbbf24;
+}
+
+/* ============================================
+   LEARNING UI — Dot Grid Background
+   ============================================ */
+
+.dot-grid-bg {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ============================================
+   CUSTOM RANGE SLIDER (time travel)
+   ============================================ */
+
+.time-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: 2px solid var(--background);
+  transition: transform 0.1s ease;
+}
+
+.time-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.time-slider::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+}
+
+.time-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: 2px solid var(--background);
+}
+
+.time-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+}
+
+.time-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+}
+
+/* ============================================
+   FLASHCARD FLIP
+   ============================================ */
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.card-flip-container {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-flip-container.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-flip-front,
+.card-flip-back {
+  backface-visibility: hidden;
+}
+
+.card-flip-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+/* ============================================
+   PREDICTION GAME FEEDBACK
+   ============================================ */
+
+@keyframes prediction-correct-pulse {
+  0% { background-color: transparent; }
+  30% { background-color: rgba(16, 185, 129, 0.08); }
+  100% { background-color: transparent; }
+}
+.prediction-correct {
+  animation: prediction-correct-pulse 1.2s ease-out;
+}
+
+@keyframes prediction-wrong-shake {
+  0%, 100% { transform: translateX(0); background-color: transparent; }
+  10%, 30%, 50% { transform: translateX(-3px); }
+  20%, 40% { transform: translateX(3px); }
+  60% { background-color: rgba(244, 63, 94, 0.06); }
+}
+.prediction-wrong {
+  animation: prediction-wrong-shake 0.5s ease-out;
+}
+
+@keyframes grade-scale {
+  0% { transform: scale(0) rotate(-10deg); }
+  60% { transform: scale(1.15) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.grade-reveal {
+  animation: grade-scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ============================================
+   SIDEBAR ACTIVE INDICATOR
+   ============================================ */
+
+.sidebar-active-indicator {
+  position: relative;
+}
+.sidebar-active-indicator::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  border-radius: 0 3px 3px 0;
+  background: var(--primary);
+}
+
+/* ============================================
+   ACCENT BORDER (subtle, not animated)
+   ============================================ */
+
+.rotating-border {
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* ============================================
+   DIVIDER
+   ============================================ */
+
+.divider-glow {
+  height: 1px;
+  background: var(--border);
+}
+
+/* ============================================
+   LEADERBOARD
+   ============================================ */
+
+.rank-highlight {
+  background: rgba(139, 92, 246, 0.04);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 0.375rem;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ============================================
+   QUEST / ARENA / SEASON
+   ============================================ */
+
+.quest-claim {
+  animation: quest-claim-pop 0.3s ease-out;
+}
+
+@keyframes quest-claim-pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.arena-timer {
+  transition: all 0.3s ease;
+}
+
+.season-tier-unlock:not(:disabled):hover {
+  background: rgba(245, 158, 11, 0.08);
+}
+
+/* Scrollbar hide for horizontal tracks */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================
+   STATIC STUBS (decorative animations removed)
+   ============================================ */
+
+.badge-premium {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.backtest-running {
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 0.75rem;
+}
+
+.matchmaking-radar {
+  position: relative;
+  overflow: hidden;
+}

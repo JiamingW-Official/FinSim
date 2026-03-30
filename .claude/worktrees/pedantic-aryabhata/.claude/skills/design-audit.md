@@ -1,0 +1,2 @@
+# Skill: design-audit
+Audit a page's visual design. Screenshot it, identify: color inconsistencies, spacing issues, typography hierarchy problems, contrast issues, overuse of gradients/glows, component uniformity. Output a ranked list of fixes with file paths and line numbers. Focus on: trust, clarity, professionalism. Flag anything that looks "generic AI dashboard" (blue/purple glows, excessive rounded corners, gratuitous animations).

@@ -1,0 +1,428 @@
+"use client";
+
+import { useMemo, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useGameStore } from "@/stores/game-store";
+import { useTradingStore } from "@/stores/trading-store";
+import { useLearnStore } from "@/stores/learn-store";
+import { INITIAL_CAPITAL } from "@/types/trading";
+import { formatCurrency, cn } from "@/lib/utils";
+import { UNITS } from "@/data/lessons";
+import { ArrowRight, TrendingUp, BookOpen, BarChart3, Target } from "lucide-react";
+import { mulberry32, simulateTickerPrice, BASE_PRICES } from "@/services/market-data/simulate-price";
+
+const OVERVIEW_TICKERS = ["SPY", "QQQ", "AAPL", "BTC", "Gold", "VIX"];
+
+/* ── Gaussian via Box-Muller (shared helper) ── */
+function gaussianRandom(rand: () => number): number {
+  let u = 0, v = 0;
+  while (u === 0) u = rand();
+  while (v === 0) v = rand();
+  return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+}
+
+/* ── Portfolio sparkline (80 bars, Brownian motion) ── */
+function PortfolioSparkline({
+  equityHistory,
+  currentValue,
+}: {
+  equityHistory: { timestamp: number; portfolioValue: number }[];
+  currentValue: number;
+}) {
+  const NUM_POINTS = 80;
+  const W = 200;
+  const H = 48;
+
+  const data = useMemo(() => {
+    if (equityHistory.length >= 2) {
+      return equityHistory.slice(-NUM_POINTS).map((e) => e.portfolioValue);
+    }
+    const daySeed = Math.floor(Date.now() / 86400000);
+    const rand = mulberry32(daySeed ^ 0xdeadbeef);
+    const drift = 0.0002;
+    const baseVol = 0.008;
+    const pts: number[] = [INITIAL_CAPITAL];
+    let vol = baseVol;
+    for (let i = 1; i < NUM_POINTS; i++) {
+      // Volatility clustering: vol mean-reverts toward baseVol with random shocks
+      vol = baseVol + 0.7 * (vol - baseVol) + 0.003 * gaussianRandom(rand);
+      vol = Math.max(0.002, Math.min(0.02, vol));
+      const prev = pts[i - 1];
+      const ret = drift + vol * gaussianRandom(rand);
+      pts.push(Math.max(prev * (1 + ret), INITIAL_CAPITAL * 0.5));
+    }
+    // Anchor the last point to the current portfolio value
+    const scale = currentValue / pts[pts.length - 1];
+    for (let i = 0; i < pts.length; i++) {
+      const t = i / (pts.length - 1);
+      pts[i] = pts[i] * (1 + (scale - 1) * t);
+    }
+    return pts;
+  }, [equityHistory, currentValue]);
+
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const range = max - min || 1;
+
+  const toX = (i: number) => (i / (data.length - 1)) * W;
+  const toY = (v: number) => H - ((v - min) / range) * (H - 4);
+
+  const linePts = data.map((v, i) => `${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(" ");
+  const isUp = data[data.length - 1] >= data[0];
+  const lineColor = isUp ? "#10b981" : "#ef4444";
+
+  return (
+    <svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="overflow-visible">
+      <polyline points={linePts} fill="none" stroke={lineColor} strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/* ── Market insight rotation ── */
+const MARKET_BRIEFS = [
+  "Equity markets opened mixed as investors weigh Fed commentary on rate trajectory. Technology sector leads with moderate gains while energy pulls back on inventory data.",
+  "Strong labor market data pushed yields higher, pressuring growth stocks. Defensive sectors outperform as traders seek quality amid macro uncertainty.",
+  "Risk-on sentiment dominates mid-week as earnings reports broadly beat estimates. Semiconductors and cloud software driving the tape higher.",
+  "Market digesting Thursday's CPI print — core inflation slightly above expectations. Rotation from tech into financials and industrials accelerating.",
+  "Pre-market futures point to a quiet Friday session. Options expiration may introduce intraday volatility in heavily-traded names like SPY and QQQ.",
+  "Weekend effect visible as volumes thin into Friday close. Traders position cautiously ahead of next week's FOMC minutes release.",
+  "Monday gap-up after positive weekend macro headlines. Watch for follow-through or fade as institutional desks come back online.",
+];
+
+const ECONOMIC_EVENTS = [
+  { name: "FOMC Minutes", impact: "HIGH", daysFromNow: 1, time: "2:00 PM ET" },
+  { name: "CPI (YoY)", impact: "HIGH", daysFromNow: 2, time: "8:30 AM ET" },
+  { name: "Initial Jobless Claims", impact: "MED", daysFromNow: 3, time: "8:30 AM ET" },
+  { name: "Retail Sales MoM", impact: "HIGH", daysFromNow: 4, time: "8:30 AM ET" },
+  { name: "Fed Chair Speech", impact: "HIGH", daysFromNow: 5, time: "10:00 AM ET" },
+  { name: "PCE Price Index", impact: "HIGH", daysFromNow: 6, time: "8:30 AM ET" },
+  { name: "Non-Farm Payrolls", impact: "HIGH", daysFromNow: 7, time: "8:30 AM ET" },
+];
+
+/* ── Mini ticker card ── */
+function TickerCard({ ticker, price, changePct }: { ticker: string; price: number; changePct: number }) {
+  const isUp = changePct >= 0;
+  const daySeed = Math.floor(Date.now() / 86400000);
+  const sparkData = useMemo(() => {
+    const NUM_PTS = 36;
+    const rand = mulberry32((daySeed ^ 0xabcdef) + ticker.charCodeAt(0) * 137);
+    const startPrice = price * (1 - changePct / 100);
+    const pts: number[] = [startPrice];
+    const drift = (changePct / 100) / NUM_PTS;
+    for (let i = 1; i < NUM_PTS; i++) {
+      const prev = pts[i - 1];
+      const ret = drift + 0.004 * gaussianRandom(rand);
+      pts.push(prev * (1 + ret));
+    }
+    // Linearly interpolate toward the target end price
+    const rawEnd = pts[pts.length - 1];
+    const scale = price / rawEnd;
+    for (let i = 0; i < pts.length; i++) {
+      const t = i / (pts.length - 1);
+      pts[i] = pts[i] * (1 + (scale - 1) * t);
+    }
+    return pts;
+  }, [ticker, price, changePct, daySeed]);
+
+  const min = Math.min(...sparkData);
+  const max = Math.max(...sparkData);
+  const range = max - min || 1;
+  const W = 64;
+  const H = 24;
+  const linePts = sparkData
+    .map((v, i) => `${(i / (sparkData.length - 1)) * W},${H - ((v - min) / range) * (H - 2)}`)
+    .join(" ");
+
+  return (
+    <div className="rounded-lg border border-border bg-card p-3 flex flex-col justify-between min-w-0 hover:translate-y-[-1px] transition-transform duration-200">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-xs font-medium">{ticker}</span>
+        <span className={cn("text-[10px] font-mono tabular-nums rounded px-1 py-0.5", isUp ? "text-emerald-500 bg-emerald-500/5" : "text-red-400 bg-red-500/5")}>
+          {isUp ? "+" : ""}{changePct.toFixed(2)}%
+        </span>
+      </div>
+      <svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="mb-1.5">
+        <polyline points={linePts} fill="none" stroke={isUp ? "#10b981" : "#ef4444"} strokeWidth="1" strokeLinejoin="round" strokeLinecap="round" />
+      </svg>
+      <span className="text-[11px] font-mono tabular-nums text-muted-foreground">
+        {ticker === "BTC" ? `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}` : ticker === "VIX" ? price.toFixed(2) : `$${price.toFixed(2)}`}
+      </span>
+    </div>
+  );
+}
+
+/* ── Main ── */
+export default function HomePage() {
+  const stats = useGameStore((s) => s.stats);
+  const portfolioValue = useTradingStore((s) => s.portfolioValue);
+  const tradeHistory = useTradingStore((s) => s.tradeHistory);
+  const equityHistory = useTradingStore((s) => s.equityHistory);
+  const completedLessons = useLearnStore((s) => s.completedLessons);
+  const daySeed = Math.floor(Date.now() / 86400000);
+  const dayIndex = new Date().getDay();
+
+  const marketPulse = useMemo(() => {
+    const rand = mulberry32(daySeed ^ 0xbeefdead);
+    const vix = +(rand() * 18 + 12).toFixed(2);
+    const vixNorm = Math.max(0, Math.min(1, (vix - 12) / 18));
+    const baseFG = Math.round((1 - vixNorm) * 80 + 10);
+    const noise = Math.round((rand() - 0.5) * 16);
+    const fg = Math.max(0, Math.min(100, baseFG + noise));
+    const regime = vix < 16 && fg > 55 ? "Bull" : vix > 25 || fg < 30 ? "Bear" : "Sideways";
+    return { vix, fg, regime };
+  }, [daySeed]);
+
+  const overviewPrices = useMemo(() => {
+    return OVERVIEW_TICKERS.map((ticker) => {
+      if (ticker === "VIX") {
+        const baseVix = BASE_PRICES["VIX"];
+        const changePct = ((marketPulse.vix - baseVix) / baseVix) * 100;
+        return { ticker, price: marketPulse.vix, changePct };
+      }
+      return { ticker, ...simulateTickerPrice(ticker, daySeed) };
+    });
+  }, [daySeed, marketPulse.vix]);
+
+  const totalPnL = portfolioValue - INITIAL_CAPITAL;
+  const totalPnLPct = (totalPnL / INITIAL_CAPITAL) * 100;
+  const winRate = stats.totalTrades > 0 ? (stats.profitableTrades / stats.totalTrades) * 100 : 0;
+  const recentTrades = tradeHistory.slice(-5).reverse();
+  const marketBrief = MARKET_BRIEFS[dayIndex % MARKET_BRIEFS.length];
+
+  const learnProgress = useMemo(() => {
+    let total = 0;
+    let completed = 0;
+    for (const unit of UNITS) {
+      total += unit.lessons.length;
+      completed += unit.lessons.filter((l) => completedLessons.includes(l.id)).length;
+    }
+    return { total, completed, pct: total > 0 ? Math.round((completed / total) * 100) : 0 };
+  }, [completedLessons]);
+
+  const nextLesson = useMemo(() => {
+    for (const unit of UNITS) {
+      for (const lesson of unit.lessons) {
+        if (!completedLessons.includes(lesson.id)) return { lesson, unit };
+      }
+    }
+    return null;
+  }, [completedLessons]);
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
+  const greeting = useMemo(() => {
+    const h = new Date().getHours();
+    if (h < 12) return "Good morning";
+    if (h < 17) return "Good afternoon";
+    return "Good evening";
+  }, []);
+
+  return (
+    <div className="flex h-full flex-col overflow-y-auto min-h-[calc(100vh-4rem)]">
+      <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+
+        {/* Greeting */}
+        <p className="font-serif italic text-lg text-muted-foreground/40 mb-1">{greeting}</p>
+
+        {/* Page label */}
+        <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">
+          {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" }).toUpperCase()}
+        </p>
+
+        {/* ── Market ticker strip ── */}
+        <div className="flex items-center gap-4 overflow-x-auto scrollbar-none mb-4">
+          {!mounted ? (
+            OVERVIEW_TICKERS.map((t) => (
+              <div key={t} className="flex shrink-0 items-center gap-2">
+                <Skeleton className="h-4 w-10" />
+                <Skeleton className="h-4 w-14" />
+              </div>
+            ))
+          ) : (
+            <>
+              <span className={cn(
+                "shrink-0 rounded px-2 py-0.5 text-[11px] font-medium",
+                marketPulse.regime === "Bull" ? "bg-emerald-500/5 text-emerald-400" :
+                marketPulse.regime === "Bear" ? "bg-red-500/5 text-red-400" :
+                "bg-amber-500/10 text-amber-400"
+              )}>
+                {marketPulse.regime}
+              </span>
+              <span className="text-[11px] font-mono text-muted-foreground tabular-nums shrink-0">
+                VIX {marketPulse.vix}
+              </span>
+              <div className="h-3 w-px bg-border shrink-0" />
+              {overviewPrices.map(({ ticker, price, changePct }) => (
+                <div key={ticker} className="flex shrink-0 items-center gap-1.5">
+                  <span className="text-[11px] text-muted-foreground">{ticker}</span>
+                  <span className="text-[11px] font-mono tabular-nums">
+                    {ticker === "BTC" ? `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}` : ticker === "VIX" ? price.toFixed(2) : `$${price.toFixed(2)}`}
+                  </span>
+                  <span className={cn("text-[11px] font-mono tabular-nums", changePct >= 0 ? "text-emerald-400" : "text-red-400")}>
+                    {changePct >= 0 ? "+" : ""}{changePct.toFixed(2)}%
+                  </span>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+
+        {/* ── Primary: Portfolio + Market Brief (2/3 + 1/3) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
+
+          {/* Portfolio — dominant card */}
+          <div className="lg:col-span-2 rounded-lg border border-border border-t-2 border-t-emerald-500/30 bg-card p-6">
+            <div className="flex items-start justify-between mb-5">
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">Portfolio Value</p>
+                <p className="text-4xl font-serif font-light tracking-tight">{formatCurrency(portfolioValue)}</p>
+                <p className={cn("text-sm font-mono tabular-nums mt-1", totalPnLPct >= 0 ? "text-emerald-500" : "text-red-400")}>
+                  {totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}% ({totalPnL >= 0 ? "+" : ""}{formatCurrency(totalPnL)})
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1.5">Stats</p>
+                <p className="text-xs font-mono tabular-nums">{stats.totalTrades} trades</p>
+                <p className="text-xs font-mono tabular-nums text-muted-foreground">{winRate.toFixed(1)}% win rate</p>
+              </div>
+            </div>
+            <PortfolioSparkline equityHistory={equityHistory} currentValue={portfolioValue} />
+          </div>
+
+          {/* Market brief — secondary */}
+          <div className="rounded-lg border border-border bg-muted/30 p-5 flex flex-col justify-between">
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">Market Brief</p>
+              <p className="font-serif italic text-[15px] leading-relaxed text-foreground/70">{marketBrief}</p>
+            </div>
+            <div className="mt-4 pt-4 border-t border-border">
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2.5">Upcoming</p>
+              <div className="space-y-1.5">
+                {ECONOMIC_EVENTS.slice(dayIndex % 4, (dayIndex % 4) + 3).map((ev, i) => (
+                  <div key={i} className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <span className={cn("shrink-0 h-1 w-1 rounded-full", ev.impact === "HIGH" ? "bg-red-400" : "bg-amber-400")} />
+                      <span className="truncate text-sm font-medium">{ev.name}</span>
+                    </div>
+                    <span className="shrink-0 font-mono text-xs tabular-nums text-muted-foreground/40">{ev.daysFromNow === 1 ? "Tmrw" : `${ev.daysFromNow}d`}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Section divider ── */}
+        <div className="border-t border-border mb-6" />
+
+        {/* ── Market Overview: 6 ticker cards ── */}
+        {mounted && (
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-xl font-serif tracking-tight text-foreground">Today&apos;s Markets</p>
+              <Link href="/trade" className="text-[11px] text-muted-foreground/40 hover:text-muted-foreground transition-colors">
+                View all
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              {overviewPrices.map(({ ticker, price, changePct }, i) => (
+                <motion.div
+                  key={ticker}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.25, delay: i * 0.05, ease: "easeOut" }}
+                >
+                  <TickerCard ticker={ticker} price={price} changePct={changePct} />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── Section divider ── */}
+        <div className="border-t border-border mb-6" />
+
+        {/* ── Secondary row: Recent Trades + Learning (2/3 + 1/3) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
+
+          {/* Recent trades */}
+          <div className="lg:col-span-2 rounded-lg border border-border bg-card p-5">
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-xl font-serif tracking-tight text-foreground">Recent Trades</p>
+              {tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] text-muted-foreground/40 hover:text-muted-foreground transition-colors">View all</Link>}
+            </div>
+            {recentTrades.length === 0 ? (
+              <p className="text-xs text-muted-foreground/40">
+                No trades yet.
+              </p>
+            ) : (
+              <div className="space-y-1.5">
+                {recentTrades.slice(0, 5).map((trade, i) => (
+                  <div key={`${trade.timestamp}-${i}`} className="flex items-center justify-between text-xs py-0.5">
+                    <div className="flex items-center gap-2">
+                      <span className={cn("h-1.5 w-1.5 rounded-full shrink-0", trade.side === "buy" ? "bg-emerald-400" : "bg-red-400")} />
+                      <span className="font-mono tabular-nums">{trade.ticker}</span>
+                      <span className="font-mono text-muted-foreground">{trade.side} x{trade.quantity}</span>
+                    </div>
+                    <span className={cn("font-mono tabular-nums", trade.realizedPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
+                      {trade.realizedPnL >= 0 ? "+" : ""}{formatCurrency(trade.realizedPnL)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Learning progress */}
+          <div className="rounded-lg border border-border bg-muted/30 p-5 flex flex-col justify-between">
+            <div>
+              <p className="text-xl font-serif tracking-tight text-foreground mb-3">Learning</p>
+              <p className="text-xl font-mono tabular-nums">{learnProgress.completed}<span className="text-muted-foreground text-sm">/{learnProgress.total}</span></p>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mt-1">lessons completed</p>
+              <div className="mt-3 h-1 overflow-hidden rounded-full bg-muted/30">
+                <div className="h-full rounded-full bg-foreground/20 transition-colors duration-300" style={{ width: `${learnProgress.pct}%` }} />
+              </div>
+            </div>
+            {nextLesson && (
+              <div className="mt-4 pt-4 border-t border-border">
+                <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1.5">Next</p>
+                <Link href={`/learn/${nextLesson.lesson.id}`} className="group flex items-center justify-between">
+                  <span className="text-xs truncate">{nextLesson.lesson.title}</span>
+                  <ArrowRight className="h-3 w-3 text-muted-foreground shrink-0 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* ── Quick Actions ── */}
+        <div className="flex items-center gap-2.5 mb-6 border-t border-border pt-6">
+          {[
+            { label: "Trade", href: "/trade", icon: TrendingUp },
+            { label: "Learn", href: "/learn", icon: BookOpen },
+            { label: "Options", href: "/options", icon: BarChart3 },
+            { label: "Predictions", href: "/predictions", icon: Target },
+          ].map(({ label, href, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className="flex items-center gap-1.5 rounded-full border border-border px-5 py-2 text-[11px] font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03] active:scale-[0.98] transition-colors duration-150"
+            >
+              <Icon className="h-3 w-3" />
+              {label}
+            </Link>
+          ))}
+        </div>
+
+        {/* Spacer to push footer down */}
+        <div className="flex-1" />
+
+        <p className="mt-4 pb-4 text-[10px] font-mono text-muted-foreground/30">All market data is simulated for educational purposes.</p>
+
+      </div>
+    </div>
+  );
+}

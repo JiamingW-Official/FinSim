@@ -1,0 +1,104 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useGameStore } from "@/stores/game-store";
+import { getTitleForLevel } from "@/types/game";
+import { Shield, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { soundEngine } from "@/services/audio/sound-engine";
+
+export function LevelUpOverlay() {
+  const lastLevelUp = useGameStore((s) => s.lastLevelUp);
+  const clearLevelUp = useGameStore((s) => s.clearLevelUp);
+  const [show, setShow] = useState(false);
+  const [levelNum, setLevelNum] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (lastLevelUp === null) return;
+    setLevelNum(lastLevelUp);
+    setShow(true);
+    soundEngine.playLevelUp();
+
+    const timer = setTimeout(() => {
+      setShow(false);
+      setTimeout(clearLevelUp, 400);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [lastLevelUp, clearLevelUp]);
+
+  const title = levelNum !== null ? getTitleForLevel(levelNum) : "";
+
+  return (
+    <AnimatePresence>
+      {show && levelNum !== null && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60"
+        >
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="relative flex flex-col items-center gap-3 rounded-xl border border-primary/30 bg-card px-10 py-8 shadow-2xl glow-green"
+          >
+            {/* Sparkles */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              className="absolute -top-3 -left-3"
+            >
+              <Sparkles className="h-6 w-6 text-amber-400" />
+            </motion.div>
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+              className="absolute -top-2 -right-4"
+            >
+              <Sparkles className="h-5 w-5 text-primary" />
+            </motion.div>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              className="absolute -bottom-2 -right-3"
+            >
+              <Sparkles className="h-4 w-4 text-amber-400" />
+            </motion.div>
+
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-primary">
+              Level Up!
+            </span>
+
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.15 }}
+              className="flex items-center gap-2"
+            >
+              <Shield className="h-8 w-8 text-primary" />
+              <span className="text-3xl font-black tabular-nums text-foreground">
+                {levelNum}
+              </span>
+            </motion.div>
+
+            <span className={cn(
+              "text-sm font-semibold",
+              "bg-gradient-to-r from-primary to-green-300 bg-clip-text text-transparent",
+            )}>
+              {title}
+            </span>
+
+            <p className="text-[10px] text-muted-foreground">
+              Keep trading to unlock new titles!
+            </p>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}

@@ -16,27 +16,17 @@ const VISUAL_MAP = {
   "portfolio-pie": PortfolioPie,
 } as const;
 
-// Render **bold** inline markers
 function formatInline(text: string): React.ReactNode[] {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
-      return (
-        <strong key={i} className="text-primary font-semibold">
-          {part.slice(2, -2)}
-        </strong>
-      );
+      return <strong key={i} className="text-foreground font-semibold">{part.slice(2, -2)}</strong>;
     }
     return <span key={i}>{part}</span>;
   });
 }
 
-// Parse content into typed blocks so bullets render as proper lists
-interface Block {
-  kind: "paragraph" | "bullets";
-  text?: string;
-  items?: string[];
-}
+interface Block { kind: "paragraph" | "bullets"; text?: string; items?: string[]; }
 
 function parseBlocks(content: string): Block[] {
   return content.split("\n\n").map((para) => {
@@ -45,9 +35,7 @@ function parseBlocks(content: string): Block[] {
     if (hasBullet) {
       return {
         kind: "bullets",
-        items: lines
-          .filter((l) => l.trim().length > 0)
-          .map((l) => l.replace(/^[\s•]+/, "")),
+        items: lines.filter((l) => l.trim().length > 0).map((l) => l.replace(/^[\s•]+/, "")),
       };
     }
     return { kind: "paragraph", text: para };
@@ -59,53 +47,52 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
   const blocks = parseBlocks(step.content);
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Title */}
+    <div className="flex flex-col gap-6">
+      {/* Title — big serif */}
       <motion.h2
-        className="text-lg font-semibold leading-snug"
+        className="font-serif text-3xl font-bold tracking-tight leading-tight text-foreground"
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.28 }}
+        transition={{ duration: 0.25 }}
       >
         {step.title}
       </motion.h2>
 
-      {/* Visual diagram */}
+      {/* Visual */}
       {VisualComponent && (
         <motion.div
-          className="glass rounded-md border border-border overflow-hidden"
-          initial={{ opacity: 0, scale: 0.96 }}
+          className="rounded-xl overflow-hidden border border-border/50"
+          initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.35, delay: 0.08 }}
+          transition={{ duration: 0.3, delay: 0.06 }}
         >
           <VisualComponent />
         </motion.div>
       )}
 
-      {/* Content blocks — each staggered in */}
-      <div className="space-y-2.5">
+      {/* Content — editorial left-rule style */}
+      <div className="flex flex-col gap-4">
         {blocks.map((block, bi) => {
-          const delay = 0.15 + bi * 0.1;
-
+          const delay = 0.1 + bi * 0.07;
           if (block.kind === "bullets" && block.items) {
             return (
               <motion.div
                 key={bi}
-                className="rounded-md border border-border/20 bg-muted/25 px-4 py-3.5"
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.28, delay }}
+                className="border-l-2 border-foreground/10 pl-5"
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.22, delay }}
               >
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {block.items.map((item, ii) => (
                     <motion.li
                       key={ii}
-                      className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground/90"
-                      initial={{ opacity: 0, x: -6 }}
+                      className="flex items-start gap-3 text-sm leading-relaxed text-foreground/75"
+                      initial={{ opacity: 0, x: -4 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: delay + ii * 0.06 }}
+                      transition={{ delay: delay + ii * 0.04 }}
                     >
-                      <span className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                      <span className="mt-[7px] h-1 w-2.5 shrink-0 rounded-full bg-foreground/20" />
                       <span>{formatInline(item)}</span>
                     </motion.li>
                   ))}
@@ -113,16 +100,15 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
               </motion.div>
             );
           }
-
           return (
             <motion.div
               key={bi}
-              className="rounded-md border border-border/20 bg-muted/25 px-4 py-3.5"
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.28, delay }}
+              className="border-l-2 border-foreground/10 pl-5"
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.22, delay }}
             >
-              <p className="whitespace-pre-line text-sm leading-relaxed text-foreground/90">
+              <p className="text-sm leading-relaxed text-foreground/75 whitespace-pre-line">
                 {formatInline(block.text ?? "")}
               </p>
             </motion.div>
@@ -133,22 +119,22 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
       {/* Key terms */}
       {step.highlight && step.highlight.length > 0 && (
         <motion.div
-          className="flex flex-wrap items-center gap-1.5"
+          className="flex flex-wrap items-center gap-2 pt-1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.45 }}
+          transition={{ delay: 0.35 }}
         >
-          <span className="text-[11px] font-semibold text-muted-foreground/50 mr-0.5">
+          <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground/25 mr-1">
             Key terms
           </span>
           {step.highlight.map((term, i) => (
             <motion.span
               key={term}
-              className="cursor-default rounded-full border border-primary/20 bg-primary/8 px-2.5 py-0.5 text-xs font-semibold text-primary transition-colors hover:bg-primary/15 hover:border-primary/40"
-              initial={{ scale: 0.75, opacity: 0 }}
+              className="cursor-default rounded-full border border-foreground/[0.12] px-3 py-0.5 text-[11px] font-mono text-muted-foreground/50 transition-all hover:border-foreground/25 hover:text-foreground/80"
+              initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.48 + i * 0.06, type: "spring", stiffness: 400, damping: 15 }}
-              whileHover={{ scale: 1.07, y: -1 }}
+              transition={{ delay: 0.38 + i * 0.04, type: "spring", stiffness: 400, damping: 15 }}
+              whileHover={{ scale: 1.04, y: -1 }}
             >
               {term}
             </motion.span>
@@ -160,14 +146,14 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
       <motion.button
         type="button"
         onClick={onContinue}
-        className="mt-1 w-full rounded-md bg-primary py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:brightness-110"
-        initial={{ opacity: 0, y: 8 }}
+        className="mt-1 w-full rounded-full bg-foreground text-background py-3 text-[11px] font-bold tracking-[0.12em] uppercase transition-all hover:bg-foreground/90"
+        initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.97 }}
-        transition={{ delay: 0.48 }}
+        transition={{ delay: 0.42 }}
       >
-        Got it, continue →
+        Continue →
       </motion.button>
     </div>
   );

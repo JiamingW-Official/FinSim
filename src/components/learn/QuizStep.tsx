@@ -7,46 +7,27 @@ import type { QuizMCStep, QuizTFStep, QuizScenarioStep } from "@/data/lessons/ty
 import { soundEngine } from "@/services/audio/sound-engine";
 
 type QuizStepData = QuizMCStep | QuizTFStep | QuizScenarioStep;
-
 interface QuizStepProps {
   step: QuizStepData;
   onCorrect: (timeMs: number, difficulty: number) => void;
   onWrong: (timeMs: number, difficulty: number) => void;
 }
 
-const CORRECT_HEADERS = [
-  "Brilliant! 🎉",
-  "Nailed it! ✨",
-  "Perfect! 🎯",
-  "You're on fire! 🔥",
-  "Outstanding! 💎",
-  "Spot on! 🌟",
-  "Incredible! 🚀",
-];
-
-const WRONG_HEADERS = [
-  "Not quite! 😅",
-  "Oops! 🤔",
-  "Almost there! 💪",
-  "Good try! 📖",
-  "Don't worry! 🌱",
-];
+const CORRECT_HEADERS = ["Brilliant!", "Nailed it!", "Perfect!", "You're on fire!", "Outstanding!", "Spot on!", "Incredible!"];
+const WRONG_HEADERS = ["Not quite!", "Oops!", "Almost there!", "Good try!", "Don't worry!"];
 
 function getOptions(step: QuizStepData): string[] {
   if (step.type === "quiz-tf") return ["True", "False"];
   return step.options;
 }
-
 function getCorrectIndex(step: QuizStepData): number {
   if (step.type === "quiz-tf") return step.correct ? 0 : 1;
   return step.correctIndex;
 }
-
 function getQuestion(step: QuizStepData): string {
   if (step.type === "quiz-tf") return step.statement;
   return step.question ?? (step.type === "quiz-scenario" ? step.scenario : "") ?? "";
 }
-
 function getDifficulty(step: QuizStepData): number {
   if (step.difficulty) return step.difficulty;
   if (step.type === "quiz-tf") return 1;
@@ -66,22 +47,16 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
   const isCorrect = selected === correctIndex;
   const difficulty = getDifficulty(step);
 
-  // Pick a header message deterministically from elapsed time bucket
   const correctHeader = CORRECT_HEADERS[Math.floor(Date.now() / 3000) % CORRECT_HEADERS.length];
   const wrongHeader = WRONG_HEADERS[Math.floor(Date.now() / 2700) % WRONG_HEADERS.length];
 
   const handleSelect = (index: number) => {
     if (showResult) return;
-    const elapsed = Date.now() - mountTime.current;
-    setAnswerTimeMs(elapsed);
+    setAnswerTimeMs(Date.now() - mountTime.current);
     setSelected(index);
     setShowResult(true);
-
-    if (index === correctIndex) {
-      soundEngine.playCorrect();
-    } else {
-      soundEngine.playWrong();
-    }
+    if (index === correctIndex) soundEngine.playCorrect();
+    else soundEngine.playWrong();
   };
 
   const handleContinue = () => {
@@ -89,73 +64,62 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
     else onWrong(answerTimeMs, difficulty);
   };
 
-  const speedTier =
-    answerTimeMs > 0
-      ? answerTimeMs < 2000
-        ? "lightning"
-        : answerTimeMs < 4000
-          ? "fast"
-          : null
-      : null;
+  const speedTier = answerTimeMs > 0 ? (answerTimeMs < 2000 ? "lightning" : answerTimeMs < 4000 ? "fast" : null) : null;
 
-  const speedLabel =
-    speedTier === "lightning" ? "⚡ LIGHTNING!" :
-    speedTier === "fast" ? "💨 FAST!" : null;
+  const letterLabel = (i: number) =>
+    step.type === "quiz-tf" ? (i === 0 ? "T" : "F") : String.fromCharCode(65 + i);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
+      {/* Scenario context box */}
       {step.type === "quiz-scenario" && (
         <motion.div
-          className="rounded-md bg-amber-500/8 border border-amber-500/20 p-3.5"
+          className="rounded-xl border border-amber-500/25 bg-amber-500/[0.07] px-4 py-4"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <p className="text-[10px] font-semibold text-amber-400 mb-1.5">
-            📋 Scenario
-          </p>
-          <p className="text-sm text-foreground/90 leading-relaxed">{step.scenario}</p>
+          <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-amber-400/60 mb-2">Scenario</p>
+          <p className="text-sm text-foreground/85 leading-relaxed">{step.scenario}</p>
         </motion.div>
       )}
 
+      {/* Question */}
       <motion.div
-        initial={{ opacity: 0, y: -8 }}
+        initial={{ opacity: 0, y: -6 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: step.type === "quiz-scenario" ? 0.12 : 0 }}
+        transition={{ delay: step.type === "quiz-scenario" ? 0.1 : 0 }}
       >
-        <p className="text-[10px] font-semibold text-muted-foreground mb-2">
-          {step.type === "quiz-tf" ? "True or False?" : "Question"}
-        </p>
-        <h2 className="text-base font-semibold leading-snug">{question}</h2>
+        <h2 className="font-serif text-2xl font-bold leading-snug text-foreground">{question}</h2>
       </motion.div>
 
-      <div className={cn(
-        "grid gap-2",
-        step.type === "quiz-tf" ? "grid-cols-2" : "grid-cols-1 sm:grid-cols-2",
-      )}>
+      {/* Options */}
+      <div className={cn("flex flex-col gap-2", step.type === "quiz-tf" && "grid grid-cols-2 flex-none")}>
         {options.map((opt, i) => {
           const isThis = selected === i;
           const isRight = i === correctIndex;
+          const dimmed = showResult && !isThis && !isRight;
 
           let borderCls = "border-border/60";
-          let bgCls = "bg-card/80";
-          let textCls = "";
-          if (showResult && isThis && isCorrect) {
-            borderCls = "border-emerald-500/70";
-            bgCls = "bg-emerald-500/5";
-            textCls = "text-emerald-300";
-          } else if (showResult && isThis && !isCorrect) {
-            borderCls = "border-red-500/70";
-            bgCls = "bg-red-500/5";
-            textCls = "text-red-300";
-          } else if (showResult && isRight) {
-            borderCls = "border-emerald-500/40";
-            bgCls = "bg-emerald-500/5";
-            textCls = "text-emerald-400/80";
-          }
+          let bgCls = "bg-transparent";
+          let textCls = "text-foreground/75";
+          let letterBg = "bg-foreground/[0.08] text-muted-foreground/50";
 
-          const letterLabel = step.type === "quiz-tf"
-            ? (i === 0 ? "T" : "F")
-            : String.fromCharCode(65 + i);
+          if (showResult && isThis && isCorrect) {
+            borderCls = "border-emerald-500/60";
+            bgCls = "bg-emerald-500/10";
+            textCls = "text-emerald-300";
+            letterBg = "bg-emerald-500/25 text-emerald-300";
+          } else if (showResult && isThis && !isCorrect) {
+            borderCls = "border-red-500/60";
+            bgCls = "bg-red-500/10";
+            textCls = "text-red-300";
+            letterBg = "bg-red-500/25 text-red-300";
+          } else if (showResult && isRight) {
+            borderCls = "border-emerald-500/35";
+            bgCls = "bg-emerald-500/5";
+            textCls = "text-emerald-400/70";
+            letterBg = "bg-emerald-500/15 text-emerald-400/70";
+          }
 
           return (
             <motion.button
@@ -165,57 +129,53 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
               disabled={showResult}
               initial={{ opacity: 0, y: 10 }}
               animate={{
-                opacity: 1,
+                opacity: dimmed ? 0.35 : 1,
                 y: 0,
-                x: showResult && isThis && !isCorrect ? [0, -5, 5, -5, 5, 0] : 0,
+                scale: dimmed ? 0.985 : 1,
+                x: showResult && isThis && !isCorrect ? [0, -6, 6, -5, 5, 0] : 0,
               }}
-              whileHover={!showResult ? { y: -1, scale: 1.01 } : undefined}
+              whileHover={!showResult ? { x: 3, borderColor: "rgba(200,209,219,0.25)" } : undefined}
               whileTap={!showResult ? { scale: 0.97 } : undefined}
               transition={{
-                opacity: { duration: 0.2, delay: i * 0.07 },
-                y: { duration: 0.2, delay: i * 0.07 },
+                opacity: { duration: 0.18, delay: i * 0.06 },
+                y: { duration: 0.18, delay: i * 0.06 },
+                scale: { duration: 0.2 },
                 x: { duration: 0.35 },
               }}
               className={cn(
-                "relative rounded-md border-2 p-3.5 text-left text-sm font-medium transition-colors",
-                borderCls, bgCls, textCls,
-                !showResult && "hover:border-primary/40 hover:bg-muted/20 cursor-pointer",
+                "relative flex items-center gap-3.5 rounded-xl border-2 px-4 py-3.5 text-left min-h-[3.5rem] transition-colors duration-150",
+                borderCls, bgCls,
+                !showResult && "hover:bg-foreground/[0.04] cursor-pointer",
                 showResult && "cursor-default",
               )}
             >
               <span className={cn(
-                "mr-2.5 inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-semibold shrink-0",
-                showResult && isThis && isCorrect ? "bg-emerald-500/30 text-emerald-300"
-                  : showResult && isThis && !isCorrect ? "bg-red-500/30 text-red-300"
-                  : showResult && isRight ? "bg-emerald-500/20 text-emerald-400/80"
-                  : "bg-muted text-muted-foreground",
+                "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg font-mono text-sm font-bold transition-colors",
+                letterBg,
               )}>
-                {letterLabel}
+                {letterLabel(i)}
               </span>
-              {opt}
-
+              <span className={cn("text-[13px] font-medium leading-snug flex-1", textCls)}>
+                {opt}
+              </span>
               <AnimatePresence>
                 {showResult && isThis && isCorrect && (
                   <motion.span
                     initial={{ scale: 0, rotate: -20 }}
                     animate={{ scale: 1, rotate: 0 }}
                     exit={{ scale: 0 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-400 text-xl"
-                  >
-                    ✓
-                  </motion.span>
+                    transition={{ type: "spring", stiffness: 500, damping: 14 }}
+                    className="text-emerald-400 text-lg font-bold shrink-0"
+                  >✓</motion.span>
                 )}
                 {showResult && isThis && !isCorrect && (
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     exit={{ scale: 0 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-red-400 text-xl"
-                  >
-                    ✗
-                  </motion.span>
+                    transition={{ type: "spring", stiffness: 400, damping: 14 }}
+                    className="text-red-400 text-lg font-bold shrink-0"
+                  >✗</motion.span>
                 )}
               </AnimatePresence>
             </motion.button>
@@ -223,48 +183,50 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
         })}
       </div>
 
+      {/* Result feedback */}
       <AnimatePresence>
         {showResult && (
           <motion.div
-            initial={{ opacity: 0, height: 0, y: -4 }}
-            animate={{ opacity: 1, height: "auto", y: 0 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className={cn(
-              "overflow-hidden rounded-md border-l-4 p-3.5",
-              isCorrect
-                ? "border-l-emerald-500 border-emerald-500/20 bg-emerald-500/5"
-                : "border-l-red-500 border-red-500/20 bg-red-500/5",
-            )}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
           >
-            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-              <p className={cn(
-                "text-sm font-black",
-                isCorrect ? "text-emerald-400" : "text-red-400",
-              )}>
-                {isCorrect ? correctHeader : wrongHeader}
-              </p>
-              {isCorrect && speedLabel && (
-                <motion.span
-                  initial={{ scale: 0, rotate: -15 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 12, delay: 0.1 }}
-                  className={cn(
-                    "rounded-full px-2 py-0.5 text-[10px] font-black",
-                    speedTier === "lightning"
-                      ? "bg-amber-400/20 text-amber-400"
-                      : "bg-primary/20 text-primary",
-                  )}
-                >
-                  {speedLabel}
-                </motion.span>
-              )}
+            <div className={cn(
+              "rounded-xl border px-5 py-4",
+              isCorrect ? "border-emerald-500/25 bg-emerald-500/[0.07]" : "border-red-500/25 bg-red-500/[0.07]",
+            )}>
+              <div className="flex items-center gap-3 mb-2 flex-wrap">
+                <p className={cn(
+                  "font-serif text-xl font-bold leading-none",
+                  isCorrect ? "text-emerald-400" : "text-red-400",
+                )}>
+                  {isCorrect ? correctHeader : wrongHeader}
+                </p>
+                {isCorrect && speedTier && (
+                  <motion.span
+                    initial={{ scale: 0, rotate: -12 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 12, delay: 0.08 }}
+                    className={cn(
+                      "rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-[0.1em] uppercase border",
+                      speedTier === "lightning"
+                        ? "bg-amber-400/15 text-amber-400 border-amber-400/25"
+                        : "bg-primary/15 text-primary border-primary/25",
+                    )}
+                  >
+                    {speedTier === "lightning" ? "Lightning" : "Fast"}
+                  </motion.span>
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground/70 leading-relaxed">{step.explanation}</p>
             </div>
-            <p className="text-xs text-muted-foreground leading-relaxed">{step.explanation}</p>
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* Continue */}
       {showResult && (
         <motion.button
           type="button"
@@ -273,15 +235,15 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
           animate={{ opacity: 1, y: 0 }}
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.97 }}
-          transition={{ delay: 0.15 }}
+          transition={{ delay: 0.1 }}
           className={cn(
-            "w-full rounded-md py-3.5 text-sm font-semibold transition-colors",
+            "w-full rounded-full py-3 text-[11px] font-bold tracking-[0.12em] uppercase transition-all",
             isCorrect
-              ? "bg-emerald-500 text-foreground hover:bg-emerald-400"
-              : "bg-red-500 text-foreground hover:bg-red-400",
+              ? "bg-emerald-500 text-background hover:bg-emerald-400"
+              : "bg-foreground text-background hover:bg-foreground/90",
           )}
         >
-          {isCorrect ? "Keep going! →" : "Got it, continue →"}
+          {isCorrect ? "Keep going →" : "Got it →"}
         </motion.button>
       )}
     </div>

@@ -1,0 +1,959 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-profit: #22c55e;
+  --color-loss: #ef4444;
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: #0a0e17;
+  --foreground: #e2e8f0;
+  --card: #0f1420;
+  --card-foreground: #e2e8f0;
+  --popover: #0f1420;
+  --popover-foreground: #e2e8f0;
+  --primary: #2d9cdb;
+  --primary-foreground: #ffffff;
+  --secondary: #1a2235;
+  --secondary-foreground: #e2e8f0;
+  --muted: #1a2235;
+  --muted-foreground: #6b7280;
+  --accent: #1a2235;
+  --accent-foreground: #e2e8f0;
+  --destructive: #ef4444;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #2d9cdb;
+  --chart-1: #2d9cdb;
+  --chart-2: #ef4444;
+  --chart-3: #22c55e;
+  --chart-4: #f59e0b;
+  --chart-5: #8b5cf6;
+  --sidebar: #080b12;
+  --sidebar-foreground: #e2e8f0;
+  --sidebar-primary: #2d9cdb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a2235;
+  --sidebar-accent-foreground: #e2e8f0;
+  --sidebar-border: #1e293b;
+  --sidebar-ring: #2d9cdb;
+}
+
+/* Always dark - no light mode */
+.dark {
+  --background: #0a0e17;
+  --foreground: #e2e8f0;
+  --card: #0f1420;
+  --card-foreground: #e2e8f0;
+  --popover: #0f1420;
+  --popover-foreground: #e2e8f0;
+  --primary: #2d9cdb;
+  --primary-foreground: #ffffff;
+  --secondary: #1a2235;
+  --secondary-foreground: #e2e8f0;
+  --muted: #1a2235;
+  --muted-foreground: #6b7280;
+  --accent: #1a2235;
+  --accent-foreground: #e2e8f0;
+  --destructive: #ef4444;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #2d9cdb;
+  --chart-1: #2d9cdb;
+  --chart-2: #ef4444;
+  --chart-3: #22c55e;
+  --chart-4: #f59e0b;
+  --chart-5: #8b5cf6;
+  --sidebar: #080b12;
+  --sidebar-foreground: #e2e8f0;
+  --sidebar-primary: #2d9cdb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a2235;
+  --sidebar-accent-foreground: #e2e8f0;
+  --sidebar-border: #1e293b;
+  --sidebar-ring: #2d9cdb;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: hsl(204 70% 52% / 0.3);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 2px;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.15s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* Accessible focus-visible ring */
+  :focus-visible {
+    outline: 2px solid rgba(45, 156, 219, 0.5);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid rgba(45, 156, 219, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+/* ============================================
+   COLORBLIND MODE
+   ============================================ */
+
+.colorblind-mode {
+  --color-profit: #3b82f6;
+  --color-loss: #f97316;
+}
+
+/* ============================================
+   SURFACE & UTILITY CLASSES
+   ============================================ */
+
+/* Minimal surface utilities */
+.glass {
+  background: rgba(15, 20, 32, 0.8);
+  border: 1px solid rgba(30, 41, 59, 0.3);
+}
+
+.glass-card {
+  background: rgba(15, 20, 32, 0.85);
+  border: 1px solid rgba(30, 41, 59, 0.3);
+}
+
+.glass-subtle {
+  background: rgba(15, 20, 32, 0.6);
+}
+
+/* Surface card — standard card style */
+.surface-card {
+  background: rgba(15, 20, 32, 0.5);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(30, 41, 59, 0.5);
+  border-radius: 0.5rem;
+}
+
+/* Surface elevated — slightly more prominent */
+.surface-elevated {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Semantic color accents — no glow, just subtle background */
+.glow-green { background: rgba(45, 156, 219, 0.06); }
+.glow-red { background: rgba(239, 68, 68, 0.06); }
+.glow-amber { background: rgba(245, 158, 11, 0.06); }
+
+.hover-lift { transition: background-color 0.15s ease; }
+.hover-lift:hover { background: rgba(255, 255, 255, 0.03); }
+
+/* Simple border accents */
+.gradient-border-green { border: 1px solid rgba(45, 156, 219, 0.2); }
+.gradient-border-red { border: 1px solid rgba(239, 68, 68, 0.2); }
+
+/* ============================================
+   GAME-FEEL ANIMATIONS
+   ============================================ */
+
+/* Price flash — green pulse on price up */
+.price-flash-up {
+  animation: flash-green 0.4s ease-out;
+}
+
+/* Price flash — red pulse on price down */
+.price-flash-down {
+  animation: flash-red 0.4s ease-out;
+}
+
+@keyframes flash-green {
+  0% { color: #2d9cdb; }
+  100% { color: inherit; }
+}
+
+@keyframes flash-red {
+  0% { color: #ef4444; }
+  100% { color: inherit; }
+}
+
+/* Pulsing dot for live/playing state */
+.pulse-dot {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Trade execution flash — buy (green border flash) */
+.trade-flash-buy {
+  animation: trade-buy 0.6s ease-out;
+}
+
+/* Trade execution flash — sell (red border flash) */
+.trade-flash-sell {
+  animation: trade-sell 0.6s ease-out;
+}
+
+@keyframes trade-buy {
+  0% {
+    background-color: rgba(45, 156, 219, 0.15);
+    box-shadow: inset 0 0 20px rgba(45, 156, 219, 0.1);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+@keyframes trade-sell {
+  0% {
+    background-color: rgba(239, 68, 68, 0.15);
+    box-shadow: inset 0 0 20px rgba(239, 68, 68, 0.1);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+/* Achievement popup glow + bounce entrance */
+/* Achievement entrance — clean fade in */
+.achievement-glow {
+  animation: achievement-entrance 0.3s ease-out;
+}
+
+@keyframes achievement-entrance {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Confetti — kept for lesson completion only */
+.achievement-confetti::before { display: none; }
+
+/* ============================================
+   XP & LEVEL-UP ANIMATIONS
+   ============================================ */
+
+/* Floating +XP text */
+.xp-float-up {
+  animation: xp-float 1.2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes xp-float {
+  0% { opacity: 1; transform: translateY(0); }
+  70% { opacity: 1; transform: translateY(-16px); }
+  100% { opacity: 0; transform: translateY(-24px); }
+}
+
+/* XP bar pulse when gaining XP */
+.xp-bar-pulse {
+  animation: xp-pulse 0.6s ease-out;
+}
+
+@keyframes xp-pulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Level-up overlay entrance */
+.level-up-entrance {
+  animation: level-up-in 0.5s ease-out;
+}
+
+@keyframes level-up-in {
+  0% { opacity: 0; transform: scale(0.7); }
+  60% { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Level-up sparkle — static */
+.level-up-sparkle {
+  /* No animation — static */
+}
+
+/* ============================================
+   TABLE & ROW ANIMATIONS
+   ============================================ */
+
+.row-slide-in {
+  animation: row-enter 0.25s ease-out;
+}
+
+@keyframes row-enter {
+  0% { opacity: 0; transform: translateX(-8px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* ============================================
+   CHART TICKER TRANSITION
+   ============================================ */
+
+.chart-fade-overlay {
+  animation: chart-fade 0.4s ease-out forwards;
+}
+
+@keyframes chart-fade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ============================================
+   PROXIMITY WARNINGS
+   ============================================ */
+
+.proximity-pulse {
+  animation: prox-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes prox-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ============================================
+   TRADE EXECUTION CHART FLASH
+   ============================================ */
+
+.chart-border-flash-buy {
+  animation: chart-flash-green 0.5s ease-out;
+}
+
+.chart-border-flash-sell {
+  animation: chart-flash-red 0.5s ease-out;
+}
+
+@keyframes chart-flash-green {
+  0% { box-shadow: inset 0 0 0 2px rgba(45, 156, 219, 0.4); }
+  100% { box-shadow: inset 0 0 0 0px transparent; }
+}
+
+@keyframes chart-flash-red {
+  0% { box-shadow: inset 0 0 0 2px rgba(239, 68, 68, 0.4); }
+  100% { box-shadow: inset 0 0 0 0px transparent; }
+}
+
+/* ============================================
+   CONFETTI ANIMATION (lesson complete)
+   ============================================ */
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-particle {
+  animation: confetti-fall 2.5s ease-out forwards;
+}
+
+/* ============================================
+   LEARNING UI — Step Badges
+   ============================================ */
+
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.step-badge-teach {
+  background: rgba(45, 156, 219, 0.1);
+  border-color: rgba(45, 156, 219, 0.25);
+  color: #56b3e6;
+}
+
+.step-badge-quiz {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.25);
+  color: #60a5fa;
+}
+
+.step-badge-practice {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.25);
+  color: #fbbf24;
+}
+
+/* ============================================
+   LEARNING UI — Gold Stars (no shimmer)
+   ============================================ */
+
+.shimmer-gold {
+  /* No animation — static */
+}
+
+/* ============================================
+   LEARNING UI — Dot Grid Background
+   ============================================ */
+
+.dot-grid-bg {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ============================================
+   CUSTOM RANGE SLIDER (time travel)
+   ============================================ */
+
+.time-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2d9cdb;
+  cursor: pointer;
+  border: 2px solid #0a0e17;
+  transition: transform 0.1s ease;
+}
+
+.time-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.time-slider::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+}
+
+.time-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2d9cdb;
+  cursor: pointer;
+  border: 2px solid #0a0e17;
+}
+
+.time-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #1e293b;
+}
+
+.time-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #1e293b;
+}
+
+/* ============================================
+   PREMIUM GRADIENT TEXT
+   ============================================ */
+
+.gradient-text-brand {
+  background: linear-gradient(135deg, #2d9cdb, #56b3e6, #7cc8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24, #fcd34d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-rainbow {
+  color: #e2e8f0;
+}
+
+/* ============================================
+   INTERACTIVE CARD HOVER EFFECTS
+   ============================================ */
+
+/* Card hover — minimal, clean border transition */
+.card-hover-glow {
+  transition: border-color 0.15s ease;
+}
+.card-hover-glow:hover {
+  border-color: rgba(30, 41, 59, 0.8);
+}
+
+.card-hover-lift {
+  transition: border-color 0.15s ease;
+}
+.card-hover-lift:hover {
+  border-color: rgba(30, 41, 59, 0.8);
+}
+
+/* ============================================
+   SUBTLE BACKGROUND PATTERNS
+   ============================================ */
+
+.bg-grid-subtle {
+  background-image:
+    linear-gradient(rgba(30, 41, 59, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-noise {
+  position: relative;
+}
+.bg-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   UTILITY ANIMATION CLASSES (static — no pulsing/shimmer)
+   ============================================ */
+
+.bounce-cute { /* removed */ }
+.wiggle { /* removed */ }
+.float-gentle { /* removed */ }
+.pulse-soft { /* removed */ }
+
+/* ============================================
+   PREMIUM RIBBON & BADGE STYLES
+   ============================================ */
+
+.badge-premium {
+  background: rgba(45, 156, 219, 0.08);
+  border: 1px solid rgba(45, 156, 219, 0.2);
+}
+
+.badge-gold {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.badge-legendary {
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.badge-diamond {
+  background: rgba(6, 182, 212, 0.08);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+.badge-alpha {
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+/* ============================================
+   LEADERBOARD
+   ============================================ */
+
+.glow-purple {
+  box-shadow: none;
+}
+
+.gradient-text-purple {
+  background: linear-gradient(135deg, #8b5cf6, #a78bfa, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rank-highlight {
+  background: rgba(139, 92, 246, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 0.5rem;
+}
+
+.medal-shimmer {
+  /* No shimmer — keep it clean */
+}
+
+/* ============================================
+   FLASHCARD FLIP
+   ============================================ */
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.card-flip-container {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-flip-container.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-flip-front,
+.card-flip-back {
+  backface-visibility: hidden;
+}
+
+.card-flip-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+/* ============================================
+   PREDICTION GAME FEEDBACK
+   ============================================ */
+
+@keyframes prediction-correct-pulse {
+  0% { background-color: transparent; }
+  30% { background-color: rgba(45, 156, 219, 0.08); }
+  100% { background-color: transparent; }
+}
+.prediction-correct {
+  animation: prediction-correct-pulse 1.2s ease-out;
+}
+
+@keyframes prediction-wrong-shake {
+  0%, 100% { transform: translateX(0); background-color: transparent; }
+  10%, 30%, 50% { transform: translateX(-3px); }
+  20%, 40% { transform: translateX(3px); }
+  60% { background-color: rgba(244, 63, 94, 0.06); }
+}
+.prediction-wrong {
+  animation: prediction-wrong-shake 0.5s ease-out;
+}
+
+/* ============================================
+   STREAK FIRE GLOW
+   ============================================ */
+
+.streak-fire {
+  /* No glow animation — clean */
+}
+
+/* ============================================
+   DAILY REWARD GLOW
+   ============================================ */
+
+.daily-reward-glow {
+  /* No glow — clean */
+}
+
+/* ============================================
+   BACKTEST ANIMATIONS
+   ============================================ */
+
+@keyframes backtest-border-pulse {
+  0%, 100% { border-color: rgba(139, 92, 246, 0.15); }
+  50% { border-color: rgba(139, 92, 246, 0.5); }
+}
+
+.backtest-running {
+  animation: backtest-border-pulse 1.5s ease-in-out infinite;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 0.75rem;
+}
+
+@keyframes grade-scale {
+  0% { transform: scale(0) rotate(-10deg); }
+  60% { transform: scale(1.15) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.grade-reveal {
+  animation: grade-scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ============================================
+   SIDEBAR ACTIVE INDICATOR
+   ============================================ */
+
+.sidebar-active-indicator {
+  position: relative;
+}
+.sidebar-active-indicator::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 16px;
+  border-radius: 0 2px 2px 0;
+  background: #2d9cdb;
+}
+
+/* ============================================
+   ANIMATED GRADIENT BORDER (rotating)
+   ============================================ */
+
+/* Rotating border — simplified to static subtle border */
+.rotating-border {
+  border: 1px solid rgba(30, 41, 59, 0.6);
+  border-radius: 0.5rem;
+}
+
+/* ============================================
+   SECTION DIVIDER WITH GLOW
+   ============================================ */
+
+.divider-glow {
+  height: 1px;
+  background: rgba(30, 41, 59, 0.5);
+}
+
+/* ============================================
+   MARKET MOOD ORB — subtle, no glow
+   ============================================ */
+
+.orb-glow-green {
+  box-shadow: none;
+}
+
+.orb-glow-red {
+  box-shadow: none;
+}
+
+.orb-glow-amber {
+  box-shadow: none;
+}
+
+/* ============================================
+   TOOLTIP PREMIUM
+   ============================================ */
+
+.tooltip-premium {
+  background: rgba(15, 20, 32, 0.95);
+  border: 1px solid rgba(30, 41, 59, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0e17;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* ============================================
+   QUEST / ARENA / SEASON ANIMATIONS
+   ============================================ */
+
+/* Quest claim button pop */
+.quest-claim {
+  animation: quest-claim-pop 0.3s ease-out;
+}
+
+@keyframes quest-claim-pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Arena timer pulse when <10s */
+.arena-timer {
+  transition: all 0.3s ease;
+}
+
+/* Matchmaking radar sweep */
+.matchmaking-radar {
+  position: relative;
+  overflow: hidden;
+}
+
+.matchmaking-radar::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.6), transparent);
+  transform-origin: left center;
+  animation: radar-sweep 2s linear infinite;
+}
+
+@keyframes radar-sweep {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Season tier unlock — subtle hover */
+.season-tier-unlock:not(:disabled):hover {
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+/* Scrollbar hide for reward track */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================
+   MOBILE UX — iOS-QUALITY
+   ============================================ */
+
+/* Main content area bottom padding on mobile (clears MobileNav + safe area) */
+.mobile-main-pb {
+  /* Default: no padding needed (desktop, SSR) */
+}
+
+@media (max-width: 767px) {
+  .mobile-main-pb {
+    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Prevent iOS input zoom — font-size must be >= 16px on inputs */
+@media (max-width: 767px) {
+  input:not([type="range"]),
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Minimum touch target sizes for interactive elements */
+@media (max-width: 767px) {
+  /* Buttons, links used as buttons, checkboxes get 44px minimum */
+  button:not([data-compact]),
+  [role="button"]:not([data-compact]) {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Table horizontal scroll on mobile */
+.table-scroll-mobile {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Full-screen modal/sheet on mobile */
+@media (max-width: 767px) {
+  .modal-mobile-fullscreen {
+    max-height: 100dvh;
+    border-radius: 0;
+    width: 100%;
+  }
+}
+
+/* Body text minimum 14px on mobile */
+@media (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Reinforce tap highlight removal on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
