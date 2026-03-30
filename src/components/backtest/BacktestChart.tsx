@@ -52,6 +52,7 @@ export default function BacktestChart({ bars, trades, isRunning, isPreview, onRe
  background: { type: ColorType.Solid, color: CHART_COLORS.background },
  textColor: CHART_COLORS.text,
  fontFamily: "'Inter', sans-serif",
+ attributionLogo: false,
  },
  grid: {
  vertLines: { color: CHART_COLORS.grid },

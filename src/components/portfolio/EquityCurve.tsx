@@ -26,6 +26,7 @@ export function EquityCurve() {
  textColor: "#6b7280",
  fontFamily: "JetBrains Mono, monospace",
  fontSize: 10,
+ attributionLogo: false,
  },
  grid: {
  vertLines: { color: "#1e293b" },

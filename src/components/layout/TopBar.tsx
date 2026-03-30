@@ -24,61 +24,6 @@ import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { useShortcutsModal } from "@/components/ui/KeyboardShortcutsModal";
 
-// ── Market status ─────────────────────────────────────────────────────────────
-
-type MarketStatus = "open" | "pre" | "after" | "closed";
-
-function getMarketStatus(): MarketStatus {
- const now = new Date();
- const formatter = new Intl.DateTimeFormat("en-US", {
- timeZone: "America/New_York",
- hour: "numeric",
- minute: "numeric",
- weekday: "short",
- hour12: false,
- });
- const parts = formatter.formatToParts(now);
- const weekday = parts.find((p) => p.type === "weekday")?.value ?? "";
- const hour = parseInt(parts.find((p) => p.type === "hour")?.value ?? "0", 10);
- const minute = parseInt(
- parts.find((p) => p.type === "minute")?.value ?? "0",
- 10,
- );
-
- if (weekday === "Sat" || weekday === "Sun") return "closed";
-
- const total = hour * 60 + minute;
- if (total >= 9 * 60 + 30 && total < 16 * 60) return "open";
- if (total >= 4 * 60 && total < 9 * 60 + 30) return "pre";
- if (total >= 16 * 60 && total < 20 * 60) return "after";
- return "closed";
-}
-
-const STATUS_CFG: Record<MarketStatus, { dot: string; label: string }> = {
- open: { dot: "bg-emerald-500", label: "Open" },
- pre: { dot: "bg-amber-400", label: "Pre-mkt" },
- after: { dot: "bg-amber-400", label: "After-mkt" },
- closed: { dot: "bg-red-500", label: "Closed" },
-};
-
-function MarketStatusPill() {
- const [status, setStatus] = useState<MarketStatus>("closed");
-
- useEffect(() => {
- setStatus(getMarketStatus());
- const id = setInterval(() => setStatus(getMarketStatus()), 60_000);
- return () => clearInterval(id);
- }, []);
-
- const cfg = STATUS_CFG[status];
- return (
- <div className="flex items-center gap-1">
- <span className={cn("h-1.5 w-1.5 rounded-full", cfg.dot)} />
- <span className="text-xs text-muted-foreground">{cfg.label}</span>
- </div>
- );
-}
-
 // ── Ticker search dropdown ────────────────────────────────────────────────────
 
 function TickerDropdown({
@@ -328,10 +273,6 @@ export function TopBar() {
  />
  </div>
 
- <div className="h-3 w-px bg-border" />
-
- {/* Market status */}
- <MarketStatusPill />
  </div>
 
  {/* ── Right ── */}

@@ -122,7 +122,7 @@ function DrawdownChart({ data, baseTimestamp }: { data: { bar: number; drawdownP
  if (!containerRef.current || data.length === 0) return;
 
  const chart = createChart(containerRef.current, {
- layout: { background: { type: ColorType.Solid, color: "transparent" }, textColor: "#6b7280", fontSize: 9 },
+ layout: { background: { type: ColorType.Solid, color: "transparent" }, textColor: "#6b7280", fontSize: 9, attributionLogo: false },
  grid: { vertLines: { visible: false }, horzLines: { color: "#1e293b" } },
  timeScale: { visible: false },
  rightPriceScale: { borderColor: "#1e293b" },

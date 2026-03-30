@@ -685,3 +685,12 @@
   font-size: 0.6875rem;
   font-variant-numeric: tabular-nums;
 }
+
+/* ── Hide TradingView attribution logo from lightweight-charts ── */
+.tv-lightweight-charts a[href*="tradingview"] {
+  display: none !important;
+  pointer-events: none !important;
+}
+.tv-lightweight-charts > table > tbody > tr:last-child > td:last-child {
+  display: none !important;
+}

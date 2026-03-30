@@ -36,6 +36,7 @@ export function WinRateChart() {
  background: { type: ColorType.Solid, color: "transparent" },
  textColor: "rgba(255,255,255,0.5)",
  fontSize: 10,
+ attributionLogo: false,
  },
  grid: {
  vertLines: { color: "rgba(255,255,255,0.03)" },
