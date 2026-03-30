@@ -65,8 +65,8 @@ export function NewsTicker() {
  const scrollDuration = Math.max(20, Math.min(60, totalChars / 8));
 
  return (
- <div className="flex h-5 items-center gap-1.5 overflow-hidden border-t border-border px-3">
- <Newspaper className="h-2.5 w-2.5 shrink-0 text-muted-foreground/40" />
+ <div className="flex h-5 items-center gap-1.5 overflow-hidden border-t border-border/20 px-3">
+ <Newspaper className="h-2.5 w-2.5 shrink-0 text-muted-foreground/30" />
  <div className="relative flex-1 overflow-hidden">
  <motion.div
  className="flex gap-6 whitespace-nowrap"
@@ -83,12 +83,7 @@ export function NewsTicker() {
  {[...headlines, ...headlines].map((item, i) => (
  <span
  key={`${item.id}-${i}`}
- className={cn(
- "text-[10px] inline-flex items-center",
- item.sentiment === "bullish" && "text-muted-foreground/60",
- item.sentiment === "bearish" && "text-muted-foreground/60",
- item.sentiment === "neutral" && "text-muted-foreground/40"
- )}
+ className="text-[10px] font-mono inline-flex items-center opacity-60"
  >
  <SentimentDot headline={item.headline} />
  {item.headline}
