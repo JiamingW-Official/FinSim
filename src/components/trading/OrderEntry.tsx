@@ -7,6 +7,7 @@ import { useChartStore } from "@/stores/chart-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { useMarketDataStore } from "@/stores/market-data-store";
 import { useGameStore } from "@/stores/game-store";
+import { useClockStore } from "@/stores/clock-store";
 import { formatCurrency, cn } from "@/lib/utils";
 import { usePriceFlash, useAnimatedNumber } from "@/hooks/usePriceFlash";
 import { Button } from "@/components/ui/button";
@@ -338,6 +339,10 @@ export function OrderEntry() {
  // Advanced order ticket (summary modal)
  const [advancedTicket, setAdvancedTicket] = useState<AdvancedOrderSummary | null>(null);
 
+ // Market session — market orders are disabled when closed
+ const marketSession = useClockStore((s) => s.marketSession);
+ const isMarketOpen = marketSession === "open" || marketSession === "pre-market" || marketSession === "after-hours";
+
  // Store selectors
  const currentTicker = useChartStore((s) => s.currentTicker);
  const allData = useMarketDataStore((s) => s.allData);
@@ -375,6 +380,7 @@ export function OrderEntry() {
  // Validation for standard orders
  const canExecuteMarket =
  orderType === "market" &&
+ isMarketOpen &&
  qty > 0 &&
  price > 0 &&
  (tradeMode === "buy"
@@ -860,6 +866,14 @@ export function OrderEntry() {
  />
  )}
 
+ {/* Market closed warning */}
+ {orderType === "market" && !isMarketOpen && (
+ <div className="flex items-center gap-1.5 rounded-md border border-amber-500/20 bg-amber-500/5 px-2.5 py-1.5 text-xs text-amber-500/70">
+ <AlertCircle className="h-3 w-3 shrink-0" />
+ <span>Market closed — orders unavailable</span>
+ </div>
+ )}
+
  {/* Execute button */}
  <Button
  onClick={() => setShowConfirm(true)}
@@ -873,7 +887,9 @@ export function OrderEntry() {
  : "bg-red-500 hover:bg-red-400 text-white",
  )}
  >
- {orderType === "market"
+ {orderType === "market" && !isMarketOpen
+ ? "Market Closed"
+ : orderType === "market"
  ? tradeMode === "buy"
  ? `Buy ${currentTicker}`
  : tradeMode === "short"

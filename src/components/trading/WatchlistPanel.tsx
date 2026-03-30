@@ -1,982 +1,222 @@
 "use client";
 
-import { useState, useMemo, useCallback, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import {
- Bell,
- BellOff,
- X,
- Plus,
- ChevronUp,
- ChevronDown,
- ChevronRight,
- LayoutList,
- MoreHorizontal,
- Check,
- Pencil,
- Copy,
- Trash2,
- StickyNote,
- BarChart2,
- Clock,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
 import { useWatchlistStore } from "@/stores/watchlist-store";
 import { useChartStore } from "@/stores/chart-store";
-import { WATCHLIST_STOCKS } from "@/types/market";
-import { FUNDAMENTALS } from "@/data/fundamentals";
-import type { WatchlistItem, AlertType } from "@/stores/watchlist-store";
 
-// ─── Shared price utility ────────────────────────────────────────────────────
-import { mulberry32, tickerHash, simulateTickerPrice, getDaySeed, BASE_PRICES } from "@/services/market-data/simulate-price";
+// ── Seeded PRNG ──────────────────────────────────────────────────────────────
 
-/** Alias kept for local helpers that need the hash */
-const tickerSeed = tickerHash;
-
-function simulatePrice(ticker: string): { price: number; changePct: number } {
- return simulateTickerPrice(ticker, getDaySeed());
+function mulberry32(seed: number) {
+  let s = seed >>> 0;
+  return () => {
+    s = (s + 0x6d2b79f5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
 }
 
-// Generate a mini sparkline path for the last 8 simulated data points
-function generateSparkData(ticker: string): number[] {
- const base = BASE_PRICES[ticker] ?? 100;
- const seed = tickerSeed(ticker + "spark" + Math.floor(Date.now() / 3600000).toString());
- const rand = mulberry32(seed);
- const points: number[] = [base];
- for (let i = 1; i < 8; i++) {
- const prev = points[i - 1];
- points.push(Math.max(prev * (1 + (rand() - 0.5) * 0.02), 0.01));
- }
- return points;
+function tickerSeed(t: string) {
+  let h = 0;
+  for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) & 0x7fff;
+  return h;
 }
 
-// TA signal seeded by ticker — lightweight, no computation
-type TASignal = "bull" | "bear" | "neutral";
-function getTASignal(ticker: string): TASignal {
- const seed = tickerSeed(ticker + "ta" + Math.floor(Date.now() / 3600000).toString());
- const rand = mulberry32(seed);
- const v = rand();
- if (v < 0.38) return "bull";
- if (v < 0.62) return "neutral";
- return "bear";
+function simulatePrice(ticker: string) {
+  const rng = mulberry32(tickerSeed(ticker) ^ 0xcafe);
+  const price = 50 + rng() * 400;
+  const changePct = (rng() - 0.45) * 6;
+  return {
+    price: Math.round(price * 100) / 100,
+    changePct: Math.round(changePct * 100) / 100,
+  };
 }
 
-// Performance stats seeded by ticker + date bucket
-function getPerformanceStats(ticker: string): { w1: number; m1: number; ytd: number; sharpe: number } {
- const seed = tickerSeed(ticker + "perf" + Math.floor(Date.now() / 86400000).toString());
- const rand = mulberry32(seed);
- const w1 = (rand() - 0.45) * 8;
- const m1 = (rand() - 0.45) * 18;
- const ytd = (rand() - 0.40) * 40;
- const sharpe = rand() * 2.5 - 0.5;
- return { w1, m1, ytd, sharpe };
+// ── Sparkline ────────────────────────────────────────────────────────────────
+
+function MiniSpark({ ticker, positive }: { ticker: string; positive: boolean }) {
+  const rng = mulberry32(tickerSeed(ticker) ^ 0xbeef);
+  const pts: number[] = [];
+  let v = 50;
+  for (let i = 0; i < 8; i++) {
+    v = Math.max(5, Math.min(95, v + (rng() - 0.5) * 25));
+    pts.push(v);
+  }
+  const w = 48,
+    h = 16;
+  const d = pts
+    .map((y, i) => `${i === 0 ? "M" : "L"}${(i / 7) * w},${h - (y / 100) * h}`)
+    .join(" ");
+  return (
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
+      <path
+        d={d}
+        fill="none"
+        stroke={positive ? "#34d399" : "#f87171"}
+        strokeWidth="1.2"
+        opacity="0.6"
+      />
+    </svg>
+  );
 }
 
-function MiniSparkline({ values }: { values: number[] }) {
- if (values.length < 2) return null;
- const min = Math.min(...values);
- const max = Math.max(...values);
- const range = max - min || 1;
- const W = 40;
- const H = 16;
- const pts = values
- .map((v, i) => {
- const x = (i / (values.length - 1)) * W;
- const y = H - ((v - min) / range) * H;
- return `${x},${y}`;
- })
- .join(" ");
- const isUp = values[values.length - 1] >= values[0];
- return (
- <svg width={W} height={H} className="shrink-0">
- <polyline
- points={pts}
- fill="none"
- stroke={isUp ? "#10b981" : "#ef4444"}
- strokeWidth={1.2}
- strokeLinejoin="round"
- strokeLinecap="round"
- />
- </svg>
- );
-}
+// ── Constants ────────────────────────────────────────────────────────────────
 
-// ─── TAChip ───────────────────────────────────────────────────────────────────
+const KNOWN_TICKERS = new Set([
+  "AAPL","MSFT","GOOG","AMZN","TSLA","NVDA","META","NFLX","AMD","INTC",
+  "CRM","ORCL","ADBE","PYPL","SQ","SHOP","SPOT","UBER","LYFT","COIN",
+  "PLTR","SOFI","RIVN","LCID","NIO","BABA","JD","PDD","SE","GRAB",
+]);
 
-function TAChip({ signal }: { signal: TASignal }) {
- return (
- <span
- className={cn(
- "rounded px-1 py-0.5 text-[11px] font-semibold shrink-0",
- signal === "bull" && "bg-green-500/15 text-green-500",
- signal === "bear" && "bg-red-500/15 text-red-500",
- signal === "neutral" && "bg-muted text-muted-foreground",
- )}
- >
- {signal === "bull" ? "Bull" : signal === "bear" ? "Bear" : "Neut"}
- </span>
- );
-}
+const POPULAR = ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "NVDA", "META"];
 
-// ─── ListDropdown ─────────────────────────────────────────────────────────────
+const LISTS = ["Main", "Options Plays", "Swing Trades"] as const;
 
-interface ListDropdownProps {
- onRename: () => void;
- onDuplicate: () => void;
- onDelete: () => void;
- canDelete: boolean;
- onClose: () => void;
-}
-
-function ListDropdown({ onRename, onDuplicate, onDelete, canDelete, onClose }: ListDropdownProps) {
- const ref = useRef<HTMLDivElement>(null);
-
- useEffect(() => {
- function handleClick(e: MouseEvent) {
- if (ref.current && !ref.current.contains(e.target as Node)) onClose();
- }
- document.addEventListener("mousedown", handleClick);
- return () => document.removeEventListener("mousedown", handleClick);
- }, [onClose]);
-
- return (
- <div
- ref={ref}
- className="absolute top-full right-0 z-50 mt-1 min-w-[120px] rounded border border-border bg-card"
- >
- <button
- onClick={() => { onRename(); onClose(); }}
- className="flex w-full items-center gap-2 px-3 py-1.5 text-[11px] text-foreground hover:bg-muted/20 transition-colors"
- >
- <Pencil className="h-3 w-3 text-muted-foreground" />
- Rename
- </button>
- <button
- onClick={() => { onDuplicate(); onClose(); }}
- className="flex w-full items-center gap-2 px-3 py-1.5 text-[11px] text-foreground hover:bg-muted/20 transition-colors"
- >
- <Copy className="h-3 w-3 text-muted-foreground" />
- Duplicate
- </button>
- {canDelete && (
- <button
- onClick={() => { onDelete(); onClose(); }}
- className="flex w-full items-center gap-2 px-3 py-1.5 text-[11px] text-red-500 hover:bg-red-500/5 transition-colors"
- >
- <Trash2 className="h-3 w-3" />
- Delete
- </button>
- )}
- </div>
- );
-}
-
-// ─── MultiAlertModal ──────────────────────────────────────────────────────────
-
-interface MultiAlertModalProps {
- item: WatchlistItem;
- price: number;
- onClose: () => void;
-}
-
-const ALERT_TYPE_LABELS: Record<AlertType, string> = {
- above: "Price Above",
- below: "Price Below",
- pct_move: "% Change",
-};
-
-function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
- const { addAlert, removeAlert, toggleAlert, alertHistory } = useWatchlistStore();
- const [type, setType] = useState<AlertType>("above");
- const [value, setValue] = useState("");
- const [showHistory, setShowHistory] = useState(false);
-
- const alerts = item.alerts ?? [];
- const tickerHistory = alertHistory.filter((h) => h.ticker === item.ticker).slice(0, 5);
-
- function handleAdd() {
- const v = parseFloat(value);
- if (isNaN(v) || v <= 0) return;
- addAlert(item.ticker, { type, value: v, expiry: "one_time", enabled: true });
- setValue("");
- }
-
- return (
- <div className="border border-border rounded-md bg-background p-3 space-y-3 mx-2 mb-1">
- <div className="flex items-center justify-between">
- <span className="text-xs font-medium text-foreground">Alerts — {item.ticker}</span>
- <button onClick={onClose} className="text-muted-foreground transition-colors hover:text-foreground">
- <X className="h-3.5 w-3.5" />
- </button>
- </div>
-
- <div className="text-xs text-muted-foreground">
- Current:{" "}
- <span className="font-mono tabular-nums text-foreground">${price.toFixed(2)}</span>
- </div>
-
- {/* Existing alerts */}
- {alerts.length > 0 && (
- <div className="space-y-1">
- {alerts.map((alert) => (
- <div key={alert.id} className="flex items-center gap-2 text-xs">
- <button
- onClick={() => toggleAlert(item.ticker, alert.id, !alert.enabled)}
- className={cn(
- "flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded border transition-colors",
- alert.enabled
- ? "border-primary bg-primary text-primary-foreground"
- : "border-border bg-background",
- )}
- >
- {alert.enabled && <Check className="h-2 w-2" />}
- </button>
- <span className="text-muted-foreground">{ALERT_TYPE_LABELS[alert.type]}</span>
- <span className="font-mono tabular-nums text-foreground">
- {alert.type === "pct_move" ? `${alert.value}%` : `$${alert.value.toFixed(2)}`}
- </span>
- <button
- onClick={() => removeAlert(item.ticker, alert.id)}
- className="ml-auto text-muted-foreground/40 hover:text-red-500 transition-colors"
- >
- <X className="h-2.5 w-2.5" />
- </button>
- </div>
- ))}
- </div>
- )}
-
- {/* Add new alert */}
- <div className="space-y-1.5">
- <select
- value={type}
- onChange={(e) => setType(e.target.value as AlertType)}
- className="w-full rounded border border-border bg-background px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
- >
- <option value="above">Price Above</option>
- <option value="below">Price Below</option>
- <option value="pct_move">% Change</option>
- </select>
- <div className="flex gap-1.5">
- <input
- type="number"
- value={value}
- onChange={(e) => setValue(e.target.value)}
- onKeyDown={(e) => { if (e.key === "Enter") handleAdd(); }}
- placeholder={
- type === "above"
- ? `e.g. ${(price * 1.05).toFixed(2)}`
- : type === "below"
- ? `e.g. ${(price * 0.95).toFixed(2)}`
- : "e.g. 5"
- }
- className="flex-1 rounded border border-border bg-background px-2 py-1 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
- />
- <button
- onClick={handleAdd}
- disabled={!value.trim()}
- className="flex items-center gap-1 rounded bg-primary px-2 py-1 text-xs font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
- >
- <Plus className="h-2.5 w-2.5" />
- Add
- </button>
- </div>
- </div>
-
- {/* Alert history */}
- {tickerHistory.length > 0 && (
- <div>
- <button
- onClick={() => setShowHistory((p) => !p)}
- className="flex items-center gap-1 text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors"
- >
- <Clock className="h-2.5 w-2.5" />
- History ({tickerHistory.length})
- </button>
- {showHistory && (
- <div className="mt-1 space-y-0.5">
- {tickerHistory.map((h, i) => (
- <div key={i} className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
- <span className="shrink-0">{ALERT_TYPE_LABELS[h.type]}</span>
- <span className="font-mono tabular-nums">
- {h.type === "pct_move" ? `${h.value}%` : `$${h.value.toFixed(2)}`}
- </span>
- <span className="ml-auto font-mono tabular-nums">
- {new Date(h.triggeredAt).toLocaleDateString()}
- </span>
- </div>
- ))}
- </div>
- )}
- </div>
- )}
- </div>
- );
-}
-
-// ─── InlineNote ───────────────────────────────────────────────────────────────
-
-interface InlineNoteProps {
- ticker: string;
- note: string;
- onClose: () => void;
-}
-
-function InlineNote({ ticker, note, onClose }: InlineNoteProps) {
- const { setNote } = useWatchlistStore();
- const [value, setValue] = useState(note);
- const inputRef = useRef<HTMLInputElement>(null);
-
- useEffect(() => {
- inputRef.current?.focus();
- }, []);
-
- function handleSave() {
- setNote(ticker, value.trim());
- onClose();
- }
-
- return (
- <div className="px-2 pb-1.5 -mt-0.5">
- <input
- ref={inputRef}
- type="text"
- value={value}
- onChange={(e) => setValue(e.target.value)}
- onKeyDown={(e) => {
- if (e.key === "Enter") handleSave();
- if (e.key === "Escape") onClose();
- }}
- onBlur={handleSave}
- placeholder="Add note..."
- className="w-full rounded border border-border bg-background px-2 py-1 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
- />
- </div>
- );
-}
-
-// ─── WatchlistRow ─────────────────────────────────────────────────────────────
-
-interface WatchlistRowProps {
- item: WatchlistItem;
- index: number;
- total: number;
- price: number;
- changePct: number;
- sparkValues: number[];
- taSignal: TASignal;
- isAlertEditorOpen: boolean;
- isNoteEditorOpen: boolean;
- isActive: boolean;
- showPerformance: boolean;
- onToggleAlertEditor: () => void;
- onToggleNoteEditor: () => void;
- onNavigate: (ticker: string) => void;
- onRemove: (ticker: string) => void;
- onMoveUp: (index: number) => void;
- onMoveDown: (index: number) => void;
-}
-
-function WatchlistRow({
- item,
- index,
- total,
- price,
- changePct,
- sparkValues,
- taSignal,
- isAlertEditorOpen,
- isNoteEditorOpen,
- isActive,
- showPerformance,
- onToggleAlertEditor,
- onToggleNoteEditor,
- onNavigate,
- onRemove,
- onMoveUp,
- onMoveDown,
-}: WatchlistRowProps) {
- const alerts = item.alerts ?? [];
- const activeAlertCount = alerts.filter((a) => a.enabled).length;
- const hasLegacyAlert =
- (item.alertAbove !== undefined && item.alertAboveEnabled !== false) ||
- (item.alertBelow !== undefined && item.alertBelowEnabled !== false);
- const hasAlert = activeAlertCount > 0 || hasLegacyAlert;
-
- return (
- <div className="group">
- <div
- className={cn(
- "flex items-center gap-0.5 px-3 py-2 hover:bg-muted/10 transition-colors",
- isActive && "bg-muted/20",
- )}
- >
- {/* Up/Down arrows */}
- <div className="flex flex-col shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
- <button
- type="button"
- onClick={() => onMoveUp(index)}
- disabled={index === 0}
- className="p-0.5 text-muted-foreground/60 transition-colors hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed"
- title="Move up"
- >
- <ChevronUp className="h-2.5 w-2.5" />
- </button>
- <button
- type="button"
- onClick={() => onMoveDown(index)}
- disabled={index === total - 1}
- className="p-0.5 text-muted-foreground/60 transition-colors hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed"
- title="Move down"
- >
- <ChevronDown className="h-2.5 w-2.5" />
- </button>
- </div>
-
- {/* Ticker + data */}
- <button
- onClick={() => onNavigate(item.ticker)}
- className="flex flex-1 items-center gap-1.5 min-w-0 text-left"
- >
- <div className="min-w-0 flex-1">
- <div className="flex items-center gap-1">
- <span
- className={cn(
- "text-xs leading-none",
- isActive ? "text-foreground font-medium" : "text-foreground",
- )}
- >
- {item.ticker}
- </span>
- {activeAlertCount > 0 && (
- <span className="rounded-full bg-muted px-1 text-[10px] text-muted-foreground leading-3 py-0.5">
- {activeAlertCount}
- </span>
- )}
- </div>
- </div>
-
- <div className="flex items-center gap-1.5 shrink-0">
- <span className="text-xs tabular-nums text-foreground">
- ${price.toFixed(2)}
- </span>
- <span
- className={cn(
- "text-xs tabular-nums",
- changePct > 0
- ? "text-emerald-400/80"
- : changePct < 0
- ? "text-rose-400/70"
- : "text-muted-foreground",
- )}
- >
- {changePct >= 0 ? "+" : ""}{changePct.toFixed(2)}%
- </span>
- </div>
- </button>
-
- {/* Note button */}
- <button
- onClick={onToggleNoteEditor}
- title="Add note"
- className={cn(
- "shrink-0 rounded p-1 transition-colors",
- item.notes
- ? "text-primary/70 hover:text-primary"
- : "text-muted-foreground/30 opacity-0 group-hover:opacity-100 hover:text-muted-foreground",
- )}
- >
- <StickyNote className="h-3 w-3" />
- </button>
-
- {/* Alert bell */}
- <button
- onClick={onToggleAlertEditor}
- title={hasAlert ? "Edit alerts" : "Set price alert"}
- className={cn(
- "shrink-0 rounded p-1 transition-colors",
- isAlertEditorOpen
- ? "text-primary"
- : hasAlert
- ? "text-primary/70 hover:text-primary"
- : "text-muted-foreground/40 hover:text-muted-foreground",
- )}
- >
- {hasAlert ? (
- <Bell className="h-3 w-3" />
- ) : (
- <BellOff className="h-3 w-3" />
- )}
- </button>
-
- {/* Remove */}
- <button
- onClick={() => onRemove(item.ticker)}
- title="Remove from watchlist"
- className="shrink-0 rounded p-1 text-muted-foreground/30 opacity-0 group-hover:opacity-100 hover:text-red-500 transition-colors"
- >
- <X className="h-3 w-3" />
- </button>
- </div>
-
- {/* Note editor */}
- {isNoteEditorOpen && (
- <InlineNote
- ticker={item.ticker}
- note={item.notes ?? ""}
- onClose={onToggleNoteEditor}
- />
- )}
-
- {/* Alert editor inline */}
- {isAlertEditorOpen && (
- <MultiAlertModal item={item} price={price} onClose={onToggleAlertEditor} />
- )}
- </div>
- );
-}
-
-// ─── Group-by types ───────────────────────────────────────────────────────────
-
-type GroupBy = "none" | "sector" | "performance";
-
-// ─── Main WatchlistPanel ──────────────────────────────────────────────────────
+// ── Component ────────────────────────────────────────────────────────────────
 
 export function WatchlistPanel() {
- const {
- watchlist,
- lists,
- activeListId,
- addToWatchlist,
- removeFromWatchlist,
- reorderWatchlist,
- createList,
- renameList,
- deleteList,
- setActiveList,
- addTickerToList,
- getActiveWatchlist,
- } = useWatchlistStore();
- const { currentTicker, setTicker } = useChartStore();
- const router = useRouter();
+  const { watchlist, addToWatchlist, removeFromWatchlist } = useWatchlistStore();
+  const { currentTicker, setTicker } = useChartStore();
+  const [activeList, setActiveList] = useState<string>("Main");
+  const [input, setInput] = useState("");
+  const [hoveredTicker, setHoveredTicker] = useState<string | null>(null);
 
- const [addInput, setAddInput] = useState("");
- const [addError, setAddError] = useState("");
- const [openEditorTicker, setOpenEditorTicker] = useState<string | null>(null);
- const [openNoteTicker, setOpenNoteTicker] = useState<string | null>(null);
- const [groupBy, setGroupBy] = useState<GroupBy>("none");
- const [showPerformance, setShowPerformance] = useState(false);
+  const tickers = watchlist.map((w) => w.ticker);
 
- // List management state
- const [showListMenu, setShowListMenu] = useState(false);
- const [isCreatingList, setIsCreatingList] = useState(false);
- const [newListName, setNewListName] = useState("");
- const [isRenamingList, setIsRenamingList] = useState(false);
- const [renameValue, setRenameValue] = useState("");
- const newListInputRef = useRef<HTMLInputElement>(null);
- const renameInputRef = useRef<HTMLInputElement>(null);
- const listMenuAnchorRef = useRef<HTMLDivElement>(null);
+  const quickAdd = POPULAR.filter((t) => !tickers.includes(t));
 
- useEffect(() => {
- if (isCreatingList) newListInputRef.current?.focus();
- }, [isCreatingList]);
+  function handleAdd() {
+    const t = input.trim().toUpperCase();
+    if (t && KNOWN_TICKERS.has(t) && !tickers.includes(t)) {
+      addToWatchlist(t);
+    }
+    setInput("");
+  }
 
- useEffect(() => {
- if (isRenamingList) renameInputRef.current?.focus();
- }, [isRenamingList]);
+  return (
+    <div className="flex h-full flex-col">
+      {/* List selector */}
+      <div className="flex items-center gap-1 border-b border-border/20 px-2 py-1.5">
+        {LISTS.map((name) => (
+          <button
+            key={name}
+            onClick={() => setActiveList(name)}
+            className={`text-[10px] font-mono uppercase tracking-widest transition-colors ${
+              activeList === name
+                ? "text-foreground"
+                : "text-muted-foreground/50 hover:text-muted-foreground"
+            }`}
+          >
+            {name}
+          </button>
+        ))}
+      </div>
 
- const activeList = lists.find((l) => l.id === activeListId) ?? lists[0];
+      {/* Ticker rows */}
+      <div className="flex-1 divide-y divide-border/20 overflow-y-auto">
+        {tickers.length === 0 && (
+          <div className="px-2 py-6 text-center text-[10px] text-muted-foreground/40">
+            No tickers yet
+          </div>
+        )}
+        {tickers.map((ticker) => {
+          const { price, changePct } = simulatePrice(ticker);
+          const positive = changePct >= 0;
+          const isActive = ticker === currentTicker;
+          const isHovered = ticker === hoveredTicker;
 
- // Active watchlist items (from active list)
- const activeWatchlist = useMemo(
- () => getActiveWatchlist(),
- // eslint-disable-next-line react-hooks/exhaustive-deps
- [lists, activeListId, watchlist],
- );
+          return (
+            <button
+              key={ticker}
+              onClick={() => setTicker(ticker)}
+              onMouseEnter={() => setHoveredTicker(ticker)}
+              onMouseLeave={() => setHoveredTicker(null)}
+              className={`group relative flex w-full items-center gap-1.5 px-2 py-1.5 text-left transition-colors hover:bg-foreground/[0.02] ${
+                isActive ? "bg-foreground/[0.04]" : ""
+              }`}
+            >
+              {/* Active indicator */}
+              {isActive && (
+                <div className="absolute left-0 top-1/2 h-3 w-[2px] -translate-y-1/2 rounded-r bg-foreground/30" />
+              )}
 
- // Simulate prices
- const prices = useMemo(() => {
- const map: Record<string, { price: number; changePct: number; spark: number[]; ta: TASignal }> = {};
- for (const item of activeWatchlist) {
- const { price, changePct } = simulatePrice(item.ticker);
- map[item.ticker] = {
- price,
- changePct,
- spark: generateSparkData(item.ticker),
- ta: getTASignal(item.ticker),
- };
- }
- return map;
- }, [activeWatchlist]);
+              {/* Ticker + price */}
+              <div className="min-w-0 flex-1">
+                <div className="text-[11px] font-medium leading-none text-foreground">
+                  {ticker}
+                </div>
+                <div className="mt-0.5 text-[10px] leading-none text-muted-foreground/60">
+                  {price.toFixed(2)}
+                </div>
+              </div>
 
- // Sorted/grouped watchlist
- const displayList = useMemo(() => {
- if (groupBy === "none") return activeWatchlist;
- if (groupBy === "performance") {
- return [...activeWatchlist].sort((a, b) => {
- const pa = prices[a.ticker]?.changePct ?? 0;
- const pb = prices[b.ticker]?.changePct ?? 0;
- return pb - pa;
- });
- }
- return [...activeWatchlist].sort((a, b) => {
- const sa = FUNDAMENTALS[a.ticker]?.sector ?? "ZZZ";
- const sb = FUNDAMENTALS[b.ticker]?.sector ?? "ZZZ";
- return sa.localeCompare(sb);
- });
- }, [activeWatchlist, groupBy, prices]);
+              {/* Sparkline */}
+              <MiniSpark ticker={ticker} positive={positive} />
 
- const handleAdd = useCallback(() => {
- const ticker = addInput.trim().toUpperCase();
- if (!ticker) return;
- if (!/^[A-Z]{1,5}$/.test(ticker)) {
- setAddError("Invalid ticker symbol");
- return;
- }
- addToWatchlist(ticker);
- setAddInput("");
- setAddError("");
- }, [addInput, addToWatchlist]);
+              {/* Change % */}
+              <div
+                className={`text-right text-[10px] font-mono tabular-nums leading-none ${
+                  positive ? "text-emerald-400/80" : "text-rose-400/70"
+                }`}
+              >
+                {positive ? "+" : ""}
+                {changePct.toFixed(2)}%
+              </div>
 
- const handleNavigate = useCallback(
- (ticker: string) => {
- setTicker(ticker);
- router.push(`/trade`);
- },
- [setTicker, router],
- );
+              {/* Remove button */}
+              {isHovered && (
+                <span
+                  role="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeFromWatchlist(ticker);
+                  }}
+                  className="absolute right-1 top-1 flex h-3.5 w-3.5 items-center justify-center rounded text-[9px] text-muted-foreground/40 transition-colors hover:bg-foreground/5 hover:text-foreground/60"
+                >
+                  x
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
 
- const handleToggleAlertEditor = useCallback((ticker: string) => {
- setOpenEditorTicker((prev) => (prev === ticker ? null : ticker));
- setOpenNoteTicker(null);
- }, []);
+      {/* Quick-add chips */}
+      {quickAdd.length > 0 && (
+        <div className="border-t border-border/20 px-2 py-1.5">
+          <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/40">
+            Quick add
+          </div>
+          <div className="mt-1 flex flex-wrap gap-1">
+            {quickAdd.map((t) => (
+              <button
+                key={t}
+                onClick={() => addToWatchlist(t)}
+                className="rounded border border-border/20 px-1.5 py-0.5 text-[9px] text-muted-foreground/50 transition-colors hover:bg-foreground/[0.02] hover:text-foreground/70"
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
- const handleToggleNoteEditor = useCallback((ticker: string) => {
- setOpenNoteTicker((prev) => (prev === ticker ? null : ticker));
- setOpenEditorTicker(null);
- }, []);
-
- const handleRemove = useCallback(
- (ticker: string) => {
- removeFromWatchlist(ticker);
- if (openEditorTicker === ticker) setOpenEditorTicker(null);
- if (openNoteTicker === ticker) setOpenNoteTicker(null);
- },
- [removeFromWatchlist, openEditorTicker, openNoteTicker],
- );
-
- const handleMoveUp = useCallback(
- (index: number) => {
- if (groupBy !== "none") return;
- reorderWatchlist(index, index - 1);
- },
- [groupBy, reorderWatchlist],
- );
-
- const handleMoveDown = useCallback(
- (index: number) => {
- if (groupBy !== "none") return;
- reorderWatchlist(index, index + 1);
- },
- [groupBy, reorderWatchlist],
- );
-
- // Suggestions: stocks not in active list
- const suggestions = useMemo(
- () =>
- WATCHLIST_STOCKS.filter(
- (s) => !activeWatchlist.some((w) => w.ticker === s.ticker),
- ).slice(0, 4),
- [activeWatchlist],
- );
-
- // Group sections
- const groupedSections = useMemo(() => {
- if (groupBy === "none") return null;
- if (groupBy === "sector") {
- const sections: { label: string; items: WatchlistItem[] }[] = [];
- const seen = new Set<string>();
- for (const item of displayList) {
- const sector = FUNDAMENTALS[item.ticker]?.sector ?? "Other";
- if (!seen.has(sector)) {
- seen.add(sector);
- sections.push({ label: sector, items: [] });
- }
- sections[sections.length - 1].items.push(item);
- }
- return sections;
- }
- if (groupBy === "performance") {
- const winners = displayList.filter((i) => (prices[i.ticker]?.changePct ?? 0) >= 0);
- const losers = displayList.filter((i) => (prices[i.ticker]?.changePct ?? 0) < 0);
- return [
- { label: "Gainers", items: winners },
- { label: "Losers", items: losers },
- ].filter((s) => s.items.length > 0);
- }
- return null;
- }, [groupBy, displayList, prices]);
-
- function handleCreateList() {
- const name = newListName.trim();
- if (!name) return;
- createList(name);
- setNewListName("");
- setIsCreatingList(false);
- }
-
- function handleRenameList() {
- const name = renameValue.trim();
- if (name) renameList(activeListId, name);
- setRenameValue("");
- setIsRenamingList(false);
- }
-
- function handleDuplicateList() {
- const sourceTickers = [...activeList.tickers];
- createList(activeList.name + " (copy)");
- // After createList, the new list becomes active — add tickers to it
- const state = useWatchlistStore.getState();
- const newListId = state.activeListId;
- for (const ticker of sourceTickers) {
- addTickerToList(newListId, ticker);
- }
- }
-
- function renderRow(item: WatchlistItem, idx: number, totalCount: number) {
- const { price, changePct, spark, ta } = prices[item.ticker] ?? {
- price: 0,
- changePct: 0,
- spark: [] as number[],
- ta: "neutral" as TASignal,
- };
- return (
- <WatchlistRow
- key={item.ticker}
- item={item}
- index={idx}
- total={totalCount}
- price={price}
- changePct={changePct}
- sparkValues={spark}
- taSignal={ta}
- isAlertEditorOpen={openEditorTicker === item.ticker}
- isNoteEditorOpen={openNoteTicker === item.ticker}
- isActive={item.ticker === currentTicker}
- showPerformance={showPerformance}
- onToggleAlertEditor={() => handleToggleAlertEditor(item.ticker)}
- onToggleNoteEditor={() => handleToggleNoteEditor(item.ticker)}
- onNavigate={handleNavigate}
- onRemove={handleRemove}
- onMoveUp={handleMoveUp}
- onMoveDown={handleMoveDown}
- />
- );
- }
-
- return (
- <div className="flex flex-col bg-card overflow-hidden" style={{ height: "100%" }}>
- {/* Header row 1: label + count + mode toggles */}
- <div className="flex items-center justify-between border-b border-border px-3 py-2 shrink-0">
- <span className="text-[10px] font-mediumr text-muted-foreground/50">
- Watchlist
- </span>
- <div className="flex items-center gap-1">
- <span className="text-xs text-muted-foreground/60">
- {activeWatchlist.length}
- </span>
- {/* Group-by selector */}
- <div className="relative">
- <select
- value={groupBy}
- onChange={(e) => setGroupBy(e.target.value as GroupBy)}
- className="appearance-none rounded border border-border bg-background pl-1 pr-4 py-0.5 text-xs text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
- title="Group by"
- >
- <option value="none">None</option>
- <option value="sector">Sector</option>
- <option value="performance">Perf</option>
- </select>
- <LayoutList className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 h-2.5 w-2.5 text-muted-foreground/60" />
- </div>
- </div>
- </div>
-
- {/* Header row 2: Named list switcher */}
- <div className="flex items-center gap-1 border-b border-border px-2 py-1.5 shrink-0">
- {/* List dropdown / rename input */}
- <div className="relative flex-1 min-w-0">
- {isRenamingList ? (
- <input
- ref={renameInputRef}
- type="text"
- value={renameValue}
- onChange={(e) => setRenameValue(e.target.value)}
- onKeyDown={(e) => {
- if (e.key === "Enter") handleRenameList();
- if (e.key === "Escape") { setIsRenamingList(false); setRenameValue(""); }
- }}
- onBlur={handleRenameList}
- className="w-full rounded border border-primary bg-background px-2 py-0.5 text-[11px] font-medium focus:outline-none"
- />
- ) : (
- <select
- value={activeListId}
- onChange={(e) => setActiveList(e.target.value)}
- className="w-full appearance-none rounded border border-border bg-background px-2 py-0.5 text-[11px] font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
- >
- {lists.map((l) => (
- <option key={l.id} value={l.id}>
- {l.name}
- </option>
- ))}
- </select>
- )}
- </div>
-
- {/* New list "+" button */}
- {!isCreatingList && (
- <button
- onClick={() => { setIsCreatingList(true); setShowListMenu(false); }}
- title="New watchlist"
- className="shrink-0 rounded p-0.5 text-muted-foreground/50 hover:text-foreground transition-colors"
- >
- <Plus className="h-3.5 w-3.5" />
- </button>
- )}
-
- {/* ⋯ menu anchor */}
- <div className="relative shrink-0" ref={listMenuAnchorRef}>
- <button
- onClick={() => setShowListMenu((p) => !p)}
- title="List options"
- className={cn(
- "rounded p-0.5 transition-colors",
- showListMenu ? "text-primary" : "text-muted-foreground/50 hover:text-foreground",
- )}
- >
- <MoreHorizontal className="h-3.5 w-3.5" />
- </button>
- {showListMenu && (
- <ListDropdown
- onRename={() => { setRenameValue(activeList.name); setIsRenamingList(true); }}
- onDuplicate={handleDuplicateList}
- onDelete={() => deleteList(activeListId)}
- canDelete={lists.length > 1}
- onClose={() => setShowListMenu(false)}
- />
- )}
- </div>
- </div>
-
- {/* Inline new-list name input */}
- {isCreatingList && (
- <div className="border-b border-border px-2 py-1.5 shrink-0">
- <div className="flex items-center gap-1">
- <input
- ref={newListInputRef}
- type="text"
- value={newListName}
- onChange={(e) => setNewListName(e.target.value)}
- onKeyDown={(e) => {
- if (e.key === "Enter") handleCreateList();
- if (e.key === "Escape") { setIsCreatingList(false); setNewListName(""); }
- }}
- onBlur={() => {
- if (newListName.trim()) handleCreateList();
- else { setIsCreatingList(false); setNewListName(""); }
- }}
- placeholder="List name..."
- className="flex-1 rounded border border-primary bg-background px-2 py-0.5 text-[11px] focus:outline-none"
- />
- <button
- onClick={handleCreateList}
- disabled={!newListName.trim()}
- className="rounded bg-primary px-1.5 py-0.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
- >
- Create
- </button>
- </div>
- </div>
- )}
-
- {/* Ticker list */}
- <div className="flex-1 overflow-y-auto min-h-0">
- {activeWatchlist.length === 0 ? (
- <p className="text-sm text-muted-foreground text-center py-12">Watchlist empty</p>
- ) : groupedSections ? (
- groupedSections.map((section) => (
- <div key={section.label}>
- <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest text-muted-foreground/30 bg-transparent border-b border-border/25">
- {section.label}
- </div>
- {section.items.map((item) => {
- const originalIndex = activeWatchlist.findIndex((w) => w.ticker === item.ticker);
- return renderRow(item, originalIndex, activeWatchlist.length);
- })}
- </div>
- ))
- ) : (
- displayList.map((item, idx) => renderRow(item, idx, displayList.length))
- )}
-
- {/* Quick-add suggestions */}
- {suggestions.length > 0 && activeWatchlist.length > 0 && (
- <div className="border-t border-border px-3 pt-2 pb-1">
- <div className="text-[11px] text-muted-foreground/50 mb-1.5">
- Quick add
- </div>
- <div className="flex flex-wrap gap-1">
- {suggestions.map((s) => (
- <button
- key={s.ticker}
- onClick={() => addToWatchlist(s.ticker)}
- className="rounded border border-border px-1.5 py-0.5 text-xs text-muted-foreground hover:text-foreground hover:border-border transition-colors"
- >
- +{s.ticker}
- </button>
- ))}
- </div>
- </div>
- )}
- </div>
-
- {/* Add input */}
- <div className="border-t border-border px-3 py-2 shrink-0">
- <div className="flex items-center gap-2">
- <div className="relative flex-1">
- <input
- type="text"
- value={addInput}
- onChange={(e) => {
- setAddInput(e.target.value.toUpperCase());
- setAddError("");
- }}
- onKeyDown={(e) => {
- if (e.key === "Enter") handleAdd();
- if (e.key === "Escape") {
- setAddInput("");
- setAddError("");
- }
- }}
- placeholder="Add ticker..."
- maxLength={5}
- className="w-full rounded border border-border bg-background px-2 py-1 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring placeholder:font-sans placeholder:not-italic"
- />
- </div>
- <button
- onClick={handleAdd}
- disabled={!addInput.trim()}
- className="flex items-center gap-1 rounded bg-primary px-2 py-1 text-xs font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
- >
- <Plus className="h-3 w-3" />
- Add
- </button>
- </div>
- {addError && (
- <p className="mt-1 text-xs text-red-500">{addError}</p>
- )}
- </div>
- </div>
- );
+      {/* Add input */}
+      <div className="flex items-center gap-1 border-t border-border/20 px-2 py-1.5">
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value.toUpperCase())}
+          onKeyDown={(e) => e.key === "Enter" && handleAdd()}
+          placeholder="Add ticker"
+          className="min-w-0 flex-1 bg-transparent text-[10px] text-foreground placeholder:text-muted-foreground/30 focus:outline-none"
+        />
+        <button
+          onClick={handleAdd}
+          className="text-[10px] text-muted-foreground/40 transition-colors hover:text-foreground/60"
+        >
+          +
+        </button>
+      </div>
+    </div>
+  );
 }

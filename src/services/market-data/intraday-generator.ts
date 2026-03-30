@@ -58,6 +58,8 @@ export function generateIntradayBars(
     }
 
     // ── Normalize pts to stay within [low, high] ───────────────────────────
+    // Only normalize intermediate points (1..n-1) so that pts[0]=open and
+    // pts[n]=close are preserved exactly, matching the daily bar anchors.
     let minPt = pts[0];
     let maxPt = pts[0];
     for (let i = 1; i <= n; i++) {
@@ -66,11 +68,15 @@ export function generateIntradayBars(
     }
     const ptRange = maxPt - minPt;
     if (ptRange > 0) {
-      for (let i = 0; i <= n; i++) {
-        pts[i] = low + ((pts[i] - minPt) / ptRange) * range;
+      for (let i = 1; i < n; i++) {
+        // Scale interior points into [low, high]; clamp to guard against float drift
+        pts[i] = Math.min(high, Math.max(low, low + ((pts[i] - minPt) / ptRange) * range));
       }
+      // Restore anchors exactly — normalization must not drift the endpoints
+      pts[0] = open;
+      pts[n] = close;
     } else {
-      // Flat day
+      // Flat day: linear interpolation preserves open→close
       for (let i = 0; i <= n; i++) pts[i] = open + (close - open) * (i / n);
     }
 

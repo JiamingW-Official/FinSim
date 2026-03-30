@@ -397,6 +397,53 @@ export function playSeasonClaimSound(ctx: AudioContext, volume: number) {
   osc2.stop(now + 0.35);
 }
 
+/**
+ * Market bell — a sustained bell-like tone using a decaying sine wave
+ * with a second harmonic, simulating a trading floor bell strike.
+ */
+export function playMarketBellSound(ctx: AudioContext, volume: number) {
+  const now = ctx.currentTime;
+
+  // Primary bell tone: A4 (440 Hz)
+  const gain1 = ctx.createGain();
+  gain1.connect(ctx.destination);
+  gain1.gain.setValueAtTime(volume * 0.4, now);
+  gain1.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+
+  const osc1 = ctx.createOscillator();
+  osc1.type = "sine";
+  osc1.frequency.setValueAtTime(440, now);
+  osc1.connect(gain1);
+  osc1.start(now);
+  osc1.stop(now + 1.2);
+
+  // Second partial: 880 Hz at lower volume for bell timbre
+  const gain2 = ctx.createGain();
+  gain2.connect(ctx.destination);
+  gain2.gain.setValueAtTime(volume * 0.2, now);
+  gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+
+  const osc2 = ctx.createOscillator();
+  osc2.type = "sine";
+  osc2.frequency.setValueAtTime(880, now);
+  osc2.connect(gain2);
+  osc2.start(now);
+  osc2.stop(now + 0.6);
+
+  // Third partial: inharmonic overtone for metallic character
+  const gain3 = ctx.createGain();
+  gain3.connect(ctx.destination);
+  gain3.gain.setValueAtTime(volume * 0.1, now);
+  gain3.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+
+  const osc3 = ctx.createOscillator();
+  osc3.type = "sine";
+  osc3.frequency.setValueAtTime(1320, now);
+  osc3.connect(gain3);
+  osc3.start(now);
+  osc3.stop(now + 0.3);
+}
+
 export function playClaimSound(ctx: AudioContext, volume: number) {
   const now = ctx.currentTime;
   // Metallic ping — high sine with quick decay

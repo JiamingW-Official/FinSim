@@ -19,6 +19,7 @@ import {
   playArenaLoseSound,
   playMatchFoundSound,
   playSeasonClaimSound,
+  playMarketBellSound,
 } from "./synth-sounds";
 
 class SoundEngine {
@@ -135,6 +136,9 @@ class SoundEngine {
   }
   playSeasonClaim() {
     this.play(playSeasonClaimSound);
+  }
+  playMarketBell() {
+    this.play(playMarketBellSound);
   }
 }
 

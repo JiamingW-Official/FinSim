@@ -21,7 +21,7 @@ import {
 import { useMarketDataStore } from "@/stores/market-data-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { useChartStore, type IndicatorType } from "@/stores/chart-store";
-import { registerChartApi, unregisterChartApi } from "@/stores/chart-api-store";
+import { registerChartApi, unregisterChartApi, notifyChartDataReady } from "@/stores/chart-api-store";
 import { INTRADAY_TIMEFRAMES } from "@/types/market";
 import type { Timeframe } from "@/types/market";
 import {
@@ -491,6 +491,9 @@ export function CandlestickChart() {
  lineSeriesRef.current.setData(lineData);
  areaSeriesRef.current.setData(lineData);
  volumeSeriesRef.current.setData(volumeData);
+
+ // Notify DrawingOverlay that data is ready so coordinate conversions work
+ notifyChartDataReady();
 
  // Auto-scroll to latest bar during playback
  if (isPlaying && chartRef.current) {

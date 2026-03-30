@@ -16,10 +16,11 @@ export function LevelUpOverlay() {
  if (lastLevelUp === null) return;
  setLevelNum(lastLevelUp);
  setShow(true);
+ // Clear immediately so re-mounts / navigations don't re-trigger
+ clearLevelUp();
 
  const timer = setTimeout(() => {
  setShow(false);
- setTimeout(clearLevelUp, 400);
  }, 3000);
 
  return () => clearTimeout(timer);

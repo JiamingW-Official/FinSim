@@ -15,6 +15,8 @@ import { LeagueBadge } from "@/components/leaderboard/LeagueBadge";
 import { BeatTheBestPanel } from "@/components/leaderboard/BeatTheBestPanel";
 import { SeasonBanner } from "@/components/season/SeasonBanner";
 import { SeasonRewardTrack } from "@/components/season/SeasonRewardTrack";
+import { CompetitionLeaderboard } from "@/components/competition/CompetitionLeaderboard";
+import { useCompetitionStore } from "@/stores/competition-store";
 import { DIMENSIONS, LEAGUES, getLeagueForLevel } from "@/types/leaderboard";
 import { useGameStore } from "@/stores/game-store";
 import { useTradingStore } from "@/stores/trading-store";
@@ -24,7 +26,7 @@ import type { LeaderboardDimension, LeagueTier, RankedEntry } from "@/types/lead
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type MainTab = "global" | "friends" | "stats" | "trophies";
+type MainTab = "global" | "friends" | "stats" | "trophies" | "season";
 type TimePeriod = "week" | "month" | "all";
 
 
@@ -127,6 +129,8 @@ export default function LeaderboardPage() {
  const level = useGameStore((s) => s.level);
  const achievements = useGameStore((s) => s.achievements);
  const league = getLeagueForLevel(level);
+ const isSeasonActive = useCompetitionStore((s) => s.isSeasonActive);
+ const lobbyName = useCompetitionStore((s) => s.lobbyName);
 
  const dimConfig = DIMENSIONS.find((d) => d.id === dimension)!;
 
@@ -158,6 +162,7 @@ export default function LeaderboardPage() {
 
  const mainTabs: { id: MainTab; label: string; icon: React.ReactNode }[] = [
  { id: "global", label: "Global", icon: <Trophy className="h-3 w-3" /> },
+ { id: "season", label: isSeasonActive ? (lobbyName || "Season") : "Season", icon: <Crown className="h-3 w-3" /> },
  { id: "friends", label: "Friends", icon: <Users className="h-3 w-3" /> },
  { id: "stats", label: "Your Stats", icon: <BarChart2 className="h-3 w-3" /> },
  { id: "trophies", label: "Trophies", icon: <Medal className="h-3 w-3" /> },
@@ -430,6 +435,28 @@ export default function LeaderboardPage() {
  transition={{ duration: 0.15 }}
  >
  <TrophyCaseTab achievements={achievements} />
+ </motion.div>
+ )}
+
+ {mainTab === "season" && (
+ <motion.div
+ key="season"
+ initial={{ opacity: 0 }}
+ animate={{ opacity: 1 }}
+ exit={{ opacity: 0 }}
+ transition={{ duration: 0.15 }}
+ >
+ <div className="mb-3">
+ <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50 mb-0.5">
+ Season Competition
+ </p>
+ {isSeasonActive && lobbyName && (
+ <h2 className="text-sm font-medium text-foreground/80">{lobbyName}</h2>
+ )}
+ </div>
+ <div className="rounded-md border border-border bg-card/50 overflow-hidden">
+ <CompetitionLeaderboard />
+ </div>
  </motion.div>
  )}
  </AnimatePresence>

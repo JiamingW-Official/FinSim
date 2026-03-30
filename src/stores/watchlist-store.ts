@@ -149,12 +149,22 @@ interface WatchlistState {
 
 const DEFAULT_LIST_ID = "main";
 
+const DEFAULT_TICKERS = ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "NVDA", "META"];
+
 function makeDefaultLists(): WatchlistList[] {
  return [
- { id: "main", name: "Main", tickers: [] },
+ { id: "main", name: "Main", tickers: [...DEFAULT_TICKERS] },
  { id: "options-plays", name: "Options Plays", tickers: [] },
  { id: "swing-trades", name: "Swing Trades", tickers: [] },
  ];
+}
+
+function makeDefaultWatchlistItems(): WatchlistItem[] {
+ return DEFAULT_TICKERS.map((ticker) => ({
+  ticker,
+  addedAt: Date.now(),
+  alerts: [],
+ }));
 }
 
 function generateId(): string {
@@ -166,7 +176,7 @@ function generateId(): string {
 export const useWatchlistStore = create<WatchlistState>()(
  persist(
  (set, get) => ({
- watchlist: [],
+ watchlist: makeDefaultWatchlistItems(),
  lists: makeDefaultLists(),
  activeListId: DEFAULT_LIST_ID,
  columns: DEFAULT_COLUMNS,

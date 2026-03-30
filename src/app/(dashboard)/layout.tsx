@@ -16,6 +16,7 @@ import { StreakCelebration } from "@/components/game/StreakCelebration";
 import { TradeConfetti } from "@/components/game/TradeConfetti";
 import { FloatingEmojis } from "@/components/game/FloatingEmojis";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
+import { MarketBell } from "@/components/game/MarketBell";
 import { GlobalSearchProvider } from "@/components/search/GlobalSearch";
 import { GlobalKeyboardShortcuts } from "@/hooks/useGlobalKeyboardShortcuts";
 import { ShortcutsModalProvider } from "@/components/ui/KeyboardShortcutsModal";
@@ -67,6 +68,7 @@ export default function DashboardLayout({
  <StreakCelebration />
  <TradeConfetti />
  <FloatingEmojis />
+ <MarketBell />
  {hasHydrated && !hasCompletedOnboarding && <OnboardingModal />}
  {/* Global keyboard shortcuts handler */}
  <GlobalKeyboardShortcuts />

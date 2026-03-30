@@ -8,11 +8,12 @@ import type { OHLCVBar } from "@/types/market";
 import { generateIntradayBars } from "@/services/market-data/intraday-generator";
 
 function getDateRange() {
+  // Game season: 2023-01-01 → 2026-03-01.
+  // Fetch from season start so ALL game dates have bar data.
+  // "to" is today so the full historical range is always covered.
   const to = new Date();
-  const from = new Date();
-  from.setFullYear(from.getFullYear() - 2);
   return {
-    from: from.toISOString().split("T")[0],
+    from: "2023-01-01",
     to: to.toISOString().split("T")[0],
   };
 }

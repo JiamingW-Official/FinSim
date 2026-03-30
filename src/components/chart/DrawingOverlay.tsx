@@ -6,7 +6,7 @@ import {
  subscribeChartApi,
  getRangeVersion,
 } from "@/stores/chart-api-store";
-import type { UTCTimestamp } from "lightweight-charts";
+import type { UTCTimestamp, Logical } from "lightweight-charts";
 
 // ── Drawing types ─────────────────────────────────────────────────────────────
 
@@ -127,7 +127,20 @@ function xToTime(x: number): number | null {
  const { chart } = getChartApi();
  if (!chart) return null;
  const t = chart.timeScale().coordinateToTime(x);
- return t != null ? (t as number) : null;
+ if (t != null) return t as number;
+
+ // Fallback: when clicking in empty area (past last bar), coordinateToTime
+ // returns null. Use logical coordinates to find the nearest bar time and
+ // extrapolate.
+ const logical = chart.timeScale().coordinateToLogical(x);
+ if (logical == null) return null;
+ // Round to nearest integer logical index and convert back to coordinate,
+ // then map that coordinate to time. This snaps to the nearest bar.
+ const rounded = Math.round(logical) as unknown as Logical;
+ const snappedX = chart.timeScale().logicalToCoordinate(rounded);
+ if (snappedX == null) return null;
+ const snappedTime = chart.timeScale().coordinateToTime(snappedX);
+ return snappedTime != null ? (snappedTime as number) : null;
 }
 
 function yToPrice(y: number): number | null {
@@ -300,16 +313,27 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
  const { chart: chartApi, series: seriesApi } = getChartApi();
  const hasApi = !!chartApi && !!seriesApi;
 
+ // When activeTool is "none", the overlay container is pointer-events-none
+ // so the chart underneath receives interactions. Individual drawing <g>
+ // elements set their own pointer-events to "auto" so they remain clickable
+ // (for deletion on hover). When a tool is active, the SVG itself captures
+ // all clicks for drawing placement.
+ const isToolActive = activeTool !== "none";
+
  return (
   <div
-   className="pointer-events-none absolute inset-0 z-10"
-   style={{ pointerEvents: activeTool !== "none" ? "auto" : "none" }}
+   className="absolute inset-0 z-10"
+   style={{ pointerEvents: "none" }}
   >
    <svg
     ref={svgRef}
     width={width}
     height={height}
-    style={{ cursor: cursorStyle, display: "block" }}
+    style={{
+     cursor: cursorStyle,
+     display: "block",
+     pointerEvents: isToolActive ? "auto" : "none",
+    }}
     onClick={handleClick}
     onMouseMove={handleMouseMove}
     onMouseLeave={() => { if (!firstClick) setInProgress(null); }}
