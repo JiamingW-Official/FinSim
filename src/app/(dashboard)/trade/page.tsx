@@ -74,31 +74,12 @@ function LiveInfoBar() {
  const ticker = useChartStore((s) => s.currentTicker);
  const portfolioValue = useTradingStore((s) => s.portfolioValue);
  const cash = useTradingStore((s) => s.cash);
- const marketSession = useClockStore((s) => s.marketSession);
  const gameDate = useClockStore((s) => s.gameDate);
 
  const isUp = change >= 0;
 
- const sessionColor =
-  marketSession === "pre-market"
-   ? "text-amber-400/70"
-   : marketSession === "open"
-   ? "text-emerald-400/80"
-   : marketSession === "after-hours"
-   ? "text-sky-400/60"
-   : "text-muted-foreground/30";
-
- const sessionLabel =
-  marketSession === "pre-market"
-   ? "Pre-Mkt"
-   : marketSession === "open"
-   ? "Open"
-   : marketSession === "after-hours"
-   ? "AH"
-   : "Closed";
-
  if (price === 0) return (
-  <div className="flex shrink-0 h-8 border-b border-border/30 px-3 items-center gap-0 bg-background/95">
+  <div className="flex shrink-0 h-9 border-b border-border/30 px-3 items-center gap-0 bg-background/95 backdrop-blur-sm">
    <div className="h-3 w-24 rounded animate-pulse bg-muted/30" />
   </div>
  );
@@ -106,10 +87,10 @@ function LiveInfoBar() {
  const pnlVsStart = ((portfolioValue - 100_000) / 100_000) * 100;
 
  return (
-  <div className="flex shrink-0 h-8 border-b border-border/30 px-3 items-center gap-0 bg-background/95">
+  <div className="flex shrink-0 h-9 border-b border-border/30 px-3 items-center gap-0 bg-background/95 backdrop-blur-sm">
 
    {/* Group 1: Ticker + Price + Change */}
-   <div className="flex items-center gap-2 pr-3 border-r border-border/20">
+   <div className="flex items-center gap-2 px-4 pr-4 border-r border-border/20">
     <span className="text-[11px] font-bold tracking-tight text-foreground/90">{ticker}</span>
     <span className="text-[12px] font-mono font-bold tabular-nums text-foreground">${price.toFixed(2)}</span>
     <span className={cn(
@@ -118,26 +99,22 @@ function LiveInfoBar() {
     )}>
      {isUp ? "+" : ""}{change.toFixed(2)} ({isUp ? "+" : ""}{changePct.toFixed(2)}%)
     </span>
-    {/* Session badge */}
-    <span className={cn("text-[9px] font-mono px-1 py-0.5 rounded", sessionColor)}>
-     {sessionLabel}
-    </span>
    </div>
 
    {/* Group 2: Portfolio + Cash */}
    <div className="flex items-center gap-4 px-3 border-r border-border/20">
     <div className="flex items-baseline gap-1">
-     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/25">Port</span>
-     <span className="text-[11px] font-mono tabular-nums text-foreground/75">${portfolioValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
+     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/20">Equity</span>
+     <span className="text-[12px] font-mono font-semibold tabular-nums text-foreground/80">${portfolioValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
     </div>
     <div className="flex items-baseline gap-1">
-     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/25">Cash</span>
+     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/20">Cash</span>
      <span className="text-[11px] font-mono tabular-nums text-foreground/60">${cash.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
     </div>
    </div>
 
    {/* Group 3: Season P&L + date */}
-   <div className="flex items-center gap-3 px-3">
+   <div className="flex items-center gap-3 px-4">
     <span className={cn(
      "text-[10px] font-mono tabular-nums font-semibold",
      pnlVsStart >= 0 ? "text-emerald-400/70" : "text-rose-400/70"
@@ -302,8 +279,8 @@ export default function TradePage() {
     {/* ── Trade view: 3-column layout ── */}
     <div className="flex flex-1 overflow-hidden">
 
-     {/* ── LEFT: Watchlist (160px) ── */}
-     <div className="flex flex-col border-r border-border/40 shrink-0 overflow-hidden" style={{ width: 160 }}>
+     {/* ── LEFT: Watchlist (176px) ── */}
+     <div className="flex flex-col border-r border-border/40 shrink-0 overflow-hidden" style={{ width: 176 }}>
       <WatchlistPanel />
      </div>
 
@@ -313,7 +290,7 @@ export default function TradePage() {
       <IndicatorInfoPanel />
 
       {/* Chart area — flex-[5] gives it ~62% of remaining height */}
-      <div className="flex flex-[5] min-h-0 overflow-hidden">
+      <div className="flex flex-[5] min-h-0 overflow-hidden border-t border-border/20">
        <DrawingToolbar />
        <ChartWithDrawing flashClass={flashClass}>
         {isLoading && <ChartSkeleton />}
@@ -340,7 +317,7 @@ export default function TradePage() {
        data-tutorial="positions"
       >
        <Tabs defaultValue="fundamentals" className="h-full flex flex-col">
-        <TabsList className="bg-transparent border-b border-border/30 rounded-none p-0 h-auto shrink-0">
+        <TabsList className="bg-muted/5 border-b border-border/20 rounded-none p-0 h-auto shrink-0 w-full flex">
          <TabsTrigger value="fundamentals" className={tabCls}>Fundamentals</TabsTrigger>
          <TabsTrigger value="orderbook" className={tabCls}>Book</TabsTrigger>
          <TabsTrigger value="compare" className={tabCls}>Compare</TabsTrigger>
@@ -421,7 +398,7 @@ export default function TradePage() {
        </TabsContent>
 
        {/* Margin tab */}
-       <TabsContent value="margin" className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden p-1.5">
+       <TabsContent value="margin" className="flex-1 overflow-auto mt-0 data-[state=inactive]:hidden">
         <MarginDashboard />
         <div className="mt-2 border-t border-border/20 pt-2">
          <ErrorBoundary name="ExecutionQuality">

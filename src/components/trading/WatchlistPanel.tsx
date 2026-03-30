@@ -207,69 +207,61 @@ export function WatchlistPanel() {
               key={ticker}
               onClick={() => setTicker(ticker)}
               className={cn(
-                "group w-full flex items-center px-2 py-1.5 transition-colors border-b border-border/10",
-                "hover:bg-foreground/[0.025]",
+                "group w-full flex flex-col px-3 py-2.5 transition-colors border-b border-border/10",
+                "hover:bg-foreground/[0.02]",
                 isActive
-                  ? "bg-primary/5 border-l-2 border-l-primary/60"
+                  ? "bg-primary/[0.04] border-l-2 border-l-primary/50"
                   : "border-l-2 border-l-transparent"
               )}
             >
-              {/* Left: ticker symbol + price stacked */}
-              <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-                <div className="flex items-baseline gap-1.5">
-                  <span
-                    className={cn(
-                      "text-[11px] font-semibold tracking-tight leading-none",
-                      isActive ? "text-foreground" : "text-foreground/70"
-                    )}
-                  >
-                    {ticker}
-                  </span>
-                  {!isLoadingReal && (
-                    <span
-                      className={cn(
-                        "text-[9px] font-mono tabular-nums leading-none",
-                        isActive ? "text-foreground/80" : "text-muted-foreground/50"
-                      )}
+              {/* Row 1: Ticker name + sparkline (right) */}
+              <div className="flex items-center justify-between mb-1">
+                <span className={cn(
+                  "text-[11px] font-semibold tracking-tight",
+                  isActive ? "text-foreground" : "text-foreground/65"
+                )}>
+                  {ticker}
+                </span>
+                {isActive && isLoadingReal ? (
+                  <PriceSkeleton />
+                ) : (
+                  <div className="flex items-center gap-1">
+                    <MiniSpark ticker={ticker} positive={positive} />
+                    {/* Remove button — visible on hover */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeFromWatchlist(ticker);
+                      }}
+                      className="opacity-0 group-hover:opacity-100 h-4 w-4 flex items-center justify-center rounded text-muted-foreground/30 hover:text-rose-400/70 hover:bg-rose-500/10 transition-all shrink-0 text-[11px]"
                     >
-                      ${displayPrice.toFixed(2)}
-                    </span>
-                  )}
-                </div>
+                      ×
+                    </button>
+                  </div>
+                )}
               </div>
 
-              {/* Right: sparkline + change% */}
-              {isActive && isLoadingReal ? (
-                <PriceSkeleton />
-              ) : (
-                <div className="flex items-center gap-1.5 shrink-0">
-                  <MiniSpark ticker={ticker} positive={positive} />
-                  <span
-                    className={cn(
-                      "text-[9px] font-mono tabular-nums w-[3.25rem] text-right leading-none",
-                      displayChangePct > 0
-                        ? "text-emerald-400/80"
-                        : displayChangePct < 0
-                        ? "text-rose-400/70"
-                        : "text-muted-foreground/40"
-                    )}
-                  >
-                    {displayChangePct >= 0 ? "+" : ""}
-                    {displayChangePct.toFixed(2)}%
+              {/* Row 2: Price (left) + Change% (right) */}
+              {!(isActive && isLoadingReal) && (
+                <div className="flex items-center justify-between">
+                  <span className={cn(
+                    "text-[10px] font-mono tabular-nums",
+                    isActive ? "text-foreground/75" : "text-muted-foreground/45"
+                  )}>
+                    ${displayPrice.toFixed(2)}
+                  </span>
+                  <span className={cn(
+                    "text-[9px] font-mono tabular-nums font-medium",
+                    displayChangePct > 0
+                      ? "text-emerald-400/80"
+                      : displayChangePct < 0
+                      ? "text-rose-400/70"
+                      : "text-muted-foreground/35"
+                  )}>
+                    {displayChangePct >= 0 ? "+" : ""}{displayChangePct.toFixed(2)}%
                   </span>
                 </div>
               )}
-
-              {/* Remove button — visible on hover */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  removeFromWatchlist(ticker);
-                }}
-                className="opacity-0 group-hover:opacity-100 ml-1 h-4 w-4 flex items-center justify-center rounded text-muted-foreground/30 hover:text-rose-400/70 hover:bg-rose-500/10 transition-all shrink-0 text-[11px]"
-              >
-                ×
-              </button>
             </button>
           );
         })}
