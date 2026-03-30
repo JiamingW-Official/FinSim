@@ -4,7 +4,7 @@
  */
 
 /** Game season start date: market open on the first trading day */
-export const GAME_START_DATE = new Date("2023-01-01T09:30:00Z");
+export const GAME_START_DATE = new Date("2023-01-03T09:30:00Z");
 
 /** Game season end date */
 export const SEASON_END_DATE = new Date("2026-03-01T00:00:00Z");

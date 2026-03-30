@@ -98,11 +98,47 @@ export function getGameTime(
 
   // Clamp to season end
   const clampedMs = Math.min(gameDateMs, SEASON_END_DATE.getTime());
-  const gameDate = new Date(clampedMs);
+  let gameDate = new Date(clampedMs);
 
-  const gameHour = gameDate.getUTCHours();
-  const gameMinute = gameDate.getUTCMinutes();
+  let gameHour = gameDate.getUTCHours();
+  let gameMinute = gameDate.getUTCMinutes();
   const gameSecond = gameDate.getUTCSeconds();
+
+  // --- Skip dead zones so the clock always shows an active trading window ---
+
+  // 1. Before pre-market (midnight–3:59 AM) → snap to 4:00 AM on the same day
+  if (gameHour < 4) {
+    gameDate.setUTCHours(4, 0, 0, 0);
+    gameHour = 4;
+    gameMinute = 0;
+  }
+
+  // 2. After after-hours end (8:00 PM+) → advance to next trading day at 4:00 AM
+  if (gameHour >= 20) {
+    const next = new Date(gameDate.getTime());
+    next.setUTCDate(next.getUTCDate() + 1);
+    while (!isMarketDay(next)) {
+      next.setUTCDate(next.getUTCDate() + 1);
+    }
+    next.setUTCHours(4, 0, 0, 0);
+    gameDate = next;
+    gameHour = 4;
+    gameMinute = 0;
+  }
+
+  // 3. Weekend / holiday → advance to the next trading day at 4:00 AM
+  if (!isMarketDay(gameDate)) {
+    const next = new Date(gameDate.getTime());
+    // start search from the same date (it may already be a non-trading day)
+    while (!isMarketDay(next)) {
+      next.setUTCDate(next.getUTCDate() + 1);
+    }
+    next.setUTCHours(4, 0, 0, 0);
+    gameDate = next;
+    gameHour = 4;
+    gameMinute = 0;
+  }
+
   const gameTimeOfDay = gameHour * 3600 + gameMinute * 60 + gameSecond;
 
   const isMarketDayResult = isMarketDay(gameDate);
