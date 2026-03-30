@@ -84,7 +84,11 @@ function LiveInfoBar() {
    ? "AH"
    : "Closed";
 
- if (price === 0) return null;
+ if (price === 0) return (
+  <div className="flex shrink-0 h-7 border-b border-border/40 px-4 items-center gap-5">
+   <div className="h-3 w-24 rounded animate-pulse bg-muted/30" />
+  </div>
+ );
 
  const pnlVsStart = ((portfolioValue - 100_000) / 100_000) * 100;
 

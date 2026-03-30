@@ -59,5 +59,5 @@ export function useMarketData() {
     }
   }, [query.data, setAllData]);
 
-  return query;
+  return { ...query, isLoading: query.isLoading || query.isFetching };
 }

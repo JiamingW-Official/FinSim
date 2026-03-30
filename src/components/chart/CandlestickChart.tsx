@@ -561,12 +561,14 @@ export function CandlestickChart() {
  // Notify DrawingOverlay that data is ready so coordinate conversions work
  notifyChartDataReady();
 
- // Auto-scroll to latest bar — always in intraday mode, or during playback
+ // Auto-scroll to latest bar — always in intraday mode, during playback,
+ // or when the ticker just changed (prevTickerRef hasn't caught up yet)
  const isIntraday = INTRADAY_TIMEFRAMES.has(currentTimeframe as Timeframe);
- if ((isIntraday || isPlaying) && chartRef.current) {
- chartRef.current.timeScale().scrollToPosition(0, false);
+ const tickerJustChanged = prevTickerRef.current !== currentTicker;
+ if ((isIntraday || isPlaying || tickerJustChanged) && chartRef.current) {
+ chartRef.current.timeScale().scrollToRealTime();
  }
- }, [renderBars, displayBars, isPlaying, currentTimeframe]);
+ }, [renderBars, displayBars, isPlaying, currentTimeframe, currentTicker]);
 
  // Synthetic earnings / dividend dates
  const tickerSeed = useMemo(() => {
