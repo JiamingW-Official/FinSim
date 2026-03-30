@@ -50,10 +50,10 @@ export function RankRow({ entry, dimConfig, index }: RankRowProps) {
  animate={{ opacity: 1, x: 0 }}
  transition={{ delay: index * 0.025, type: "spring" as const, stiffness: 300, damping: 25 }}
  className={cn(
- "flex items-center gap-3 rounded-md px-3 py-2.5 transition-colors",
+ "flex items-center gap-3 rounded-md px-4 py-3 transition-colors",
  entry.isUser
  ? "rank-highlight"
- : "hover:bg-muted/10",
+ : "hover:bg-foreground/[0.02]",
  )}
  >
  {/* Rank */}

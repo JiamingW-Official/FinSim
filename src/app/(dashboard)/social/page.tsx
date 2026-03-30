@@ -386,7 +386,7 @@ function ConvictionDot({ conviction }: { conviction: "high" | "medium" | "low" }
 // ─── Tab 1: Leaderboard ───────────────────────────────────────────────────────
 
 function PodiumCard({ trader, place }: { trader: Trader; place: 1 | 2 | 3 }) {
- const heights = { 1: "h-24", 2: "h-16", 3: "h-12" };
+ const heights = { 1: "h-28", 2: "h-16", 3: "h-12" };
  const labels = { 1: "1st", 2: "2nd", 3: "3rd" };
  const colors = {
  1: "border-yellow-400/60 bg-yellow-400/10",
@@ -397,7 +397,7 @@ function PodiumCard({ trader, place }: { trader: Trader; place: 1 | 2 | 3 }) {
 
  return (
  <div className={cn("flex flex-col items-center gap-2", place === 1 ? "order-2" : place === 2 ? "order-1" : "order-3")}>
- {place === 1 && <Crown className={cn("h-5 w-5", crownColors[place])} />}
+ {place === 1 && <Crown className={cn("h-6 w-6", crownColors[place])} />}
  <Avatar initials={trader.initials} color={trader.avatarColor} size="lg" />
  <div className="text-center">
  <p className="text-xs text-muted-foreground font-semibold">{trader.username}</p>
@@ -446,14 +446,14 @@ function LeaderboardTab() {
  <div className="space-y-4">
  {/* Controls */}
  <div className="flex flex-wrap gap-2 items-center justify-between">
- <div className="flex gap-1 bg-muted/50 rounded-lg p-1">
+ <div className="flex gap-1 border border-border/40 rounded-lg p-1">
  {(["daily", "weekly", "monthly", "allTime"] as TimePeriod[]).map((p) => (
  <button
  key={p}
  onClick={() => setPeriod(p)}
  className={cn(
- "px-3 py-1 rounded text-xs text-muted-foreground font-medium capitalize transition-colors",
- period === p ? "bg-background text-foreground" : "text-muted-foreground hover:text-foreground",
+ "px-3 py-1 rounded text-xs font-medium capitalize transition-colors",
+ period === p ? "bg-foreground/[0.07] text-foreground font-semibold" : "text-muted-foreground/50 hover:text-foreground",
  )}
  >
  {p === "allTime" ? "All Time" : p.charAt(0).toUpperCase() + p.slice(1)}
@@ -487,9 +487,9 @@ function LeaderboardTab() {
  </div>
 
  {/* Podium */}
- <div className="bg-card border border-border rounded-md p-4">
- <p className="text-xs font-semibold text-muted-foreground/60 mb-4 text-center">Top Performers</p>
- <div className="flex items-end justify-center gap-4">
+ <div className="bg-card border border-border rounded-xl p-6">
+ <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 mb-4 text-center">Top Performers</p>
+ <div className="flex items-end justify-center gap-6">
  {top3[1] && <PodiumCard trader={top3[1]} place={2} />}
  {top3[0] && <PodiumCard trader={top3[0]} place={1} />}
  {top3[2] && <PodiumCard trader={top3[2]} place={3} />}
@@ -498,7 +498,7 @@ function LeaderboardTab() {
 
  {/* Your rank callout */}
  {youRow && (
- <div className="bg-muted/5 border border-border rounded-lg px-4 py-2 flex items-center justify-between">
+ <div className="border border-foreground/15 bg-foreground/[0.03] rounded-xl px-5 py-3 flex items-center justify-between">
  <div className="flex items-center gap-2">
  <span className="text-xs font-medium text-foreground">Your rank</span>
  </div>
@@ -516,15 +516,15 @@ function LeaderboardTab() {
  <div className="rounded-md border border-border overflow-hidden">
  <table className="w-full text-sm">
  <thead>
- <tr className="border-b border-border bg-muted/30">
- <th className="py-2 px-3 text-left text-xs font-medium text-muted-foreground/60 w-8">#</th>
- <th className="py-2 px-3 text-left text-xs font-medium text-muted-foreground/60">Trader</th>
- <th className="py-2 px-3 text-right text-xs font-medium text-muted-foreground/60">Return</th>
- <th className="py-2 px-3 text-right text-xs font-medium text-muted-foreground/60">Sharpe</th>
- <th className="py-2 px-3 text-right text-xs font-medium text-muted-foreground/60">Win %</th>
- <th className="py-2 px-3 text-right text-xs font-medium text-muted-foreground/60 hidden sm:table-cell">Trades</th>
- <th className="py-2 px-3 text-right text-xs font-medium text-muted-foreground/60 hidden md:table-cell">Followers</th>
- <th className="py-2 px-3 text-right text-xs font-medium text-muted-foreground/60">ELO</th>
+ <tr className="border-b border-border bg-transparent">
+ <th className="py-3 px-4 text-left text-[10px] font-mono uppercase tracking-[0.1em] text-muted-foreground/40 w-8">#</th>
+ <th className="py-3 px-4 text-left text-[10px] font-mono uppercase tracking-[0.1em] text-muted-foreground/40">Trader</th>
+ <th className="py-3 px-4 text-right text-[10px] font-mono uppercase tracking-[0.1em] text-muted-foreground/40">Return</th>
+ <th className="py-3 px-4 text-right text-[10px] font-mono uppercase tracking-[0.1em] text-muted-foreground/40">Sharpe</th>
+ <th className="py-3 px-4 text-right text-[10px] font-mono uppercase tracking-[0.1em] text-muted-foreground/40">Win %</th>
+ <th className="py-3 px-4 text-right text-[10px] font-mono uppercase tracking-[0.1em] text-muted-foreground/40 hidden sm:table-cell">Trades</th>
+ <th className="py-3 px-4 text-right text-[10px] font-mono uppercase tracking-[0.1em] text-muted-foreground/40 hidden md:table-cell">Followers</th>
+ <th className="py-3 px-4 text-right text-[10px] font-mono uppercase tracking-[0.1em] text-muted-foreground/40">ELO</th>
  </tr>
  </thead>
  <tbody>
@@ -536,15 +536,15 @@ function LeaderboardTab() {
  transition={{ delay: idx * 0.02 }}
  className={cn(
  "border-b border-border last:border-0 transition-colors",
- trader.isYou ? "bg-muted/5 hover:bg-primary/8" : "hover:bg-muted/30",
+ trader.isYou ? "bg-muted/5 hover:bg-primary/8" : "hover:bg-foreground/[0.02]",
  )}
  >
- <td className="py-2 px-3">
+ <td className="py-3 px-4">
  <div className="flex items-center justify-center">
  <RankBadge rank={trader.rank} />
  </div>
  </td>
- <td className="py-2 px-3">
+ <td className="py-3 px-4">
  <div className="flex items-center gap-2">
  <Avatar initials={trader.initials} color={trader.avatarColor} size="sm" />
  <span className={cn("font-medium text-xs", trader.isYou ? "text-foreground" : "")}>
@@ -553,12 +553,12 @@ function LeaderboardTab() {
  </span>
  </div>
  </td>
- <td className="py-2 px-3 text-right"><ReturnBadge value={trader.returnPct} /></td>
- <td className="py-2 px-3 text-right text-xs text-muted-foreground">{trader.sharpe}</td>
- <td className="py-2 px-3 text-right text-xs text-muted-foreground">{trader.winRate}%</td>
- <td className="py-2 px-3 text-right text-xs text-muted-foreground hidden sm:table-cell">{trader.totalTrades}</td>
- <td className="py-2 px-3 text-right text-xs text-muted-foreground hidden md:table-cell">{trader.followers.toLocaleString()}</td>
- <td className="py-2 px-3 text-right text-xs font-mono text-muted-foreground">{trader.elo}</td>
+ <td className="py-3 px-4 text-right"><ReturnBadge value={trader.returnPct} /></td>
+ <td className="py-3 px-4 text-right text-xs text-muted-foreground">{trader.sharpe}</td>
+ <td className="py-3 px-4 text-right text-xs text-muted-foreground">{trader.winRate}%</td>
+ <td className="py-3 px-4 text-right text-xs text-muted-foreground hidden sm:table-cell">{trader.totalTrades}</td>
+ <td className="py-3 px-4 text-right text-xs text-muted-foreground hidden md:table-cell">{trader.followers.toLocaleString()}</td>
+ <td className="py-3 px-4 text-right text-xs font-mono text-muted-foreground">{trader.elo}</td>
  </motion.tr>
  ))}
  </tbody>
@@ -585,7 +585,7 @@ function IdeaCard({
  return (
  <motion.div
  layout
- className="rounded-md border border-border bg-card p-4 space-y-3 hover:border-border transition-colors"
+ className="rounded-xl border border-border/50 bg-card/50 p-5 space-y-4 hover:border-border transition-colors"
  >
  {/* Header */}
  <div className="flex items-start justify-between gap-2">
@@ -605,12 +605,12 @@ function IdeaCard({
  {/* Direction + Ticker */}
  <div className="flex items-center gap-3">
  <span className={cn(
- "px-2 py-0.5 rounded text-xs text-muted-foreground font-medium ",
+ "px-2.5 py-1 rounded-md text-xs font-semibold",
  isLong ? "bg-emerald-500/15 text-emerald-400" : "bg-rose-500/15 text-rose-400",
  )}>
  {idea.direction}
  </span>
- <span className="font-medium text-sm">{idea.ticker}</span>
+ <span className="text-base font-bold tracking-tight">{idea.ticker}</span>
  {idea.closed && idea.closedPnlPct !== undefined && (
  <span className={cn(
  "ml-auto text-xs text-muted-foreground font-medium px-2 py-0.5 rounded",
@@ -625,19 +625,19 @@ function IdeaCard({
  <div className="flex gap-4 text-xs text-muted-foreground">
  <div>
  <p className="text-muted-foreground/60">Entry</p>
- <p className="font-mono font-medium">${idea.entry}</p>
+ <p className="font-mono font-bold">${idea.entry}</p>
  </div>
  <div>
  <p className="text-muted-foreground/60">Target</p>
- <p className="font-mono font-medium text-emerald-400">${idea.target}</p>
+ <p className="font-mono font-bold text-emerald-400">${idea.target}</p>
  </div>
  <div>
  <p className="text-muted-foreground/60">Stop</p>
- <p className="font-mono font-medium text-rose-400">${idea.stop}</p>
+ <p className="font-mono font-bold text-rose-400">${idea.stop}</p>
  </div>
  <div className="ml-auto">
  <p className="text-muted-foreground/60">R:R</p>
- <p className="font-mono font-medium">
+ <p className="font-mono font-bold">
  {Math.abs(Math.round(
  ((isLong ? idea.target - idea.entry : idea.entry - idea.target) /
  Math.abs(isLong ? idea.entry - idea.stop : idea.stop - idea.entry)) * 10,
@@ -1363,12 +1363,12 @@ export default function SocialPage() {
  return (
  <div className="flex flex-col h-full min-h-0">
  {/* Header */}
- <div className="shrink-0 border-b border-border px-6 py-6 border-l-4 border-l-primary">
+ <div className="shrink-0 border-b border-border px-6 py-6">
  <div className="flex items-center gap-3">
  <div className="h-8 w-8 rounded-lg bg-muted/10 flex items-center justify-center">
  </div>
  <div>
- <h1 className="text-base font-medium">Social Trading</h1>
+ <h1 className="text-xl font-bold tracking-tight">Social Trading</h1>
  <p className="text-xs text-muted-foreground">Leaderboards, trade ideas, copy trading &amp; community insights</p>
  </div>
  </div>
@@ -1379,19 +1379,19 @@ export default function SocialPage() {
  <div className="max-w-5xl mx-auto px-6 py-4">
  <Tabs value={tab} onValueChange={setTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4 w-auto">
- <TabsTrigger value="leaderboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="leaderboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <span>Leaderboard</span>
  </TabsTrigger>
- <TabsTrigger value="ideas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="ideas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <span>Trade Ideas</span>
  </TabsTrigger>
- <TabsTrigger value="copy" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="copy" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <span>Copy Trading</span>
  </TabsTrigger>
- <TabsTrigger value="stats" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="stats" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <span>Community</span>
  </TabsTrigger>
- <TabsTrigger value="hub" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="hub" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <span>Hub</span>
  </TabsTrigger>
  </TabsList>

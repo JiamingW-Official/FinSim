@@ -39,9 +39,9 @@ import {
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
  return (
- <div className="text-sm font-serif font-medium tracking-tight text-foreground pb-1">
+ <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground/50 mb-4">
  {children}
- </div>
+ </p>
  );
 }
 
@@ -55,11 +55,11 @@ function SettingRow({
  children: React.ReactNode;
 }) {
  return (
- <div className="flex items-center justify-between gap-4 py-0.5">
+ <div className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
  <div className="min-w-0 flex-1">
  <div className="text-sm font-medium">{label}</div>
  {description && (
- <div className="text-xs text-muted-foreground leading-relaxed">
+ <div className="text-xs text-muted-foreground/55 mt-0.5 leading-relaxed">
  {description}
  </div>
  )}
@@ -79,7 +79,7 @@ function Card({
  return (
  <div
  className={cn(
- "rounded-lg border border-border bg-card p-5 space-y-3",
+ "rounded-xl border border-border/60 bg-card/50 p-6 space-y-4",
  className,
  )}
  >
@@ -109,17 +109,9 @@ function NativeSelect<T extends string | number>({
  onChange(coerced);
  }}
  className={cn(
- "h-8 rounded-md border border-border bg-card px-2 pr-7 text-xs font-medium text-foreground outline-none focus:ring-1 focus:ring-primary/50 cursor-pointer",
+ "h-9 w-full rounded-lg border border-border/50 bg-transparent px-3 text-xs font-medium text-foreground focus:outline-none focus:border-foreground/30 transition-colors cursor-pointer",
  className,
  )}
- style={{
- backgroundImage:
- "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%236b7280' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E\")",
- backgroundRepeat: "no-repeat",
- backgroundPosition: "right 8px center",
- appearance: "none",
- WebkitAppearance: "none",
- }}
  >
  {options.map((opt) => (
  <option key={String(opt.value)} value={opt.value}>
@@ -146,10 +138,10 @@ function RadioCards<T extends string>({
  key={opt.value}
  onClick={() => onChange(opt.value)}
  className={cn(
- "flex flex-col items-start rounded-md border px-3 py-2 text-left text-xs text-muted-foreground transition-colors",
+ "flex flex-col items-start rounded-md border px-4 py-2.5 text-left text-xs transition-colors",
  value === opt.value
- ? "border-primary bg-primary/5 text-primary"
- : "border-border bg-card text-muted-foreground hover:border-border hover:bg-muted/20",
+ ? "border-foreground/40 bg-foreground/[0.06] text-foreground"
+ : "border-border/40 text-muted-foreground/60 hover:border-border/70 hover:text-muted-foreground/80",
  )}
  >
  <span className="font-medium">{opt.label}</span>
@@ -300,7 +292,7 @@ function TradingTab() {
  options={orderTypeOptions}
  />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Default Quantity"
  description="Pre-filled share/contract quantity in order entry"
@@ -314,7 +306,7 @@ function TradingTab() {
  className="h-8 w-24 text-xs text-muted-foreground"
  />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Default Instrument"
  description="Default trading instrument when opening trade panel"
@@ -342,7 +334,7 @@ function TradingTab() {
  formatValue={(v) => `${v.toFixed(1)}%`}
  />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Max Daily Loss Limit"
  description="Stop trading automatically when this loss is reached"
@@ -360,7 +352,7 @@ function TradingTab() {
  />
  </div>
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Auto-Stop at Daily Loss"
  description="Prevent new trades when daily loss limit is hit"
@@ -383,7 +375,7 @@ function TradingTab() {
  onCheckedChange={setShowTradeConfirmation}
  />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Pro Mode"
  description="Enable realistic commission fees on every trade"
@@ -483,7 +475,7 @@ function DisplayTab() {
  options={chartStyleOptions}
  />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Default Timeframe"
  description="Initial timeframe when loading a chart"
@@ -494,18 +486,18 @@ function DisplayTab() {
  options={timeframeOptions}
  />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow label="Show Volume" description="Display volume bars below the main chart">
  <Switch checked={showVolume} onCheckedChange={setShowVolume} />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Show Grid Lines"
  description="Horizontal and vertical grid lines on the chart"
  >
  <Switch checked={showGridLines} onCheckedChange={setShowGridLines} />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Chart Animation"
  description="Smooth transitions when data updates"
@@ -586,7 +578,7 @@ function NotificationsTab() {
  onCheckedChange={setPriceAlertsEnabled}
  />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Achievement Alerts"
  description="Show popup when a new achievement is unlocked"
@@ -596,7 +588,7 @@ function NotificationsTab() {
  onCheckedChange={setAchievementAlertsEnabled}
  />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Level Up Alerts"
  description="Celebrate when you reach a new level"
@@ -606,7 +598,7 @@ function NotificationsTab() {
  onCheckedChange={setLevelUpAlertsEnabled}
  />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="AI Coach Suggestions"
  description="Show trade setup suggestions from AlphaBot"
@@ -631,7 +623,7 @@ function NotificationsTab() {
  </SettingRow>
  {dailyReminderEnabled && (
  <>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow label="Reminder Time" description="Hour to send the daily reminder">
  <NativeSelect
  value={dailyReminderHour}
@@ -657,7 +649,7 @@ function NotificationsTab() {
  </SettingRow>
  {soundEffectsEnabled && (
  <>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Volume"
  description={`${soundVolume}% audio level`}
@@ -779,7 +771,7 @@ function AccountTab() {
  className="h-8 w-36 text-xs text-muted-foreground"
  />
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Trading Experience"
  description="Helps personalize AI coach recommendations"
@@ -816,7 +808,7 @@ function AccountTab() {
  </div>
  </Card>
 
- <Card className="border-destructive/20 space-y-3">
+ <Card className="border-rose-500/40 bg-rose-500/[0.03] space-y-3">
  <div className="flex items-center gap-2 text-sm font-medium text-destructive">
  Danger Zone
  </div>
@@ -833,7 +825,7 @@ function AccountTab() {
  Reset Progress
  </Button>
  </SettingRow>
- <Separator className="opacity-30" />
+ <Separator className="opacity-20" />
  <SettingRow
  label="Reset Portfolio"
  description="Clear all positions and reset cash to $100,000"
@@ -994,12 +986,12 @@ function DataTab() {
 export default function SettingsPage() {
  return (
  <div className="flex h-full flex-col overflow-y-auto">
- <div className="space-y-5 p-4 max-w-2xl">
+ <div className="space-y-5 px-6 py-6 max-w-2xl">
  {/* Header */}
  <div>
  <p className="text-xs text-muted-foreground mb-1">Preferences</p>
- <h1 className="text-xl font-serif tracking-tight">Settings</h1>
- <p className="text-xs text-muted-foreground/70 leading-relaxed mt-0.5">
+ <h1 className="text-xl font-semibold tracking-tight">Settings</h1>
+ <p className="text-xs text-muted-foreground/50 mt-1">
  Customize your trading experience
  </p>
  </div>
@@ -1007,19 +999,19 @@ export default function SettingsPage() {
  {/* Tabs */}
  <Tabs defaultValue="trading">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="trading" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="trading" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs font-medium text-muted-foreground data-[state=active]:text-foreground">
  Trading
  </TabsTrigger>
- <TabsTrigger value="display" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="display" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs font-medium text-muted-foreground data-[state=active]:text-foreground">
  Display
  </TabsTrigger>
- <TabsTrigger value="notifications" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="notifications" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs font-medium text-muted-foreground data-[state=active]:text-foreground">
  Notifications
  </TabsTrigger>
- <TabsTrigger value="account" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="account" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs font-medium text-muted-foreground data-[state=active]:text-foreground">
  Account
  </TabsTrigger>
- <TabsTrigger value="data" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="data" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2.5 text-xs font-medium text-muted-foreground data-[state=active]:text-foreground">
  Data
  </TabsTrigger>
  </TabsList>

@@ -166,17 +166,17 @@ export default function LeaderboardPage() {
  return (
  <div className="flex h-full flex-col">
  {/* Header */}
- <div className="border-b border-border px-4 py-4">
+ <div className="border-b border-border px-4 py-5">
  <div className="flex items-center gap-3">
  <div>
- <p className="text-xs text-muted-foreground mb-1">Rankings</p>
- <h1 className="text-lg font-semibold">Leaderboard</h1>
+ <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground/40 mb-2">Rankings</p>
+ <h1 className="text-xl font-bold tracking-tight">Leaderboard</h1>
  </div>
  <div className="flex-1" />
  <div className="flex items-center gap-2">
  <LeagueBadge tier={league} size="lg" />
- <div className="flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5">
- <span className="text-[11px] font-medium font-mono tabular-nums text-foreground">
+ <div className="flex items-center gap-1.5 rounded-lg border border-border/50 px-4 py-2">
+ <span className="text-sm font-bold font-mono tabular-nums text-foreground">
  #{userRank?.rank ?? "-"}
  </span>
  <span className="text-xs text-muted-foreground">
@@ -198,7 +198,7 @@ export default function LeaderboardPage() {
  type="button"
  onClick={() => setMainTab(tab.id)}
  className={cn(
- "relative flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-medium whitespace-nowrap transition-colors",
+ "relative flex items-center gap-1.5 px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors",
  isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
  )}
  >
@@ -288,10 +288,10 @@ export default function LeaderboardPage() {
  </div>
 
  {/* Top 3 Podium */}
- <div className="rounded-md border border-border bg-card p-5 mb-4">
- <span className="text-xs font-semibold text-muted-foreground mb-4 block">Top 3 — {dimConfig.label}</span>
+ <div className="rounded-md border border-border bg-card p-6 pb-2 mb-4">
+ <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 mb-4 block">Top 3 — {dimConfig.label}</span>
 
- <div className="flex items-end justify-center gap-3">
+ <div className="flex items-end justify-center gap-6">
  {top3[1] && <PodiumSlot entry={top3[1]} dimConfig={dimConfig} place={2} />}
  {top3[0] && <PodiumSlot entry={top3[0]} dimConfig={dimConfig} place={1} />}
  {top3[2] && <PodiumSlot entry={top3[2]} dimConfig={dimConfig} place={3} />}
@@ -336,7 +336,7 @@ export default function LeaderboardPage() {
  <div
  key={tier}
  className={cn(
- "flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors",
+ "flex items-center gap-2 rounded-lg px-3 py-2.5 transition-colors",
  isUserLeague && "bg-muted/30 border border-border",
  )}
  >
@@ -521,7 +521,7 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
  })}
  </div>
 
- <div className="rounded-lg border border-border bg-card/30 px-3 py-2.5">
+ <div className="border border-foreground/15 bg-foreground/[0.03] rounded-xl px-5 py-3">
  <p className="text-[11px] text-muted-foreground leading-relaxed">
  Challenge friends to head-to-head competitions. Win to earn bonus points and climb the ranks faster.
  </p>
@@ -608,22 +608,22 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
  return (
  <div className="space-y-4">
  {/* Rank + Percentile */}
- <div className="grid grid-cols-2 gap-3">
- <div className="rounded-md border border-border bg-card/50 p-4">
+ <div className="grid grid-cols-2 gap-4">
+ <div className="rounded-xl border border-border/50 bg-card/30 p-5">
  <div className="flex items-center gap-2 mb-1">
  <Trophy className="h-3.5 w-3.5 text-muted-foreground/50" />
  <span className="text-[11px] font-medium text-muted-foreground">Global Rank</span>
  </div>
- <div className="text-2xl font-semibold font-mono tabular-nums text-foreground">#{rank}</div>
+ <div className="text-3xl font-bold tracking-tight font-mono tabular-nums text-foreground">#{rank}</div>
  <p className="text-xs text-muted-foreground mt-0.5">out of {totalPlayers} players</p>
  </div>
 
- <div className="rounded-md border border-border bg-card/50 p-4">
+ <div className="rounded-xl border border-border/50 bg-card/30 p-5">
  <div className="flex items-center gap-2 mb-1">
  <Star className="h-4 w-4 text-amber-400" />
  <span className="text-[11px] font-medium text-muted-foreground">Percentile</span>
  </div>
- <div className="text-sm font-medium font-mono tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
+ <div className="text-3xl font-bold tracking-tight font-mono tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
  <div className="mt-2 h-2 rounded-full bg-muted/30 overflow-hidden">
  <div
  className="h-full rounded-full bg-amber-400 transition-colors duration-200"
@@ -845,7 +845,7 @@ function PodiumSlot({
  place: 1 | 2 | 3;
 }) {
  const placeLabels = ["#1", "#2", "#3"];
- const heights = { 1: "h-20", 2: "h-14", 3: "h-11" };
+ const heights = { 1: "h-28", 2: "h-16", 3: "h-11" };
  const sizes = { 1: "h-11 w-11 text-sm", 2: "h-9 w-9 text-[11px]", 3: "h-9 w-9 text-[11px]" };
  const color = AVATAR_COLORS[entry.avatarSeed % AVATAR_COLORS.length];
  const initials = getInitials(entry.name);

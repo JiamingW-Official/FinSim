@@ -197,7 +197,7 @@ function MarketRow({
            </span>
          )}
        </div>
-       <p className="text-sm text-foreground leading-snug line-clamp-2 mb-3">
+       <p className="text-sm font-semibold leading-snug text-foreground line-clamp-2 mb-3">
          {market.question}
        </p>
        {/* YES/NO split bar — visible height */}
@@ -217,10 +217,10 @@ function MarketRow({
      {/* RIGHT: big probability + sparkline + stats */}
      <div className="shrink-0 flex flex-col items-end gap-1.5 min-w-[72px]">
        <span className={cn(
-         "font-serif text-2xl font-bold tabular-nums leading-none",
-         prob >= 65 ? "text-emerald-400" : prob <= 35 ? "text-red-400" : "text-foreground/60"
+         "text-2xl font-black tabular-nums leading-none",
+         prob >= 60 ? "text-emerald-400" : prob <= 40 ? "text-rose-400" : "text-muted-foreground"
        )}>
-         {prob}<span className="text-sm font-light text-muted-foreground/30">%</span>
+         {prob}<span className="text-base font-light text-muted-foreground/30">%</span>
        </span>
        <Sparkline data={priceHistory} width={56} height={18} />
        <span className="text-[10px] font-mono text-muted-foreground/40 tabular-nums">
@@ -400,9 +400,9 @@ function MarketDetailDrawer({
  <button
  onClick={() => setOrderSide("yes")}
  className={cn(
- "rounded py-1.5 text-xs font-medium transition-colors",
+ "rounded px-3 py-1.5 text-xs font-bold transition-colors",
  orderSide === "yes"
- ? "bg-emerald-500/15 text-emerald-500/80 ring-1 ring-emerald-500/20"
+ ? "bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-500/20"
  : "bg-foreground/[0.03] text-muted-foreground hover:bg-foreground/[0.06]",
  )}
  >
@@ -411,9 +411,9 @@ function MarketDetailDrawer({
  <button
  onClick={() => setOrderSide("no")}
  className={cn(
- "rounded py-1.5 text-xs font-medium transition-colors",
+ "rounded px-3 py-1.5 text-xs font-bold transition-colors",
  orderSide === "no"
- ? "bg-red-500/15 text-red-500/80 ring-1 ring-red-500/20"
+ ? "bg-rose-500/20 text-rose-300 ring-1 ring-rose-500/20"
  : "bg-foreground/[0.03] text-muted-foreground hover:bg-foreground/[0.06]",
  )}
  >
@@ -462,18 +462,16 @@ function MarketDetailDrawer({
  </div>
 
  {/* Payout calculation — inline */}
- <div className="mb-3 flex items-center gap-2.5 text-xs px-1 flex-wrap">
- <span className="text-muted-foreground">Stake <span className="font-medium text-foreground">{betAmount} pts</span></span>
- <span className="text-border/30">·</span>
- <span className="text-muted-foreground">Payout <span className="font-medium text-emerald-500/80">{expectedPayout} pts</span></span>
- <span className="text-border/30">·</span>
- <span className="text-muted-foreground">Profit <span className="font-medium text-emerald-500/80">+{expectedPayout - betAmount} pts</span></span>
+ <div className="mb-4 flex items-center gap-5 text-sm px-1">
+ <span className="text-muted-foreground">Stake <span className="font-bold tabular-nums text-foreground">{betAmount} pts</span></span>
+ <span className="text-muted-foreground">Payout <span className="font-bold tabular-nums text-emerald-500/80">{expectedPayout} pts</span></span>
+ <span className="text-muted-foreground">Profit <span className="font-bold tabular-nums text-emerald-500/80">+{expectedPayout - betAmount} pts</span></span>
  </div>
 
  <button
  onClick={handlePlaceBet}
  disabled={betAmount > insightPoints}
- className="w-full rounded-lg bg-primary px-3 py-2 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-40"
+ className="w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-40"
  >
  Place Bet — {betAmount} pts
  </button>
@@ -577,14 +575,14 @@ function MyBetsTab() {
  Active Positions ({activeBets.length})
  </h2>
  <div className="overflow-x-auto rounded-lg bg-card border border-border p-0">
- <table className="w-full text-[11px] min-w-[480px]">
+ <table className="w-full text-xs min-w-[480px]">
  <thead className="sticky top-0 z-10 bg-card">
  <tr className="border-b border-border">
- <th className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground">Market</th>
- <th className="px-3 py-2 text-center text-[11px] font-medium text-muted-foreground">Position</th>
- <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">Stake</th>
- <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">Est. Payout</th>
- <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">Odds</th>
+ <th className="px-4 py-3 text-left text-[10px] font-mono uppercase tracking-wider text-muted-foreground/40">Market</th>
+ <th className="px-4 py-3 text-center text-[10px] font-mono uppercase tracking-wider text-muted-foreground/40">Position</th>
+ <th className="px-4 py-3 text-right text-[10px] font-mono uppercase tracking-wider text-muted-foreground/40">Stake</th>
+ <th className="px-4 py-3 text-right text-[10px] font-mono uppercase tracking-wider text-muted-foreground/40">Est. Payout</th>
+ <th className="px-4 py-3 text-right text-[10px] font-mono uppercase tracking-wider text-muted-foreground/40">Odds</th>
  </tr>
  </thead>
  <tbody>
@@ -597,21 +595,21 @@ function MyBetsTab() {
  const estPnl = estPayout - bet.amount;
  return (
  <tr key={bet.marketId + bet.timestamp} className="border-b border-border last:border-0 transition-colors duration-150 hover:bg-foreground/[0.02]">
- <td className="max-w-[200px] truncate px-3 py-2 text-foreground">
+ <td className="max-w-[200px] truncate px-4 py-3 text-foreground">
  {market?.question.slice(0, 40) ?? bet.marketId}
  {(market?.question.length ?? 0) > 40 ? "…" : ""}
  </td>
- <td className="px-3 py-2 text-center">
+ <td className="px-4 py-3 text-center">
  <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", bet.position === "yes" ? "bg-emerald-500/5 text-emerald-500/80" : "bg-red-500/5 text-red-500/80")}>
  {bet.position.toUpperCase()}
  </span>
  </td>
- <td className="px-3 py-2 text-right font-mono tabular-nums text-foreground">{bet.amount} pts</td>
- <td className="px-3 py-2 text-right font-mono tabular-nums text-foreground">
+ <td className="px-4 py-3 text-right font-mono tabular-nums text-foreground">{bet.amount} pts</td>
+ <td className="px-4 py-3 text-right font-mono tabular-nums text-foreground">
  {estPayout} pts
  <span className="ml-1 text-emerald-500/60">(+{estPnl})</span>
  </td>
- <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">
+ <td className="px-4 py-3 text-right font-mono tabular-nums text-muted-foreground">
  {Math.round(prob * 100)}%
  </td>
  </tr>
@@ -625,8 +623,8 @@ function MyBetsTab() {
 
  {/* Resolved bets — breathing room, nearly invisible */}
  {resolvedBets.length > 0 && (
- <div className="mt-8 bg-transparent p-0 opacity-50">
- <h2 className="mb-1.5 text-[11px] font-normal text-muted-foreground/60">
+ <div className="mt-8 bg-transparent p-0 opacity-70">
+ <h2 className="mb-1.5 text-xs font-normal text-muted-foreground/60">
  Resolved ({resolvedBets.length})
  </h2>
  <div className="space-y-0">
@@ -635,15 +633,15 @@ function MyBetsTab() {
  const isCorrect = (bet.position === "yes" && bet.outcome === true) || (bet.position === "no" && bet.outcome === false);
  const pnl = (bet.payout ?? 0) - bet.amount;
  return (
- <div key={bet.marketId + bet.timestamp} className="flex items-center gap-2 py-0.5 text-[11px] text-muted-foreground">
+ <div key={bet.marketId + bet.timestamp} className="flex items-center gap-2 py-1.5 text-xs text-muted-foreground">
  <span className={cn("shrink-0", isCorrect ? "text-emerald-500/60" : "text-red-500/60")}>
  {isCorrect ? "+" : "-"}
  </span>
  <span className="min-w-0 flex-1 truncate">
  {market?.question.slice(0, 50) ?? bet.marketId}
  </span>
- <span className="shrink-0 text-[10px] font-medium">{bet.position}</span>
- <span className={cn("shrink-0 font-mono tabular-nums text-[10px]", pnl >= 0 ? "text-emerald-500/60" : "text-red-500/60")}>
+ <span className="shrink-0 text-xs font-medium">{bet.position}</span>
+ <span className={cn("shrink-0 font-mono tabular-nums text-xs", pnl >= 0 ? "text-emerald-500/60" : "text-red-500/60")}>
  {pnl >= 0 ? "+" : ""}{pnl}
  </span>
  </div>
@@ -831,11 +829,10 @@ export function PredictionsPageClient() {
  return (
  <div className="flex h-full flex-col">
  {/* Header */}
- <div className="border-b border-border px-5 pt-6 pb-0">
+ <div className="border-b border-border px-5 py-5 pb-0">
  <div className="flex items-center gap-3 pb-4">
  <div className="min-w-0">
- <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground/30 font-mono mb-2">Forecasting</p>
- <h1 className="font-serif text-4xl font-bold tracking-tight leading-none mb-1">Prediction <span className="font-light text-muted-foreground/50">Markets</span></h1>
+ <h1 className="text-xl font-bold tracking-tight leading-none mb-1">Prediction Markets</h1>
  <p className="text-[11px] font-mono text-muted-foreground/30 mt-1">
  {filteredMarkets.length} markets · {insightPoints.toLocaleString()} pts available
  </p>
@@ -971,8 +968,8 @@ export function PredictionsPageClient() {
  className={cn(
  "shrink-0 inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs font-medium active:scale-[0.97] transition-all duration-150",
  activeFilter === tab.value
- ? "border-border bg-foreground/5 text-foreground"
- : "border-border text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]",
+ ? "border-border bg-foreground/[0.08] text-foreground font-semibold"
+ : "border-transparent text-muted-foreground/55 hover:text-foreground hover:bg-foreground/[0.03]",
  )}
  >
  {tab.value !== "all" && (
