@@ -44,6 +44,18 @@ import { MarginDashboard } from "@/components/trading/MarginDashboard";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
+// ── Live info bar helpers ────────────────────────────────────────────────────
+function formatLiveDate(iso: string): string {
+ const [y, m, d] = iso.split("-").map(Number);
+ const date = new Date(Date.UTC(y, m - 1, d));
+ return date.toLocaleDateString("en-US", {
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+ });
+}
+
 // ── Live info bar ────────────────────────────────────────────────────────────
 function LiveInfoBar() {
  // Three separate primitive selectors — Zustand compares primitives with Object.is,
@@ -63,6 +75,7 @@ function LiveInfoBar() {
  const portfolioValue = useTradingStore((s) => s.portfolioValue);
  const cash = useTradingStore((s) => s.cash);
  const marketSession = useClockStore((s) => s.marketSession);
+ const gameDate = useClockStore((s) => s.gameDate);
 
  const isUp = change >= 0;
 
@@ -102,6 +115,9 @@ function LiveInfoBar() {
     </span>
     <span className={cn("text-[10px] font-mono px-1 rounded", sessionColor)}>
      {sessionLabel}
+    </span>
+    <span className="text-[10px] font-mono text-muted-foreground/40 tabular-nums">
+     {formatLiveDate(gameDate)}
     </span>
    </div>
    <div className="h-3 w-px bg-border/30" />

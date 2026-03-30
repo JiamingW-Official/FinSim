@@ -12,15 +12,12 @@ const SESSION_STYLES: Record<string, { label: string; color: string; dot: string
   closed:        { label: "Closed",     color: "text-muted-foreground/40", dot: "bg-muted-foreground/30" },
 };
 
-function formatGameDate(iso: string): string {
+function formatGameDate(iso: string): { weekday: string; monthDay: string } {
   const [y, m, d] = iso.split("-").map(Number);
   const date = new Date(Date.UTC(y, m - 1, d));
-  return date.toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-  }).toUpperCase();
+  const weekday = date.toLocaleDateString("en-US", { weekday: "short", timeZone: "UTC" }).toUpperCase();
+  const monthDay = date.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }).toUpperCase();
+  return { weekday, monthDay };
 }
 
 /** Real ET time formatted as HH:MM:SS */
@@ -86,11 +83,21 @@ export function GameStatusBar() {
       </div>
 
       {/* ── CENTER: Game clock (the most prominent element) ── */}
-      <div className="flex-1 flex items-center justify-center gap-2">
-        <span className="font-mono text-[10px] tracking-wider text-muted-foreground/30">
-          {formatGameDate(gameDate)}
-        </span>
-        <span className="text-border/60">·</span>
+      <div className="flex-1 flex items-center justify-center gap-1.5">
+        {(() => {
+          const { weekday, monthDay } = formatGameDate(gameDate);
+          return (
+            <>
+              <span className="font-mono text-[11px] font-semibold tabular-nums text-foreground/70 tracking-wide">
+                {weekday}
+              </span>
+              <span className="font-mono text-[10px] tracking-wider text-muted-foreground/55">
+                {monthDay}
+              </span>
+            </>
+          );
+        })()}
+        <span className="text-border/60 mx-0.5">·</span>
         <span className="font-mono text-[15px] font-bold tabular-nums text-foreground/90 tracking-tight">
           {gameTimeDisplay}
         </span>
