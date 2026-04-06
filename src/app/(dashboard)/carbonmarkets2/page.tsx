@@ -22,7 +22,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -614,9 +613,7 @@ function VoluntaryTab() {
  <CardContent className="pt-0">
  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
  {CREDIT_TYPES.map((ct) => (
- <motion.div
- key={ct.abbr}
- whileHover={{ scale: 1.02 }}
+ <div
  onClick={() => setSelected(selected === ct.abbr ? null : ct.abbr)}
  className={`cursor-pointer rounded-lg p-3 border transition-colors ${selected === ct.abbr ? "border-primary bg-muted" : "border-border bg-muted hover:border-border"}`}
  style={{ background: selected === ct.abbr ? undefined : "#18181b" }}
@@ -634,7 +631,7 @@ function VoluntaryTab() {
  <span className="text-muted-foreground">Price range:</span>
  <span style={{ color: ct.color }}>${ct.priceMin}–${ct.priceMax}/t</span>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </CardContent>
@@ -850,9 +847,7 @@ function NatureTab() {
  </CardHeader>
  <CardContent className="pt-0 space-y-2">
  {NBS_PROJECTS.map((p, i) => (
- <motion.div
- key={p.name}
- whileHover={{ scale: 1.01 }}
+ <div
  onClick={() => setSelected(selected === i ? null : i)}
  className={`cursor-pointer rounded-lg p-3 border transition-colors ${selected === i ? "border-cyan-600 bg-muted" : "border-border hover:border-border"}`}
  style={{ background: selected === i ? undefined : "#18181b" }}
@@ -888,7 +883,7 @@ function NatureTab() {
  <span className="text-muted-foreground">Permanence: <span className={riskColor(p.permanenceRisk)}>{p.permanenceRisk}</span></span>
  <span className="text-muted-foreground">Tenure: <span className={riskColor(p.tenureRisk)}>{p.tenureRisk}</span></span>
  </div>
- </motion.div>
+ </div>
  ))}
  </CardContent>
  </Card>
@@ -1258,18 +1253,12 @@ export default function CarbonMarkets2Page() {
  void _unused;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="max-w-5xl mx-auto space-y-4"
- >
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* HERO Header */}
  <div className="border-l-4 border-l-primary rounded-md bg-card p-6 space-y-1">
  <div className="flex items-center gap-2">
  <Leaf className="text-emerald-400" size={22} />
- <h1 className="text-xl font-semibold text-foreground">Carbon Markets Deep Dive</h1>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground">Carbon Markets Deep Dive</h1>
  </div>
  <p className="text-sm text-muted-foreground">
  EU ETS mechanics, voluntary carbon markets, nature-based solutions, credit quality frameworks, and corporate net-zero strategies.
@@ -1299,16 +1288,16 @@ export default function CarbonMarkets2Page() {
  {/* Tabs */}
  <Tabs defaultValue="eu-ets">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="eu-ets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="eu-ets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  EU ETS
  </TabsTrigger>
- <TabsTrigger value="voluntary" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="voluntary" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Voluntary Carbon
  </TabsTrigger>
- <TabsTrigger value="nature" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="nature" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Nature-Based Solutions
  </TabsTrigger>
- <TabsTrigger value="corporate" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="corporate" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Corporate Strategy
  </TabsTrigger>
  </TabsList>
@@ -1326,7 +1315,6 @@ export default function CarbonMarkets2Page() {
  <CorporateTab />
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  );
 }

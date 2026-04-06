@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Droplets,
  TrendingUp,
@@ -134,10 +133,7 @@ function MetricCard({
  delay: number;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay, duration: 0.4 }}
+ <div
  >
  <Card className="border-border bg-card">
  <CardContent className="pt-5 pb-4">
@@ -153,7 +149,7 @@ function MetricCard({
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -951,10 +947,7 @@ export default function DeFiYieldPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="flex flex-col gap-1"
  >
  <div className="flex items-center gap-3">
@@ -968,7 +961,7 @@ export default function DeFiYieldPage() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Key Metrics — Hero */}
  <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -1007,23 +1000,17 @@ export default function DeFiYieldPage() {
  </div>
 
  {/* Alert bar */}
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.25 }}
+ <div
  className="mt-8 flex items-center gap-2 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-4 py-2.5"
  >
  <AlertTriangle className="w-4 h-4 text-yellow-400 shrink-0" />
  <p className="text-xs text-yellow-200/80">
  <span className="font-medium text-yellow-400">Risk Reminder:</span> DeFi protocols carry smart contract risk, impermanent loss, and regulatory uncertainty. Never invest more than you can afford to lose.
  </p>
- </motion.div>
+ </div>
 
  {/* Main Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.3 }}
+ <div
  >
  <Tabs defaultValue="protocols">
  <TabsList className="mb-4">
@@ -1057,7 +1044,7 @@ export default function DeFiYieldPage() {
  <YieldCalculatorTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  </div>
  );

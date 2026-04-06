@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -514,14 +513,14 @@ export default function LongShortPage() {
  }, [positions, metrics]);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
  <div className="flex items-center justify-between">
  <div className="flex items-center gap-3">
  <div className="p-2 rounded-lg bg-muted/10 border border-border">
  </div>
  <div>
- <h1 className="text-xl font-semibold tracking-tight">Long/Short Portfolio</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Long/Short Portfolio</h1>
  <p className="text-xs text-muted-foreground">Equity long/short construction &amp; management simulator</p>
  </div>
  </div>
@@ -546,12 +545,12 @@ export default function LongShortPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="builder" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio Builder</TabsTrigger>
- <TabsTrigger value="factor" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Factor Exposure</TabsTrigger>
- <TabsTrigger value="pnl" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">P&L Attribution</TabsTrigger>
- <TabsTrigger value="pairs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pair Analysis</TabsTrigger>
- <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Dashboard</TabsTrigger>
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="builder" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Portfolio Builder</TabsTrigger>
+ <TabsTrigger value="factor" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Factor Exposure</TabsTrigger>
+ <TabsTrigger value="pnl" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">P&L Attribution</TabsTrigger>
+ <TabsTrigger value="pairs" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Pair Analysis</TabsTrigger>
+ <TabsTrigger value="risk" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Risk Dashboard</TabsTrigger>
  </TabsList>
 
  {/* ── TAB 1: Portfolio Builder ────────────────────────────────────────── */}
@@ -582,10 +581,8 @@ export default function LongShortPage() {
  {positions.filter((p) => p.side === "long").map((p) => {
  const pnl = p.shares * (p.currentPrice - p.entryPrice);
  return (
- <motion.tr
+ <tr
  key={p.ticker}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-1.5 font-medium text-foreground">{p.ticker}</td>
@@ -595,7 +592,7 @@ export default function LongShortPage() {
  <td className={cn("px-3 py-1.5 text-right font-medium", pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
  {pnl >= 0 ? "+" : ""}${(pnl / 1000).toFixed(1)}k
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -630,10 +627,8 @@ export default function LongShortPage() {
  {positions.filter((p) => p.side === "short").map((p) => {
  const pnl = p.shares * (p.entryPrice - p.currentPrice);
  return (
- <motion.tr
+ <tr
  key={p.ticker}
- initial={{ opacity: 0, x: 8 }}
- animate={{ opacity: 1, x: 0 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-1.5 font-medium text-foreground">{p.ticker}</td>
@@ -643,7 +638,7 @@ export default function LongShortPage() {
  <td className={cn("px-3 py-1.5 text-right font-medium", pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
  {pnl >= 0 ? "+" : ""}${(pnl / 1000).toFixed(1)}k
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -825,11 +820,7 @@ export default function LongShortPage() {
  <TabsContent value="pairs" className="data-[state=inactive]:hidden mt-4 space-y-4">
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
  {pairs.map((pair) => (
- <motion.div
- key={`${pair.longTicker}-${pair.shortTicker}`}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- >
+ <div key={`${pair.longTicker}-${pair.shortTicker}`}>
  <Card className={cn(
  "border",
  pair.pnl >= 0 ? "border-emerald-500/20" : "border-red-500/20",
@@ -862,7 +853,7 @@ export default function LongShortPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1099,15 +1090,9 @@ export default function LongShortPage() {
  </Tabs>
 
  {/* Footer note */}
- <AnimatePresence>
- <motion.p
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- className="text-xs text-muted-foreground text-center pt-2 border-t border-border"
- >
+ <p className="text-xs text-muted-foreground text-center pt-2 border-t border-border">
  Simulated portfolio — seed 752001. All prices, P&L, and risk metrics are synthetic for educational purposes only.
- </motion.p>
- </AnimatePresence>
+ </p>
  </div>
  );
 }

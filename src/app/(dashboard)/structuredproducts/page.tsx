@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Layers,
  BarChart3,
@@ -132,21 +131,17 @@ function ExpandableCard({
  <ChevronDown className="w-4 h-4 text-foreground/40" />
  )}
  </button>
- <AnimatePresence initial={false}>
+ 
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 text-sm text-foreground/70 space-y-2">
  {children}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -1546,10 +1541,9 @@ export default function StructuredProductsPage() {
  ];
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Structured Products</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Structured Products</h1>
  <p className="text-xs font-medium tracking-widest text-muted-foreground mb-8">NOTES · CERTIFICATES · PROTECTION · YIELD</p>
 
  {/* Tabs */}
@@ -1559,7 +1553,7 @@ export default function StructuredProductsPage() {
  <TabsTrigger
  key={t.id}
  value={t.id}
- className="flex items-center gap-1.5 text-xs rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2"
+ className="flex items-center gap-1.5 text-xs rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2"
  >
  <t.icon className="w-3.5 h-3.5" />
  {t.label}
@@ -1567,13 +1561,9 @@ export default function StructuredProductsPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <TabsContent value="abs" className="data-[state=inactive]:hidden">
  <AbsMbsTab />
@@ -1587,10 +1577,9 @@ export default function StructuredProductsPage() {
  <TabsContent value="credit" className="data-[state=inactive]:hidden">
  <StructuredCreditTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
- </Tabs>
  </div>
+ 
+ </Tabs>
  </div>
  );
 }

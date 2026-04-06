@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Building2,
  Zap,
@@ -243,18 +242,14 @@ function MetricCard({
  color: string;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardContent className="p-4 flex items-start gap-3">
  <div
  className="rounded-lg p-2 flex items-center justify-center"
- style={{ background: color + "22" }}
+ style={{ background: color + "22", color }}
  >
- <span style={{ color }}>{icon}</span>
+ <span >{icon}</span>
  </div>
  <div>
  <p className="text-xs text-muted-foreground">{label}</p>
@@ -263,7 +258,7 @@ function MetricCard({
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -688,20 +683,15 @@ export default function InfrastructurePage() {
  };
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* ── Header ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex flex-col gap-1"
- >
+ <div className="flex flex-col gap-1">
  <div className="flex items-center gap-3">
  <div className="p-2 rounded-lg bg-muted/10">
  <Building2 size={24} className="text-muted-foreground/50" />
  </div>
  <div>
- <h1 className="text-2xl font-semibold tracking-tight">
+ <h1 className="text-3xl font-bold tracking-tight">
  Real Assets &amp; Infrastructure
  </h1>
  <p className="text-sm text-muted-foreground">
@@ -709,7 +699,7 @@ export default function InfrastructurePage() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* ── Key Metrics — Hero ── */}
  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
@@ -746,22 +736,18 @@ export default function InfrastructurePage() {
  {/* ── Tabs ── */}
  <Tabs defaultValue="asset-types">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="asset-types">Asset Types</TabsTrigger>
- <TabsTrigger value="return-profile">Return Profile</TabsTrigger>
- <TabsTrigger value="valuation">Valuation</TabsTrigger>
- <TabsTrigger value="portfolio-role">Portfolio Role</TabsTrigger>
+ <TabsTrigger value="asset-types" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent">Asset Types</TabsTrigger>
+ <TabsTrigger value="return-profile" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent">Return Profile</TabsTrigger>
+ <TabsTrigger value="valuation" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent">Valuation</TabsTrigger>
+ <TabsTrigger value="portfolio-role" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent">Portfolio Role</TabsTrigger>
  </TabsList>
 
  {/* ── Tab: Asset Types ── */}
  <TabsContent value="asset-types" className="space-y-4 mt-4">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
- <CardTitle className="text-base">Infrastructure Universe — Characteristics</CardTitle>
+ <CardTitle className="text-xl font-semibold">Infrastructure Universe — Characteristics</CardTitle>
  </CardHeader>
  <CardContent className="overflow-x-auto p-0">
  <table className="w-full text-sm">
@@ -817,15 +803,11 @@ export default function InfrastructurePage() {
  </table>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Expandable detail panel */}
  {selectedAsset && (
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
- >
+ <div>
  <Card className="bg-muted/40 border-border">
  <CardContent className="p-4 space-y-2">
  <div className="flex items-center gap-2">
@@ -846,61 +828,49 @@ export default function InfrastructurePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
  </TabsContent>
 
  {/* ── Tab: Return Profile ── */}
  <TabsContent value="return-profile" className="space-y-4 mt-4">
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
- <CardTitle className="text-base">Risk-Return Spectrum</CardTitle>
+ <CardTitle className="text-xl font-semibold">Risk-Return Spectrum</CardTitle>
  <p className="text-xs text-muted-foreground">Volatility proxy vs expected total return (annualised)</p>
  </CardHeader>
  <CardContent>
  <RiskReturnChart />
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
- <CardTitle className="text-base">Cash Flow Volatility Comparison</CardTitle>
+ <CardTitle className="text-xl font-semibold">Cash Flow Volatility Comparison</CardTitle>
  <p className="text-xs text-muted-foreground">Annualised volatility of underlying revenues / cash flows</p>
  </CardHeader>
  <CardContent>
  <CashFlowStabilityChart />
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </div>
 
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.45 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
- <CardTitle className="text-base">Yield vs Concession Life</CardTitle>
+ <CardTitle className="text-xl font-semibold">Yield vs Concession Life</CardTitle>
  <p className="text-xs text-muted-foreground">Longer asset life generally supports lower yield (bond-like pricing)</p>
  </CardHeader>
  <CardContent>
  <YieldDurationChart />
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Return decomposition cards */}
  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -924,12 +894,7 @@ export default function InfrastructurePage() {
  color: "#f59e0b",
  },
  ].map((card) => (
- <motion.div
- key={card.title}
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
+ <div>
  <Card className="bg-card border-border h-full">
  <CardContent className="p-4">
  <div className="text-lg font-medium mb-1" style={{ color: card.color }}>
@@ -939,18 +904,14 @@ export default function InfrastructurePage() {
  <p className="text-xs text-muted-foreground">{card.desc}</p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  </TabsContent>
 
  {/* ── Tab: Valuation ── */}
  <TabsContent value="valuation" className="space-y-4 mt-4">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- >
+ <div>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {VALUATION_METHODS.map((vm) => (
  <Card
@@ -969,12 +930,7 @@ export default function InfrastructurePage() {
  <p className="text-xs text-amber-400 font-medium">{vm.typical}</p>
  <p className="text-xs text-muted-foreground">{vm.description}</p>
  {selectedValuation?.name === vm.name && (
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ duration: 0.2 }}
- className="pt-2 space-y-2 border-t border-border"
- >
+ <div className="pt-2 space-y-2 border-t border-border">
  <div>
  <span className="text-xs font-medium text-green-400">Pros: </span>
  <span className="text-xs text-muted-foreground">{vm.pros}</span>
@@ -988,23 +944,19 @@ export default function InfrastructurePage() {
  <span key={u} className="text-xs bg-muted/40 px-2 py-0.5 rounded text-muted-foreground">{u}</span>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* RAB explainer */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
+ <div>
  <Card className="bg-amber-950/20 border-amber-500/30">
  <CardHeader className="pb-2">
- <CardTitle className="text-base text-amber-400">Regulated Asset Base (RAB) — Deep Dive</CardTitle>
+ <CardTitle className="text-xl font-semibold text-amber-400">Regulated Asset Base (RAB) — Deep Dive</CardTitle>
  </CardHeader>
  <CardContent className="space-y-3 text-sm text-muted-foreground">
  <p>
@@ -1039,17 +991,13 @@ export default function InfrastructurePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* EV/EBITDA benchmarks */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.45 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
- <CardTitle className="text-base">EV/EBITDA Benchmark Multiples</CardTitle>
+ <CardTitle className="text-xl font-semibold">EV/EBITDA Benchmark Multiples</CardTitle>
  </CardHeader>
  <CardContent className="space-y-2">
  {[
@@ -1074,36 +1022,28 @@ export default function InfrastructurePage() {
  ))}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab: Portfolio Role ── */}
  <TabsContent value="portfolio-role" className="space-y-4 mt-4">
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
- <CardTitle className="text-base">Correlation Matrix</CardTitle>
+ <CardTitle className="text-xl font-semibold">Correlation Matrix</CardTitle>
  <p className="text-xs text-muted-foreground">Infrastructure vs other asset classes (20-year estimates)</p>
  </CardHeader>
  <CardContent className="flex justify-center">
  <CorrelationMatrix />
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
+ <div>
  <Card className="bg-card border-border h-full">
  <CardHeader className="pb-2">
- <CardTitle className="text-base">Portfolio Construction Roles</CardTitle>
+ <CardTitle className="text-xl font-semibold">Portfolio Construction Roles</CardTitle>
  </CardHeader>
  <CardContent className="space-y-3">
  {[
@@ -1141,9 +1081,9 @@ export default function InfrastructurePage() {
  <div key={item.role} className="flex gap-3 items-start">
  <div
  className="mt-0.5 p-1.5 rounded-md"
- style={{ background: item.color + "22" }}
+ style={{ background: item.color + "22", color: item.color }}
  >
- <span style={{ color: item.color }}>{item.icon}</span>
+ <span >{item.icon}</span>
  </div>
  <div>
  <p className="text-sm font-semibold text-foreground">{item.role}</p>
@@ -1153,18 +1093,14 @@ export default function InfrastructurePage() {
  ))}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </div>
 
  {/* Allocation comparison */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.45 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
- <CardTitle className="text-base">Typical Institutional Allocations to Infrastructure</CardTitle>
+ <CardTitle className="text-xl font-semibold">Typical Institutional Allocations to Infrastructure</CardTitle>
  </CardHeader>
  <CardContent className="space-y-3">
  {[
@@ -1188,17 +1124,13 @@ export default function InfrastructurePage() {
  ))}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Key risks */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.5 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
- <CardTitle className="text-base">Key Risks to Monitor</CardTitle>
+ <CardTitle className="text-xl font-semibold">Key Risks to Monitor</CardTitle>
  </CardHeader>
  <CardContent>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -1259,22 +1191,17 @@ export default function InfrastructurePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
 
  {/* ── Footer action ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.5 }}
- className="flex justify-end"
- >
+ <div className="flex justify-end">
  <Button variant="outline" size="sm" className="text-xs text-muted-foreground border-border">
  <Globe size={13} className="mr-1.5" />
  Data: MSCI, OECD Infrastructure Hub, GRESB 2025
  </Button>
- </motion.div>
+ </div>
  </div>
  );
 }

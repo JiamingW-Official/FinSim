@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  BarChart3,
@@ -936,8 +935,8 @@ function RebalancingTab() {
  <div className="flex flex-wrap gap-4 mt-2 text-xs text-muted-foreground">
  {STRATEGIES.map(s => (
  <span key={s.key} className="flex items-center gap-1.5">
- <span className="inline-block w-6 h-0.5 rounded" style={{ background: s.color }} />
- <span style={{ color: selectedStrategy === s.key ? s.color : undefined }}>
+ <span className="inline-block w-6 h-0.5 rounded" style={{ background: s.color, color: selectedStrategy === s.key ? s.color : undefined }} />
+ <span >
  {s.label}: {s.desc}
  </span>
  </span>
@@ -1040,21 +1039,22 @@ function RebalancingTab() {
 
 export default function PortfolioLabPage() {
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Portfolio Lab</h1>
- <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">CONSTRUCTION · OPTIMIZATION · BACKTESTING</p>
+ <div>
+ <h1 className="text-3xl font-bold tracking-tight">Portfolio Lab</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">CONSTRUCTION · OPTIMIZATION · BACKTESTING</p>
+ </div>
 
- <div className="border-t border-border mb-6" />
+ <div className="border-t border-border" />
 
  {/* Tabs */}
  <Tabs defaultValue="frontier" className="space-y-4">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="frontier" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Efficient Frontier</TabsTrigger>
- <TabsTrigger value="bl" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Black-Litterman</TabsTrigger>
- <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Budgeting</TabsTrigger>
- <TabsTrigger value="rebal" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Rebalancing</TabsTrigger>
+ <TabsTrigger value="frontier" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Efficient Frontier</TabsTrigger>
+ <TabsTrigger value="bl" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Black-Litterman</TabsTrigger>
+ <TabsTrigger value="risk" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Risk Budgeting</TabsTrigger>
+ <TabsTrigger value="rebal" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Rebalancing</TabsTrigger>
  </TabsList>
 
  <TabsContent value="frontier" className="data-[state=inactive]:hidden">
@@ -1070,7 +1070,6 @@ export default function PortfolioLabPage() {
  <RebalancingTab />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Building2,
  DollarSign,
@@ -731,9 +730,9 @@ export default function PrimeBrokeragePage() {
 
  {/* ── Tab 1: Securities Lending ───────────────────────────────────────── */}
  <TabsContent value="lending" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "lending" && (
- <motion.div key="lending" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
+ <div key="lending" className="space-y-4 mt-4">
  <div className="grid md:grid-cols-2 gap-4">
  {/* Lendable Inventory Table */}
  <Card className="bg-card border-border border-l-4 border-l-primary">
@@ -861,16 +860,16 @@ export default function PrimeBrokeragePage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
 
  {/* ── Tab 2: Margin & Leverage ────────────────────────────────────────── */}
  <TabsContent value="margin" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "margin" && (
- <motion.div key="margin" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
+ <div key="margin" className="space-y-4 mt-4">
  <div className="grid md:grid-cols-3 gap-4">
  {/* Leverage Slider */}
  <Card className="bg-card border-border md:col-span-1">
@@ -998,16 +997,16 @@ export default function PrimeBrokeragePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
 
  {/* ── Tab 3: Rehypothecation ──────────────────────────────────────────── */}
  <TabsContent value="rehypo" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "rehypo" && (
- <motion.div key="rehypo" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
+ <div key="rehypo" className="space-y-4 mt-4">
  {/* Chain Diagram + Regulatory Note */}
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -1118,16 +1117,16 @@ export default function PrimeBrokeragePage() {
  </Card>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
 
  {/* ── Tab 4: PB Services ──────────────────────────────────────────────── */}
  <TabsContent value="services" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "services" && (
- <motion.div key="services" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
+ <div key="services" className="space-y-4 mt-4">
  <div className="grid md:grid-cols-2 gap-4">
  {/* Service Scorecard */}
  <Card className="bg-card border-border">
@@ -1259,9 +1258,9 @@ export default function PrimeBrokeragePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
  </Tabs>
  </div>

@@ -28,7 +28,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 763;
@@ -165,10 +164,7 @@ function MetricCard({
  color: string;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  >
  <Card className="bg-card border-border">
  <CardContent className="p-4 flex items-start gap-3">
@@ -180,7 +176,7 @@ function MetricCard({
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -479,13 +475,9 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
  </div>
  </button>
 
- <AnimatePresence initial={false}>
+ 
  {expanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 pt-2 grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-border">
@@ -522,9 +514,9 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
  <p className="text-xs text-muted-foreground">{strategy.taxTreatment}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -696,11 +688,8 @@ function TaxStrategyPanel() {
  return (
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {strategies.map((s, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.06 }}
  >
  <Card className="bg-card border-border h-full">
  <CardContent className="p-4">
@@ -729,7 +718,7 @@ function TaxStrategyPanel() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  );
@@ -878,10 +867,7 @@ export default function WealthPreservationPage() {
  <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
 
  {/* ── Header ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
  >
  <div>
@@ -903,7 +889,7 @@ export default function WealthPreservationPage() {
  $5M+ AUM
  </Badge>
  </div>
- </motion.div>
+ </div>
 
  {/* ── Key Metrics ── */}
  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
@@ -948,10 +934,7 @@ export default function WealthPreservationPage() {
 
  {/* ── Asset Allocation Tab ── */}
  <TabsContent value="allocation" className="mt-6 space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  >
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  {/* Pie chart */}
@@ -1021,15 +1004,12 @@ export default function WealthPreservationPage() {
  ))}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tax Strategy Tab ── */}
  <TabsContent value="tax" className="mt-6">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-4"
  >
  <div className="p-4 bg-amber-500/5 border border-amber-500/20 rounded-lg">
@@ -1042,15 +1022,12 @@ export default function WealthPreservationPage() {
  </div>
  </div>
  <TaxStrategyPanel />
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Inflation Hedges Tab ── */}
  <TabsContent value="inflation" className="mt-6">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-4"
  >
  <div className="p-4 bg-red-500/5 border border-red-500/20 rounded-lg">
@@ -1063,15 +1040,12 @@ export default function WealthPreservationPage() {
  </div>
  </div>
  <InflationHedgesPanel />
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Succession Planning Tab ── */}
  <TabsContent value="succession" className="mt-6">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-4"
  >
  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1121,7 +1095,7 @@ export default function WealthPreservationPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

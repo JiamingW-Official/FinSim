@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
  Activity,
@@ -580,13 +579,9 @@ function VolArbitrageTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedStrategy}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="bg-muted/60 rounded-lg p-4 text-sm text-muted-foreground leading-relaxed"
  >
  {selectedStrategy === 0 && (
@@ -609,8 +604,8 @@ function VolArbitrageTab() {
  <strong className="text-foreground">Calendar Spread</strong>: Long near-dated vol, short far-dated vol (or vice versa). Profits from term structure mean reversion. Near-dated options have higher gamma but more theta. Far-dated options have higher vega sensitivity. Vanna effects (∂Delta/∂Vol) amplify P&amp;L near expiry.
  </div>
  )}
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
 
  {/* IV vs RV chart */}
@@ -777,11 +772,8 @@ function MMRiskTab() {
  <div key={rl.label} className="flex items-center gap-4">
  <div className="w-32 text-sm text-muted-foreground">{rl.label}</div>
  <div className="flex-1 h-3 bg-foreground/10 rounded-full overflow-hidden">
- <motion.div
+ <div
  className={`h-full ${barColor} rounded-full`}
- initial={{ width: 0 }}
- animate={{ width: `${pct * 100}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
  />
  </div>
  <div className="w-24 text-right text-xs text-muted-foreground font-mono">
@@ -969,20 +961,16 @@ function MMRiskTab() {
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 export default function GammaScalpingPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-8">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-8 border-l-4 border-l-primary rounded-lg bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-2">
  <div className="w-10 h-10 rounded-md bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
  </div>
  <div>
- <h1 className="text-xl font-semibold text-foreground">Gamma Scalping &amp; Dynamic Hedging</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Gamma Scalping &amp; Dynamic Hedging</h1>
  <p className="text-muted-foreground text-sm">How market makers profit from realized vs implied volatility through continuous delta hedging</p>
  </div>
  </div>
@@ -991,7 +979,7 @@ export default function GammaScalpingPage() {
  <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-foreground/5 border border-border text-muted-foreground">{tag}</span>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="delta" className="w-full mt-8">
@@ -1005,40 +993,39 @@ export default function GammaScalpingPage() {
  <TabsTrigger
  key={value}
  value={value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  {label}
  </TabsTrigger>
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
+ 
  <TabsContent value="delta" className="data-[state=inactive]:hidden">
- <motion.div key="delta" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+ <div key="delta">
  <DeltaHedgingTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="gamma" className="data-[state=inactive]:hidden">
- <motion.div key="gamma" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+ <div key="gamma">
  <GammaPnLTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="vol" className="data-[state=inactive]:hidden">
- <motion.div key="vol" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+ <div key="vol">
  <VolArbitrageTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="mm" className="data-[state=inactive]:hidden">
- <motion.div key="mm" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+ <div key="mm">
  <MMRiskTab />
- </motion.div>
- </TabsContent>
- </AnimatePresence>
- </Tabs>
  </div>
+ </TabsContent>
+ 
+ </Tabs>
  </div>
  );
 }

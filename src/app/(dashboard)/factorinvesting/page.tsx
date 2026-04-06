@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  BarChart3,
@@ -276,11 +275,9 @@ function FactorPerfTab() {
  </span>
  </div>
  <div className="h-5 rounded bg-foreground/5 overflow-hidden">
- <motion.div
+ <div
  key={period + f.name}
- initial={{ width: 0 }}
- animate={{ width: `${widthPct}%` }}
- transition={{ duration: 0.6, ease: "easeOut", delay: idx * 0.07 }}
+ style={{ width: `${widthPct}%` }}
  className={cn("h-full rounded", f.color, "opacity-80")}
  />
  </div>
@@ -425,9 +422,7 @@ function ExposureAnalyzerTab() {
  </div>
 
  {selected && (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="rounded-md border border-indigo-500/30 bg-indigo-900/20 p-5"
  >
  <div className="flex items-center gap-3 mb-4">
@@ -455,7 +450,7 @@ function ExposureAnalyzerTab() {
  );
  })}
  </div>
- </motion.div>
+ </div>
  )}
  </div>
  );
@@ -725,11 +720,9 @@ function TiltBuilderTab() {
  className="absolute h-full rounded bg-muted/60"
  style={{ width: `${Math.min(100, (row.bench / row.max) * 100)}%` }}
  />
- <motion.div
+ <div
  key={row.yours}
- initial={{ width: 0 }}
- animate={{ width: `${Math.min(100, (row.yours / row.max) * 100)}%` }}
- transition={{ duration: 0.5 }}
+ style={{ width: `${Math.min(100, (row.yours / row.max) * 100)}%` }}
  className="absolute h-full rounded bg-indigo-500/70"
  />
  </div>
@@ -845,18 +838,15 @@ function FamaFrenchTab() {
  onClick={() => setSelectedTicker(t)}
  >
  <div className="w-full h-12 flex items-end justify-center">
- <motion.div
+ <div
  key={t.ticker + String(val)}
- initial={{ height: 0 }}
- animate={{ height: `${heightPct}%` }}
- transition={{ duration: 0.4 }}
+ style={{ height: `${heightPct}%`, minHeight: 2 }}
  className={cn(
  "w-full rounded-t",
  barColors[coefDef.key],
  val < 0 ? "opacity-35" : "opacity-80",
  isSelected && "ring-2 ring-foreground/40"
  )}
- style={{ minHeight: 2 }}
  />
  </div>
  <span className="text-xs text-muted-foreground">{t.ticker}</span>

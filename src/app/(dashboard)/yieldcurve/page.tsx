@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -724,8 +723,7 @@ export default function YieldCurvePage() {
  }, []);
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Page hero */}
  <div className="mb-6">
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">RATES · TERM STRUCTURE · SPREADS</p>
@@ -779,10 +777,10 @@ export default function YieldCurvePage() {
 
  <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col min-h-0">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
- <TabsTrigger value="shape" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Curve Shape</TabsTrigger>
- <TabsTrigger value="strategies" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Strategies</TabsTrigger>
- <TabsTrigger value="historical" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Historical</TabsTrigger>
- <TabsTrigger value="macro" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Macro Signals</TabsTrigger>
+ <TabsTrigger value="shape" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Curve Shape</TabsTrigger>
+ <TabsTrigger value="strategies" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Strategies</TabsTrigger>
+ <TabsTrigger value="historical" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Historical</TabsTrigger>
+ <TabsTrigger value="macro" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Macro Signals</TabsTrigger>
  </TabsList>
 
  {/* ── Tab: Curve Shape ── */}
@@ -879,11 +877,7 @@ export default function YieldCurvePage() {
 
  {TRADE_IDEAS.map((trade, idx) =>
  selectedTrade !== idx ? null : (
- <motion.div
- key={trade.name}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="grid grid-cols-1 lg:grid-cols-2 gap-4"
  >
  <div className="rounded-lg border border-border bg-card p-5 space-y-4">
@@ -959,7 +953,7 @@ export default function YieldCurvePage() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  )
  )}
 
@@ -1042,10 +1036,7 @@ export default function YieldCurvePage() {
  </span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${pct * 100}%` }}
- transition={{ duration: 0.6, ease: "easeOut" }}
+ <div
  className={cn(
  "h-full rounded-full",
  inv.severity === "severe"
@@ -1054,6 +1045,7 @@ export default function YieldCurvePage() {
  ? "bg-orange-500"
  : "bg-yellow-500"
  )}
+ style={{ width: `${pct * 100}%` }}
  />
  </div>
  </div>
@@ -1144,11 +1136,9 @@ export default function YieldCurvePage() {
  <span className={cn("font-mono tabular-nums font-medium", row.textColor)}>{row.count}/{total}</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(row.count / total) * 100}%` }}
- transition={{ duration: 0.5, ease: "easeOut" }}
+ <div
  className={cn("h-full rounded-full", row.color)}
+ style={{ width: `${(row.count / total) * 100}%` }}
  />
  </div>
  </div>
@@ -1263,7 +1253,6 @@ export default function YieldCurvePage() {
  </div>
  </div>
  )}
- </div>
  </div>
  );
 }

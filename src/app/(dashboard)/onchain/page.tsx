@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Activity,
  BarChart3,
@@ -533,11 +532,7 @@ export default function OnchainPage() {
  return (
  <div className="flex flex-col gap-3 p-4 min-h-screen bg-background text-foreground">
  {/* Header */}
- <motion.div
- initial="hidden"
- animate="visible"
- variants={fadeIn}
- transition={{ duration: 0.4 }}
+ <div
  className="flex items-center justify-between"
  >
  <div>
@@ -555,14 +550,10 @@ export default function OnchainPage() {
  Live · 28 Mar 2026
  </Badge>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div
- initial="hidden"
- animate="visible"
- variants={fadeIn}
- transition={{ duration: 0.4, delay: 0.1 }}
+ <div
  >
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
@@ -1343,7 +1334,7 @@ export default function OnchainPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

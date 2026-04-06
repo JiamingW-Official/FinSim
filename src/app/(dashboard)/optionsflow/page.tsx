@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Activity,
  TrendingUp,
@@ -454,10 +453,7 @@ export default function OptionsFlowPage() {
  <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
 
  {/* ── Header ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-1"
  >
  <div className="flex items-center gap-3">
@@ -473,13 +469,10 @@ export default function OptionsFlowPage() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* ── Key Metrics ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.05 }}
+ <div
  className="grid grid-cols-2 md:grid-cols-4 gap-4"
  >
  {[
@@ -520,11 +513,8 @@ export default function OptionsFlowPage() {
  sub: "of total market volume",
  },
  ].map((m, i) => (
- <motion.div
+ <div
  key={m.label}
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35, delay: 0.08 + i * 0.05 }}
  >
  <Card className={`border ${m.border} bg-card`}>
  <CardContent className="pt-4 pb-4">
@@ -538,15 +528,12 @@ export default function OptionsFlowPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
- </motion.div>
+ </div>
 
  {/* ── Tabs ── */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.15 }}
+ <div
  >
  <Tabs defaultValue="flow">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
@@ -956,20 +943,17 @@ export default function OptionsFlowPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
 
  {/* ── Footer disclaimer ── */}
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ duration: 0.4, delay: 0.3 }}
+ <div
  className="flex items-start gap-2 p-3 rounded-lg bg-muted/10 border border-border text-xs text-muted-foreground"
  >
  <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
  <span>
  Options flow and dark pool data shown is <strong className="text-foreground">simulated for educational purposes</strong>. In live trading, this data is sourced from CBOE, OCC, FINRA TRACE, and ATS reporting systems. Unusual flow should be interpreted in context — not all large trades are directional; some hedge existing positions.
  </span>
- </motion.div>
+ </div>
  </div>
  </div>
  );

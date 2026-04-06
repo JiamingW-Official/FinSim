@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  FileText,
  Globe,
@@ -662,13 +661,8 @@ function LettersOfCreditTab() {
  <ChevronDown className="w-4 h-4 text-foreground/40" />
  )}
  </button>
- <AnimatePresence initial={false}>
  {expandedSection === sec.id && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 space-y-3">
@@ -686,9 +680,8 @@ function LettersOfCreditTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  ))}
 
@@ -2427,21 +2420,15 @@ export default function TradeFinancePage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-8">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
+ <div className="rounded-lg border border-border bg-card p-5">
  <div className="flex items-center gap-3 mb-2">
  <div className="w-9 h-9 rounded-lg bg-sky-500/15 border border-sky-500/30 flex items-center justify-center">
  <Globe className="w-5 h-5 text-sky-400" />
  </div>
  <div>
- <h1 className="text-xl font-bold text-foreground">Trade Finance</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Trade Finance</h1>
  <p className="text-sm text-foreground/40">
  Letters of credit, supply chain finance, documentary collections
  &amp; digital trade
@@ -2466,18 +2453,18 @@ export default function TradeFinancePage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="lc">
- <TabsList className="flex flex-wrap h-auto gap-1 bg-foreground/5 p-1 rounded-md mb-6">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto flex flex-wrap gap-0 mb-6">
  {tabs.map((tab) => {
  const Icon = tab.icon;
  return (
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-sky-500/20 data-[state=active]:text-sky-300 rounded-lg px-3 py-2"
+ className="flex items-center gap-1.5 text-xs data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-muted-foreground data-[state=active]:text-foreground"
  >
  <Icon className="w-3.5 h-3.5" />
  {tab.label}
@@ -2487,52 +2474,35 @@ export default function TradeFinancePage() {
  </TabsList>
 
  <TabsContent value="lc" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
+ <div>
  <LettersOfCreditTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="scf" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
+ <div>
  <SupplyChainFinanceTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent
  value="collections"
  className="data-[state=inactive]:hidden"
  >
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
+ <div>
  <DocumentaryCollectionsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent
  value="fintech"
  className="data-[state=inactive]:hidden"
  >
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
+ <div>
  <FintechDigitalTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

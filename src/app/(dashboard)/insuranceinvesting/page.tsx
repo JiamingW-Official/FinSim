@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Shield,
  TrendingUp,
@@ -512,22 +511,19 @@ function AnnuitiesTab() {
  <td className="py-2 pr-3 text-muted-foreground">{row.taxTreatment}</td>
  <td className="py-2 pr-3 text-muted-foreground">{row.bestFor}</td>
  </tr>
- <AnimatePresence>
+ 
  {expandedRow === i && (
  <tr key={`exp-${i}`}>
  <td colSpan={6} className="pb-2">
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="px-3 py-2 bg-muted/40 rounded-lg text-xs text-muted-foreground border-l-2 border-indigo-500/40"
  >
  {details[i]}
- </motion.div>
+ </div>
  </td>
  </tr>
  )}
- </AnimatePresence>
+ 
  </React.Fragment>
  ))}
  </tbody>
@@ -873,10 +869,7 @@ export default function InsuranceInvestingPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-5xl mx-auto px-4 py-8">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-8"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -900,7 +893,7 @@ export default function InsuranceInvestingPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Hero */}
  <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
@@ -927,13 +920,9 @@ export default function InsuranceInvestingPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeTab}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.25 }}
  >
  <TabsContent value="portfolios" className="data-[state=inactive]:hidden">
  <PortfoliosTab />
@@ -947,8 +936,8 @@ export default function InsuranceInvestingPage() {
  <TabsContent value="stocks" className="data-[state=inactive]:hidden">
  <StockAnalysisTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </Tabs>
  </div>
  </div>

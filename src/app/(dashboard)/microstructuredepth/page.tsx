@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Activity,
  AlertTriangle,
@@ -564,10 +563,7 @@ export default function MicrostructureDepthPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -593,7 +589,7 @@ export default function MicrostructureDepthPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Hero */}
  <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
@@ -694,12 +690,9 @@ export default function MicrostructureDepthPage() {
  </div>
  </CardHeader>
  <CardContent>
- <AnimatePresence>
+ 
  {showRollDetail && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="mb-3 overflow-hidden"
  >
  <div className="p-3 bg-muted/5 border border-border rounded-lg">
@@ -709,9 +702,9 @@ export default function MicrostructureDepthPage() {
  Negative serial covariance in trade-to-trade price changes implies a bid-ask bounce. The Roll measure estimates the effective half-spread from observable price data without requiring quote data.
  </p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  <div className="space-y-2">
  {rollAutocovariances.map((cov, i) => (
  <div key={i} className="flex items-center gap-2">

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -264,13 +263,9 @@ function ValuationMethodsTab() {
  )}
  </div>
  <p className="text-xs text-muted-foreground mt-2">{m.summary}</p>
- <AnimatePresence initial={false}>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.22 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-3 space-y-1.5 border-t border-border pt-3">
@@ -285,9 +280,9 @@ function ValuationMethodsTab() {
  <span className="text-xs text-emerald-300">Best for: {m.bestFor}</span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
@@ -995,13 +990,9 @@ function UnderpricingTab() {
  </div>
  {isOpen ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </div>
- <AnimatePresence initial={false}>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-3 space-y-2 border-t border-border pt-3">
@@ -1011,9 +1002,9 @@ function UnderpricingTab() {
  <p className="text-xs text-emerald-300">{t.evidence}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
@@ -1440,10 +1431,7 @@ export default function IPOPricingPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-5xl mx-auto px-4 py-8">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-8"
  >
  <div className="flex items-center gap-3 mb-3">
@@ -1475,7 +1463,7 @@ export default function IPOPricingPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Hero */}
  <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
@@ -1500,55 +1488,39 @@ export default function IPOPricingPage() {
  </TabsTrigger>
  </TabsList>
 
- <AnimatePresence mode="wait">
+ 
  <TabsContent value="valuation" className="data-[state=inactive]:hidden">
- <motion.div
+ <div
  key="valuation"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.25 }}
  >
  <ValuationMethodsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="bookbuilding" className="data-[state=inactive]:hidden">
- <motion.div
+ <div
  key="bookbuilding"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.25 }}
  >
  <BookbuildingTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="underpricing" className="data-[state=inactive]:hidden">
- <motion.div
+ <div
  key="underpricing"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.25 }}
  >
  <UnderpricingTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="postipo" className="data-[state=inactive]:hidden">
- <motion.div
+ <div
  key="postipo"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.25 }}
  >
  <PostIPOTab />
- </motion.div>
+ </div>
  </TabsContent>
- </AnimatePresence>
+ 
  </Tabs>
  </div>
  </div>

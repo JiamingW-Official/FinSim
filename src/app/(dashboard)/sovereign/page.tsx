@@ -26,7 +26,6 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion, type Variants } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 632006;
@@ -395,16 +394,6 @@ const FACTOR_DATA: FactorData[] = [
  },
 ];
 
-// ── Animation Variants ─────────────────────────────────────────────────────────
-
-const fadeUp: Variants = {
- hidden: { opacity: 0, y: 18 },
- visible: (i: number) => ({
- opacity: 1,
- y: 0,
- transition: { delay: i * 0.06, duration: 0.4, ease: "easeOut" },
- }),
-};
 
 // ── Sub-components ─────────────────────────────────────────────────────────────
 
@@ -424,7 +413,7 @@ function StatCard({
  idx: number;
 }) {
  return (
- <motion.div custom={idx} variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardContent className="p-4 flex items-start gap-3">
  <div className={`p-2 rounded-lg ${color}`}>
@@ -437,7 +426,7 @@ function StatCard({
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 

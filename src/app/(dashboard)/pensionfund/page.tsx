@@ -22,7 +22,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 771;
@@ -559,11 +558,6 @@ export default function PensionFundPage() {
 
  const currentLDI = ldiStrategies[selectedLDIStrategy];
 
- const fadeIn = {
- initial: { opacity: 0, y: 20 },
- animate: { opacity: 1, y: 0 },
- transition: { duration: 0.4 },
- };
 
  return (
  <div className="flex h-full flex-col overflow-y-auto">
@@ -639,11 +633,11 @@ export default function PensionFundPage() {
 
  {/* Main Tabs */}
  <Tabs defaultValue="funded" className="mt-6">
- <TabsList className="mb-4">
- <TabsTrigger value="funded">Funded Status</TabsTrigger>
- <TabsTrigger value="allocation">Asset Allocation</TabsTrigger>
- <TabsTrigger value="ldi">LDI Strategy</TabsTrigger>
- <TabsTrigger value="stress">Stress Tests</TabsTrigger>
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-4">
+ <TabsTrigger value="funded" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Funded Status</TabsTrigger>
+ <TabsTrigger value="allocation" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Asset Allocation</TabsTrigger>
+ <TabsTrigger value="ldi" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">LDI Strategy</TabsTrigger>
+ <TabsTrigger value="stress" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Stress Tests</TabsTrigger>
  </TabsList>
 
  {/* ── Tab: Funded Status ─────────────────────────────────────────── */}
@@ -987,11 +981,8 @@ export default function PensionFundPage() {
  <TabsContent value="stress" className="space-y-4">
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
  {STRESS_SCENARIOS.map((sc, i) => (
- <motion.div
+ <div
  key={sc.name}
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.06 }}
  >
  <Card
  className={cn(
@@ -1071,7 +1062,7 @@ export default function PensionFundPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
 

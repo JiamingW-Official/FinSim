@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Building2,
  TrendingUp,
@@ -277,12 +276,12 @@ function StructureTab() {
  </div>
 
  <div className="space-y-3">
- <AnimatePresence>
+ 
  {expanded && (() => {
  const t = TRANCHES.find((x) => x.name === expanded);
  if (!t) return null;
  return (
- <motion.div key={expanded} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-card/80 border rounded-md p-4 space-y-2" style={{ borderColor: t.color + "66" }}>
+ <div key={expanded} className="bg-card/80 border rounded-md p-4 space-y-2" style={{ borderColor: t.color + "66" }}>
  <div className="flex items-center justify-between">
  <span className="font-semibold text-sm" style={{ color: t.color }}>{t.name} — {t.rating}</span>
  <button onClick={() => setExpanded(null)} className="text-muted-foreground hover:text-muted-foreground text-xs">✕</button>
@@ -298,10 +297,10 @@ function StructureTab() {
  <div className="font-medium text-foreground">+{t.spread} bps</div>
  </div>
  </div>
- </motion.div>
+ </div>
  );
  })()}
- </AnimatePresence>
+ 
 
  <div className="bg-muted/60 border border-border rounded-md p-4 space-y-3">
  <h4 className="text-xs font-medium text-muted-foreground ">Servicer Roles</h4>
@@ -833,13 +832,9 @@ function TradingTab() {
  </span>
  {showWorkflow ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
- <AnimatePresence>
+ 
  {showWorkflow && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-5 pb-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -862,9 +857,9 @@ function TradingTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  </div>
  );
@@ -875,7 +870,7 @@ export default function CMBSPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4 lg:p-8">
  {/* HERO Header */}
- <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
+ <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
  <div className="flex items-start gap-4">
  <div className="p-3 rounded-md bg-muted/10 border border-border">
  </div>
@@ -892,7 +887,7 @@ export default function CMBSPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="structure">
@@ -914,27 +909,27 @@ export default function CMBSPage() {
  </TabsList>
 
  <TabsContent value="structure" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <StructureTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="loans" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <LoanAnalysisTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="performance" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <PerformanceTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="trading" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <TradingTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

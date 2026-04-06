@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Building2,
  TrendingUp,
@@ -1013,7 +1012,7 @@ function TabRiskAllocation() {
  </SectionTitle>
  <div className="space-y-2">
  {RISK_MATRIX.map((row, i) => (
- <motion.div
+ <div
  key={row.category}
  className="rounded-md border border-border bg-foreground/5 overflow-hidden cursor-pointer"
  onClick={() => setExpanded(expanded === i ? null : i)}
@@ -1040,13 +1039,9 @@ function TabRiskAllocation() {
  </div>
  <span className="text-muted-foreground text-sm">{expanded === i ? "▲" : "▼"}</span>
  </div>
- <AnimatePresence>
+ 
  {expanded === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="border-t border-border px-4 py-3 space-y-3"
  >
  <div>
@@ -1066,10 +1061,10 @@ function TabRiskAllocation() {
  <span className="text-xs text-muted-foreground font-medium ">Mitigants</span>
  <p className="text-xs text-muted-foreground mt-1">{row.mitigant}</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  </div>
@@ -1133,9 +1128,9 @@ function TabRiskAllocation() {
  <div
  key={item.title}
  className="rounded-md border border-border bg-foreground/5 p-4"
- style={{ borderTopColor: item.color, borderTopWidth: 2 }}
+ style={{ borderTopColor: item.color, borderTopWidth: 2, color: item.color }}
  >
- <h4 className="text-sm font-semibold mb-2" style={{ color: item.color }}>
+ <h4 className="text-sm font-semibold mb-2" >
  {item.title}
  </h4>
  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -1502,10 +1497,7 @@ export default function ProjectFinancePage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 sm:p-4 space-y-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-1"
  >
  <div className="flex items-center gap-3">
@@ -1519,7 +1511,7 @@ export default function ProjectFinancePage() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="spv" className="space-y-4">
@@ -1542,55 +1534,39 @@ export default function ProjectFinancePage() {
  </TabsTrigger>
  </TabsList>
 
- <AnimatePresence mode="wait">
+ 
  <TabsContent value="spv" className="data-[state=inactive]:hidden">
- <motion.div
+ <div
  key="spv"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.25 }}
  >
  <TabSPVStructure />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="cashflow" className="data-[state=inactive]:hidden">
- <motion.div
+ <div
  key="cashflow"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.25 }}
  >
  <TabCashFlowModel />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="risk" className="data-[state=inactive]:hidden">
- <motion.div
+ <div
  key="risk"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.25 }}
  >
  <TabRiskAllocation />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="metrics" className="data-[state=inactive]:hidden">
- <motion.div
+ <div
  key="metrics"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.25 }}
  >
  <TabDealMetrics />
- </motion.div>
+ </div>
  </TabsContent>
- </AnimatePresence>
+ 
  </Tabs>
  </div>
  );

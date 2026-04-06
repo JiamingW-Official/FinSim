@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import {
  ShieldCheck,
  AlertTriangle,
@@ -780,11 +780,9 @@ function AMLKYCTab() {
  <span className="text-muted-foreground">{item.unit}</span>
  </div>
  <div className="h-3 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(item.value / 120) * 100}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+ <div
  className={`h-full ${item.color} rounded-full`}
+ style={{ width: `${(item.value / 120) * 100}%` }}
  />
  </div>
  </div>
@@ -803,11 +801,9 @@ function AMLKYCTab() {
  <div key={f.factor} className="flex items-center gap-3">
  <div className="w-36 text-xs text-muted-foreground truncate">{f.factor}</div>
  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(f.weight / 18) * 100}%` }}
- transition={{ duration: 0.7 }}
+ <div
  className="h-full bg-primary rounded-full"
+ style={{ width: `${(f.weight / 18) * 100}%` }}
  />
  </div>
  <div className="w-8 text-xs text-primary text-right">{f.weight}%</div>
@@ -982,11 +978,9 @@ function SanctionsTab() {
  <div className="w-28 text-xs text-muted-foreground">{lst.name}</div>
  <Badge variant="outline" className="text-xs text-muted-foreground shrink-0">{lst.jurisdiction}</Badge>
  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(lst.entries / 14200) * 100}%` }}
- transition={{ duration: 0.8 }}
+ <div
  className="h-full bg-primary rounded-full"
+ style={{ width: `${(lst.entries / 14200) * 100}%` }}
  />
  </div>
  <div className="w-16 text-xs text-right text-primary">
@@ -1146,11 +1140,9 @@ function SanctionsTab() {
  <span className="text-muted-foreground">{item.sources}</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${item.coverage}%` }}
- transition={{ duration: 0.8 }}
+ <div
  className="h-full bg-primary rounded-full"
+ style={{ width: `${item.coverage}%` }}
  />
  </div>
  </div>
@@ -1275,11 +1267,9 @@ function MarketFutureTab() {
  <span>{item.adoption}%</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${item.adoption}%` }}
- transition={{ duration: 0.8 }}
+ <div
  className="h-full bg-primary rounded-full"
+ style={{ width: `${item.adoption}%` }}
  />
  </div>
  </div>
@@ -1300,11 +1290,9 @@ function MarketFutureTab() {
  <div className="w-36 text-xs text-muted-foreground">{p.country}</div>
  <div className="w-16 text-xs text-muted-foreground text-center">{p.cohorts} cohorts</div>
  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(p.firms / 280) * 100}%` }}
- transition={{ duration: 0.8 }}
+ <div
  className="h-full bg-primary rounded-full"
+ style={{ width: `${(p.firms / 280) * 100}%` }}
  />
  </div>
  <div className="w-14 text-xs text-primary text-right">{p.firms} firms</div>
@@ -1334,11 +1322,9 @@ function MarketFutureTab() {
  <span className="text-primary">{item.pct}%</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${item.pct}%` }}
- transition={{ duration: 0.8 }}
+ <div
  className="h-full bg-primary rounded-full"
+ style={{ width: `${item.pct}%` }}
  />
  </div>
  </div>
@@ -1364,11 +1350,9 @@ function MarketFutureTab() {
  <span className="text-muted-foreground">{item.open.toLocaleString()} open roles</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${item.fill}%` }}
- transition={{ duration: 0.8 }}
+ <div
  className={`h-full ${item.color} rounded-full`}
+ style={{ width: `${item.fill}%` }}
  />
  </div>
  <p className="text-xs text-muted-foreground">{item.fill}% fill rate</p>
@@ -1385,8 +1369,7 @@ function MarketFutureTab() {
 
 export default function RegtechPage() {
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
  <div className="mb-8">
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">RegTech</h1>
@@ -1396,63 +1379,28 @@ export default function RegtechPage() {
  {/* Tabs */}
  <Tabs defaultValue="aml">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="aml" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">AML / KYC</TabsTrigger>
- <TabsTrigger value="reporting" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Regulatory Reporting</TabsTrigger>
- <TabsTrigger value="sanctions" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Sanctions Screening</TabsTrigger>
- <TabsTrigger value="market" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Market & Future</TabsTrigger>
+ <TabsTrigger value="aml" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">AML / KYC</TabsTrigger>
+ <TabsTrigger value="reporting" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Regulatory Reporting</TabsTrigger>
+ <TabsTrigger value="sanctions" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Sanctions Screening</TabsTrigger>
+ <TabsTrigger value="market" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Market & Future</TabsTrigger>
  </TabsList>
 
- <AnimatePresence mode="wait">
  <TabsContent value="aml" className="mt-6 data-[state=inactive]:hidden">
- <motion.div
- key="aml"
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- transition={{ duration: 0.25 }}
- >
  <AMLKYCTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="reporting" className="mt-6 data-[state=inactive]:hidden">
- <motion.div
- key="reporting"
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- transition={{ duration: 0.25 }}
- >
  <RegulatoryReportingTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="sanctions" className="mt-6 data-[state=inactive]:hidden">
- <motion.div
- key="sanctions"
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- transition={{ duration: 0.25 }}
- >
  <SanctionsTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="market" className="mt-6 data-[state=inactive]:hidden">
- <motion.div
- key="market"
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- transition={{ duration: 0.25 }}
- >
  <MarketFutureTab />
- </motion.div>
  </TabsContent>
- </AnimatePresence>
  </Tabs>
- </div>
  </div>
  );
 }

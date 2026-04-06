@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -515,9 +514,7 @@ function YieldCurveTab() {
  </svg>
 
  {selectedNode !== null && (
- <motion.div
- initial={{ opacity: 0, y: -6 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="mt-2 bg-muted/50 border border-border rounded-lg p-3 grid grid-cols-4 gap-3"
  >
  <div>
@@ -542,7 +539,7 @@ function YieldCurveTab() {
  {curve[selectedNode].years.toFixed(1)}y
  </p>
  </div>
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
@@ -660,12 +657,9 @@ function YieldCurveTab() {
  Scenario P&amp;L Analysis
  </button>
 
- <AnimatePresence>
+ 
  {showScenarios && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="space-y-1.5">
@@ -698,9 +692,9 @@ function YieldCurveTab() {
  );
  })}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
  </div>
@@ -1609,10 +1603,8 @@ function SwapSpreadsTab() {
 
  {/* Selected tenor detail */}
  {selected && (
- <motion.div
+ <div
  key={selectedTenor}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
  >
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -1681,7 +1673,7 @@ function SwapSpreadsTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
 
  {/* Spread term structure chart */}

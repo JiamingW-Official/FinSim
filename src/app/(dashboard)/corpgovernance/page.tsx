@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
  Users,
  Target,
@@ -587,9 +586,7 @@ function ProxyVoteSimulator() {
  );
  })}
  {total > 0 && (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="rounded-md border border-border bg-foreground/5 p-4"
  >
  <p className="text-xs text-muted-foreground mb-2 font-semibold">Your Ballot Summary ({total}/{PROXY_RESOLUTIONS.length} voted)</p>
@@ -607,7 +604,7 @@ function ProxyVoteSimulator() {
  <p className="text-xs text-muted-foreground">Abstain</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
  </div>
  );
@@ -663,10 +660,7 @@ export default function CorpGovernancePage() {
 
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="max-w-6xl mx-auto space-y-4"
  >
  {/* HERO Header */}
@@ -700,7 +694,7 @@ export default function CorpGovernancePage() {
 
  {/* ── Board Composition ── */}
  <TabsContent value="board" className={cn("mt-4", "data-[state=inactive]:hidden")}>
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+ <div className="space-y-4">
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  <div className="rounded-md border border-border bg-foreground/5 p-4">
  <h3 className="text-sm font-medium text-foreground mb-3">Governance Score by Company</h3>
@@ -778,12 +772,12 @@ export default function CorpGovernancePage() {
  </tbody>
  </table>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Activist Campaigns ── */}
  <TabsContent value="activist" className={cn("mt-4", "data-[state=inactive]:hidden")}>
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
+ <div className="space-y-3">
  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
  <StatCard label="Active Campaigns" value="2" sub="vs 5 tracked" />
  <StatCard label="Avg. Stake Size" value="6.5%" sub="at 13D filing" />
@@ -817,24 +811,24 @@ export default function CorpGovernancePage() {
  </div>
  </div>
  ))}
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Proxy Vote ── */}
  <TabsContent value="proxy" className={cn("mt-4", "data-[state=inactive]:hidden")}>
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+ <div>
  <div className="rounded-md border border-indigo-500/20 bg-indigo-500/5 p-3 mb-4">
  <p className="text-xs text-indigo-300">
  Cast your votes on the upcoming annual meeting proxy ballot. Compare your decisions with ISS proxy advisory recommendations.
  </p>
  </div>
  <ProxyVoteSimulator />
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── ESG Scorecard ── */}
  <TabsContent value="esg" className={cn("mt-4", "data-[state=inactive]:hidden")}>
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+ <div className="space-y-4">
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
  {ESG_SCORES.map((e) => (
  <div key={e.ticker} className="rounded-md border border-border bg-foreground/5 p-4">
@@ -876,12 +870,12 @@ export default function CorpGovernancePage() {
  <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-rose-500 mt-0.5 flex-shrink-0" /><div><p className="text-rose-400 font-medium">Below 65: Governance Risk</p><p className="text-muted-foreground mt-0.5">Material weaknesses — entrenched board, pay-for-no-performance, activist target profile</p></div></div>
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Takeover Defenses ── */}
  <TabsContent value="defense" className={cn("mt-4", "data-[state=inactive]:hidden")}>
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
+ <div className="space-y-3">
  <div className="rounded-md border border-amber-500/20 bg-amber-500/5 p-3 mb-2">
  <p className="text-xs text-amber-300">
  Takeover defenses protect companies from hostile acquisitions but can also entrench management. Governance experts weigh each mechanism differently.
@@ -903,10 +897,7 @@ export default function CorpGovernancePage() {
  </div>
  </button>
  {expandedDefense === def.name && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="px-4 pb-4 border-t border-border"
  >
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3">
@@ -932,16 +923,16 @@ export default function CorpGovernancePage() {
  </div>
  </div>
  <p className="text-xs text-muted-foreground mt-3">Prevalence: {def.prevalence}</p>
- </motion.div>
+ </div>
  )}
  </div>
  ))}
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Institutional Ownership ── */}
  <TabsContent value="ownership" className={cn("mt-4", "data-[state=inactive]:hidden")}>
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+ <div className="space-y-4">
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  <div className="rounded-md border border-border bg-foreground/5 p-4">
  <h3 className="text-sm font-medium text-foreground mb-4">Ownership Breakdown — Vertex Financial (VTXF)</h3>
@@ -1016,10 +1007,10 @@ export default function CorpGovernancePage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

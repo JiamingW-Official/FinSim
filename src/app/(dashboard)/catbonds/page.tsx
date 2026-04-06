@@ -20,7 +20,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -1361,18 +1360,15 @@ export default function CatBondsPage() {
 
  return (
  <div className="h-full overflow-y-auto">
- <div className="max-w-5xl mx-auto px-4 py-6 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="flex items-start justify-between"
  >
  <div>
  <div className="flex items-center gap-2 mb-1">
  <Shield size={20} className="text-foreground" />
- <h1 className="text-xl font-semibold text-foreground">Catastrophe Bonds & ILS</h1>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground">Catastrophe Bonds & ILS</h1>
  </div>
  <p className="text-sm text-muted-foreground">
  Insurance-linked securities, catastrophe risk transfer, and alternative risk capital markets
@@ -1388,13 +1384,10 @@ export default function CatBondsPage() {
  Record Issuance
  </Badge>
  </div>
- </motion.div>
+ </div>
 
  {/* HERO — Summary chips */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35, delay: 0.08 }}
+ <div
  className="grid grid-cols-2 md:grid-cols-5 gap-2 border-l-4 border-l-primary rounded-md bg-card p-6"
  >
  <StatChip label="Perils Covered" value="7 Major" color="blue" />
@@ -1402,7 +1395,7 @@ export default function CatBondsPage() {
  <StatChip label="Avg EL" value="~1.8%" color="red" />
  <StatChip label="Corr to Equities" value="~0.03" color="green" />
  <StatChip label="2024 Sharpe" value="1.05+" color="amber" />
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-0">
@@ -1417,7 +1410,7 @@ export default function CatBondsPage() {
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  {tab.label}
  </TabsTrigger>
@@ -1426,33 +1419,33 @@ export default function CatBondsPage() {
 
  <div className="pt-4">
  <TabsContent value="market" className="data-[state=inactive]:hidden mt-0">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <MarketOverviewTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="mechanics" className="data-[state=inactive]:hidden mt-0">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <CatBondMechanicsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="pricing" className="data-[state=inactive]:hidden mt-0">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <PricingReturnsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="peril" className="data-[state=inactive]:hidden mt-0">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <PerilAnalysisTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="portfolio" className="data-[state=inactive]:hidden mt-0">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <PortfolioConstructionTab />
- </motion.div>
+ </div>
  </TabsContent>
  </div>
  </Tabs>

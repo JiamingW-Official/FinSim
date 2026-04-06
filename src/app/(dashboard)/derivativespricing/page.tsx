@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
@@ -314,7 +313,7 @@ function BinomialTree() {
  return { stock, optVals, u, d, p, binomialPrice: optVals[0][0], bsPrice };
  }, [S, K, T, r, sigma, optType]);
 
- // SVG layout
+ // SVG
  const W = 520, H = 320;
  const colX = (i: number) => 40 + (i / N) * (W - 80);
  const rowY = (i: number, j: number) => {
@@ -975,29 +974,29 @@ export default function DerivativesPricingPage() {
  </TabsList>
 
  <TabsContent value="bs" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <BSLab />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="binomial" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <BinomialTree />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="mc" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <MonteCarlo />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="exotic" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <ExoticOptions />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="rates" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <InterestRateModels />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

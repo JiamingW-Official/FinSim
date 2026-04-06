@@ -21,7 +21,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 925;
@@ -394,12 +393,9 @@ function ProviderComparisonTable() {
  </table>
  </div>
 
- <AnimatePresence>
+ 
  {sel && (
- <motion.div
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
+ <div
  className="rounded-md border border-border bg-foreground/5 p-4 space-y-2"
  >
  <div className="flex items-center gap-2 mb-3">
@@ -416,9 +412,9 @@ function ProviderComparisonTable() {
  <span className="ml-2 text-foreground">{sel.controversialSectors}</span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -1193,13 +1189,13 @@ export default function ESGDataPage() {
 
  {/* ── Tab 1 ── */}
  <TabsContent value="providers" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <div className="mb-4">
  <h2 className="text-base font-medium text-foreground mb-1">Provider Comparison</h2>
  <p className="text-xs text-muted-foreground">Click any row to see additional details. ESG ratings correlate at ~0.61 vs 0.92 for credit ratings.</p>
  </div>
  <ProviderComparisonTable />
- </motion.div>
+ </div>
 
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  <ProviderCorrelationScatter />
@@ -1260,13 +1256,13 @@ export default function ESGDataPage() {
 
  {/* ── Tab 2 ── */}
  <TabsContent value="frameworks" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <div className="mb-4">
  <h2 className="text-base font-medium text-foreground mb-1">Global Disclosure Frameworks</h2>
  <p className="text-xs text-muted-foreground">GRI, SASB, TCFD, TNFD, ISSB — different scopes, different audiences, increasing mandatory adoption.</p>
  </div>
  <FrameworkMatrix />
- </motion.div>
+ </div>
 
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  <Scope123Diagram />
@@ -1361,13 +1357,13 @@ export default function ESGDataPage() {
 
  {/* ── Tab 3 ── */}
  <TabsContent value="greenwashing" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <div className="mb-4">
  <h2 className="text-base font-medium text-foreground mb-1">Greenwashing & Data Quality</h2>
  <p className="text-xs text-muted-foreground">Identifying misleading ESG claims, regulatory enforcement, and quality assessment frameworks.</p>
  </div>
  <GreenwashTaxonomyCard />
- </motion.div>
+ </div>
 
  <GreenwashCasesTable />
 
@@ -1434,13 +1430,13 @@ export default function ESGDataPage() {
 
  {/* ── Tab 4 ── */}
  <TabsContent value="integration" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <div className="mb-4">
  <h2 className="text-base font-medium text-foreground mb-1">ESG Integration in Investment Process</h2>
  <p className="text-xs text-muted-foreground">From exclusionary screening to impact investing — and the evidence on ESG alpha generation.</p>
  </div>
  <IntegrationSpectrum />
- </motion.div>
+ </div>
 
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  <SectorMaterialityMatrix />

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useRef, useMemo, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
 import { FlaskConical, Pencil } from "lucide-react";
 import { useBacktestStore } from "@/stores/backtest-store";
 import StrategyPanel from "@/components/backtest/StrategyPanel";
@@ -284,7 +283,7 @@ export default function BacktestPage() {
 
  {/* Tab Content */}
  <div className="flex flex-1 overflow-hidden">
- {/* Tab 1: Strategy Backtest — Results-dominant layout */}
+ {/* Tab 1: Strategy Backtest — Results-dominant */}
  {activeTab === "strategy" && (
  <div className="flex flex-1 flex-col overflow-hidden">
  {/* When results exist: compact config summary bar at top */}
@@ -457,14 +456,14 @@ export default function BacktestPage() {
  </div>
 
  {/* Strategy Template Gallery Overlay */}
- <AnimatePresence>
+ 
  {showTemplates && (
  <StrategyTemplateGallery
  onSelect={handleTemplateSelect}
  onClose={() => setShowTemplates(false)}
  />
  )}
- </AnimatePresence>
+ 
 
  {/* Confetti overlay */}
  <Confetti show={showConfetti} />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import {
  Landmark,
  TrendingUp,
@@ -444,11 +444,8 @@ function BondUniverseTab({
  </thead>
  <tbody>
  {filtered.map((bond, i) => (
- <motion.tr
+ <tr
  key={bond.id}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.02 }}
  className={cn(
  "border-t border-border hover:bg-muted/50 cursor-pointer transition-colors",
  selectedBond?.id === bond.id && "bg-muted"
@@ -488,19 +485,16 @@ function BondUniverseTab({
  >
  </button>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
  </div>
 
  {/* Detail Panel */}
- <AnimatePresence>
+ 
  {selectedBond && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="rounded-lg border border-border bg-muted/30 p-5 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -543,9 +537,9 @@ function BondUniverseTab({
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -639,9 +633,9 @@ function YieldCurveTab() {
  "flex items-center gap-1 text-xs text-muted-foreground px-2 py-1 rounded transition-colors",
  showOverlays[label] ? "opacity-100" : "opacity-40"
  )}
- style={{ color: c.color }}
+ style={{ color: c.color, background: c.color }}
  >
- <span className="w-4 h-0.5 inline-block" style={{ background: c.color }} />
+ <span className="w-4 h-0.5 inline-block"  />
  {label}
  </button>
  );
@@ -707,13 +701,9 @@ function YieldCurveTab() {
  </div>
 
  {/* Selected tenor detail */}
- <AnimatePresence>
+ 
  {selectedBond2 && (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 12 }}
- >
+ <div>
  <div className="rounded-lg border border-border bg-muted/30 p-5">
  <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">
  {selectedBond2.tenor.label} Treasury — YTM {fmtPct(selectedBond2.ytm)} — Price Sensitivity
@@ -744,9 +734,9 @@ function YieldCurveTab() {
  Approx. Modified Duration: <span className="font-mono tabular-nums">{approxDuration.toFixed(2)}</span> yrs | Convexity: <span className="font-mono tabular-nums">{approxConvexity.toFixed(4)}</span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -895,11 +885,9 @@ function PortfolioBuilderTab({
  <div key={item.bond.id} className="flex items-center gap-3">
  <div className="w-28 text-xs text-muted-foreground truncate">{item.bond.name}</div>
  <div className="flex-1 h-5 bg-muted rounded overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${item.weight * 100}%` }}
- transition={{ duration: 0.5 }}
+ <div
  className="h-full bg-primary/60 rounded"
+ style={{ width: `${item.weight * 100}%` }}
  />
  </div>
  <div className="w-10 text-xs text-right text-foreground">{pct}%</div>
@@ -933,12 +921,8 @@ function PortfolioBuilderTab({
  ) : (
  <div className="space-y-2">
  {portfolio.map((p) => (
- <motion.div
+ <div
  key={p.bond.id}
- layout
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, x: -20 }}
  className="flex items-center gap-3 bg-muted/40 rounded px-3 py-2"
  >
  <div className="flex-1">
@@ -954,7 +938,7 @@ function PortfolioBuilderTab({
  className="p-1 rounded hover:bg-red-500/20 text-muted-foreground hover:text-red-400 transition-colors"
  >
  </button>
- </motion.div>
+ </div>
  ))}
  </div>
  )}
@@ -1059,11 +1043,9 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
  <div key={p.bond.id} className="flex items-center gap-3">
  <div className="w-36 text-xs text-muted-foreground truncate">{p.bond.name}</div>
  <div className="flex-1 h-5 bg-muted rounded overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${pct * 100}%` }}
- transition={{ duration: 0.6 }}
+ <div
  className="h-full bg-primary/70 rounded"
+ style={{ width: `${pct * 100}%` }}
  />
  </div>
  <div className="w-16 text-xs text-right text-foreground">{contrib.toFixed(3)}y</div>
@@ -1267,11 +1249,11 @@ function CreditAnalysisTab() {
  <div className="w-12 text-xs text-right text-muted-foreground">{rv.bond.spreadBps}bps</div>
  <div className="flex-1 h-4 bg-muted rounded overflow-hidden relative">
  <div className="absolute top-0 bottom-0 w-px bg-muted-foreground" style={{ left: "50%" }} />
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${Math.min(Math.abs(rv.vsMedian) / 50 * 50, 50)}%` }}
- transition={{ duration: 0.5 }}
- style={{ left: rv.vsMedian > 0 ? "50%" : `${50 - Math.min(Math.abs(rv.vsMedian) / 50 * 50, 50)}%` }}
+ <div
+ style={{
+ width: `${Math.min(Math.abs(rv.vsMedian) / 50 * 50, 50)}%`,
+ left: rv.vsMedian > 0 ? "50%" : `${50 - Math.min(Math.abs(rv.vsMedian) / 50 * 50, 50)}%`
+ }}
  className={cn("absolute top-0 h-full rounded", rv.vsMedian > 0 ? "bg-amber-500/40" : "bg-emerald-500/40")}
  />
  </div>
@@ -1504,9 +1486,8 @@ function TaxExemptTab() {
  const teYield = taxEqYield(b.coupon, marginalRate, stateRate, isTriple, b.type === "BAB");
  const isSelected = selectedMuni?.name === b.name;
  return (
- <motion.div
+ <div
  key={b.name}
- layout
  className={cn(
  "rounded-lg border p-3 cursor-pointer transition-colors",
  isSelected ? "border-primary/50 bg-muted/5" : "border-border hover:border-border hover:bg-muted/30"
@@ -1526,12 +1507,9 @@ function TaxExemptTab() {
  <span className="text-xs font-medium text-foreground">TEY: {teYield.toFixed(2)}%</span>
  </div>
  </div>
- <AnimatePresence>
+ 
  {isSelected && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-2 pt-2 border-t border-border text-xs text-muted-foreground">
@@ -1542,10 +1520,10 @@ function TaxExemptTab() {
  <div><span className="text-muted-foreground">AMT Risk:</span> <span className={b.amt ? "text-red-400" : "text-emerald-400"}>{b.amt ? "Yes" : "No"}</span></div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  );
  })}
  </div>
@@ -1609,8 +1587,7 @@ export default function FixedIncomePage() {
  const portfolioCount = portfolio.length;
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Page hero */}
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Fixed Income</h1>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">BONDS · DURATION · CREDIT RISK · YIELD</p>
@@ -1645,7 +1622,7 @@ export default function FixedIncomePage() {
  <TabsTrigger
  key={value}
  value={value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  {label}
  </TabsTrigger>
@@ -1675,7 +1652,6 @@ export default function FixedIncomePage() {
  <TaxExemptTab />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

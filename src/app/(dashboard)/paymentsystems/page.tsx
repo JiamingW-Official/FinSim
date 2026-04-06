@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  Zap,
@@ -964,51 +963,45 @@ export default function PaymentSystemsPage() {
  );
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="flex items-start gap-4"
  >
  <div className="p-3 rounded-md bg-muted/10 border border-border">
  </div>
  <div>
- <h1 className="text-2xl font-semibold text-foreground">Payment Systems &amp; Infrastructure</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Payment Systems &amp; Infrastructure</h1>
  <p className="text-sm text-muted-foreground mt-1">
  How global payments work — clearing &amp; settlement, card networks, real-time payments,
  cross-border flows, and fintech disruption
  </p>
  </div>
- </motion.div>
+ </div>
 
  {/* Top KPI row */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.1, duration: 0.4 }}
+ <div
  className="grid grid-cols-2 sm:grid-cols-4 gap-3"
  >
  <StatChip label="Global Non-Cash Txns" value="1.3T+" sub="transactions/year" color="text-foreground" />
  <StatChip label="SWIFT Messages/day" value="44M+" sub="across 200+ countries" color="text-foreground" />
  <StatChip label="Card Spend (Global)" value="$45T" sub="annual card volume" color="text-green-400" />
  <StatChip label="Remittance Flows" value="$860B" sub="annual cross-border" color="text-yellow-400" />
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="rails" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="rails" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  Payment Rails
  </TabsTrigger>
- <TabsTrigger value="cards" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="cards" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  Card Networks
  </TabsTrigger>
- <TabsTrigger value="rtp" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="rtp" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  Real-Time Payments
  </TabsTrigger>
- <TabsTrigger value="crossborder" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="crossborder" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  Cross-Border &amp; CBDC
  </TabsTrigger>
  </TabsList>
@@ -1037,11 +1030,8 @@ export default function PaymentSystemsPage() {
  </thead>
  <tbody>
  {RAILS.map((r, i) => (
- <motion.tr
+ <tr
  key={r.name}
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.05 }}
  className="border-b border-border hover:bg-muted/30"
  >
  <td className="px-3 py-2 font-semibold" style={{ color: r.color }}>
@@ -1063,7 +1053,7 @@ export default function PaymentSystemsPage() {
  </Badge>
  </td>
  <td className="px-3 py-2 text-muted-foreground">{r.maxTx}</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1613,11 +1603,8 @@ export default function PaymentSystemsPage() {
  </thead>
  <tbody>
  {CORRIDORS.map((c, i) => (
- <motion.tr
+ <tr
  key={`${c.from}-${c.to}`}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: i * 0.07 }}
  className="border-b border-border hover:bg-muted/30"
  >
  <td className="px-3 py-2 font-medium text-foreground">
@@ -1628,7 +1615,7 @@ export default function PaymentSystemsPage() {
  <td className="px-3 py-2 text-green-400">{c.fintechCostPct}%</td>
  <td className="px-3 py-2 text-foreground">{c.cryptoCostPct}%</td>
  <td className="px-3 py-2 text-muted-foreground">T+{c.avgDays}</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>

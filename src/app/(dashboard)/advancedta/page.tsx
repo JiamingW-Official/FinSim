@@ -24,7 +24,6 @@ import {
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
@@ -888,28 +887,16 @@ export default function AdvancedTAPage() {
  const [expandedIndicator, setExpandedIndicator] = useState<number | null>(null);
  const [selectedStrategy, setSelectedStrategy] = useState(0);
 
- const cardVariants = {
- hidden: { opacity: 0, y: 16 },
- visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.3 } }),
- };
-
  return (
- <div className="min-h-screen bg-background p-4 md:p-4">
- {/* HERO header */}
- <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 rounded-lg bg-primary/10">
- <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Advanced Technical Analysis</h1>
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
+ {/* Header */}
+ <div className="mb-2">
+ <h1 className="text-3xl font-bold tracking-tight">Advanced Technical Analysis</h1>
  <p className="text-sm text-muted-foreground">Professional strategies, systems design, and backtested results</p>
  </div>
- </div>
- </motion.div>
 
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="grid grid-cols-3 md:grid-cols-6 mb-6 h-auto gap-1 bg-muted/30">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto flex flex-wrap gap-0">
  {[
  { value: "priceaction", label: "Price Action" },
  { value: "indicators", label: "Indicators" },
@@ -918,7 +905,7 @@ export default function AdvancedTAPage() {
  { value: "options", label: "Options TA" },
  { value: "backtest", label: "Backtest" },
  ].map((t) => (
- <TabsTrigger key={t.value} value={t.value} className="text-xs text-muted-foreground py-1.5">
+ <TabsTrigger key={t.value} value={t.value} className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  {t.label}
  </TabsTrigger>
  ))}
@@ -928,7 +915,7 @@ export default function AdvancedTAPage() {
  <TabsContent value="priceaction" className="data-[state=inactive]:hidden space-y-4">
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  {PRICE_ACTION_CONCEPTS.map((concept, i) => (
- <motion.div key={i} custom={i} variants={cardVariants} initial="hidden" animate="visible">
+ <div key={i}>
  <Card
  className="p-4 cursor-pointer border-border hover:border-primary/40 transition-all"
  onClick={() => setExpandedConcept(expandedConcept === i ? null : i)}
@@ -942,12 +929,8 @@ export default function AdvancedTAPage() {
  )}
  </div>
  <div className="w-full overflow-hidden rounded mb-3">{concept.svgComponent}</div>
- <AnimatePresence>
- {expandedConcept === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+  {expandedConcept === i && (
+ <div
  className="overflow-hidden"
  >
  <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{concept.description}</p>
@@ -955,11 +938,10 @@ export default function AdvancedTAPage() {
  <p className="text-xs text-primary font-medium mb-0.5">Confluence Zone</p>
  <p className="text-xs text-muted-foreground">{concept.confluence}</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </Card>
- </motion.div>
+  </Card>
+ </div>
  ))}
  </div>
 
@@ -1017,7 +999,7 @@ export default function AdvancedTAPage() {
  {/* ── Tab 2: Advanced Indicators ─────────────────────────────────────── */}
  <TabsContent value="indicators" className="data-[state=inactive]:hidden space-y-4">
  {ADVANCED_INDICATORS.map((ind, i) => (
- <motion.div key={i} custom={i} variants={cardVariants} initial="hidden" animate="visible">
+ <div key={i}>
  <Card
  className="p-4 border-border hover:border-primary/30 transition-all cursor-pointer"
  onClick={() => setExpandedIndicator(expandedIndicator === i ? null : i)}
@@ -1038,12 +1020,8 @@ export default function AdvancedTAPage() {
  <div className="w-full overflow-hidden rounded mb-3">{ind.svgComponent}</div>
  )}
 
- <AnimatePresence>
- {expandedIndicator === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+  {expandedIndicator === i && (
+ <div
  className="overflow-hidden"
  >
  <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{ind.description}</p>
@@ -1055,15 +1033,14 @@ export default function AdvancedTAPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
-
+ 
  {expandedIndicator !== i && (
  <p className="text-xs text-muted-foreground line-clamp-2">{ind.description}</p>
  )}
  </Card>
- </motion.div>
+ </div>
  ))}
  </TabsContent>
 
@@ -1071,7 +1048,7 @@ export default function AdvancedTAPage() {
  <TabsContent value="system" className="data-[state=inactive]:hidden space-y-4">
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {SYSTEM_SECTIONS.map((section, i) => (
- <motion.div key={i} custom={i} variants={cardVariants} initial="hidden" animate="visible">
+ <div key={i}>
  <Card className={cn("p-4 border h-full", section.color.replace("text-", "border-").replace("-400", "-500/30"))}>
  <div className={cn("flex items-center gap-2 mb-3 p-2 rounded-lg w-fit", section.bgColor)}>
  <span className={section.color}>{section.icon}</span>
@@ -1086,7 +1063,7 @@ export default function AdvancedTAPage() {
  ))}
  </ul>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1115,7 +1092,7 @@ export default function AdvancedTAPage() {
  <TabsContent value="regime" className="data-[state=inactive]:hidden space-y-4">
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {REGIMES.map((r, i) => (
- <motion.div key={i} custom={i} variants={cardVariants} initial="hidden" animate="visible">
+ <div key={i}>
  <Card className={cn("p-4 border", r.color)}>
  <div className="flex items-center gap-2 mb-2">
  {r.icon}
@@ -1138,7 +1115,7 @@ export default function AdvancedTAPage() {
  ))}
  </div>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1190,7 +1167,7 @@ export default function AdvancedTAPage() {
  {/* ── Tab 5: Options TA ──────────────────────────────────────────────── */}
  <TabsContent value="options" className="data-[state=inactive]:hidden space-y-3">
  {OPTIONS_TA_CONCEPTS.map((concept, i) => (
- <motion.div key={i} custom={i} variants={cardVariants} initial="hidden" animate="visible">
+ <div key={i}>
  <Card className="p-4 border-border">
  <div className="flex items-start justify-between mb-2">
  <div className="flex items-center gap-2">
@@ -1209,7 +1186,7 @@ export default function AdvancedTAPage() {
  ))}
  </div>
  </Card>
- </motion.div>
+ </div>
  ))}
  </TabsContent>
 
@@ -1234,14 +1211,7 @@ export default function AdvancedTAPage() {
  </div>
 
  {/* Selected strategy detail */}
- <AnimatePresence mode="wait">
- <motion.div
- key={selectedStrategy}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
+ <div key={selectedStrategy}>
  <Card className="p-4 border-border">
  <div className="flex items-center justify-between mb-3">
  <h3 className="font-medium text-sm" style={{ color: STRATEGIES[selectedStrategy].color }}>
@@ -1272,9 +1242,8 @@ export default function AdvancedTAPage() {
  </div>
  </div>
  </Card>
- </motion.div>
- </AnimatePresence>
-
+ </div>
+ 
  {/* Drawdown comparison table */}
  <Card className="p-4 border-border">
  <div className="flex items-center gap-2 mb-3">

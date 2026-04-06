@@ -34,7 +34,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
@@ -1119,8 +1118,7 @@ export default function TradingPsychPage() {
  }, []);
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
  <div className="mb-4">
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Trading Psychology</h1>
@@ -1129,34 +1127,27 @@ export default function TradingPsychPage() {
 
  <Tabs defaultValue="bias">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto flex flex-wrap gap-0">
- <TabsTrigger value="bias" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="bias" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Bias Assessment
  </TabsTrigger>
- <TabsTrigger value="emotional" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="emotional" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Emotional Cycle
  </TabsTrigger>
- <TabsTrigger value="process" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="process" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Process Development
  </TabsTrigger>
- <TabsTrigger value="review" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="review" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Post-Trade Review
  </TabsTrigger>
- <TabsTrigger value="peak" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="peak" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Peak Performance
  </TabsTrigger>
  </TabsList>
 
  {/* ── TAB 1: Bias Assessment ──────────────────────────────────────────── */}
  <TabsContent value="bias" className="mt-4 space-y-4">
- <AnimatePresence mode="wait">
  {!quizComplete ? (
- <motion.div
- key={`question-${quizStep}`}
- initial={{ opacity: 0, x: 32 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -32 }}
- transition={{ duration: 0.2 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader>
  <div className="flex items-center justify-between">
@@ -1192,15 +1183,9 @@ export default function TradingPsychPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ) : (
- <motion.div
- key="results"
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  <div className="grid md:grid-cols-2 gap-4">
  {/* Radar Chart */}
  <Card className="bg-card border-border">
@@ -1260,12 +1245,9 @@ export default function TradingPsychPage() {
  </span>
  </div>
  <div className="h-1.5 rounded-full bg-muted overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${bs.score}%` }}
- transition={{ duration: 0.6, delay: 0.1 }}
+ <div
  className="h-full rounded-full"
- style={{ backgroundColor: bs.color }}
+ style={{ width: `${bs.score}%`, backgroundColor: bs.color }}
  />
  </div>
  </div>
@@ -1282,9 +1264,8 @@ export default function TradingPsychPage() {
  <RefreshCw className="w-3 h-3" />
  Retake Assessment
  </Button>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </TabsContent>
 
  {/* ── TAB 2: Emotional Cycle ──────────────────────────────────────────── */}
@@ -1325,16 +1306,8 @@ export default function TradingPsychPage() {
 
  {/* Phase Detail */}
  <div className="space-y-3">
- <AnimatePresence mode="wait">
  {selectedEmotionalPhase ? (
- <motion.div
- key={selectedEmotionalPhase.state}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- className="space-y-3"
- >
+ <div className="space-y-3">
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
  <div className="flex items-center justify-between">
@@ -1375,13 +1348,9 @@ export default function TradingPsychPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ) : (
- <motion.div
- key="empty"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardContent className="flex flex-col items-center justify-center py-12 text-center">
  <Activity className="w-8 h-8 text-muted-foreground mb-3" />
@@ -1391,9 +1360,8 @@ export default function TradingPsychPage() {
  </p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
 
  {/* All phases list */}
  <Card className="bg-card border-border">
@@ -1468,14 +1436,7 @@ export default function TradingPsychPage() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
- key={activeCategory}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.15 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardHeader>
  <div className="flex items-center justify-between">
@@ -1491,7 +1452,7 @@ export default function TradingPsychPage() {
  {(PROCESS_CHECKLISTS[activeCategory] ?? []).map((item) => {
  const checked = checkedItems.has(item.id);
  return (
- <motion.button
+ <button
  key={item.id}
  onClick={() => toggleChecked(item.id)}
  className={cn(
@@ -1500,7 +1461,6 @@ export default function TradingPsychPage() {
  ? "border-primary/30 bg-primary/5"
  : "border-border bg-background hover:bg-muted/20"
  )}
- whileTap={{ scale: 0.99 }}
  >
  {checked ? (
  <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
@@ -1517,13 +1477,12 @@ export default function TradingPsychPage() {
  >
  {item.text}
  </span>
- </motion.button>
+ </button>
  );
  })}
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
 
  {/* Progress summary across all categories */}
  <Card className="bg-card border-border">
@@ -1656,10 +1615,9 @@ export default function TradingPsychPage() {
  className="w-full h-1.5 rounded-full accent-primary cursor-pointer"
  />
  <div className="h-1.5 rounded-full bg-muted overflow-hidden">
- <motion.div
- animate={{ width: `${score}%` }}
- transition={{ duration: 0.2 }}
+ <div
  className="h-full rounded-full bg-primary"
+ style={{ width: `${score}%` }}
  />
  </div>
  </div>
@@ -1772,15 +1730,8 @@ export default function TradingPsychPage() {
  </CardHeader>
  </button>
 
- <AnimatePresence>
  {isActive && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <CardContent className="pt-0 space-y-4">
  <p className="text-xs text-muted-foreground leading-relaxed">
  {technique.description}
@@ -1799,9 +1750,8 @@ export default function TradingPsychPage() {
  ))}
  </div>
  </CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </Card>
  );
  })}
@@ -1868,7 +1818,6 @@ export default function TradingPsychPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

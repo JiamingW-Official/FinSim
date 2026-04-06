@@ -27,7 +27,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Slider } from "@/components/ui/slider";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -479,10 +478,8 @@ function PitchStructureTab() {
  const Icon = section.icon;
  const isActive = section.id === selectedSection;
  return (
- <motion.button
+ <button
  key={section.id}
- whileHover={{ scale: 1.02 }}
- whileTap={{ scale: 0.98 }}
  onClick={() => setSelectedSection(section.id)}
  className={`relative p-4 rounded-md border text-left transition-all ${
  isActive
@@ -505,17 +502,17 @@ function PitchStructureTab() {
  {statusLabel(section.status)}
  </Badge>
  </div>
- </motion.button>
+ </button>
  );
  })}
  </div>
 
  {/* Section detail */}
- <motion.div
+ <div
  key={selectedSection}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
+
+
+
  >
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
@@ -542,18 +539,18 @@ function PitchStructureTab() {
  </div>
  <ul className="space-y-3">
  {active.keyPoints.map((point, i) => (
- <motion.li
+ <li
  key={i}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.06 }}
+
+
+
  className="flex items-start gap-3 text-sm text-muted-foreground"
  >
  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-muted border border-border flex items-center justify-center text-xs font-mono text-muted-foreground mt-0.5">
  {i + 1}
  </span>
  {point}
- </motion.li>
+ </li>
  ))}
  </ul>
 
@@ -571,7 +568,7 @@ function PitchStructureTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* IB process timeline */}
  <Card className="bg-card border-border">
@@ -644,10 +641,8 @@ function ValuationSummaryTab() {
  {/* Method cards */}
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
  {VALUATION_METHODS.map((m, i) => (
- <motion.button
+ <button
  key={m.name}
- whileHover={{ scale: 1.02 }}
- whileTap={{ scale: 0.98 }}
  onClick={() => setSelectedMethod(i)}
  className={`p-4 rounded-md border text-left transition-all ${
  selectedMethod === i
@@ -671,15 +666,15 @@ function ValuationSummaryTab() {
  <div className="text-xs text-muted-foreground">
  ${m.low.toFixed(1)} – ${m.high.toFixed(1)}
  </div>
- </motion.button>
+ </button>
  ))}
  </div>
 
  {/* Selected method description */}
- <motion.div
+ <div
  key={selectedMethod}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
+
+
  >
  <Card className="bg-card border-border">
  <CardContent className="pt-4">
@@ -716,7 +711,7 @@ function ValuationSummaryTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Sensitivity table */}
  <Card className="bg-card border-border">
@@ -894,11 +889,11 @@ function ComparableCompaniesTab() {
  </thead>
  <tbody>
  {sorted.map((comp, i) => (
- <motion.tr
+ <tr
  key={comp.ticker}
- initial={{ opacity: 0, x: -4 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.04 }}
+
+
+
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="p-2 text-foreground font-medium">{comp.name}</td>
@@ -922,7 +917,7 @@ function ComparableCompaniesTab() {
  </td>
  );
  })}
- </motion.tr>
+ </tr>
  ))}
  {/* Median row */}
  <tr className="border-t-2 border-border bg-muted/30">
@@ -1435,11 +1430,11 @@ function FinancingStructureTab() {
  ? "text-amber-300"
  : "text-red-400";
  return (
- <motion.tr
+ <tr
  key={t.name}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.05 }}
+
+
+
  className="border-b border-border hover:bg-muted/20"
  >
  <td className="p-2 text-muted-foreground font-medium">{t.name}</td>
@@ -1449,7 +1444,7 @@ function FinancingStructureTab() {
  <td className="p-2 text-right font-mono text-muted-foreground">{t.maturity}yr</td>
  <td className={`p-2 text-center font-medium ${ratingCol}`}>{t.rating}</td>
  <td className="p-2 text-right font-mono text-amber-400">${annInt.toFixed(0)}M</td>
- </motion.tr>
+ </tr>
  );
  })}
  <tr className="border-t-2 border-border bg-muted/30">
@@ -1511,25 +1506,12 @@ function FinancingStructureTab() {
 
 export default function PitchbookPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
  <div className="flex flex-wrap items-start justify-between gap-4">
  <div>
- <div className="flex items-center gap-3 mb-1">
- <div className="w-9 h-9 rounded-lg bg-primary/20 border border-border flex items-center justify-center">
- <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Pitch Book Builder</h1>
- <p className="text-xs text-muted-foreground">Investment Banking — M&amp;A Advisory</p>
- </div>
- </div>
+ <h1 className="text-3xl font-bold tracking-tight">Pitch Book Builder</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">Investment Banking — M&amp;A Advisory</p>
  </div>
  <div className="flex flex-wrap items-center gap-2">
  <Badge className="bg-primary/20 text-primary border-border text-xs">
@@ -1548,12 +1530,7 @@ export default function PitchbookPage() {
  </div>
 
  {/* Quick stats bar */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.15 }}
- className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 mt-4"
- >
+ <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
  {[
  { label: "Transaction Value", value: "$8.2B", icon: DollarSign, color: "text-primary" },
  { label: "Offer Per Share", value: "$72.50", icon: Target, color: "text-emerald-400" },
@@ -1566,37 +1543,31 @@ export default function PitchbookPage() {
  ].map((stat) => {
  const Icon = stat.icon;
  return (
- <div key={stat.label} className="bg-card border border-border rounded-lg p-2 text-center">
+ <div key={stat.label} className="rounded-lg border border-border bg-card p-2 text-center">
  <Icon className={`w-3 h-3 mx-auto mb-1 ${stat.color}`} />
  <p className={`text-sm font-medium ${stat.color}`}>{stat.value}</p>
- <p className="text-xs text-muted-foreground leading-tight mt-0.5">{stat.label}</p>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground leading-tight mt-0.5">{stat.label}</p>
  </div>
  );
  })}
- </motion.div>
- </motion.div>
+ </div>
 
  {/* Main Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.25 }}
- >
  <Tabs defaultValue="pitch" className="space-y-4">
- <TabsList className="bg-card border border-border p-1 flex flex-wrap gap-1 h-auto">
- <TabsTrigger value="pitch" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto flex flex-wrap gap-1">
+ <TabsTrigger value="pitch" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground gap-1.5">
  <FileText className="w-3.5 h-3.5" /> Pitch Structure
  </TabsTrigger>
- <TabsTrigger value="valuation" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
+ <TabsTrigger value="valuation" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground gap-1.5">
  <BarChart3 className="w-3.5 h-3.5" /> Valuation Summary
  </TabsTrigger>
- <TabsTrigger value="comps" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
+ <TabsTrigger value="comps" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground gap-1.5">
  <Building2 className="w-3.5 h-3.5" /> Comparable Companies
  </TabsTrigger>
- <TabsTrigger value="mna" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
+ <TabsTrigger value="mna" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground gap-1.5">
  <TrendingUp className="w-3.5 h-3.5" /> M&amp;A Accretion/Dilution
  </TabsTrigger>
- <TabsTrigger value="financing" className="data-[state=active]:bg-muted text-xs text-muted-foreground gap-1.5">
+ <TabsTrigger value="financing" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground gap-1.5">
  <Layers className="w-3.5 h-3.5" /> Financing Structure
  </TabsTrigger>
  </TabsList>
@@ -1617,7 +1588,6 @@ export default function PitchbookPage() {
  <FinancingStructureTab />
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  );
 }

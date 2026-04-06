@@ -24,7 +24,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
 
@@ -434,7 +433,7 @@ export default function DebtCapitalMarketsPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
  {/* Header */}
- <motion.div {...fadeUp}>
+ <div {...fadeUp}>
  <div className="flex items-start justify-between gap-4 flex-wrap">
  <div>
  <h1 className="text-lg font-medium text-foreground flex items-center gap-2">
@@ -455,10 +454,10 @@ export default function DebtCapitalMarketsPage() {
  </Badge>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Key Metrics — Hero */}
- <motion.div {...fadeUp} transition={{ delay: 0.05, duration: 0.4 }}>
+ <div {...fadeUp}>
  <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-3">
  <MetricChip
  label="IG Credit Spread (bps)"
@@ -489,10 +488,10 @@ export default function DebtCapitalMarketsPage() {
  icon={<DollarSign size={16} />}
  />
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.4 }} className="mt-8">
+ <div {...fadeUp} className="mt-8">
  <Tabs defaultValue="issuance" className="space-y-4">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="issuance" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
@@ -629,18 +628,15 @@ export default function DebtCapitalMarketsPage() {
 
  {/* Step Detail */}
  {activeStep !== null && (
- <motion.div
+ <div
  key={activeStep}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
  className={`mt-4 p-4 rounded-md border ${PRICING_STEPS[activeStep].bgColor} border-current`}
  >
  <h3 className={`text-sm font-medium ${PRICING_STEPS[activeStep].color} mb-1`}>
  {PRICING_STEPS[activeStep].label} — {PRICING_STEPS[activeStep].duration}
  </h3>
  <p className="text-sm text-foreground/80">{PRICING_STEPS[activeStep].description}</p>
- </motion.div>
+ </div>
  )}
 
  {/* Key Concepts */}
@@ -734,10 +730,7 @@ export default function DebtCapitalMarketsPage() {
  />
  </div>
  {activeRole === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- transition={{ duration: 0.2 }}
+ <div
  className="mt-2 pt-2 border-t border-border"
  >
  <p className="text-xs text-foreground/80 mb-2">{role.description}</p>
@@ -749,7 +742,7 @@ export default function DebtCapitalMarketsPage() {
  </li>
  ))}
  </ul>
- </motion.div>
+ </div>
  )}
  </button>
  ))}
@@ -904,15 +897,15 @@ export default function DebtCapitalMarketsPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
 
  {/* Footer note */}
- <motion.div {...fadeUp} transition={{ delay: 0.15, duration: 0.4 }}>
+ <div {...fadeUp}>
  <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/20 border border-border rounded-lg px-3 py-2">
  <AlertTriangle size={12} className="shrink-0" />
  Simulated data for educational purposes only. Spreads, volumes, and deal details are illustrative.
  </div>
- </motion.div>
+ </div>
  </div>
  );
 }

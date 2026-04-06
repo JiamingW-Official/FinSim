@@ -23,7 +23,6 @@ import {
  Award,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
@@ -481,11 +480,9 @@ function SuccessRateBar({
  <div className="flex items-center gap-3 py-2">
  <span className="text-xs text-muted-foreground w-44 shrink-0">{demand}</span>
  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full bg-indigo-500"
- initial={{ width: 0 }}
- animate={{ width: `${rate}%` }}
- transition={{ duration: 0.6, delay: 0.1 }}
+ style={{ width: `${rate}%` }}
  />
  </div>
  <span className="text-xs text-indigo-400 w-8 text-right">{rate}%</span>
@@ -743,9 +740,8 @@ function EventCatalogTab() {
 
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  {EVENT_TYPES.map((evt) => (
- <motion.div
+ <div
  key={evt.id}
- whileHover={{ scale: 1.01 }}
  onClick={() => setSelected(selected === evt.id ? null : evt.id)}
  className={cn(
  "bg-card border rounded-md p-4 cursor-pointer transition-colors",
@@ -782,12 +778,9 @@ function EventCatalogTab() {
 
  <EventLifecycleSVG phases={evt.phases} color={evt.color} />
 
- <AnimatePresence>
+ 
  {selected === evt.id && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="mt-3 pt-3 border-t border-border overflow-hidden"
  >
  <div className="space-y-2">
@@ -807,10 +800,10 @@ function EventCatalogTab() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  </div>
@@ -925,12 +918,9 @@ function ActivistTab() {
  <ChevronRight className={cn("w-4 h-4 text-muted-foreground transition-transform", showShort && "rotate-90")} />
  </button>
 
- <AnimatePresence>
+ 
  {showShort && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="mt-4 overflow-hidden"
  >
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -972,9 +962,9 @@ function ActivistTab() {
  Legal risk: Allegations must be factually grounded. Coordinating with other short sellers or trading on material non-public information constitutes market manipulation.
  </p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* Target Selection Criteria */}
@@ -1239,12 +1229,9 @@ function StubTradesTab() {
  />
  </div>
  </button>
- <AnimatePresence>
+ 
  {selectedStub === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-3 pb-3 space-y-2">
@@ -1259,9 +1246,9 @@ function StubTradesTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>

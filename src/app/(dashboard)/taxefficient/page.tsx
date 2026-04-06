@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -291,12 +290,9 @@ function AssetLocationTab() {
  </Card>
 
  {/* Selected asset detail */}
- <AnimatePresence>
+ 
  {selectedAsset && (
- <motion.div
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
+ <div
  >
  <Card className="border-primary/30">
  <CardContent className="pt-4 space-y-3">
@@ -329,9 +325,9 @@ function AssetLocationTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* 3-bucket framework */}
  <Card>
@@ -524,7 +520,7 @@ function TaxLossHarvestingTab() {
  const taxSavings = Math.abs(p.unrealizedLoss) * (marginalRate / 100);
  const isSelected = selectedPos?.ticker === p.ticker;
  return (
- <motion.div
+ <div
  key={p.ticker}
  onClick={() => setSelectedPos(isSelected ? null : p)}
  className={cn(
@@ -556,7 +552,7 @@ function TaxLossHarvestingTab() {
  <span className="text-primary">Alt: {p.washSaleAlternative}</span>
  )}
  </div>
- </motion.div>
+ </div>
  );
  })}
  </CardContent>
@@ -700,7 +696,7 @@ function TaxLossHarvestingTab() {
  <div key={method.label} className="rounded-lg p-3 space-y-2" style={{ backgroundColor: method.color + "10", border: `1px solid ${method.color}30` }}>
  <div className="flex items-center gap-2">
  <method.icon className="h-4 w-4" style={{ color: method.color }} />
- <span className="text-sm font-medium" style={{ color: method.color }}>{method.label}</span>
+ <span className="text-sm font-medium" >{method.label}</span>
  </div>
  <ul className="space-y-1">
  {method.items.map((item) => (
@@ -1203,7 +1199,7 @@ function CapitalGainsTab() {
  <div key={s.title} className="rounded-lg p-3 space-y-2" style={{ backgroundColor: s.color + "0d", border: `1px solid ${s.color}25` }}>
  <div className="flex items-center gap-2">
  <s.icon className="h-4 w-4 shrink-0" style={{ color: s.color }} />
- <span className="text-sm font-medium" style={{ color: s.color }}>{s.title}</span>
+ <span className="text-sm font-medium" >{s.title}</span>
  </div>
  <p className="text-xs text-muted-foreground">{s.description}</p>
  <div className="text-xs bg-muted/30 rounded p-2 text-muted-foreground italic">{s.example}</div>
@@ -1232,10 +1228,9 @@ function CapitalGainsTab() {
 
 export default function TaxEfficientPage() {
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Tax-Efficient Investing</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Tax-Efficient Investing</h1>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">ASSET LOCATION · TURNOVER · TAX DRAG</p>
 
  <div className="border-t border-border mb-6" />
@@ -1265,10 +1260,10 @@ export default function TaxEfficientPage() {
  {/* Tabs */}
  <Tabs defaultValue="location" className="space-y-4">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="location" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Asset Location</TabsTrigger>
- <TabsTrigger value="tlh" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">TLH</TabsTrigger>
- <TabsTrigger value="roth" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Roth Conversion</TabsTrigger>
- <TabsTrigger value="gains" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Capital Gains</TabsTrigger>
+ <TabsTrigger value="location" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Asset Location</TabsTrigger>
+ <TabsTrigger value="tlh" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">TLH</TabsTrigger>
+ <TabsTrigger value="roth" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Roth Conversion</TabsTrigger>
+ <TabsTrigger value="gains" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Capital Gains</TabsTrigger>
  </TabsList>
 
  <TabsContent value="location" className="data-[state=inactive]:hidden">
@@ -1284,7 +1279,6 @@ export default function TaxEfficientPage() {
  <CapitalGainsTab />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

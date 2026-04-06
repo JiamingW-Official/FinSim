@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -442,10 +441,7 @@ function ScreenerTab() {
  }, [search, sectorFilter, sortField, sortDir]);
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-4"
  >
  {/* Controls */}
@@ -504,14 +500,10 @@ function ScreenerTab() {
  </tr>
  </thead>
  <tbody>
- <AnimatePresence>
+ 
  {filtered.map((stock, i) => (
- <motion.tr
+ <tr
  key={stock.ticker}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- transition={{ delay: i * 0.02 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2.5 font-semibold text-foreground">{stock.ticker}</td>
@@ -530,9 +522,9 @@ function ScreenerTab() {
  {stock.debtEquity.toFixed(2)}
  </td>
  <td className="px-3 py-2.5 text-right text-amber-400">{stock.dividendYield.toFixed(2)}%</td>
- </motion.tr>
+ </tr>
  ))}
- </AnimatePresence>
+ 
  {filtered.length === 0 && (
  <tr>
  <td colSpan={10} className="px-3 py-8 text-center text-foreground/30 text-sm">
@@ -543,7 +535,7 @@ function ScreenerTab() {
  </tbody>
  </table>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -604,10 +596,7 @@ function ValueScreenTab() {
  };
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-4"
  >
  {/* Screen selector */}
@@ -692,7 +681,7 @@ function ValueScreenTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -742,10 +731,7 @@ function GrowthScreenTab() {
  };
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-4"
  >
  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -824,7 +810,7 @@ function GrowthScreenTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -870,10 +856,7 @@ function QualityScreenTab() {
  const results = useMemo(() => ALL_STOCKS.filter(screen.filter), [activeScreen, screen.filter]);
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-4"
  >
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -970,7 +953,7 @@ function QualityScreenTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -1029,10 +1012,7 @@ function CustomScreenTab() {
  const resetFilters = () => setFilters({ ...DEFAULT_FILTERS, sectors: new Set(SECTOR_LIST) });
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-4"
  >
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -1237,14 +1217,10 @@ function CustomScreenTab() {
  </tr>
  </thead>
  <tbody>
- <AnimatePresence>
+ 
  {results.map((stock, i) => (
- <motion.tr
+ <tr
  key={stock.ticker}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: 8 }}
- transition={{ delay: i * 0.03 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2.5 font-medium text-foreground">{stock.ticker}</td>
@@ -1264,9 +1240,9 @@ function CustomScreenTab() {
  <td className={cn("px-3 py-2.5 text-right", stock.beta < 1 ? "text-foreground" : stock.beta < 1.5 ? "text-yellow-400" : "text-rose-400")}>
  {stock.beta.toFixed(2)}
  </td>
- </motion.tr>
+ </tr>
  ))}
- </AnimatePresence>
+ 
  {results.length === 0 && (
  <tr>
  <td colSpan={9} className="px-4 py-10 text-center">
@@ -1284,7 +1260,7 @@ function CustomScreenTab() {
  </Card>
  </div>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -1293,10 +1269,7 @@ export default function StockScreenerPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-1">
@@ -1308,13 +1281,10 @@ export default function StockScreenerPage() {
  <p className="text-sm text-foreground/40 ml-11">
  Fundamental + technical filters across 25 synthetic stocks in 8 sectors
  </p>
- </motion.div>
+ </div>
 
  {/* Summary chips */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.1, duration: 0.4 }}
+ <div
  className="flex flex-wrap gap-2 mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
  >
  {[
@@ -1336,7 +1306,7 @@ export default function StockScreenerPage() {
  {chip.label}
  </span>
  ))}
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="screener">

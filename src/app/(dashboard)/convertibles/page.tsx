@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Layers,
  TrendingUp,
@@ -769,13 +768,9 @@ function InvestmentStrategiesTab() {
  </div>
 
  {/* Detail */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selected}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="space-y-4"
  >
  <div className={cn("rounded-md border p-5", colorClasses[s.color].border, colorClasses[s.color].bg)}>
@@ -815,8 +810,8 @@ function InvestmentStrategiesTab() {
  </ul>
  </div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Comparative table */}
  <div className="bg-card border border-border rounded-md overflow-hidden">
@@ -979,9 +974,8 @@ function RiskAnalysisTab() {
  {/* Risk cards */}
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
  {risks.map((rk) => (
- <motion.div
+ <div
  key={rk.name}
- whileHover={{ scale: 1.01 }}
  className={cn(
  "bg-card border rounded-md p-4 transition-colors cursor-pointer",
  hovered === rk.name ? "border-border" : "border-border",
@@ -1023,7 +1017,7 @@ function RiskAnalysisTab() {
  <span className="text-xs text-muted-foreground">Mitigation: </span>
  <span className="text-xs text-muted-foreground">{rk.mitigation}</span>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
 

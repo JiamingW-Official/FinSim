@@ -27,7 +27,6 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 880;
@@ -772,8 +771,7 @@ export default function InstitutionalAllocPage() {
  const latestFundingRatio = pensionFunding[pensionFunding.length - 1].fundingRatio;
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
-  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
   {/* Hero */}
   <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Institutional Allocation</h1>
   <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">ENDOWMENTS · PENSIONS · SOVEREIGN WEALTH</p>
@@ -781,20 +779,15 @@ export default function InstitutionalAllocPage() {
   {/* Tabs */}
   <Tabs defaultValue="models" className="mt-8">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="models" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Models Comparison</TabsTrigger>
- <TabsTrigger value="endowment" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Endowment Model</TabsTrigger>
- <TabsTrigger value="pension" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pension LDI</TabsTrigger>
- <TabsTrigger value="swf" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">SWF Strategies</TabsTrigger>
+ <TabsTrigger value="models" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Models Comparison</TabsTrigger>
+ <TabsTrigger value="endowment" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Endowment Model</TabsTrigger>
+ <TabsTrigger value="pension" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pension LDI</TabsTrigger>
+ <TabsTrigger value="swf" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">SWF Strategies</TabsTrigger>
  </TabsList>
 
  {/* ── Tab 1: Models Comparison ── */}
  <TabsContent value="models" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  {/* Stats row */}
  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
  {MODELS.map((m) => (
@@ -814,7 +807,7 @@ export default function InstitutionalAllocPage() {
  </div>
 
  {/* Stacked bar */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -827,7 +820,7 @@ export default function InstitutionalAllocPage() {
  </Card>
 
  {/* Return history */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <TrendingUp className="w-4 h-4 text-green-400" />
@@ -840,7 +833,7 @@ export default function InstitutionalAllocPage() {
  </Card>
 
  {/* Selected model detail */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -876,7 +869,7 @@ export default function InstitutionalAllocPage() {
  </h3>
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
  {SWENSEN_PRINCIPLES.map((p) => (
- <Card key={p.title} className="bg-card/60 border-border">
+ <Card key={p.title} className="rounded-lg border border-border bg-card">
  <CardContent className="pt-4 pb-4">
  <div className="text-xs font-semibold text-primary mb-1">{p.title}</div>
  <p className="text-xs text-muted-foreground leading-relaxed">{p.body}</p>
@@ -885,19 +878,14 @@ export default function InstitutionalAllocPage() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 2: Endowment Model ── */}
  <TabsContent value="endowment" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  {/* Illiquidity premium theory */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <Lock className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -936,7 +924,7 @@ export default function InstitutionalAllocPage() {
  </h3>
  <div className="space-y-2">
  {ENDOWMENT_ASSET_CLASSES.map((ac) => (
- <div key={ac.label} className="bg-card/60 border border-border rounded-lg p-3 flex items-center gap-4">
+ <div key={ac.label} className="rounded-lg border border-border bg-card p-3 flex items-center gap-4">
  <div className="w-24 text-xs font-medium text-foreground shrink-0">{ac.label}</div>
  <div className="flex-1">
  <div className="flex items-center gap-2 mb-1">
@@ -964,7 +952,7 @@ export default function InstitutionalAllocPage() {
  </div>
 
  {/* Spending rule */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <DollarSign className="w-4 h-4 text-green-400" />
@@ -1006,7 +994,7 @@ export default function InstitutionalAllocPage() {
  </h3>
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
  {LIQUIDITY_TIERS.map((tier) => (
- <Card key={tier.tier} className="bg-card/60 border-border">
+ <Card key={tier.tier} className="rounded-lg border border-border bg-card">
  <CardContent className="pt-4 pb-4">
  <div className="flex items-center gap-2 mb-2">
  <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium text-foreground" style={{ backgroundColor: tier.color + "33", border: `1px solid ${tier.color}` }}>
@@ -1028,19 +1016,14 @@ export default function InstitutionalAllocPage() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 3: Pension LDI ── */}
  <TabsContent value="pension" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  {/* LDI basics */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1087,7 +1070,7 @@ export default function InstitutionalAllocPage() {
  </Card>
 
  {/* Assets vs liabilities chart */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1101,7 +1084,7 @@ export default function InstitutionalAllocPage() {
 
  {/* Funding ratio gauge */}
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1119,7 +1102,7 @@ export default function InstitutionalAllocPage() {
  ].map((z) => (
  <div key={z.range} className="flex items-start gap-2 text-xs text-muted-foreground">
  <span className="font-mono w-16 shrink-0" style={{ color: z.color }}>{z.range}</span>
- <span className="font-medium w-16 shrink-0" style={{ color: z.color }}>{z.label}</span>
+ <span className="font-medium w-16 shrink-0" >{z.label}</span>
  <span className="text-muted-foreground">{z.action}</span>
  </div>
  ))}
@@ -1128,7 +1111,7 @@ export default function InstitutionalAllocPage() {
  </Card>
 
  {/* Glide path */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <TrendingUp className="w-4 h-4 text-green-400" />
@@ -1169,7 +1152,7 @@ export default function InstitutionalAllocPage() {
  </div>
 
  {/* Swap overlay */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1197,17 +1180,12 @@ export default function InstitutionalAllocPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 4: SWF Strategies ── */}
  <TabsContent value="swf" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  {/* Mandate types */}
  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
  {[
@@ -1233,7 +1211,7 @@ export default function InstitutionalAllocPage() {
  desc: "State capitalism vehicle: invest in strategic domestic industries + international diversification. Dual mandate of commercial returns + policy objectives.",
  },
  ].map((m) => (
- <Card key={m.type} className="bg-card/60 border-border">
+ <Card key={m.type} className="rounded-lg border border-border bg-card">
  <CardContent className="pt-4 pb-4">
  <div className="flex items-center gap-2 mb-2" style={{ color: m.color }}>
  {m.icon}
@@ -1261,7 +1239,7 @@ export default function InstitutionalAllocPage() {
 
  {/* Selected SWF detail */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <Globe className="w-4 h-4" style={{ color: selectedSWF.color }} />
@@ -1310,7 +1288,7 @@ export default function InstitutionalAllocPage() {
  </CardContent>
  </Card>
 
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1328,7 +1306,7 @@ export default function InstitutionalAllocPage() {
  </div>
 
  {/* Norway GPFG deep-dive */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <BookOpen className="w-4 h-4 text-green-400" />
@@ -1379,7 +1357,7 @@ export default function InstitutionalAllocPage() {
  </Card>
 
  {/* Benchmark hugging vs high-conviction */}
- <Card className="bg-card/60 border-border">
+ <Card className="rounded-lg border border-border bg-card">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
  <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1427,10 +1405,9 @@ export default function InstitutionalAllocPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
-  </div>
  </div>
  );
 }

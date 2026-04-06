@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Brain,
  Shield,
@@ -463,12 +462,8 @@ function CreditScoringTab() {
  SHAP (SHapley Additive exPlanations) decomposes a model prediction into per-feature
  contributions, enabling regulators to audit individual decisions under ECOA/FCRA.
  </p>
- <AnimatePresence>
- {showShap && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+  {showShap && (
+ <div
  className="overflow-hidden"
  >
  <div className="space-y-1.5">
@@ -496,10 +491,9 @@ function CreditScoringTab() {
  <p className="text-xs text-muted-foreground mt-2 italic">
  Positive SHAP → increases approval probability; Negative → decreases it.
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </Card>
+  </Card>
 
  {/* Fairness concerns */}
  <Card>
@@ -908,12 +902,8 @@ function AIResearchTab() {
  </table>
  </div>
  {/* Selected tool detail */}
- <AnimatePresence mode="wait">
- <motion.div
+ <div
  key={activeCapTable}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -4 }}
  className="mt-3 p-3 bg-muted/40 rounded-lg"
  >
  <div className="text-xs font-medium text-muted-foreground mb-1">
@@ -925,9 +915,8 @@ function AIResearchTab() {
  ))}
  <InfoBadge color="violet">{AI_TOOLS[activeCapTable].users}</InfoBadge>
  </div>
- </motion.div>
- </AnimatePresence>
- </Card>
+ </div>
+  </Card>
 
  {/* SEC filing sentiment concept */}
  <Card>
@@ -1283,15 +1272,12 @@ export default function AIFinancePage() {
  void rand(); void rand(); void rand();
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <div className="mb-6">
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">AI in Finance</h1>
- <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">ML · NLP · PREDICTION · AUTOMATION</p>
+ <div className="mb-2">
+ <h1 className="text-3xl font-bold tracking-tight">AI in Finance</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground">ML · NLP · PREDICTION · AUTOMATION</p>
  </div>
-
- <div className="border-t border-border my-6" />
 
  {/* Tabs */}
  <Tabs defaultValue="ml-trading" className="w-full">
@@ -1300,7 +1286,7 @@ export default function AIFinancePage() {
  <TabsTrigger
  key={id}
  value={id}
- className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="flex items-center gap-1.5 data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  <Icon className="w-3.5 h-3.5" />
  {label}
@@ -1309,36 +1295,35 @@ export default function AIFinancePage() {
  </TabsList>
 
  <TabsContent value="ml-trading" className="data-[state=inactive]:hidden mt-0">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <MLTradingTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="credit" className="data-[state=inactive]:hidden mt-0">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <CreditScoringTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="fraud" className="data-[state=inactive]:hidden mt-0">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <FraudDetectionTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="research" className="data-[state=inactive]:hidden mt-0">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <AIResearchTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="risk" className="data-[state=inactive]:hidden mt-0">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <RiskRegulationTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  Shield,
@@ -329,14 +328,10 @@ function ECAOverviewTab() {
  </div>
 
  {/* Detail panel */}
- <AnimatePresence>
+ 
  {selected && (
- <motion.div
+ <div
  key={selected.shortName}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="bg-card border rounded-md p-5"
  style={{ borderColor: selected.color + "66" }}
  >
@@ -359,9 +354,9 @@ function ECAOverviewTab() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Role in exports */}
  <div className="bg-card border border-border rounded-md p-5">
@@ -623,28 +618,28 @@ function ProductsTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
+ 
  {activeProduct === "buyer-credit" && (
- <motion.div key="buyer-credit" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key="buyer-credit">
  <BuyerCreditFlow />
- </motion.div>
+ </div>
  )}
  {activeProduct === "supplier-credit" && (
- <motion.div key="supplier-credit" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key="supplier-credit">
  <SupplierCreditFlow />
- </motion.div>
+ </div>
  )}
  {activeProduct === "political-risk" && (
- <motion.div key="political-risk" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key="political-risk">
  <PoliticalRiskPanel />
- </motion.div>
+ </div>
  )}
  {activeProduct === "guarantees" && (
- <motion.div key="guarantees" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key="guarantees">
  <GuaranteesPanel />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -1133,13 +1128,9 @@ function DealStructuringTab() {
  </div>
  {showCaseStudy ? <ChevronUp size={16} className="text-muted-foreground" /> : <ChevronDown size={16} className="text-muted-foreground" />}
  </button>
- <AnimatePresence>
+ 
  {showCaseStudy && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-5 pb-5 space-y-4 border-t border-border">
@@ -1178,9 +1169,9 @@ function DealStructuringTab() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  </div>
  );
@@ -1199,10 +1190,7 @@ export default function ExportCreditPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-6xl mx-auto px-4 py-8">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="mb-8 border-l-4 border-l-primary rounded-lg bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1229,7 +1217,7 @@ export default function ExportCreditPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="overview" className="w-full mt-8">
@@ -1249,27 +1237,27 @@ export default function ExportCreditPage() {
  </TabsList>
 
  <TabsContent value="overview" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <ECAOverviewTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="consensus" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <OECDConsensusTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="products" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <ProductsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="structuring" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <DealStructuringTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

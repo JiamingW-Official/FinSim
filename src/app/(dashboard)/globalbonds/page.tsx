@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -819,11 +818,8 @@ function SovereignYieldsTab() {
  </thead>
  <tbody>
  {sorted.map((bond, i) => (
- <motion.tr
+ <tr
  key={bond.code}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.03 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-4 py-2.5">
@@ -888,7 +884,7 @@ function SovereignYieldsTab() {
  {bond.inflation.toFixed(1)}%
  </span>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1335,11 +1331,8 @@ function HedgedReturnsTab() {
  </thead>
  <tbody>
  {HEDGING_DATA.map((h, i) => (
- <motion.tr
+ <tr
  key={h.currency}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-4 py-2.5">
@@ -1413,7 +1406,7 @@ function HedgedReturnsTab() {
  : "Avoid"}
  </Badge>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1687,11 +1680,8 @@ function EMBondsTab() {
  </thead>
  <tbody>
  {EM_BONDS.map((em, i) => (
- <motion.tr
+ <tr
  key={em.country}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-4 py-2.5">
@@ -1777,7 +1767,7 @@ function EMBondsTab() {
  : "Speculative"}
  </Badge>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1964,11 +1954,8 @@ function CentralBankTab() {
  {CENTRAL_BANKS.map((cb, i) => {
  const rateChange = cb.policyRate - cb.prevRate;
  return (
- <motion.div
+ <div
  key={cb.name}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.08 }}
  className="bg-muted/60 border border-border rounded-lg p-4 space-y-3"
  >
  <div className="flex items-start justify-between">
@@ -2069,7 +2056,7 @@ function CentralBankTab() {
  <span>Last: {cb.lastMeeting}</span>
  <span>Next: {cb.nextMeeting}</span>
  </div>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -2159,7 +2146,7 @@ export default function GlobalBondsPage() {
 
  return (
   <div className="flex h-full flex-col overflow-y-auto">
-   <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+   <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
     {/* Hero */}
     <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Global Bonds</h1>
     <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">SOVEREIGN · CORPORATE · EM · SPREADS</p>
@@ -2177,7 +2164,7 @@ export default function GlobalBondsPage() {
        <TabsTrigger
         key={tab.id}
         value={tab.id}
-        className="flex items-center gap-1.5 text-xs rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-muted-foreground data-[state=active]:text-foreground transition-colors"
+        className="flex items-center gap-1.5 text-xs rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-muted-foreground data-[state=active]:text-foreground transition-colors"
        >
         <tab.icon className="w-3.5 h-3.5" />
         <span className="hidden sm:inline">{tab.label}</span>
@@ -2186,13 +2173,9 @@ export default function GlobalBondsPage() {
       ))}
      </TabsList>
 
-     <AnimatePresence mode="wait">
-      <motion.div
+     
+      <div
        key={activeTab}
-       initial={{ opacity: 0, y: 6 }}
-       animate={{ opacity: 1, y: 0 }}
-       exit={{ opacity: 0, y: -6 }}
-       transition={{ duration: 0.18 }}
       >
        <TabsContent value="sovereign" className="mt-0">
         <SovereignYieldsTab />
@@ -2213,8 +2196,8 @@ export default function GlobalBondsPage() {
        <TabsContent value="centralbank" className="mt-0">
         <CentralBankTab />
        </TabsContent>
-      </motion.div>
-     </AnimatePresence>
+      </div>
+     
     </Tabs>
    </div>
   </div>

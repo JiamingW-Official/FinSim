@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -382,11 +381,8 @@ function MarketOverviewTab() {
  </thead>
  <tbody>
  {sorted.map((idx, i) => (
- <motion.tr
+ <tr
  key={idx.ticker}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2.5">
@@ -414,7 +410,7 @@ function MarketOverviewTab() {
  <td className="px-3 py-2.5"><ReturnBadge value={idx.oneYear} /></td>
  <td className="px-3 py-2.5"><ReturnBadge value={idx.fiveYear} /></td>
  <td className="px-3 py-2.5 text-muted-foreground text-xs">{idx.currency}</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -617,15 +613,10 @@ function ValuationTab() {
  </tr>
  </thead>
  <tbody>
- <AnimatePresence mode="popLayout">
+ 
  {filtered.map((v, i) => (
- <motion.tr
+ <tr
  key={v.code}
- layout
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- transition={{ delay: i * 0.03 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-2 font-medium text-foreground">{v.country}</td>
@@ -637,9 +628,9 @@ function ValuationTab() {
  <td className="px-3 py-2 text-emerald-400">{fmtNoSign(v.divYield)}</td>
  <td className={cn("px-3 py-2 font-medium", v.epsGrowth > 10 ? "text-emerald-400" : v.epsGrowth < 5 ? "text-amber-400" : "text-muted-foreground")}>{fmt(v.epsGrowth)}</td>
  <td className="px-3 py-2 text-muted-foreground text-xs">{v.region}</td>
- </motion.tr>
+ </tr>
  ))}
- </AnimatePresence>
+ 
  </tbody>
  </table>
  </div>
@@ -743,13 +734,9 @@ function CountryDeepDivesTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedCountry}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="grid grid-cols-1 lg:grid-cols-2 gap-4"
  >
  {/* Left: Market overview */}
@@ -841,8 +828,8 @@ function CountryDeepDivesTab() {
  </svg>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
  );
 }
@@ -888,11 +875,8 @@ function CurrencyImpactTab() {
  </thead>
  <tbody>
  {CURRENCY_DATA.map((row, i) => (
- <motion.tr
+ <tr
  key={row.currency}
- initial={{ opacity: 0, x: -6 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.05 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-2.5 font-medium text-foreground">{row.country}</td>
@@ -908,7 +892,7 @@ function CurrencyImpactTab() {
  </td>
  <td className="px-3 py-2.5 text-amber-400 text-xs">{fmtNoSign(row.hedgeCost)}</td>
  <td className="px-3 py-2.5 text-muted-foreground text-xs">{fmtNoSign(row.volatility)}</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1198,11 +1182,8 @@ function EMvsDMTab() {
  </thead>
  <tbody>
  {EMGDM_DATA.map((d, i) => (
- <motion.tr
+ <tr
  key={d.name}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-2 font-medium text-foreground whitespace-nowrap">{d.name}</td>
@@ -1226,7 +1207,7 @@ function EMvsDMTab() {
  <td className={cn("px-3 py-2 text-xs font-medium", d.riskPremium > 3 ? "text-amber-400" : "text-foreground")}>
  {d.riskPremium > 0 ? "+" : ""}{d.riskPremium.toFixed(1)}%
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1242,7 +1223,7 @@ function EMvsDMTab() {
 export default function GlobalEquityPage() {
  return (
  <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Global Equity</h1>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">INTERNATIONAL MARKETS · REGIONS · SECTORS</p>

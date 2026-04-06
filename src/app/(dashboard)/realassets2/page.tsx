@@ -1,7 +1,6 @@
 "use client";
 
 
-import { motion } from "framer-motion";
 import {
  TreePine,
  Wheat,
@@ -482,14 +481,12 @@ const ART_COSTS: { label: string; pct: number; color: string }[] = [
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function RealAssets2Page() {
  return (
- <div className="p-4 space-y-4 max-w-6xl mx-auto">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
- <div className="flex items-center gap-3 mb-1">
- <div className="p-2 rounded-lg bg-emerald-500/5">
- </div>
  <div>
- <h1 className="text-2xl font-semibold text-foreground">Real Assets Deep Dive</h1>
+ <div className="flex items-center gap-3 mb-1">
+ <div>
+ <h1 className="text-3xl font-bold tracking-tight">Real Assets Deep Dive</h1>
  <p className="text-sm text-muted-foreground">Timberland, farmland, art, royalties, and infrastructure — beyond bricks and mortar</p>
  </div>
  </div>
@@ -505,21 +502,21 @@ export default function RealAssets2Page() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="timber">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="timber" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="timber" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Timberland &amp; Farmland
  </TabsTrigger>
- <TabsTrigger value="art" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="art" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Art &amp; Collectibles
  </TabsTrigger>
- <TabsTrigger value="royalties" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="royalties" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Royalties &amp; IP
  </TabsTrigger>
- <TabsTrigger value="comparison" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="comparison" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Infra vs Real Estate
  </TabsTrigger>
  </TabsList>

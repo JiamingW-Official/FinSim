@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -900,19 +899,15 @@ function CollapsibleSection({
  <ChevronDown className="w-4 h-4 text-muted-foreground" />
  )}
  </button>
- <AnimatePresence initial={false}>
+ 
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="p-4">{children}</div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -1025,10 +1020,7 @@ export default function EquityDerivativesPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1061,7 +1053,7 @@ export default function EquityDerivativesPage() {
  </Badge>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="sso" className="mt-8">
@@ -1086,10 +1078,7 @@ export default function EquityDerivativesPage() {
 
  {/* ── TAB 1: SINGLE-STOCK OPTIONS ──────────────────────────────────── */}
  <TabsContent value="sso" className="data-[state=inactive]:hidden space-y-5">
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="space-y-5"
  >
  {/* Intro grid */}
@@ -1251,15 +1240,12 @@ export default function EquityDerivativesPage() {
  </div>
  </CollapsibleSection>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 2: EQUITY SWAPS & TRS ─────────────────────────────────────── */}
  <TabsContent value="swaps" className="data-[state=inactive]:hidden space-y-5">
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="space-y-5"
  >
  {/* TRS Diagram */}
@@ -1375,15 +1361,12 @@ export default function EquityDerivativesPage() {
  </div>
  </CollapsibleSection>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 3: VOLATILITY PRODUCTS ───────────────────────────────────── */}
  <TabsContent value="vol" className="data-[state=inactive]:hidden space-y-5">
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="space-y-5"
  >
  {/* VIX overview */}
@@ -1519,15 +1502,12 @@ export default function EquityDerivativesPage() {
  </div>
  </CollapsibleSection>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 4: CONVERTIBLE BONDS ─────────────────────────────────────── */}
  <TabsContent value="cb" className="data-[state=inactive]:hidden space-y-5">
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="space-y-5"
  >
  {/* CB pricing SVG */}
@@ -1730,7 +1710,7 @@ export default function EquityDerivativesPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
 

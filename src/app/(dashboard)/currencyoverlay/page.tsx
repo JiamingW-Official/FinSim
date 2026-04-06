@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -539,11 +538,10 @@ function FXExposureMonitor() {
  const isExpanded = showHedgeSlider === e.currency;
  return (
  <>
- <motion.tr
+ <tr
  key={e.currency}
  className="border-b border-border hover:bg-secondary/30 cursor-pointer transition-colors"
  onClick={() => setShowHedgeSlider(isExpanded ? null : e.currency)}
- layout
  >
  <td className="py-3 px-4">
  <span className="flex items-center gap-2 font-medium">
@@ -590,14 +588,11 @@ function FXExposureMonitor() {
  <span className="text-muted-foreground">—</span>
  )}
  </td>
- </motion.tr>
- <AnimatePresence>
+ </tr>
+ 
  {isExpanded && (
- <motion.tr
+ <tr
  key={`${e.currency}-expanded`}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
  >
  <td colSpan={8} className="px-6 py-3 bg-secondary/20">
  <div className="flex items-center gap-4">
@@ -617,9 +612,9 @@ function FXExposureMonitor() {
  </span>
  </div>
  </td>
- </motion.tr>
+ </tr>
  )}
- </AnimatePresence>
+ 
  </>
  );
  })}
@@ -1177,12 +1172,9 @@ function FXValuationModels() {
  <span>0 (fair)</span>
  <span>+3.5σ (deeply rich)</span>
  </div>
- <AnimatePresence>
+ 
  {showMeanRev && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="pt-3 border-t border-border mt-3 space-y-2">
@@ -1196,9 +1188,9 @@ function FXValuationModels() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
 
@@ -1696,58 +1688,58 @@ export default function CurrencyOverlayPage() {
  </TabsList>
 
  <TabsContent value="exposure">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "exposure" && (
- <motion.div key="exposure" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+ <div key="exposure">
  <FXExposureMonitor />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
  <TabsContent value="hedging">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "hedging" && (
- <motion.div key="hedging" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+ <div key="hedging">
  <HedgingStrategyBuilder />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
  <TabsContent value="carry">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "carry" && (
- <motion.div key="carry" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+ <div key="carry">
  <CarryTradeAnalyzer />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
  <TabsContent value="valuation">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "valuation" && (
- <motion.div key="valuation" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+ <div key="valuation">
  <FXValuationModels />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
  <TabsContent value="options">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "options" && (
- <motion.div key="options" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+ <div key="options">
  <OptionsFXHedging />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
  <TabsContent value="ccs">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "ccs" && (
- <motion.div key="ccs" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+ <div key="ccs">
  <CrossCurrencySwapAnalytics />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
  </Tabs>
   </div>

@@ -29,7 +29,6 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 935;
@@ -350,7 +349,7 @@ function SectionTitle({ icon, title, subtitle }: { icon: React.ReactNode; title:
  <div className="flex items-start gap-3 mb-6">
  <div className="p-2 rounded-lg bg-muted text-foreground">{icon}</div>
  <div>
- <h2 className="text-lg font-semibold text-foreground">{title}</h2>
+ <h2 className="text-xl font-serif tracking-tight">{title}</h2>
  {subtitle && <p className="text-sm text-muted-foreground mt-0.5">{subtitle}</p>}
  </div>
  </div>
@@ -550,11 +549,8 @@ function DBvsDCTab() {
  </div>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full bg-primary rounded-full"
- initial={{ width: 0 }}
- animate={{ width: `${(sys.assets / maxAssets) * 100}%` }}
- transition={{ duration: 0.8, delay: 0.1 }}
  />
  </div>
  </div>
@@ -1015,8 +1011,8 @@ function LDITab() {
  <div className="flex gap-2 flex-wrap mt-2">
  {ldiSpectrum.map((l) => (
  <div key={l.label} className="flex items-center gap-1.5 px-2 py-1 rounded bg-card/60 border border-border">
- <div className="w-2 h-2 rounded-full" style={{ background: l.color }}></div>
- <span style={{ color: l.color }} className="font-medium">{l.pct}%</span>
+ <div className="w-2 h-2 rounded-full" style={{ background: l.color, color: l.color }}></div>
+ <span  className="font-medium">{l.pct}%</span>
  <span className="text-muted-foreground">{l.label}</span>
  <span className="text-muted-foreground">({l.desc})</span>
  </div>
@@ -1153,14 +1149,11 @@ function ActuarialTab() {
  </div>
  </button>
  {selectedAssumption === assumption.name && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="mx-3 p-3 rounded-b-lg bg-card/80 border-x border-b border-border"
  >
  <p className="text-xs text-muted-foreground">{assumption.impact}</p>
- </motion.div>
+ </div>
  )}
  </div>
  ))}
@@ -1584,19 +1577,16 @@ function InvestmentStrategyTab() {
 
 export default function PensionFundsPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Page Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-start gap-4">
  <div className="p-3 rounded-md bg-muted border border-border">
  </div>
  <div>
- <h1 className="text-lg font-medium text-foreground">Pension Fund Management</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Pension Fund Management</h1>
  <p className="text-muted-foreground text-sm mt-1">
  DB vs DC plans, liability-driven investing, actuarial assumptions, and institutional investment strategies
  </p>
@@ -1608,47 +1598,47 @@ export default function PensionFundsPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="dbvsdc">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
- <TabsTrigger value="dbvsdc" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
+ <TabsTrigger value="dbvsdc" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  DB vs DC Plans
  </TabsTrigger>
- <TabsTrigger value="ldi" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="ldi" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  Liability-Driven
  </TabsTrigger>
- <TabsTrigger value="actuarial" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="actuarial" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  Actuarial
  </TabsTrigger>
- <TabsTrigger value="strategy" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="strategy" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  Investment Strategy
  </TabsTrigger>
  </TabsList>
 
  <TabsContent value="dbvsdc" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <DBvsDCTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="ldi" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <LDITab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="actuarial" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <ActuarialTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="strategy" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <InvestmentStrategyTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

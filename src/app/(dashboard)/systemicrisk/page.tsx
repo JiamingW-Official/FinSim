@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -335,7 +334,7 @@ function bucketColor(bucket: number): string {
 
 // Network contagion SVG
 function NetworkContagionSVG() {
- // Node positions (x,y) — static layout
+ // Node positions (x,y) — static
  const nodes = [
  { id: "A", x: 200, y: 100, label: "Bank A", failed: true, size: 28 },
  { id: "B", x: 370, y: 80, label: "Bank B", failed: true, size: 22 },
@@ -667,8 +666,8 @@ function FSOCHeatmap() {
  <div className="flex gap-3 mt-3 flex-wrap">
  {["Low", "Moderate", "Elevated", "High", "Critical"].map((l, i) => (
  <div key={i} className="flex items-center gap-1.5">
- <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: heatColor(i) }} />
- <span className="text-xs" style={{ color: heatText(i) }}>{l}</span>
+ <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: heatColor(i), color: heatText(i) }} />
+ <span className="text-xs" >{l}</span>
  </div>
  ))}
  </div>
@@ -687,10 +686,10 @@ function EWIBar({ row }: { row: EWIRow }) {
  <div className="flex justify-between items-center mb-1">
  <span className="text-sm font-medium text-foreground">{row.indicator}</span>
  <div className="flex items-center gap-2">
- <span className="text-sm font-semibold" style={{ color: col }}>
+ <span className="text-sm font-semibold" style={{ color: col, backgroundColor: col }}>
  {row.current}{row.unit}
  </span>
- <div className="w-2 h-2 rounded-full" style={{ backgroundColor: col }} />
+ <div className="w-2 h-2 rounded-full"  />
  </div>
  </div>
  <div className="relative h-2 rounded-full bg-muted overflow-hidden mb-1">
@@ -718,21 +717,17 @@ function InfoCard({ title, children }: { title: string; children: React.ReactNod
  </div>
  {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
- <AnimatePresence>
+ 
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 text-sm text-muted-foreground border-t border-border pt-3 space-y-2">
  {children}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -923,7 +918,7 @@ function GSIBTab() {
  Bucket {row.bucket}
  </Badge>
  </td>
- <td className="p-2 font-medium" style={{ color: bucketColor(row.bucket) }}>{row.surcharge}</td>
+ <td className="p-2 font-medium" >{row.surcharge}</td>
  <td className="p-2 text-muted-foreground">{row.totalCapital}</td>
  <td className="p-2 text-muted-foreground">
  </td>
@@ -933,15 +928,13 @@ function GSIBTab() {
  </table>
  </div>
  {selectedBank && (
- <motion.div
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="mt-3 rounded-lg bg-muted/50 border border-border p-3 text-sm text-muted-foreground"
  >
  <strong className="text-foreground">{selectedBank.bank}</strong> — {selectedBank.country} |&nbsp;
  G-SIB surcharge <strong style={{ color: bucketColor(selectedBank.bucket) }}>{selectedBank.surcharge}</strong> on top of minimum 8% CET1 requirement.
  Total minimum capital: <strong className="text-foreground">{selectedBank.totalCapital}</strong> (CET1 + surcharge + conservation buffer).
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
@@ -1004,9 +997,8 @@ function MetricsTab() {
  {/* Metrics grid */}
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
  {SRISK_METRICS.map((m, i) => (
- <motion.div
+ <div
  key={i}
- whileHover={{ scale: 1.01 }}
  className="rounded-lg border border-border bg-card/60 p-4 cursor-pointer"
  style={{ borderColor: activeMetric?.symbol === m.symbol ? riskColors[m.riskLevel] : undefined }}
  onClick={() => setActiveMetric(am => am?.symbol === m.symbol ? null : m)}
@@ -1027,17 +1019,14 @@ function MetricsTab() {
  </div>
  </div>
  <p className="text-xs text-muted-foreground">{m.description}</p>
- </motion.div>
+ </div>
  ))}
  </div>
 
  {/* Detail panel */}
- <AnimatePresence>
+ 
  {activeMetric && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  >
  <Card className="bg-muted/30 border-border">
  <CardContent className="pt-4">
@@ -1052,9 +1041,9 @@ function MetricsTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* FSOC Dashboard */}
  <Card className="bg-card/50 border-border">
@@ -1130,7 +1119,7 @@ function MacroPruTab() {
  <CardContent>
  <div className="space-y-3">
  {MACRO_PRU_TOOLS.map((tool, i) => (
- <motion.div
+ <div
  key={i}
  className="rounded-lg border border-border bg-muted/30 p-3 cursor-pointer hover:border-border transition-colors duration-150"
  style={{ borderColor: selectedTool?.acronym === tool.acronym ? typeColor(tool.type) : undefined }}
@@ -1156,19 +1145,16 @@ function MacroPruTab() {
  </div>
  </div>
 
- <AnimatePresence>
+ 
  {selectedTool?.acronym === tool.acronym && (
- <motion.p
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <p
  className="text-xs text-muted-foreground mt-2 border-t border-border pt-2"
  >
  {tool.description}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  </CardContent>
@@ -1313,10 +1299,7 @@ export default function SystemicRiskPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1343,7 +1326,7 @@ export default function SystemicRiskPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="contagion" className="mt-8">
@@ -1365,27 +1348,27 @@ export default function SystemicRiskPage() {
  </TabsList>
 
  <TabsContent value="contagion" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <ContagionTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="gsibs" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <GSIBTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="metrics" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <MetricsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="macropru" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <MacroPruTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

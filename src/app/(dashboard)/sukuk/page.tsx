@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  BookOpen,
  ShieldCheck,
@@ -700,10 +699,9 @@ function ShariahTab() {
  {PROHIBITIONS.map((p) => {
  const isOpen = expanded === p.arabic;
  return (
- <motion.div
+ <div
  key={p.arabic}
  className="rounded-md border border-border bg-muted/50 overflow-hidden"
- layout
  >
  <button
  className="w-full flex items-center gap-3 p-4 text-left"
@@ -718,26 +716,22 @@ function ShariahTab() {
  </div>
  {isOpen ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
  </button>
- <AnimatePresence initial={false}>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 space-y-3">
  <p className="text-sm text-muted-foreground">{p.description}</p>
- <div className="bg-card/60 rounded-lg p-3">
+ <div className="bg-card rounded-lg p-3">
  <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Practical Examples</p>
  <p className="text-sm text-muted-foreground">{p.example}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  );
  })}
  </div>
@@ -841,13 +835,9 @@ function StructuresTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selected}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
  className="space-y-4"
  >
  {/* Header */}
@@ -865,7 +855,7 @@ function StructuresTab() {
  </div>
 
  {/* Flow Diagram */}
- <div className="rounded-md border border-border bg-card/50 p-4">
+ <div className="rounded-md border border-border bg-card p-4">
  <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Transaction Flow</p>
  <FlowDiagram structure={structure} />
  <div className="mt-2 bg-muted/50 rounded-lg p-3">
@@ -898,8 +888,8 @@ function StructuresTab() {
  </ul>
  </div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Donut + sovereign vs corporate comparison */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1157,15 +1147,15 @@ function ComparisonTab() {
  <span className="text-sm font-medium text-foreground">Crossover Investor Flow</span>
  </div>
  <div className="space-y-3 text-xs text-muted-foreground">
- <div className="bg-card/50 rounded-lg p-3">
+ <div className="bg-card rounded-lg p-3">
  <p className="text-muted-foreground font-medium mb-1">Who buys both?</p>
  <p>GEM (global emerging market) fund managers, MENA sovereign wealth funds, and international banks with Islamic finance divisions actively participate in both markets.</p>
  </div>
- <div className="bg-card/50 rounded-lg p-3">
+ <div className="bg-card rounded-lg p-3">
  <p className="text-muted-foreground font-medium mb-1">Dual-listed securities</p>
  <p>Major sukuk (Saudi Aramco, UAE sovereign) are dual-listed, allowing both Islamic and conventional investors to buy same instrument under their respective frameworks.</p>
  </div>
- <div className="bg-card/50 rounded-lg p-3">
+ <div className="bg-card rounded-lg p-3">
  <p className="text-muted-foreground font-medium mb-1">Spread compression drivers</p>
  <p>Crossover demand narrows sukuk spreads vs conventional bonds when GCC sovereigns issue in size, as both investor bases compete for the same paper.</p>
  </div>
@@ -1189,21 +1179,17 @@ function ComparisonTab() {
 
 export default function SukukPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-8">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
+ <div
+ className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card"
  >
  <div className="flex items-center gap-3 mb-2">
  <div className="p-2 rounded-md bg-emerald-900/30 border border-emerald-700/40">
  <Landmark className="h-6 w-6 text-emerald-400" />
  </div>
  <div>
- <h1 className="text-2xl font-bold text-foreground">Islamic Finance &amp; Sukuk</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Islamic Finance &amp; Sukuk</h1>
  <p className="text-sm text-muted-foreground">Shariah-compliant capital markets — structures, principles &amp; global market</p>
  </div>
  </div>
@@ -1219,7 +1205,7 @@ export default function SukukPage() {
  </span>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="shariah" className="mt-8">
@@ -1259,7 +1245,6 @@ export default function SukukPage() {
  <ComparisonTab />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

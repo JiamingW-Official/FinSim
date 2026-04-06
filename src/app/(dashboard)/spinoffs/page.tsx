@@ -18,7 +18,6 @@ import {
  Zap,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
@@ -362,13 +361,9 @@ function SpinoffMechanicsTab() {
  )}
  </button>
 
- <AnimatePresence initial={false}>
+ 
  {expandedType === tx.id && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-5 pb-5 space-y-4">
@@ -416,9 +411,9 @@ function SpinoffMechanicsTab() {
  {tx.taxTreatment}
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>

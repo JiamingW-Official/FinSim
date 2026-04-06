@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -486,7 +485,7 @@ function LongShortTab() {
  const sectorGroups = Array.from(new Set(pairs.map((p) => p.sector)));
 
  return (
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="space-y-4">
+ <div className="space-y-4">
  {/* Summary stats */}
  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
  <StatPill label="Gross Exposure" value={`${grossExposure.toFixed(1)}%`} sub="of NAV" />
@@ -576,7 +575,7 @@ function LongShortTab() {
  <ExposureBarChart pairs={pairs} />
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -593,7 +592,7 @@ function GlobalMacroTab() {
  const categoryColors: Record<string, string> = { rates: "#3b82f6", fx: "#a78bfa", commodities: "#f59e0b", equities: "#22c55e" };
 
  return (
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="space-y-4">
+ <div className="space-y-4">
  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
  <StatPill label="Total Notional" value={`$${totalNotional}M`} sub="6 themes" />
  <StatPill label="Weighted P&L" value={`${totalPnlPct > 0 ? "+" : ""}${totalPnlPct.toFixed(2)}%`} positive={totalPnlPct > 0} sub="YTD" />
@@ -639,13 +638,13 @@ function GlobalMacroTab() {
  <div className="text-xs text-muted-foreground">${t.notional}M notional</div>
  </div>
  </div>
- <AnimatePresence>
+ 
  {activeTheme === t.id && (
- <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-2 pt-2 border-t border-border">
+ <div className="mt-2 pt-2 border-t border-border">
  <p className="text-xs text-muted-foreground">{t.rationale}</p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </CardContent>
@@ -684,7 +683,7 @@ function GlobalMacroTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -706,7 +705,7 @@ function EventDrivenTab() {
  const statusColors: Record<string, string> = { approved: "border-green-700 text-green-400", pending: "border-amber-700 text-amber-400", at_risk: "border-red-700 text-red-400" };
 
  return (
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="space-y-4">
+ <div className="space-y-4">
  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
  <StatPill label="Active Deals" value={`${deals.length}`} sub="merger arb" />
  <StatPill label="Avg Annualized" value="9.9%" positive={true} sub="deal spread" />
@@ -722,9 +721,9 @@ function EventDrivenTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
+ 
  {subTab === "merger" && (
- <motion.div key="merger" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key="merger">
  <Card className="bg-card/60 border-border">
  <CardHeader className="pb-2 pt-4 px-4">
  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
@@ -769,11 +768,11 @@ function EventDrivenTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
 
  {subTab === "distressed" && (
- <motion.div key="distressed" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key="distressed">
  <Card className="bg-card/60 border-border">
  <CardHeader className="pb-2 pt-4 px-4">
  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
@@ -817,11 +816,11 @@ function EventDrivenTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
 
  {subTab === "special" && (
- <motion.div key="special" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key="special">
  <Card className="bg-card/60 border-border">
  <CardHeader className="pb-2 pt-4 px-4">
  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
@@ -853,10 +852,10 @@ function EventDrivenTab() {
  ))}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  );
 }
 
@@ -882,7 +881,7 @@ function RelativeValueTab() {
  ];
 
  return (
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="space-y-4">
+ <div className="space-y-4">
  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
  <StatPill label="Conv. Arb Book" value="$342M" sub="5 positions" />
  <StatPill label="Avg Mispricing" value="-2.1%" positive={false} sub="delta-hedged" />
@@ -898,9 +897,9 @@ function RelativeValueTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
+ 
  {rvMode === "convertible" && (
- <motion.div key="conv" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key="conv">
  <Card className="bg-card/60 border-border">
  <CardHeader className="pb-2 pt-4 px-4">
  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
@@ -939,11 +938,11 @@ function RelativeValueTab() {
  <p className="text-xs text-muted-foreground mt-2">* Negative mispricing = bond undervalued relative to theoretical — long opportunity after delta hedge</p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
 
  {rvMode === "capstructure" && (
- <motion.div key="cap" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key="cap">
  <Card className="bg-card/60 border-border">
  <CardHeader className="pb-2 pt-4 px-4">
  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
@@ -979,11 +978,11 @@ function RelativeValueTab() {
  ))}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
 
  {rvMode === "statarb" && (
- <motion.div key="stat" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div key="stat">
  <Card className="bg-card/60 border-border">
  <CardHeader className="pb-2 pt-4 px-4">
  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
@@ -1019,10 +1018,10 @@ function RelativeValueTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  );
 }
 
@@ -1043,7 +1042,7 @@ function PerformanceTab() {
  const winMonths = monthlyReturns.filter((r) => r > 0).length;
 
  return (
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="space-y-4">
+ <div className="space-y-4">
  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
  <StatPill label="Total Return" value={`+${totalReturn.toFixed(1)}%`} positive={true} sub="28 months" />
  <StatPill label="Max Drawdown" value={`${maxDD.toFixed(1)}%`} positive={false} sub="peak-to-trough" />
@@ -1183,7 +1182,7 @@ function PerformanceTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -1192,7 +1191,7 @@ function PerformanceTab() {
 export default function HFStrategiesPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="max-w-6xl mx-auto space-y-4">
+ <div className="max-w-6xl mx-auto space-y-4">
  {/* Header */}
  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
  <div>
@@ -1219,7 +1218,7 @@ export default function HFStrategiesPage() {
  </div>
 
  {/* Fund overview bar */}
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
+ <div>
  <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-6 bg-card/40 rounded-md border border-border border-l-4 border-l-primary">
  {[
  { label: "Strategy", value: "Multi-Strat", icon: <Layers className="w-3.5 h-3.5" /> },
@@ -1238,7 +1237,7 @@ export default function HFStrategiesPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Main tabs */}
  <Tabs defaultValue="longshort" className="mt-8">
@@ -1271,7 +1270,7 @@ export default function HFStrategiesPage() {
  <PerformanceTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

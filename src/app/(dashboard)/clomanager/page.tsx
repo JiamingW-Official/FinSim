@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Layers,
  ShieldCheck,
@@ -1069,17 +1068,12 @@ const TABS = [
 
 export default function CLOManagerPage() {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="min-h-screen bg-background text-foreground"
- >
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* HERO Header */}
- <div className="border-b border-border border-l-4 border-l-primary bg-card/60 px-6 py-6">
+ <div className="border-l-4 border-l-primary rounded-lg border border-border bg-card p-5">
  <div className="flex items-center gap-3 mb-1">
  <DollarSign className="h-6 w-6 text-primary" />
- <h1 className="text-xl font-semibold text-foreground">CLO Manager</h1>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground">CLO Manager</h1>
  <Badge variant="outline" className="border-primary/40 text-primary text-xs">
  $500M CLO
  </Badge>
@@ -1090,14 +1084,14 @@ export default function CLOManagerPage() {
  </div>
 
  {/* Content */}
- <div className="px-6 py-6">
+ <div>
  <Tabs defaultValue="structure">
- <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-card/60 border border-border p-1 rounded-md">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {TABS.map(({ id, label, icon: Icon }) => (
  <TabsTrigger
  key={id}
  value={id}
- className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-foreground"
+ className="rounded-none bg-transparent border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground flex items-center gap-1.5"
  >
  <Icon className="h-3.5 w-3.5" />
  {label}
@@ -1125,6 +1119,6 @@ export default function CLOManagerPage() {
  </TabsContent>
  </Tabs>
  </div>
- </motion.div>
+ </div>
  );
 }

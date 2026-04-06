@@ -1052,7 +1052,7 @@ export default function AlgoPage() {
  </Button>
  </div>
 
- {/* Three-panel layout */}
+ {/* Three-panel */}
  <div className="grid grid-cols-3 gap-4">
  {/* Entry Rules */}
  <Card className="border-border bg-card/50 p-4 space-y-3">

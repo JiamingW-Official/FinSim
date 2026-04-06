@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import {
@@ -926,15 +926,12 @@ export default function FinancialModelPage() {
  const COMPANY_KEYS = Object.keys(COMPANIES) as CompanyKey[];
 
  return (
- <div className="flex flex-col h-full min-h-screen bg-background text-foreground">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <div className="shrink-0 border-b border-border border-l-4 border-l-primary bg-card/60 backdrop-blur-sm px-6 py-4">
  <div className="flex items-center justify-between flex-wrap gap-3">
  <div>
- <h1 className="text-lg font-medium tracking-tight flex items-center gap-2">
- Financial Model Builder
- </h1>
- <p className="text-xs text-muted-foreground mt-0.5">3-Statement Model · DCF · Comps · Scenario Analysis</p>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground">Financial Model Builder</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-0.5">3-STATEMENT MODEL · DCF · COMPS · SCENARIO ANALYSIS</p>
  </div>
  {/* Company + Scenario selector */}
  <div className="flex items-center gap-3 flex-wrap">
@@ -980,12 +977,10 @@ export default function FinancialModelPage() {
  </div>
  </div>
  </div>
- </div>
 
  {/* Tabs */}
- <div className="flex-1 overflow-hidden">
- <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full flex flex-col">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto shrink-0">
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "income", label: "Income Statement" },
  { value: "balance", label: "Balance Sheet" },
@@ -997,7 +992,7 @@ export default function FinancialModelPage() {
  <TabsTrigger
  key={value}
  value={value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  {label}
  </TabsTrigger>
@@ -1005,12 +1000,8 @@ export default function FinancialModelPage() {
  </TabsList>
 
  {/* ─── Tab 1: Income Statement ─────────────────────────────────────── */}
- <TabsContent value="income" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
- >
+ <TabsContent value="income" className="mt-4 data-[state=inactive]:hidden">
+ <div>
  {/* Assumptions */}
  <div className="mb-6 grid grid-cols-2 md:grid-cols-4 gap-4">
  {[
@@ -1114,12 +1105,12 @@ export default function FinancialModelPage() {
  <StatChip label="Net Margin" value={fmtPct(lastHistorical.netIncome / lastHistorical.revenue * 100)} color="purple" />
  <StatChip label="EPS (LTM)" value={`$${lastHistorical.eps.toFixed(2)}`} color="amber" />
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ─── Tab 2: Balance Sheet ─────────────────────────────────────────── */}
- <TabsContent value="balance" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <TabsContent value="balance" className="mt-4 data-[state=inactive]:hidden">
+ <div>
  {/* Balance check banner */}
  <div className={cn(
  "mb-4 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border",
@@ -1225,12 +1216,12 @@ export default function FinancialModelPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ─── Tab 3: Cash Flow ─────────────────────────────────────────────── */}
- <TabsContent value="cashflow" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <TabsContent value="cashflow" className="mt-4 data-[state=inactive]:hidden">
+ <div>
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
  {/* CF statement */}
  <div className="bg-foreground/[0.03] border border-border rounded-md p-4">
@@ -1308,12 +1299,12 @@ export default function FinancialModelPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ─── Tab 4: DCF Valuation ─────────────────────────────────────────── */}
- <TabsContent value="dcf" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <TabsContent value="dcf" className="mt-4 data-[state=inactive]:hidden">
+ <div>
  {/* DCF controls */}
  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
  {[
@@ -1445,12 +1436,12 @@ export default function FinancialModelPage() {
  <FootballFieldChart rows={footballRows} currentPrice={companyData.currentPrice} width={540} />
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ─── Tab 5: Comparables ───────────────────────────────────────────── */}
- <TabsContent value="comps" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <TabsContent value="comps" className="mt-4 data-[state=inactive]:hidden">
+ <div>
  {/* Comps table */}
  <div className="overflow-x-auto rounded-md border border-border bg-card mb-6">
  <table className="w-full text-xs text-muted-foreground border-collapse">
@@ -1543,12 +1534,12 @@ export default function FinancialModelPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ─── Tab 6: Scenario Analysis ─────────────────────────────────────── */}
- <TabsContent value="scenario" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <TabsContent value="scenario" className="mt-4 data-[state=inactive]:hidden">
+ <div>
  {/* Scenario summary */}
  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
  {scenarioResults.map((sc) => {
@@ -1659,10 +1650,9 @@ export default function FinancialModelPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

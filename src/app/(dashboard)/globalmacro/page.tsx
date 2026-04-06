@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -191,13 +190,9 @@ function WorldHeatmap() {
  })}
  </svg>
 
- <AnimatePresence>
+ 
  {hovered && (
- <motion.div
- initial={{ opacity: 0, scale: 0.9 }}
- animate={{ opacity: 1, scale: 1 }}
- exit={{ opacity: 0, scale: 0.9 }}
- transition={{ duration: 0.15 }}
+ <div
  className="absolute z-20 pointer-events-none bg-card border border-border rounded-lg p-3 text-xs text-muted-foreground min-w-[180px]"
  style={{
  left: Math.min(tooltipPos.x + 8, svgW > 0 ? 9999 : 0),
@@ -243,9 +238,9 @@ function WorldHeatmap() {
  {hovered.outlook.toUpperCase()}
  </Badge>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Legend */}
  <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
@@ -492,21 +487,17 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
  <ShieldAlert className="w-3 h-3" />
  Key Risk
  </button>
- <AnimatePresence>
+ 
  {expanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <p className="text-xs text-amber-400/80 mt-1.5 bg-amber-950/30 rounded p-2 border border-amber-900/40">
  {idea.risk}
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
  );
@@ -1093,10 +1084,7 @@ export default function GlobalMacroPage() {
 
  {/* ── Tab 1: Macro Dashboard ─────────────────────────────────────────── */}
  <TabsContent value="dashboard" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  >
  <Card className="bg-card border-border mb-6">
  <CardHeader className="pb-2">
@@ -1116,15 +1104,12 @@ export default function GlobalMacroPage() {
  <RegimeCard key={ind.label} indicator={ind} />
  ))}
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 2: Trade Ideas ─────────────────────────────────────────────── */}
  <TabsContent value="trade-ideas" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  >
  {/* Summary bar */}
  <div className="flex items-center gap-4 mb-4 flex-wrap">
@@ -1171,15 +1156,12 @@ export default function GlobalMacroPage() {
  <TradeIdeaCard key={idea.name} idea={idea} />
  ))}
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 3: Central Bank Tracker ───────────────────────────────────── */}
  <TabsContent value="central-banks" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  >
  <Card className="bg-card border-border mb-6">
  <CardHeader className="pb-2">
@@ -1242,13 +1224,9 @@ export default function GlobalMacroPage() {
  </div>
  </div>
  </button>
- <AnimatePresence>
+ 
  {expandedBank === bank.abbr && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-3 pt-3 border-t border-border">
@@ -1289,22 +1267,19 @@ export default function GlobalMacroPage() {
  </svg>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
  ))}
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 4: Macro Indicators ───────────────────────────────────────── */}
  <TabsContent value="indicators" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  >
  <MacroScorecard indicators={MACRO_INDICATORS} />
 
@@ -1329,15 +1304,12 @@ export default function GlobalMacroPage() {
  ))}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 5: Currency Wars ──────────────────────────────────────────── */}
  <TabsContent value="currency" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-4"
  >
  <Card className="bg-card border-border">
@@ -1391,7 +1363,7 @@ export default function GlobalMacroPage() {
  <ReerChart />
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
    </div>

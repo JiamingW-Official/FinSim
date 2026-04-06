@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -748,10 +747,7 @@ export default function EconIndicatorsPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="flex items-start justify-between"
  >
  <div>
@@ -767,13 +763,10 @@ export default function EconIndicatorsPage() {
  <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block mr-1.5 animate-pulse" />
  Live data
  </Badge>
- </motion.div>
+ </div>
 
  {/* Key Metrics Row — Hero */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
+ <div
  className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4"
  >
  {keyMetrics.map((m, i) => {
@@ -806,14 +799,11 @@ export default function EconIndicatorsPage() {
  </Card>
  );
  })}
- </motion.div>
+ </div>
 
  {/* Main Tabs */}
- <motion.div
+ <div
  className="mt-8"
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
  >
  <Tabs defaultValue="leading">
  <TabsList className="mb-4">
@@ -1178,13 +1168,10 @@ export default function EconIndicatorsPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
 
  {/* Economic Calendar */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.3 }}
+ <div
  >
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -1238,7 +1225,7 @@ export default function EconIndicatorsPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </div>
  );
 }

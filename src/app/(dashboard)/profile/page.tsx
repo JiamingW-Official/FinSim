@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useGameStore } from "@/stores/game-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { useLearnStore } from "@/stores/learn-store";
@@ -659,7 +658,7 @@ export default function ProfilePage() {
  </div>
 
  {/* HERO — Player Stats/Level */}
- <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
+ <div
  className="rounded-lg border border-border bg-card p-5 space-y-3 mb-6"
  >
  <div className="flex items-center justify-between">
@@ -703,7 +702,7 @@ export default function ProfilePage() {
  </div>
  <Progress value={levelProgress.pct} className="h-2" />
  </div>
- </motion.div>
+ </div>
 
  <Tabs defaultValue="dna">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
@@ -716,9 +715,9 @@ export default function ProfilePage() {
 
  {/* ── Tab 1: Trading DNA ── */}
  <TabsContent value="dna" className="space-y-4 data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
+ 
  {!quizComplete ? (
- <motion.div key="quiz" variants={fadeUp} initial="hidden" animate="show" exit={{ opacity: 0 }}>
+ <div key="quiz">
  <Card className="border-border bg-card">
  <CardHeader className="pb-3">
  <div className="flex items-center justify-between">
@@ -730,13 +729,9 @@ export default function ProfilePage() {
  <Progress value={((currentQuestion) / QUIZ_QUESTIONS.length) * 100} className="h-1" />
  </CardHeader>
  <CardContent className="space-y-4">
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={currentQuestion}
- initial={{ opacity: 0, x: 20 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -20 }}
- transition={{ duration: 0.2 }}
  >
  {(() => {
  const q = QUIZ_QUESTIONS[currentQuestion];
@@ -772,8 +767,8 @@ export default function ProfilePage() {
  </div>
  );
  })()}
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {currentQuestion > 0 && (
  <button
@@ -797,9 +792,9 @@ export default function ProfilePage() {
  />
  ))}
  </div>
- </motion.div>
+ </div>
  ) : (
- <motion.div key="result" variants={fadeUp} initial="hidden" animate="show" className="space-y-4">
+ <div key="result" className="space-y-4">
  {/* Archetype card */}
  <Card className="border-border bg-card overflow-hidden">
  <div className="h-1 w-full bg-primary" />
@@ -875,14 +870,14 @@ export default function ProfilePage() {
  >
  Retake Assessment
  </Button>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
 
  {/* ── Tab 2: Skill Progression ── */}
  <TabsContent value="skills" className="space-y-4 data-[state=inactive]:hidden">
- <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-4">
+ <div className="space-y-4">
  <Card className="border-border bg-card">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm">Skill Tree</CardTitle>
@@ -990,12 +985,12 @@ export default function ProfilePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 3: Learning Path ── */}
  <TabsContent value="path" className="space-y-4 data-[state=inactive]:hidden">
- <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-4">
+ <div className="space-y-4">
  {/* Course progress summary */}
  <div className="grid grid-cols-3 gap-2">
  {[
@@ -1167,12 +1162,12 @@ export default function ProfilePage() {
  })}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 4: Performance Analytics ── */}
  <TabsContent value="analytics" className="space-y-4 data-[state=inactive]:hidden">
- <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-4">
+ <div className="space-y-4">
  {/* Stats grid */}
  <div className="grid grid-cols-2 gap-2">
  {[
@@ -1210,10 +1205,8 @@ export default function ProfilePage() {
  <span className="font-medium text-primary">Top {100 - communityPercentile}%</span>
  </div>
  <div className="h-3 rounded-full bg-foreground/[0.08] overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${communityPercentile}%` }}
- transition={{ duration: 1, ease: "easeOut" }}
+ <div
+ style={{ width: `${communityPercentile}%` }}
  className="h-full rounded-full bg-primary"
  />
  </div>
@@ -1327,12 +1320,12 @@ export default function ProfilePage() {
  <p className="text-xs text-muted-foreground mt-2">Each cell = trading activity intensity</p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 5: Goals & Milestones ── */}
  <TabsContent value="goals" className="space-y-4 data-[state=inactive]:hidden">
- <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-4">
+ <div className="space-y-4">
  {/* Level progression */}
  <Card className="border-border bg-card overflow-hidden">
  <div className="h-0.5 w-full bg-primary" />
@@ -1364,10 +1357,8 @@ export default function ProfilePage() {
  <span>{levelProgress.needed} pts</span>
  </div>
  <div className="h-2.5 rounded-full bg-foreground/[0.08] overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${levelProgress.pct}%` }}
- transition={{ duration: 1.2, ease: "easeOut" }}
+ <div
+ style={{ width: `${levelProgress.pct}%` }}
  className="h-full rounded-full bg-primary"
  />
  </div>
@@ -1497,7 +1488,7 @@ export default function ProfilePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

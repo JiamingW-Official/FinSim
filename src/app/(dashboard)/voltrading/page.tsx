@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Activity,
  TrendingUp,
@@ -282,20 +281,13 @@ function ExpandableSection({ title, children, defaultOpen = false, accent = "#63
  <span className="text-sm font-semibold text-foreground">{title}</span>
  {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
- <AnimatePresence initial={false}>
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.22 }}
+ <div
  className="overflow-hidden"
- style={{ borderTop: `1px solid ${accent}22` }}
  >
  <div className="p-4">{children}</div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
 }
@@ -618,19 +610,14 @@ export default function VolTradingPage() {
  ];
 
  return (
- <div className="space-y-4 p-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="flex flex-col gap-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
+ <div className="rounded-lg border border-border bg-card p-5">
  <div className="flex items-center gap-3">
  <div className="p-2 rounded-lg bg-muted/10 border border-border">
  </div>
  <div>
- <h1 className="text-xl font-semibold text-foreground">Volatility Trading</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Volatility Trading</h1>
  <p className="text-sm text-muted-foreground">
  Vol surface dynamics, long/short vol strategies, and dispersion trading
  </p>
@@ -648,7 +635,7 @@ export default function VolTradingPage() {
  <InfoPill key={m.label} label={m.label} value={m.value} sub={m.sub} color={m.color} />
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -662,7 +649,7 @@ export default function VolTradingPage() {
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  {tab.label}
  </TabsTrigger>
@@ -758,18 +745,13 @@ export default function VolTradingPage() {
  {expandedSabrParam === p.param ? <ChevronUp className="w-3 h-3 text-muted-foreground" /> : <ChevronDown className="w-3 h-3 text-muted-foreground" />}
  </div>
  <p className="text-xs text-muted-foreground">{p.meaning}</p>
- <AnimatePresence>
  {expandedSabrParam === p.param && (
- <motion.p
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <p
  className="text-xs text-muted-foreground mt-2 overflow-hidden"
  >
  {p.effect}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
  </button>
  ))}
  </div>
@@ -794,8 +776,8 @@ export default function VolTradingPage() {
  <ExpandableSection title="Vol Surface Arbitrage Conditions" defaultOpen>
  <div className="space-y-3">
  {ARB_CONDITIONS.map((c) => (
- <div key={c.name} className="border-l-2 pl-3" style={{ borderColor: c.color }}>
- <p className="text-xs font-medium" style={{ color: c.color }}>{c.name}</p>
+ <div key={c.name} className="border-l-2 pl-3" style={{ borderColor: c.color, color: c.color }}>
+ <p className="text-xs font-medium" >{c.name}</p>
  <p className="text-xs text-muted-foreground">{c.condition}</p>
  <p className="text-xs text-muted-foreground mt-0.5">Violation: {c.violation}</p>
  </div>

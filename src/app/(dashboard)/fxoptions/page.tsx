@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Card,
  CardContent,
@@ -40,7 +39,7 @@ function makePrng(seed: number) {
 
 const rand = makePrng(971);
 
-// Generate a fixed array of random numbers so the layout is stable
+// Generate a fixed array of random numbers so the is stable
 const R: number[] = Array.from({ length: 500 }, () => rand());
 let ri = 0;
 function r(): number {
@@ -312,10 +311,7 @@ function volColor(vol: number, minV: number, maxV: number): string {
 function SpotRateCard({ rate }: { rate: SpotRate }) {
  const up = rate.change >= 0;
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  >
  <Card className="bg-card border-border hover:border-border transition-colors">
  <CardContent className="pt-4 pb-3 px-4">
@@ -358,7 +354,7 @@ function SpotRateCard({ rate }: { rate: SpotRate }) {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 

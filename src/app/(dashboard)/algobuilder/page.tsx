@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Bot,
  Play,
@@ -963,18 +962,12 @@ export default function AlgoBuilderPage() {
  const categories = (["all", "trend", "mean-reversion", "momentum", "volume", "sentiment", "fundamental", "alternative"] as const);
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- {/* HERO Header */}
- <div className="border-b border-border border-l-4 border-l-primary bg-background/95 backdrop-blur sticky top-0 z-20 px-6 py-4">
- <div className="flex items-center justify-between">
- <div className="flex items-center gap-3">
- <div className="p-2 rounded-lg bg-muted/10 border border-border">
- <Cpu size={18} className="text-muted-foreground/50" />
- </div>
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
+ {/* Header */}
+ <div className="flex items-center justify-between mb-2">
  <div>
- <h1 className="text-lg font-semibold tracking-tight">Algorithmic Trading System Builder</h1>
- <p className="text-xs text-muted-foreground">Design, backtest, and monitor systematic strategies</p>
- </div>
+ <h1 className="text-3xl font-bold tracking-tight">Algorithmic Trading System Builder</h1>
+ <p className="text-sm text-muted-foreground">Design, backtest, and monitor systematic strategies</p>
  </div>
  <div className="flex items-center gap-2">
  {selectedSignals.length > 0 && (
@@ -987,16 +980,14 @@ export default function AlgoBuilderPage() {
  </Button>
  </div>
  </div>
- </div>
 
- <div className="p-4">
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
- <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signal Library</TabsTrigger>
- <TabsTrigger value="constructor" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Strategy Constructor</TabsTrigger>
- <TabsTrigger value="backtest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtest Engine</TabsTrigger>
- <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Analytics</TabsTrigger>
- <TabsTrigger value="monitor" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="signals" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signal Library</TabsTrigger>
+ <TabsTrigger value="constructor" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Strategy Constructor</TabsTrigger>
+ <TabsTrigger value="backtest" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtest Engine</TabsTrigger>
+ <TabsTrigger value="risk" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Analytics</TabsTrigger>
+ <TabsTrigger value="monitor" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Live Monitor
  {newSignalCount > 0 && (
  <span className="absolute -top-1 -right-1 bg-primary text-foreground-foreground text-[11px] rounded-full w-4 h-4 flex items-center justify-center font-semibold">
@@ -1088,11 +1079,8 @@ export default function AlgoBuilderPage() {
  const canAdd = !isSelected && selectedSignals.length < 4;
 
  return (
- <motion.div
+ <div
  key={signal.id}
- layout
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
  >
  <Card
  className={cn(
@@ -1160,12 +1148,8 @@ export default function AlgoBuilderPage() {
  </div>
 
  {/* Expanded */}
- <AnimatePresence>
- {isExpanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+  {isExpanded && (
+ <div
  className="overflow-hidden"
  >
  <div className="mt-3 pt-3 border-t border-border">
@@ -1196,11 +1180,10 @@ export default function AlgoBuilderPage() {
  </div>
  )}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </Card>
- </motion.div>
+  </Card>
+ </div>
  );
  })}
  </div>
@@ -1543,11 +1526,8 @@ export default function AlgoBuilderPage() {
  </span>
  </div>
 
- <AnimatePresence>
- {backtestResult && (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
+  {backtestResult && (
+ <div
  className="space-y-4"
  >
  {/* Performance Dashboard */}
@@ -1628,10 +1608,9 @@ export default function AlgoBuilderPage() {
  </div>
  </Card>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
-
+ 
  {!hasRun && !isRunning && (
  <Card className="p-8 text-center border-dashed">
  <Activity size={28} className="mx-auto mb-3 text-muted-foreground/40" />
@@ -1839,13 +1818,9 @@ export default function AlgoBuilderPage() {
  </tr>
  </thead>
  <tbody>
- <AnimatePresence mode="popLayout">
- {liveSignals.map(sig => (
- <motion.tr
+  {liveSignals.map(sig => (
+ <tr
  key={sig.id}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="py-2 pr-3 font-mono font-medium">{sig.ticker}</td>
@@ -1877,10 +1852,9 @@ export default function AlgoBuilderPage() {
  <td className="py-2 pr-3 font-mono">${sig.entryPrice.toFixed(2)}</td>
  <td className="py-2 pr-3 font-mono">{sig.positionSize.toFixed(1)}%</td>
  <td className="py-2 text-muted-foreground font-mono">{sig.timestamp}</td>
- </motion.tr>
+ </tr>
  ))}
- </AnimatePresence>
- </tbody>
+  </tbody>
  </table>
  </div>
  </Card>
@@ -1951,7 +1925,6 @@ export default function AlgoBuilderPage() {
  </div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

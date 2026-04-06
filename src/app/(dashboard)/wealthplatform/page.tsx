@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -1159,10 +1158,8 @@ export default function WealthPlatformPage() {
  {/* Client selector */}
  <div className="grid grid-cols-3 gap-3">
  {CLIENTS.map((c) => (
- <motion.button
+ <button
  key={c.id}
- whileHover={{ scale: 1.01 }}
- whileTap={{ scale: 0.99 }}
  onClick={() => setSelectedClient(c.id)}
  className={cn(
  "text-left p-4 rounded-md border transition-all",
@@ -1190,7 +1187,7 @@ export default function WealthPlatformPage() {
  {fmtK(c.totalAssets)}
  </div>
  <div className="text-xs text-muted-foreground mt-0.5">{c.description}</div>
- </motion.button>
+ </button>
  ))}
  </div>
 
@@ -1462,9 +1459,8 @@ export default function WealthPlatformPage() {
  {HARVEST_POSITIONS.map((pos) => {
  const selected = harvestSelected.has(pos.ticker);
  return (
- <motion.button
+ <button
  key={pos.ticker}
- whileHover={{ scale: 1.005 }}
  onClick={() => {
  setHarvestSelected((prev) => {
  const next = new Set(prev);
@@ -1499,7 +1495,7 @@ export default function WealthPlatformPage() {
  </div>
  </div>
  </div>
- </motion.button>
+ </button>
  );
  })}
  <div className="pt-2 border-t border-border flex items-center justify-between">

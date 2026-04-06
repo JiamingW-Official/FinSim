@@ -28,7 +28,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ─────────────────────────────────────────────────────────────
 
@@ -228,11 +227,8 @@ function QuotingTab() {
  <h3 className="text-sm font-semibold text-foreground mb-4">Spread Component Waterfall</h3>
  <div className="space-y-3">
  {spreadComponents.map((c, i) => (
- <motion.div
+ <div
  key={c.label}
- initial={{ opacity: 0, x: -20 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.08 }}
  className="flex items-center gap-3"
  >
  <div className="w-36 text-xs text-muted-foreground font-medium">{c.label}</div>
@@ -244,7 +240,7 @@ function QuotingTab() {
  </div>
  <div className="w-10 text-xs text-muted-foreground text-right">{Math.round(c.pct * 100)}%</div>
  <div className="w-48 text-xs text-muted-foreground hidden xl:block">{c.desc}</div>
- </motion.div>
+ </div>
  ))}
  </div>
  <div className="mt-4 p-3 bg-muted/60 rounded-lg text-xs text-muted-foreground">
@@ -306,13 +302,9 @@ function QuotingTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={animKey}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.3 }}
  >
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
@@ -344,11 +336,8 @@ function QuotingTab() {
  const put = puts[i];
  const isAtm = call.moneyness === "ATM";
  return (
- <motion.tr
+ <tr
  key={call.strike}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.04 }}
  className={cn(
  "border-b border-border",
  isAtm && "bg-muted/60"
@@ -385,14 +374,14 @@ function QuotingTab() {
  <td className="py-1.5 px-2 text-right text-rose-300 font-mono">{fmt2(put.ask)}</td>
  </>
  )}
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
  </table>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
 
  {/* Spread Determinants */}
@@ -1260,10 +1249,8 @@ function EconomicsTab() {
  <div key={p.name} className="flex items-center gap-3">
  <div className="w-36 text-xs text-muted-foreground font-medium truncate">{p.name}</div>
  <div className="flex-1 h-5 bg-muted rounded overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${p.share * 100}%` }}
- transition={{ duration: 0.8, delay: 0.1 }}
+ <div
+ style={{ width: `${p.share * 100}%` }}
  className={cn("h-full rounded", p.color, "opacity-70")}
  />
  </div>
@@ -1360,11 +1347,8 @@ function EconomicsTab() {
  <div className="absolute left-4 top-0 bottom-0 w-px bg-muted" />
  <div className="space-y-4 pl-10">
  {latencyTimeline.map((item, i) => (
- <motion.div
+ <div
  key={item.year}
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.1 }}
  className="relative flex items-start gap-4"
  >
  <div
@@ -1387,7 +1371,7 @@ function EconomicsTab() {
  </div>
  <span className="text-xs text-muted-foreground">{item.tech}</span>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1474,10 +1458,7 @@ export default function OptionsMmPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-6xl mx-auto px-4 py-8">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-8"
  >
  <div className="flex items-center gap-3 mb-3">
@@ -1503,7 +1484,7 @@ export default function OptionsMmPage() {
  </Badge>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>

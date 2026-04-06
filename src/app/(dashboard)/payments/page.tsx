@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  CreditCard,
  Zap,
@@ -356,10 +355,7 @@ function PaymentRailsTab() {
 
  {/* Selected Rail Detail */}
  {selectedRail && (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  >
  <Card className="bg-card border-border">
  <CardHeader>
@@ -377,7 +373,7 @@ function PaymentRailsTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
 
  {/* Key Insight Cards */}
@@ -715,12 +711,9 @@ function DigitalWalletsTab() {
  <div key={item.name} className="flex items-center gap-3">
  <div className="w-20 text-xs text-muted-foreground">{item.name}</div>
  <div className="flex-1 bg-muted rounded h-3">
- <motion.div
+ <div
  className="h-3 rounded"
- style={{ background: item.color }}
- initial={{ width: 0 }}
- animate={{ width: `${(item.score / 10) * 100}%` }}
- transition={{ duration: 0.7, ease: "easeOut" }}
+ style={{ background: item.color, width: `${(item.score / 10) * 100}%` }}
  />
  </div>
  <div className="w-8 text-right text-xs font-mono" style={{ color: item.color }}>

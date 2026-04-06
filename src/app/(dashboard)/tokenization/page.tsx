@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Coins,
  Building2,
@@ -334,16 +333,16 @@ function DonutChart({ data }: { data: AssetClass[] }) {
  <text x={cx} y={cy - 10} textAnchor="middle" className="fill-white font-semibold" style={{ fontSize: 13 }}>
  {hoveredSlice.name}
  </text>
- <text x={cx} y={cy + 10} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 12 }}>
+ <text x={cx} y={cy + 10} textAnchor="middle" className="fill-muted-foreground" >
  ${hoveredSlice.marketSize}B
  </text>
- <text x={cx} y={cy + 26} textAnchor="middle" style={{ fontSize: 11, fill: "#94a3b8" }}>
+ <text x={cx} y={cy + 26} textAnchor="middle" style={{ fontSize: 11, fill: "#f1f5f9", fontWeight: 600 }}>
  {hoveredSlice.share}%
  </text>
  </>
  ) : (
  <>
- <text x={cx} y={cy - 8} textAnchor="middle" style={{ fontSize: 14, fill: "#f1f5f9", fontWeight: 600 }}>
+ <text x={cx} y={cy - 8} textAnchor="middle" >
  $21.4B
  </text>
  <text x={cx} y={cy + 12} textAnchor="middle" style={{ fontSize: 10, fill: "#94a3b8" }}>
@@ -580,13 +579,8 @@ function ExpandableRow({ protocol }: { protocol: (typeof TOP_PROTOCOLS)[0] }) {
  {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </div>
  </button>
- <AnimatePresence>
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-3 pt-1 border-t border-border bg-card/40">
@@ -597,9 +591,8 @@ function ExpandableRow({ protocol }: { protocol: (typeof TOP_PROTOCOLS)[0] }) {
  </Badge>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
 }
@@ -690,10 +683,10 @@ function SPVStructureDiagram() {
  {boxes.map((b) => (
  <g key={b.id}>
  <rect x={b.x} y={b.y} width={160} height={50} rx={6} fill={b.color + "18"} stroke={b.color + "55"} strokeWidth={1.2} />
- <text x={b.x + 80} y={b.y + 20} textAnchor="middle" style={{ fontSize: 10, fill: "#e2e8f0", fontWeight: 600 }}>
+ <text x={b.x + 80} y={b.y + 20} textAnchor="middle" style={{ fontSize: 10, fontWeight: 600, fill: "#64748b" }}>
  {b.label}
  </text>
- <text x={b.x + 80} y={b.y + 34} textAnchor="middle" style={{ fontSize: 8.5, fill: "#64748b" }}>
+ <text x={b.x + 80} y={b.y + 34} textAnchor="middle" >
  {b.sub}
  </text>
  </g>
@@ -744,15 +737,14 @@ export default function TokenizationPage() {
  const noiseAt = (i: number) => NOISE[i % NOISE.length];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
+ <div className="rounded-lg border border-border bg-card p-5">
  <div className="flex items-start justify-between flex-wrap gap-4">
  <div>
  <div className="flex items-center gap-2 mb-1">
  <Coins className="w-6 h-6 text-primary" />
- <h1 className="text-xl font-semibold text-foreground">Tokenization of Real-World Assets</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Tokenization of Real-World Assets</h1>
  </div>
  <p className="text-muted-foreground text-sm max-w-2xl">
  Blockchain-based tokenization is digitizing trillions in real-world assets — from US Treasuries and
@@ -765,7 +757,7 @@ export default function TokenizationPage() {
  <Badge className="bg-muted/50 text-primary border border-border text-xs">40+ Issuers</Badge>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* KPI Strip */}
  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -775,12 +767,7 @@ export default function TokenizationPage() {
  { icon: Building2, label: "Real Estate On-chain", value: "$5.1B", sub: "24% of RWA", color: "text-primary" },
  { icon: Globe, label: "Jurisdictions Active", value: "15+", sub: "MiCA, MAS, FCA", color: "text-amber-400" },
  ].map((kpi, i) => (
- <motion.div
- key={kpi.label}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.06 }}
- >
+ <div>
  <Card className="bg-card border-border">
  <CardContent className="p-4">
  <div className="flex items-center gap-2 mb-1">
@@ -791,26 +778,26 @@ export default function TokenizationPage() {
  <p className="text-xs text-muted-foreground">{kpi.sub}</p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  RWA Overview
  </TabsTrigger>
- <TabsTrigger value="treasuries" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="treasuries" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Tokenized Treasuries
  </TabsTrigger>
- <TabsTrigger value="realestate" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="realestate" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Real Estate
  </TabsTrigger>
- <TabsTrigger value="credit" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="credit" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Private Credit
  </TabsTrigger>
- <TabsTrigger value="regulatory" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="regulatory" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Regulatory
  </TabsTrigger>
  </TabsList>
@@ -983,11 +970,8 @@ export default function TokenizationPage() {
  </thead>
  <tbody>
  {sortedTreasuries.map((prod, i) => (
- <motion.tr
+ <tr
  key={prod.name}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="py-2 px-2 font-medium text-foreground">{prod.name}</td>
@@ -1002,7 +986,7 @@ export default function TokenizationPage() {
  ? `$${(prod.minimum / 1000).toFixed(0)}K`
  : `$${prod.minimum}`}
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1485,7 +1469,6 @@ export default function TokenizationPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

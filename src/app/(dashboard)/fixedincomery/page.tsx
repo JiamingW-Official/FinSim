@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+
 import {
  TrendingUp,
  TrendingDown,
@@ -634,59 +634,41 @@ export default function FixedIncomeRVPage() {
  );
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="w-8 h-8 rounded-lg bg-indigo-500/15 flex items-center justify-center">
- </div>
- <h1 className="text-lg font-semibold tracking-tight">Fixed Income Relative Value</h1>
- <span className="ml-auto text-xs text-muted-foreground bg-muted/60 border border-border rounded px-2 py-0.5">
- As of Mar 28, 2026
- </span>
- </div>
- <p className="text-xs text-muted-foreground ml-11">
- Yield curve trades, spread analysis, cross-market opportunities, sector rotation and carry/roll strategies.
+ <div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground">Fixed Income Relative Value</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
+ YIELD CURVE · SPREADS · CROSS-MARKET · CARRY/ROLL
  </p>
- </motion.div>
+ </div>
 
  {/* Summary chips */}
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: 0.1 }}
- className="mt-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 mb-6"
- >
+ <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2">
  <StatChip label="2s10s Slope" value={`${Number(slope2s10s) >= 0 ? "+" : ""}${slope2s10s} bps`} sub="Near flat" />
  <StatChip label="5s30s Slope" value={`${Number(slope5s30s) >= 0 ? "+" : ""}${slope5s30s} bps`} sub="Slight normal" />
  <StatChip label="10Y TIPS BE" value="2.28%" sub="vs 5yr avg 2.35%" />
  <StatChip label="IG Avg OAS" value="118 bps" sub="-8 bps WoW" />
  <StatChip label="HY Avg OAS" value="382 bps" sub="+4 bps WoW" />
  <StatChip label="Muni/Tsy Ratio" value="68%" sub="10Y, pre-tax" />
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
  <Tabs defaultValue="curve">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4">
- <TabsTrigger value="curve" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="curve" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Yield Curve Trades
  </TabsTrigger>
- <TabsTrigger value="spreads" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="spreads" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Spread Analysis
  </TabsTrigger>
- <TabsTrigger value="crossmarket" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="crossmarket" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Cross-Market RV
  </TabsTrigger>
- <TabsTrigger value="sector" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="sector" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Sector Rotation
  </TabsTrigger>
- <TabsTrigger value="carry" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="carry" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Carry &amp; Roll
  </TabsTrigger>
  </TabsList>
@@ -876,11 +858,8 @@ export default function FixedIncomeRVPage() {
  </thead>
  <tbody>
  {SPREAD_RECORDS.map((r, i) => (
- <motion.tr
+ <tr
  key={r.rating}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/20"
  >
  <td className="py-2 pr-3 font-mono font-medium text-foreground">{r.rating}</td>
@@ -896,7 +875,7 @@ export default function FixedIncomeRVPage() {
  {r.signal.toUpperCase()}
  </span>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -966,11 +945,8 @@ export default function FixedIncomeRVPage() {
  </thead>
  <tbody>
  {CROSS_MARKET.map((row, i) => (
- <motion.tr
+ <tr
  key={`${row.instrument}-${i}`}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.03 }}
  className={cn(
  "border-b border-border hover:bg-muted/20",
  row.type === "Muni" && "bg-indigo-500/3",
@@ -1010,7 +986,7 @@ export default function FixedIncomeRVPage() {
  {row.signal.toUpperCase()}
  </span>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1108,11 +1084,8 @@ export default function FixedIncomeRVPage() {
  </thead>
  <tbody>
  {SECTOR_SPREADS.sort((a, b) => b.spreadPerTurnLev - a.spreadPerTurnLev).map((s, i) => (
- <motion.tr
+ <tr
  key={s.sector}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.05 }}
  className="border-b border-border hover:bg-muted/20"
  >
  <td className="py-2 pr-3 font-medium text-foreground">{s.sector}</td>
@@ -1127,7 +1100,7 @@ export default function FixedIncomeRVPage() {
  {s.signal.toUpperCase()}
  </span>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1218,11 +1191,8 @@ export default function FixedIncomeRVPage() {
  {CARRY_ROLL.map((row, i) => {
  const annualized = ((row.totalReturnBps / 10000) * 2 * 100).toFixed(2);
  return (
- <motion.tr
+ <tr
  key={row.tenor}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.06 }}
  className="border-b border-border hover:bg-muted/20"
  >
  <td className="py-2 pr-3 font-medium text-foreground">{row.tenor}</td>
@@ -1231,7 +1201,7 @@ export default function FixedIncomeRVPage() {
  <td className="py-2 pr-3 font-mono text-orange-400">+{row.rollBps}</td>
  <td className="py-2 pr-3 font-mono font-medium text-muted-foreground">+{row.totalReturnBps}</td>
  <td className="py-2 pr-3 font-mono text-muted-foreground">{annualized}%</td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -1293,7 +1263,6 @@ export default function FixedIncomeRVPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  );
 }

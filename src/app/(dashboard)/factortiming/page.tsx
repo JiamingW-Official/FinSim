@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import {
  TrendingUp,
  TrendingDown,
@@ -642,13 +642,9 @@ function FactorDashboard() {
  </div>
 
  {/* Detail panel */}
- <AnimatePresence>
+ 
  {sel && (
- <motion.div
- key={sel.name}
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
+ <div
  className="rounded-lg border border-border bg-card p-4"
  >
  <div className="flex items-start justify-between">
@@ -675,9 +671,9 @@ function FactorDashboard() {
  {fmtZ(sel.zScore)}
  </span>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Chart */}
  <Card className="bg-card border-border">
@@ -1231,13 +1227,9 @@ function Implementation() {
  </Card>
 
  {/* ETF detail panel */}
- <AnimatePresence>
+ 
  {sel && (
- <motion.div
- key={sel.ticker}
- initial={{ opacity: 0, y: -6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -6 }}
+ <div
  className="rounded-lg border border-border bg-muted/5 p-4"
  >
  <div className="flex items-start justify-between mb-3">
@@ -1277,9 +1269,9 @@ function Implementation() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* ETF vs mutual fund comparison */}
  <Card className="bg-card border-border">
@@ -1383,45 +1375,32 @@ export default function FactorTimingPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
+ <div>
  <div className="flex items-center gap-3 mb-1">
- <h1 className="text-xl font-semibold tracking-tight text-foreground">Factor Timing</h1>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground">Factor Timing</h1>
  <Badge className="bg-muted/10 text-foreground border-border text-xs ml-2">Quant</Badge>
  </div>
  <p className="text-sm text-muted-foreground">
  Cross-asset momentum signals · Factor z-scores &amp; crowding · Economic regime heatmap · 200d MA tactical rules · Factor ETF universe
  </p>
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mt-8">
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {tabs.map((t) => (
  <TabsTrigger
  key={t.id}
  value={t.id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  {t.label}
  </TabsTrigger>
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
- key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <TabsContent value="dashboard" className="mt-0 data-[state=inactive]:hidden">
  <FactorDashboard />
  </TabsContent>
@@ -1437,8 +1416,6 @@ export default function FactorTimingPage() {
  <TabsContent value="implementation" className="mt-0 data-[state=inactive]:hidden">
  <Implementation />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
  </Tabs>
  </div>
  );

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Building2,
  Zap,
@@ -384,11 +383,9 @@ function AssetClassesTab() {
  </SectionTitle>
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
  {SUB_SECTORS.map((sec) => (
- <motion.button
+ <button
  key={sec.name}
  onClick={() => setSelectedSector(selectedSector === sec.name ? null : sec.name)}
- whileHover={{ scale: 1.02 }}
- whileTap={{ scale: 0.98 }}
  className={cn(
  "rounded-md border p-3 text-left transition-colors",
  selectedSector === sec.name
@@ -409,17 +406,14 @@ function AssetClassesTab() {
  {sec.risk}
  </Badge>
  </div>
- </motion.button>
+ </button>
  ))}
  </div>
 
- <AnimatePresence>
+ 
  {selected && (
- <motion.div
+ <div
  key={selected.name}
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
  className="mt-3 rounded-md border border-border bg-foreground/5 p-4"
  >
  <div className="flex items-start gap-3">
@@ -436,9 +430,9 @@ function AssetClassesTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* Two charts side by side */}
@@ -868,18 +862,15 @@ function ProjectFinanceTab() {
  <span className="text-base flex-shrink-0">{item.icon}</span>
  <div className="flex-1">
  <div className="text-sm text-foreground">{item.item}</div>
- <AnimatePresence>
+ 
  {expandedPhase === item.item && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="text-xs text-muted-foreground mt-1 overflow-hidden"
  >
  {item.detail}
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  {expandedPhase === item.item ? (
  <ChevronUp size={14} className="text-muted-foreground mt-0.5 flex-shrink-0" />

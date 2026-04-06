@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Zap,
  BarChart3,
@@ -887,8 +886,7 @@ function CycleCard({
  onSelect: () => void;
 }) {
  return (
- <motion.div
- layout
+ <div
  onClick={onSelect}
  className={`rounded-lg border p-4 cursor-pointer transition-colors ${
  selected
@@ -918,13 +916,9 @@ function CycleCard({
  {selected ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
  </div>
  </div>
- <AnimatePresence>
+ 
  {selected && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-4 grid grid-cols-2 gap-4 text-xs text-muted-foreground">
@@ -968,10 +962,10 @@ function CycleCard({
  End: <span className="text-foreground">{cycle.status === "current" ? "TBD" : cycle.endYear}</span>
  </span>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  );
 }
 
@@ -1756,9 +1750,8 @@ export default function CommodityCyclesPage() {
  Detailed Analysis
  </h3>
  {INVESTMENT_VEHICLES.map((v) => (
- <motion.div
+ <div
  key={v.ticker}
- layout
  className="rounded-lg border border-border bg-foreground/[0.02] overflow-hidden"
  >
  <button
@@ -1806,13 +1799,9 @@ export default function CommodityCyclesPage() {
  )}
  </div>
  </button>
- <AnimatePresence>
+ 
  {expandedVehicle === v.ticker && (
- <motion.div
- initial={{ height: 0 }}
- animate={{ height: "auto" }}
- exit={{ height: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-border pt-4">
@@ -1864,10 +1853,10 @@ export default function CommodityCyclesPage() {
  </ul>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
 

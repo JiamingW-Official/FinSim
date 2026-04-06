@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Users,
  TrendingUp,
@@ -350,13 +349,9 @@ function GlobalDemographicsTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={country.name}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.25 }}
  className="flex flex-col md:flex-row gap-8 items-center"
  >
  <PopulationPyramid country={country} />
@@ -387,8 +382,8 @@ function GlobalDemographicsTab() {
  </div>
  </div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </CardContent>
  </Card>
 
@@ -850,12 +845,9 @@ function InvestmentImplicationsTab() {
  </div>
 
  {/* Selected sector detail */}
- <AnimatePresence>
+ 
  {selectedSector && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className={cn("rounded-lg border p-4 mt-4", selectedSector.tailwindBg)}>
@@ -873,18 +865,17 @@ function InvestmentImplicationsTab() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
 
  {/* Sector cards grid */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {SECTOR_IMPACTS.map((s) => (
- <motion.div
+ <div
  key={s.sector}
- whileHover={{ scale: 1.01 }}
  className={cn("rounded-lg border p-4 cursor-pointer", s.tailwindBg)}
  onClick={() => setSelected(selected === s.sector ? null : s.sector)}
  >
@@ -901,7 +892,7 @@ function InvestmentImplicationsTab() {
  <span key={ex} className="text-xs text-muted-foreground px-1.5 py-0.5 bg-card/70 rounded font-mono">{ex}</span>
  ))}
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>

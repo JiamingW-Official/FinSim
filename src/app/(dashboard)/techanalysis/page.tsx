@@ -20,7 +20,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // ── mulberry32 seeded PRNG (seed=7531) ───────────────────────────────────────
@@ -690,13 +689,8 @@ function CandlestickMasteryTab() {
  {/* Pattern grid */}
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
  {filtered.map((pattern) => (
- <motion.div
+ <div
  key={pattern.id}
- layout
- initial={{ opacity: 0, scale: 0.95 }}
- animate={{ opacity: 1, scale: 1 }}
- exit={{ opacity: 0, scale: 0.95 }}
- transition={{ duration: 0.15 }}
  >
  <Card
  className={cn(
@@ -741,13 +735,9 @@ function CandlestickMasteryTab() {
  </div>
  </div>
 
- <AnimatePresence>
+ 
  {selectedPattern === pattern.id && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="pt-2 border-t border-border space-y-1.5 mt-1">
@@ -767,11 +757,11 @@ function CandlestickMasteryTab() {
  Find in chart
  </Button>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1788,8 +1778,8 @@ function SRTab() {
  <div className="space-y-1.5">
  {pivotLevels.map((pl) => (
  <div key={pl.label} className="flex items-center gap-2 py-1 border-b border-border">
- <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: pl.color }} />
- <span className="text-xs font-medium w-8" style={{ color: pl.color }}>{pl.label}</span>
+ <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: pl.color, color: pl.color }} />
+ <span className="text-xs font-medium w-8" >{pl.label}</span>
  <span className="text-xs font-mono text-foreground">${pl.price.toFixed(2)}</span>
  <span className="text-xs text-muted-foreground ml-auto">
  {pl.label === "PP" ? "Pivot" : pl.label.startsWith("R") ? "Resistance" : "Support"}
@@ -1843,10 +1833,9 @@ export default function TechAnalysisPage() {
  const [activeTab, setActiveTab] = useState<string>("candles");
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Technical Analysis</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Technical Analysis</h1>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">INDICATORS · SIGNALS · TREND · MOMENTUM</p>
 
  <div className="border-t border-border mb-6" />
@@ -1858,20 +1847,16 @@ export default function TechAnalysisPage() {
  <TabsTrigger
  key={id}
  value={id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  {label}
  </TabsTrigger>
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <TabsContent value="candles" className="mt-0 data-[state=inactive]:hidden">
  <CandlestickMasteryTab />
@@ -1892,10 +1877,9 @@ export default function TechAnalysisPage() {
  <TabsContent value="sr" className="mt-0 data-[state=inactive]:hidden">
  <SRTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
- </Tabs>
  </div>
+ 
+ </Tabs>
  </div>
  );
 }

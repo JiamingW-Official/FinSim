@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -261,10 +260,7 @@ function MetricCard({
  delay: number;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay }}
+ <div
  >
  <Card className="border-border bg-card">
  <CardContent className="p-4">
@@ -283,7 +279,7 @@ function MetricCard({
  <div className="text-xs text-muted-foreground mt-1">{sub}</div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -590,11 +586,8 @@ function RiskMetricsPanel() {
  return (
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
  {metrics.map((m, i) => (
- <motion.div
+ <div
  key={m.label}
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35, delay: i * 0.06 }}
  >
  <Card className="border-border bg-card h-full">
  <CardContent className="p-4 flex flex-col gap-2">
@@ -609,7 +602,7 @@ function RiskMetricsPanel() {
  <p className="text-xs text-muted-foreground leading-relaxed">{m.description}</p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  );
@@ -712,11 +705,8 @@ export default function FXCarryPage() {
  </thead>
  <tbody>
  {CARRY_BASKET.map((pos, i) => (
- <motion.tr
+ <tr
  key={pos.symbol}
- initial={{ opacity: 0, x: -12 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ duration: 0.3, delay: i * 0.06 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-4 py-3">
@@ -750,7 +740,7 @@ export default function FXCarryPage() {
  LONG
  </Badge>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -801,11 +791,8 @@ export default function FXCarryPage() {
 
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {sortedG10.map((ccy, i) => (
- <motion.div
+ <div
  key={ccy.code}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: i * 0.05 }}
  >
  <Card className="border-border bg-card">
  <CardContent className="p-4 flex items-center justify-between">
@@ -829,7 +816,7 @@ export default function FXCarryPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  </TabsContent>
@@ -918,11 +905,8 @@ export default function FXCarryPage() {
  {/* ── Tab: Strategy Types ── */}
  <TabsContent value="strategies" className="space-y-4">
  {STRATEGY_TYPES.map((strat, i) => (
- <motion.div
+ <div
  key={strat.name}
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35, delay: i * 0.08 }}
  >
  <Card className={cn("border bg-card", strat.border)}>
  <CardContent className="p-5 space-y-4">
@@ -972,7 +956,7 @@ export default function FXCarryPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
 
  <Card className="border-border bg-card">

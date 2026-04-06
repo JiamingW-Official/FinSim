@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion } from "framer-motion";
 import {
  Droplets,
  TrendingUp,
@@ -1212,10 +1211,7 @@ function RiskTab() {
  )}
  </button>
  {expandedRisk === rf.name && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="px-3 pb-3 border-t border-border"
  >
  <p className="text-xs text-muted-foreground mt-3 leading-relaxed">{rf.description}</p>
@@ -1223,7 +1219,7 @@ function RiskTab() {
  <Shield className="w-3 h-3 text-emerald-400 mt-0.5 flex-shrink-0" />
  <p className="text-xs text-emerald-300 leading-relaxed">{rf.mitigation}</p>
  </div>
- </motion.div>
+ </div>
  )}
  </div>
  ))}

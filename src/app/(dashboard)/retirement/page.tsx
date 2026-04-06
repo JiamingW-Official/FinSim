@@ -640,7 +640,7 @@ function SocialSecurityTab() {
  Claim at {c.age}
  </Badge>
  </div>
- <p className="text-2xl font-semibold" style={{ color: c.color }}>${c.monthly.toLocaleString()}/mo</p>
+ <p className="text-2xl font-semibold" >${c.monthly.toLocaleString()}/mo</p>
  <p className="text-xs text-muted-foreground">
  ${(c.monthly * 12).toLocaleString()}/year
  </p>
@@ -929,8 +929,8 @@ function InvestmentStrategyTab() {
  return (
  <div key={f.name} className="rounded-lg border border-border p-3 space-y-2">
  <div className="flex items-center justify-between">
- <p className="font-medium text-sm" style={{ color: f.color }}>Fund {f.name}</p>
- <Badge variant="outline" className="text-xs py-0" style={{ borderColor: f.color }}>TDF</Badge>
+ <p className="font-medium text-sm" style={{ color: f.color, borderColor: f.color }}>Fund {f.name}</p>
+ <Badge variant="outline" className="text-xs py-0" >TDF</Badge>
  </div>
  <p className="text-xs text-muted-foreground">{f.desc}</p>
  {/* Stacked bar */}

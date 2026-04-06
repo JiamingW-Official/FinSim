@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -453,7 +452,7 @@ function RegimeDashboard() {
  return (
  <div className="space-y-4">
  {/* 2×2 Quadrant */}
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
  <Activity className="w-4 h-4 text-sky-400" />
@@ -478,7 +477,7 @@ function RegimeDashboard() {
  {REGIMES.map((r) => {
  const active = r.name === CURRENT_REGIME;
  return (
- <motion.div
+ <div
  key={r.name}
  className={cn(
  "rounded-lg p-3 border transition-all",
@@ -486,7 +485,6 @@ function RegimeDashboard() {
  r.borderColor,
  active ? "ring-2 ring-foreground/20 scale-[1.02]" : "opacity-70"
  )}
- animate={active ? { scale: 1.02 } : { scale: 1 }}
  >
  <div className="flex items-center justify-between mb-1">
  <span className={cn("text-sm font-semibold", r.color)}>{r.name}</span>
@@ -497,7 +495,7 @@ function RegimeDashboard() {
  )}
  </div>
  <p className="text-xs text-muted-foreground leading-tight">{r.description}</p>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -507,7 +505,7 @@ function RegimeDashboard() {
  </Card>
 
  {/* Signal Strength Meters */}
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
  <Zap className="w-4 h-4 text-yellow-400" />
@@ -523,11 +521,9 @@ function RegimeDashboard() {
  <span className="text-muted-foreground font-mono">{sig.value}/100</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className={cn("h-full rounded-full", sig.color)}
- initial={{ width: 0 }}
- animate={{ width: `${sig.value}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{ width: `${sig.value}%` }}
  />
  </div>
  </div>
@@ -537,7 +533,7 @@ function RegimeDashboard() {
  </Card>
 
  {/* Asset Returns by Regime */}
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
  <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -619,13 +615,10 @@ function LeadingIndicators() {
  const sparkColor =
  ind.signal === "green" ? "#34d399" : ind.signal === "yellow" ? "#fbbf24" : "#f87171";
  return (
- <motion.div
+ <div
  key={ind.name}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.07 }}
  >
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardContent className="pt-4 pb-4">
  <div className="flex items-start justify-between gap-4">
  <div className="flex items-start gap-3 flex-1 min-w-0">
@@ -654,7 +647,7 @@ function LeadingIndicators() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -802,7 +795,7 @@ function RateCyclePlaybook() {
  <div className="space-y-4">
  {/* Cycle Wheel + Phase Selector */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
  <RefreshCw className="w-4 h-4 text-sky-400" />
@@ -818,7 +811,7 @@ function RateCyclePlaybook() {
  </CardContent>
  </Card>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-muted-foreground">Phase Selector</CardTitle>
  </CardHeader>
@@ -856,7 +849,7 @@ function RateCyclePlaybook() {
  </div>
 
  {/* Asset Performance Table */}
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
  <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -944,13 +937,10 @@ function CrossAssetSignals() {
  );
 
  return (
- <motion.div
+ <div
  key={sig.driver}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.08 }}
  >
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardContent className="pt-4 pb-4">
  <div className="flex items-start gap-3">
  {dirIcon}
@@ -993,12 +983,12 @@ function CrossAssetSignals() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
  })}
 
  {/* Dollar Index SVG Bar Chart */}
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
  <DollarSign className="w-4 h-4 text-yellow-400" />
@@ -1029,11 +1019,9 @@ function CrossAssetSignals() {
  {/* Negative side */}
  <div className="flex-1 flex justify-end">
  {!pos && (
- <motion.div
+ <div
  className="h-4 bg-red-500/70 rounded-l-sm"
- initial={{ width: 0 }}
- animate={{ width: `${pct}%` }}
- transition={{ duration: 0.7 }}
+              style={{ width: `${pct}%` }}
  />
  )}
  </div>
@@ -1042,11 +1030,9 @@ function CrossAssetSignals() {
  {/* Positive side */}
  <div className="flex-1">
  {pos && (
- <motion.div
+ <div
  className="h-4 bg-emerald-500/70 rounded-r-sm"
- initial={{ width: 0 }}
- animate={{ width: `${pct}%` }}
- transition={{ duration: 0.7 }}
+              style={{ width: `${pct}%` }}
  />
  )}
  </div>
@@ -1097,15 +1083,12 @@ function TradeIdeas() {
  : "bg-red-900/50 border-red-700/40";
 
  return (
- <motion.div
+ <div
  key={idea.id}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.07 }}
  >
  <Card
  className={cn(
- "bg-card/60 border-border cursor-pointer transition-all hover:border-border",
+ "bg-card border-border cursor-pointer transition-all hover:border-border",
  isOpen && "border-border"
  )}
  onClick={() => setExpanded(isOpen ? null : idea.id)}
@@ -1130,22 +1113,16 @@ function TradeIdeas() {
  <span className="text-xs text-muted-foreground">{idea.asset}</span>
  </div>
  </div>
- <motion.div
- animate={{ rotate: isOpen ? 180 : 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="shrink-0 mt-1"
  >
  <TrendingUp className="w-4 h-4 text-muted-foreground rotate-90" />
- </motion.div>
+ </div>
  </div>
 
- <AnimatePresence>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-4 space-y-3">
@@ -1177,17 +1154,17 @@ function TradeIdeas() {
  </span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
  })}
 
  {/* Summary SVG Bar Chart — Conviction Breakdown */}
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
  <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1267,8 +1244,7 @@ export default function MacroTradingPage() {
  const [activeTab, setActiveTab] = useState<TabValue>("regime");
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+  <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Macro Trading</h1>
  <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-6">TOP-DOWN · RATES · FX · COMMODITIES</p>
@@ -1297,7 +1273,7 @@ export default function MacroTradingPage() {
  <TabsTrigger
  key={value}
  value={value}
- className="flex items-center gap-1.5 text-xs whitespace-nowrap px-3 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground"
+ className="flex items-center gap-1.5 text-xs whitespace-nowrap px-3 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground"
  >
  <Icon className="w-3.5 h-3.5 shrink-0" />
  <span>{label}</span>
@@ -1325,7 +1301,6 @@ export default function MacroTradingPage() {
  <TradeIdeas />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

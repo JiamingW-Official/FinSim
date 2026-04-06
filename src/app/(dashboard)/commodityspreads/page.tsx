@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
  Flame,
  Zap,
@@ -1301,11 +1300,8 @@ export default function CommoditySpreadsPage() {
  <TabsContent value="strategies" className="data-[state=inactive]:hidden mt-4 space-y-4">
  <div className="grid grid-cols-1 gap-4">
  {SPREAD_STRATEGIES.map((strat, i) => (
- <motion.div
+ <div
  key={strat.name}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: i * 0.08 }}
  >
  <Card
  className="bg-card border-border cursor-pointer hover:border-border transition-colors"
@@ -1338,11 +1334,7 @@ export default function CommoditySpreadsPage() {
  <p className="text-xs text-muted-foreground">{strat.description}</p>
 
  {activeStrategy === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="space-y-3"
  >
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -1406,7 +1398,7 @@ export default function CommoditySpreadsPage() {
  <span className="text-xs text-muted-foreground">{strat.edge}</span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
 
  {activeStrategy !== i && (
@@ -1419,7 +1411,7 @@ export default function CommoditySpreadsPage() {
  )}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
 

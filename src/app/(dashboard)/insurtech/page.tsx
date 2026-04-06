@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Shield,
  Zap,
@@ -668,10 +667,8 @@ function BusinessModelsTab() {
  {/* Category cards */}
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
  {INSURTECH_CATEGORIES.map((cat) => (
- <motion.button
+ <button
  key={cat.id}
- whileHover={{ scale: 1.01 }}
- whileTap={{ scale: 0.99 }}
  onClick={() => setSelected(selected === cat.id ? null : cat.id)}
  className={cn(
  "text-left rounded-md border p-4 transition-colors",
@@ -699,18 +696,15 @@ function BusinessModelsTab() {
  </div>
  <span className="text-xs text-muted-foreground font-mono">${cat.fundingBn}B raised</span>
  </div>
- </motion.button>
+ </button>
  ))}
  </div>
 
  {/* Detail panel for selected category */}
- <AnimatePresence>
+ 
  {selectedCategory && (
- <motion.div
+ <div
  key={selectedCategory.id}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
  className="rounded-md border border-border bg-muted/5 p-4"
  >
  <h3 className={cn("text-sm font-semibold mb-1", selectedCategory.color)}>{selectedCategory.name} — Deep Dive</h3>
@@ -720,9 +714,9 @@ function BusinessModelsTab() {
  <span key={ex} className="rounded-full border border-border px-2.5 py-1 text-xs text-foreground">{ex}</span>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Funding chart */}
  <div className="rounded-md border border-border bg-card p-4">
@@ -906,10 +900,9 @@ function ParametricTab() {
  </span>
  </div>
  <div className="mt-2 h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full bg-emerald-500"
- animate={{ width: `${(payout / 500000) * 100}%` }}
- transition={{ type: "spring", stiffness: 200, damping: 30 }}
+ style={{ width: `${(payout / 500000) * 100}%` }}
  />
  </div>
  {!isTriggered && droughtSeverity > 0 && (
@@ -981,9 +974,8 @@ function AIDataTab() {
  </p>
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
  {ML_INPUTS.map((inp) => (
- <motion.button
+ <button
  key={inp.source}
- whileHover={{ scale: 1.01 }}
  onClick={() => setActiveInput(activeInput === inp.source ? null : inp.source)}
  className={cn(
  "text-left rounded-lg border p-3 transition-colors",
@@ -1002,19 +994,16 @@ function AIDataTab() {
  style={{ width: `${(inp.liftPct / 40) * 100}%`, opacity: 0.7 }}
  />
  </div>
- <AnimatePresence>
+ 
  {activeInput === inp.source && (
- <motion.p
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <p
  className="text-xs text-muted-foreground mt-2 leading-relaxed opacity-80 overflow-hidden"
  >
  {inp.features}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
- </motion.button>
+ 
+ </button>
  ))}
  </div>
  </div>
@@ -1336,17 +1325,13 @@ export default function InsurtechPage() {
  </div>
 
  {/* Content */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={tab}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -6 }}
- transition={{ duration: 0.18 }}
  >
  {tabContent}
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
  );
 }

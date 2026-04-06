@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Shield,
  TrendingUp,
@@ -684,26 +683,20 @@ function RiskBar({
  </div>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${score}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+ <div
  className="h-full rounded-full"
  style={{ backgroundColor: color }}
  />
  </div>
- <AnimatePresence>
+ 
  {open && (
- <motion.p
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <p
  className="text-xs text-muted-foreground leading-relaxed overflow-hidden"
  >
  {description}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -975,10 +968,9 @@ export default function StructuredNotesPage() {
  const selectedProductData = PRODUCTS.find((p) => p.id === selectedProduct) ?? PRODUCTS[0];
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Structured Notes</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Structured Notes</h1>
  <p className="text-xs font-medium tracking-widest text-muted-foreground mb-8">PRINCIPAL · PARTICIPATION · BARRIERS</p>
  <div className="mb-6">
  {/* Key metrics strip */}
@@ -1033,25 +1025,25 @@ export default function StructuredNotesPage() {
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-2">
  <TabsTrigger
  value="products"
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm"
  >
  Product Types
  </TabsTrigger>
  <TabsTrigger
  value="payoff"
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm"
  >
  Payoff Builder
  </TabsTrigger>
  <TabsTrigger
  value="pricing"
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm"
  >
  Pricing
  </TabsTrigger>
  <TabsTrigger
  value="risk"
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm"
  >
  Risk Analysis
  </TabsTrigger>
@@ -1068,11 +1060,8 @@ export default function StructuredNotesPage() {
  </p>
  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
  {PRODUCTS.map((product, idx) => (
- <motion.div
+ <div
  key={product.id}
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: idx * 0.08 }}
  onClick={() =>
  setSelectedProduct(
  selectedProduct === product.id ? "" : product.id
@@ -1183,7 +1172,7 @@ export default function StructuredNotesPage() {
  Protection: {product.protectionLevel}%
  </span>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1227,18 +1216,15 @@ export default function StructuredNotesPage() {
  <ChevronDown className="w-3.5 h-3.5 text-muted-foreground ml-auto" />
  )}
  </div>
- <AnimatePresence>
+ 
  {expandedInfo === box.id && (
- <motion.p
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <p
  className="text-xs text-muted-foreground leading-relaxed overflow-hidden"
  >
  {box.content}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>
@@ -1846,7 +1832,6 @@ export default function StructuredNotesPage() {
  </div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

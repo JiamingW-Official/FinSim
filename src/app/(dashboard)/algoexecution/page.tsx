@@ -21,7 +21,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -574,60 +573,36 @@ export default function AlgoExecutionPage() {
  const implicitTotal = TC_DATA.filter((d) => d.type === "implicit").reduce((a, b) => a + b.bps, 0);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="space-y-1"
- >
- <div className="flex items-center gap-3">
- <div className="p-2 rounded-lg bg-muted/50 border border-border">
- <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-2xl font-semibold tracking-tight">Algorithmic Execution Strategies</h1>
+ <div className="mb-2">
+ <h1 className="text-3xl font-bold tracking-tight">Algorithmic Execution Strategies</h1>
  <p className="text-sm text-muted-foreground">
  VWAP · TWAP · Implementation Shortfall · POV — minimize market impact and transaction costs
  </p>
  </div>
- </div>
- </motion.div>
 
- {/* HERO — Key Metrics */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-4 border-l-4 border-l-primary rounded-md bg-card p-6"
- >
+ {/* Key Metrics */}
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
  {metrics.map((m) => (
- <Card key={m.label} className={`border ${m.border} ${m.bg}`}>
- <CardContent className="p-4">
+ <div key={m.label} className="rounded-lg border border-border bg-card p-5">
  <div className="flex items-center justify-between mb-2">
- <span className="text-xs text-muted-foreground">{m.label}</span>
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{m.label}</span>
  <m.icon className={`w-4 h-4 ${m.color}`} />
  </div>
  <div className={`text-xl font-semibold ${m.color}`}>{m.value}</div>
  <div className="text-xs text-muted-foreground mt-1">{m.sub}</div>
- </CardContent>
- </Card>
+ </div>
  ))}
- </motion.div>
+ </div>
 
  {/* Main Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
- >
  <Tabs defaultValue="vwap">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="vwap">VWAP / TWAP</TabsTrigger>
- <TabsTrigger value="impact">Market Impact</TabsTrigger>
- <TabsTrigger value="comparison">Algo Comparison</TabsTrigger>
- <TabsTrigger value="venue">Venue Analysis</TabsTrigger>
+ <TabsTrigger value="vwap" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">VWAP / TWAP</TabsTrigger>
+ <TabsTrigger value="impact" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Market Impact</TabsTrigger>
+ <TabsTrigger value="comparison" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Algo Comparison</TabsTrigger>
+ <TabsTrigger value="venue" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Venue Analysis</TabsTrigger>
  </TabsList>
 
  {/* ── Tab: VWAP/TWAP ── */}
@@ -1216,7 +1191,6 @@ export default function AlgoExecutionPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  );
 }

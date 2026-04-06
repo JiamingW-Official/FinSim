@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  BookOpen,
  TrendingUp,
@@ -697,11 +696,8 @@ function ResearchDashboard() {
  <Badge variant="outline" className="ml-auto text-indigo-400 border-indigo-800">Updated Mar 2026</Badge>
  </div>
  {RESEARCH_THEMES.map((theme, idx) => (
- <motion.div
+ <div
  key={theme.id}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: idx * 0.05 }}
  >
  <Card className={cn("bg-card/70 border-border overflow-hidden", idx === 0 && "border-l-4 border-l-primary")}>
  <button
@@ -736,14 +732,10 @@ function ResearchDashboard() {
  </div>
  </CardHeader>
  </button>
- <AnimatePresence initial={false}>
+ 
  {expandedId === theme.id && (
- <motion.div
+ <div
  key="body"
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
  >
  <CardContent className="pt-0 pb-4 px-4">
  <div className="border-t border-border pt-3 space-y-4">
@@ -790,11 +782,11 @@ function ResearchDashboard() {
  </div>
  </div>
  </CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  );
@@ -814,11 +806,8 @@ function ValuationMonitor() {
  <CardContent>
  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
  {VALUATION_METRICS.map((m, idx) => (
- <motion.div
+ <div
  key={m.label}
- initial={{ opacity: 0, scale: 0.95 }}
- animate={{ opacity: 1, scale: 1 }}
- transition={{ delay: idx * 0.06 }}
  className="bg-muted/50 rounded-lg p-3 flex flex-col items-center gap-1"
  >
  <GaugeArc percentile={m.percentile} size={80} />
@@ -830,7 +819,7 @@ function ValuationMonitor() {
  {m.percentile}th pct
  </span>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  <p className="text-xs text-muted-foreground mt-3">
@@ -853,15 +842,12 @@ function ValuationMonitor() {
  <div key={item.region} className="flex items-center gap-3">
  <p className="text-sm text-muted-foreground w-44 shrink-0">{item.region}</p>
  <div className="flex-1 bg-muted rounded-full h-5 overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(item.pe / 30) * 100}%` }}
- transition={{ duration: 0.7, ease: "easeOut" }}
+ <div
+ style={{ width: `${(item.pe / 30) * 100}%` }}
  className="h-5 rounded-full flex items-center justify-end pr-2"
- style={{ backgroundColor: item.color + "99" }}
  >
  <span className="text-xs font-semibold text-foreground">{item.pe}x</span>
- </motion.div>
+ </div>
  </div>
  </div>
  ))}
@@ -896,11 +882,8 @@ function ValuationMonitor() {
  const relColor = s.rel > 0.4 ? "text-red-400" : s.rel < -0.4 ? "text-emerald-400" : "text-yellow-400";
  const peColor = s.pe > 25 ? "bg-red-950/50 text-red-300" : s.pe > 18 ? "bg-yellow-950/50 text-yellow-300" : "bg-emerald-950/50 text-emerald-300";
  return (
- <motion.tr
+ <tr
  key={s.sector}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: idx * 0.04 }}
  className="border-b border-border"
  >
  <td className="py-2 pr-3 text-muted-foreground font-medium">{s.sector}</td>
@@ -915,7 +898,7 @@ function ValuationMonitor() {
  {s.rel > 0 ? "+" : ""}{s.rel.toFixed(2)}
  </span>
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -975,12 +958,9 @@ function ValuationMonitor() {
  className="absolute top-0 h-4 bg-muted rounded-full"
  style={{ width: `${avgPct}%`, opacity: 0.4 }}
  />
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${pct}%` }}
- transition={{ duration: 0.8 }}
+ <div
+ style={{ width: `${pct}%` }}
  className="absolute top-0 h-4 rounded-full"
- style={{ backgroundColor: c.color + "cc" }}
  />
  <div className="absolute top-0 h-4 flex items-center pl-2">
  <span className="text-xs font-medium text-foreground">{c.current}{c.unit}</span>
@@ -1044,11 +1024,8 @@ function EconCalendar() {
  </thead>
  <tbody>
  {ECON_EVENTS.map((ev, idx) => (
- <motion.tr
+ <tr
  key={idx}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: idx * 0.025 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="py-2 pr-2 text-muted-foreground font-mono whitespace-nowrap">{ev.date}</td>
@@ -1060,7 +1037,7 @@ function EconCalendar() {
  {ev.importance}
  </Badge>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1123,30 +1100,22 @@ function EconCalendar() {
  {BANK_FORECASTS.map((b, idx) => {
  const pct = ((b.target - minTarget) / targetRange) * 100;
  return (
- <motion.div
+ <div
  key={b.bank}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: idx * 0.08 }}
  className="flex items-center gap-3"
  >
  <p className="text-sm text-muted-foreground w-36 shrink-0 font-medium">{b.bank}</p>
  <div className="flex-1 relative h-7 bg-muted rounded-lg overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${30 + pct * 0.7}%` }}
- transition={{ duration: 0.7, delay: idx * 0.08 }}
+ <div
+ style={{ width: `${30 + pct * 0.7}%`, backgroundColor: b.stance === "bullish" ? "#10b98133" : b.stance === "bearish" ? "#ef444433" : "#f59e0b33" }}
  className="absolute top-0 left-0 h-7 rounded-lg"
- style={{
- backgroundColor: b.stance === "bullish" ? "#10b98133" : b.stance === "bearish" ? "#ef444433" : "#f59e0b33",
- }}
  />
  <div className="absolute inset-0 flex items-center px-3 gap-2">
  <span className="font-medium text-sm text-foreground">{b.target.toLocaleString()}</span>
  <Badge variant="outline" className={cn("text-xs text-muted-foreground px-1.5 py-0", stanceColor(b.stance))}>{b.stance}</Badge>
  </div>
  </div>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -1180,11 +1149,8 @@ function EconCalendar() {
  <CardContent>
  <div className="space-y-2">
  {SURPRISE_DATA.map((s, idx) => (
- <motion.div
+ <div
  key={s.event}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: idx * 0.06 }}
  className="flex items-center gap-3 p-2 rounded-lg bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer"
  onClick={() => setSelectedSurprise(prev => prev === s.event ? null : s.event)}
  >
@@ -1201,7 +1167,7 @@ function EconCalendar() {
  <div className={cn("text-xs font-medium px-2 py-1 rounded", s.surprise > 0 ? "text-emerald-400" : "text-red-400")}>
  {s.surprise > 0 ? "BEAT" : "MISS"}
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  <p className="text-xs text-muted-foreground mt-3">
@@ -1226,11 +1192,8 @@ function ThematicResearch() {
  <Badge variant="outline" className="ml-auto text-primary border-border shrink-0">5 Deep Dives</Badge>
  </div>
  {RESEARCH_NOTES.map((note, idx) => (
- <motion.div
+ <div
  key={note.id}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: idx * 0.08 }}
  >
  <Card className="bg-card/70 border-border overflow-hidden">
  <button className="w-full text-left" onClick={() => toggle(note.id)}>
@@ -1247,14 +1210,10 @@ function ThematicResearch() {
  </div>
  </CardHeader>
  </button>
- <AnimatePresence initial={false}>
+ 
  {expandedId === note.id && (
- <motion.div
+ <div
  key="body"
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.22 }}
  >
  <CardContent className="pt-0 pb-5 px-5">
  <div className="border-t border-border pt-4 space-y-5">
@@ -1307,11 +1266,11 @@ function ThematicResearch() {
  </div>
  </div>
  </CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  );
@@ -1355,11 +1314,8 @@ function DataLibrary() {
  <tbody>
  {ECON_INDICATORS.map((ind, idx) => (
  <>
- <motion.tr
+ <tr
  key={ind.name}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: idx * 0.03 }}
  className={cn(
  "border-b border-border cursor-pointer transition-colors",
  storyId === ind.name ? "bg-indigo-950/20" : "hover:bg-muted/30"
@@ -1388,7 +1344,7 @@ function DataLibrary() {
  height={24}
  />
  </td>
- </motion.tr>
+ </tr>
  {storyId === ind.name && (
  <tr key={`${ind.name}-story`} className="bg-indigo-950/20 border-b border-border">
  <td colSpan={6} className="px-3 py-2">
@@ -1418,11 +1374,8 @@ function DataLibrary() {
  <CardContent>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
  {MARKET_INDICATORS.map((m, idx) => (
- <motion.div
+ <div
  key={m.name}
- initial={{ opacity: 0, scale: 0.97 }}
- animate={{ opacity: 1, scale: 1 }}
- transition={{ delay: idx * 0.05 }}
  className="flex items-center gap-3 p-2.5 rounded-lg bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer group"
  onClick={() => setStoryId(prev => prev === m.name ? null : m.name)}
  >
@@ -1436,17 +1389,15 @@ function DataLibrary() {
  </span>
  </div>
  {storyId === m.name && (
- <motion.p
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
+ <p
  className="text-xs text-indigo-200 mt-1 leading-relaxed"
  >
  {m.story}
- </motion.p>
+ </p>
  )}
  </div>
  <Info className="w-3.5 h-3.5 text-muted-foreground group-hover:text-muted-foreground transition-colors shrink-0" />
- </motion.div>
+ </div>
  ))}
  </div>
  </CardContent>
@@ -1473,11 +1424,8 @@ function DataLibrary() {
  </thead>
  <tbody>
  {CORRELATIONS.map((c, idx) => (
- <motion.tr
+ <tr
  key={c.asset}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: idx * 0.07 }}
  className="border-b border-border"
  >
  <td className="py-3 pr-3">
@@ -1499,7 +1447,7 @@ function DataLibrary() {
  <td className="py-3 pl-4">
  <CorrBar value={c.corr30d} />
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>

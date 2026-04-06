@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -141,7 +140,7 @@ function TaxOverviewTab() {
  <div className="space-y-4">
  {/* Quick calculator */}
  <div className="rounded-lg border border-border bg-card p-5">
- <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Federal Income Tax Calculator (2024, Single Filer)</h2>
+ <h2 className="text-xl font-semibold">Federal Income Tax Calculator (2024, Single Filer)</h2>
  <div className="space-y-4">
  <div className="flex items-center justify-between">
  <span className="text-sm text-muted-foreground">Annual Taxable Income</span>
@@ -173,7 +172,7 @@ function TaxOverviewTab() {
 
  {/* Staircase SVG chart */}
  <div className="rounded-lg border border-border bg-card p-5">
- <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Tax Bracket Waterfall Chart</h2>
+ <h2 className="text-xl font-semibold">Tax Bracket Waterfall Chart</h2>
  <div>
  <div className="overflow-x-auto">
  <svg viewBox={`0 0 ${chartW} ${chartH + 30}`} className="w-full max-w-2xl" style={{ height: 200 }}>
@@ -230,7 +229,7 @@ function TaxOverviewTab() {
 
  {/* Bracket breakdown */}
  <div className="rounded-lg border border-border bg-card p-5">
- <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Bracket-by-Bracket Breakdown</h2>
+ <h2 className="text-xl font-semibold">Bracket-by-Bracket Breakdown</h2>
  <div>
  <div className="space-y-2">
  {breakdown.map((row, i) => (
@@ -266,7 +265,7 @@ function TaxOverviewTab() {
 
  {/* Capital gains rates */}
  <div className="rounded-lg border border-border bg-card p-5">
- <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Long-Term Capital Gains Rates (2024, Single)</h2>
+ <h2 className="text-xl font-semibold">Long-Term Capital Gains Rates (2024, Single)</h2>
  <div>
  <div className="grid grid-cols-3 gap-3">
  {CAPITAL_GAINS_BRACKETS.map((b, i) => {
@@ -393,9 +392,8 @@ function TaxLossHarvestingTab() {
  const isLoss = pnl < 0;
 
  return (
- <motion.div
+ <div
  key={p.id}
- layout
  className={`flex items-center gap-3 rounded-lg border p-3 cursor-pointer transition-colors ${
  isLoss
  ? p.selected
@@ -433,16 +431,14 @@ function TaxLossHarvestingTab() {
  >
  {isLoss ? "" : "+"}{formatPct(pnlPct)}
  </Badge>
- </motion.div>
+ </div>
  );
  })}
  </div>
 
  {/* Replacement suggestions */}
  {lossPositions.some((p) => p.selected) && (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="mt-4 rounded-lg border border-border bg-muted/5 p-4"
  >
  <p className="text-sm font-medium mb-2 flex items-center gap-2">
@@ -469,7 +465,7 @@ function TaxLossHarvestingTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
@@ -1322,10 +1318,9 @@ function EstateGiftTab() {
 
 export default function TaxPage() {
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Page hero */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Tax Planning</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Tax Planning</h1>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">CAPITAL GAINS · LOSS HARVESTING · TAX-EFFICIENT</p>
 
  {/* Quick-glance stats */}
@@ -1357,19 +1352,19 @@ export default function TaxPage() {
  {/* Tabs */}
  <Tabs defaultValue="overview">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
- <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Overview
  </TabsTrigger>
- <TabsTrigger value="harvesting" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="harvesting" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Tax-Loss Harvesting
  </TabsTrigger>
- <TabsTrigger value="accounts" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="accounts" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Account Optimizer
  </TabsTrigger>
- <TabsTrigger value="capgains" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="capgains" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Capital Gains
  </TabsTrigger>
- <TabsTrigger value="estate" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="estate" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Estate &amp; Gifts
  </TabsTrigger>
  </TabsList>
@@ -1380,7 +1375,6 @@ export default function TaxPage() {
  <TabsContent value="capgains" className="mt-0 data-[state=inactive]:hidden"><CapitalGainsPlannerTab /></TabsContent>
  <TabsContent value="estate" className="mt-0 data-[state=inactive]:hidden"><EstateGiftTab /></TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

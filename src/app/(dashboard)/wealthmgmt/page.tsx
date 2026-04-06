@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  DollarSign,
  Users,
@@ -304,18 +303,15 @@ function ClientSegmentationTab() {
  </span>
  <span className="text-muted-foreground">{seg.range}</span>
  </div>
- <AnimatePresence>
+ 
  {selectedSeg === i && (
- <motion.p
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <p
  className="text-muted-foreground overflow-hidden mt-1"
  >
  {seg.description}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
+ 
  </button>
  ))}
  </div>

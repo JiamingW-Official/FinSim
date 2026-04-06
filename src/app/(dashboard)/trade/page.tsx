@@ -295,7 +295,7 @@ export default function TradePage() {
 
     <LiveInfoBar />
 
-    {/* ── Trade view: 3-column layout ── */}
+    {/* ── Trade view: 3-column ── */}
     <div className="flex flex-1 overflow-hidden">
 
      {/* ── LEFT: Watchlist (176px) ── */}

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -753,14 +752,12 @@ export default function CryptoExchangePage() {
  </div>
  {/* Price header */}
  <div className="flex items-baseline gap-3">
- <motion.span
+ <span
  key={`price-${tick}`}
- initial={{ opacity: 0.6 }}
- animate={{ opacity: 1 }}
  className="text-2xl font-semibold text-foreground font-mono"
  >
  {fmtPrice(midPrice)}
- </motion.span>
+ </span>
  <span className="text-sm text-green-400 font-mono">+1.87%</span>
  <span className="text-xs text-muted-foreground">24h</span>
  <div className="ml-auto flex items-center gap-4 text-xs text-muted-foreground">
@@ -795,12 +792,10 @@ export default function CryptoExchangePage() {
  <span className="text-right">Time</span>
  </div>
  <div className="space-y-0.5 max-h-64 overflow-y-auto">
- <AnimatePresence mode="popLayout">
+ 
  {recentTrades.map((trade, i) => (
- <motion.div
+ <div
  key={`trade-${i}-${tick}`}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
  className="grid grid-cols-3 text-xs text-muted-foreground px-1 py-0.5 rounded hover:bg-muted/50"
  >
  <span className={cn("font-mono", trade.side === "buy" ? "text-green-400" : "text-red-400")}>
@@ -808,9 +803,9 @@ export default function CryptoExchangePage() {
  </span>
  <span className="text-center text-muted-foreground font-mono">{trade.size.toFixed(4)}</span>
  <span className="text-right text-muted-foreground font-mono">{trade.time}</span>
- </motion.div>
+ </div>
  ))}
- </AnimatePresence>
+ 
  </div>
  </div>
  </div>
@@ -975,14 +970,12 @@ export default function CryptoExchangePage() {
  ))}
  </div>
  <div className="flex items-baseline gap-3 mb-4">
- <motion.span
+ <span
  key={`perp-price-${tick}`}
- initial={{ opacity: 0.6 }}
- animate={{ opacity: 1 }}
  className="text-lg font-medium font-mono"
  >
  {fmtPrice(perpPrice)}
- </motion.span>
+ </span>
  <span className="text-sm text-green-400">+2.14%</span>
  </div>
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Activity,
  Brain,
@@ -811,14 +810,8 @@ function StatArbTab() {
  </tbody>
  </table>
  </div>
- <AnimatePresence>
  {selectedPair && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="px-4 py-3 bg-muted/40 border-t border-border grid grid-cols-3 gap-3 text-xs text-muted-foreground">
  <div>
  <p className="text-muted-foreground">Cointegration Status</p>
@@ -839,9 +832,8 @@ function StatArbTab() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </CardContent>
  </Card>
 
@@ -988,14 +980,7 @@ function MLFinanceTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
- key={activeModel.name}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-3"
- >
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
  {[
  { label: "IC (daily)", value: activeModel.ic.toFixed(3), color: "text-emerald-400" },
  { label: "IC/IR", value: activeModel.icir.toFixed(2), color: "text-sky-400" },
@@ -1007,8 +992,7 @@ function MLFinanceTab() {
  <p className={`text-lg font-bold ${color}`}>{value}</p>
  </div>
  ))}
- </motion.div>
- </AnimatePresence>
+ </div>
 
  <div className="bg-muted/30 rounded p-3 text-xs text-muted-foreground space-y-1">
  <p className="text-muted-foreground">
@@ -1609,9 +1593,8 @@ export default function QuantStrategies2Page() {
  ];
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
-  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
-  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Quant Strategies II</h1>
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
+ <h1 className="text-3xl font-bold tracking-tight">Quant Strategies II</h1>
   <p className="text-sm text-muted-foreground mb-6">ADVANCED · EXECUTION · RISK · LIVE</p>
 
  <Tabs value={tab} onValueChange={setTab} className="w-full">
@@ -1620,7 +1603,7 @@ export default function QuantStrategies2Page() {
  <TabsTrigger
  key={id}
  value={id}
- className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground px-3 py-1.5 flex items-center gap-1.5"
+ className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground px-3 py-1.5 flex items-center gap-1.5"
  >
  <Icon className="w-3.5 h-3.5" />
  {label}
@@ -1629,30 +1612,21 @@ export default function QuantStrategies2Page() {
  </TabsList>
 
  <TabsContent value="statarb" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
  <StatArbTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="ml" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
  <MLFinanceTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="hft" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
  <HFTMarketMakingTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="execution" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
  <ExecutionTab />
- </motion.div>
  </TabsContent>
  </Tabs>
  </div>
-  </div>
  );
 }

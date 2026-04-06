@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -580,11 +579,8 @@ function ScreenerTab() {
  </thead>
  <tbody>
  {sorted.map((stock, i) => (
- <motion.tr
+ <tr
  key={stock.ticker}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.02 }}
  className="border-b border-border hover:bg-muted/30"
  >
  <td className="py-2 pr-3">
@@ -606,7 +602,7 @@ function ScreenerTab() {
  {stock.fcfNiDivergence.toFixed(2)}x
  </td>
  <td className="py-2 tabular-nums text-muted-foreground">${stock.marketCap.toFixed(0)}B</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -643,9 +639,9 @@ function AccrualTab() {
  </button>
  </div>
 
- <AnimatePresence mode="wait">
+ 
  {view === "balance" ? (
- <motion.div key="balance" initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 8 }} transition={{ duration: 0.2 }}>
+ <div key="balance">
  <div className="rounded-md border border-border bg-foreground/[0.03] p-5 space-y-4">
  <h3 className="text-sm font-medium text-foreground">Balance Sheet Accruals (Sloan, 1996)</h3>
  <div className="rounded-lg bg-card p-4 font-mono text-xs text-muted-foreground space-y-1">
@@ -668,9 +664,9 @@ function AccrualTab() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  ) : (
- <motion.div key="cf" initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.2 }}>
+ <div key="cf">
  <div className="rounded-md border border-border bg-foreground/[0.03] p-5 space-y-4">
  <h3 className="text-sm font-medium text-foreground">Cash Flow Accruals (Dechow et al., 1998)</h3>
  <div className="rounded-lg bg-card p-4 font-mono text-xs text-muted-foreground space-y-1">
@@ -683,9 +679,9 @@ function AccrualTab() {
  Academic studies find the CF accrual ratio predicts future returns with a 5-factor alpha of approximately 7% per year when going long low-accrual and short high-accrual deciles.
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Decile return chart */}
  <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
@@ -1054,7 +1050,7 @@ function CashFlowTab() {
  </thead>
  <tbody>
  {sorted.map((stock, i) => (
- <motion.tr key={stock.ticker} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03 }} className={cn("border-b border-border", stock.alert ? "bg-amber-500/5" : "hover:bg-muted/30")}>
+ <tr key={stock.ticker} className={cn("border-b border-border", stock.alert ? "bg-amber-500/5" : "hover:bg-muted/30")}>
  <td className="py-2 pr-3">
  <div className="font-medium text-foreground">{stock.ticker}</div>
  <div className="text-muted-foreground">{stock.name}</div>
@@ -1077,7 +1073,7 @@ function CashFlowTab() {
  <span className="flex items-center gap-1 text-emerald-400 text-xs"><CheckCircle2 size={11} />OK</span>
  )}
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>

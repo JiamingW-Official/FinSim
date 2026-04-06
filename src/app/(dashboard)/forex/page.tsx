@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -391,12 +390,8 @@ function MajorPairsTab() {
  const decimals = pair.isJpy ? 3 : 5;
  const rangePct = ((pair.price - pair.rangeLow) / (pair.rangeHigh - pair.rangeLow)) * 100;
  return (
- <motion.tr
+ <tr
  key={pair.symbol}
- custom={i}
- variants={fadeUp}
- initial="hidden"
- animate="visible"
  onClick={() => setSelectedPair(pair.symbol)}
  className={cn(
  "border-b border-border cursor-pointer transition-colors",
@@ -442,7 +437,7 @@ function MajorPairsTab() {
  />
  </svg>
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -452,11 +447,8 @@ function MajorPairsTab() {
  </Card>
 
  {/* Detail panel for selected pair */}
- <motion.div
+ <div
  key={selectedPair}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
  >
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -500,7 +492,7 @@ function MajorPairsTab() {
  </svg>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* FX Market Info */}
  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -536,7 +528,7 @@ function MajorPairsTab() {
  ],
  },
  ].map((card, i) => (
- <motion.div key={card.title} custom={i} variants={fadeUp} initial="hidden" animate="visible">
+ <div key={card.title}>
  <Card className="bg-card border-border h-full">
  <CardHeader className="pb-2">
  <CardTitle className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
@@ -553,7 +545,7 @@ function MajorPairsTab() {
  ))}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -624,12 +616,8 @@ function CarryTradeTab() {
  const isPositive = pair.differential >= 0;
  const totalPos = pair.totalReturn >= 0;
  return (
- <motion.tr
+ <tr
  key={pair.symbol}
- custom={i}
- variants={fadeUp}
- initial="hidden"
- animate="visible"
  className="border-b border-border hover:bg-muted/40"
  >
  <td className="px-4 py-3">
@@ -653,7 +641,7 @@ function CarryTradeTab() {
  <td className={cn("px-4 py-3 text-right font-mono font-semibold", totalPos ? "text-emerald-400" : "text-rose-400")}>
  {totalPos ? "+" : ""}{pair.totalReturn.toFixed(2)}%
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -757,10 +745,8 @@ function CarryTradeTab() {
  <div key={ccy} className="flex items-center gap-3">
  <span className="text-xs text-muted-foreground w-8 font-mono">{ccy}</span>
  <div className="flex-1 h-4 bg-muted rounded overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(rate / 12) * 100}%` }}
- transition={{ duration: 0.6, delay: 0.1 }}
+ <div
+ style={{ width: `${(rate / 12) * 100}%` }}
  className={cn("h-full rounded", rate >= 5 ? "bg-emerald-500" : rate >= 3 ? "bg-amber-500" : "bg-muted-foreground")}
  />
  </div>
@@ -1055,12 +1041,8 @@ function MacroDriversTab() {
  </thead>
  <tbody>
  {MACRO_DRIVERS.map((d, i) => (
- <motion.tr
+ <tr
  key={d.pair}
- custom={i}
- variants={fadeUp}
- initial="hidden"
- animate="visible"
  className="border-b border-border"
  >
  <td className="py-2 font-medium text-foreground">{d.pair}</td>
@@ -1081,7 +1063,7 @@ function MacroDriversTab() {
  {d.outlook}
  </Badge>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1174,10 +1156,8 @@ function MacroDriversTab() {
  </span>
  </div>
  <div className="h-2 bg-muted rounded overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${barPct}%` }}
- transition={{ duration: 0.6 }}
+ <div
+ style={{ width: `${barPct}%` }}
  className={cn("h-full rounded", isPositive ? "bg-emerald-500" : "bg-rose-500")}
  />
  </div>
@@ -1211,7 +1191,7 @@ function MacroDriversTab() {
  stat: "CHF CA surplus: +5.8% GDP",
  },
  ].map((card, i) => (
- <motion.div key={card.title} custom={i} variants={fadeUp} initial="hidden" animate="visible">
+ <div key={card.title}>
  <Card className="bg-card border-border h-full">
  <CardHeader className="pb-2">
  <CardTitle className="text-xs font-medium text-muted-foreground flex items-center gap-2">
@@ -1224,7 +1204,7 @@ function MacroDriversTab() {
  <div className="bg-muted rounded px-3 py-2 text-xs font-medium text-primary">{card.stat}</div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1450,7 +1430,7 @@ function RiskManagementTab() {
  color: "text-rose-400",
  },
  ].map((strat, i) => (
- <motion.div key={strat.name} custom={i} variants={fadeUp} initial="hidden" animate="visible">
+ <div key={strat.name}>
  <div className="bg-muted rounded-lg p-4 h-full space-y-2">
  <div className={cn("text-sm font-medium", strat.color)}>{strat.name}</div>
  <p className="text-[11px] text-muted-foreground leading-relaxed">{strat.description}</p>
@@ -1464,16 +1444,14 @@ function RiskManagementTab() {
  <span className="text-muted-foreground">{strat.effectiveness}%</span>
  </div>
  <div className="h-1.5 bg-muted rounded overflow-hidden mt-1">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${strat.effectiveness}%` }}
- transition={{ duration: 0.6, delay: i * 0.1 }}
+ <div
+ style={{ width: `${strat.effectiveness}%` }}
  className="h-full bg-primary rounded"
  />
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </CardContent>

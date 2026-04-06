@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Shield,
  AlertTriangle,
@@ -1105,18 +1104,15 @@ export default function CreditRiskModelPage() {
  </CardTitle>
  </CardHeader>
  <CardContent>
- <AnimatePresence>
+ 
  {showCumulative && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="text-xs text-muted-foreground bg-muted/60 rounded p-2 mb-3"
  >
  Cumulative default rates show the probability that a bond originally rated X will default within 5 years. Investment-grade (BBB and above) dramatically outperforms high-yield.
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  <div className="space-y-1.5">
  {Object.entries(CUM_DEFAULT_5Y).map(([rtg, def]) => (
  <div key={rtg} className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -1172,24 +1168,21 @@ export default function CreditRiskModelPage() {
  const val =
  (curMigStep.distribution as Record<string, number>)[rr] ?? 0;
  return (
- <motion.div
+ <div
  key={rr}
  className="flex items-center gap-2 text-xs text-muted-foreground"
- layout
  >
  <span className="w-8 font-medium text-right" style={{ color: RATING_COLORS[rr] }}>
  {rr}
  </span>
  <div className="flex-1 h-4 bg-muted rounded overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded"
- animate={{ width: `${Math.min(val * 10, 100)}%` }}
- style={{ background: RATING_COLORS[rr], opacity: 0.8 }}
- transition={{ duration: 0.4 }}
+ style={{ width: `${Math.min(val * 10, 100)}%`, background: RATING_COLORS[rr], opacity: 0.8 }}
  />
  </div>
  <span className="text-muted-foreground w-8 text-right">{val.toFixed(1)}</span>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -1418,7 +1411,7 @@ export default function CreditRiskModelPage() {
  </thead>
  <tbody className="divide-y divide-border/60">
  {PORTFOLIO_LOANS.map((loan) => (
- <motion.tr
+ <tr
  key={loan.id}
  onClick={() =>
  setSelectedLoan(selectedLoan === loan.id ? null : loan.id)
@@ -1447,7 +1440,7 @@ export default function CreditRiskModelPage() {
  <td className="py-1.5 text-right text-amber-400">{fmtPct(loan.lgd * 100, 0)}</td>
  <td className="py-1.5 text-right text-emerald-400">{fmtM(loan.el)}</td>
  <td className="py-1.5 text-right text-muted-foreground">{fmtPct(loan.weight * 100, 1)}</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  <tfoot>

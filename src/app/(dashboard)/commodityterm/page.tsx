@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -154,13 +153,10 @@ function FadeIn({
  delay?: number;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay }}
+ <div
  >
  {children}
- </motion.div>
+ </div>
  );
 }
 

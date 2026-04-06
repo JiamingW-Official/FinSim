@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -383,7 +382,7 @@ export default function HFDueDiligencePage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
  {/* Header */}
- <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="space-y-1">
+ <div className="space-y-1">
  <div className="flex items-center gap-3">
  <div className="p-2 rounded-lg bg-muted">
  <Search className="h-5 w-5 text-muted-foreground" />
@@ -397,17 +396,17 @@ export default function HFDueDiligencePage() {
  <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/30">L/S Equity</Badge>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Key Metrics */}
- <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
  {KEY_METRICS.map((m) => (
  <MetricCard key={m.label} label={m.label} value={m.value} sub={m.sub} icon={m.icon} highlight={m.highlight} />
  ))}
- </motion.div>
+ </div>
 
  {/* DD Summary Bar */}
- <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible" className="mt-8">
+ <div className="mt-8">
  <Card className="bg-card border-border">
  <CardContent className="p-4">
  <div className="flex flex-wrap items-center gap-4">
@@ -435,10 +434,10 @@ export default function HFDueDiligencePage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Tabs defaultValue="quant">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="quant">Quantitative DD</TabsTrigger>
@@ -727,7 +726,7 @@ export default function HFDueDiligencePage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

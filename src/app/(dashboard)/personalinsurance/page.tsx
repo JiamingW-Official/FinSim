@@ -21,7 +21,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -37,7 +36,7 @@ void rand; // available for future use
 function SectionHeader({ title, subtitle }: { title: string; subtitle?: string }) {
  return (
  <div className="mb-5">
- <h2 className="text-lg font-semibold text-foreground">{title}</h2>
+ <h2 className="text-xl font-serif tracking-tight">{title}</h2>
  {subtitle && <p className="text-sm text-muted-foreground mt-0.5">{subtitle}</p>}
  </div>
  );
@@ -670,10 +669,8 @@ function LifeInsuranceTab() {
  amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
  }[p.color];
  return (
- <motion.div
+ <div
  key={p.name}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
  className={cn("rounded-md border p-4 space-y-3", colorCls)}
  >
  <div className="flex items-center justify-between">
@@ -710,7 +707,7 @@ function LifeInsuranceTab() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -1450,15 +1447,14 @@ function HealthMedicareTab() {
 
 export default function PersonalInsurancePage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Page Header */}
  <div className="flex items-center gap-3">
  <div className="h-10 w-10 rounded-lg bg-muted/10 flex items-center justify-center">
  <Shield className="h-3.5 w-3.5 text-muted-foreground/50" />
  </div>
  <div>
- <h1 className="text-xl font-medium text-foreground">Personal Insurance Planning</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Personal Insurance Planning</h1>
  <p className="text-sm text-muted-foreground">Risk protection analysis — life, disability, property, health</p>
  </div>
  <div className="ml-auto flex gap-2 flex-wrap">
@@ -1503,16 +1499,16 @@ export default function PersonalInsurancePage() {
 
  {/* Tabs */}
  <Tabs defaultValue="needs">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="needs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Needs Calculator
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="needs" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Needs Calculator
  </TabsTrigger>
- <TabsTrigger value="life" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Life Insurance
+ <TabsTrigger value="life" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Life Insurance
  </TabsTrigger>
- <TabsTrigger value="disability" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Disability
+ <TabsTrigger value="disability" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Disability
  </TabsTrigger>
- <TabsTrigger value="property" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Property &amp; Auto
+ <TabsTrigger value="property" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Property &amp; Auto
  </TabsTrigger>
- <TabsTrigger value="health" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Health &amp; Medicare
+ <TabsTrigger value="health" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Health &amp; Medicare
  </TabsTrigger>
  </TabsList>
 
@@ -1539,7 +1535,6 @@ export default function PersonalInsurancePage() {
  <p className="text-xs text-muted-foreground">
  <strong>Educational Purposes Only.</strong> Premium estimates use actuarial approximations and real-world figures vary by state, insurer, health history, and underwriting. Consult a licensed insurance professional before making coverage decisions. All 2024 limits and figures are illustrative.
  </p>
- </div>
  </div>
  </div>
  );

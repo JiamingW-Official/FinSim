@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  PieChart,
  Search,
@@ -703,7 +702,7 @@ function SOTPTab() {
  <div className="space-y-2">
  <h3 className="text-sm font-semibold text-foreground">Segment Valuation Detail</h3>
  {SOTP_SEGMENTS.map((seg, i) => (
- <motion.div
+ <div
  key={i}
  className="bg-muted border border-border rounded-md overflow-hidden cursor-pointer"
  onClick={() => setExpandedSeg(expandedSeg === i ? null : i)}
@@ -721,13 +720,9 @@ function SOTPTab() {
  className={cn("w-4 h-4 text-muted-foreground transition-transform", expandedSeg === i && "rotate-180")}
  />
  </div>
- <AnimatePresence>
+ 
  {expandedSeg === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-3 pt-1 border-t border-border">
@@ -747,10 +742,10 @@ function SOTPTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
 
@@ -915,7 +910,7 @@ function PrimaryResearchTab() {
  </h3>
  <div className="space-y-2">
  {CHANNEL_LEVELS.map((level, i) => (
- <motion.div
+ <div
  key={i}
  className={cn(
  "rounded-lg p-2.5 cursor-pointer border transition-colors",
@@ -932,13 +927,9 @@ function PrimaryResearchTab() {
  className={cn("w-3.5 h-3.5 text-muted-foreground ml-auto transition-transform", activeLevel === i && "rotate-180")}
  />
  </div>
- <AnimatePresence>
+ 
  {activeLevel === i && (
- <motion.ul
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.18 }}
+ <ul
  className="mt-2 space-y-1 overflow-hidden"
  >
  {level.insights.map((ins, j) => (
@@ -947,10 +938,10 @@ function PrimaryResearchTab() {
  {ins}
  </li>
  ))}
- </motion.ul>
+ </ul>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  </div>
@@ -1010,7 +1001,7 @@ function PrimaryResearchTab() {
  </h3>
  <div className="grid md:grid-cols-3 gap-3">
  {altDataSources.map((src, i) => (
- <motion.div
+ <div
  key={i}
  className={cn(
  "bg-card rounded-lg p-3 border cursor-pointer transition-colors",
@@ -1023,7 +1014,7 @@ function PrimaryResearchTab() {
  <span className="text-xs font-medium text-foreground">{src.name}</span>
  </div>
  <p className="text-xs text-muted-foreground">{src.detail}</p>
- </motion.div>
+ </div>
  ))}
  </div>
  <div className="mt-3 p-2.5 bg-card rounded-lg border border-border">
@@ -1077,13 +1068,9 @@ function ForensicTab() {
  <span className="text-xs text-muted-foreground mr-2">{cat.flags.length} flags</span>
  <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", expandedCategory === i && "rotate-180")} />
  </button>
- <AnimatePresence>
+ 
  {expandedCategory === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-3 pb-3 space-y-2 border-t border-border">
@@ -1098,25 +1085,22 @@ function ForensicTab() {
  {flag.severity}
  </span>
  </div>
- <AnimatePresence>
+ 
  {expandedFlag === key && (
- <motion.p
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <p
  className="text-xs text-muted-foreground mt-1.5 ml-4 overflow-hidden"
  >
  {flag.detail}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>
@@ -1256,13 +1240,9 @@ function ThesisTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeStep}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
  className="bg-card rounded-md p-4 border border-border"
  >
  <div className="flex items-center gap-2 mb-2">
@@ -1274,8 +1254,8 @@ function ThesisTab() {
  <p className="text-xs text-primary font-medium mb-0.5">Example</p>
  <p className="text-xs text-muted-foreground italic">{THESIS_STEPS[activeStep].example}</p>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
 
  {/* Variant perception */}
@@ -1329,10 +1309,10 @@ function ThesisTab() {
  <div className="w-full flex items-end justify-center">
  <div
  className="w-full rounded-t-md opacity-80 transition-colors"
- style={{ height: barH, backgroundColor: t.color }}
+ style={{ height: barH, backgroundColor: t.color, color: t.color }}
  />
  </div>
- <span className="text-xs font-medium" style={{ color: t.color }}>{t.label}</span>
+ <span className="text-xs font-medium" >{t.label}</span>
  <span className="text-xs text-muted-foreground text-center">{t.desc}</span>
  </div>
  );
@@ -1363,7 +1343,7 @@ function ThesisTab() {
  </h3>
  <div className="space-y-2">
  {MOAT_TYPES.map((moat, i) => (
- <motion.div
+ <div
  key={i}
  className={cn(
  "rounded-lg p-2.5 cursor-pointer border transition-colors",
@@ -1378,13 +1358,9 @@ function ThesisTab() {
  </div>
  <span className="text-xs font-mono text-primary">{moat.durability}</span>
  </div>
- <AnimatePresence>
+ 
  {activeMoat === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.18 }}
+ <div
  className="overflow-hidden mt-2"
  >
  <p className="text-xs text-muted-foreground mb-1.5">{moat.description}</p>
@@ -1393,10 +1369,10 @@ function ThesisTab() {
  <span key={j} className="text-xs bg-muted border border-border px-1.5 py-0.5 rounded text-muted-foreground">{ex}</span>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  </div>

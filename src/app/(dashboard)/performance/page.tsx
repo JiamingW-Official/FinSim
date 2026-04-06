@@ -527,7 +527,7 @@ function DonutChart({
  <text x={cx} y={cy - 6} textAnchor="middle" fill="currentColor" style={{ fontSize: 18, fontWeight: 700 }}>
  {((wins / total) * 100).toFixed(0)}%
  </text>
- <text x={cx} y={cy + 12} textAnchor="middle" fill="currentColor" fillOpacity={0.5} style={{ fontSize: 10 }}>
+ <text x={cx} y={cy + 12} textAnchor="middle" fill="currentColor" fillOpacity={0.5} >
  win rate
  </text>
  </svg>
@@ -776,7 +776,7 @@ function CircularGauge({
  <text x={cx} y={cy - 6} textAnchor="middle" fill="currentColor" style={{ fontSize: 26, fontWeight: 700 }}>
  {(pct * 100).toFixed(0)}%
  </text>
- <text x={cx} y={cy + 12} textAnchor="middle" fill="currentColor" fillOpacity={0.5} style={{ fontSize: 10 }}>
+ <text x={cx} y={cy + 12} textAnchor="middle" fill="currentColor" fillOpacity={0.5} >
  {label}
  </text>
  <text x={cx} y={cy + 28} textAnchor="middle" fill={color} style={{ fontSize: 11, fontWeight: 600 }}>

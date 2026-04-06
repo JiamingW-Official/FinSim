@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Flame,
  Zap,
@@ -801,12 +800,9 @@ function Tab2() {
  <div key={c.ticker} className="flex items-center gap-3">
  <div className="w-12 font-medium text-foreground text-xs">{c.ticker}</div>
  <div className="flex-1 h-6 bg-muted/60 rounded-md overflow-hidden relative">
- <motion.div
- layout
+ <div
  className="h-full rounded-md"
- style={{ backgroundColor: fcf > 15 ? "#34d399" : fcf > 8 ? "#fbbf24" : "#60a5fa" }}
- animate={{ width: `${Math.min(fcf * 4, 100)}%` }}
- transition={{ duration: 0.4, ease: "easeOut" }}
+ style={{ backgroundColor: fcf > 15 ? "#34d399" : fcf > 8 ? "#fbbf24" : "#60a5fa", width: `${Math.min(fcf * 4, 100)}%` }}
  />
  <span className="absolute left-2 top-0 h-full flex items-center text-[11px] font-medium text-background">
  {fcf.toFixed(1)}% FCF yield
@@ -1190,11 +1186,9 @@ function Tab4() {
  <span className="text-emerald-400">Rate Base +{u.rateBaseGrowth}%/yr</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full bg-primary rounded-full"
- initial={{ width: 0 }}
- animate={{ width: `${(u.capex / 9) * 100}%` }}
- transition={{ delay: 0.1, duration: 0.6 }}
+ style={{ width: `${(u.capex / 9) * 100}%` }}
  />
  </div>
  </div>
@@ -1602,13 +1596,9 @@ export default function EnergyPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
  >
  <TabsContent value="overview" className="mt-0 data-[state=inactive]:hidden">
  <Tab1 />
@@ -1625,8 +1615,8 @@ export default function EnergyPage() {
  <TabsContent value="transition" className="mt-0 data-[state=inactive]:hidden">
  <Tab5 />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </Tabs>
  </div>
  </div>

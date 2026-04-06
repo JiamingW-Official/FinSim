@@ -21,7 +21,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -1097,8 +1097,7 @@ export default function ReinsurancePage() {
  const [activeTab, setActiveTab] = useState<TabValue>("basics");
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
  <div className="mb-6">
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Reinsurance</h1>
@@ -1126,7 +1125,7 @@ export default function ReinsurancePage() {
  <TabsTrigger
  key={value}
  value={value}
- className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground"
+ className="flex items-center gap-1.5 data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground"
  >
  <Icon size={12} />
  {label}
@@ -1135,50 +1134,21 @@ export default function ReinsurancePage() {
  </TabsList>
 
  <TabsContent value="basics" className="data-[state=inactive]:hidden">
- <motion.div
- key="basics"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
  <BasicsTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="catbonds" className="data-[state=inactive]:hidden">
- <motion.div
- key="catbonds"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
  <CatBondsTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="ils" className="data-[state=inactive]:hidden">
- <motion.div
- key="ils"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
  <ILSTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="cycles" className="data-[state=inactive]:hidden">
- <motion.div
- key="cycles"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- >
  <CyclesTab />
- </motion.div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

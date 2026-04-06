@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -342,14 +341,10 @@ function TradeLogTab() {
  </tr>
  </thead>
  <tbody>
- <AnimatePresence mode="popLayout">
+ 
  {sorted.map((trade, idx) => (
- <motion.tr
+ <tr
  key={trade.id}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.15, delay: idx * 0.02 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2.5 font-medium text-foreground">{trade.symbol}</td>
@@ -400,9 +395,9 @@ function TradeLogTab() {
  </span>
  )}
  </td>
- </motion.tr>
+ </tr>
  ))}
- </AnimatePresence>
+ 
  </tbody>
  </table>
  </div>
@@ -1220,11 +1215,8 @@ function ImprovementAreasTab() {
  <div className="text-sm font-medium text-foreground mb-3">Lessons Learned</div>
  <div className="space-y-3">
  {LESSONS.map((lesson, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.08 }}
  className="bg-card border border-border rounded-lg p-4 flex gap-3"
  >
  <lesson.icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${lesson.color}`} />
@@ -1232,7 +1224,7 @@ function ImprovementAreasTab() {
  <div className="text-sm font-medium text-foreground mb-1">{lesson.title}</div>
  <div className="text-xs text-muted-foreground leading-relaxed">{lesson.body}</div>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>

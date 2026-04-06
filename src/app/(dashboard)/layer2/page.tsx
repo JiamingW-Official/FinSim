@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Layers,
  Zap,
@@ -596,22 +595,18 @@ function RollupTechnology() {
  <span className="font-medium">{title}</span>
  {expanded === title ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
  </button>
- <AnimatePresence initial={false}>
+ 
  {expanded === title && (
- <motion.div
+ <div
  key="content"
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 text-xs text-muted-foreground leading-relaxed border-t border-border">
  {body}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>
@@ -847,8 +842,8 @@ function AdoptionChart() {
  <div className="text-sm font-medium text-muted-foreground mb-1">Cumulative Unique Wallet Growth (Millions)</div>
  <div className="flex gap-4 mb-3">
  {lines.map((l) => (
- <div key={l.key} className="flex items-center gap-1.5 text-xs" style={{ color: l.color }}>
- <div className="w-4 h-0.5" style={{ backgroundColor: l.color }} />
+ <div key={l.key} className="flex items-center gap-1.5 text-xs" style={{ color: l.color, backgroundColor: l.color }}>
+ <div className="w-4 h-0.5"  />
  {l.label}
  </div>
  ))}
@@ -1257,10 +1252,7 @@ export default function Layer2Page() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-5xl mx-auto px-4 py-8">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="mb-8"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1285,7 +1277,7 @@ export default function Layer2Page() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Hero */}
  <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
@@ -1307,37 +1299,37 @@ export default function Layer2Page() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
+ 
  <TabsContent value="scaling" className="data-[state=inactive]:hidden">
- <motion.div key="scaling" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ <div key="scaling">
  <ScalingLandscape />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="rollup" className="data-[state=inactive]:hidden">
- <motion.div key="rollup" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ <div key="rollup">
  <RollupTechnology />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="tokens" className="data-[state=inactive]:hidden">
- <motion.div key="tokens" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ <div key="tokens">
  <L2TokenEconomics />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="ecosystem" className="data-[state=inactive]:hidden">
- <motion.div key="ecosystem" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ <div key="ecosystem">
  <DeveloperEcosystem />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="thesis" className="data-[state=inactive]:hidden">
- <motion.div key="thesis" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ <div key="thesis">
  <InvestmentThesis />
- </motion.div>
+ </div>
  </TabsContent>
- </AnimatePresence>
+ 
  </Tabs>
  </div>
  </div>

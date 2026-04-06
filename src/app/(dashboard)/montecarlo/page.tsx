@@ -613,14 +613,15 @@ export default function MonteCarloPage() {
  const varData = useMemo(() => VAR_DATA, []);
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Monte Carlo</h1>
- <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">SIMULATION · PROBABILITY · SCENARIO ANALYSIS</p>
+ <div>
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Monte Carlo</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground">SIMULATION · PROBABILITY · SCENARIO ANALYSIS</p>
+ </div>
 
  {/* Key Metrics */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
  <StatCard
  title="Median Final Value"
  value={fmt(sim.percentile50)}
@@ -654,10 +655,10 @@ export default function MonteCarloPage() {
  {/* Tabs */}
  <Tabs defaultValue="portfolio">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio MC</TabsTrigger>
- <TabsTrigger value="options" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Option Pricing</TabsTrigger>
- <TabsTrigger value="retirement" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Retirement</TabsTrigger>
- <TabsTrigger value="var" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">VaR / CVaR</TabsTrigger>
+ <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio MC</TabsTrigger>
+ <TabsTrigger value="options" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Option Pricing</TabsTrigger>
+ <TabsTrigger value="retirement" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Retirement</TabsTrigger>
+ <TabsTrigger value="var" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">VaR / CVaR</TabsTrigger>
  </TabsList>
 
  {/* ----------------------------------------------------------------
@@ -1159,7 +1160,6 @@ export default function MonteCarloPage() {
  exotic pricing, and advisors for retirement planning. The more complex the derivative or the
  more correlated the portfolio, the greater MC&apos;s advantage over closed-form solutions.
  </p>
- </div>
  </div>
  </div>
  </div>

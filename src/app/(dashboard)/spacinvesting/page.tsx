@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Building2,
  TrendingUp,
@@ -590,13 +589,9 @@ function DealAnalysisTab() {
  </div>
 
  {/* Expanded dilution analysis */}
- <AnimatePresence>
+ 
  {selectedDeal?.ticker === deal.ticker && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -622,9 +617,9 @@ function DealAnalysisTab() {
  {deal.warrantStrike}
  </span>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
@@ -1355,13 +1350,9 @@ function InvestorStrategyTab() {
  )}
  </button>
 
- <AnimatePresence>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-5 pb-5 border-t border-border">
@@ -1414,9 +1405,9 @@ function InvestorStrategyTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
@@ -1450,10 +1441,7 @@ export default function SpacInvestingPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-6xl mx-auto px-4 py-8">
  {/* Page Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1480,7 +1468,7 @@ export default function SpacInvestingPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="mechanics" className="mt-8">
@@ -1501,33 +1489,33 @@ export default function SpacInvestingPage() {
  </TabsList>
 
  <TabsContent value="mechanics" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <MechanicsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="deals" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <DealAnalysisTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="warrants" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <WarrantValuationTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="history" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <HistoricalPerformanceTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="strategy" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <InvestorStrategyTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

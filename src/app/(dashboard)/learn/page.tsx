@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
   BookOpen,
@@ -98,10 +97,7 @@ function UnitCard({
   const ctaLabel = status === "done" ? "Review" : status === "started" ? "Continue" : "Start";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.18, delay: Math.min(index * 0.025, 0.35) }}
+    <div
       className={cn(
         "group relative flex flex-col gap-3 rounded-xl border p-4 transition-all duration-200",
         /* started — most prominent, glows subtly */
@@ -185,7 +181,7 @@ function UnitCard({
       >
         {ctaLabel} →
       </Link>
-    </motion.div>
+    </div>
   );
 }
 
@@ -612,49 +608,38 @@ export default function LearnPage() {
             </div>
           </div>
 
-          <AnimatePresence>
-            {activeTool && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="overflow-hidden mt-4"
-              >
-                <div className="rounded-xl border border-border/70 p-4">
-                  {activeTool === "scenario" ? <ScenarioSimulator /> : <CompoundCalculator />}
+          {activeTool && (
+              <div className="overflow-hidden mt-4">
+                <div className="rounded-lg border border-border p-4">
+                  {activeTool === "scenario" ? (
+                    <ScenarioSimulator />
+                  ) : (
+                    <CompoundCalculator />
+                  )}
                 </div>
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
         </div>
       </div>
 
       {/* Game overlays */}
-      <AnimatePresence>
-        {activeGame && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+      {activeGame && (
+          <div
+            className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
             onClick={() => setActiveGame(null)}
           >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 16 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 16 }}
-              transition={{ type: "spring", stiffness: 320, damping: 26 }}
-              className="w-full max-w-md rounded-xl border border-border bg-card overflow-hidden shadow-2xl"
+            <div
+              className="w-full max-w-md rounded-lg border border-border bg-card overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              {activeGame === "flashcards"
-                ? <FlashcardGame onClose={() => setActiveGame(null)} />
-                : <PredictionGame onClose={() => setActiveGame(null)} />}
-            </motion.div>
-          </motion.div>
+              {activeGame === "flashcards" ? (
+                <FlashcardGame onClose={() => setActiveGame(null)} />
+              ) : (
+                <PredictionGame onClose={() => setActiveGame(null)} />
+              )}
+            </div>
+          </div>
         )}
-      </AnimatePresence>
     </div>
   );
 }

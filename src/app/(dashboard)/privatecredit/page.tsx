@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  DollarSign,
  TrendingDown,
@@ -237,7 +236,7 @@ function DirectLendingTab() {
  style={{ left: `${leftPct}%`, width: `${widthPct}%`, opacity: 0.8 }}
  />
  <div className="absolute top-0 h-full border-l border-border" style={{ left: "50%" }} />
- <span className="absolute top-0.5 text-[11px] text-muted-foreground" style={{ left: "50.5%" }}>5×</span>
+ <span className="absolute top-0.5 text-[11px] text-muted-foreground" >5×</span>
  </div>
  </div>
  );
@@ -412,13 +411,13 @@ function MezzanineTab() {
  })}
  </svg>
  </div>
- <AnimatePresence mode="wait">
+ 
  {selected !== null && (
- <motion.div
+ <div
  key={selected}
- initial={{ opacity: 0, x: 24 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: 24 }}
+
+
+
  className="flex-1 rounded-md border border-border bg-muted/30 p-4 self-start"
  >
  <p className="text-xs text-muted-foreground mb-1">Selected Layer</p>
@@ -431,9 +430,9 @@ function MezzanineTab() {
  <p className="text-sm text-muted-foreground mt-1">
  <span className="text-muted-foreground">Risk: </span>{capitalLayers[selected].risk}
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  </div>
 
@@ -903,20 +902,21 @@ export default function PrivateCreditPage() {
  const [activeTab, setActiveTab] = useState<TabId>("direct");
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Private Credit</h1>
- <p className="text-sm text-muted-foreground mb-6">DIRECT LENDING · MEZZANINE · YIELD</p>
+ <div>
+ <h1 className="text-3xl font-bold tracking-tight">Private Credit</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">DIRECT LENDING · MEZZANINE · YIELD</p>
+ </div>
 
- <div className="flex flex-wrap gap-2 mb-6">
+ <div className="flex flex-wrap gap-2">
  <InfoPill text="$1.7T AUM" color="violet" />
  <InfoPill text="SOFR+500–700bps" color="blue" />
  <InfoPill text="200–300bps Illiquidity Premium" color="emerald" />
  <InfoPill text="1st Lien / Unitranche" color="amber" />
  </div>
 
- <div className="border-t border-border mb-6" />
+ <div className="border-t border-border" />
 
  <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
@@ -927,20 +927,12 @@ export default function PrivateCreditPage() {
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  ><span>{tab.label}</span></TabsTrigger>
  );
  })}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
- key={activeTab}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
- >
  <TabsContent value="direct" className="data-[state=inactive]:hidden">
  {activeTab === "direct" && <DirectLendingTab />}
  </TabsContent>
@@ -953,10 +945,7 @@ export default function PrivateCreditPage() {
  <TabsContent value="dynamics" className="data-[state=inactive]:hidden">
  {activeTab === "dynamics" && <MarketDynamicsTab />}
  </TabsContent>
- </motion.div>
- </AnimatePresence>
  </Tabs>
- </div>
  </div>
  );
 }

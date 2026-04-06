@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  DollarSign,
  Globe,
@@ -707,13 +706,11 @@ function CashLiquidityTab() {
  <span className="text-muted-foreground ml-auto">{tier.typical}</span>
  </div>
  {selectedTier === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
+ <div
  className="mt-2 pt-2 border-t border-border"
  >
  <p className="text-xs text-muted-foreground">{tier.examples}</p>
- </motion.div>
+ </div>
  )}
  </button>
  ))}
@@ -822,9 +819,9 @@ function FXRiskTab() {
  <div
  key={item.type}
  className="rounded-lg border border-border bg-card/40 p-3"
- style={{ borderLeftWidth: 3, borderLeftColor: item.color }}
+ style={{ borderLeftWidth: 3, borderLeftColor: item.color, color: item.color }}
  >
- <p className="font-medium text-sm mb-1" style={{ color: item.color }}>{item.type} Exposure</p>
+ <p className="font-medium text-sm mb-1" >{item.type} Exposure</p>
  <p className="text-[11px] text-muted-foreground mb-2">{item.desc}</p>
  <div className="space-y-1.5">
  <div>
@@ -987,13 +984,11 @@ function DebtMarketsTab() {
  <ChevronRight className={cn("w-3 h-3 text-muted-foreground ml-auto transition-transform", activeStep === i && "rotate-90")} />
  </div>
  {activeStep === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
+ <div
  className="mt-2 ml-8 text-xs text-muted-foreground leading-relaxed"
  >
  {step.desc}
- </motion.div>
+ </div>
  )}
  </button>
  ))}
@@ -1147,9 +1142,7 @@ function CapitalAllocationTab() {
  </div>
  <p className="text-xs text-muted-foreground mb-2">{method.description}</p>
  {activeMethod === i && (
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
+ <div
  className="grid grid-cols-3 gap-2 text-xs text-muted-foreground pt-2 border-t border-border"
  >
  <div>
@@ -1164,7 +1157,7 @@ function CapitalAllocationTab() {
  <p className="text-muted-foreground/60 uppercase text-[11px] mb-0.5">Best For</p>
  <p className="text-foreground">{method.useCase}</p>
  </div>
- </motion.div>
+ </div>
  )}
  </button>
  ))}
@@ -1284,10 +1277,7 @@ export default function CorpTreasuryPage() {
 
  return (
  <div className="p-4 space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  >
  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between border-l-4 border-l-primary rounded-md bg-card p-6">
  <div>
@@ -1310,12 +1300,9 @@ export default function CorpTreasuryPage() {
  </span>
  </div>
  </div>
- </motion.div>
+ </div>
 
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
+ <div
  >
  <Tabs defaultValue="cash">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
@@ -1338,7 +1325,7 @@ export default function CorpTreasuryPage() {
  <CapitalAllocationTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

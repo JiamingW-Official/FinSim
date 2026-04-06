@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -1031,10 +1030,7 @@ export default function CrossAssetMomPage() {
 
  {/* ── Tab 1: Momentum Factor ─────────────────────────────────────────── */}
  <TabsContent value="factor" className="data-[state=inactive]:hidden space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="space-y-4"
  >
  {/* Definition */}
@@ -1197,15 +1193,12 @@ export default function CrossAssetMomPage() {
  </p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 2: Trend Following ──────────────────────────────────────────── */}
  <TabsContent value="trend" className="data-[state=inactive]:hidden space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="space-y-4"
  >
  {/* CTA Overview */}
@@ -1332,12 +1325,9 @@ export default function CrossAssetMomPage() {
  ))}
  </div>
 
- <AnimatePresence>
+ 
  {selectedTrendModel && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="bg-indigo-950/30 border border-indigo-800/40 rounded-lg p-4"
  >
  <p className="text-sm font-medium text-indigo-300 mb-2">
@@ -1357,9 +1347,9 @@ export default function CrossAssetMomPage() {
  <p className="text-base font-medium text-amber-400">{selectedTrendModel.avgHoldDays}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
 
@@ -1372,15 +1362,12 @@ export default function CrossAssetMomPage() {
  <BacktestPerformanceSVG />
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 3: Multi-Asset Portfolio ───────────────────────────────────── */}
  <TabsContent value="portfolio" className="data-[state=inactive]:hidden space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="space-y-4"
  >
  {/* 8 Asset Class Signals */}
@@ -1482,12 +1469,9 @@ export default function CrossAssetMomPage() {
  </button>
  ))}
  </div>
- <AnimatePresence>
+ 
  {selectedPortfolioAsset && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="bg-indigo-950/30 border border-indigo-700/40 rounded-lg p-3"
  >
  <p className="text-xs font-medium text-indigo-300 mb-1">
@@ -1514,9 +1498,9 @@ export default function CrossAssetMomPage() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
 
@@ -1573,15 +1557,12 @@ export default function CrossAssetMomPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 4: Strategy Implementation ────────────────────────────────── */}
  <TabsContent value="implementation" className="data-[state=inactive]:hidden space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="space-y-4"
  >
  {/* Signal Construction */}
@@ -1794,7 +1775,7 @@ export default function CrossAssetMomPage() {
  >
  <div className="flex items-center gap-2 mb-2">
  <section.icon size={13} style={{ color: section.color }} />
- <p className="text-xs font-medium" style={{ color: section.color }}>
+ <p className="text-xs font-medium" >
  {section.title}
  </p>
  </div>
@@ -1900,7 +1881,7 @@ export default function CrossAssetMomPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

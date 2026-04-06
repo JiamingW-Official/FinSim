@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -613,10 +612,7 @@ function FactorModelsTab() {
  const [selected, setSelected] = useState<FactorModel>(FACTOR_MODELS[1]);
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-4"
  >
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -711,7 +707,7 @@ function FactorModelsTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -729,10 +725,7 @@ function MomentumTab() {
  const strat = MOMENTUM_STRATEGIES[selected];
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-4"
  >
  <Card className="bg-card border-border">
@@ -829,7 +822,7 @@ function MomentumTab() {
  />
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -846,10 +839,7 @@ function MeanReversionTab() {
  );
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-4"
  >
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -954,7 +944,7 @@ function MeanReversionTab() {
  <MetricChip label="Annual Return" value={`+${pair.annualReturn.toFixed(1)}%`} positive={true} />
  <MetricChip label="Sharpe Ratio" value={pair.sharpe.toFixed(2)} positive={pair.sharpe > 1} />
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -970,10 +960,7 @@ function StatArbTab() {
  );
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-4"
  >
  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -1066,7 +1053,7 @@ function StatArbTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -1084,10 +1071,7 @@ function MLSignalsTab() {
  };
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-4"
  >
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1229,14 +1213,14 @@ function MLSignalsTab() {
  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium"
  style={{ background: color + "22", color }}
  >
- <span className="w-2 h-2 rounded-full" style={{ background: color }} />
+ <span className="w-2 h-2 rounded-full" style={{ background: color }}/>
  {cat}
  </div>
  ))}
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 

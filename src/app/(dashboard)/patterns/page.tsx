@@ -25,7 +25,6 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -535,9 +534,8 @@ function PatternLibraryTab() {
  {filtered.map((pattern) => {
  const isExpanded = expandedId === pattern.id;
  return (
- <motion.div
+ <div
  key={pattern.id}
- layout
  className={cn(
  "rounded-md border bg-card/60 overflow-hidden cursor-pointer transition-colors",
  isExpanded
@@ -585,11 +583,9 @@ function PatternLibraryTab() {
  <span className="text-muted-foreground font-medium">{pattern.reliability}%</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full bg-indigo-500 rounded-full"
- initial={{ width: 0 }}
- animate={{ width: `${pattern.reliability}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+ style={{ width: `${pattern.reliability}%` }}
  />
  </div>
  </div>
@@ -607,13 +603,9 @@ function PatternLibraryTab() {
  </div>
 
  {/* Expanded detail */}
- <AnimatePresence>
+ 
  {isExpanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 space-y-3 border-t border-border pt-3">
@@ -633,10 +625,10 @@ function PatternLibraryTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  );
  })}
  </div>
@@ -730,9 +722,7 @@ function PatternQuizTab() {
  if (done) {
  const pct = Math.round((score / total) * 100);
  return (
- <motion.div
- initial={{ opacity: 0, scale: 0.95 }}
- animate={{ opacity: 1, scale: 1 }}
+ <div
  className="flex flex-col items-center justify-center py-16 space-y-4"
  >
  <div className="text-6xl">{pct >= 80 ? "" : pct >= 60 ? "" : ""}</div>
@@ -759,7 +749,7 @@ function PatternQuizTab() {
  <Button onClick={handleRestart} className="bg-indigo-600 hover:bg-indigo-500">
  <RefreshCw className="h-4 w-4 mr-2" /> Try Again
  </Button>
- </motion.div>
+ </div>
  );
  }
 
@@ -773,14 +763,12 @@ function PatternQuizTab() {
  <span className="text-muted-foreground font-medium">{score}/{total}</span>
  </div>
  {streak >= 2 && (
- <motion.div
- initial={{ scale: 0 }}
- animate={{ scale: 1 }}
+ <div
  className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-xs text-amber-400"
  >
  <Zap className="h-3 w-3" />
  {streak}x streak!
- </motion.div>
+ </div>
  )}
  </div>
  <div className="flex items-center gap-2">
@@ -794,21 +782,16 @@ function PatternQuizTab() {
 
  {/* Progress bar */}
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full bg-indigo-500 rounded-full"
- animate={{ width: `${((currentQ) / quizPool.length) * 100}%` }}
- transition={{ duration: 0.3 }}
+ style={{ width: `${((currentQ) / quizPool.length) * 100}%` }}
  />
  </div>
 
  {/* Question card */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={currentQ}
- initial={{ opacity: 0, x: 40 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -40 }}
- transition={{ duration: 0.25 }}
  >
  <Card className="p-4 bg-card/80 border-border">
  <p className="text-sm text-muted-foreground mb-4">What chart pattern is shown below?</p>
@@ -864,11 +847,9 @@ function PatternQuizTab() {
  </div>
 
  {/* Explanation */}
- <AnimatePresence>
+ 
  {selected !== null && (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="mt-4 p-3 rounded-lg bg-muted/50 border border-border"
  >
  <p className="text-xs text-muted-foreground leading-relaxed">{question.explanation}</p>
@@ -879,12 +860,12 @@ function PatternQuizTab() {
  >
  {currentQ >= quizPool.length - 1 ? "See Results" : "Next Question"}
  </Button>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
  );
 }
@@ -1040,12 +1021,10 @@ function ScanSimulatorTab() {
 
  {scanning && (
  <div className="flex flex-col items-center justify-center py-20">
- <motion.div
- animate={{ rotate: 360 }}
- transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+ <div
  >
  <ScanLine className="h-10 w-10 text-indigo-400" />
- </motion.div>
+ </div>
  <p className="text-sm text-muted-foreground mt-3">Scanning 500+ stocks for patterns…</p>
  </div>
  )}
@@ -1055,11 +1034,8 @@ function ScanSimulatorTab() {
  <p className="text-xs text-muted-foreground">{filtered.length} patterns detected</p>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  {filtered.map((result, i) => (
- <motion.div
+ <div
  key={`${result.ticker}-${i}`}
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.06 }}
  >
  <Card className="p-4 bg-card/60 border-border hover:border-border transition-colors">
  <div className="flex gap-4">
@@ -1142,7 +1118,7 @@ function ScanSimulatorTab() {
  </div>
  </div>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>

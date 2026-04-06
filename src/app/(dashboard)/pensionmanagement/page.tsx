@@ -27,7 +27,6 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 692001;
@@ -731,16 +730,10 @@ export default function PensionManagementPage() {
  const [selectedScenario, setSelectedScenario] = useState<AllocationScenario>(ALLOCATION_SCENARIOS[0]);
  const [selectedFundedRatio, setSelectedFundedRatio] = useState(78);
 
- const fadeIn = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } };
-
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial="hidden"
- animate="visible"
- variants={fadeIn}
- transition={{ duration: 0.35 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -748,7 +741,7 @@ export default function PensionManagementPage() {
  <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
  </div>
  <div>
- <h1 className="text-xl font-medium text-foreground">Pension Fund Management</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Pension Fund Management</h1>
  <p className="text-sm text-muted-foreground">Institutional LDI · Asset-Liability Matching · Long-Horizon Investing</p>
  </div>
  </div>
@@ -766,26 +759,26 @@ export default function PensionManagementPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="overview">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Fund Overview
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
+ <TabsTrigger value="overview" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Fund Overview
  </TabsTrigger>
- <TabsTrigger value="ldi" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">LDI
+ <TabsTrigger value="ldi" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">LDI
  </TabsTrigger>
- <TabsTrigger value="allocation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Asset Allocation
+ <TabsTrigger value="allocation" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Asset Allocation
  </TabsTrigger>
- <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk Factors
+ <TabsTrigger value="risk" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">Risk Factors
  </TabsTrigger>
- <TabsTrigger value="esg" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">ESG & Stewardship
+ <TabsTrigger value="esg" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">ESG & Stewardship
  </TabsTrigger>
  </TabsList>
 
  {/* ── Tab 1: Fund Overview ── */}
  <TabsContent value="overview" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.3 }}>
+ <div>
  {/* DB vs DC Comparison */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
  <Card className="bg-card border-border border-l-4 border-l-primary">
@@ -953,12 +946,12 @@ export default function PensionManagementPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 2: LDI ── */}
  <TabsContent value="ldi" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.3 }}>
+ <div>
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
  {/* Duration matching explanation */}
  <Card className="bg-card border-border">
@@ -1140,12 +1133,12 @@ export default function PensionManagementPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 3: Asset Allocation ── */}
  <TabsContent value="allocation" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.3 }}>
+ <div>
  {/* Scenario Selector */}
  <div className="flex flex-wrap gap-2 mb-4">
  {ALLOCATION_SCENARIOS.map((sc) => (
@@ -1298,12 +1291,12 @@ export default function PensionManagementPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 4: Risk Factors ── */}
  <TabsContent value="risk" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.3 }}>
+ <div>
  {/* Risk Factor Cards */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
  {RISK_FACTORS.map((rf) => {
@@ -1494,12 +1487,12 @@ export default function PensionManagementPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 5: ESG & Stewardship ── */}
  <TabsContent value="esg" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.3 }}>
+ <div>
  {/* Universal Owner concept */}
  <Card className="bg-card border-border mb-4">
  <CardHeader className="pb-2">
@@ -1719,7 +1712,7 @@ export default function PensionManagementPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
 

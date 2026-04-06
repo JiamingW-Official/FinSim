@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -454,20 +453,16 @@ export default function SystematicMacroPage() {
  const finalBenchVal = equityCurve[equityCurve.length - 1]?.benchmark ?? 100;
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Systematic Macro</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Systematic Macro</h1>
  <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-6">RULES-BASED · SIGNALS · DIVERSIFIED</p>
 
  <div className="border-t border-border mb-6" />
 
  {/* Summary cards */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.05 }}
- className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
+ <div
+ className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card"
  >
  {SUMMARY_STATS.map((stat, i) => {
  const Icon = stat.icon;
@@ -483,10 +478,10 @@ export default function SystematicMacroPage() {
  </Card>
  );
  })}
- </motion.div>
+ </div>
 
  {/* Signal distribution bar */}
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
+ <div>
  <Card className="bg-card border-border">
  <CardContent className="pt-4 pb-3 px-4">
  <div className="flex items-center justify-between mb-2">
@@ -504,15 +499,15 @@ export default function SystematicMacroPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto w-full flex">
- <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signals</TabsTrigger>
- <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio</TabsTrigger>
- <TabsTrigger value="backtests" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtests</TabsTrigger>
- <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk</TabsTrigger>
+ <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signals</TabsTrigger>
+ <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Portfolio</TabsTrigger>
+ <TabsTrigger value="backtests" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtests</TabsTrigger>
+ <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Risk</TabsTrigger>
  </TabsList>
 
  {/* ── SIGNALS TAB ── */}
@@ -732,7 +727,6 @@ export default function SystematicMacroPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

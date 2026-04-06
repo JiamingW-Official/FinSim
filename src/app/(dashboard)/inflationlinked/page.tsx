@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -1094,18 +1093,10 @@ function InflationHedgingTab() {
  </tbody>
  </table>
  </div>
- <AnimatePresence mode="wait">
- <motion.p
- key={selectedScenario}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -4 }}
- className="text-xs text-muted-foreground mt-2"
- >
+  <div className="text-xs text-muted-foreground mt-2">
  {scenarioDesc[selectedScenario]}
- </motion.p>
- </AnimatePresence>
- </SectionCard>
+ </div>
+  </SectionCard>
 
  {/* Comparison bar chart */}
  <SectionCard title="Expected Returns by Asset vs Inflation Scenario" icon={BarChart3}>
@@ -1195,14 +1186,7 @@ function InflationHedgingTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- <motion.div
- key={selectedScenario}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- className="grid grid-cols-3 gap-2 sm:grid-cols-6"
- >
+  <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
  {[
  { key: "tips", label: "TIPS", color: "#3b82f6" },
  { key: "commodities", label: "Commodities", color: "#f59e0b" },
@@ -1222,9 +1206,8 @@ function InflationHedgingTab() {
  </div>
  );
  })}
- </motion.div>
- </AnimatePresence>
- <p className="text-xs text-muted-foreground mt-3">
+ </div>
+  <p className="text-xs text-muted-foreground mt-3">
  Allocations are illustrative. In stagflation, avoid long-duration nominals; overweight real assets, gold, and short-duration TIPS. In low inflation, trim TIPS and overweight equities.
  </p>
  </SectionCard>
@@ -1236,21 +1219,15 @@ function InflationHedgingTab() {
 
 export default function InflationLinkedPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
- <div className="max-w-5xl mx-auto">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
+ <div className="mb-6">
  <div className="flex items-center gap-3 mb-2">
  <div className="p-2 rounded-lg bg-muted/10 border border-border">
  <Flame className="w-3.5 h-3.5 text-muted-foreground/50" />
  </div>
  <div>
- <h1 className="text-xl font-medium text-foreground">Inflation-Linked Bonds</h1>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground">Inflation-Linked Bonds</h1>
  <p className="text-sm text-muted-foreground">TIPS mechanics, real yields, breakeven inflation &amp; hedging strategies</p>
  </div>
  </div>
@@ -1263,40 +1240,38 @@ export default function InflationLinkedPage() {
  <StatChip label="US TIPS Market" value="$1.9T" color="blue" />
  <StatChip label="Inflation Beta" value="0.92" color="green" />
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="mechanics" className="mt-8">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="mechanics" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">TIPS Mechanics</TabsTrigger>
- <TabsTrigger value="yields" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Real Yields &amp; Breakeven</TabsTrigger>
- <TabsTrigger value="duration" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Duration &amp; Risk</TabsTrigger>
- <TabsTrigger value="hedging" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Inflation Hedging</TabsTrigger>
+ <TabsTrigger value="mechanics" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">TIPS Mechanics</TabsTrigger>
+ <TabsTrigger value="yields" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Real Yields &amp; Breakeven</TabsTrigger>
+ <TabsTrigger value="duration" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Duration &amp; Risk</TabsTrigger>
+ <TabsTrigger value="hedging" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Inflation Hedging</TabsTrigger>
  </TabsList>
 
- <AnimatePresence mode="wait">
- <TabsContent value="mechanics" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+  <TabsContent value="mechanics" className="data-[state=inactive]:hidden">
+ <div>
  <TipsMechanicsTab />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="yields" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+ <div>
  <RealYieldsTab />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="duration" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+ <div>
  <DurationRiskTab />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="hedging" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+ <div>
  <InflationHedgingTab />
- </motion.div>
+ </div>
  </TabsContent>
- </AnimatePresence>
- </Tabs>
+  </Tabs>
 
  {/* Footer disclaimer */}
  <div className="mt-8 p-3 rounded-lg border border-border bg-foreground/[0.02] flex items-start gap-2">
@@ -1304,7 +1279,6 @@ export default function InflationLinkedPage() {
  <p className="text-xs text-muted-foreground">
  All yield data, breakevens, and returns are simulated for educational purposes. TIPS returns depend on actual realized CPI vs breakeven at purchase. Real past performance varies; consult a financial advisor before investing in inflation-linked securities.
  </p>
- </div>
  </div>
  </div>
  );

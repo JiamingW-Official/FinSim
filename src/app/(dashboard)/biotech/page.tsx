@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  FlaskConical,
  TrendingUp,
@@ -371,9 +370,8 @@ function PipelineTracker() {
  const isSelected = selectedCompany?.ticker === co.ticker;
 
  return (
- <motion.div
+ <div
  key={co.ticker}
- layout
  className={cn(
  "rounded-lg border transition-colors cursor-pointer",
  isSelected
@@ -417,12 +415,9 @@ function PipelineTracker() {
  <PipelineSVG pipeline={co.pipeline} />
  </div>
 
- <AnimatePresence>
+ 
  {isSelected && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 border-t border-border pt-4">
@@ -494,10 +489,10 @@ function PipelineTracker() {
  </div>
  )}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  );
  })}
  </div>
@@ -1741,10 +1736,7 @@ export default function BiotechPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-7xl mx-auto px-4 py-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1775,7 +1767,7 @@ export default function BiotechPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  <div className="mt-8" />
 
  {/* Tabs */}

@@ -26,7 +26,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 712006;
@@ -267,13 +266,10 @@ function EstatePlanningBasicsTab() {
  )}
  </div>
  </button>
- <AnimatePresence initial={false}>
+ 
  {openSection === section.category && (
- <motion.div
+ <div
  key="content"
- initial={{ height: 0 }}
- animate={{ height: "auto" }}
- exit={{ height: 0 }}
  className="overflow-hidden"
  >
  <div className="px-4 pb-3 pt-1 space-y-2">
@@ -284,9 +280,9 @@ function EstatePlanningBasicsTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>
@@ -473,13 +469,9 @@ function TrustsTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={trust.abbrev}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -6 }}
- transition={{ duration: 0.18 }}
  className={cn("rounded-lg border p-5", colorMap[trust.color])}
  >
  <div className="flex items-start justify-between mb-3">
@@ -500,8 +492,8 @@ function TrustsTab() {
  <CardRow label="Asset Protection" value={trust.assetProtection} />
  <CardRow label="Best For" value={trust.bestFor} />
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  <SectionHeader
  title="Comparison: Wealth Transfer Efficiency"
@@ -518,10 +510,8 @@ function TrustsTab() {
  <div className="flex items-center gap-2">
  <span className="text-xs text-muted-foreground w-32 shrink-0">Transfer Efficiency</span>
  <div className="flex-1 bg-muted rounded-full h-1.5">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${d.transferEfficiency * 100}%` }}
- transition={{ duration: 0.6, delay: 0.05 }}
+ <div
+ style={{ width: `${d.transferEfficiency * 100}%` }}
  className="bg-primary h-1.5 rounded-full"
  />
  </div>
@@ -532,10 +522,8 @@ function TrustsTab() {
  <div className="flex items-center gap-2">
  <span className="text-xs text-muted-foreground w-32 shrink-0">Tax Savings Potential</span>
  <div className="flex-1 bg-muted rounded-full h-1.5">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${d.taxSavings * 100}%` }}
- transition={{ duration: 0.6, delay: 0.1 }}
+ <div
+ style={{ width: `${d.taxSavings * 100}%` }}
  className="bg-green-500 h-1.5 rounded-full"
  />
  </div>
@@ -596,10 +584,8 @@ function TaxStrategiesTab() {
  </div>
  <div className="relative">
  <div className="h-5 w-full bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${pctUsed * 100}%` }}
- transition={{ duration: 0.8 }}
+ <div
+ style={{ width: `${pctUsed * 100}%` }}
  className="h-full bg-green-500/80 rounded-full"
  />
  </div>
@@ -800,13 +786,9 @@ function CharitableGivingTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={vehicle.abbrev}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -6 }}
- transition={{ duration: 0.18 }}
  className={cn("rounded-lg border p-5", colorBorder[vehicle.color])}
  >
  <h3 className="font-semibold text-foreground mb-1">{vehicle.name}</h3>
@@ -818,8 +800,8 @@ function CharitableGivingTab() {
  <CardRow label="Estate Removal" value={vehicle.estateRemoval} />
  <CardRow label="Minimum Investment" value={vehicle.minInvestment} />
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  <SectionHeader title="Tax Benefit Comparison" subtitle="Deduction limits as a percentage of Adjusted Gross Income (AGI)" />
 
@@ -1013,17 +995,13 @@ function BusinessSuccessionTab() {
  </button>
  </div>
  <div className="flex justify-center">
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={buySellView}
- initial={{ opacity: 0, x: 20 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -20 }}
- transition={{ duration: 0.2 }}
  >
  <BuySellDiagram type={buySellView} />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
  </div>
 
@@ -1058,13 +1036,10 @@ function BusinessSuccessionTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground" />
  )}
  </button>
- <AnimatePresence initial={false}>
+ 
  {isOpen && (
- <motion.div
+ <div
  key="body"
- initial={{ height: 0 }}
- animate={{ height: "auto" }}
- exit={{ height: 0 }}
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 pt-2 space-y-4">
@@ -1098,9 +1073,9 @@ function BusinessSuccessionTab() {
  <span className="text-xs text-muted-foreground">{v.taxTreatment}</span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}

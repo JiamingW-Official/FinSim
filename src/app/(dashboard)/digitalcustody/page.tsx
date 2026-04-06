@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Lock,
  Unlock,
@@ -400,13 +399,9 @@ function Tab1CustodyArchitecture() {
  <ArrowRight size={13} className="text-muted-foreground" />
  )}
  </button>
- <AnimatePresence>
+ 
  {expanded === m.id && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 border-t border-border pt-3">
@@ -420,9 +415,9 @@ function Tab1CustodyArchitecture() {
  ))}
  </ul>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>
@@ -669,13 +664,9 @@ function Tab2InstitutionalSolutions() {
  </tbody>
  </table>
  </div>
- <AnimatePresence>
+ 
  {selectedCustodian && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="mt-3 overflow-hidden"
  >
  <div className="rounded-lg border border-indigo-500/30 bg-indigo-500/10 p-3">
@@ -683,9 +674,9 @@ function Tab2InstitutionalSolutions() {
  <p className="text-indigo-200 text-xs">{selectedCustodian.notable}</p>
  <p className="text-muted-foreground text-xs mt-1">Insurance: {selectedCustodian.insurance} | Founded: {selectedCustodian.founded}</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* Segregated vs Omnibus */}
@@ -946,18 +937,15 @@ function Tab3RegulatoryFramework() {
  <XCircle size={13} className="text-rose-400 shrink-0" />
  ) : null}
  </div>
- <AnimatePresence>
+ 
  {expandedEvent === i && (
- <motion.p
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <p
  className="text-xs text-muted-foreground mt-2 overflow-hidden"
  >
  {evt.detail}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>
@@ -1305,10 +1293,7 @@ export default function DigitalCustodyPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1333,7 +1318,7 @@ export default function DigitalCustodyPage() {
  </Badge>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="architecture" className="mt-8">
@@ -1353,27 +1338,27 @@ export default function DigitalCustodyPage() {
  </TabsList>
 
  <TabsContent value="architecture" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <Tab1CustodyArchitecture />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="institutional" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <Tab2InstitutionalSolutions />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="regulatory" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <Tab3RegulatoryFramework />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="security" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <Tab4SecurityInsurance />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

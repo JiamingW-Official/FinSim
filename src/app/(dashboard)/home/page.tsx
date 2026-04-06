@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGameStore } from "@/stores/game-store";
@@ -329,14 +328,11 @@ export default function HomePage() {
  </div>
  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
  {overviewPrices.map(({ ticker, price, changePct }, i) => (
- <motion.div
+ <div
  key={ticker}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25, delay: i * 0.05, ease: "easeOut" }}
  >
  <TickerCard ticker={ticker} price={price} changePct={changePct} />
- </motion.div>
+ </div>
  ))}
  </div>
  </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -474,10 +473,7 @@ export default function EMInvestingPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -490,13 +486,10 @@ export default function EMInvestingPage() {
  <p className="text-muted-foreground text-sm max-w-2xl">
  EM equity, EM sovereign and corporate debt, country risk frameworks, capital flow dynamics, and frontier market opportunities — from MSCI classification to impossible trinity.
  </p>
- </motion.div>
+ </div>
 
  {/* Stat chips — Hero */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
+ <div
  className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8"
  >
  {[
@@ -516,7 +509,7 @@ export default function EMInvestingPage() {
  </CardContent>
  </Card>
  ))}
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -688,8 +681,8 @@ export default function EMInvestingPage() {
  cons: ["FX volatility — can wipe out carry", "Liquidity risk in stressed markets", "Capital controls restrict access", "Inflation volatility in frontier EM"],
  },
  ].map((seg, i) => (
- <div key={`hc-lc-${i}`} className="p-3 rounded-lg border" style={{ borderColor: seg.color + "40" }}>
- <div className="text-sm font-medium mb-1" style={{ color: seg.color }}>{seg.type}</div>
+ <div key={`hc-lc-${i}`} className="p-3 rounded-lg border" style={{ borderColor: seg.color + "40", color: seg.color }}>
+ <div className="text-sm font-medium mb-1" >{seg.type}</div>
  <div className="text-xs text-muted-foreground mb-2">Index: {seg.index}</div>
  <div className="mb-2">
  <div className="text-xs text-emerald-400 font-medium mb-1">Pros</div>
@@ -831,8 +824,8 @@ export default function EMInvestingPage() {
  style={{ borderColor: expandedRisk === i ? cat.color : cat.color + "30", background: expandedRisk === i ? cat.color + "15" : "#18181b" }}
  onClick={() => setExpandedRisk(expandedRisk === i ? null : i)}
  >
- <div className="text-xs font-medium mb-2" style={{ color: cat.color }}>{cat.category}</div>
- <AnimatePresence initial={false}>
+ <div className="text-xs font-medium mb-2" >{cat.category}</div>
+ 
  <ul className="space-y-1">
  {cat.components.map((c, j) => (
  <li key={`rfc-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5">
@@ -840,7 +833,7 @@ export default function EMInvestingPage() {
  </li>
  ))}
  </ul>
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>
@@ -922,13 +915,9 @@ export default function EMInvestingPage() {
  </div>
  {expandedCase === i ? <TrendingDown className="w-3.5 h-3.5 text-muted-foreground" /> : <TrendingUp className="w-3.5 h-3.5 text-muted-foreground" />}
  </div>
- <AnimatePresence initial={false}>
+ 
  {expandedCase === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-3 pb-3 grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -941,9 +930,9 @@ export default function EMInvestingPage() {
  <p className="text-xs text-muted-foreground">{cs.outcome}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </CardContent>
@@ -963,8 +952,8 @@ export default function EMInvestingPage() {
  { tier: "Emerging Market (EM)", examples: "China, India, Brazil, Taiwan, Korea, SA, Mexico, Indonesia", criteria: "MSCI EM criteria: market accessibility, size/liquidity, stability, moderate restrictions; GNI > $4,000", color: "#f97316" },
  { tier: "Frontier Market (FM)", examples: "Vietnam, Nigeria, Kuwait (prior), Romania, Kenya", criteria: "Smaller, less liquid markets; higher political risk; FM indices: MSCI FM, FTSE FM; often pathway to EM promotion", color: "#22c55e" },
  ].map((t, i) => (
- <div key={`tier-${i}`} className="p-3 rounded-lg border" style={{ borderColor: t.color + "40" }}>
- <div className="text-xs font-medium mb-1" style={{ color: t.color }}>{t.tier}</div>
+ <div key={`tier-${i}`} className="p-3 rounded-lg border" style={{ borderColor: t.color + "40", color: t.color }}>
+ <div className="text-xs font-medium mb-1" >{t.tier}</div>
  <div className="text-xs text-muted-foreground font-medium mb-1">Examples: <span className="text-muted-foreground font-normal">{t.examples}</span></div>
  <p className="text-xs text-muted-foreground">{t.criteria}</p>
  </div>
@@ -1011,8 +1000,8 @@ export default function EMInvestingPage() {
  <CardContent>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {PUSH_PULL.map((pp, i) => (
- <div key={`pp-${i}`} className="p-3 rounded-lg border" style={{ borderColor: pp.color + "40" }}>
- <div className="text-xs font-medium mb-2" style={{ color: pp.color }}>{pp.type}</div>
+ <div key={`pp-${i}`} className="p-3 rounded-lg border" style={{ borderColor: pp.color + "40", color: pp.color }}>
+ <div className="text-xs font-medium mb-2" >{pp.type}</div>
  {pp.factors.map((f, j) => (
  <div key={`ppf-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5 mb-1">
  <span style={{ color: pp.color }}>→</span>{f}
@@ -1142,8 +1131,8 @@ export default function EMInvestingPage() {
  { title: "Ongoing Restrictions", color: "#f97316", items: ["QDII/QFII quota limits on outbound/inbound funds", "Annual $50k individual FX conversion cap", "Capital gains repatriation timing constraints", "Property/offshore investment restrictions", "Cross-border data localization for financial data"] },
  { title: "Strategic Calculus", color: "#6366f1", items: ["Internationalization without full opening = control", "e-CNY as BRI settlement / reserve alternative", "Offshore RMB (CNH) vs onshore (CNY) gap persists", "USD weaponization (sanctions) accelerates RMB push", "CIPS (SWIFT alternative) expanding EM transaction rails"] },
  ].map((sec, i) => (
- <div key={`cca-${i}`} className="p-3 rounded-lg border" style={{ borderColor: sec.color + "40" }}>
- <div className="text-xs font-medium mb-2" style={{ color: sec.color }}>{sec.title}</div>
+ <div key={`cca-${i}`} className="p-3 rounded-lg border" style={{ borderColor: sec.color + "40", color: sec.color }}>
+ <div className="text-xs font-medium mb-2" >{sec.title}</div>
  {sec.items.map((item, j) => (
  <div key={`ccai-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5 mb-1">
  <span style={{ color: sec.color }}>•</span>{item}

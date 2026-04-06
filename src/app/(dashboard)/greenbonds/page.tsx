@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Leaf,
  Globe,
@@ -717,13 +716,9 @@ function IcmaComponent({
  <ChevronDown size={14} className="text-muted-foreground shrink-0" />
  )}
  </button>
- <AnimatePresence initial={false}>
+ 
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 space-y-2 border-t border-border">
@@ -737,9 +732,9 @@ function IcmaComponent({
  ))}
  </ul>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -881,11 +876,8 @@ export default function GreenBondsPage() {
  </thead>
  <tbody>
  {TOP_ISSUERS.map((iss, i) => (
- <motion.tr
+ <tr
  key={iss.name}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/30"
  >
  <td className="py-1.5 font-medium text-foreground">{iss.name}</td>
@@ -908,7 +900,7 @@ export default function GreenBondsPage() {
  <td className={`py-1.5 text-center font-mono text-xs text-muted-foreground ${ratingColor(iss.rating)}`}>
  {iss.rating}
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1173,11 +1165,8 @@ export default function GreenBondsPage() {
  </thead>
  <tbody>
  {GSS_BONDS.map((bond, i) => (
- <motion.tr
+ <tr
  key={bond.issuer}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.05 }}
  className={`border-b border-border cursor-pointer transition-colors ${
  selectedBond?.issuer === bond.issuer
  ? "bg-muted/40"
@@ -1211,19 +1200,15 @@ export default function GreenBondsPage() {
  {bond.spo}
  </span>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
 
  {/* Detail panel */}
- <AnimatePresence>
+ 
  {selectedBond && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-3 p-3 rounded-lg border border-border bg-muted/50 space-y-2">
@@ -1268,9 +1253,9 @@ export default function GreenBondsPage() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
 

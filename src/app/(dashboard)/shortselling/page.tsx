@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingDown,
  TrendingUp,
@@ -555,19 +554,15 @@ function RubricRow({ criterion }: { criterion: ThesisCriterion }) {
  </Badge>
  {expanded ? <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" /> : <ChevronRight className="w-3.5 h-3.5 text-muted-foreground" />}
  </button>
- <AnimatePresence>
+ 
  {expanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <p className="px-4 pb-3 pl-12 text-xs text-muted-foreground">{criterion.description}</p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -589,8 +584,7 @@ function FamousShortCard({ short }: { short: FamousShort }) {
  };
 
  return (
- <motion.div
- layout
+ <div
  className={`rounded-md border p-4 cursor-pointer transition-colors hover:bg-muted/30 ${colorMap[short.color] ?? colorMap.amber}`}
  onClick={() => setExpanded(!expanded)}
  >
@@ -611,13 +605,9 @@ function FamousShortCard({ short }: { short: FamousShort }) {
  </div>
  </div>
 
- <AnimatePresence>
+ 
  {expanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-4 space-y-3">
@@ -636,9 +626,9 @@ function FamousShortCard({ short }: { short: FamousShort }) {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  <div className="mt-2 flex justify-end">
  {expanded ? (
@@ -647,7 +637,7 @@ function FamousShortCard({ short }: { short: FamousShort }) {
  <ChevronRight className="w-3.5 h-3.5 text-muted-foreground" />
  )}
  </div>
- </motion.div>
+ </div>
  );
 }
 

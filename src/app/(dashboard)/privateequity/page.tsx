@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -859,21 +858,21 @@ function ValueCreation() {
  <text x={580} y={16} textAnchor="middle" fontSize={9} fill="#6ee7b7">Exit</text>
  <text x={580} y={195} textAnchor="middle" fontSize={7} fill="#a1a1aa">2.3x</text>
  </svg>
- <AnimatePresence>
+ 
  {selectedDriver !== null && (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 8 }}
+ <div
+
+
+
  className="mt-3"
  >
  <InfoBox variant="blue">
  <strong>{VALUE_DRIVERS[selectedDriver].label} ({VALUE_DRIVERS[selectedDriver].contribution}% of total return):</strong>{" "}
  {VALUE_DRIVERS[selectedDriver].description}
  </InfoBox>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  <div className="flex flex-wrap gap-4 mt-3 justify-center">
  {VALUE_DRIVERS.map((d, i) => (
  <button
@@ -1277,15 +1276,14 @@ function DealSourcing() {
  <div key={stage.stage} className="flex items-center gap-3">
  <div className="w-40 text-xs text-muted-foreground text-right flex-shrink-0">{stage.stage}</div>
  <div className="flex-1 h-8 bg-foreground/5 rounded-lg overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(stage.count / maxCount) * 100}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+ <div
+
+ style={{ width: `${(stage.count / maxCount) * 100}%` }}
+
  className="h-full rounded-lg flex items-center justify-end pr-2"
- style={{ backgroundColor: stage.color }}
  >
  <span className="text-xs font-medium text-foreground">{stage.count}</span>
- </motion.div>
+ </div>
  </div>
  <div className="w-12 text-xs text-muted-foreground text-right flex-shrink-0">{stage.pct}%</div>
  </div>
@@ -1339,11 +1337,11 @@ function DealSourcing() {
  <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-foreground/10" />
  <div className="space-y-4">
  {DEAL_PROCESS.map((step, i) => (
- <motion.div
+ <div
  key={step.step}
- initial={{ opacity: 0, x: -16 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.06 }}
+
+
+
  className="relative flex gap-4 pl-14"
  >
  <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-primary border-2 border-border flex items-center justify-center text-xs font-medium text-foreground z-10">
@@ -1356,7 +1354,7 @@ function DealSourcing() {
  </div>
  <p className="text-xs text-muted-foreground">{step.description}</p>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1502,67 +1500,57 @@ function DealSourcing() {
 
 export default function PrivateEquityPage() {
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Private Equity</h1>
- <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">
+ <div>
+ <h1 className="text-3xl font-bold tracking-tight">Private Equity</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
  LBO · VENTURE · GROWTH · BUYOUTS
  </p>
+ </div>
 
- <div className="border-t border-border my-6" />
+ <div className="border-t border-border" />
 
  {/* Tabs */}
  <Tabs defaultValue="overview" className="w-full">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="overview" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Industry Overview
  </TabsTrigger>
- <TabsTrigger value="lbo" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="lbo" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  LBO Modeling
  </TabsTrigger>
- <TabsTrigger value="value" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="value" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Value Creation
  </TabsTrigger>
- <TabsTrigger value="fundeconomics" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="fundeconomics" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Fund Economics
  </TabsTrigger>
- <TabsTrigger value="sourcing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="sourcing" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Deal Sourcing &amp; Diligence
  </TabsTrigger>
  </TabsList>
 
  <TabsContent value="overview" className="mt-6 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <IndustryOverview />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="lbo" className="mt-6 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <LBOModeling />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="value" className="mt-6 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <ValueCreation />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="fundeconomics" className="mt-6 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <FundEconomics />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="sourcing" className="mt-6 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
  <DealSourcing />
- </motion.div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  AlertTriangle,
  TrendingDown,
@@ -512,13 +511,10 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
  </div>
 
  {/* Selected detail */}
- <AnimatePresence>
+ 
  {selected && (
- <motion.div
+ <div
  key={selected.id}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 12 }}
  className="rounded-lg border border-border bg-foreground/5 p-4 space-y-4"
  >
  <div className="flex items-center justify-between flex-wrap gap-2">
@@ -547,9 +543,9 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
  {selected.badge === "Liquidation Play" && "Business is non-viable as a going concern. Play focuses on liquidation value of tangible assets exceeding current bond prices after full recovery waterfall analysis."}
  </p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -795,13 +791,10 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
 
  {/* Tranche detail / relative value */}
  <div className="space-y-3">
- <AnimatePresence mode="wait">
+ 
  {selected ? (
- <motion.div
+ <div
  key={selected.tranche}
- initial={{ opacity: 0, x: 16 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -16 }}
  className="rounded-lg border border-border bg-foreground/5 p-4 space-y-3"
  >
  <div className="flex items-center justify-between">
@@ -843,21 +836,18 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
  This is the <strong>fulcrum security</strong> — the tranche most likely to receive new equity in restructuring. Investors acquiring this tranche gain the most leverage in plan negotiations.
  </div>
  )}
- </motion.div>
+ </div>
  ) : (
- <motion.div
+ <div
  key="placeholder"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
  className="rounded-lg border border-border bg-foreground/5 p-4 flex items-center justify-center h-48"
  >
  <p className="text-sm text-foreground/30 text-center">
  Click a tranche in the diagram<br />to view details & relative value
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Relative value table */}
  <div className="rounded-lg border border-border bg-foreground/5 p-3">
@@ -1020,12 +1010,9 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
  <ChevronDown className="h-4 w-4 text-foreground/40" />
  )}
  </button>
- <AnimatePresence>
+ 
  {expanded === i && (
- <motion.div
- initial={{ height: 0 }}
- animate={{ height: "auto" }}
- exit={{ height: 0 }}
+ <div
  style={{ overflow: "hidden" }}
  >
  <div className="px-4 pb-3 border-t border-border">
@@ -1044,9 +1031,9 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>

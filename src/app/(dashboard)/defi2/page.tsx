@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Droplets,
  TrendingUp,
@@ -503,7 +502,7 @@ function LiquidityTab() {
  <SectionTitle><AlertTriangle size={14} className="text-rose-400" />MEV Extraction Taxonomy</SectionTitle>
  <div className="space-y-2">
  {MEV_TYPES.map((m, i) => (
- <motion.div
+ <div
  key={m.name}
  className={cn(
  "rounded-lg border p-3 cursor-pointer",
@@ -529,19 +528,16 @@ function LiquidityTab() {
  <ChevronDown size={12} className={cn("text-muted-foreground transition-transform", expandedMev === i && "rotate-180")} />
  </div>
  </div>
- <AnimatePresence>
+ 
  {expandedMev === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <p className="text-xs text-muted-foreground mt-2 pt-2 border-t border-border">{m.desc}</p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  </div>
@@ -1377,7 +1373,7 @@ function RestakingTab() {
  <SectionTitle><Building2 size={14} className="text-amber-400" />Institutional DeFi Entry Barriers</SectionTitle>
  <div className="space-y-2">
  {institutionalBarriers.map((barrier, i) => (
- <motion.div
+ <div
  key={barrier.title}
  className="rounded-md border border-border bg-foreground/5 cursor-pointer"
  onClick={() => setExpandedInst(expandedInst === i ? null : i)}
@@ -1396,21 +1392,18 @@ function RestakingTab() {
  <ChevronRight size={12} className={cn("text-muted-foreground transition-transform", expandedInst === i && "rotate-90")} />
  </div>
  </div>
- <AnimatePresence>
+ 
  {expandedInst === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-3 pb-3 text-xs text-muted-foreground border-t border-border pt-2">
  {barrier.desc}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  </div>
@@ -1526,9 +1519,7 @@ export default function DeFi2Page() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1545,7 +1536,7 @@ export default function DeFi2Page() {
  <Badge key={tag} className="bg-foreground/5 text-muted-foreground border-border text-xs">{tag}</Badge>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="liquidity" className="mt-8">
@@ -1565,27 +1556,27 @@ export default function DeFi2Page() {
  </TabsList>
 
  <TabsContent value="liquidity" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <LiquidityTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="rwa" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <RWATab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="intent" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <IntentTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="restaking" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <RestakingTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

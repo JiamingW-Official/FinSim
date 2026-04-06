@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Search,
  FileText,
@@ -904,18 +903,15 @@ function ResearchProcessTab() {
  className={cn("ml-auto text-muted-foreground transition-transform", activeStep === step.id && "rotate-90")}
  />
  </div>
- <AnimatePresence>
+ 
  {activeStep === step.id && (
- <motion.p
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <p
  className="text-xs text-muted-foreground mt-2 overflow-hidden"
  >
  {step.description}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
+ 
  </button>
  ))}
  </div>
@@ -1297,12 +1293,9 @@ function ReportStructureTab() {
  className={cn("text-muted-foreground transition-transform flex-shrink-0", openSection === i && "rotate-90")}
  />
  </button>
- <AnimatePresence>
+ 
  {openSection === i && (
- <motion.div
- initial={{ height: 0 }}
- animate={{ height: "auto" }}
- exit={{ height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 space-y-1.5">
@@ -1316,9 +1309,9 @@ function ReportStructureTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>
@@ -1655,53 +1648,38 @@ export default function EquityResearchPage() {
 
  <div className="mt-4">
  <TabsContent value="process" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <ResearchProcessTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="modeling" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <FinancialModelingTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="valuation" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <ValuationTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="report" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <ReportStructureTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="ratings" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <AnalystRatingsTab />
- </motion.div>
+ </div>
  </TabsContent>
  </div>
  </Tabs>

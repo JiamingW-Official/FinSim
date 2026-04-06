@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  BarChart2,
  Flame,
@@ -132,10 +131,8 @@ function SectorBar({ label, ytd, color }: { label: string; ytd: number; color: s
  <span className={ytd >= 0 ? "text-emerald-400" : "text-red-400"}>{fmtPct(ytd)}</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${barWidth}%` }}
- transition={{ duration: 1, ease: "easeOut" }}
+ <div
+ style={{ width: `${barWidth}%` }}
  className={`h-full rounded-full ${color}`}
  />
  </div>
@@ -197,14 +194,10 @@ function DashboardTab() {
 
  return (
  <div className="space-y-4">
- {/* Animated Ticker Strip */}
- <div className="overflow-hidden border border-border rounded-lg bg-card/60">
- <motion.div
- className="flex gap-3 py-2 px-4 whitespace-nowrap"
- animate={{ x: [0, -1200] }}
- transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
- >
- {[...COMMODITIES, ...COMMODITIES].map((c, i) => (
+ {/* Ticker Strip */}
+ <div className="overflow-x-auto border border-border rounded-lg bg-card/60">
+ <div className="flex gap-3 py-2 px-4 whitespace-nowrap">
+ {COMMODITIES.map((c, i) => (
  <span key={i} className="text-sm font-mono">
  <span className="text-muted-foreground">{c.ticker}</span>{" "}
  <span className="text-foreground">{c.price.toFixed(2)}</span>{" "}
@@ -213,7 +206,7 @@ function DashboardTab() {
  </span>
  </span>
  ))}
- </motion.div>
+ </div>
  </div>
 
  {/* Sector Performance */}
@@ -309,11 +302,8 @@ function DashboardTab() {
  {filtered.map((c, i) => {
  const spark = genSparkline(i * 97 + 31, 20, c.ytd > 0 ? 1 : -1);
  return (
- <motion.tr
+ <tr
  key={c.ticker}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.03 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="py-2 pr-4">
@@ -336,7 +326,7 @@ function DashboardTab() {
  <td className="text-right">
  <SparkLine data={spark} positive={c.ytd >= 0} />
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -1454,10 +1444,8 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
  const isLong = idea.direction === "Long";
 
  return (
- <motion.div
+ <div
  className="border border-border rounded-md bg-card overflow-hidden"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
  >
  <div
  className="p-4 cursor-pointer hover:bg-muted/30 transition-colors"
@@ -1521,14 +1509,8 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
  </div>
  </div>
 
- <AnimatePresence>
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- className="border-t border-border px-4 py-3 space-y-2"
- >
+ <div className="border-t border-border px-4 py-3 space-y-2">
  <div className="text-xs text-muted-foreground leading-relaxed">{idea.thesis}</div>
  <div className="flex gap-2 flex-wrap text-xs text-muted-foreground">
  <span className="text-muted-foreground">Catalyst:</span>
@@ -1538,10 +1520,9 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
  <span className="text-muted-foreground">Implementation:</span>
  <span className="text-muted-foreground">{idea.implementation}</span>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ </div>
  );
 }
 
@@ -1804,7 +1785,7 @@ export default function CommoditiesPage() {
 
  return (
  <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6 flex-1 flex flex-col">
  {/* Page hero */}
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Commodities</h1>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">ENERGY · METALS · AGRICULTURE · FUTURES</p>
@@ -1836,93 +1817,33 @@ export default function CommoditiesPage() {
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-[11px] text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none bg-transparent border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-[11px] text-muted-foreground data-[state=active]:text-foreground"
  >{tab.label}</TabsTrigger>
  ))}
  </TabsList>
 
  <TabsContent value="dashboard" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="dashboard"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <DashboardTab />
- </motion.div>
- </AnimatePresence>
  </TabsContent>
 
  <TabsContent value="energy" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="energy"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <EnergyTab />
- </motion.div>
- </AnimatePresence>
  </TabsContent>
 
  <TabsContent value="metals" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="metals"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <MetalsTab />
- </motion.div>
- </AnimatePresence>
  </TabsContent>
 
  <TabsContent value="agriculture" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="agriculture"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <AgricultureTab />
- </motion.div>
- </AnimatePresence>
  </TabsContent>
 
  <TabsContent value="curves" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="curves"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <FuturesCurveTab />
- </motion.div>
- </AnimatePresence>
  </TabsContent>
 
  <TabsContent value="ideas" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="ideas"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <TradeIdeasTab />
- </motion.div>
- </AnimatePresence>
  </TabsContent>
  </Tabs>
  </div>

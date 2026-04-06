@@ -27,7 +27,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
@@ -846,13 +845,11 @@ function BiasAssessment() {
  s === "strong" ? "text-red-400" : s === "moderate" ? "text-amber-400" : "text-green-400";
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="space-y-4"
  >
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-semibold text-foreground">
  Your Bias Radar
@@ -863,7 +860,7 @@ function BiasAssessment() {
  </CardContent>
  </Card>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-semibold text-foreground">
  Top 3 Dominant Biases
@@ -892,7 +889,7 @@ function BiasAssessment() {
  </Card>
  </div>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-semibold text-foreground">
  Personalized Debiasing Tips
@@ -928,7 +925,7 @@ function BiasAssessment() {
  <RefreshCw className="h-3 w-3 mr-2" />
  Retake Assessment
  </Button>
- </motion.div>
+ </div>
  );
  }
 
@@ -944,15 +941,11 @@ function BiasAssessment() {
  </div>
  <Progress value={((currentQ) / QUIZ_QUESTIONS.length) * 100} className="h-1" />
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={currentQ}
- initial={{ opacity: 0, x: 20 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -20 }}
- transition={{ duration: 0.2 }}
  >
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardContent className="pt-6 space-y-5">
  <p className="text-sm text-foreground leading-relaxed">{q.scenario}</p>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -984,8 +977,8 @@ function BiasAssessment() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  <div className="flex items-center justify-between">
  <Button
@@ -1062,7 +1055,7 @@ function DecisionFramework() {
  <div className="space-y-4">
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
  <div className="lg:col-span-2">
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Pre-Trade Checklist
@@ -1099,7 +1092,7 @@ function DecisionFramework() {
  </div>
 
  <div className="space-y-4">
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Trade Quality
@@ -1121,7 +1114,7 @@ function DecisionFramework() {
  </div>
  </div>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Investment Thesis Builder
@@ -1167,7 +1160,7 @@ function DecisionFramework() {
  </CardContent>
  </Card>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <button
  onClick={() => setShowJournal((v) => !v)}
@@ -1280,7 +1273,7 @@ function EmotionalIntelligence() {
  return (
  <div className="space-y-4">
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Market Emotion Cycle
@@ -1311,7 +1304,7 @@ function EmotionalIntelligence() {
  </Card>
 
  <div className="space-y-4">
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  How Am I Feeling Today?
@@ -1352,7 +1345,7 @@ function EmotionalIntelligence() {
  </CardContent>
  </Card>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Rules for Trading While Emotional
@@ -1381,7 +1374,7 @@ function EmotionalIntelligence() {
  </div>
  </div>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Emotion Score vs Monthly Return
@@ -1434,10 +1427,8 @@ function ProcessOutcome() {
  {MATRIX_QUADRANTS.map((q) => {
  const Icon = q.icon;
  return (
- <motion.div
+ <div
  key={q.label}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
  className={cn(
  "rounded-md border p-5 space-y-3",
  q.bg,
@@ -1470,12 +1461,12 @@ function ProcessOutcome() {
  <p className="text-xs font-medium" style={{ color: q.color }}>
  {q.sublabel}
  </p>
- </motion.div>
+ </div>
  );
  })}
  </div>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Luck vs Skill Separator
@@ -1503,7 +1494,7 @@ function ProcessOutcome() {
  </CardContent>
  </Card>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Process Scorecard — Last 5 Trades
@@ -1599,7 +1590,7 @@ function MentalModelsTab() {
  <Card
  key={i}
  className={cn(
- "bg-card/60 border-border transition-all",
+ "bg-card border-border transition-all",
  isOpen && "border-indigo-700/60"
  )}
  >
@@ -1639,12 +1630,9 @@ function MentalModelsTab() {
  </CardHeader>
  <CardContent className="space-y-2">
  <p className="text-xs text-muted-foreground leading-relaxed">{model.definition}</p>
- <AnimatePresence>
+ 
  {isOpen && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="space-y-2 pt-2 border-t border-border">
@@ -1661,9 +1649,9 @@ function MentalModelsTab() {
  <p className="text-xs text-muted-foreground mt-0.5">{model.breakdown}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
  );
@@ -1671,9 +1659,7 @@ function MentalModelsTab() {
  </div>
 
  {selectedCombo.length >= 2 && comboInsight && (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  >
  <Card className="bg-indigo-950/30 border-indigo-700/40">
  <CardContent className="pt-4 space-y-2">
@@ -1697,7 +1683,7 @@ function MentalModelsTab() {
  </button>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
  </div>
  );
@@ -1744,7 +1730,7 @@ function PerformanceReview() {
  return (
  <div className="space-y-4">
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  12-Month Performance Journal
@@ -1782,7 +1768,7 @@ function PerformanceReview() {
  </CardContent>
  </Card>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Mood vs Next Month Return
@@ -1806,7 +1792,7 @@ function PerformanceReview() {
  </div>
 
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Mistake Tracker
@@ -1868,7 +1854,7 @@ function PerformanceReview() {
  </CardContent>
  </Card>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  Learning Velocity
@@ -1910,7 +1896,7 @@ function PerformanceReview() {
  </Card>
  </div>
 
- <Card className="bg-card/60 border-border">
+ <Card className="bg-card border-border">
  <CardHeader>
  <CardTitle className="text-sm font-medium text-foreground">
  90-Day Improvement Plan
@@ -1941,12 +1927,9 @@ function PerformanceReview() {
  ))}
  </div>
 
- <AnimatePresence>
+ 
  {selectedFocus !== null && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="space-y-2 pt-2">
@@ -1979,9 +1962,9 @@ function PerformanceReview() {
  );
  })}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
  </div>
@@ -1992,31 +1975,26 @@ function PerformanceReview() {
 
 export default function MindsetPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-8 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- className="space-y-1"
- >
+ <div className="space-y-1">
  <div className="flex items-center gap-3">
  <Brain className="h-6 w-6 text-indigo-400" />
- <h1 className="text-lg font-medium text-foreground">Investment Psychology</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Investment Psychology</h1>
  </div>
  <p className="text-sm text-muted-foreground">
  Understand your biases, sharpen your decision-making process, and build mental resilience.
  </p>
- </motion.div>
+ </div>
 
  {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Trading Psychology Toolkit</h2>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-semibold mb-1">Trading Psychology Toolkit</h2>
  <p className="text-sm text-muted-foreground">Bias assessment, decision frameworks, emotional intelligence, process vs outcome thinking, and mental models for better trading.</p>
  </div>
 
  {/* Tabs */}
- <Tabs defaultValue="bias" className="space-y-4 mt-8">
+ <Tabs defaultValue="bias" className="space-y-4">
  <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
  {[
  { value: "bias", label: "Bias Assessment", icon: Brain },
@@ -2029,7 +2007,7 @@ export default function MindsetPage() {
  <TabsTrigger
  key={value}
  value={value}
- className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground"
+ className="text-xs data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-muted-foreground"
  >
  <Icon className="h-3 w-3 mr-1.5" />
  {label}
@@ -2056,7 +2034,6 @@ export default function MindsetPage() {
  <PerformanceReview />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

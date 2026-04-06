@@ -22,7 +22,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -1002,40 +1001,33 @@ export default function TransitionFinancePage() {
  void gapData;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
+ <div className="rounded-lg border border-border bg-card p-5">
  <div className="flex items-center gap-3 mb-1">
  <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
  <Leaf className="w-5 h-5 text-emerald-400" />
  </div>
- <h1 className="text-xl font-semibold text-foreground">
- Transition Finance &amp; Climate Risk
- </h1>
+ <h1 className="text-3xl font-bold tracking-tight">Transition Finance &amp; Climate Risk</h1>
  </div>
  <p className="text-muted-foreground text-sm ml-12">
  Financing the energy transition · carbon pricing · stranded assets · green taxonomy
  </p>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8 space-y-4">
- <TabsList className="bg-card border border-border h-auto p-1 flex-wrap gap-1">
- <TabsTrigger value="landscape" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto flex flex-wrap gap-0">
+ <TabsTrigger value="landscape" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Globe className="w-3.5 h-3.5 mr-1" />Climate Finance
  </TabsTrigger>
- <TabsTrigger value="carbon" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
+ <TabsTrigger value="carbon" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <BarChart2 className="w-3.5 h-3.5 mr-1" />Carbon Markets
  </TabsTrigger>
- <TabsTrigger value="stranded" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
+ <TabsTrigger value="stranded" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <AlertTriangle className="w-3.5 h-3.5 mr-1" />Stranded Assets
  </TabsTrigger>
- <TabsTrigger value="bonds" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
+ <TabsTrigger value="bonds" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <DollarSign className="w-3.5 h-3.5 mr-1" />Bonds &amp; Taxonomy
  </TabsTrigger>
  </TabsList>
@@ -1640,10 +1632,8 @@ export default function TransitionFinancePage() {
  </CardHeader>
  <CardContent className="space-y-2">
  {HARD_TO_ABATE.map((s, i) => (
- <motion.div
- key={s.sector}
+ <div
  className="bg-muted/50 rounded-lg overflow-hidden cursor-pointer"
- onClick={() => setExpandedSector(expandedSector === i ? null : i)}
  >
  <div className="flex items-center justify-between p-3">
  <div className="flex items-center gap-3">
@@ -1680,7 +1670,7 @@ export default function TransitionFinancePage() {
  </div>
  </div>
  )}
- </motion.div>
+ </div>
  ))}
  </CardContent>
  </Card>

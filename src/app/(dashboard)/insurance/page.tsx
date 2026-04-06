@@ -19,7 +19,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -430,9 +429,8 @@ function FundamentalsTab() {
  {/* Key concepts */}
  <div className="space-y-2">
  {concepts.map((c) => (
- <motion.div
+ <div
  key={c.key}
- layout
  className={cn("rounded-lg border p-4 cursor-pointer", colorMap[c.color])}
  onClick={() => setExpanded(expanded === c.key ? null : c.key)}
  >
@@ -445,15 +443,11 @@ function FundamentalsTab() {
  </div>
  <p className="text-xs text-muted-foreground mt-1">{c.summary}</p>
  {expanded === c.key && (
- <motion.p
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- className="text-xs text-foreground mt-2 leading-relaxed border-t border-border pt-2"
- >
+ <p className="text-xs text-foreground mt-2 leading-relaxed border-t border-border pt-2">
  {c.detail}
- </motion.p>
+ </p>
  )}
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1944,8 +1938,7 @@ export default function InsurancePage() {
  ];
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
  <div className="mb-6">
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Insurance</h1>
@@ -1961,7 +1954,7 @@ export default function InsurancePage() {
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  <span className="hidden sm:inline">{tab.label}</span>
  </TabsTrigger>
@@ -1987,7 +1980,6 @@ export default function InsurancePage() {
  <InvestmentTab />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

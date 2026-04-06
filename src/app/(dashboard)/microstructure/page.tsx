@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Activity,
  BarChart3,
@@ -677,11 +676,7 @@ export default function MicrostructurePage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
  {/* ── Header ── */}
- <motion.div
- variants={fadeUp}
- initial="hidden"
- animate="visible"
- transition={{ duration: 0.4 }}
+ <div
  className="flex flex-col md:flex-row md:items-center md:justify-between gap-3"
  >
  <div>
@@ -703,14 +698,10 @@ export default function MicrostructurePage() {
  Market Open
  </Badge>
  </div>
- </motion.div>
+ </div>
 
  {/* ── Key Metrics Row — Hero ── */}
- <motion.div
- variants={fadeUp}
- initial="hidden"
- animate="visible"
- transition={{ duration: 0.4, delay: 0.08 }}
+ <div
  className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-md border border-border bg-card border-l-4 border-l-primary p-6"
  >
  {[
@@ -765,14 +756,10 @@ export default function MicrostructurePage() {
  </CardContent>
  </Card>
  ))}
- </motion.div>
+ </div>
 
  {/* ── Tabs ── */}
- <motion.div
- variants={fadeUp}
- initial="hidden"
- animate="visible"
- transition={{ duration: 0.4, delay: 0.16 }}
+ <div
  >
  <Tabs defaultValue="orderbook">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
@@ -1013,11 +1000,7 @@ export default function MicrostructurePage() {
 
  {/* Expanded order detail */}
  {selectedOrderData && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="mt-4 p-3 rounded-lg bg-muted/30 border border-border"
  >
  <div className="text-sm font-medium mb-2">{selectedOrderData.name}</div>
@@ -1049,7 +1032,7 @@ export default function MicrostructurePage() {
  </ul>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
@@ -1326,18 +1309,14 @@ export default function MicrostructurePage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
 
  {/* ── Footer disclaimer ── */}
- <motion.div
- variants={fadeUp}
- initial="hidden"
- animate="visible"
- transition={{ duration: 0.4, delay: 0.24 }}
+ <div
  className="text-xs text-muted-foreground text-center pb-2"
  >
  Order book data is synthetic for educational purposes. Market microstructure concepts are based on academic literature and industry practice.
- </motion.div>
+ </div>
  </div>
  );
 }

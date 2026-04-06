@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Bitcoin,
  BarChart2,
@@ -91,19 +90,15 @@ function CollapsibleCard({
  </span>
  </CardTitle>
  </CardHeader>
- <AnimatePresence initial={false}>
+ 
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.22, ease: "easeInOut" }}
+ <div
  className="overflow-hidden"
  >
  <CardContent className="pt-0">{children}</CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
  );
 }
@@ -536,10 +531,8 @@ function Tab1EtfContent() {
  <span className="text-muted-foreground">{row.note}</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${Math.min(row.crypto * 4, 100)}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+ <div
+ style={{ width: `${Math.min(row.crypto * 4, 100)}%` }}
  className="h-full rounded-full bg-indigo-500"
  />
  </div>
@@ -1146,12 +1139,9 @@ function Tab3PrimeBrokerageContent() {
  </div>
  <div className="flex items-center gap-2">
  <div className="h-2 bg-muted rounded-full overflow-hidden flex-1">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${row.ltv}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+ <div
+ style={{ width: `${row.ltv}%` }}
  className="h-full rounded-full"
- style={{ backgroundColor: row.color }}
  />
  </div>
  <span className="text-xs font-mono font-medium" style={{ color: row.color }}>

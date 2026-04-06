@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Building2,
  TrendingUp,
@@ -507,13 +506,9 @@ function AgencyMarketTab() {
  </div>
 
  {/* Selected agency detail */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedAgency.name}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="bg-muted/60 rounded-md p-4 border border-border"
  >
  <div className="flex items-center gap-3 mb-3">
@@ -540,8 +535,8 @@ function AgencyMarketTab() {
  <div className="text-xs text-muted-foreground mb-1">Government Backstop</div>
  <div className="text-xs text-muted-foreground leading-relaxed">{selectedAgency.backstop}</div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Market share pie representation as stacked bar */}
  <div className="mt-4">
@@ -659,21 +654,18 @@ function AgencyMarketTab() {
  </tbody>
  </table>
  </div>
- <AnimatePresence>
+ 
  {expandedPool && (
- <motion.div
+ <div
  key={expandedPool}
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
  className="overflow-hidden"
  >
  <div className="mt-2 bg-muted/60 rounded-lg p-3 border border-border text-xs text-muted-foreground leading-relaxed">
  {POOL_CHARS.find((p) => p.label === expandedPool)?.desc}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </SectionCard>
 
  {/* Dollar roll economics */}
@@ -1104,13 +1096,9 @@ function CMOStructuresTab() {
  {isOpen ? <ChevronUp size={14} className="text-muted-foreground" /> : <ChevronDown size={14} className="text-muted-foreground" />}
  </div>
  </button>
- <AnimatePresence>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 pt-1 border-t border-border">
@@ -1121,9 +1109,9 @@ function CMOStructuresTab() {
  <InfoChip label="Avg Life" value={tranche.avgLife} color="purple" />
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
@@ -1761,27 +1749,27 @@ export default function AgencyMBSPage() {
  </TabsList>
 
  <TabsContent value="agency" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <AgencyMarketTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="prepayment" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <PrepaymentAnalysisTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="cmo" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <CMOStructuresTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="convexity" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <ConvexityRiskTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

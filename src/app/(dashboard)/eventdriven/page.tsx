@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -262,7 +261,7 @@ function MergerArbitrageTab() {
  </CardHeader>
  <CardContent className="space-y-2">
  {RISK_FACTORS.map((rf, i) => (
- <motion.div key={rf.name} className="rounded-lg bg-muted/40 p-3 cursor-pointer"
+ <div key={rf.name} className="rounded-lg bg-muted/40 p-3 cursor-pointer"
  onClick={() => setExpanded(expanded === i ? null : i)}>
  <div className="flex items-center justify-between">
  <div className="flex items-center gap-2">
@@ -273,15 +272,14 @@ function MergerArbitrageTab() {
  </div>
  {expanded === i ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </div>
- <AnimatePresence>
+ 
  {expanded === i && (
- <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }} className="text-xs text-muted-foreground mt-2 overflow-hidden">
+ <p className="text-xs text-muted-foreground mt-2 overflow-hidden">
  {rf.description}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </CardContent>
  </Card>
@@ -488,10 +486,9 @@ function ActivismTab() {
  {showFunds ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </CardTitle>
  </CardHeader>
- <AnimatePresence>
+ 
  {showFunds && (
- <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+ <div className="overflow-hidden">
  <CardContent className="space-y-3">
  {ACTIVIST_FUNDS.map((f) => (
  <div key={f.name} className="rounded-lg bg-muted/50 p-3">
@@ -505,9 +502,9 @@ function ActivismTab() {
  </div>
  ))}
  </CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
 
  {/* Rights offerings */}
@@ -1060,10 +1057,9 @@ function DistressedSPACTab() {
  {showRegs ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </CardTitle>
  </CardHeader>
- <AnimatePresence>
+ 
  {showRegs && (
- <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+ <div className="overflow-hidden">
  <CardContent className="space-y-2">
  {[
  "De-SPAC transactions now classified as registered offerings — target company becomes a co-registrant on Form S-4/F-4.",
@@ -1078,9 +1074,9 @@ function DistressedSPACTab() {
  </div>
  ))}
  </CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
 
  {/* Warrant pricing */}
@@ -1139,39 +1135,35 @@ export default function EventDrivenPage() {
  </TabsList>
 
  <TabsContent value="merger" className="data-[state=inactive]:hidden mt-0">
- <AnimatePresence mode="wait">
- <motion.div key="merger" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
+ 
+ <div key="merger">
  <MergerArbitrageTab />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  <TabsContent value="activism" className="data-[state=inactive]:hidden mt-0">
- <AnimatePresence mode="wait">
- <motion.div key="activism" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
+ 
+ <div key="activism">
  <ActivismTab />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  <TabsContent value="spinoffs" className="data-[state=inactive]:hidden mt-0">
- <AnimatePresence mode="wait">
- <motion.div key="spinoffs" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
+ 
+ <div key="spinoffs">
  <SpinoffsTab />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  <TabsContent value="distressed" className="data-[state=inactive]:hidden mt-0">
- <AnimatePresence mode="wait">
- <motion.div key="distressed" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
+ 
+ <div key="distressed">
  <DistressedSPACTab />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
  </Tabs>
  </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -744,19 +743,16 @@ function FactorTab() {
  )}
  style={{ borderColor: selectedFactor?.name === f.name ? f.color : undefined }}
  >
- <p className="text-sm font-medium" style={{ color: f.color }}>{f.name}</p>
+ <p className="text-sm font-medium" >{f.name}</p>
  <p className="text-xs text-muted-foreground mt-0.5">+{f.historicPremium}% hist.</p>
  <p className="text-xs text-muted-foreground">{f.cost}% fee</p>
  </button>
  ))}
  </div>
 
- <AnimatePresence>
+ 
  {selectedFactor && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div
@@ -779,9 +775,9 @@ function FactorTab() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* Crowding vs Persistence */}
@@ -1227,10 +1223,7 @@ export default function ActivePassivePage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-5xl mx-auto px-4 py-8">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-8"
  >
  <div className="flex items-center gap-3 mb-3">
@@ -1257,7 +1250,7 @@ export default function ActivePassivePage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  <div className="mt-8" />
 
@@ -1281,43 +1274,31 @@ export default function ActivePassivePage() {
  </TabsList>
 
  <TabsContent value="evidence" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <EvidenceTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="mechanics" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <IndexMechanicsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="factors" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <FactorTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="fees" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <FeeImpactTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

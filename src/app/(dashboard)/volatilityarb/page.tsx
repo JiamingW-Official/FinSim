@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Activity,
  TrendingUp,
@@ -352,8 +351,7 @@ export default function VolatilityArbPage() {
  const dispersionSpread = basketIV - indexIV;
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
  <div className="mb-6">
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Volatility Arb</h1>
@@ -399,13 +397,7 @@ export default function VolatilityArbPage() {
 
  {/* ── Tab 1: Vol Spread Dashboard ───────────────────────────────────── */}
  <TabsContent value="vol-spread" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="vol-spread"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.2 }}
+ <div
  className="space-y-4"
  >
  {/* Spread Chart */}
@@ -561,19 +553,12 @@ export default function VolatilityArbPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
  </TabsContent>
 
  {/* ── Tab 2: Delta-Neutral P&L ───────────────────────────────────────── */}
  <TabsContent value="delta-neutral" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="delta-neutral"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.2 }}
+ <div
  className="space-y-4"
  >
  {/* Setup explanation */}
@@ -741,19 +726,12 @@ export default function VolatilityArbPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
  </TabsContent>
 
  {/* ── Tab 3: Dispersion Trading ──────────────────────────────────────── */}
  <TabsContent value="dispersion" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="dispersion"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.2 }}
+ <div
  className="space-y-4"
  >
  {/* Summary metrics */}
@@ -888,19 +866,12 @@ export default function VolatilityArbPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
  </TabsContent>
 
  {/* ── Tab 4: Vol Surface Arb ─────────────────────────────────────────── */}
  <TabsContent value="vol-surface" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="vol-surface"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.2 }}
+ <div
  className="space-y-4"
  >
  {/* Calendar Spreads */}
@@ -1066,19 +1037,12 @@ export default function VolatilityArbPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
  </TabsContent>
 
  {/* ── Tab 5: Statistical Edge ────────────────────────────────────────── */}
  <TabsContent value="stat-edge" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="stat-edge"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.2 }}
+ <div
  className="space-y-4"
  >
  {/* VRP Evidence */}
@@ -1304,11 +1268,9 @@ export default function VolatilityArbPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

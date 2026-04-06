@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  DollarSign,
@@ -558,13 +557,9 @@ function FundingStagesTab() {
  </div>
 
  {/* Selected stage detail */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selected.name}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="rounded-md border bg-card p-5"
  style={{ borderColor: selected.color + "55" }}
  >
@@ -626,8 +621,8 @@ function FundingStagesTab() {
  </div>
  </div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Summary stats row */}
  <div className="grid grid-cols-3 gap-3">
@@ -1030,13 +1025,9 @@ function TermSheetTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground flex-shrink-0" />
  )}
  </button>
- <AnimatePresence>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.18 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 space-y-3 text-sm">
@@ -1052,9 +1043,9 @@ function TermSheetTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
@@ -1113,13 +1104,9 @@ function ValuationTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selected.name}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
  className="rounded-md border bg-card p-5"
  style={{ borderColor: selected.color + "55" }}
  >
@@ -1256,8 +1243,8 @@ function ValuationTab() {
  </div>
  </div>
  )}
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Sensitivity table */}
  <div className="rounded-md border border-border bg-card p-4">

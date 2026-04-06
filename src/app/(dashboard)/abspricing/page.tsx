@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Layers,
  TrendingUp,
@@ -280,12 +279,8 @@ function ABSStructureTab() {
  <span>Payment Waterfall (Priority of Payments)</span>
  {showWaterfall ? <ChevronUp className="h-4 w-4 text-foreground/40" /> : <ChevronDown className="h-4 w-4 text-foreground/40" />}
  </button>
- <AnimatePresence>
- {showWaterfall && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+  {showWaterfall && (
+ <div
  className="overflow-hidden"
  >
  <div className="mt-4">
@@ -310,10 +305,9 @@ function ABSStructureTab() {
  <text x={30} y={310} fill="#94a3b8" fontSize="9">Cashflows flow top-to-bottom; lower tranches receive payments only after senior classes are paid in full.</text>
  </svg>
  </div>
- </motion.div>
- )}
- </AnimatePresence>
  </div>
+ )}
+  </div>
 
  {/* OC and Reserve Fund */}
  <div className="grid gap-4 sm:grid-cols-2">
@@ -772,11 +766,8 @@ function CreditEnhancementTab() {
  { icon: ShieldCheck, title: "Insurance Wrap", desc: "Third-party financial guarantee covers senior tranche up to 70% LTV; provides AAA floor rating.", color: "text-muted-foreground" },
  { icon: BarChart3, title: "Spread Account", desc: "Trap for excess spread if OC ratio falls below trigger. Prevents cash leakage to equity.", color: "text-rose-400" },
  ].map((item, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.06 }}
  className="rounded-lg border border-border bg-foreground/5 p-3"
  >
  <div className="flex items-center gap-2 mb-1">
@@ -784,7 +775,7 @@ function CreditEnhancementTab() {
  <p className="text-xs font-medium text-foreground">{item.title}</p>
  </div>
  <p className="text-xs text-foreground/50">{item.desc}</p>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -925,21 +916,16 @@ export default function ABSPricingPage() {
  const [activeTab, setActiveTab] = useState("structure");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="mx-auto max-w-5xl px-4 py-8">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- className="mb-8"
- >
+ <div className="mb-2">
  <div className="flex items-center gap-3 mb-2">
  <div className="rounded-lg bg-muted/10 p-2">
  <Layers className="h-6 w-6 text-primary" />
  </div>
  <div>
- <h1 className="text-lg font-medium text-foreground">Asset-Backed Securities Pricing</h1>
- <p className="text-sm text-foreground/50">
+ <h1 className="text-3xl font-bold tracking-tight">Asset-Backed Securities Pricing</h1>
+ <p className="text-sm text-muted-foreground">
  ABS structure, prepayment models, tranching, WAL/duration, and credit enhancement
  </p>
  </div>
@@ -960,25 +946,17 @@ export default function ABSPricingPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="structure" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">ABS Structure</TabsTrigger>
- <TabsTrigger value="prepayment" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Prepayment</TabsTrigger>
- <TabsTrigger value="pricing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pricing & Yield</TabsTrigger>
- <TabsTrigger value="credit" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Credit Enhancement</TabsTrigger>
+ <TabsTrigger value="structure" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">ABS Structure</TabsTrigger>
+ <TabsTrigger value="prepayment" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Prepayment</TabsTrigger>
+ <TabsTrigger value="pricing" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pricing & Yield</TabsTrigger>
+ <TabsTrigger value="credit" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Credit Enhancement</TabsTrigger>
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
- key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
- >
  <TabsContent value="structure" className="data-[state=inactive]:hidden">
  <ABSStructureTab />
  </TabsContent>
@@ -991,8 +969,6 @@ export default function ABSPricingPage() {
  <TabsContent value="credit" className="data-[state=inactive]:hidden">
  <CreditEnhancementTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
  </Tabs>
 
  {/* Footer info */}
@@ -1004,7 +980,6 @@ export default function ABSPricingPage() {
  Z-spreads and OAS are calculated using simplified flat-curve pricing. Credit enhancement percentages represent cumulative subordination plus
  reserve fund. Rating agency stress multiples are indicative and vary by methodology and asset class. Not financial advice.
  </p>
- </div>
  </div>
  </div>
  </div>

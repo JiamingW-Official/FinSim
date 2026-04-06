@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Wifi,
  TrendingUp,
@@ -373,7 +372,7 @@ function ElectronicMarketsTab() {
  <InfoCard title="All-to-All Trading Platforms">
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
  {PLATFORMS.map((p) => (
- <motion.div
+ <div
  key={p.name}
  className={cn(
  "rounded-lg border p-3 cursor-pointer transition-colors",
@@ -381,9 +380,6 @@ function ElectronicMarketsTab() {
  p.border,
  hoveredPlatform === p.name ? "scale-[1.02]" : ""
  )}
- onHoverStart={() => setHoveredPlatform(p.name)}
- onHoverEnd={() => setHoveredPlatform(null)}
- whileHover={{ scale: 1.02 }}
  >
  <div className="flex items-center justify-between mb-1">
  <span className={cn("font-semibold text-sm", p.color)}>{p.name}</span>
@@ -391,7 +387,7 @@ function ElectronicMarketsTab() {
  </div>
  <p className="text-xs text-muted-foreground">{p.type}</p>
  <p className="text-xs text-muted-foreground mt-0.5">Focus: {p.focus}</p>
- </motion.div>
+ </div>
  ))}
  </div>
  <div className="mt-3 p-3 rounded-lg bg-muted/30 border border-border">
@@ -606,13 +602,9 @@ function AlgoExecutionTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selected.id}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className={cn("rounded-lg border p-4", selected.bg, selected.border)}
  >
  <div className="flex items-center gap-2 mb-2">
@@ -635,8 +627,8 @@ function AlgoExecutionTab() {
  <span className="text-muted-foreground">Spread Impact: <span className={cn("font-medium", selected.spreadImpact === "Low" ? "text-green-400" : selected.spreadImpact === "High" ? "text-red-400" : "text-amber-400")}>{selected.spreadImpact}</span></span>
  <span className="text-muted-foreground">Timing Risk: <span className={cn("font-medium", selected.timingRisk === "Low" ? "text-green-400" : selected.timingRisk === "High" ? "text-red-400" : "text-amber-400")}>{selected.timingRisk}</span></span>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </InfoCard>
 
  {/* TCA */}
@@ -700,11 +692,9 @@ function AlgoExecutionTab() {
  <div key={ls.ticker} className="flex items-center gap-3">
  <span className="text-xs font-mono text-muted-foreground w-44 shrink-0">{ls.ticker}</span>
  <div className="flex-1 rounded-full bg-muted/30 h-2 overflow-hidden">
- <motion.div
+ <div
  className={cn("h-full rounded-full", ls.color)}
- initial={{ width: 0 }}
- animate={{ width: `${ls.score}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+ style={{ width: `${ls.score}%` }}
  />
  </div>
  <span className="text-xs w-8 text-right font-mono text-foreground">{ls.score}</span>
@@ -921,13 +911,9 @@ function BondPricingTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selFV.name}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -6 }}
- transition={{ duration: 0.15 }}
  className="rounded-lg border border-border bg-muted/20 p-4"
  >
  <div className="flex items-center justify-between mb-2">
@@ -940,17 +926,15 @@ function BondPricingTab() {
  <p className="text-xs text-muted-foreground mb-3">{selFV.method}</p>
  <div className="flex items-center gap-2">
  <div className="flex-1 rounded-full bg-muted/30 h-2 overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full bg-primary"
- initial={{ width: 0 }}
- animate={{ width: `${selFV.accuracy}%` }}
- transition={{ duration: 0.6 }}
+ style={{ width: `${selFV.accuracy}%` }}
  />
  </div>
  <span className="text-xs font-mono text-foreground w-10 text-right">{selFV.accuracy}%</span>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  <p className="text-xs text-muted-foreground mt-3">
  Matrix pricing is used for bonds that rarely trade — interpolating from a universe of similar bonds by duration, credit rating, and sector.
  </p>
@@ -1041,7 +1025,7 @@ function CreditStructureTab() {
  <div key={c.label} className="rounded-lg p-2" style={{ backgroundColor: c.color + "11", border: `1px solid ${c.color}33` }}>
  <div className="flex justify-between items-center">
  <span className="text-xs font-medium" style={{ color: c.color }}>{c.label}</span>
- <span className="text-xs font-mono" style={{ color: c.color }}>{c.bps} bps</span>
+ <span className="text-xs font-mono" >{c.bps} bps</span>
  </div>
  <p className="text-xs text-muted-foreground mt-0.5">{c.desc}</p>
  </div>
@@ -1259,10 +1243,7 @@ export default function FixedIncomeTechPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-5xl mx-auto px-4 py-8">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-8 border-l-4 border-l-primary rounded-lg bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1282,7 +1263,7 @@ export default function FixedIncomeTechPage() {
  <Badge variant="outline" className="text-xs border-amber-500/40 text-amber-400">Pricing Models</Badge>
  <Badge variant="outline" className="text-xs border-green-500/40 text-green-400">Credit Structure</Badge>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="electronic" className="mt-8">
@@ -1294,43 +1275,31 @@ export default function FixedIncomeTechPage() {
  </TabsList>
 
  <TabsContent value="electronic" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <ElectronicMarketsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="algo" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <AlgoExecutionTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="pricing" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <BondPricingTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="credit" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <CreditStructureTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

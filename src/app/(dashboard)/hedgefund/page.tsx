@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -594,10 +593,8 @@ function StrategyExplorer() {
  {/* Cards grid */}
  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
  {STRATEGIES.map((st) => (
- <motion.button
+ <button
  key={st.id}
- whileHover={{ scale: 1.02 }}
- whileTap={{ scale: 0.98 }}
  onClick={() => setSelected(st.id === selected ? null : st.id)}
  className={cn(
  "text-left rounded-md border p-3 transition-colors",
@@ -630,18 +627,15 @@ function StrategyExplorer() {
  </span>
  </div>
  <div className="text-xs text-muted-foreground">Gross: {st.grossLeverage}</div>
- </motion.button>
+ </button>
  ))}
  </div>
 
  {/* Detail panel */}
- <AnimatePresence>
+ 
  {sel && (
- <motion.div
+ <div
  key={sel.id}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 8 }}
  className="rounded-md border border-border bg-foreground/[0.04] p-5"
  >
  <div className="flex flex-wrap items-start gap-4 mb-4">
@@ -673,9 +667,9 @@ function StrategyExplorer() {
  <p className="text-muted-foreground text-xs">{sel.worstEnv}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Two-column: chart + table */}
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
@@ -1331,12 +1325,9 @@ function EventDriven() {
  </Card>
 
  {/* Detail panel */}
- <AnimatePresence>
+ 
  {selected !== null && (
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 8 }}
+ <div
  >
  {(() => {
  const deal = DEALS[selected];
@@ -1385,9 +1376,9 @@ function EventDriven() {
  </Card>
  );
  })()}
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  <Card className="bg-foreground/[0.03] border-border">
  <CardHeader className="pb-2">

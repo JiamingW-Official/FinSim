@@ -148,7 +148,7 @@ export default function OptionsPage() {
         <ChainStatsBar analytics={analytics} spotPrice={spotPrice} isLoading={isLoading} />
       </div>
 
-      {/* 4-tab layout */}
+      {/* 4-tab */}
       <Tabs
         value={activeTab}
         onValueChange={setActiveTab}

@@ -21,7 +21,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -398,19 +397,14 @@ export default function InsuranceLinkedPage() {
  }, []);
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto p-4 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
 
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
+ <div>
  <div className="flex items-start justify-between flex-wrap gap-4">
  <div>
  <div className="flex items-center gap-2 mb-1">
- <h1 className="text-lg font-medium text-foreground">Insurance-Linked Securities</h1>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground">Insurance-Linked Securities</h1>
  </div>
  <p className="text-muted-foreground text-sm max-w-2xl">
  Cat bonds and ILS offer institutional-grade uncorrelated returns — payoffs driven by natural catastrophe events, not financial markets. Zero beta to equity cycles.
@@ -421,15 +415,10 @@ export default function InsuranceLinkedPage() {
  <Badge variant="outline" className="text-xs border-green-500/30 text-green-400">Low Correlation</Badge>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Key Metrics — Hero */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.08 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6"
- >
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
  <MetricCard
  label="ILS Market Size"
  value={`$${totalMarketSize.toFixed(0)}B`}
@@ -458,26 +447,22 @@ export default function InsuranceLinkedPage() {
  icon={Target}
  color="purple"
  />
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.16 }}
- >
+ <div>
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="catbonds" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="catbonds" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Cat Bonds
  </TabsTrigger>
- <TabsTrigger value="ilsfunds" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="ilsfunds" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  ILS Funds
  </TabsTrigger>
- <TabsTrigger value="riskmodel" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="riskmodel" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Risk Modeling
  </TabsTrigger>
- <TabsTrigger value="history" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="history" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Historical Events
  </TabsTrigger>
  </TabsList>
@@ -870,9 +855,8 @@ export default function InsuranceLinkedPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
-
  </div>
+
  </div>
  );
 }

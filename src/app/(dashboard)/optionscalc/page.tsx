@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Calculator,
  Layers,
@@ -1368,7 +1367,7 @@ export default function OptionsCalcPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
  {/* Header */}
- <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+ <div>
  <div className="flex items-center gap-3 mb-1">
  <div className="p-2 bg-muted/10 rounded-lg">
  <Calculator size={20} className="text-primary" />
@@ -1385,7 +1384,7 @@ export default function OptionsCalcPage() {
  <Badge variant="outline" className="border-amber-700 text-amber-400 text-xs">Vol Analysis</Badge>
  <Badge variant="outline" className="border-teal-700 text-emerald-400 text-xs">Risk Metrics</Badge>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -1401,8 +1400,8 @@ export default function OptionsCalcPage() {
  })}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div key={activeTab} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
+ 
+ <div key={activeTab}>
  <TabsContent value="single" className="mt-4 data-[state=inactive]:hidden">
  <SingleOptionTab />
  </TabsContent>
@@ -1418,8 +1417,8 @@ export default function OptionsCalcPage() {
  <TabsContent value="greeks" className="mt-4 data-[state=inactive]:hidden">
  <GreeksDashboardTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </Tabs>
  </div>
  </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -1084,7 +1083,7 @@ export default function CurrencyMarketsPage() {
 
  <div className="space-y-3">
  {CRISES.map((crisis, i) => (
- <motion.button
+ <button
  key={crisis.year}
  onClick={() => setSelectedCrisis(selectedCrisis === i ? null : i)}
  className={cn(
@@ -1121,7 +1120,7 @@ export default function CurrencyMarketsPage() {
  <div className="w-28 flex-shrink-0">
  <CrisisSparkline data={crisis.sparkline} color={crisis.color} devaluation={crisis.peakDevaluation} />
  </div>
- </motion.button>
+ </button>
  ))}
  </div>
  </div>
@@ -1130,11 +1129,8 @@ export default function CurrencyMarketsPage() {
 
  {/* Selected crisis detail */}
  {selectedCrisisData && (
- <motion.div
+ <div
  key={selectedCrisis}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
  >
  <Card className="border" style={{ borderColor: selectedCrisisData.color + "40", backgroundColor: selectedCrisisData.color + "08" }}>
  <CardHeader className="pb-2">
@@ -1174,7 +1170,7 @@ export default function CurrencyMarketsPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
 
  {/* Crisis Anatomy */}

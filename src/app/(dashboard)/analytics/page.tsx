@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -916,23 +915,17 @@ export default function AnalyticsPage() {
 
  {/* ── TAB 1: Performance Attribution ──────────────────────────────────── */}
  <TabsContent value="attribution" className="data-[state=inactive]:hidden space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-2"
  >
  <StatChip label="Total Return" value={`+${totalReturn.toFixed(1)}%`} positive={true} />
  <StatChip label="Hit Ratio" value={`${(data.hitRatio * 100).toFixed(1)}%`} positive={data.hitRatio >= 0.5} />
  <StatChip label="Batting Avg" value={data.battingAvg.toFixed(3)} />
  <StatChip label="Slugging %" value={data.sluggingPct.toFixed(2)} positive={data.sluggingPct >= 1.0} />
- </motion.div>
+ </div>
 
  {/* Waterfall */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.05 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <div className="flex items-center justify-between mb-3">
@@ -957,13 +950,10 @@ export default function AnalyticsPage() {
  ))}
  </div>
  </Card>
- </motion.div>
+ </div>
 
  {/* Rolling Alpha + IC Scatter */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.1 }}
+ <div
  className="grid grid-cols-1 lg:grid-cols-3 gap-4"
  >
  <div className="lg:col-span-2">
@@ -983,13 +973,10 @@ export default function AnalyticsPage() {
  </div>
  </Card>
  </div>
- </motion.div>
+ </div>
 
  {/* Batting stats detail */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.15 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <h3 className="text-sm font-medium text-foreground mb-3">Baseball-Style Performance Metrics</h3>
@@ -1045,29 +1032,23 @@ export default function AnalyticsPage() {
  ))}
  </div>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 2: Risk Decomposition ────────────────────────────────────────── */}
  <TabsContent value="risk" className="data-[state=inactive]:hidden space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-2"
  >
  <StatChip label="Active Risk (TE)" value="4.2%" />
  <StatChip label="Info Ratio" value="1.12" positive={true} />
  <StatChip label="Systematic %" value="72%" />
  <StatChip label="Idiosyncratic %" value="28%" />
- </motion.div>
+ </div>
 
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  {/* Donut */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.05 }}
+ <div
  >
  <Card className="bg-card border-border p-4 h-full">
  <h3 className="text-sm font-medium text-foreground mb-1">Portfolio Variance Decomposition</h3>
@@ -1092,13 +1073,10 @@ export default function AnalyticsPage() {
  </div>
  </div>
  </Card>
- </motion.div>
+ </div>
 
  {/* Factor betas table */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.1 }}
+ <div
  >
  <Card className="bg-card border-border p-4 h-full">
  <h3 className="text-sm font-medium text-foreground mb-1">Factor Beta Loadings</h3>
@@ -1146,14 +1124,11 @@ export default function AnalyticsPage() {
  </table>
  </div>
  </Card>
- </motion.div>
+ </div>
  </div>
 
  {/* TE Decomposition */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.15 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <h3 className="text-sm font-medium text-foreground mb-1">Tracking Error Decomposition</h3>
@@ -1181,15 +1156,12 @@ export default function AnalyticsPage() {
  ))}
  </div>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 3: Behavioral Analytics ─────────────────────────────────────── */}
  <TabsContent value="behavioral" className="data-[state=inactive]:hidden space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <div className="flex items-center justify-between mb-4">
@@ -1257,13 +1229,10 @@ export default function AnalyticsPage() {
  <ScoreBar label="Exit Quality" score={data.behavioralScores.exit} />
  </div>
  </Card>
- </motion.div>
+ </div>
 
  {/* Bias Detection */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.08 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <div className="flex items-center gap-2 mb-4">
@@ -1315,13 +1284,10 @@ export default function AnalyticsPage() {
  })}
  </div>
  </Card>
- </motion.div>
+ </div>
 
  {/* Behavioral Alpha Summary */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.16 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <h3 className="text-sm font-medium text-foreground mb-3">Behavioral Alpha Estimate</h3>
@@ -1365,42 +1331,33 @@ export default function AnalyticsPage() {
  </div>
  </div>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 4: Drawdown Intelligence ────────────────────────────────────── */}
  <TabsContent value="drawdown" className="data-[state=inactive]:hidden space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-2"
  >
  <StatChip label="Max Drawdown" value="-21.1%" positive={false} />
  <StatChip label="Avg Recovery (days)" value="33.8" />
  <StatChip label="Recovery Ratio" value="0.68" />
  <StatChip label="PTSD Metric" value="2.4×" positive={false} />
- </motion.div>
+ </div>
 
  {/* Drawdown chart */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.05 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <h3 className="text-sm font-medium text-foreground mb-1">Peak-to-Trough Drawdown Analysis</h3>
  <p className="text-xs text-muted-foreground mb-3">Portfolio vs benchmark drawdown profile over 252-day window</p>
  <DrawdownChart actual={data.equityCurveActual} benchmark={data.equityCurveHedged} />
  </Card>
- </motion.div>
+ </div>
 
  {/* Drawdown event selector */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.1 }}
+ <div
  >
  <Card className="bg-card border-border p-4 h-full">
  <h3 className="text-sm font-medium text-foreground mb-3">Top 5 Drawdown Events</h3>
@@ -1450,21 +1407,14 @@ export default function AnalyticsPage() {
  ))}
  </div>
  </Card>
- </motion.div>
+ </div>
 
  {/* Selected drawdown detail */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.15 }}
+ <div
  >
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedDrawdown}
- initial={{ opacity: 0, x: 16 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -16 }}
- transition={{ duration: 0.2 }}
  >
  <Card className="bg-card border-border p-4 h-full">
  <div className="flex items-center gap-2 mb-3">
@@ -1507,16 +1457,13 @@ export default function AnalyticsPage() {
  </p>
  </div>
  </Card>
- </motion.div>
- </AnimatePresence>
- </motion.div>
+ </div>
+ 
+ </div>
  </div>
 
  {/* Drawdown clustering */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.2 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <h3 className="text-sm font-medium text-foreground mb-1">Drawdown Clustering by Market Regime</h3>
@@ -1542,15 +1489,12 @@ export default function AnalyticsPage() {
  ))}
  </div>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 5: Scenario Backtesting ──────────────────────────────────────── */}
  <TabsContent value="scenario" className="data-[state=inactive]:hidden space-y-4">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <div className="flex items-center justify-between mb-4">
@@ -1584,13 +1528,10 @@ export default function AnalyticsPage() {
  </div>
  <EquityCurveChart curves={scenarioCurves} />
  </Card>
- </motion.div>
+ </div>
 
  {/* Scenario results table */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.08 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <h3 className="text-sm font-medium text-foreground mb-3">Scenario Return Comparison</h3>
@@ -1646,13 +1587,10 @@ export default function AnalyticsPage() {
  </table>
  </div>
  </Card>
- </motion.div>
+ </div>
 
  {/* Regret minimization */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3, delay: 0.16 }}
+ <div
  >
  <Card className="bg-card border-border p-4">
  <h3 className="text-sm font-medium text-foreground mb-3">Regret Minimization — Key Decision Impact</h3>
@@ -1732,7 +1670,7 @@ export default function AnalyticsPage() {
  </p>
  </div>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  BarChart3,
  TrendingUp,
@@ -368,9 +367,7 @@ function InfoCard({ title, children, icon: Icon, accent = "#3b82f6" }: {
  accent?: string;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="rounded-md border border-border bg-muted/50 p-4"
  style={{ borderLeftColor: accent, borderLeftWidth: 3 }}
  >
@@ -382,7 +379,7 @@ function InfoCard({ title, children, icon: Icon, accent = "#3b82f6" }: {
  )}
  {!Icon && <div className="text-sm font-semibold text-foreground mb-3">{title}</div>}
  <div className="text-xs text-muted-foreground leading-relaxed space-y-1.5">{children}</div>
- </motion.div>
+ </div>
  );
 }
 
@@ -454,11 +451,8 @@ function ExchangeLandscapeTab() {
  examples: "Citadel Securities, Virtu, Two Sigma",
  },
  ].map((t, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, y: 14 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.05 }}
  className="rounded-md border border-border bg-muted/50 p-4"
  style={{ borderTopColor: t.color, borderTopWidth: 2 }}
  >
@@ -468,7 +462,7 @@ function ExchangeLandscapeTab() {
  </div>
  <p className="text-xs text-muted-foreground leading-relaxed mb-2">{t.desc}</p>
  <div className="text-xs text-muted-foreground font-medium">{t.examples}</div>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -514,9 +508,8 @@ function ExchangeLandscapeTab() {
  </h3>
  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
  {GLOBAL_EXCHANGES.map((ex, i) => (
- <motion.div
+ <div
  key={i}
- whileHover={{ scale: 1.02 }}
  onClick={() => setSelectedGlobal(selectedGlobal?.abbr === ex.abbr ? null : ex)}
  className={cn("rounded-lg border p-3 cursor-pointer transition-colors", selectedGlobal?.abbr === ex.abbr ? "border-primary bg-muted/40" : "border-border hover:border-border bg-card/40")}
  >
@@ -526,15 +519,12 @@ function ExchangeLandscapeTab() {
  </div>
  <div className="text-lg font-semibold" style={{ color: ex.color }}>{ex.marketCap}</div>
  <div className="text-xs text-muted-foreground mt-1">{ex.hours}</div>
- </motion.div>
+ </div>
  ))}
  </div>
- <AnimatePresence>
+ 
  {selectedGlobal && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="mt-4 rounded-lg border border-border bg-muted/30 p-4 text-xs text-muted-foreground"
  >
  <div className="font-medium text-foreground mb-1">{selectedGlobal.name}</div>
@@ -543,9 +533,9 @@ function ExchangeLandscapeTab() {
  <div><span className="text-muted-foreground">Market Cap:</span> {selectedGlobal.marketCap}</div>
  <div><span className="text-muted-foreground">Hours:</span> {selectedGlobal.hours}</div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* Exchange Competition */}
@@ -628,11 +618,8 @@ function OrderTypesTab() {
  </div>
  <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
  {filtered.map((o, i) => (
- <motion.button
+ <button
  key={o.abbr}
- initial={{ opacity: 0, scale: 0.9 }}
- animate={{ opacity: 1, scale: 1 }}
- transition={{ delay: i * 0.02 }}
  onClick={() => setSelected(selected?.abbr === o.abbr ? null : o)}
  className={cn(
  "rounded-lg border p-2.5 text-left transition-colors",
@@ -641,19 +628,16 @@ function OrderTypesTab() {
  >
  <div className="text-xs font-medium text-foreground mb-0.5">{o.abbr}</div>
  <div className="text-xs text-muted-foreground leading-tight">{o.name}</div>
- </motion.button>
+ </button>
  ))}
  </div>
  </div>
 
  {/* Detail panel */}
- <AnimatePresence mode="wait">
+ 
  {selected && (
- <motion.div
+ <div
  key={selected.abbr}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
  className="rounded-md border border-border bg-muted/50 p-5"
  >
  <div className="flex items-start justify-between mb-3">
@@ -681,9 +665,9 @@ function OrderTypesTab() {
  </ul>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Order Book Mechanics */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -836,11 +820,8 @@ function PriceDiscoveryTab() {
  color: "#10b981",
  },
  ].map((s, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, x: -12 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.1 }}
  className="rounded-lg bg-card/50 border border-border p-4"
  >
  <div className="flex items-center gap-2 mb-2">
@@ -850,7 +831,7 @@ function PriceDiscoveryTab() {
  <span className="text-xs font-medium text-foreground">{s.title}</span>
  </div>
  <p className="text-[11px] text-muted-foreground leading-relaxed">{s.desc}</p>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1001,11 +982,8 @@ function FragmentationTab() {
  <span className="text-right">Fill Rate</span>
  </div>
  {MARKET_QUALITY.map((v, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.06 }}
  className="grid grid-cols-4 text-xs text-muted-foreground items-center"
  >
  <div className="flex items-center gap-1.5">
@@ -1019,7 +997,7 @@ function FragmentationTab() {
  {v.fillRate.toFixed(1)}%
  </span>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-muted-foreground">
@@ -1147,11 +1125,8 @@ function RegulationTab() {
  <div className="absolute left-10 top-0 bottom-0 w-px bg-muted" />
  <div className="space-y-4">
  {REG_TIMELINE.map((item, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, x: -16 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.06 }}
  className="flex gap-4 items-start"
  >
  <div className="w-20 flex-shrink-0 text-right">
@@ -1162,7 +1137,7 @@ function RegulationTab() {
  <div className="text-xs font-medium text-foreground">{item.event}</div>
  <div className="text-[11px] text-muted-foreground mt-0.5">{item.description}</div>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1216,11 +1191,8 @@ function RegulationTab() {
  ],
  },
  ].map((reg, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.07 }}
  className="rounded-md border border-border bg-muted/50 p-5"
  style={{ borderTopColor: reg.accent, borderTopWidth: 2 }}
  >
@@ -1236,7 +1208,7 @@ function RegulationTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1286,17 +1258,14 @@ function RegulationTab() {
  { term: "Crossed Market", def: "Bid > Ask across venues — indicates latency or erroneous quote condition", color: "#ef4444" },
  { term: "Manning Rule", def: "FINRA rule: broker cannot trade for own account at better price than customer limit order", color: "#10b981" },
  ].map((item, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, scale: 0.95 }}
- animate={{ opacity: 1, scale: 1 }}
- transition={{ delay: i * 0.04 }}
  className="rounded-lg bg-card/50 border border-border p-3"
  style={{ borderTopColor: item.color, borderTopWidth: 2 }}
  >
  <div className="text-xs font-medium text-foreground mb-1">{item.term}</div>
  <div className="text-xs text-muted-foreground leading-relaxed">{item.def}</div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1309,7 +1278,7 @@ export default function MarketStructurePage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
  {/* Header */}
- <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-start justify-between gap-4">
+ <div className="flex flex-wrap items-start justify-between gap-4">
  <div>
  <div className="flex items-center gap-3 mb-1">
  <div className="p-2 rounded-lg bg-muted/10 border border-border">
@@ -1328,13 +1297,10 @@ export default function MarketStructurePage() {
  <Badge key={i} variant="outline" className={cn("text-xs text-muted-foreground", b.color)}>{b.label}</Badge>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Stat pills — Hero */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.08 }}
+ <div
  className="grid grid-cols-2 sm:grid-cols-4 gap-3 rounded-md border border-border bg-card border-l-4 border-l-primary p-6"
  >
  {[
@@ -1343,11 +1309,8 @@ export default function MarketStructurePage() {
  { label: "Dark Pool Count", value: "30+", sub: "operator-run ATSs", icon: EyeOff, color: "#6b7280" },
  { label: "Closing Auction Share", value: "~35%", sub: "of daily volume at 4 PM", icon: Clock, color: "#f59e0b" },
  ].map((stat, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, scale: 0.95 }}
- animate={{ opacity: 1, scale: 1 }}
- transition={{ delay: 0.1 + i * 0.04 }}
  className="rounded-md border border-border bg-muted/50 p-4"
  >
  <div className="flex items-center gap-2 mb-2">
@@ -1356,9 +1319,9 @@ export default function MarketStructurePage() {
  </div>
  <div className="text-xl font-medium" style={{ color: stat.color }}>{stat.value}</div>
  <div className="text-xs text-muted-foreground mt-0.5">{stat.sub}</div>
- </motion.div>
+ </div>
  ))}
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="exchanges" className="space-y-4">

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  AlertTriangle,
  TrendingDown,
@@ -862,12 +861,9 @@ function CurrencyCrisesTab() {
  </button>
  ))}
  </div>
- <AnimatePresence>
+ 
  {selectedCase !== null && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden mt-3"
  >
  <div className="bg-muted rounded-lg p-4 space-y-2">
@@ -887,9 +883,9 @@ function CurrencyCrisesTab() {
  <span className="text-[11px] text-muted-foreground">{CURRENCY_CRISES[selectedCase].outcome}</span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
 
@@ -1502,12 +1498,9 @@ function CrisisInvestingTab() {
  </div>
  <p className="text-xs text-muted-foreground mt-1 leading-snug">{theme.description}</p>
  </button>
- <AnimatePresence>
+ 
  {selectedTheme === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="bg-muted rounded-b-lg p-3 border-x border-b border-indigo-500/50 space-y-1.5">
@@ -1524,9 +1517,9 @@ function CrisisInvestingTab() {
  <span className="text-xs text-muted-foreground">{theme.timing}</span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>
@@ -1601,26 +1594,22 @@ function CrisisInvestingTab() {
 
 export default function MacroCrisisPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-6 space-y-5">
+  <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-1"
  >
  <div className="flex items-center gap-3">
  <div className="w-9 h-9 rounded-lg bg-red-950 border border-red-700 flex items-center justify-center">
  </div>
  <div>
- <h1 className="text-xl font-medium text-foreground">Global Macro Crises</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Global Macro Crises</h1>
  <p className="text-[12px] text-muted-foreground">
  Anatomy of financial crises, currency crises, sovereign defaults, and crisis investing
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Hero */}
  <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
@@ -1631,16 +1620,16 @@ export default function MacroCrisisPage() {
  {/* Tabs */}
  <Tabs defaultValue="anatomy" className="mt-8">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="anatomy" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="anatomy" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Crisis Anatomy
  </TabsTrigger>
- <TabsTrigger value="currency" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="currency" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Currency Crises
  </TabsTrigger>
- <TabsTrigger value="sovereign" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="sovereign" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Sovereign Debt
  </TabsTrigger>
- <TabsTrigger value="investing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="investing" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Crisis Investing
  </TabsTrigger>
  </TabsList>
@@ -1661,7 +1650,6 @@ export default function MacroCrisisPage() {
  <CrisisInvestingTab />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

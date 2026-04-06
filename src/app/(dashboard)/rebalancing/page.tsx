@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -408,16 +408,11 @@ export default function RebalancingPage() {
  const volDrag = (maxAbsDrift * 0.04).toFixed(2);
 
  return (
- <div className="p-4 space-y-4 max-w-7xl mx-auto">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex items-center justify-between"
- >
+ <div className="flex items-center justify-between">
  <div>
- <h1 className="text-2xl font-semibold text-foreground flex items-center gap-2">
+ <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
  <RefreshCw className="w-6 h-6 text-primary" />
  Portfolio Rebalancing
  </h1>
@@ -436,15 +431,10 @@ export default function RebalancingPage() {
  </Badge>
  )}
  </div>
- </motion.div>
+ </div>
 
  {/* KPI row */}
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-4"
- >
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
  {[
  { label: "Positions Over Threshold", value: String(drifts.filter(d => d.driftAbs >= driftThreshold).length), icon: <AlertTriangle className="w-4 h-4 text-amber-400" />, sub: `of ${HOLDINGS.length} holdings` },
  { label: "Max Drift", value: fmtPct(maxAbsDrift), icon: <TrendingUp className="w-4 h-4 text-red-400" />, sub: "NVDA +5.6pp over-weight" },
@@ -462,25 +452,20 @@ export default function RebalancingPage() {
  </CardContent>
  </Card>
  ))}
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
- >
  <Tabs defaultValue="portfolio">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Current Portfolio
+ <TabsTrigger value="portfolio" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Current Portfolio
  </TabsTrigger>
- <TabsTrigger value="engine" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Rebalancing Engine
+ <TabsTrigger value="engine" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Rebalancing Engine
  </TabsTrigger>
- <TabsTrigger value="harvest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Tax-Loss Harvesting
+ <TabsTrigger value="harvest" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Tax-Loss Harvesting
  </TabsTrigger>
- <TabsTrigger value="location" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Asset Location
+ <TabsTrigger value="location" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Asset Location
  </TabsTrigger>
- <TabsTrigger value="drift" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Drift Analysis
+ <TabsTrigger value="drift" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">Drift Analysis
  </TabsTrigger>
  </TabsList>
 
@@ -533,11 +518,8 @@ export default function RebalancingPage() {
  const pnl = h.currentValue - h.costBasis;
  const pnlPct = (pnl / h.costBasis) * 100;
  return (
- <motion.tr
+ <tr
  key={h.ticker}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-4 py-2">
@@ -555,7 +537,7 @@ export default function RebalancingPage() {
  <td className={`text-right px-2 py-2 font-medium ${pnl >= 0 ? "text-emerald-400" : "text-red-400"}`}>
  {fmtPct(pnlPct)}
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -696,36 +678,17 @@ export default function RebalancingPage() {
  onClick={handleRebalance}
  disabled={rebalancing || trades.length === 0}
  >
- <AnimatePresence mode="wait">
  {rebalancing ? (
- <motion.span
- key="spin"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- className="flex items-center gap-2"
- >
- <motion.div
- animate={{ rotate: 360 }}
- transition={{ repeat: Infinity, duration: 0.7, ease: "linear" }}
- >
+ <span className="flex items-center gap-2">
  <RefreshCw className="w-4 h-4" />
- </motion.div>
  Executing {trades.length} trades…
- </motion.span>
+ </span>
  ) : (
- <motion.span
- key="idle"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- className="flex items-center gap-2"
- >
+ <span className="flex items-center gap-2">
  <Zap className="w-4 h-4" />
  Rebalance Now ({trades.length} trades)
- </motion.span>
+ </span>
  )}
- </AnimatePresence>
  </Button>
  </div>
 
@@ -763,11 +726,8 @@ export default function RebalancingPage() {
  ? t.gainLoss * (taxRate / 100)
  : 0;
  return (
- <motion.tr
+ <tr
  key={t.ticker}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.05 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-4 py-2 font-semibold text-foreground">{t.ticker}</td>
@@ -782,7 +742,7 @@ export default function RebalancingPage() {
  </td>
  <td className="text-right px-2 py-2 text-amber-400">{fmt$(txCost, 2)}</td>
  <td className="text-right px-4 py-2 text-red-400">{taxCost > 0 ? fmt$(taxCost) : "—"}</td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -862,11 +822,8 @@ export default function RebalancingPage() {
  </thead>
  <tbody>
  {lossPositions.map((p, i) => (
- <motion.tr
+ <tr
  key={p.ticker}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.06 }}
  className={`border-b border-border cursor-pointer transition-colors ${
  selectedHarvest.has(p.ticker) ? "bg-muted/10" : "hover:bg-muted/20"
  }`}
@@ -897,7 +854,7 @@ export default function RebalancingPage() {
  )}
  </td>
  <td className="text-right px-4 py-2 text-emerald-400 font-mono">{fmt$(p.taxSavings)}</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1035,11 +992,8 @@ export default function RebalancingPage() {
  </thead>
  <tbody>
  {ASSET_LOCATION_RULES.map((rule, i) => (
- <motion.tr
+ <tr
  key={rule.assetClass}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.05 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-4 py-2 text-foreground font-medium">{rule.assetClass}</td>
@@ -1058,7 +1012,7 @@ export default function RebalancingPage() {
  {rule.score}
  </span>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1182,7 +1136,6 @@ export default function RebalancingPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  );
 }

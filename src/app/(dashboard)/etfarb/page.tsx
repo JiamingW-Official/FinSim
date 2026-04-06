@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -622,10 +621,7 @@ export default function ETFArbPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  >
  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
  <div>
@@ -646,13 +642,10 @@ export default function ETFArbPage() {
  </Badge>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Key Metrics — Hero */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
+ <div
  className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-3"
  >
  <MetricCard
@@ -683,13 +676,10 @@ export default function ETFArbPage() {
  sub="Equity ETFs in normal markets"
  color="bg-green-700"
  />
- </motion.div>
+ </div>
 
  {/* Main Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
+ <div
  className="mt-8"
  >
  <Tabs defaultValue="flow">
@@ -835,7 +825,7 @@ export default function ETFArbPage() {
  <FixedIncomSection />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

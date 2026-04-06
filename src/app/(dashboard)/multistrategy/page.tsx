@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Layers,
  Users,
@@ -564,7 +563,7 @@ function StrategyAllocationTab() {
  </svg>
  <div className="flex items-center gap-3 justify-center mt-2 text-xs text-muted-foreground">
  <div className="flex items-center gap-1"><div className="w-3 h-3 rounded" style={{ background: correlColor(0.9) }} /><span>High (&gt;0.5)</span></div>
- <div className="flex items-center gap-1"><div className="w-3 h-3 rounded" style={{ background: correlColor(0.2) }} /><span>Low (0.1–0.3)</span></div>
+ <div className="flex items-center gap-1"><div className="w-3 h-3 rounded" style={{ background: correlColor(0.2) }}/><span>Low (0.1–0.3)</span></div>
  <div className="flex items-center gap-1"><div className="w-3 h-3 rounded" style={{ background: correlColor(-0.2) }} /><span>Negative</span></div>
  </div>
  </CardContent>
@@ -982,41 +981,30 @@ export default function MultiStrategyPage() {
  const [activeTab, setActiveTab] = useState("pods");
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <div className="mb-6">
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Multi-Strategy</h1>
- <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">DIVERSIFIED · UNCORRELATED · RISK-ADJUSTED</p>
+ <div>
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Multi-Strategy</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground">DIVERSIFIED · UNCORRELATED · RISK-ADJUSTED</p>
  </div>
-
- <div className="border-t border-border my-6" />
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
- <TabsTrigger value="pods" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="pods" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Pod Structure
  </TabsTrigger>
- <TabsTrigger value="allocation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="allocation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Strategy Allocation
  </TabsTrigger>
- <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Risk Management
  </TabsTrigger>
- <TabsTrigger value="economics" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="economics" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Economics
  </TabsTrigger>
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
- key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
  <TabsContent value="pods" className="data-[state=inactive]:hidden">
  <PodStructureTab />
  </TabsContent>
@@ -1029,10 +1017,7 @@ export default function MultiStrategyPage() {
  <TabsContent value="economics" className="data-[state=inactive]:hidden">
  <EconomicsTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
  </Tabs>
- </div>
  </div>
  );
 }

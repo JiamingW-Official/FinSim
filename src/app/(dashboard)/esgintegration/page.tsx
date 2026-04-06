@@ -23,7 +23,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -442,7 +441,7 @@ export default function ESGIntegrationPage() {
  </div>
 
  {/* Summary stats */}
- <motion.div className="mt-8" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.35 }}>
+ <div className="mt-8">
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
  {[
  { label: "Portfolio ESG Score", value: (COMPANIES.reduce((s, c) => s + c.total, 0) / COMPANIES.length).toFixed(1), icon: Award, color: "text-emerald-400" },
@@ -461,7 +460,7 @@ export default function ESGIntegrationPage() {
  </Card>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="scores">
@@ -479,7 +478,7 @@ export default function ESGIntegrationPage() {
  <div className="lg:col-span-1 space-y-2">
  <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium">Select Company</p>
  {COMPANIES.map((co) => (
- <motion.div key={co.ticker} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+ <div key={co.ticker}>
  <Card
  className={`border cursor-pointer transition-colors ${selectedCompany.ticker === co.ticker ? "border-primary/50 bg-muted/5" : "border-border hover:border-border"}`}
  onClick={() => setSelectedCompany(co)}
@@ -516,7 +515,7 @@ export default function ESGIntegrationPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -717,7 +716,7 @@ export default function ESGIntegrationPage() {
  {COMPANIES.map((co) => {
  const passes = filteredCompanies.some((f) => f.ticker === co.ticker);
  return (
- <motion.div key={co.ticker} layout className={`flex items-center justify-between p-3 rounded-lg border ${passes ? "border-emerald-500/20 bg-emerald-500/5" : "border-red-500/20 bg-red-500/5"}`}>
+ <div key={co.ticker} className={`flex items-center justify-between p-3 rounded-lg border ${passes ? "border-emerald-500/20 bg-emerald-500/5" : "border-red-500/20 bg-red-500/5"}`}>
  <div className="flex items-center gap-3">
  {passes ? <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" /> : <XCircle className="w-4 h-4 text-red-400 flex-shrink-0" />}
  <div>
@@ -732,7 +731,7 @@ export default function ESGIntegrationPage() {
  {passes ? "PASS" : "FAIL"}
  </Badge>
  </div>
- </motion.div>
+ </div>
  );
  })}
  </CardContent>
@@ -990,12 +989,10 @@ export default function ESGIntegrationPage() {
  </p>
  <div className="space-y-3">
  {priPrinciples.map((principle, idx) => (
- <motion.div
+ <div
  key={idx}
  className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${priChecks[idx] ? "bg-emerald-500/5 border-emerald-500/30" : "bg-muted/10 border-border"}`}
  onClick={() => togglePri(idx)}
- whileHover={{ scale: 1.005 }}
- whileTap={{ scale: 0.995 }}
  >
  <div className={`w-5 h-5 rounded-full border-2 flex-shrink-0 flex items-center justify-center mt-0.5 transition-colors ${priChecks[idx] ? "border-emerald-400 bg-emerald-400" : "border-muted-foreground"}`}>
  {priChecks[idx] && <CheckCircle className="w-3 h-3 text-background" />}
@@ -1004,7 +1001,7 @@ export default function ESGIntegrationPage() {
  <p className="text-xs font-medium text-muted-foreground">Principle {idx + 1}</p>
  <p className="text-sm">{principle}</p>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  <div className="mt-3 flex items-center gap-2">
@@ -1042,11 +1039,11 @@ export default function ESGIntegrationPage() {
  >
  <div
  className="w-8 h-8 rounded flex items-center justify-center mx-auto mb-1 text-foreground text-xs font-semibold"
- style={{ backgroundColor: sdg.color }}
+ style={{ backgroundColor: sdg.color, color: sdg.aligned ? sdg.color : "hsl(var(--muted-foreground))" }}
  >
  {sdg.id}
  </div>
- <p className="text-xs leading-tight" style={{ color: sdg.aligned ? sdg.color : "hsl(var(--muted-foreground))" }}>
+ <p className="text-xs leading-tight" >
  {sdg.title}
  </p>
  {sdg.aligned && (

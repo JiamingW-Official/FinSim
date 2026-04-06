@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -629,15 +628,12 @@ function StatChip({
 
 function SectionCard({ title, children, className }: { title: string; children: React.ReactNode; className?: string }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className={cn("bg-card/60 border border-border rounded-md p-5", className)}
  >
  <h3 className="text-sm font-semibold text-muted-foreground mb-4">{title}</h3>
  {children}
- </motion.div>
+ </div>
  );
 }
 
@@ -1446,13 +1442,13 @@ export default function EconomicIndicatorsPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
+ 
  <TabsContent key={activeTab} value="gdp" className="data-[state=inactive]:hidden mt-0"><GdpTab /></TabsContent>
  <TabsContent key={activeTab + "i"} value="inflation" className="data-[state=inactive]:hidden mt-0"><InflationTab /></TabsContent>
  <TabsContent key={activeTab + "l"} value="labor" className="data-[state=inactive]:hidden mt-0"><LaborTab /></TabsContent>
  <TabsContent key={activeTab + "h"} value="housing" className="data-[state=inactive]:hidden mt-0"><HousingTab /></TabsContent>
  <TabsContent key={activeTab + "g"} value="global" className="data-[state=inactive]:hidden mt-0"><GlobalTab /></TabsContent>
- </AnimatePresence>
+ 
  </Tabs>
  </div>
  </div>

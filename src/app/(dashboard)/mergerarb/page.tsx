@@ -17,7 +17,6 @@ import {
  Activity,
  Info,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -701,14 +700,11 @@ function RiskFactorsPanel() {
  </div>
  </button>
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- transition={{ duration: 0.2 }}
+ <div
  className="px-4 pb-3"
  >
  <p className="text-sm text-muted-foreground leading-relaxed">{rf.description}</p>
- </motion.div>
+ </div>
  )}
  </div>
  );
@@ -950,8 +946,7 @@ export default function MergerArbPage() {
  );
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col space-y-4">
+  <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Merger Arbitrage</h1>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">M&A · SPREAD · RISK · DEAL PROBABILITY</p>
@@ -964,16 +959,16 @@ export default function MergerArbPage() {
  {/* Main tabs */}
  <Tabs defaultValue="dashboard">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="dashboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="dashboard" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Deal Dashboard
  </TabsTrigger>
- <TabsTrigger value="analysis" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="analysis" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Analysis
  </TabsTrigger>
- <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="risk" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Risk Factors
  </TabsTrigger>
- <TabsTrigger value="calculator" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="calculator" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Calculator
  </TabsTrigger>
  </TabsList>
@@ -1000,14 +995,11 @@ export default function MergerArbPage() {
  </Card>
 
  {selectedDeal && (
- <motion.div
+ <div
  key={selectedDeal.id}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
  >
  <SpreadDecomposition deal={selectedDeal} />
- </motion.div>
+ </div>
  )}
  </TabsContent>
 
@@ -1157,7 +1149,6 @@ export default function MergerArbPage() {
  </div>
  </CardContent>
  </Card>
- </div>
  </div>
  );
 }

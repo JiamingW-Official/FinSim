@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -1058,21 +1057,17 @@ function HistoricalStressTab() {
  )}
  </div>
  </div>
- <AnimatePresence>
+ 
  {isSelected && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <p className="mt-2 text-xs text-muted-foreground border-t border-border pt-2">
  {hs.description}
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </button>
  );
  })}
@@ -1507,7 +1502,7 @@ function ReverseStressTab() {
  : "bg-red-950/40";
 
  return (
- <motion.div
+ <div
  key={path.lossLevel}
  className={`rounded-lg border p-4 cursor-pointer transition-colors ${
  isExp ? lossColor + " " + bgColor : "border-border bg-card hover:border-border"
@@ -1534,13 +1529,9 @@ function ReverseStressTab() {
  <p className="text-sm font-mono text-muted-foreground">{path.probability}</p>
  </div>
 
- <AnimatePresence>
+ 
  {isExp && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <Separator className="bg-muted mb-3" />
@@ -1553,9 +1544,9 @@ function ReverseStressTab() {
  </li>
  ))}
  </ul>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  <div className="flex justify-end mt-2">
  {isExp ? (
@@ -1564,7 +1555,7 @@ function ReverseStressTab() {
  <ChevronRight className="w-3 h-3 text-muted-foreground" />
  )}
  </div>
- </motion.div>
+ </div>
  );
  })}
  </div>

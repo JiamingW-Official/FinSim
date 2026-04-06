@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -518,13 +517,9 @@ function BusinessCycleClock() {
 
  {/* Phase details */}
  <div className="space-y-4">
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activePhase}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="space-y-4"
  >
  <Card className="bg-card border-border" style={{ borderLeftColor: activeData.color, borderLeftWidth: 3 }}>
@@ -581,8 +576,8 @@ function BusinessCycleClock() {
  </p>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
  </div>
 
@@ -862,7 +857,7 @@ function RotationSignals() {
  {ROTATION_SIGNALS.map((sig) => {
  const isOpen = expanded === sig.id;
  return (
- <motion.div key={sig.id} layout>
+ <div key={sig.id}>
  <Card
  className={cn(
  "bg-card border-border cursor-pointer transition-colors hover:border-muted-foreground",
@@ -885,13 +880,9 @@ function RotationSignals() {
  </div>
  <p className="text-xs text-muted-foreground italic">{sig.implication}</p>
 
- <AnimatePresence>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="pt-2 border-t border-border mt-1">
@@ -900,16 +891,16 @@ function RotationSignals() {
  <p>{sig.detail}</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  <p className="text-xs text-muted-foreground">
  {isOpen ? "Click to collapse" : "Click for analysis"}
  </p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -1447,7 +1438,7 @@ export default function SectorRotationPage() {
  <span className="text-xs text-muted-foreground">{label}</span>
  <span style={{ color }}>{icon}</span>
  </div>
- <p className="text-lg font-semibold text-foreground" style={{ color }}>{value}</p>
+ <p className="text-lg font-semibold text-foreground" >{value}</p>
  <p className="text-xs text-muted-foreground">{sub}</p>
  </CardContent>
  </Card>

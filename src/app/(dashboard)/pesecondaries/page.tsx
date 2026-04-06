@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  DollarSign,
  TrendingUp,
@@ -288,20 +287,17 @@ function LPLedTab() {
  />
  </div>
  <p className="text-xs text-muted-foreground">{r.desc}</p>
- <AnimatePresence>
+ 
  {expandedSeller === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <p className="mt-2 text-xs text-emerald-300 border-t border-border pt-2">
  Example: {r.example}
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </button>
  ))}
  </div>
@@ -723,13 +719,10 @@ function GPLedTab() {
  Multi Asset
  </button>
  </div>
- <AnimatePresence mode="wait">
+ 
  {selectedCV === "single" ? (
- <motion.div
+ <div
  key="single"
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
  >
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  <div>
@@ -759,13 +752,10 @@ function GPLedTab() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  ) : (
- <motion.div
+ <div
  key="multi"
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
  >
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  <div>
@@ -798,9 +788,9 @@ function GPLedTab() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* Preferred Equity */}
@@ -1014,21 +1004,18 @@ function NAVFinancingTab() {
  <InfoPill text="Use case" color={u.color} />
  </div>
  <p className="text-xs text-muted-foreground">{u.desc}</p>
- <AnimatePresence>
+ 
  {expandedUseCase === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-2 rounded bg-rose-900/20 border border-rose-700/30 p-2">
  <p className="text-xs text-rose-300 font-medium mb-1">Key Risk</p>
  <p className="text-xs text-muted-foreground">{u.risk}</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </button>
  ))}
  </div>
@@ -1645,10 +1632,7 @@ export default function PESecondariesPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1668,13 +1652,10 @@ export default function PESecondariesPage() {
  <InfoPill text="NAV Financing" color="emerald" />
  <InfoPill text="Liquidity Solution" color="amber" />
  </div>
- </motion.div>
+ </div>
 
  {/* Overview strip */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.1 }}
+ <div
  className="rounded-md border border-border border-l-4 border-l-primary bg-muted/30 p-6 mb-6"
  >
  <div className="flex items-start gap-2">
@@ -1688,7 +1669,7 @@ export default function PESecondariesPage() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="lpled">
@@ -1711,43 +1692,31 @@ export default function PESecondariesPage() {
  </TabsList>
 
  <TabsContent value="lpled" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <LPLedTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="gpled" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <GPLedTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="nav" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <NAVFinancingTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="market" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <MarketDynamicsTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

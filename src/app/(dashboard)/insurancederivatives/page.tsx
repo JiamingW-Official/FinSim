@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
  Shield,
  CloudLightning,
@@ -447,16 +446,11 @@ export default function InsuranceDerivativesPage() {
  const bond = CAT_BONDS.find((b) => b.id === selectedBond);
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="p-4 space-y-4 max-w-7xl mx-auto"
- >
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
  <div className="flex items-start justify-between">
  <div>
- <h1 className="text-2xl font-semibold text-foreground flex items-center gap-2">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground flex items-center gap-2">
  <Shield className="h-6 w-6 text-amber-400" />
  Insurance-Linked Securities & CAT Bonds
  </h1>
@@ -483,12 +477,12 @@ export default function InsuranceDerivativesPage() {
  {/* Tabs */}
  <Tabs defaultValue="market" className="mt-8">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="market">CAT Bond Market</TabsTrigger>
- <TabsTrigger value="risk">Risk Modeling</TabsTrigger>
- <TabsTrigger value="ils">ILS vs Reinsurance</TabsTrigger>
- <TabsTrigger value="triggers">Trigger Types</TabsTrigger>
- <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
- <TabsTrigger value="weather">Weather Derivatives</TabsTrigger>
+ <TabsTrigger value="market" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent">CAT Bond Market</TabsTrigger>
+ <TabsTrigger value="risk" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent">Risk Modeling</TabsTrigger>
+ <TabsTrigger value="ils" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent">ILS vs Reinsurance</TabsTrigger>
+ <TabsTrigger value="triggers" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent">Trigger Types</TabsTrigger>
+ <TabsTrigger value="portfolio" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent">Portfolio</TabsTrigger>
+ <TabsTrigger value="weather" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent">Weather Derivatives</TabsTrigger>
  </TabsList>
 
  {/* ── Tab 1: CAT Bond Market ── */}
@@ -1202,6 +1196,6 @@ export default function InsuranceDerivativesPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  );
 }

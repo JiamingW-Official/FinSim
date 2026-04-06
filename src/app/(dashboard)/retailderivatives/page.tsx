@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -417,11 +416,8 @@ function ExchangeTradedOptionsTab() {
  </thead>
  <tbody>
  {filtered.map((row, i) => (
- <motion.tr
+ <tr
  key={row.ticker}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.03 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-4 py-2.5 font-medium text-foreground">{row.ticker}</td>
@@ -444,7 +440,7 @@ function ExchangeTradedOptionsTab() {
  <td className="px-4 py-2.5 text-right text-muted-foreground">{row.openInterest.toLocaleString()}</td>
  <td className="px-4 py-2.5 text-right text-muted-foreground">{row.volume.toLocaleString()}</td>
  <td className="px-4 py-2.5 text-right text-muted-foreground">${row.marginRequired.toLocaleString()}</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -462,12 +458,9 @@ function ExchangeTradedOptionsTab() {
  </h3>
  {expandMargin ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
  </button>
- <AnimatePresence>
+ 
  {expandMargin && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -482,9 +475,9 @@ function ExchangeTradedOptionsTab() {
  <p className="text-muted-foreground text-xs">Capital required = Strike × 100 per contract</p>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* Options vs Stock Comparison */}
@@ -498,12 +491,9 @@ function ExchangeTradedOptionsTab() {
  </h3>
  {expandCompare ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
  </button>
- <AnimatePresence>
+ 
  {expandCompare && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 overflow-x-auto">
@@ -526,9 +516,9 @@ function ExchangeTradedOptionsTab() {
  </tbody>
  </table>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  </div>
  );
@@ -838,11 +828,8 @@ function StructuredNotesTab() {
  </thead>
  <tbody>
  {filtered.map((note, i) => (
- <motion.tr
+ <tr
  key={note.id}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: i * 0.04 }}
  onClick={() => setSelected(selected?.id === note.id ? null : note)}
  className={cn(
  "border-b border-border cursor-pointer transition-colors",
@@ -867,7 +854,7 @@ function StructuredNotesTab() {
  </td>
  <td className="px-4 py-2.5 text-right text-foreground">${note.fairValue}</td>
  <td className="px-4 py-2.5 text-right text-red-400">{note.spread}%</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -875,12 +862,9 @@ function StructuredNotesTab() {
  </div>
 
  {/* Detail Panel */}
- <AnimatePresence>
+ 
  {selected && (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 12 }}
+ <div
  className="rounded-md border border-border bg-muted/60 p-5 space-y-4"
  >
  <h3 className="text-sm font-medium text-foreground">{selected.name}</h3>
@@ -929,9 +913,9 @@ function StructuredNotesTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -973,11 +957,8 @@ function WarrantsRightsTab() {
  </thead>
  <tbody>
  {WARRANTS.map((w, i) => (
- <motion.tr
+ <tr
  key={w.id}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.05 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-4 py-2.5 text-foreground">{w.company}</td>
@@ -991,7 +972,7 @@ function WarrantsRightsTab() {
  <td className="px-4 py-2.5 text-right text-amber-400">${w.timeValue.toFixed(2)}</td>
  <td className="px-4 py-2.5 text-right text-foreground font-medium">${w.premium.toFixed(2)}</td>
  <td className="px-4 py-2.5 text-right text-red-400">{w.dilution.toFixed(2)}%</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1048,12 +1029,9 @@ function WarrantsRightsTab() {
  </h3>
  {expandDiff ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
  </button>
- <AnimatePresence>
+ 
  {expandDiff && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 space-y-3 text-sm">
@@ -1071,9 +1049,9 @@ function WarrantsRightsTab() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  </div>
  );
@@ -1160,11 +1138,8 @@ function RetailAlternativesTab() {
  </thead>
  <tbody>
  {filtered.map((p, i) => (
- <motion.tr
+ <tr
  key={p.name}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-4 py-2.5 text-foreground max-w-[220px]">
@@ -1201,7 +1176,7 @@ function RetailAlternativesTab() {
  <td className="px-4 py-2.5">
  <RiskBadge level={p.riskLevel} />
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1219,12 +1194,9 @@ function RetailAlternativesTab() {
  </h3>
  {expandDebate ? <ChevronUp size={15} className="text-muted-foreground" /> : <ChevronDown size={15} className="text-muted-foreground" />}
  </button>
- <AnimatePresence>
+ 
  {expandDebate && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 space-y-4 text-sm">
@@ -1271,9 +1243,9 @@ function RetailAlternativesTab() {
  The 2023 SEC amendments allow knowledge-based accreditation (professional licenses) — a step toward merit-based access. Further reform proposals include graduated caps on alternative allocations (e.g., max 10% of portfolio) rather than binary on/off thresholds.
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* Reg CF/A Crowdfunding Summary */}
@@ -1321,10 +1293,7 @@ export default function RetailDerivativesPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-1"
  >
  <div className="flex items-center gap-3">
@@ -1336,7 +1305,7 @@ export default function RetailDerivativesPage() {
  <p className="text-sm text-muted-foreground">Exchange-traded options, leveraged ETFs, structured notes, warrants, and alternative access for individual investors</p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="options" className="space-y-4">
@@ -1359,33 +1328,33 @@ export default function RetailDerivativesPage() {
  </TabsList>
 
  <TabsContent value="options" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <ExchangeTradedOptionsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="leveraged" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <LeveragedETFsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="structured" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <StructuredNotesTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="warrants" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <WarrantsRightsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="alternatives" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  <RetailAlternativesTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

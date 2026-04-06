@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Layers,
  TrendingDown,
@@ -789,10 +788,7 @@ export default function CapitalStructurePage() {
  const ltv = ((debtCapital / ev) * 100).toFixed(0);
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="p-4 sm:p-4 space-y-5 max-w-5xl mx-auto"
  >
  {/* HERO Header */}
@@ -1089,6 +1085,6 @@ export default function CapitalStructurePage() {
  Liquidation EV
  </Button>
  </div>
- </motion.div>
+ </div>
  );
 }

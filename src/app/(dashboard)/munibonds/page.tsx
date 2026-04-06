@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
  Building2,
  Shield,
@@ -450,10 +449,8 @@ function ScreenerTab() {
  </div>
 
  {selected && (
- <motion.div
+ <div
  key={selected.id}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
  className="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 rounded-lg bg-muted/50 border border-border"
  >
  <div>
@@ -477,7 +474,7 @@ function ScreenerTab() {
  }
  </p>
  </div>
- </motion.div>
+ </div>
  )}
 
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -963,10 +960,7 @@ function AMTTab() {
 // ── Page Root ─────────────────────────────────────────────────────────────────
 export default function MuniBondsPage() {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="p-4 space-y-4 max-w-7xl mx-auto"
  >
  {/* Header */}
@@ -1035,6 +1029,6 @@ export default function MuniBondsPage() {
  <AMTTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  );
 }

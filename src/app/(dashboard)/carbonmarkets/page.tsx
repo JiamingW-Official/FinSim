@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Leaf,
  Globe,
@@ -402,19 +401,15 @@ function InfoCard({ title, children }: { title: string; children: React.ReactNod
  <span className="text-sm font-medium text-foreground">{title}</span>
  {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
- <AnimatePresence>
+ 
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 py-3 bg-background text-sm text-muted-foreground space-y-2">{children}</div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -575,7 +570,7 @@ function ComplianceTab() {
  <span className="text-muted-foreground">{sec.pct}%</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div initial={{ width: 0 }} animate={{ width: `${sec.pct}%` }} transition={{ duration: 0.8, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: sec.color }} />
+ <div style={{ backgroundColor: sec.color, width: `${sec.pct}%` }} className="h-full rounded-full" />
  </div>
  </div>
  ))}
@@ -691,8 +686,8 @@ function VoluntaryTab() {
  {VCM_STANDARDS.map((std) => (
  <div key={std.name} className="border border-border rounded-lg p-4 bg-card">
  <div className="flex items-center gap-2 mb-2">
- <div className="w-2 h-2 rounded-full" style={{ backgroundColor: std.color }} />
- <span className="text-sm font-semibold" style={{ color: std.color }}>{std.name}</span>
+ <div className="w-2 h-2 rounded-full" style={{ backgroundColor: std.color, color: std.color }} />
+ <span className="text-sm font-semibold" >{std.name}</span>
  <Badge variant="outline" className="text-xs text-muted-foreground ml-auto">{std.founded}</Badge>
  </div>
  <div className="text-xs text-muted-foreground font-medium mb-1">{std.fullName}</div>
@@ -760,7 +755,7 @@ function QualityTab() {
  <span className="text-muted-foreground text-right max-w-[200px]">{row.note}</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div initial={{ width: 0 }} animate={{ width: `${row.risk}%` }} transition={{ duration: 0.8, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: row.color }} />
+ <div style={{ backgroundColor: row.color, width: `${row.risk}%` }} className="h-full rounded-full" />
  </div>
  </div>
  ))}
@@ -842,7 +837,7 @@ function QualityTab() {
  <span className="text-muted-foreground">{r.pct}% of rated credits</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div initial={{ width: 0 }} animate={{ width: `${r.pct * 4}%` }} transition={{ duration: 0.6, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: r.color }} />
+ <div style={{ backgroundColor: r.color, width: `${r.pct * 4}%` }} className="h-full rounded-full" />
  </div>
  </div>
  ))}
@@ -1020,7 +1015,7 @@ function InvestmentTab() {
  <span className="text-muted-foreground">Risk Score: {pr.severity}/100</span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div initial={{ width: 0 }} animate={{ width: `${pr.severity}%` }} transition={{ duration: 0.7, ease: "easeOut" }} className="h-full rounded-full bg-red-500/70" />
+ <div style={{ width: `${pr.severity}%` }} className="h-full rounded-full bg-red-500/70" />
  </div>
  <div className="text-xs text-muted-foreground">{pr.example}</div>
  </div>
@@ -1110,27 +1105,27 @@ export default function CarbonMarketsPage() {
  </TabsList>
 
  <TabsContent value="compliance" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <ComplianceTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="voluntary" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <VoluntaryTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="quality" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <QualityTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="investment" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <InvestmentTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

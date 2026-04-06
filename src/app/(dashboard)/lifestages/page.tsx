@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -421,12 +420,7 @@ function Tab20s() {
  ];
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  <SectionHeader
  icon={<GraduationCap className="w-6 h-6" />}
  title="20s — Foundation Building"
@@ -567,7 +561,7 @@ function Tab20s() {
  </div>
  </Card>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -634,12 +628,7 @@ function Tab30s() {
  ];
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  <SectionHeader
  icon={<Home className="w-6 h-6" />}
  title="30s — Accumulation Phase"
@@ -754,7 +743,7 @@ function Tab30s() {
  </div>
  </Card>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -802,12 +791,7 @@ function Tab40s() {
  ];
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  <SectionHeader
  icon={<Briefcase className="w-6 h-6" />}
  title="40s — Peak Earning Years"
@@ -933,7 +917,7 @@ function Tab40s() {
  </div>
  </Card>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -992,12 +976,7 @@ function Tab50s() {
  ];
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  <SectionHeader
  icon={<Calendar className="w-6 h-6" />}
  title="50s — Pre-Retirement Sprint"
@@ -1115,7 +1094,7 @@ function Tab50s() {
  <Hint text="Roth conversion ladder: Convert traditional IRA funds to Roth in the years between retirement and SS/RMD onset when your taxable income is lowest — often the most tax-efficient window of your life." />
  </Card>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -1185,12 +1164,7 @@ function Tab60s() {
  ];
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  <SectionHeader
  icon={<TreePine className="w-6 h-6" />}
  title="60s+ — Distribution Phase"
@@ -1325,7 +1299,7 @@ function Tab60s() {
  </div>
  </Card>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -1344,11 +1318,11 @@ export default function LifeStagesPage() {
  const [tab, setTab] = useState("20s");
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- <div className="max-w-5xl mx-auto space-y-4">
+ 
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
  <div>
- <h1 className="text-2xl font-semibold text-foreground">Life-Stage Financial Planning</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Life-Stage Financial Planning</h1>
  <p className="text-sm text-muted-foreground mt-1">
  Interactive wealth projections and action checklists from your first paycheck to retirement income.
  </p>
@@ -1380,9 +1354,9 @@ export default function LifeStagesPage() {
 
  {/* Tab content */}
  <Tabs value={tab} onValueChange={setTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {TABS.map((t) => (
- <TabsTrigger key={t.value} value={t.value} />
+ <TabsTrigger key={t.value} value={t.value} className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">{t.label}</TabsTrigger>
  ))}
  </TabsList>
 
@@ -1402,7 +1376,6 @@ export default function LifeStagesPage() {
  <Tab60s />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

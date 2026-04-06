@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -399,36 +398,18 @@ export default function PortfolioOptimizerPage() {
  const barW = barGroupW / (portfolios.length + 1);
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
 
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="space-y-1"
- >
- <div className="flex items-center gap-3">
- <div className="p-2 rounded-lg bg-muted/10 border border-border">
- <Target className="text-foreground" size={22} />
- </div>
  <div>
- <h1 className="text-2xl font-semibold tracking-tight">Portfolio Optimizer</h1>
- <p className="text-sm text-muted-foreground">
+ <h1 className="text-3xl font-bold tracking-tight">Portfolio Optimizer</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
  Markowitz mean-variance optimization · Efficient frontier · Risk-return tradeoffs
  </p>
  </div>
- </div>
- </motion.div>
 
  {/* Summary chips */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.1 }}
- className="flex flex-wrap gap-2"
- >
+ <div className="flex flex-wrap gap-2">
  {portfolios.map(({ label, pt, color }) => (
  <Badge
  key={label}
@@ -439,24 +420,24 @@ export default function PortfolioOptimizerPage() {
  {label}: {(pt.ret * 100).toFixed(1)}% ret · {(pt.vol * 100).toFixed(1)}% vol · {pt.sharpe.toFixed(2)} SR
  </Badge>
  ))}
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="frontier" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="frontier" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <TrendingUp size={13} /> Efficient Frontier
  </TabsTrigger>
- <TabsTrigger value="assets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="assets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <BarChart3 size={13} /> Asset Inputs
  </TabsTrigger>
- <TabsTrigger value="portfolios" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="portfolios" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <PieChart size={13} /> Optimal Portfolios
  </TabsTrigger>
- <TabsTrigger value="constraints" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="constraints" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Shield size={13} /> Constraints
  </TabsTrigger>
- <TabsTrigger value="resampling" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="resampling" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <BookOpen size={13} /> Resampling &amp; Robustness
  </TabsTrigger>
  </TabsList>
@@ -692,12 +673,9 @@ export default function PortfolioOptimizerPage() {
  <div key={a.ticker} className="flex items-center gap-2 text-xs text-muted-foreground">
  <span className="w-10 font-medium">{a.ticker}</span>
  <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(a.volatility / 0.30) * 100}%` }}
- transition={{ delay: 0.2, duration: 0.6 }}
+ <div
  className="h-full rounded-full"
- style={{ backgroundColor: a.color }}
+ style={{ width: `${(a.volatility / 0.30) * 100}%`, backgroundColor: a.color }}
  />
  </div>
  <span className="font-mono w-12 text-right">{(a.volatility * 100).toFixed(1)}%</span>
@@ -825,7 +803,7 @@ export default function PortfolioOptimizerPage() {
  <tr key={ASSETS[i].ticker} className="border-b border-border hover:bg-muted/20">
  <td className="py-1.5 font-medium pr-4" style={{ color: ASSETS[i].color }}>{ASSETS[i].ticker}</td>
  {row.map((v, j) => (
- <td key={j} className="py-1.5 text-right pr-3" style={{ color: i === j ? ASSETS[i].color : (v >= 0 ? "#93c5fd" : "#fca5a5") }}>
+ <td key={j} className="py-1.5 text-right pr-3" >
  {(v * 10000).toFixed(2)}
  </td>
  ))}
@@ -1481,10 +1459,10 @@ export default function PortfolioOptimizerPage() {
  ].map((s) => (
  <div key={s.step} className="space-y-2">
  <div className="flex items-center gap-2">
- <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold text-foreground" style={{ backgroundColor: s.color }}>
+ <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold text-foreground" style={{ backgroundColor: s.color, color: s.color }}>
  {s.step}
  </div>
- <span className="font-medium text-sm" style={{ color: s.color }}>{s.title}</span>
+ <span className="font-medium text-sm" >{s.title}</span>
  </div>
  <p className="text-xs text-muted-foreground">{s.desc}</p>
  </div>
@@ -1555,7 +1533,6 @@ export default function PortfolioOptimizerPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

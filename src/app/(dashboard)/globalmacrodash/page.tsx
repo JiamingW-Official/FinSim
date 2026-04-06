@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -532,9 +531,9 @@ function MacroRegimeTab() {
  <RegimeGauge regime={current.regime} color={current.color} />
  <div
  className="w-full rounded-lg p-3 text-center"
- style={{ background: current.color + "18", borderColor: current.color + "44", border: "1px solid" }}
+ style={{ background: current.color + "18", borderColor: current.color + "44", border: "1px solid", color: current.color }}
  >
- <p className="text-xs font-bold mb-1" style={{ color: current.color }}>
+ <p className="text-xs font-bold mb-1" >
  {current.regime}
  </p>
  <p className="text-xs text-muted-foreground leading-snug">{current.desc}</p>
@@ -875,11 +874,8 @@ function PositioningTab() {
  {POSITIONING.map((p, i) => {
  const nlPos = p.netLong >= 0;
  return (
- <motion.tr
+ <tr
  key={i}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.04 }}
  className="hover:bg-muted/30 transition-colors"
  >
  <td className="py-2.5 pr-3">
@@ -915,7 +911,7 @@ function PositioningTab() {
  <td className="py-2.5">
  <SentimentDot value={p.sentiment} />
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -1068,67 +1064,51 @@ export default function GlobalMacroDashPage() {
 
  <div className="mt-4">
  <TabsContent value="regime" className="data-[state=inactive]:hidden mt-0">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "regime" && (
- <motion.div
+ <div
  key="regime"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <MacroRegimeTab />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
 
  <TabsContent value="centralbanks" className="data-[state=inactive]:hidden mt-0">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "centralbanks" && (
- <motion.div
+ <div
  key="centralbanks"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <CentralBanksTab />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
 
  <TabsContent value="crossasset" className="data-[state=inactive]:hidden mt-0">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "crossasset" && (
- <motion.div
+ <div
  key="crossasset"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <CrossAssetTab />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
 
  <TabsContent value="positioning" className="data-[state=inactive]:hidden mt-0">
- <AnimatePresence mode="wait">
+ 
  {activeTab === "positioning" && (
- <motion.div
+ <div
  key="positioning"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <PositioningTab />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
  </div>
  </Tabs>

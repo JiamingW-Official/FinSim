@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  DollarSign,
  TrendingUp,
@@ -659,20 +658,17 @@ function PricingMechanicsTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedRatchet}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -4 }}
  className="mt-3 rounded-lg bg-muted/40 border border-border p-3 text-xs text-primary"
  >
  <span className="font-medium">{ratchetLevels[selectedRatchet].label}:</span>{" "}
  At {ratchetLevels[selectedRatchet].leverage} net leverage the borrower pays SOFR+
  {ratchetLevels[selectedRatchet].spread}bps. Tested each quarter based on compliance certificate.
  {selectedRatchet === ratchetLevels.length - 1 && " This is the floor — maximum benefit from deleveraging."}
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
 
  {/* Financial maintenance covenants */}
@@ -863,23 +859,20 @@ function SyndicationProcessTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
+ 
  {activeStep !== null && (
- <motion.div
+ <div
  key={activeStep}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -6 }}
  className="rounded-lg border border-border bg-muted/30 p-4"
- style={{ borderColor: timeline[activeStep].color + "40" }}
+ style={{ borderColor: timeline[activeStep].color + "40", color: timeline[activeStep].color }}
  >
- <div className="text-sm font-medium mb-1" style={{ color: timeline[activeStep].color }}>
+ <div className="text-sm font-medium mb-1" >
  {timeline[activeStep].step} <span className="text-muted-foreground font-normal text-xs">({timeline[activeStep].weeks})</span>
  </div>
  <p className="text-xs text-muted-foreground">{timeline[activeStep].desc}</p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* Syndication types */}
@@ -1302,9 +1295,7 @@ export default function SyndicatedLendingPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1325,7 +1316,7 @@ export default function SyndicatedLendingPage() {
  <InfoPill text="CLO-dominated" color="amber" />
  <InfoPill text="Cov-lite evolution" color="orange" />
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="structure" className="mt-8 space-y-4">
@@ -1346,24 +1337,24 @@ export default function SyndicatedLendingPage() {
  </TabsList>
 
  <TabsContent value="structure" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+ <div>
  <DealStructureTab />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="pricing" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+ <div>
  <PricingMechanicsTab />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="syndication" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+ <div>
  <SyndicationProcessTab />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="market" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+ <div>
  <MarketDynamicsTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

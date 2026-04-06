@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Landmark,
  TrendingUp,
@@ -617,7 +616,7 @@ export default function BondsPage() {
 
  {/* ── Tab 1: Bond Market Overview ──────────────────────────────────────── */}
  <TabsContent value="overview" className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  {/* Yield curve card */}
  <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Yield Curve</h2>
  <div className="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
@@ -686,11 +685,8 @@ export default function BondsPage() {
  const rc = ratingColor(b.creditRating);
  const isRising = b.yieldChange1d > 0;
  return (
- <motion.div
+ <div
  key={b.id}
- initial={{ opacity: 0, scale: 0.97 }}
- animate={{ opacity: 1, scale: 1 }}
- transition={{ duration: 0.25 }}
  className="rounded-lg border border-border bg-card p-5"
  >
  <div className="mb-3 flex items-start justify-between">
@@ -732,7 +728,7 @@ export default function BondsPage() {
  </span>
  </div>
  </div>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -743,12 +739,12 @@ export default function BondsPage() {
  <p className="mt-2 text-[10px] uppercase tracking-widest text-muted-foreground/40">
  Prices per $1,000 face value. Yield change (bps): yield rise = price falls. Synthetic data for educational purposes.
  </p>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 2: Bond Pricing Calculator ───────────────────────────────────── */}
  <TabsContent value="calculator" className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Bond Pricing Calculator</h2>
  <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
  {/* Inputs */}
@@ -872,12 +868,12 @@ export default function BondsPage() {
  </div>
  <PriceYieldSVG />
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 3: Yield Curve Analysis ───────────────────────────────────────── */}
  <TabsContent value="yieldcurve" className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Yield Curve Analysis</h2>
  {/* Historical curves */}
  <div className="mb-6 grid grid-cols-1 gap-5 lg:grid-cols-3">
@@ -1013,12 +1009,12 @@ export default function BondsPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 4: Portfolio Builder ──────────────────────────────────────────── */}
  <TabsContent value="portfolio" className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Portfolio Builder</h2>
  <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
  {/* Bond selector */}
@@ -1197,12 +1193,12 @@ export default function BondsPage() {
  )}
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── Tab 5: Credit Analysis ────────────────────────────────────────────── */}
  <TabsContent value="credit" className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Credit Analysis</h2>
  {/* Fallen angel alert */}
  {creditAnalysis.some(c => c.atRisk && c.bond?.type === "corporate-ig") && (
@@ -1228,10 +1224,8 @@ export default function BondsPage() {
  const zLabel = ca.zScore >= 2.99 ? "Safe Zone" : ca.zScore >= 1.23 ? "Gray Zone" : "Distress Zone";
 
  return (
- <motion.div
+ <div
  key={ca.bondId}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
  className={cn(
  "rounded-lg border bg-card p-4",
  ca.atRisk ? "border-red-500/30" : "border-border",
@@ -1316,7 +1310,7 @@ export default function BondsPage() {
  />
  </div>
  </div>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -1366,7 +1360,7 @@ export default function BondsPage() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

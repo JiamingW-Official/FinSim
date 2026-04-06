@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -962,19 +961,15 @@ function AccumulatorsTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeScenario}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="p-4 bg-muted/40 rounded-lg border border-border"
  >
  <p className="text-sm font-medium text-foreground">{TARF_SCENARIOS[activeScenario].name}</p>
  <p className="text-xs text-muted-foreground mt-2">{TARF_SCENARIOS[activeScenario].result}</p>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </CardContent>
  </Card>
 
@@ -1548,13 +1543,9 @@ function CorporateHedgingTab() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedRatio}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -6 }}
- transition={{ duration: 0.2 }}
  className="p-4 bg-muted/40 rounded-lg border border-border"
  >
  <div className="text-sm font-medium text-foreground">{HEDGE_RATIOS[selectedRatio].ratio} — {HEDGE_RATIOS[selectedRatio].label}</div>
@@ -1562,8 +1553,8 @@ function CorporateHedgingTab() {
  <div className="text-muted-foreground"><span className="text-amber-400">Risk: </span>{HEDGE_RATIOS[selectedRatio].risk}</div>
  <div className="text-muted-foreground"><span className="text-emerald-400">Benefit: </span>{HEDGE_RATIOS[selectedRatio].benefit}</div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </CardContent>
  </Card>
 
@@ -1689,15 +1680,15 @@ function CorporateHedgingTab() {
 
 export default function FXStructuredPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header — Hero */}
- <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
+ <div className="rounded-lg border border-border bg-card p-5">
  <div className="flex items-center gap-3 mb-2">
  <div className="p-2 bg-muted/10 rounded-lg border border-border">
  <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
  </div>
  <div>
- <h1 className="text-lg font-semibold text-foreground">FX Structured Products</h1>
+ <h1 className="text-3xl font-bold tracking-tight">FX Structured Products</h1>
  <p className="text-sm text-muted-foreground">
  Options strategies, accumulators, TARFs, dual currency deposits & corporate hedging
  </p>
@@ -1723,60 +1714,48 @@ export default function FXStructuredPage() {
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger
  value="options"
- className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
+ className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none data-[state=active]:text-foreground rounded-none bg-transparent text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
  >FX Options Strategies</TabsTrigger>
  <TabsTrigger
  value="accumulators"
- className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
+ className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none data-[state=active]:text-foreground rounded-none bg-transparent text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
  >Accumulators & TARFs</TabsTrigger>
  <TabsTrigger
  value="dcd"
- className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
+ className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none data-[state=active]:text-foreground rounded-none bg-transparent text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
  >Dual Currency Deposits</TabsTrigger>
  <TabsTrigger
  value="corporate"
- className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
+ className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none data-[state=active]:text-foreground rounded-none bg-transparent text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
  >Corporate Hedging</TabsTrigger>
  </TabsList>
 
  <TabsContent value="options" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  >
  <FXOptionsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="accumulators" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  >
  <AccumulatorsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="dcd" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  >
  <DualCurrencyTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="corporate" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  >
  <CorporateHedgingTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

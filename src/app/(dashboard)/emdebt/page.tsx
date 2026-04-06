@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
  Globe,
  TrendingDown,
@@ -328,7 +327,7 @@ function SovereignTab() {
 
  {/* Expanded detail */}
  {sel && (
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-sm font-medium text-foreground">
@@ -374,17 +373,15 @@ function SovereignTab() {
  <span className="text-amber-400 font-mono">{fmtBps(sel.spreadUST)}</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${Math.min((sel.spreadUST / 600) * 100, 100)}%` }}
- transition={{ duration: 0.6, ease: "easeOut" }}
+ <div
+ style={{ width: `${Math.min((sel.spreadUST / 600) * 100, 100)}%` }}
  className="h-full rounded-full bg-amber-500"
  />
  </div>
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
 
  {/* Spread bar chart */}
@@ -1119,11 +1116,7 @@ function CrisisHistoryTab() {
  </div>
  </div>
  {expanded === c.year && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="border-t border-border px-4 py-3 bg-background/50"
  >
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
@@ -1146,7 +1139,7 @@ function CrisisHistoryTab() {
  <span className="text-rose-400 font-mono font-medium">{c.gdpDrop}</span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
  </div>
  ))}
@@ -1216,33 +1209,33 @@ export default function EmDebtPage() {
  </TabsList>
 
  <TabsContent value="sovereign" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <SovereignTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="hardlocal" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <HardLocalTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="spread" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <SpreadDecompositionTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="fx" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <CurrencyImpactTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="crisis" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <CrisisHistoryTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -1267,14 +1266,7 @@ function RealOptionsTab() {
  })}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
- key={selectedOption}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
- >
+ <div>
  <div className="rounded-md border border-border bg-card p-5">
  <div className="flex items-start gap-3 mb-5">
  <opt.icon className={cn("w-5 h-5 mt-0.5", opt.color)} />
@@ -1331,8 +1323,7 @@ function RealOptionsTab() {
  <strong>Example:</strong> {opt.example}
  </div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
 
  {/* Sigma × Time sensitivity */}
  <div className="rounded-md border border-border bg-card p-5 overflow-x-auto">
@@ -1748,8 +1739,7 @@ const TABS = [
 
 export default function ValuationPage() {
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
  <div className="mb-6">
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Valuation</h1>
@@ -1764,7 +1754,7 @@ export default function ValuationPage() {
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent bg-transparent shadow-none text-xs px-3 py-2 transition-colors data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground data-[state=active]:font-semibold data-[state=inactive]:text-muted-foreground/50"
+ className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent bg-transparent shadow-none text-xs px-3 py-2 transition-colors data-[state=active]:border-primary data-[state=active]:shadow-none data-[state=active]:text-foreground data-[state=active]:font-semibold data-[state=inactive]:text-muted-foreground/50"
  >
  <tab.icon className="w-3.5 h-3.5" />
  {tab.label}
@@ -1773,42 +1763,41 @@ export default function ValuationPage() {
  </TabsList>
 
  <TabsContent value="relative" className="mt-0 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <RelativeValuationTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="dcf" className="mt-0 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <DCFTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="sotp" className="mt-0 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <SOTPTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="ddm" className="mt-0 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <DDMTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="real-options" className="mt-0 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <RealOptionsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="synthesis" className="mt-0 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+ <div>
  <SynthesisTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

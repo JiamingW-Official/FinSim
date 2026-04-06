@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Layers,
  Shield,
@@ -587,10 +586,7 @@ export default function CryptoStakingPage() {
  return (
  <div className="p-4 space-y-4 max-w-7xl mx-auto">
  {/* HERO Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="border-l-4 border-l-primary rounded-md bg-card p-6"
  >
  <div className="flex items-start justify-between flex-wrap gap-3">
@@ -608,13 +604,10 @@ export default function CryptoStakingPage() {
  <Badge variant="outline" className="text-xs text-green-500 border-green-500/40">Live Network</Badge>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Key Metrics */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
+ <div
  className="grid grid-cols-2 md:grid-cols-4 gap-4"
  >
  <MetricCard
@@ -643,13 +636,10 @@ export default function CryptoStakingPage() {
  sub="Of total staked ETH"
  positive
  />
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
+ <div
  >
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
@@ -1098,7 +1088,7 @@ export default function CryptoStakingPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

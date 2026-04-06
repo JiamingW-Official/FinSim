@@ -18,7 +18,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 19;
@@ -163,12 +162,9 @@ function HBar({ label, value, maxVal, color = "#6366f1" }: { label: string; valu
  <div className="flex items-center gap-3 py-1">
  <span className="text-xs text-muted-foreground w-14 shrink-0">{label}</span>
  <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
- <motion.div
+ <div
  className="h-2 rounded-full"
- style={{ backgroundColor: color }}
- initial={{ width: 0 }}
- animate={{ width: `${pct}%` }}
- transition={{ duration: 0.7, ease: "easeOut" }}
+ style={{ backgroundColor: color, width: `${pct}%` }}
  />
  </div>
  <span className="text-xs text-muted-foreground w-12 text-right">{value.toFixed(1)}%</span>
@@ -608,9 +604,9 @@ function VaRModels() {
  <div className="flex items-center gap-3">
  <div
  className="w-20 h-20 rounded-full flex flex-col items-center justify-center border-4 shrink-0"
- style={{ borderColor: backtestColor }}
+ style={{ borderColor: backtestColor, color: backtestColor }}
  >
- <span className="text-2xl font-semibold" style={{ color: backtestColor }}>{breaches}</span>
+ <span className="text-2xl font-semibold" >{breaches}</span>
  <span className="text-xs text-muted-foreground">breaches</span>
  </div>
  <div>
@@ -692,10 +688,9 @@ function StressTesting() {
  const dollarImpact = totalImpact * PORTFOLIO_VALUE;
  const isExpanded = expandedScenario === i;
  return (
- <motion.div
+ <div
  key={sc.name}
  className="bg-muted/60 rounded-md border border-border overflow-hidden"
- layout
  >
  <button
  className="w-full flex items-center justify-between p-3 hover:bg-muted/20"
@@ -715,13 +710,9 @@ function StressTesting() {
  {isExpanded ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </div>
  </button>
- <AnimatePresence>
+ 
  {isExpanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="px-3 pb-3"
  >
  <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
@@ -747,10 +738,10 @@ function StressTesting() {
  <div className="text-muted-foreground">of ${(PORTFOLIO_VALUE / 1000).toFixed(0)}k portfolio</div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  );
  })}
  </div>
@@ -1039,15 +1030,12 @@ function DrawdownAnalysis() {
  <SectionHeader title="Psychology Pain Index" sub="Duration × Magnitude composite" />
  <div className="flex items-center gap-4">
  <div className="flex-1 bg-muted/40 rounded-full h-3 overflow-hidden">
- <motion.div
+ <div
  className="h-3 rounded-full"
  style={{
  background: `linear-gradient(90deg, #22c55e 0%, #f59e0b 50%, #ef4444 100%)`,
  width: `${painIndex}%`,
  }}
- initial={{ width: 0 }}
- animate={{ width: `${painIndex}%` }}
- transition={{ duration: 1 }}
  />
  </div>
  <span className="text-lg font-medium text-foreground shrink-0">{painIndex.toFixed(0)}/100</span>
@@ -1611,15 +1599,11 @@ export default function RiskManagementPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
+ 
  {tabs.map(tab => (
  activeTab === tab.id && (
- <motion.div
+ <div
  key={tab.id}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <TabsContent value={tab.id} forceMount>
  {tab.id === "metrics" && <RiskMetricsDashboard />}
@@ -1629,10 +1613,10 @@ export default function RiskManagementPage() {
  {tab.id === "sizing" && <PositionSizing />}
  {tab.id === "hedging" && <HedgingTools />}
  </TabsContent>
- </motion.div>
+ </div>
  )
  ))}
- </AnimatePresence>
+ 
  </Tabs>
  </div>
  </div>

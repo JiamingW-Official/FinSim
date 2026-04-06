@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Shield,
  AlertTriangle,
@@ -535,10 +534,7 @@ export default function QuantRiskPage() {
  return (
  <div className="p-4 space-y-4 max-w-7xl mx-auto">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="flex items-start justify-between"
  >
  <div>
@@ -554,13 +550,10 @@ export default function QuantRiskPage() {
  <Badge variant="outline" className="text-xs text-muted-foreground">Portfolio: $10M</Badge>
  <Badge variant="outline" className="text-xs text-muted-foreground">Basel III / FRTB</Badge>
  </div>
- </motion.div>
+ </div>
 
  {/* KPI strip */}
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: 0.1 }}
+ <div
  className="grid grid-cols-2 md:grid-cols-4 gap-3"
  >
  {[
@@ -580,7 +573,7 @@ export default function QuantRiskPage() {
  </CardContent>
  </Card>
  ))}
- </motion.div>
+ </div>
 
  {/* Main tabs */}
  <Tabs defaultValue="var" className="space-y-4">
@@ -839,9 +832,8 @@ export default function QuantRiskPage() {
  <div className="space-y-2 lg:col-span-2">
  <h3 className="text-xs font-medium text-muted-foreground">Historical Scenarios</h3>
  {stressScenarios.map((sc, i) => (
- <motion.div
+ <div
  key={sc.name}
- whileHover={{ scale: 1.01 }}
  onClick={() => setSelectedScenario(i === selectedScenario ? null : i)}
  className={`p-3 rounded-lg border cursor-pointer transition-colors ${
  selectedScenario === i
@@ -863,9 +855,7 @@ export default function QuantRiskPage() {
  </Badge>
  </div>
  {selectedScenario === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
+ <div
  className="mt-2 pt-2 border-t border-border grid grid-cols-2 gap-1 text-xs text-muted-foreground"
  >
  <span className="text-muted-foreground">Equity P&L:</span>
@@ -876,9 +866,9 @@ export default function QuantRiskPage() {
  <span className="text-right text-red-400">{fmtPct(sc.fxLoss)}</span>
  <span className="text-muted-foreground">FRTB Capital:</span>
  <span className="text-right text-amber-400">{fmtPct(sc.frtbCapital)}</span>
- </motion.div>
+ </div>
  )}
- </motion.div>
+ </div>
  ))}
  </div>
 

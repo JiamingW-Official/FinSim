@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -252,10 +251,7 @@ function getFactorColor(id: string): string {
 function FactorCard({ factor, rank }: { factor: FactorMetric; rank: number }) {
  const isMarket = factor.id === "market";
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: rank * 0.06 }}
+ <div
  >
  <Card className={cn("border-border", isMarket && "opacity-70")}>
  <CardContent className="p-4">
@@ -295,7 +291,7 @@ function FactorCard({ factor, rank }: { factor: FactorMetric; rank: number }) {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -486,11 +482,8 @@ function ETFComparisonTable() {
  </thead>
  <tbody>
  {sorted.map((etf, idx) => (
- <motion.tr
+ <tr
  key={etf.ticker}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: idx * 0.04 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="p-2 font-medium font-mono" style={{ color: etf.color }}>{etf.ticker}</td>
@@ -509,7 +502,7 @@ function ETFComparisonTable() {
  <td className={cn("p-2 text-right font-mono font-medium", etf.threeYearReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
  {etf.threeYearReturn > 0 ? "+" : ""}{etf.threeYearReturn}%
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>

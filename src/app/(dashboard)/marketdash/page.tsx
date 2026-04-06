@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -421,7 +420,7 @@ export default function MarketDashPage() {
  return Math.round((bullish / FLOW_ROWS.length) * 100);
  }, []);
 
- // Treemap layout for sectors
+ // Treemap for sectors
  const treemapRects = useMemo(() => {
  const totalWeight = SECTORS.reduce((s, sec) => s + sec.weight, 0);
  const totalW = 600;
@@ -437,8 +436,7 @@ export default function MarketDashPage() {
  }, []);
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col space-y-6">
+  <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
 
  {/* ── Header */}
  <div>
@@ -520,7 +518,7 @@ export default function MarketDashPage() {
  ════════════════════════════════════════════════════════════════ */}
  <div className="border-t border-border" />
  <section>
- <h2 className="text-xl font-serif tracking-tight text-foreground mb-1">Sector Heatmap</h2>
+ <h2 className="text-xl font-semibold">Sector Heatmap</h2>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">click sector to see top movers</p>
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
  {/* SVG treemap */}
@@ -528,10 +526,10 @@ export default function MarketDashPage() {
  <svg
  viewBox="0 0 600 220"
  className="w-full rounded-lg overflow-hidden"
- style={{ aspectRatio: "600/220" }}
+ style={{ aspectRatio: "600/220", cursor: "pointer" }}
  >
  {treemapRects.map(({ x, y, w, h, sector }) => (
- <g key={sector.name} onClick={() => setSelectedSector(selectedSector === sector.name ? null : sector.name)} style={{ cursor: "pointer" }}>
+ <g key={sector.name} onClick={() => setSelectedSector(selectedSector === sector.name ? null : sector.name)} >
  <rect
  x={x + 1}
  y={y + 1}
@@ -596,14 +594,10 @@ export default function MarketDashPage() {
 
  {/* Sector movers panel */}
  <Card className="bg-card border-border p-2">
- <AnimatePresence mode="wait">
+ 
  {selectedSector ? (
- <motion.div
+ <div
  key={selectedSector}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
  >
  <div className="flex items-center justify-between mb-3">
  <h3 className="text-sm font-medium">{selectedSector} — Top 5 Movers</h3>
@@ -633,20 +627,17 @@ export default function MarketDashPage() {
  ))}
  </tbody>
  </table>
- </motion.div>
+ </div>
  ) : (
- <motion.div
+ <div
  key="empty"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
  className="h-full flex flex-col items-center justify-center text-muted-foreground py-8 gap-2"
  >
  <Layers className="h-8 w-8 opacity-30" />
  <p className="text-sm">Click a sector to see top movers</p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
  </div>
  </section>
@@ -656,7 +647,7 @@ export default function MarketDashPage() {
  ════════════════════════════════════════════════════════════════ */}
  <div className="border-t border-border" />
  <section>
- <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Most Active Stocks</h2>
+ <h2 className="text-xl font-semibold">Most Active Stocks</h2>
  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
  {/* Most Active by Volume */}
  <Card className="bg-card border-border p-2">
@@ -742,7 +733,7 @@ export default function MarketDashPage() {
  ════════════════════════════════════════════════════════════════ */}
  <div className="border-t border-border" />
  <section>
- <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Unusual Options Activity</h2>
+ <h2 className="text-xl font-semibold">Unusual Options Activity</h2>
  <div className="flex items-center justify-end mb-3">
  <div className="flex items-center gap-1.5">
  <Filter className="h-3.5 w-3.5 text-muted-foreground" />
@@ -787,14 +778,10 @@ export default function MarketDashPage() {
  </tr>
  </thead>
  <tbody>
- <AnimatePresence>
+ 
  {filteredFlow.map((row) => (
- <motion.tr
+ <tr
  key={row.ticker + row.seed}
- layout
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
  className={cn(
  "border-b border-border hover:bg-muted/30 transition-colors",
  row.unusual && "bg-amber-500/5"
@@ -841,9 +828,9 @@ export default function MarketDashPage() {
  <span className="ml-1 text-[11px] text-amber-400 font-medium">Unusual</span>
  )}
  </td>
- </motion.tr>
+ </tr>
  ))}
- </AnimatePresence>
+ 
  </tbody>
  </table>
  </div>
@@ -855,7 +842,7 @@ export default function MarketDashPage() {
  ════════════════════════════════════════════════════════════════ */}
  <div className="border-t border-border" />
  <section>
- <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Earnings & Events Calendar</h2>
+ <h2 className="text-xl font-semibold">Earnings & Events Calendar</h2>
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  {/* Earnings today */}
  <Card className="bg-card border-border p-3">
@@ -990,7 +977,7 @@ export default function MarketDashPage() {
  SECTION 6 — Market Breadth
  ════════════════════════════════════════════════════════════════ */}
  <section className="pb-6">
- <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Market Breadth</h2>
+ <h2 className="text-xl font-semibold">Market Breadth</h2>
  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
  {/* A/D ratio card */}
  <Card className="bg-card border-border p-3">
@@ -1136,8 +1123,6 @@ export default function MarketDashPage() {
  </Card>
  </div>
  </section>
- </div>
-
  {/* Ticker tape CSS animation */}
  <style jsx>{`
  @keyframes marquee {
@@ -1146,5 +1131,6 @@ export default function MarketDashPage() {
  }
  `}</style>
  </div>
+
  );
 }

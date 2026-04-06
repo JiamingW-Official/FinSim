@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Cpu,
  Cloud,
@@ -477,12 +476,9 @@ function SaasTab() {
  </div>
 
  {/* Selected company detail */}
- <AnimatePresence>
+ 
  {selectedCompany && (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 12 }}
+ <div
  className="rounded-md border border-primary/30 bg-muted/5 p-4"
  >
  <div className="flex items-center justify-between mb-4">
@@ -512,9 +508,9 @@ function SaasTab() {
  <MiniBar label="Gross Margin" value={selectedCompany.grossMargin} max={100} color="bg-orange-500" />
  <MiniBar label="Rule of 40" value={selectedCompany.rule40} max={maxRule40} color={selectedCompany.rule40 >= 40 ? "bg-emerald-500" : "bg-amber-500"} suffix="" />
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* NRR Leaderboard */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -1137,13 +1133,9 @@ function MegaCapTab() {
  </div>
 
  {/* Selected company detail */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={company.ticker}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="grid grid-cols-1 md:grid-cols-2 gap-3"
  >
  {/* Left: metrics */}
@@ -1216,8 +1208,8 @@ function MegaCapTab() {
  </div>
  </div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Comparison table */}
  <div>
@@ -1400,13 +1392,10 @@ function FintechTab() {
  </tr>
  </thead>
  <tbody>
- <AnimatePresence>
+ 
  {filtered.map((c) => (
- <motion.tr
+ <tr
  key={c.ticker}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2.5">
@@ -1435,9 +1424,9 @@ function FintechTab() {
  {c.pe > 0 ? `${c.pe}x` : "N/M"}
  </span>
  </td>
- </motion.tr>
+ </tr>
  ))}
- </AnimatePresence>
+ 
  </tbody>
  </table>
  </div>
@@ -1524,10 +1513,7 @@ export default function TechSectorPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
  {/* Page header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="flex items-center justify-between"
  >
  <div className="flex items-center gap-3">
@@ -1545,13 +1531,10 @@ export default function TechSectorPage() {
  </Badge>
  <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Educational</span>
  </div>
- </motion.div>
+ </div>
 
  {/* Top-level overview strip */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
+ <div
  className="grid grid-cols-2 md:grid-cols-5 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
  >
  {[
@@ -1570,13 +1553,10 @@ export default function TechSectorPage() {
  </div>
  </div>
  ))}
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
+ <div
  >
  <Tabs defaultValue="saas" className="space-y-4">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
@@ -1613,7 +1593,7 @@ export default function TechSectorPage() {
  <FintechTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  </div>
  );

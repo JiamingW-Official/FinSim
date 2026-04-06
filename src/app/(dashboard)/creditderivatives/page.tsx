@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Shield,
  TrendingUp,
@@ -558,20 +557,16 @@ function Collapsible({
  <span className="text-foreground text-sm font-semibold">{title}</span>
  {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
- <AnimatePresence initial={false}>
+ 
  {open && (
- <motion.div
+ <div
  key="body"
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 pt-2">{children}</div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -619,7 +614,7 @@ export default function CreditDerivativesPage() {
 
  {/* ── TAB 1: CDS Fundamentals ── */}
  <TabsContent value="cds-fundamentals" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
 
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -921,12 +916,12 @@ export default function CreditDerivativesPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 2: Credit Indices ── */}
  <TabsContent value="credit-indices" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
 
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -1137,12 +1132,12 @@ export default function CreditDerivativesPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 3: CLN & TRS ── */}
  <TabsContent value="cln-trs" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
 
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -1323,12 +1318,12 @@ export default function CreditDerivativesPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 4: Market & Regulation ── */}
  <TabsContent value="market-regulation" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
 
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -1597,7 +1592,7 @@ export default function CreditDerivativesPage() {
  ))}
  </div>
  </Collapsible>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

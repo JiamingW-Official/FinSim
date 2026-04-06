@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Trophy, TrendingUp, TrendingDown, Flame, Heart, MessageSquare,
  Users, Star, Medal, Crown, ChevronUp, ChevronDown, X, Plus,
@@ -529,11 +528,8 @@ function LeaderboardTab() {
  </thead>
  <tbody>
  {sorted.map((trader, idx) => (
- <motion.tr
+ <tr
  key={trader.id}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: idx * 0.02 }}
  className={cn(
  "border-b border-border last:border-0 transition-colors",
  trader.isYou ? "bg-muted/5 hover:bg-primary/8" : "hover:bg-foreground/[0.02]",
@@ -559,7 +555,7 @@ function LeaderboardTab() {
  <td className="py-3 px-4 text-right text-xs text-muted-foreground hidden sm:table-cell">{trader.totalTrades}</td>
  <td className="py-3 px-4 text-right text-xs text-muted-foreground hidden md:table-cell">{trader.followers.toLocaleString()}</td>
  <td className="py-3 px-4 text-right text-xs font-mono text-muted-foreground">{trader.elo}</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -583,8 +579,7 @@ function IdeaCard({
  const isLong = idea.direction === "long";
 
  return (
- <motion.div
- layout
+ <div
  className="rounded-xl border border-border/50 bg-card/50 p-5 space-y-4 hover:border-border transition-colors"
  >
  {/* Header */}
@@ -650,21 +645,18 @@ function IdeaCard({
  <p className="text-xs text-muted-foreground/80 leading-relaxed">{idea.rationale}</p>
 
  {/* Expanded thesis */}
- <AnimatePresence>
+ 
  {expanded && idea.thesis && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="border-t border-border pt-3 text-xs text-muted-foreground/70 leading-relaxed space-y-2">
  <p className="font-medium text-foreground/80">Full Thesis</p>
  <p>{idea.thesis}</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Actions */}
  <div className="flex items-center gap-3 pt-1">
@@ -689,7 +681,7 @@ function IdeaCard({
  <span>{expanded ? "Less" : "Full thesis"}</span>
  </button>
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -976,12 +968,9 @@ function CopyTraderCard({
  </div>
 
  {/* Recent trades — only shown when following */}
- <AnimatePresence>
+ 
  {following && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="border-t border-border pt-3 space-y-1">
@@ -1011,9 +1000,9 @@ function CopyTraderCard({
  </button>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }

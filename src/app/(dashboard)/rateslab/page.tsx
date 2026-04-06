@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
@@ -1479,20 +1478,14 @@ function DurationHedgingTab() {
 // ─────────────────────────────────────────────────────────────────────────────
 export default function RatesLabPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-5">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="flex items-start justify-between"
- >
+ <div className="flex items-start justify-between">
  <div>
  <div className="flex items-center gap-3 mb-1">
  <div className="w-8 h-8 rounded-lg bg-muted/10 border border-border flex items-center justify-center">
  </div>
- <h1 className="text-xl font-semibold text-foreground">Rates Lab</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Rates Lab</h1>
  <Badge variant="outline" className="text-xs border-border text-foreground">
  Interest Rate Derivatives
  </Badge>
@@ -1501,24 +1494,24 @@ export default function RatesLabPage() {
  Interactive IRS pricing, swap curve bootstrapping, swaptions, cross-currency swaps &amp; duration hedging
  </p>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="swap-pricer" className="space-y-4">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="swap-pricer" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="swap-pricer" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Swap Pricer
  </TabsTrigger>
- <TabsTrigger value="swap-curve" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="swap-curve" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Swap Curve
  </TabsTrigger>
- <TabsTrigger value="swaption" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="swaption" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Swaption Pricing
  </TabsTrigger>
- <TabsTrigger value="xccy" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="xccy" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Cross-Currency
  </TabsTrigger>
- <TabsTrigger value="hedging" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="hedging" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Duration Hedging
  </TabsTrigger>
  </TabsList>
@@ -1539,7 +1532,6 @@ export default function RatesLabPage() {
  <DurationHedgingTab />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

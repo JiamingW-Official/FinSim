@@ -26,7 +26,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -1832,9 +1831,8 @@ function PortfolioOptimizer() {
  {/* Allocation bar */}
  <div className="flex h-6 rounded-lg overflow-hidden mt-3 gap-0.5">
  {alloc.map((a) => (
- <motion.div
+ <div
  key={a.name}
- layout
  className="flex items-center justify-center text-xs font-medium text-foreground/80 overflow-hidden"
  style={{
  width: `${a.pct}%`,
@@ -1843,7 +1841,7 @@ function PortfolioOptimizer() {
  }}
  >
  {a.pct >= 5 ? `${a.pct}%` : ""}
- </motion.div>
+ </div>
  ))}
  </div>
  <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
@@ -1895,11 +1893,9 @@ function PortfolioOptimizer() {
  <span className="text-xs text-muted-foreground">{lp.lockup}</span>
  </div>
  <div className="flex-1 h-5 bg-muted/20 rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full bg-primary/70"
- initial={{ width: 0 }}
- animate={{ width: `${(lp.premium / 4.0) * 100}%` }}
- transition={{ duration: 0.6 }}
+ style={{ width: `${(lp.premium / 4.0) * 100}%` }}
  />
  </div>
  <span className="text-xs font-medium text-primary w-14 text-right">
@@ -1974,13 +1970,9 @@ function DDAccordion() {
  )}
  </button>
 
- <AnimatePresence initial={false}>
+ 
  {openIdx === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.22 }}
+ <div
  style={{ overflow: "hidden" }}
  >
  <div className="px-4 pb-4 pt-1 border-t border-border">
@@ -2004,9 +1996,9 @@ function DDAccordion() {
  </ul>
  )}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </div>
@@ -2125,10 +2117,7 @@ export default function PrivateMarketsPage() {
  return (
  <div className="min-h-screen bg-background p-4 md:p-4">
  {/* Page header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-1">
@@ -2152,7 +2141,7 @@ export default function PrivateMarketsPage() {
  <StatChip label="Avg Lockup" value="7-10yr" color="amber" />
  <StatChip label="Min Investment" value="$1M+" color="default" />
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="pe">

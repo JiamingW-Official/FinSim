@@ -15,7 +15,6 @@ import {
  Info,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
@@ -318,23 +317,16 @@ function DeepValueScreen() {
  </button>
  </div>
 
- <AnimatePresence>
  {showInfo && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- className="overflow-hidden"
- >
+ <div className="overflow-hidden">
  <div className="bg-muted/50 border border-border rounded-lg p-4 text-sm text-muted-foreground space-y-2">
  <p><span className="text-primary font-medium">Graham Number</span> = √(22.5 × EPS × Book Value per share). A stock trading below its Graham number is considered undervalued by Benjamin Graham's classic formula.</p>
  <p><span className="text-primary font-medium">Net-Net</span> = stocks where market cap &lt; net current assets (current assets − all liabilities). Graham's most conservative value criterion.</p>
  <p><span className="text-primary font-medium">EV/EBIT</span> is a capital-structure-neutral valuation ratio; values below 8× historically outperform.</p>
  <p><span className="text-primary font-medium">FCF Yield</span> = free cash flow / market cap. A yield above 8% signals potential undervaluation.</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
 
  {/* Filters */}
  <div className="flex gap-2">
@@ -997,9 +989,8 @@ function BacktestedPerformance() {
 
  {/* Line chart */}
  <div className="bg-card border border-border rounded-lg p-4">
- <AnimatePresence mode="wait">
  {!showDrawdown ? (
- <motion.div key="nav" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div>
  <div className="flex gap-4 mb-2 text-xs text-muted-foreground">
  <span className="flex items-center gap-1.5"><span className="w-4 h-0.5 bg-emerald-400 inline-block" /> Value Strategy</span>
  <span className="flex items-center gap-1.5"><span className="w-4 h-0.5 bg-primary inline-block" /> Market</span>
@@ -1033,9 +1024,9 @@ function BacktestedPerformance() {
  {(cumulativeValue[cumulativeValue.length - 1]?.mNav ?? 100).toFixed(0)}
  </text>
  </svg>
- </motion.div>
+ </div>
  ) : (
- <motion.div key="dd" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ <div>
  <p className="text-xs text-muted-foreground mb-2">Drawdown from peak (%)</p>
  <svg width="100%" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
  {/* Zero line */}
@@ -1051,9 +1042,8 @@ function BacktestedPerformance() {
  })}
  <polyline points={ddPoints} fill="none" stroke="#f87171" strokeWidth={1.5} />
  </svg>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
 
  {/* Annual return table */}
@@ -1111,30 +1101,29 @@ function BacktestedPerformance() {
 
 export default function QuantValuePage() {
  return (
- <div className="flex h-full flex-col overflow-y-auto">
-  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
-  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Quant Value</h1>
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
+ <h1 className="text-3xl font-bold tracking-tight">Quant Value</h1>
   <p className="text-sm text-muted-foreground mb-6">FACTOR · DEEP VALUE · SYSTEMATIC</p>
 
  <Tabs defaultValue="deepvalue">
  <TabsList className="bg-card border border-border mb-4 h-auto flex-wrap gap-1 p-1">
- <TabsTrigger value="deepvalue" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+ <TabsTrigger value="deepvalue" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground">
  <Filter className="w-3.5 h-3.5 mr-1.5" />
  Deep Value
  </TabsTrigger>
- <TabsTrigger value="magic" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+ <TabsTrigger value="magic" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground">
  <Award className="w-3.5 h-3.5 mr-1.5" />
  Magic Formula
  </TabsTrigger>
- <TabsTrigger value="acquirers" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+ <TabsTrigger value="acquirers" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground">
  <Target className="w-3.5 h-3.5 mr-1.5" />
  Acquirer&apos;s Multiple
  </TabsTrigger>
- <TabsTrigger value="qualityvalue" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+ <TabsTrigger value="qualityvalue" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground">
  <Layers className="w-3.5 h-3.5 mr-1.5" />
  Quality-Value
  </TabsTrigger>
- <TabsTrigger value="backtest" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+ <TabsTrigger value="backtest" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-xs text-muted-foreground">
  <TrendingUp className="w-3.5 h-3.5 mr-1.5" />
  Backtest
  </TabsTrigger>
@@ -1167,6 +1156,5 @@ export default function QuantValuePage() {
  </p>
  </div>
  </div>
-  </div>
  );
 }

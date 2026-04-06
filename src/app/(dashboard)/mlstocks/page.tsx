@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Brain,
  BarChart3,
@@ -716,20 +715,21 @@ export default function MLStocksPage() {
  const totalFeatures = useMemo(() => FEATURE_CATEGORIES.reduce((s, c) => s + c.count, 0), []);
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
-  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
-  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">ML Stock Prediction</h1>
-  <p className="text-sm text-muted-foreground mb-6">FEATURES · MODELS · BACKTEST · SIGNALS</p>
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
+ <div>
+ <h1 className="text-3xl font-bold tracking-tight mb-1">ML Stock Prediction</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground">FEATURES · MODELS · BACKTEST · SIGNALS</p>
+ </div>
 
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="features" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Feature Engineering
+ <TabsTrigger value="features" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Feature Engineering
  </TabsTrigger>
- <TabsTrigger value="models" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Model Zoo
+ <TabsTrigger value="models" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Model Zoo
  </TabsTrigger>
- <TabsTrigger value="backtest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtesting
+ <TabsTrigger value="backtest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtesting
  </TabsTrigger>
- <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Live Signals
+ <TabsTrigger value="signals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Live Signals
  </TabsTrigger>
  </TabsList>
 
@@ -868,8 +868,8 @@ export default function MLStocksPage() {
  >
  <td className="py-2">
  <div className="flex items-center gap-2">
- <div className="w-2 h-2 rounded-full" style={{ backgroundColor: m.color }} />
- <span style={{ color: m.color }} className="font-medium">{m.shortName}</span>
+ <div className="w-2 h-2 rounded-full" style={{ backgroundColor: m.color, color: m.color }} />
+ <span  className="font-medium">{m.shortName}</span>
  <Badge variant="outline" className="text-muted-foreground border-border text-xs py-0">{m.type}</Badge>
  </div>
  </td>
@@ -890,13 +890,10 @@ export default function MLStocksPage() {
  </table>
  </div>
 
- <AnimatePresence>
+ 
  {expandedModel !== null && (
- <motion.div
+ <div
  key={expandedModel}
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
  className="mt-3 rounded-lg p-3 border border-border bg-muted/40"
  >
  <p className="text-xs font-semibold mb-1" style={{ color: MODELS[expandedModel].color }}>
@@ -905,9 +902,9 @@ export default function MLStocksPage() {
  <p className="text-xs text-muted-foreground">
  Sharpe {MODELS[expandedModel].sharpe.toFixed(2)} · IC {MODELS[expandedModel].ic.toFixed(3)} · {MODELS[expandedModel].dataNeed} data requirement · Training: {MODELS[expandedModel].trainTime}
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
 
@@ -1036,12 +1033,9 @@ export default function MLStocksPage() {
  </div>
  {expandedPitfall === i ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
  </div>
- <AnimatePresence>
+ 
  {expandedPitfall === i && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="px-3 pb-3 space-y-1"
  >
  <p className="text-xs text-muted-foreground">{p.description}</p>
@@ -1049,9 +1043,9 @@ export default function MLStocksPage() {
  <CheckCircle className="w-3 h-3 text-green-400 shrink-0 mt-0.5" />
  <p className="text-xs text-green-400">{p.solution}</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </CardContent>
@@ -1305,6 +1299,5 @@ export default function MLStocksPage() {
  </TabsContent>
  </Tabs>
  </div>
-  </div>
  );
 }

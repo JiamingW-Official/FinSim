@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  DollarSign,
@@ -1496,14 +1495,9 @@ export default function VentureDebtPage() {
  const [activeTab, setActiveTab] = useState("venture-debt");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="mx-auto max-w-7xl px-4 py-8 space-y-8">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
+ <div className="rounded-lg border border-border bg-card p-5">
  <div className="flex items-start justify-between">
  <div>
  <div className="mb-2 flex items-center gap-2">
@@ -1512,9 +1506,7 @@ export default function VentureDebtPage() {
  Alternative Finance
  </Badge>
  </div>
- <h1 className="text-xl font-semibold text-foreground">
- Venture Debt &amp; Growth Financing
- </h1>
+ <h1 className="text-3xl font-bold tracking-tight">Venture Debt &amp; Growth Financing</h1>
  <p className="mt-2 text-muted-foreground max-w-2xl">
  Non-dilutive capital solutions for high-growth startups — from
  venture lending and revenue-based financing to late-stage growth
@@ -1529,32 +1521,23 @@ export default function VentureDebtPage() {
  </span>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Key metrics */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
- className="grid grid-cols-4 gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
+ <div className="grid grid-cols-4 gap-4 rounded-lg border border-border bg-card p-5">
  {KEY_METRICS.map((m) => (
  <StatCard key={m.label} {...m} />
  ))}
- </motion.div>
+ </div>
 
  {/* Main tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
- >
+ <div>
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="venture-debt">Venture Debt</TabsTrigger>
- <TabsTrigger value="rbf">Revenue-Based Finance</TabsTrigger>
- <TabsTrigger value="growth-equity">Growth Equity</TabsTrigger>
- <TabsTrigger value="comparison">Comparison</TabsTrigger>
+ <TabsTrigger value="venture-debt" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Venture Debt</TabsTrigger>
+ <TabsTrigger value="rbf" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Revenue-Based Finance</TabsTrigger>
+ <TabsTrigger value="growth-equity" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Growth Equity</TabsTrigger>
+ <TabsTrigger value="comparison" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Comparison</TabsTrigger>
  </TabsList>
 
  <TabsContent value="venture-debt" className="data-[state=inactive]:hidden">
@@ -1573,7 +1556,6 @@ export default function VentureDebtPage() {
  <ComparisonTab />
  </TabsContent>
  </Tabs>
- </motion.div>
  </div>
  </div>
  );

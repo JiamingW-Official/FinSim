@@ -23,7 +23,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -274,10 +273,9 @@ function Tab101() {
  return (
  <div className="space-y-3">
  {sections.map((sec) => (
- <motion.div
+ <div
  key={sec.id}
  className="bg-card border border-border rounded-md overflow-hidden"
- layout
  >
  <button
  className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/50 transition-colors"
@@ -287,27 +285,21 @@ function Tab101() {
  <span className="text-foreground">{sec.icon}</span>
  {sec.title}
  </div>
- <motion.span
- animate={{ rotate: expandedSection === sec.id ? 90 : 0 }}
- transition={{ duration: 0.2 }}
+ <span
  >
  <ChevronRight size={14} className="text-muted-foreground" />
- </motion.span>
+ </span>
  </button>
- <AnimatePresence>
+ 
  {expandedSection === sec.id && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4">{sec.content}</div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  );
@@ -1200,13 +1192,9 @@ export default function MarketMakingPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-6">
+  <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1214,7 +1202,7 @@ export default function MarketMakingPage() {
  <Activity size={20} className="text-foreground" />
  </div>
  <div>
- <h1 className="text-xl font-medium text-foreground">Market Making Simulator</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Market Making Simulator</h1>
  <p className="text-muted-foreground text-sm">
  Spread modeling, inventory management, AMM mechanics, and HFT dynamics
  </p>
@@ -1237,7 +1225,7 @@ export default function MarketMakingPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={tab} onValueChange={setTab}>
@@ -1246,20 +1234,16 @@ export default function MarketMakingPage() {
  <TabsTrigger
  key={t.id}
  value={t.id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  <span className="hidden sm:inline">{t.label}</span>
  </TabsTrigger>
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={tab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <TabsContent value="101">
  <Tab101 />
@@ -1276,10 +1260,9 @@ export default function MarketMakingPage() {
  <TabsContent value="hft">
  <TabHFT />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
- </Tabs>
  </div>
+ 
+ </Tabs>
  </div>
  );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  Shield,
@@ -440,13 +439,8 @@ function FundamentalsTab() {
  ? <ChevronUp className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
  : <ChevronDown className="w-3.5 h-3.5 text-muted-foreground shrink-0" />}
  </button>
- <AnimatePresence>
- {expandedRow === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.18 }}
+  {expandedRow === i && (
+ <div
  className="overflow-hidden"
  >
  <div className="px-3 pb-3">
@@ -454,10 +448,9 @@ function FundamentalsTab() {
  <span className="font-medium">Trade-off: </span>{choice.tradeoff}
  </InfoBox>
  </div>
- </motion.div>
- )}
- </AnimatePresence>
  </div>
+ )}
+  </div>
  ))}
  </div>
  </div>
@@ -775,14 +768,9 @@ function GlobalTrackerTab() {
  <WorldMapSVG selected={selected} onSelect={(c) => setSelected((prev) => (prev === c ? null : c))} />
 
  {/* Selected country detail */}
- <AnimatePresence>
- {selectedCard && (
- <motion.div
+  {selectedCard && (
+ <div
  key={selectedCard.country}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 12 }}
- transition={{ duration: 0.2 }}
  className="rounded-md border border-border bg-muted/5 p-4"
  >
  <div className="flex items-start justify-between gap-2 mb-2">
@@ -816,10 +804,9 @@ function GlobalTrackerTab() {
  )}
  </div>
  <p className="text-xs text-muted-foreground leading-relaxed">{selectedCard.detail}</p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
-
+ 
  {/* Filter buttons */}
  <div className="flex items-center gap-2 flex-wrap">
  <span className="text-xs text-muted-foreground">Filter:</span>
@@ -842,12 +829,8 @@ function GlobalTrackerTab() {
  {/* Country cards grid */}
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
  {filtered.map((c) => (
- <motion.div
+ <div
  key={c.country}
- layout
- initial={{ opacity: 0, scale: 0.97 }}
- animate={{ opacity: 1, scale: 1 }}
- exit={{ opacity: 0, scale: 0.97 }}
  className={cn(
  "rounded-md border p-3 cursor-pointer transition-colors",
  selected === c.country
@@ -866,7 +849,7 @@ function GlobalTrackerTab() {
  <div className="text-xs font-medium text-primary mb-1">{c.name}</div>
  <div className="text-xs text-muted-foreground">{c.useCase}</div>
  <div className="text-xs text-muted-foreground mt-1">{c.timeline}</div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1466,12 +1449,9 @@ export default function CBDCPage() {
 
  return (
  <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-6xl mx-auto px-4 py-8">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* HERO Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1479,7 +1459,7 @@ export default function CBDCPage() {
  <Banknote className="w-5 h-5 text-indigo-400" />
  </div>
  <div>
- <h1 className="text-xl font-semibold text-foreground">Central Bank Digital Currencies</h1>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground">Central Bank Digital Currencies</h1>
  <p className="text-sm text-muted-foreground">CBDC design, global adoption, monetary policy &amp; cross-border payments</p>
  </div>
  </div>
@@ -1488,47 +1468,47 @@ export default function CBDCPage() {
  <Badge key={tag} className="bg-foreground/5 text-muted-foreground border-border text-xs">{tag}</Badge>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="fundamentals">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="fundamentals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="fundamentals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  CBDC Fundamentals
  </TabsTrigger>
- <TabsTrigger value="global" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="global" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Global Tracker
  </TabsTrigger>
- <TabsTrigger value="monetary" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="monetary" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Monetary Policy
  </TabsTrigger>
- <TabsTrigger value="crossborder" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="crossborder" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Cross-Border Payments
  </TabsTrigger>
  </TabsList>
 
  <TabsContent value="fundamentals" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <FundamentalsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="global" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <GlobalTrackerTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="monetary" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <MonetaryPolicyTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="crossborder" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <CrossBorderTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

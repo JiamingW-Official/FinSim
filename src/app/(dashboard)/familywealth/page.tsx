@@ -30,7 +30,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 let s = 752005;
@@ -370,13 +369,9 @@ function WealthTransferTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
  )}
  </button>
- <AnimatePresence>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 pt-2 bg-muted/10 border-t border-border space-y-3">
@@ -398,9 +393,9 @@ function WealthTransferTab() {
  </InfoBox>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
@@ -535,13 +530,9 @@ function FamilyGovernanceTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
  )}
  </button>
- <AnimatePresence>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 pt-3 bg-muted/10 border-t border-border">
@@ -554,9 +545,9 @@ function FamilyGovernanceTab() {
  ))}
  </ul>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
@@ -926,13 +917,9 @@ function PhilanthropyTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
  )}
  </button>
- <AnimatePresence>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 pt-3 bg-muted/10 border-t border-border space-y-3">
@@ -955,9 +942,9 @@ function PhilanthropyTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
@@ -1170,13 +1157,9 @@ function BusinessRealEstateTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
  )}
  </button>
- <AnimatePresence>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 pt-3 bg-muted/10 border-t border-border">
@@ -1189,9 +1172,9 @@ function BusinessRealEstateTab() {
  ))}
  </ul>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}

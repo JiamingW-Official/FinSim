@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Droplets,
  TrendingUp,
@@ -402,11 +401,8 @@ function YieldDashboard() {
  {filtered.map((opp, idx) => {
  const totalAPY = opp.baseAPY + (realYield ? 0 : opp.rewardAPY);
  return (
- <motion.tr
+ <tr
  key={opp.id}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: idx * 0.02 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="p-3 font-medium text-foreground">{opp.protocol}</td>
@@ -428,7 +424,7 @@ function YieldDashboard() {
  <XCircle size={14} className="text-rose-400 mx-auto" />
  )}
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -564,7 +560,7 @@ function LiquidityPoolSimulator() {
  </button>
  </div>
  {v3Mode && (
- <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
+ <div className="space-y-3">
  <div>
  <label className="text-xs text-muted-foreground mb-1 block">Price Range Low (ratio vs current): {rangeLow.toFixed(2)}x</label>
  <input
@@ -592,7 +588,7 @@ function LiquidityPoolSimulator() {
  <InfoBox variant="blue">
  V3 capital efficiency: <strong>{(1 / (rangeHigh - rangeLow)).toFixed(1)}x</strong> vs V2 — but position earns 0 fees when price exits range.
  </InfoBox>
- </motion.div>
+ </div>
  )}
  </div>
 
@@ -1346,11 +1342,8 @@ function YieldStrategyBuilder() {
  <p className="text-xs text-muted-foreground mb-4">{strategy.description}</p>
  <div className="space-y-3">
  {strategy.steps.map((step, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.05 }}
  className="flex items-center gap-3 p-2 rounded-lg bg-foreground/5 border border-border"
  >
  <span className="w-6 h-6 rounded-full bg-foreground/10 text-muted-foreground text-xs flex items-center justify-center shrink-0">{i + 1}</span>
@@ -1362,7 +1355,7 @@ function YieldStrategyBuilder() {
  <div className="text-xs text-emerald-400">{fmtPct(step.apy)} APY</div>
  <div className="text-xs text-muted-foreground">{step.allocation}% alloc</div>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  <div className="mt-3 p-2 rounded-lg bg-foreground/5 border border-border text-xs text-muted-foreground">
@@ -1598,13 +1591,10 @@ function ProtocolRankings() {
  )}
  </td>
  </tr>
- <AnimatePresence>
+ 
  {expandedRow === idx && (
- <motion.tr
+ <tr
  key={`${p.name}-detail`}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
  >
  <td colSpan={9} className="px-6 py-3 bg-foreground/5">
  <p className="text-xs text-muted-foreground">
@@ -1615,9 +1605,9 @@ function ProtocolRankings() {
  30d Rev change: <span className={p.revChange30d >= 0 ? "text-emerald-400" : "text-rose-400"}>{p.revChange30d >= 0 ? "+" : ""}{fmtPct(p.revChange30d, 1)}</span>
  </p>
  </td>
- </motion.tr>
+ </tr>
  )}
- </AnimatePresence>
+ 
  </>
  ))}
  </tbody>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -590,11 +589,8 @@ function FedPolicyDashboard() {
  <span className="font-medium text-amber-400">$60B / month</span>
  </div>
  <div className="h-3 rounded-full bg-muted/30">
- <motion.div
+ <div
  className="h-full rounded-full bg-amber-500"
- initial={{ width: 0 }}
- animate={{ width: "60%" }}
- transition={{ duration: 1, ease: "easeOut" }}
  />
  </div>
  <div className="mt-1 flex justify-between text-xs text-muted-foreground/50">
@@ -656,15 +652,9 @@ function GlobalCentralBanks() {
  </div>
  </div>
  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
- <AnimatePresence mode="popLayout">
- {sorted.map((bank, i) => (
- <motion.div
+  {sorted.map((bank, i) => (
+ <div
  key={bank.shortName}
- layout
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
- transition={{ delay: i * 0.03 }}
  className="rounded-lg border border-border bg-card/60 p-3"
  >
  <div className="mb-2 flex items-start justify-between">
@@ -697,10 +687,9 @@ function GlobalCentralBanks() {
  </p>
  </div>
  </div>
- </motion.div>
- ))}
- </AnimatePresence>
  </div>
+ ))}
+  </div>
  </div>
 
  {/* Rate Decision Heatmap */}
@@ -939,12 +928,8 @@ function YieldCurveAnalysis() {
  </div>
 
  {/* Selected tenor detail */}
- <AnimatePresence>
- {selected && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+  {selected && (
+ <div
  className="mt-3 overflow-hidden"
  >
  <div className="rounded-lg bg-muted/20 p-3 text-[11px]">
@@ -978,10 +963,9 @@ function YieldCurveAnalysis() {
  </span>
  </div>
  </div>
- </motion.div>
- )}
- </AnimatePresence>
  </div>
+ )}
+  </div>
 
  {/* FF vs 10yr chart */}
  <div className="rounded-lg border border-border bg-card/60 p-4">
@@ -1079,7 +1063,7 @@ function PolicyTransmission() {
  <p className="mb-4 text-[11px] text-muted-foreground">Click a channel to see details</p>
  <div className="space-y-3">
  {channels.map((ch, ci) => (
- <motion.div
+ <div
  key={ch.name}
  className={cn(
  "cursor-pointer rounded-lg border p-3 transition-colors",
@@ -1117,19 +1101,14 @@ function PolicyTransmission() {
  </div>
  ))}
  </div>
- <AnimatePresence>
- {activeChannel === ci && (
- <motion.p
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+  {activeChannel === ci && (
+ <p
  className="mt-2 overflow-hidden text-[11px] text-muted-foreground/80"
  >
  {ch.description}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
- </motion.div>
+  </div>
  ))}
  </div>
  </div>
@@ -1440,11 +1419,9 @@ function CentralBankBalanceSheets() {
  </div>
  <div className="h-4 rounded-full bg-muted/20">
  <div className="relative h-full">
- <motion.div
+ <div
  className={cn("h-full rounded-full", cb.color)}
- initial={{ width: 0 }}
- animate={{ width: `${(cb.pct / 150) * 100}%` }}
- transition={{ duration: 1, ease: "easeOut" }}
+ style={{ width: `${(cb.pct / 150) * 100}%` }}
  />
  {/* Peak marker */}
  <div
@@ -1480,9 +1457,9 @@ function CentralBankBalanceSheets() {
  </div>
  <div className="mt-3 flex h-5 gap-0.5 overflow-hidden rounded-md">
  <div className="bg-primary/60 transition-all" style={{ width: "59%" }} />
- <div className="bg-emerald-500/60 transition-all" style={{ width: "29%" }} />
+ <div className="bg-emerald-500/60 transition-all" style={{ width: "29%" }}/>
  <div className="bg-amber-500/60 transition-all" style={{ width: "3%" }} />
- <div className="bg-muted/30 transition-all" style={{ width: "9%" }} />
+ <div className="bg-muted/30 transition-all" style={{ width: "9%" }}/>
  </div>
  </div>
 
@@ -1531,7 +1508,7 @@ export default function CentralBankPage() {
 
  return (
  <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6 flex-1 flex flex-col">
  {/* Hero */}
  <div className="mb-6">
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Central Banking</h1>
@@ -1554,7 +1531,7 @@ export default function CentralBankPage() {
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="relative flex items-center gap-1.5 rounded-none border-b-2 border-transparent px-3 pb-2 pt-1 text-[11px] font-medium text-muted-foreground/60 transition-colors data-[state=active]:border-foreground data-[state=active]:text-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+ className="relative flex items-center gap-1.5 rounded-none bg-transparent border-b-2 border-transparent px-3 pb-2 pt-1 text-[11px] font-medium text-muted-foreground/60 transition-colors data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
  >
  <Icon className="h-3.5 w-3.5" />
  {tab.label}
@@ -1566,34 +1543,34 @@ export default function CentralBankPage() {
 
  <div>
  <TabsContent value="fed" className="m-0 p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <FedPolicyDashboard />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="global" className="m-0 p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <GlobalCentralBanks />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="yield" className="m-0 p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <YieldCurveAnalysis />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="transmission" className="m-0 p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <PolicyTransmission />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="guidance" className="m-0 p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <ForwardGuidance />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="balancesheet" className="m-0 p-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <CentralBankBalanceSheets />
- </motion.div>
+ </div>
  </TabsContent>
  </div>
  </Tabs>

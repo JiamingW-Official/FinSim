@@ -228,7 +228,7 @@ function loadingColor(v: number): string {
  return "bg-muted/40 text-muted-foreground";
 }
 
-// ── Treemap layout ────────────────────────────────────────────────────────────
+// ── Treemap ────────────────────────────────────────────────────────────
 
 interface TmRect {
  name: string;

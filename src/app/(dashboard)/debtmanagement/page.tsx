@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -1561,10 +1560,7 @@ export default function DebtManagementPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1588,7 +1584,7 @@ export default function DebtManagementPage() {
  </Badge>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
@@ -1610,13 +1606,9 @@ export default function DebtManagementPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <TabsContent value="overview" className="data-[state=inactive]:hidden">
  <DebtOverviewTab />
@@ -1630,8 +1622,8 @@ export default function DebtManagementPage() {
  <TabsContent value="credit" className="data-[state=inactive]:hidden">
  <CreditBehavioralTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </Tabs>
  </div>
  );

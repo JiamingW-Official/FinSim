@@ -31,7 +31,6 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
@@ -843,13 +842,10 @@ export default function BehavioralLabPage() {
  </CardHeader>
  <CardContent>
  {quizSubmitted ? (
- <motion.div
- initial={{ opacity: 0, scale: 0.9 }}
- animate={{ opacity: 1, scale: 1 }}
- transition={{ duration: 0.4 }}
+ <div
  >
  <RadarChart scores={biasScores} />
- </motion.div>
+ </div>
  ) : (
  <div className="flex flex-col items-center justify-center py-12 text-center">
  <Brain className="w-10 h-10 text-muted-foreground mb-3" />
@@ -863,10 +859,7 @@ export default function BehavioralLabPage() {
 
  {/* Score bars */}
  {quizSubmitted && (
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
+ <div
  >
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -893,12 +886,9 @@ export default function BehavioralLabPage() {
  </span>
  </div>
  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full"
- style={{ backgroundColor: s.color }}
- initial={{ width: 0 }}
- animate={{ width: `${s.score}%` }}
- transition={{ duration: 0.6, ease: "easeOut" }}
+ style={{ backgroundColor: s.color, width: `${s.score}%` }}
  />
  </div>
  </div>
@@ -921,7 +911,7 @@ export default function BehavioralLabPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
  </div>
  </div>
@@ -997,12 +987,9 @@ export default function BehavioralLabPage() {
  </Button>
  )}
 
- <AnimatePresence>
+ 
  {exp1Result && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div
@@ -1031,9 +1018,9 @@ export default function BehavioralLabPage() {
  <span>Rational: <span className="text-green-400">{exp1Result.rationalChoice}</span></span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
 
@@ -1111,12 +1098,9 @@ export default function BehavioralLabPage() {
  </div>
  )}
 
- <AnimatePresence>
+ 
  {exp2Result && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="p-4 rounded-lg border border-yellow-900/50 bg-yellow-950/20 text-sm space-y-2">
@@ -1162,9 +1146,9 @@ export default function BehavioralLabPage() {
  <span className="text-green-400">Actual</span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
 
@@ -1257,12 +1241,9 @@ export default function BehavioralLabPage() {
  )}
  </div>
 
- <AnimatePresence>
+ 
  {exp3Result && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div
@@ -1300,9 +1281,9 @@ export default function BehavioralLabPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
  </TabsContent>
@@ -1503,9 +1484,9 @@ export default function BehavioralLabPage() {
  <div className="flex items-start gap-3">
  <div
  className="p-2 rounded-lg shrink-0"
- style={{ backgroundColor: targetMeta.color + "15" }}
+ style={{ backgroundColor: targetMeta.color + "15", color: targetMeta.color }}
  >
- <span style={{ color: targetMeta.color }}>{targetMeta.icon}</span>
+ <span >{targetMeta.icon}</span>
  </div>
  <div className="flex-1 min-w-0">
  <div className="flex items-center justify-between mb-1">
@@ -1528,11 +1509,9 @@ export default function BehavioralLabPage() {
  {/* Progress bar */}
  <div className="flex items-center gap-2 mb-3">
  <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full"
- style={{ backgroundColor: targetMeta.color }}
- animate={{ width: `${pct}%` }}
- transition={{ duration: 0.4, ease: "easeOut" }}
+ style={{ backgroundColor: targetMeta.color, width: `${pct}%` }}
  />
  </div>
  <span className="text-xs text-muted-foreground shrink-0">
@@ -1580,15 +1559,13 @@ export default function BehavioralLabPage() {
  </div>
 
  {pct === 100 && (
- <motion.div
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground font-medium"
  style={{ color: targetMeta.color }}
  >
  <Star className="w-3.5 h-3.5" />
  Technique mastered — +{t.resistanceBoost}pts resistance
- </motion.div>
+ </div>
  )}
  </div>
  </div>

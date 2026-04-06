@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Building2,
  TrendingUp,
@@ -282,10 +281,8 @@ function REITUniverseTab() {
  const color = SECTOR_COLORS[r.sector];
  const isPrem = r.navPremDisc >= 0;
  return (
- <motion.tr
+ <tr
  key={r.ticker}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
  className="border-b border-border hover:bg-muted/20 transition-colors"
  >
  <td className="px-3 py-2.5">
@@ -319,7 +316,7 @@ function REITUniverseTab() {
  </div>
  </div>
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -479,10 +476,8 @@ function ValuationTab() {
  <div key={i} className="flex items-center gap-3 text-xs text-muted-foreground">
  <div className="w-44 shrink-0 text-right text-muted-foreground">{item.label}</div>
  <div className="flex-1 h-5 bg-muted/20 rounded overflow-hidden relative">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${pct}%` }}
- transition={{ delay: i * 0.06, duration: 0.4 }}
+ <div
+ style={{ width: `${pct}%` }}
  className={`h-full rounded ${
  item.isBase
  ? "bg-primary/70"
@@ -969,10 +964,8 @@ function PortfolioTab() {
  </span>
  </div>
  <div className="h-1.5 bg-muted/20 rounded overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${pct}%` }}
- transition={{ duration: 0.6 }}
+ <div
+ style={{ width: `${pct}%` }}
  className={`h-full rounded ${isPos ? "bg-emerald-500/60" : "bg-rose-500/60"}`}
  />
  </div>
@@ -1020,10 +1013,7 @@ function PortfolioTab() {
  const y = isPos ? 60 - h : 60;
  return (
  <g key={d.label}>
- <motion.rect
- initial={{ height: 0, y: 60 }}
- animate={{ height: h, y }}
- transition={{ delay: i * 0.08, duration: 0.4 }}
+ <rect
  x={x} width={bw} rx={2}
  fill={isPos ? "#10b98180" : "#ef444480"}
  />

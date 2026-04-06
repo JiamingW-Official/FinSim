@@ -25,7 +25,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -526,7 +525,7 @@ function EcosystemTab() {
  return (
  <div className="space-y-4">
  {/* Hero stat */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border border-l-4 border-l-primary">
  <CardContent className="p-4">
  <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -560,9 +559,7 @@ function EcosystemTab() {
  {selected && (() => {
  const cat = ECOSYSTEM_CATEGORIES.find(c => c.id === selected)!;
  return (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
+ <div
  className="mt-4 p-4 rounded-lg bg-muted/60 border"
  style={{ borderColor: cat.color + "55" }}
  >
@@ -572,16 +569,16 @@ function EcosystemTab() {
  <span key={ex} className="text-xs px-2 py-1 rounded bg-muted text-muted-foreground">{ex}</span>
  ))}
  </div>
- </motion.div>
+ </div>
  );
  })()}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-3">
  {/* Sector Dependency */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -616,10 +613,10 @@ function EcosystemTab() {
  </svg>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Biodiversity Intactness Index */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -682,11 +679,11 @@ function EcosystemTab() {
  </p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </div>
 
  {/* Planetary Boundaries */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -759,10 +756,10 @@ function EcosystemTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Collapse Cost */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -787,7 +784,7 @@ function EcosystemTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </div>
  );
 }
@@ -842,7 +839,7 @@ function TNFDTab() {
  return (
  <div className="space-y-4">
  {/* TNFD Overview */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -854,11 +851,8 @@ function TNFDTab() {
  <CardContent>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {TNFD_PILLARS.map((pillar, i) => (
- <motion.div
+ <div
  key={pillar.name}
- initial={{ opacity: 0, x: i % 2 === 0 ? -16 : 16 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.1 }}
  className="p-4 rounded-lg bg-muted/50 border"
  style={{ borderColor: pillar.color + "44" }}
  >
@@ -880,15 +874,15 @@ function TNFDTab() {
  </li>
  ))}
  </ul>
- </motion.div>
+ </div>
  ))}
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* LEAP Approach */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -940,10 +934,10 @@ function TNFDTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* TNFD vs TCFD */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -972,11 +966,11 @@ function TNFDTab() {
  </table>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Nature Risk Taxonomy + Sector Materiality */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -1012,9 +1006,9 @@ function TNFDTab() {
  })}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -1061,11 +1055,11 @@ function TNFDTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </div>
 
  {/* Implementation Timeline */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -1122,7 +1116,7 @@ function TNFDTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </div>
  );
 }
@@ -1153,7 +1147,7 @@ function BiodiversityCreditsTab() {
  return (
  <div className="space-y-4">
  {/* Credit types */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -1243,10 +1237,10 @@ function BiodiversityCreditsTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Nature-based Solutions */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -1258,11 +1252,8 @@ function BiodiversityCreditsTab() {
  <CardContent>
  <div className="space-y-3">
  {NBS_SOLUTIONS.map((nbs, i) => (
- <motion.div
+ <div
  key={nbs.name}
- initial={{ opacity: 0, x: -12 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.08 }}
  className="p-4 rounded-lg bg-muted/40 border border-border"
  >
  <div className="flex items-start justify-between gap-3 mb-2">
@@ -1296,15 +1287,15 @@ function BiodiversityCreditsTab() {
  <span key={c} className="text-xs px-1.5 py-0.5 rounded bg-muted/60 text-muted-foreground">{c}</span>
  ))}
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Standards & Integrity */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -1337,8 +1328,8 @@ function BiodiversityCreditsTab() {
  color: "#a855f7",
  },
  ].map(std => (
- <div key={std.name} className="p-4 rounded-lg border bg-muted/40" style={{ borderColor: std.color + "44" }}>
- <div className="font-medium text-sm mb-1" style={{ color: std.color }}>{std.name}</div>
+ <div key={std.name} className="p-4 rounded-lg border bg-muted/40" style={{ borderColor: std.color + "44", color: std.color }}>
+ <div className="font-medium text-sm mb-1" >{std.name}</div>
  <div className="text-xs text-muted-foreground mb-2">{std.type}</div>
  <p className="text-xs text-muted-foreground mb-3">{std.description}</p>
  <ul className="space-y-1">
@@ -1370,7 +1361,7 @@ function BiodiversityCreditsTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </div>
  );
 }
@@ -1418,7 +1409,7 @@ function DeforestationTab() {
  return (
  <div className="space-y-4">
  {/* EUDR + framework explainer */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -1481,10 +1472,10 @@ function DeforestationTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Commodity deforestation drivers */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -1536,10 +1527,10 @@ function DeforestationTab() {
  </table>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Company exposure bubble chart */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -1613,10 +1604,10 @@ function DeforestationTab() {
  </svg>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Company table */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <div className="flex items-center justify-between">
@@ -1687,10 +1678,10 @@ function DeforestationTab() {
  </table>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* SBTN Framework */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible">
+ <div>
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
  <CardTitle className="text-base text-foreground flex items-center gap-2">
@@ -1771,7 +1762,7 @@ function DeforestationTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </div>
  );
 }
@@ -1787,10 +1778,7 @@ export default function NaturalCapitalPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  >
  <div className="flex items-start justify-between gap-4">
  <div>
@@ -1819,7 +1807,7 @@ export default function NaturalCapitalPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="ecosystem">

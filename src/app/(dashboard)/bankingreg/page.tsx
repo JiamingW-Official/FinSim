@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Shield,
  Building2,
@@ -301,19 +300,15 @@ function ExpandableRow({ title, children, defaultOpen = false, accent = "text-mu
  <span className={cn("text-sm font-medium", accent)}>{title}</span>
  {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
- <AnimatePresence initial={false}>
+ 
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 py-3 bg-background/40 text-sm text-muted-foreground space-y-1">{children}</div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -340,10 +335,7 @@ export default function BankingRegPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-1">
@@ -353,7 +345,7 @@ export default function BankingRegPage() {
  <p className="text-sm text-muted-foreground ml-9">
  Capital adequacy frameworks, stress testing, resolution planning, deposit insurance, and the 2023 banking crisis.
  </p>
- </motion.div>
+ </div>
 
  <Tabs defaultValue="capital" className="space-y-4">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
@@ -373,7 +365,7 @@ export default function BankingRegPage() {
 
  {/* ── TAB 1: Basel III/IV Capital ────────────────────────────────────────── */}
  <TabsContent value="capital" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  {/* Capital stack */}
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -468,13 +460,9 @@ export default function BankingRegPage() {
  </button>
  ))}
  </div>
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={gsibBucket}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -6 }}
- transition={{ duration: 0.15 }}
  >
  {(() => {
  const info = [
@@ -496,8 +484,8 @@ export default function BankingRegPage() {
  </div>
  );
  })()}
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </CardContent>
  </Card>
 
@@ -531,12 +519,12 @@ export default function BankingRegPage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 2: Stress Testing ──────────────────────────────────────────────── */}
  <TabsContent value="stress" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  {/* DFAST/CCAR flow */}
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -609,12 +597,12 @@ export default function BankingRegPage() {
  </ExpandableRow>
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 3: Resolution Planning ────────────────────────────────────────── */}
  <TabsContent value="resolution" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  {/* SPOE vs MPOE */}
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -660,11 +648,8 @@ export default function BankingRegPage() {
  <CardContent>
  <div className="space-y-2">
  {FAILURES.map((f, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.06 }}
  className="flex items-start gap-2 text-xs text-muted-foreground"
  >
  <span className={cn("font-mono text-xs shrink-0 mt-0.5 w-12", `text-[${f.color}]`)} style={{ color: f.color }}>{f.date}</span>
@@ -675,7 +660,7 @@ export default function BankingRegPage() {
  </div>
  <span className="text-muted-foreground">{f.cause}</span>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  <div className="mt-3 bg-amber-950/30 border border-amber-800/40 rounded-md px-3 py-2 text-xs text-amber-300">
@@ -689,12 +674,12 @@ export default function BankingRegPage() {
  </ExpandableRow>
  </div>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ── TAB 4: Deposit Insurance & Consumer Protection ───────────────────── */}
  <TabsContent value="deposit" className="data-[state=inactive]:hidden space-y-4">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+ <div>
  {/* FDIC mechanics */}
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">
@@ -781,7 +766,7 @@ export default function BankingRegPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

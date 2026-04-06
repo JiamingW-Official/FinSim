@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Globe,
  TrendingUp,
@@ -205,14 +204,11 @@ function FadeCard({
  className?: string;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className={cn("rounded-md border border-border bg-foreground/5 p-4", className)}
  >
  {children}
- </motion.div>
+ </div>
  );
 }
 
@@ -337,10 +333,7 @@ function MarketOverviewTab() {
  <div key={g.label} className="flex items-center gap-2">
  <span className="w-28 text-xs text-foreground/60">{g.label}</span>
  <div className="relative flex-1 h-4 rounded bg-foreground/5 overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(g.pct / 22.5) * 100}%` }}
- transition={{ duration: 0.7, delay: 0.1 }}
+ <div
  className="absolute inset-y-0 left-0 rounded"
  style={{ background: g.color, opacity: 0.75 }}
  />
@@ -544,10 +537,7 @@ function EMBondsTab() {
  {c.flag} {c.name}
  </span>
  <div className="relative flex-1 h-5 rounded bg-foreground/5 overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${Math.min(widthPct, 100)}%` }}
- transition={{ duration: 0.6, delay: i * 0.05 }}
+ <div
  className="absolute inset-y-0 left-0 rounded"
  style={{ background: color, opacity: 0.7 }}
  />
@@ -828,13 +818,9 @@ function CurrencyHedgingTab() {
  </FadeCard>
 
  {/* Selected pair detail */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedPair}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.25 }}
  >
  <FadeCard className="border-border bg-muted/5">
  <div className="flex items-center gap-2 mb-3">
@@ -871,8 +857,8 @@ function CurrencyHedgingTab() {
  : `${selected.pair.split("/")[0]} rates are higher than USD, so hedging back to USD costs ${selected.hedgeCost.toFixed(2)}% p.a. via forward discount, reducing yield advantage.`}
  </p>
  </FadeCard>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Strategic vs tactical */}
  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -1192,7 +1178,7 @@ export default function GlobalFixedIncomePage() {
 
  return (
   <div className="flex h-full flex-col overflow-y-auto">
-   <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+   <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
     {/* Hero */}
     <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Global Fixed Income</h1>
     <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">MULTI-CURRENCY · DURATION · YIELD · RISK</p>
@@ -1206,7 +1192,7 @@ export default function GlobalFixedIncomePage() {
        <TabsTrigger
         key={tab.id}
         value={tab.id}
-        className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-sm text-muted-foreground data-[state=active]:text-foreground"
+        className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-sm text-muted-foreground data-[state=active]:text-foreground"
        >
         <tab.icon size={13} />
         {tab.label}
@@ -1214,7 +1200,7 @@ export default function GlobalFixedIncomePage() {
       ))}
      </TabsList>
 
-     <AnimatePresence mode="wait">
+     
       <TabsContent value="overview" className="data-[state=inactive]:hidden">
        <MarketOverviewTab />
       </TabsContent>
@@ -1227,7 +1213,7 @@ export default function GlobalFixedIncomePage() {
       <TabsContent value="portfolio" className="data-[state=inactive]:hidden">
        <PortfolioConstructionTab />
       </TabsContent>
-     </AnimatePresence>
+     
     </Tabs>
    </div>
   </div>

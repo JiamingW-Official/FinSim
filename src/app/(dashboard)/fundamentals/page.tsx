@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Search,
  TrendingUp,
@@ -932,11 +931,8 @@ function QualityScreener() {
  </thead>
  <tbody>
  {sorted.map((stock, i) => (
- <motion.tr
+ <tr
  key={stock.ticker}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.015 }}
  className="border-b border-border hover:bg-muted/40 transition-colors"
  >
  <td className="px-3 py-2 font-mono font-semibold text-foreground">{stock.ticker}</td>
@@ -956,7 +952,7 @@ function QualityScreener() {
  <td className="px-3 py-2 text-muted-foreground">{stock.dividendYield > 0 ? `${stock.dividendYield}%` : "—"}</td>
  <td className="px-3 py-2 text-muted-foreground">{stock.fcfYield}%</td>
  <td className="px-3 py-2 text-muted-foreground">${stock.marketCap}B</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1864,38 +1860,38 @@ export default function FundamentalsPage() {
  </TabsTrigger>
  </TabsList>
 
- <AnimatePresence mode="wait">
+ 
  <TabsContent value="screener" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+ <div>
  <QualityScreener />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="income" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+ <div>
  <IncomeStatementAnalyzer />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="balance" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+ <div>
  <BalanceSheetHealth />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="cashflow" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+ <div>
  <CashFlowAnalysis />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="competitive" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+ <div>
  <CompetitiveAnalysis />
- </motion.div>
+ </div>
  </TabsContent>
  <TabsContent value="quality" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+ <div>
  <EarningsQualityTab />
- </motion.div>
+ </div>
  </TabsContent>
- </AnimatePresence>
+ 
  </Tabs>
  </div>
  </div>

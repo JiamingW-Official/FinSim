@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  BarChart3,
@@ -1313,10 +1312,7 @@ export default function IndexInvestingPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-1">
@@ -1331,7 +1327,7 @@ export default function IndexInvestingPage() {
  <p className="text-muted-foreground text-sm ml-12">
  Index funds, ETF selection, factor premiums, portfolio construction, and the active vs. passive debate.
  </p>
- </motion.div>
+ </div>
 
  {/* Quick stats — Hero */}
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
@@ -1341,11 +1337,8 @@ export default function IndexInvestingPage() {
  { label: "Active Underperf (15Y)", value: "92%", color: "text-red-400", icon: <Activity className="w-4 h-4" /> },
  { label: "Three-Fund AUM", value: "$1.4T+", color: "text-indigo-400", icon: <Layers className="w-4 h-4" /> },
  ].map((stat) => (
- <motion.div
+ <div
  key={stat.label}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
  className="bg-card border border-border rounded-lg p-3"
  >
  <div className="flex items-center gap-1.5 text-muted-foreground text-xs mb-1">
@@ -1353,7 +1346,7 @@ export default function IndexInvestingPage() {
  {stat.label}
  </div>
  <div className={cn("text-xl font-medium", stat.color)}>{stat.value}</div>
- </motion.div>
+ </div>
  ))}
  </div>
 

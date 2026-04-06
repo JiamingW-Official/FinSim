@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  ArrowLeftRight,
  TrendingUp,
@@ -164,7 +163,7 @@ function InfoBox({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
  return (
- <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">
+ <h2 className="text-xl font-semibold">
  {children}
  </h2>
  );
@@ -446,10 +445,7 @@ function IRSPricer() {
  return (
  <g key={i}>
  {/* Fixed bar — blue, downward */}
- <motion.rect
- initial={{ height: 0 }}
- animate={{ height: fixH }}
- transition={{ delay: i * 0.05, duration: 0.4 }}
+ <rect
  x={cx - groupW * 0.35}
  y={midY}
  width={groupW * 0.32}
@@ -458,10 +454,7 @@ function IRSPricer() {
  rx={2}
  />
  {/* Floating bar — green, upward */}
- <motion.rect
- initial={{ height: 0 }}
- animate={{ height: floatH }}
- transition={{ delay: i * 0.05, duration: 0.4 }}
+ <rect
  x={cx + groupW * 0.03}
  y={midY - floatH}
  width={groupW * 0.32}
@@ -638,13 +631,10 @@ function SwapCurveBuilder() {
  </svg>
 
  {/* Detail on click */}
- <AnimatePresence>
+ 
  {selectedIdx !== null && (
- <motion.div
+ <div
  key={selectedIdx}
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
  className="grid grid-cols-2 md:grid-cols-4 gap-3"
  >
  <MetricCard
@@ -666,9 +656,9 @@ function SwapCurveBuilder() {
  value={`${forwardRates[selectedIdx].fwd.toFixed(2)}%`}
  sub={forwardRates[selectedIdx].fwdLabel}
  />
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* Bootstrap table */}
@@ -1127,10 +1117,7 @@ function TRSPage() {
  const isPos = sc.netPnL >= 0;
  return (
  <g key={i}>
- <motion.rect
- initial={{ height: 0, y: midY }}
- animate={{ height: barPx, y: isPos ? midY - barPx : midY }}
- transition={{ delay: i * 0.04, duration: 0.4 }}
+ <rect
  x={x}
  width={bw}
  fill={isPos ? "rgba(52,211,153,0.7)" : "rgba(239,68,68,0.7)"}
@@ -1688,10 +1675,9 @@ export default function SwapsPage() {
  const [activeTab, setActiveTab] = useState("irs");
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Interest Rate Swaps</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Interest Rate Swaps</h1>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">IRS · CDS · SWAPTIONS · BASIS SWAPS</p>
 
  <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -1700,7 +1686,7 @@ export default function SwapsPage() {
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  {tab.label}
  </TabsTrigger>
@@ -1708,72 +1694,53 @@ export default function SwapsPage() {
  </TabsList>
 
  <TabsContent value="irs" className="data-[state=inactive]:hidden mt-0">
- <motion.div
+ <div
  key="irs"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
  >
  <IRSPricer />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="curve" className="data-[state=inactive]:hidden mt-0">
- <motion.div
+ <div
  key="curve"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
  >
  <SwapCurveBuilder />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="cds" className="data-[state=inactive]:hidden mt-0">
- <motion.div
+ <div
  key="cds"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
  >
  <CDSPricer />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="trs" className="data-[state=inactive]:hidden mt-0">
- <motion.div
+ <div
  key="trs"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
  >
  <TRSPage />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="swaptions" className="data-[state=inactive]:hidden mt-0">
- <motion.div
+ <div
  key="swaptions"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
  >
  <SwaptionsPage />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="inflation" className="data-[state=inactive]:hidden mt-0">
- <motion.div
+ <div
  key="inflation"
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
  >
  <InflationSwapsPage />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

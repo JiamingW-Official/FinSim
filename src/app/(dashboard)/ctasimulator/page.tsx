@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -605,8 +604,8 @@ export default function CTASimulatorPage() {
 
  {/* ── Tab 1: CTA Overview ─────────────────────────────────────────────── */}
  <TabsContent value="overview" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="overview" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ 
+ <div key="overview">
  {/* KPI row */}
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  <StatChip label="Global CTA AUM" value="$358B+" sub="Managed Futures Industry" color="text-emerald-400" />
@@ -700,14 +699,14 @@ export default function CTASimulatorPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  {/* ── Tab 2: Trend Signal Builder ─────────────────────────────────────── */}
  <TabsContent value="signals" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="signals" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ 
+ <div key="signals">
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  {[
  { label: "Long Signals", value: trendSignals.filter(s => s.signal === "long").length.toString(), color: "text-emerald-400" },
@@ -812,14 +811,14 @@ export default function CTASimulatorPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  {/* ── Tab 3: Portfolio Construction ──────────────────────────────────── */}
  <TabsContent value="portfolio" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="portfolio" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ 
+ <div key="portfolio">
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  <StatChip label="Markets" value="20" sub="Diversified futures universe" color="text-emerald-400" />
  <StatChip label="Vol Target" value={`${volTarget}%`} sub="Annualized portfolio vol" color="text-primary" />
@@ -922,14 +921,14 @@ export default function CTASimulatorPage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  {/* ── Tab 4: Backtest Results ──────────────────────────────────────────── */}
  <TabsContent value="backtest" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="backtest" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ 
+ <div key="backtest">
  {/* KPIs */}
  <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
  <StatChip label="CAGR (10Y)" value={`${perf.cagr.toFixed(1)}%`} color={perf.cagr >= 0 ? "text-emerald-400" : "text-red-400"} />
@@ -1013,14 +1012,14 @@ export default function CTASimulatorPage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  {/* ── Tab 5: Correlations ─────────────────────────────────────────────── */}
  <TabsContent value="correlations" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="correlations" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+ 
+ <div key="correlations">
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  <StatChip label="Long-run CTA/EQ Corr" value="-0.08" sub="Near zero on average" color="text-emerald-400" />
  <StatChip label="Crisis Corr (CTA/EQ)" value="-0.42" sub="Negative in drawdowns" color="text-emerald-400" />
@@ -1114,8 +1113,8 @@ export default function CTASimulatorPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
  </Tabs>
 

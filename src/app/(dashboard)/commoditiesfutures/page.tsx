@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  BarChart2,
@@ -1558,59 +1557,43 @@ export default function CommoditiesFuturesPage() {
  </TabsList>
 
  <TabsContent value="curve" className="mt-4">
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key="curve"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <FuturesCurveTab />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  <TabsContent value="seasonality" className="mt-4">
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key="seasonality"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <SeasonalityTab />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  <TabsContent value="hedging" className="mt-4">
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key="hedging"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <HedgingTab />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  <TabsContent value="sectors" className="mt-4">
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key="sectors"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <SectorsTab />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
  </Tabs>
  </div>

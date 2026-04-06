@@ -27,7 +27,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ────────────────────────────────────────────────────────────────
 
@@ -434,13 +433,10 @@ function DividendUniverseTab() {
  </div>
 
  {/* Detail panel */}
- <AnimatePresence>
+ 
  {selectedStock && (
- <motion.div
+ <div
  key={selectedStock.ticker}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 12 }}
  className="bg-card border border-border rounded-md p-5"
  >
  <div className="flex justify-between items-start mb-4">
@@ -476,9 +472,9 @@ function DividendUniverseTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }
@@ -1576,9 +1572,9 @@ function IncomeLadderingTab() {
  <span>Reinvestment Scenario Details</span>
  {showReinvest ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
  </button>
- <AnimatePresence>
+ 
  {showReinvest && (
- <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
+ <div className="overflow-hidden">
  <div className="bg-muted rounded-lg p-3 text-xs text-muted-foreground space-y-1">
  {[
  { label: "Rates stay at 5%", income: "$5,000", change: "0%" },
@@ -1594,9 +1590,9 @@ function IncomeLadderingTab() {
  ))}
  <div className="text-muted-foreground italic">Based on $100,000 1-year T-Bill originally at 5%</div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  </div>
  </div>

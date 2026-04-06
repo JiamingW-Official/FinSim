@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -517,10 +516,7 @@ function CorrelationMatrixTab() {
  }, [hoveredCell]);
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 14 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-4"
  >
  <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
@@ -631,13 +627,10 @@ function CorrelationMatrixTab() {
  </div>
 
  {/* Tooltip area */}
- <AnimatePresence>
+ 
  {hoveredCell !== null && highlightedVal !== null && (
- <motion.div
+ <div
  key="tooltip"
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 6 }}
  className="mt-4 p-3 bg-muted/60 border border-border rounded-lg flex items-center gap-4"
  >
  <div className="flex items-center gap-2">
@@ -676,9 +669,9 @@ function CorrelationMatrixTab() {
  : "Negligible"}{""}
  {highlightedVal >= 0 ? "positive" : "negative"} correlation
  </span>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Color legend */}
  <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground">
@@ -728,7 +721,7 @@ function CorrelationMatrixTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -768,10 +761,7 @@ function RollingCorrelationsTab() {
  const maxCorr = Math.max(...current.points.map((p) => p.value));
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 14 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-5"
  >
  {/* Pair selector */}
@@ -822,21 +812,17 @@ function RollingCorrelationsTab() {
  </CardTitle>
  </CardHeader>
  <CardContent>
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedPair}
- initial={{ opacity: 0, x: 12 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -12 }}
- transition={{ duration: 0.25 }}
  >
  <RollingCorrChart
  points={current.points}
  assetA={current.aLabel}
  assetB={current.bLabel}
  />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  <div className="mt-3 flex gap-4 text-xs text-muted-foreground">
  <span className="flex items-center gap-1">
  <span className="w-3 h-0.5 bg-primary inline-block" /> Rolling corr
@@ -872,7 +858,7 @@ function RollingCorrelationsTab() {
  </p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -933,10 +919,7 @@ function CrisisCorrelationsTab() {
  ];
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 14 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-5"
  >
  {/* Crisis selector */}
@@ -958,13 +941,9 @@ function CrisisCorrelationsTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedCrisis}
- initial={{ opacity: 0, x: 12 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -12 }}
- transition={{ duration: 0.25 }}
  className="space-y-5"
  >
  {/* Description card */}
@@ -1066,25 +1045,21 @@ function CrisisCorrelationsTab() {
  </Button>
  </div>
  </CardHeader>
- <AnimatePresence>
+ 
  {showMatrix && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="overflow-hidden"
  >
  <CardContent className="pt-0">
  <CorrelationHeatmap matrix={era.matrix} title={`${era.label} (${era.period})`} />
  </CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
- </motion.div>
- </AnimatePresence>
- </motion.div>
+ </div>
+ 
+ </div>
  );
 }
 
@@ -1116,10 +1091,7 @@ function DiversificationScoreTab() {
  const overallScore = Math.round((drScore * 0.5 + concentrationScore * 0.5));
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 14 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-5"
  >
  {/* Gauge row */}
@@ -1272,7 +1244,7 @@ function DiversificationScoreTab() {
  })()}
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -1299,10 +1271,7 @@ function OptimalPairsTab() {
  "text-muted-foreground bg-muted/50";
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 14 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-5"
  >
  {/* Intro card */}
@@ -1350,10 +1319,8 @@ function OptimalPairsTab() {
  {sorted.map((pair, i) => {
  const isExpanded = expandedIdx === i;
  return (
- <motion.div
+ <div
  key={`${pair.a}-${pair.b}`}
- layout
- transition={{ duration: 0.2 }}
  >
  <Card className="bg-muted/50 border-border hover:border-border transition-colors">
  <CardContent className="pt-0 pb-0">
@@ -1392,13 +1359,9 @@ function OptimalPairsTab() {
  </div>
  </button>
 
- <AnimatePresence>
+ 
  {isExpanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="border-t border-border py-4 space-y-3">
@@ -1448,12 +1411,12 @@ function OptimalPairsTab() {
  </svg>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -1496,7 +1459,7 @@ function OptimalPairsTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 

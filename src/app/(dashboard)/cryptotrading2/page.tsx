@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Activity,
  TrendingUp,
@@ -991,11 +990,8 @@ export default function CryptoTrading2Page() {
  <TabsContent value="strategies" className="space-y-4">
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {arbitrageOpps.map((opp) => (
- <motion.div
+ <div
  key={opp.name}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
  >
  <Card className="bg-foreground/[0.03] border-border h-full">
  <CardHeader className="pb-3">
@@ -1029,7 +1025,7 @@ export default function CryptoTrading2Page() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
 

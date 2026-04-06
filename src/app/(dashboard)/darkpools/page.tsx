@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Eye,
  EyeOff,
@@ -526,12 +525,8 @@ function DarkPoolLandscapeTab() {
  </h3>
  <div className="space-y-1.5 overflow-y-auto max-h-64 pr-1">
  {DARK_POOLS.map((pool, i) => (
- <motion.div
+ <div
  key={pool.name}
- custom={i}
- variants={fadeUp}
- initial="hidden"
- animate="visible"
  className={cn(
  "flex items-center gap-2 rounded-lg px-3 py-2 cursor-pointer transition-colors",
  selected === pool.name
@@ -561,20 +556,17 @@ function DarkPoolLandscapeTab() {
  >
  {pool.type === "Broker-Dealer" ? "BD" : pool.type === "Exchange-Owned" ? "EX" : "IND"}
  </Badge>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
  </div>
 
  {/* Selected pool detail */}
- <AnimatePresence>
+ 
  {selectedPool && (
- <motion.div
+ <div
  key={selectedPool.name}
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
  className="overflow-hidden"
  >
  <div
@@ -584,9 +576,9 @@ function DarkPoolLandscapeTab() {
  <div className="flex items-center gap-3 mb-3">
  <div
  className="w-8 h-8 rounded-lg flex items-center justify-center"
- style={{ background: selectedPool.color + "33" }}
+ style={{ background: selectedPool.color + "33", color: selectedPool.color }}
  >
- <EyeOff className="w-4 h-4" style={{ color: selectedPool.color }} />
+ <EyeOff className="w-4 h-4"  />
  </div>
  <div>
  <div className="font-medium text-foreground">{selectedPool.name}</div>
@@ -623,9 +615,9 @@ function DarkPoolLandscapeTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* ATS vs Exchange comparison */}
  <div className="bg-muted/50 rounded-md p-4 border border-border">
@@ -638,12 +630,9 @@ function DarkPoolLandscapeTab() {
  <div key={c.label} className="flex items-center gap-3">
  <div className="w-32 text-xs text-muted-foreground shrink-0">{c.label}</div>
  <div className="flex-1 bg-muted/40 rounded-full h-5 relative overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full"
- style={{ background: c.color }}
- initial={{ width: 0 }}
- animate={{ width: `${c.share}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+ style={{ background: c.color, width: `${c.share}%` }}
  />
  </div>
  <div className="text-xs font-medium text-foreground w-10 text-right tabular-nums">
@@ -716,10 +705,8 @@ function WhyDarkPoolsTab() {
  {/* Reason selector */}
  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
  {reasons.map((r, i) => (
- <motion.button
+ <button
  key={r.title}
- whileHover={{ scale: 1.02 }}
- whileTap={{ scale: 0.98 }}
  onClick={() => setActiveReason(i)}
  className={cn(
  "rounded-md p-3 text-left border transition-colors",
@@ -737,18 +724,14 @@ function WhyDarkPoolsTab() {
  {r.icon}
  </div>
  <div className="text-xs font-medium text-foreground">{r.title}</div>
- </motion.button>
+ </button>
  ))}
  </div>
 
  {/* Active reason content */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeReason}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.25 }}
  className="rounded-md p-5 border"
  style={{
  borderColor: reasons[activeReason].color + "44",
@@ -758,9 +741,9 @@ function WhyDarkPoolsTab() {
  <div className="flex items-center gap-3 mb-3">
  <div
  className="w-9 h-9 rounded-lg flex items-center justify-center"
- style={{ background: reasons[activeReason].color + "28" }}
+ style={{ background: reasons[activeReason].color + "28", color: reasons[activeReason].color }}
  >
- <span style={{ color: reasons[activeReason].color }}>
+ <span >
  {reasons[activeReason].icon}
  </span>
  </div>
@@ -787,8 +770,8 @@ function WhyDarkPoolsTab() {
  </div>
  ))}
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Price improvement table */}
  <div className="bg-muted/50 rounded-md p-4 border border-border">
@@ -944,13 +927,9 @@ function OrderTypesTab() {
  </div>
 
  {/* Order detail */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selected}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- transition={{ duration: 0.2 }}
  className="grid grid-cols-1 md:grid-cols-2 gap-4"
  >
  <div className="bg-muted/50 rounded-md p-4 border border-border">
@@ -1025,8 +1004,8 @@ function OrderTypesTab() {
  </div>
  </div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Order routing decision tree SVG */}
  <div className="bg-muted/50 rounded-md p-4 border border-border">
@@ -1167,24 +1146,22 @@ function HFTInteractionTab() {
  {/* HFT concerns grid */}
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
  {hftConcerns.map((c) => (
- <motion.div
+ <div
  key={c.title}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
  className="rounded-md p-4 border"
  style={{ borderColor: c.color + "44", background: c.color + "0d" }}
  >
  <div className="flex items-center gap-2 mb-2">
  <div
  className="w-7 h-7 rounded-lg flex items-center justify-center"
- style={{ background: c.color + "28" }}
+ style={{ background: c.color + "28", color: c.color }}
  >
- <span style={{ color: c.color }}>{c.icon}</span>
+ <span >{c.icon}</span>
  </div>
  <h3 className="text-sm font-medium text-foreground">{c.title}</h3>
  </div>
  <p className="text-xs text-muted-foreground leading-relaxed">{c.description}</p>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1245,7 +1222,7 @@ function HFTInteractionTab() {
  {/* Events list */}
  <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
  {HFT_TIMELINE.map((ev, i) => (
- <motion.div
+ <div
  key={ev.year + ev.title}
  className={cn(
  "rounded-lg px-3 py-2.5 cursor-pointer border transition-colors",
@@ -1277,21 +1254,18 @@ function HFTInteractionTab() {
  {typeLabel[ev.type]}
  </Badge>
  </div>
- <AnimatePresence>
+ 
  {activeEvent === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="overflow-hidden"
  >
  <p className="text-xs text-muted-foreground mt-2 pl-8 leading-relaxed">
  {ev.description}
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  </div>
@@ -1381,22 +1355,18 @@ function LitVsDarkTab() {
  <div className="flex items-center gap-2">
  <span className="text-xs text-muted-foreground w-6">Lit</span>
  <div className="flex-1 bg-muted/40 rounded-full h-3 overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full bg-primary/70"
- initial={{ width: 0 }}
- animate={{ width: `${litW}%` }}
- transition={{ duration: 0.6, ease: "easeOut" }}
+ style={{ width: `${litW}%` }}
  />
  </div>
  </div>
  <div className="flex items-center gap-2">
  <span className="text-xs text-muted-foreground w-6">Dark</span>
  <div className="flex-1 bg-muted/40 rounded-full h-3 overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full bg-primary/70"
- initial={{ width: 0 }}
- animate={{ width: `${darkW}%` }}
- transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+ style={{ width: `${darkW}%` }}
  />
  </div>
  </div>
@@ -1541,10 +1511,7 @@ export default function DarkPoolsPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
  {/* Page header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start gap-4"
  >
  <div className="w-12 h-12 rounded-md bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center shrink-0">
@@ -1558,7 +1525,7 @@ export default function DarkPoolsPage() {
  Alternative Trading Systems, HFT dynamics, order routing, and the hidden plumbing of equity markets.
  </p>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="landscape" className="mt-8 space-y-4">

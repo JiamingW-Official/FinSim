@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Building2,
  Zap,
@@ -628,11 +627,7 @@ function InfrastructureTab() {
  </div>
 
  {selected && (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- className="mt-4 p-4 rounded-lg border border-border bg-muted/30"
- >
+ <div className="mt-4 p-4 rounded-lg border border-border bg-muted/30">
  <div className="flex items-start justify-between gap-4">
  <div>
  <div className="flex items-center gap-2 mb-1">
@@ -659,7 +654,7 @@ function InfrastructureTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
@@ -838,13 +833,11 @@ function RealEstateTab() {
  <span className="font-mono text-emerald-400">{fmtPct(r.capRate)}</span>
  </div>
  <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(r.capRate / 8) * 100}%` }}
- transition={{ duration: 0.6, ease: "easeOut" }}
+ <div
  className={`h-full rounded-full ${
  r.type === "REIT" ? "bg-primary" : "bg-amber-500"
  }`}
+ style={{ width: `${(r.capRate / 8) * 100}%` }}
  />
  </div>
  </div>
@@ -1048,11 +1041,7 @@ function CommoditiesTab() {
  </div>
 
  {hoveredComm && (
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- className="mt-3 p-3 rounded-lg border border-border bg-muted/30 flex flex-wrap gap-4 text-sm"
- >
+ <div className="mt-3 p-3 rounded-lg border border-border bg-muted/30 flex flex-wrap gap-4 text-sm">
  <div>
  <span className="text-muted-foreground">Name: </span>
  <span className="font-semibold">{hoveredComm.name}</span>
@@ -1077,7 +1066,7 @@ function CommoditiesTab() {
  <span className="text-muted-foreground">Inflation Corr.: </span>
  <span className="font-mono text-foreground">{hoveredComm.inflationCorr.toFixed(2)}</span>
  </div>
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
@@ -1276,11 +1265,7 @@ function TimberFarmlandTab() {
  </div>
 
  {selected && (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- className="mt-4 p-4 rounded-lg border border-border bg-muted/30"
- >
+ <div className="mt-4 p-4 rounded-lg border border-border bg-muted/30">
  <div className="flex flex-wrap items-start gap-3">
  <div className="flex-1 min-w-[200px]">
  <div className="flex items-center gap-2 mb-1">
@@ -1327,7 +1312,7 @@ function TimberFarmlandTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
  </CardContent>
  </Card>
@@ -1518,15 +1503,10 @@ function PortfolioRoleTab() {
  </CardHeader>
  <CardContent>
  {showInfo && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- className="mb-4 p-3 rounded-lg bg-muted/10 border border-border text-xs text-foreground"
- >
+ <div className="mb-4 p-3 rounded-lg bg-muted/10 border border-border text-xs text-foreground">
  Darker green = higher positive correlation. Lower correlations with stocks and bonds indicate
  stronger diversification benefit. Inflation column shows hedge effectiveness.
- </motion.div>
+ </div>
  )}
  <div className="overflow-x-auto">
  <svg width={matrixW} height={matrixH} className="min-w-[350px]">
@@ -1629,11 +1609,9 @@ function PortfolioRoleTab() {
  </span>
  </div>
  <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(sc.sharpe / 1.0) * 100}%` }}
- transition={{ duration: 0.7, ease: "easeOut" }}
+ <div
  className={`h-full rounded-full ${isMax ? "bg-primary" : "bg-muted/50"}`}
+ style={{ width: `${(sc.sharpe / 1.0) * 100}%` }}
  />
  </div>
  </div>
@@ -1680,10 +1658,7 @@ function PortfolioRoleTab() {
  </span>
  </div>
  <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${m.hedgeScore}%` }}
- transition={{ duration: 0.6, ease: "easeOut" }}
+ <div
  className={`h-full rounded-full ${
  m.hedgeScore >= 80
  ? "bg-emerald-500"
@@ -1691,6 +1666,7 @@ function PortfolioRoleTab() {
  ? "bg-amber-500"
  : "bg-rose-500"
  }`}
+ style={{ width: `${m.hedgeScore}%` }}
  />
  </div>
  </div>
@@ -1708,16 +1684,11 @@ export default function RealAssetsPage() {
  void rand();
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
- >
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
  <div>
- <h1 className="text-lg font-medium tracking-tight flex items-center gap-2">
+ <h1 className="text-3xl font-bold tracking-tight">
  Real Assets &amp; Infrastructure
  </h1>
  <p className="text-sm text-muted-foreground mt-0.5">
@@ -1769,19 +1740,19 @@ export default function RealAssetsPage() {
  {/* Tabs */}
  <Tabs defaultValue="infrastructure" className="w-full">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="infrastructure" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="infrastructure" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Infrastructure
  </TabsTrigger>
- <TabsTrigger value="realestate" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="realestate" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Real Estate
  </TabsTrigger>
- <TabsTrigger value="commodities" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="commodities" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Commodities
  </TabsTrigger>
- <TabsTrigger value="timberland" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="timberland" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Timber &amp; Farm
  </TabsTrigger>
- <TabsTrigger value="portfolio" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="portfolio" className="data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground">
  Portfolio Role
  </TabsTrigger>
  </TabsList>
@@ -1847,6 +1818,6 @@ export default function RealAssetsPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }

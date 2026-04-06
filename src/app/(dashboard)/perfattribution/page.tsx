@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  BarChart3,
  TrendingUp,
@@ -341,9 +340,9 @@ function FormulaCard({
  return (
  <div
  className="rounded-lg border p-4"
- style={{ borderColor: color + "40", background: color + "08" }}
+ style={{ borderColor: color + "40", background: color + "08", color }}
  >
- <div className="text-xs font-semibold mb-1" style={{ color }}>
+ <div className="text-xs font-semibold mb-1" >
  {title}
  </div>
  <div
@@ -606,7 +605,7 @@ function BHBTab() {
  <td className="text-right px-2" style={{ color: totalAlloc >= 0 ? "#22c55e" : "#ef4444" }}>
  {bps(totalAlloc)}
  </td>
- <td className="text-right px-2" style={{ color: totalSel >= 0 ? "#22c55e" : "#ef4444" }}>
+ <td className="text-right px-2" >
  {bps(totalSel)}
  </td>
  <td className="text-right px-2 text-muted-foreground">{bps(totalInt)}</td>
@@ -621,13 +620,9 @@ function BHBTab() {
  </Card>
 
  {/* Selected sector detail */}
- <AnimatePresence>
- {sel && (
- <motion.div
+  {sel && (
+ <div
  key={sel.sector}
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
  >
  <Card className="border-border bg-card/80" style={{ borderColor: sel.color + "60" }}>
  <CardHeader className="pb-2">
@@ -645,7 +640,7 @@ function BHBTab() {
  <div className="font-mono" style={{ color: sel.color }}>
  = ({pct(sel.portfolioWeight)} − {pct(sel.benchmarkWeight)}) × ({pct(sel.benchmarkReturn)} − {pct(benchmarkReturn)})
  </div>
- <div className="font-medium text-sm" style={{ color: sel.allocationEffect >= 0 ? "#22c55e" : "#ef4444" }}>
+ <div className="font-medium text-sm" >
  = {bps(sel.allocationEffect)}
  </div>
  </div>
@@ -657,7 +652,7 @@ function BHBTab() {
  <div className="font-mono" style={{ color: sel.color }}>
  = {pct(sel.benchmarkWeight)} × ({pct(sel.portfolioReturn)} − {pct(sel.benchmarkReturn)})
  </div>
- <div className="font-medium text-sm" style={{ color: sel.selectionEffect >= 0 ? "#22c55e" : "#ef4444" }}>
+ <div className="font-medium text-sm" >
  = {bps(sel.selectionEffect)}
  </div>
  </div>
@@ -673,10 +668,9 @@ function BHBTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
-
+ 
  {/* Formula cards */}
  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
  <FormulaCard
@@ -928,8 +922,8 @@ function FactorTab() {
  { range: "R² < 0.60", label: "Alternative / tail risk strategy", color: "#8b5cf6" },
  ].map(({ range, label, color }) => (
  <div key={range} className="flex items-center gap-2">
- <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: color }} />
- <span className="font-mono text-xs" style={{ color }}>{range}</span>
+ <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: color, color }} />
+ <span className="font-mono text-xs" >{range}</span>
  <span className="text-muted-foreground">{label}</span>
  </div>
  ))}
@@ -1294,8 +1288,8 @@ function RiskTab() {
  { bmk: "Russell 2000 (β≈1.3)", ir: "0.42", sharpe: "0.98", color: "#f59e0b" },
  { bmk: "T-Bill (β≈0)", ir: "2.10", sharpe: "1.24", color: "#22c55e" },
  ].map(({ bmk, ir, sharpe, color }) => (
- <div key={bmk} className="rounded-lg border border-border p-3" style={{ borderColor: color + "40" }}>
- <div className="font-medium text-xs mb-1" style={{ color }}>{bmk}</div>
+ <div key={bmk} className="rounded-lg border border-border p-3" style={{ borderColor: color + "40", color }}>
+ <div className="font-medium text-xs mb-1" >{bmk}</div>
  <div>IR: <span className="font-medium text-foreground">{ir}</span></div>
  <div>Sharpe: <span className="font-medium text-foreground">{sharpe}</span></div>
  </div>
@@ -1697,21 +1691,15 @@ function ManagerTab() {
  <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
  )}
  </div>
- <AnimatePresence>
- {isExpanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.18 }}
+  {isExpanded && (
+ <div
  >
  <div className="px-3 pb-3 text-xs text-muted-foreground border-t border-border pt-2">
  {flag.detail}
  </div>
- </motion.div>
- )}
- </AnimatePresence>
  </div>
+ )}
+  </div>
  );
  })}
  </CardContent>
@@ -1724,12 +1712,9 @@ function ManagerTab() {
 
 export default function PerfAttributionPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-2">
@@ -1737,7 +1722,7 @@ export default function PerfAttributionPage() {
  <BarChart3 className="w-5 h-5 text-indigo-400" />
  </div>
  <div>
- <h1 className="text-xl font-medium text-foreground">Investment Performance Attribution</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Investment Performance Attribution</h1>
  <p className="text-xs text-muted-foreground">
  BHB decomposition · Factor attribution · Risk metrics · Manager evaluation
  </p>
@@ -1759,67 +1744,55 @@ export default function PerfAttributionPage() {
  </Badge>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="bhb">
- <TabsList className="bg-card border border-border mb-6">
- <TabsTrigger value="bhb" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4 mb-6">
+ <TabsTrigger value="bhb" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  <Layers className="w-3.5 h-3.5 mr-1.5" />
  BHB Attribution
  </TabsTrigger>
- <TabsTrigger value="factor" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
+ <TabsTrigger value="factor" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  <Activity className="w-3.5 h-3.5 mr-1.5" />
  Factor Attribution
  </TabsTrigger>
- <TabsTrigger value="risk" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
+ <TabsTrigger value="risk" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  <Percent className="w-3.5 h-3.5 mr-1.5" />
  Risk-Adjusted Metrics
  </TabsTrigger>
- <TabsTrigger value="manager" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
+ <TabsTrigger value="manager" className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5">
  <Award className="w-3.5 h-3.5 mr-1.5" />
  Manager Evaluation
  </TabsTrigger>
  </TabsList>
 
  <TabsContent value="bhb" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <BHBTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="factor" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <FactorTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="risk" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <RiskTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="manager" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
+ <div
  >
  <ManagerTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

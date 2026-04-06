@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -217,12 +216,9 @@ function SignalStrengthMeter({ score }: { score: number }) {
  <span className="text-sm font-semibold" style={{ color }}>{label}</span>
  </div>
  <div className="h-3 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full"
- style={{ backgroundColor: color }}
- initial={{ width: 0 }}
- animate={{ width: `${pct}%` }}
- transition={{ duration: 0.5, ease: "easeOut" }}
+ style={{ backgroundColor: color, width: `${pct}%` }}
  />
  </div>
  <div className="flex justify-between text-xs text-muted-foreground">
@@ -432,21 +428,20 @@ export default function MomentumBuilderPage() {
  const botDecile = stocks.slice(27, 30);
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
- <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Momentum Builder</h1>
- <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-6">CROSS-SECTIONAL · TIME-SERIES · SIGNALS</p>
-
- <div className="border-t border-border mb-6" />
+ <div>
+ <h1 className="text-3xl font-bold tracking-tight mb-1">Momentum Builder</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground">CROSS-SECTIONAL · TIME-SERIES · SIGNALS</p>
+ </div>
 
  <Tabs defaultValue="builder" className="w-full">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="builder" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signal Builder</TabsTrigger>
- <TabsTrigger value="screener" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Universe</TabsTrigger>
- <TabsTrigger value="backtest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtest</TabsTrigger>
- <TabsTrigger value="decay" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Decay</TabsTrigger>
- <TabsTrigger value="crash" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Crashes</TabsTrigger>
+ <TabsTrigger value="builder" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signal Builder</TabsTrigger>
+ <TabsTrigger value="screener" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Universe</TabsTrigger>
+ <TabsTrigger value="backtest" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Backtest</TabsTrigger>
+ <TabsTrigger value="decay" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Decay</TabsTrigger>
+ <TabsTrigger value="crash" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Crashes</TabsTrigger>
  </TabsList>
 
  {/* ── Tab 1: Signal Builder ── */}
@@ -655,11 +650,8 @@ export default function MomentumBuilderPage() {
  const isTop = idx < 3;
  const isBot = idx >= 27;
  return (
- <motion.tr
+ <tr
  key={stock.ticker}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: idx * 0.01 }}
  className={`border-b border-border hover:bg-muted/30 transition-colors ${
  isTop ? "bg-green-950/30" : isBot ? "bg-red-950/30" : ""
  }`}
@@ -696,7 +688,7 @@ export default function MomentumBuilderPage() {
  D{stock.decile}
  </Badge>
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -976,11 +968,8 @@ export default function MomentumBuilderPage() {
  {/* Crash events */}
  <div className="space-y-3">
  {CRASH_EVENTS.map((ev, i) => (
- <motion.div
+ <div
  key={ev.name}
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.08 }}
  >
  <Card className="border-l-4" style={{ borderLeftColor: ev.color }}>
  <CardContent className="pt-4">
@@ -1013,7 +1002,7 @@ export default function MomentumBuilderPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1084,7 +1073,6 @@ export default function MomentumBuilderPage() {
  </div>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

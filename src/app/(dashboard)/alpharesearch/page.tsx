@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -187,10 +186,7 @@ function MetricCard({
  delay: number;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay, duration: 0.4 }}
+ <div
  >
  <Card className="bg-card border-border">
  <CardContent className="pt-5 pb-4">
@@ -200,13 +196,13 @@ function MetricCard({
  <p className="text-2xl font-semibold" style={{ color }}>{value}</p>
  <p className="text-xs text-muted-foreground mt-1">{sub}</p>
  </div>
- <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: color + "22" }}>
- <Icon className="w-5 h-5" style={{ color }} />
+ <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: color + "22", color }}>
+ <Icon className="w-5 h-5"  />
  </div>
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 

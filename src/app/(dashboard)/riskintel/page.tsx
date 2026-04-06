@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -845,10 +844,7 @@ export default function RiskIntelPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 lg:p-4">
  {/* Page header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-6"
  >
  <div className="flex items-center gap-3 mb-1">
@@ -862,7 +858,7 @@ export default function RiskIntelPage() {
  <p className="text-muted-foreground text-sm ml-11">
  Comprehensive risk analytics: concentration, correlation, drawdown, stress testing &amp; position sizing
  </p>
- </motion.div>
+ </div>
 
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
@@ -887,10 +883,7 @@ export default function RiskIntelPage() {
  TAB 1: Risk Overview
  ================================================================ */}
  <TabsContent value="overview" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-4"
  >
  {/* Overall score banner */}
@@ -1168,17 +1161,14 @@ export default function RiskIntelPage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ================================================================
  TAB 2: Correlation Matrix
  ================================================================ */}
  <TabsContent value="correlation" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-5"
  >
  {/* Controls */}
@@ -1276,13 +1266,10 @@ export default function RiskIntelPage() {
  </CardTitle>
  </CardHeader>
  <CardContent className="px-4 pb-4">
- <AnimatePresence mode="wait">
+ 
  {selectedCell ? (
- <motion.div
+ <div
  key={`${selectedCell.i}-${selectedCell.j}`}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -4 }}
  className="space-y-2"
  >
  <div className="flex items-center gap-2">
@@ -1317,18 +1304,16 @@ export default function RiskIntelPage() {
  During crisis: correlation spikes as all risk assets fall together. Safe havens (GLD, TLT) maintain or deepen negative correlations.
  </div>
  )}
- </motion.div>
+ </div>
  ) : (
- <motion.p
+ <p
  key="placeholder"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
  className="text-xs text-muted-foreground italic"
  >
  Click any off-diagonal cell in the heatmap to see a detailed explanation of why these two positions are correlated.
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
 
@@ -1388,25 +1373,22 @@ export default function RiskIntelPage() {
  { label: "Defensive", color: "#34d399", members: "JNJ, GLD, TLT" },
  ].map((c) => (
  <div key={c.label} className="flex items-center gap-1.5 bg-muted rounded-full px-3 py-1">
- <div className="w-2 h-2 rounded-full" style={{ backgroundColor: c.color }} />
- <span className="font-medium" style={{ color: c.color }}>{c.label}:</span>
+ <div className="w-2 h-2 rounded-full" style={{ backgroundColor: c.color, color: c.color }} />
+ <span className="font-medium" >{c.label}:</span>
  <span className="text-muted-foreground">{c.members}</span>
  </div>
  ))}
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ================================================================
  TAB 3: Drawdown Analysis
  ================================================================ */}
  <TabsContent value="drawdown" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-5"
  >
  {/* Stats row */}
@@ -1561,17 +1543,14 @@ export default function RiskIntelPage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ================================================================
  TAB 4: Scenario Analysis
  ================================================================ */}
  <TabsContent value="scenarios" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-5"
  >
  {/* Scenario impact bar chart */}
@@ -1600,7 +1579,7 @@ export default function RiskIntelPage() {
  const color = impact > -10 ? "#f59e0b" : impact > -20 ? "#f97316" : "#ef4444";
  const isSelected = selectedScenario === i;
  return (
- <motion.div key={s.name} whileHover={{ scale: 1.01 }} transition={{ duration: 0.15 }}>
+ <div key={s.name}>
  <Card
  className={`bg-card border-border cursor-pointer transition-colors ${
  isSelected ? "border-orange-500/50 bg-muted/80" : "hover:border-border"
@@ -1625,13 +1604,9 @@ export default function RiskIntelPage() {
  <div className="text-xs text-muted-foreground">portfolio P&amp;L</div>
  </div>
  </div>
- <AnimatePresence>
+ 
  {isSelected && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="overflow-hidden"
  >
  <div className="pt-3 border-t border-border mt-3 space-y-2">
@@ -1666,12 +1641,12 @@ export default function RiskIntelPage() {
  </span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -1770,17 +1745,14 @@ export default function RiskIntelPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
 
  {/* ================================================================
  TAB 5: Position Sizing & Kelly
  ================================================================ */}
  <TabsContent value="sizing" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="space-y-5"
  >
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -2127,7 +2099,7 @@ export default function RiskIntelPage() {
  >
  {m.after}
  </span>
- <span className="text-xs" style={{ color: m.improved ? "#22c55e" : "#f97316" }}>
+ <span className="text-xs" >
  {m.improved ? "↓ Better" : "↑ Worse"}
  </span>
  </div>
@@ -2152,7 +2124,7 @@ export default function RiskIntelPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

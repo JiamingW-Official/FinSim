@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -558,9 +557,9 @@ function SectorImpactBar({ value }: { value: number }) {
  <div className="flex items-center gap-1">
  <div className="w-20 h-3 bg-muted rounded overflow-hidden relative">
  {value >= 0 ? (
- <div className="absolute left-1/2 top-0 h-full rounded" style={{ width: absW, background: color }} />
+ <div className="absolute left-1/2 top-0 h-full rounded" style={{ width: absW, background: color, right: "50%" }} />
  ) : (
- <div className="absolute top-0 h-full rounded" style={{ width: absW, right: "50%", background: color }} />
+ <div className="absolute top-0 h-full rounded" style={{ width: absW, background: color, right: "50%" }} />
  )}
  <div className="absolute left-1/2 top-0 w-px h-full bg-muted" />
  </div>
@@ -656,14 +655,10 @@ function EventImpactTab() {
  </Card>
 
  {/* detail panel */}
- <AnimatePresence mode="wait">
+ 
  {selectedEvent && (
- <motion.div
+ <div
  key={selectedEvent.id}
- initial={{ opacity: 0, x: 24 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: 24 }}
- transition={{ duration: 0.2 }}
  className="xl:col-span-2"
  >
  <Card className="bg-card border-border h-full">
@@ -731,9 +726,9 @@ function EventImpactTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  </div>
  );
@@ -763,8 +758,8 @@ function SanctionsTradeTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div key={activeSection} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ 
+ <div key={activeSection}>
  {activeSection === "swift" && (
  <div className="space-y-4">
  {/* SWIFT mechanism SVG */}
@@ -1020,8 +1015,8 @@ function SanctionsTradeTab() {
  </Card>
  </div>
  )}
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
  );
 }
@@ -1239,12 +1234,9 @@ function PortfolioPositioningTab() {
  </div>
 
  {/* Selected scenario detail */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedScenario.id}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 8 }}
  >
  <Card className="bg-card border-red-900/40">
  <CardHeader className="pb-2">
@@ -1294,8 +1286,8 @@ function PortfolioPositioningTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Hedge strategy table */}
  <Card className="bg-card border-border">
@@ -1460,9 +1452,7 @@ export default function GeopoliticsPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-1">
@@ -1476,7 +1466,7 @@ export default function GeopoliticsPage() {
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  <Tabs defaultValue="events" className="mt-8">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">

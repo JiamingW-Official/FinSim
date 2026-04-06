@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
  Trophy, DollarSign, Target, TrendingUp, Flame,
@@ -210,10 +209,8 @@ export default function LeaderboardPage() {
  {tab.icon}
  {tab.label}
  {isActive && (
- <motion.span
- layoutId="leaderboard-main-tab"
+ <span
  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
- transition={{ type: "spring", stiffness: 400, damping: 30 }}
  />
  )}
  </button>
@@ -224,21 +221,17 @@ export default function LeaderboardPage() {
 
  {/* ===== CONTENT ===== */}
  <div className="flex-1 overflow-y-auto px-4 py-4">
- <AnimatePresence mode="wait">
+ 
  {mainTab === "global" && (
- <motion.div
+ <div
  key="global"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.15 }}
  >
  {/* Season Pass */}
  <div className="mb-4 space-y-0">
  <SeasonBanner expanded={seasonExpanded} onToggle={() => setSeasonExpanded((v) => !v)} />
- <AnimatePresence>
+ 
  {seasonExpanded && <SeasonRewardTrack />}
- </AnimatePresence>
+ 
  </div>
 
  {/* Dimension + Time Period filters */}
@@ -399,52 +392,36 @@ export default function LeaderboardPage() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
 
  {mainTab === "friends" && (
- <motion.div
+ <div
  key="friends"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.15 }}
  >
  <FriendsTab friends={friends} />
- </motion.div>
+ </div>
  )}
 
  {mainTab === "stats" && (
- <motion.div
+ <div
  key="stats"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.15 }}
  >
  <YourStatsTab ranked={ranked} userRank={userRank} />
- </motion.div>
+ </div>
  )}
 
  {mainTab === "trophies" && (
- <motion.div
+ <div
  key="trophies"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.15 }}
  >
  <TrophyCaseTab achievements={achievements} />
- </motion.div>
+ </div>
  )}
 
  {mainTab === "season" && (
- <motion.div
+ <div
  key="season"
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.15 }}
  >
  <div className="mb-3">
  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50 mb-0.5">
@@ -457,9 +434,9 @@ export default function LeaderboardPage() {
  <div className="rounded-md border border-border bg-card/50 overflow-hidden">
  <CompetitionLeaderboard />
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  </div>
  );

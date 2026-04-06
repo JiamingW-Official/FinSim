@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  DollarSign,
  TrendingUp,
@@ -172,20 +171,11 @@ function ExpandSection({ title, children }: { title: string; children: React.Rea
  {title}
  {open ? <ChevronUp size={14} className="text-foreground/40" /> : <ChevronDown size={14} className="text-foreground/40" />}
  </button>
- <AnimatePresence initial={false}>
  {open && (
- <motion.div
- key="content"
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
- <div className="px-4 pb-4 text-sm text-foreground/60 leading-relaxed">{children}</div>
- </motion.div>
- )}
- </AnimatePresence>
+             <div className="overflow-hidden">
+               <div className="px-4 pb-4 text-sm text-foreground/60 leading-relaxed">{children}</div>
+             </div>
+           )}
  </div>
  );
 }
@@ -473,14 +463,14 @@ export default function LoanSyndPage() {
  const bidAsk = 0.375; // typical bid/ask in pts
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
  <div className="mb-6">
  <div className="flex items-center gap-3 mb-1">
  <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center">
  <Layers size={16} className="text-indigo-400" />
  </div>
- <h1 className="text-xl font-semibold">Leveraged Loan Syndication</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Leveraged Loan Syndication</h1>
  <Pill color="purple">Leveraged Finance</Pill>
  </div>
  <p className="text-sm text-foreground/50 ml-11">
@@ -496,26 +486,20 @@ export default function LoanSyndPage() {
  { label: "Avg TLB Spread", value: "SOFR+450", sub: "B-rated credit", icon: Percent, color: "text-amber-400" },
  { label: "Cov-Lite Share", value: "91%", sub: "2024 new issuance", icon: Shield, color: "text-emerald-400" },
  ].map((kpi, i) => (
- <motion.div
- key={i}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.06 }}
- className="bg-foreground/5 rounded-md border border-border p-4"
- >
+ <div className="bg-foreground/5 rounded-md border border-border p-4">
  <div className="flex items-center gap-2 mb-1">
  <kpi.icon size={14} className={kpi.color} />
  <span className="text-xs text-foreground/40">{kpi.label}</span>
  </div>
  <p className="text-lg font-medium">{kpi.value}</p>
  <p className="text-xs text-foreground/40">{kpi.sub}</p>
- </motion.div>
+ </div>
  ))}
  </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {[
  { id: "structure", label: "Loan Structure" },
  { id: "syndication", label: "Syndication Process" },
@@ -525,7 +509,7 @@ export default function LoanSyndPage() {
  <TabsTrigger
  key={t.id}
  value={t.id}
- className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-300 text-foreground/50 text-xs"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5"
  >
  {t.label}
  </TabsTrigger>
@@ -587,14 +571,8 @@ export default function LoanSyndPage() {
  </div>
 
  {/* Selected loan detail */}
- <AnimatePresence>
  {selectedLoan && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- className="bg-indigo-500/10 border border-indigo-500/30 rounded-md p-4 overflow-hidden"
- >
+               <div className="bg-indigo-500/10 border border-indigo-500/30 rounded-md p-4 overflow-hidden">
  <p className="text-sm font-medium text-indigo-300 mb-2">{selectedLoan.company} — Deal Summary</p>
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground">
  <div>
@@ -616,9 +594,8 @@ export default function LoanSyndPage() {
  <p className="text-foreground font-mono font-medium">${selectedLoan.size.toFixed(1)}B</p>
  </div>
  </div>
- </motion.div>
- )}
- </AnimatePresence>
+ </div>
+             )}
 
  {/* TLA vs TLB comparison + Amortization */}
  <div className="grid md:grid-cols-2 gap-4">

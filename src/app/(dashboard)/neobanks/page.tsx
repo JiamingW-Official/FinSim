@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -641,10 +640,7 @@ export default function NeobanksPage() {
 
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- <motion.div
- initial={{ opacity: 0, y: 16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className="max-w-6xl mx-auto space-y-4"
  >
  {/* Header */}
@@ -686,8 +682,8 @@ export default function NeobanksPage() {
 
  {/* ── TAB 1: Business Model ─────────────────────────────────────── */}
  <TabsContent value="business-model" className="mt-4 space-y-4 data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="bm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
+ 
+ <div key="bm" className="space-y-4">
 
  {/* Comparison Table */}
  <Card className="bg-card border-border border-l-4 border-l-primary">
@@ -812,14 +808,14 @@ export default function NeobanksPage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  {/* ── TAB 2: Unit Economics ─────────────────────────────────────── */}
  <TabsContent value="unit-economics" className="mt-4 space-y-4 data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="ue" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
+ 
+ <div key="ue" className="space-y-4">
 
  {/* CAC Calculator */}
  <Card className="bg-card border-border">
@@ -966,14 +962,14 @@ export default function NeobanksPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  {/* ── TAB 3: vs Traditional Banks ──────────────────────────────── */}
  <TabsContent value="vs-traditional" className="mt-4 space-y-4 data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="vt" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
+ 
+ <div key="vt" className="space-y-4">
 
  {/* Cost-to-Income Ratio */}
  <Card className="bg-card border-border">
@@ -1155,14 +1151,14 @@ export default function NeobanksPage() {
  </CardContent>
  </Card>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  {/* ── TAB 4: Market Dynamics ────────────────────────────────────── */}
  <TabsContent value="market-dynamics" className="mt-4 space-y-4 data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
+ 
+ <div key="md" className="space-y-4">
 
  {/* Global Users Chart */}
  <Card className="bg-card border-border">
@@ -1347,11 +1343,11 @@ export default function NeobanksPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

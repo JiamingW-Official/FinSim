@@ -28,7 +28,6 @@ import {
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
 
@@ -577,12 +576,9 @@ function IPOProcessTab() {
  ))}
  </div>
  </div>
- <AnimatePresence>
+ 
  {selectedStage && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-3 rounded-lg border border-border bg-muted/40 p-4">
@@ -601,9 +597,9 @@ function IPOProcessTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  {!selectedStage && (
  <p className="text-xs text-muted-foreground mt-2 italic">Click a stage to learn more</p>
  )}
@@ -1315,10 +1311,7 @@ export default function CapitalMarketsPage() {
  return (
  <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
  {/* HERO Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-1">
@@ -1333,7 +1326,7 @@ export default function CapitalMarketsPage() {
  <p className="text-sm text-muted-foreground ml-11">
  Comprehensive guide to primary and secondary capital markets — from S-1 filing to bond issuance, SPAC mechanics, and ECM analytics.
  </p>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="ipo-process" className="w-full">
@@ -1358,39 +1351,39 @@ export default function CapitalMarketsPage() {
  </TabsList>
 
  <TabsContent value="ipo-process" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <IPOProcessTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="ipo-valuation" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <IPOValuationTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="spac" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <SPACTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="secondary" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <SecondaryOfferingsTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="dcm" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <DCMTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="ecm-analytics" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <div>
  <ECMAnalyticsTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Users,
  TrendingUp,
@@ -557,12 +556,9 @@ function BorrowerDonut() {
  </span>
  </div>
  <div className="w-full bg-muted rounded-full h-1.5">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${seg.pct}%` }}
- transition={{ duration: 0.8, delay: 0.1 }}
+ <div
  className="h-1.5 rounded-full"
- style={{ backgroundColor: seg.color }}
+            style={{ width: `${seg.pct}%`, backgroundColor: seg.color }}
  />
  </div>
  </div>
@@ -1007,13 +1003,9 @@ export default function MicrofinancepagePage() {
  };
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto p-4 sm:p-4 space-y-4">
+  <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
+ <div
  className="space-y-1"
  >
  <div className="flex items-center gap-3">
@@ -1021,7 +1013,7 @@ export default function MicrofinancepagePage() {
  <Globe className="w-5 h-5 text-green-400" />
  </div>
  <div>
- <h1 className="text-xl font-medium text-foreground">
+ <h1 className="text-3xl font-bold tracking-tight">
  Microfinance &amp; Financial Inclusion
  </h1>
  <p className="text-xs text-muted-foreground">
@@ -1047,27 +1039,27 @@ export default function MicrofinancepagePage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Hero */}
  <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Microfinance Research Hub</h2>
+ <h2 className="text-xl font-semibold">Microfinance Research Hub</h2>
  <p className="text-sm text-muted-foreground">Microloan models, MFI financial health analysis, impact evidence, and mobile money innovation.</p>
  </div>
 
  {/* Tabs */}
  <Tabs defaultValue="models" className="mt-8">
  <TabsList className="bg-card border border-border flex flex-wrap h-auto gap-1 p-1">
- <TabsTrigger value="models" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+ <TabsTrigger value="models" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Microfinance Models
  </TabsTrigger>
- <TabsTrigger value="health" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+ <TabsTrigger value="health" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  MFI Financial Health
  </TabsTrigger>
- <TabsTrigger value="impact" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+ <TabsTrigger value="impact" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Impact Metrics
  </TabsTrigger>
- <TabsTrigger value="mobile" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
+ <TabsTrigger value="mobile" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Mobile Money &amp; Innovation
  </TabsTrigger>
  </TabsList>
@@ -1155,12 +1147,9 @@ export default function MicrofinancepagePage() {
  <div key={r.region} className="flex items-center gap-3">
  <span className="text-xs text-muted-foreground w-44 shrink-0">{r.region}</span>
  <div className="flex-1 bg-muted rounded-full h-5 overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${(r.avgLoanUSD / maxVal) * 100}%` }}
- transition={{ duration: 0.6 }}
+ <div
  className="h-5 rounded-full flex items-center justify-end pr-2"
- style={{ backgroundColor: r.color + "44", border: `1px solid ${r.color}` }}
+          style={{ width: `${(r.avgLoanUSD / maxVal) * 100}%`, backgroundColor: r.color + "44", border: `1px solid ${r.color}` }}
  >
  <span
  className="text-xs text-muted-foreground font-mono font-medium"
@@ -1168,7 +1157,7 @@ export default function MicrofinancepagePage() {
  >
  ${r.avgLoanUSD.toLocaleString()}
  </span>
- </motion.div>
+ </div>
  </div>
  </div>
  );
@@ -1725,7 +1714,6 @@ export default function MicrofinancepagePage() {
  </Card>
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

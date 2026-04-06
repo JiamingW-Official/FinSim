@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Shield,
  Building2,
@@ -237,15 +236,12 @@ function StructureTab() {
  <div key={d.type} className="flex items-center gap-3">
  <div className="w-28 text-xs text-muted-foreground shrink-0">{d.type}</div>
  <div className="flex-1 h-6 bg-muted rounded overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${d.pct}%` }}
- transition={{ duration: 0.8, ease: "easeOut" }}
+ <div
+ style={{ width: `${d.pct}%`, backgroundColor: d.color }}
  className="h-full rounded flex items-center pl-2"
- style={{ backgroundColor: d.color }}
  >
  <span className="text-foreground text-xs font-semibold">{d.pct}%</span>
- </motion.div>
+ </div>
  </div>
  <div className="w-16 text-xs text-muted-foreground shrink-0">LTV {d.ltv}</div>
  <div className="w-20 text-right">
@@ -438,14 +434,10 @@ function FrameworksTab() {
  ))}
  </div>
 
- <AnimatePresence>
+ 
  {selectedFw && (
- <motion.div
+ <div
  key={selectedFw.id}
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- transition={{ duration: 0.25 }}
  >
  <div className="bg-card border rounded-md p-5 overflow-hidden" style={{ borderColor: selectedFw.color + "60" }}>
  <div className="flex items-center gap-3 mb-4">
@@ -472,9 +464,9 @@ function FrameworksTab() {
  </div>
  <p className="text-muted-foreground text-sm leading-relaxed">{selectedFw.notes}</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  {/* Bail-in exemption */}
  <SectionCard title="Bail-in Exemption Mechanics" icon={<Shield size={16} />}>
@@ -874,43 +866,31 @@ export default function CoveredBondsPage() {
  </TabsList>
 
  <TabsContent value="structure" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  >
  <StructureTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="frameworks" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  >
  <FrameworksTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="market" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  >
  <MarketDataTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="comparison" className="data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  >
  <ABSComparisonTab />
- </motion.div>
+ </div>
  </TabsContent>
  </Tabs>
  </div>

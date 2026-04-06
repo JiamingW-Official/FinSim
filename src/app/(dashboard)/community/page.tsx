@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Heart, Copy, TrendingUp, TrendingDown, Minus, Users, Star,
  BarChart2, Flame, ChevronUp, ChevronDown, X, ArrowUpRight, ArrowDownRight,
@@ -473,7 +472,7 @@ function TradeIdeasTab() {
 
  {/* Cards */}
  <div className="space-y-2">
- <AnimatePresence mode="popLayout" initial={false}>
+ 
  {sorted.map((trade, i) => {
  const ageMs = Date.now() - trade.timestamp;
  const ageH = Math.floor(ageMs / 3600000);
@@ -484,13 +483,8 @@ function TradeIdeasTab() {
  const upsideAbs = Math.abs(upside);
 
  return (
- <motion.div
+ <div
  key={trade.id}
- layout
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 8 }}
- transition={{ delay: i * 0.03, duration: 0.18 }}
  className={cn(
  "rounded-lg border p-3 space-y-2",
  trade.direction === "long"
@@ -579,10 +573,10 @@ function TradeIdeasTab() {
  {followedTraders.has(trade.trader) ? "Following" : "Follow"}
  </button>
  </div>
- </motion.div>
+ </div>
  );
  })}
- </AnimatePresence>
+ 
 
  {sorted.length === 0 && (
  <p className="text-sm text-muted-foreground text-center py-8">
@@ -610,11 +604,8 @@ function AnalystRatingsTab() {
  const isUp = upside >= 0;
 
  return (
- <motion.div
+ <div
  key={r.ticker}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.04, duration: 0.18 }}
  className="rounded-lg border border-border bg-card p-3 space-y-2"
  >
  {/* Row 1 */}
@@ -658,7 +649,7 @@ function AnalystRatingsTab() {
  )}
  </div>
  )}
- </motion.div>
+ </div>
  );
  })}
  </div>
@@ -684,11 +675,8 @@ function TrendingTab() {
  <h3 className="text-xs font-medium text-foreground">Trending Topics</h3>
  </div>
  {topics.map((t, i) => (
- <motion.div
+ <div
  key={t.id}
- initial={{ opacity: 0, y: -6 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.04, duration: 0.16 }}
  className="rounded-lg border border-border bg-card p-3 space-y-1.5"
  >
  <div className="flex items-start justify-between gap-2">
@@ -711,7 +699,7 @@ function TrendingTab() {
  </div>
  </div>
  <SentimentBar score={t.sentiment} />
- </motion.div>
+ </div>
  ))}
  </section>
 
@@ -722,11 +710,8 @@ function TrendingTab() {
  <span className="text-[11px] text-muted-foreground/50">vs 30-day avg</span>
  </div>
  {anomalies.map((a, i) => (
- <motion.div
+ <div
  key={a.ticker}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.04, duration: 0.16 }}
  className="rounded-lg border border-border bg-card p-2.5"
  >
  <div className="flex items-center gap-2">
@@ -758,7 +743,7 @@ function TrendingTab() {
  {a.priceChange >= 0 ? "+" : ""}{a.priceChange.toFixed(1)}%
  </div>
  </div>
- </motion.div>
+ </div>
  ))}
  </section>
  </div>
@@ -789,11 +774,8 @@ function TopTradersTab() {
  return (
  <div className="space-y-2">
  {traders.map((trader, i) => (
- <motion.div
+ <div
  key={trader.id}
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.04, duration: 0.18 }}
  className="rounded-lg border border-border bg-card p-3 space-y-2"
  >
  {/* Header */}
@@ -864,24 +846,17 @@ function TopTradersTab() {
  {followedTraders.has(trader.id) ? "Following" : "Follow"}
  </button>
  </div>
- </motion.div>
+ </div>
  ))}
 
  {/* Profile Modal */}
- <AnimatePresence>
+ 
  {profileTrader && (
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- exit={{ opacity: 0 }}
+ <div
  className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
  onClick={() => setProfileTrader(null)}
  >
- <motion.div
- initial={{ scale: 0.92, opacity: 0, y: 20 }}
- animate={{ scale: 1, opacity: 1, y: 0 }}
- exit={{ scale: 0.92, opacity: 0, y: 20 }}
- transition={{ duration: 0.2 }}
+ <div
  className="w-full max-w-sm rounded-md border border-border bg-card p-4 space-y-4"
  onClick={(e) => e.stopPropagation()}
  >
@@ -930,10 +905,10 @@ function TopTradersTab() {
  ))}
  </div>
  </div>
- </motion.div>
- </motion.div>
+ </div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
 }

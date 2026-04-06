@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import {
  Building2,
  BarChart3,
@@ -585,11 +585,8 @@ function MarketComparisons() {
  const afford = m.medianPrice / m.medianIncome;
  const score = m.capRate * 0.5 + m.priceGrowth * 0.3 + m.rentGrowth * 0.2;
  return (
- <motion.tr
+ <tr
  key={m.city}
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.02 }}
  className="border-t border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2 font-medium text-foreground">
@@ -621,7 +618,7 @@ function MarketComparisons() {
  <span className="text-xs text-muted-foreground">{score.toFixed(1)}</span>
  </div>
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -807,14 +804,8 @@ function REITAnalysis() {
  </div>
 
  {/* Selected detail */}
- <AnimatePresence>
  {sel && (
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- className="rounded-md border border-primary/30 bg-muted/10 p-5"
- >
+ <div className="rounded-md border border-primary/30 bg-muted/10 p-5">
  <div className="flex justify-between items-start mb-3">
  <div>
  <span className="font-mono font-medium text-xl text-foreground">{sel.ticker}</span>
@@ -836,9 +827,8 @@ function REITAnalysis() {
  {sel.leaseType === "Gross" && " — Landlord pays operating expenses. Requires active management but gives full control over cost structure."}
  {sel.leaseType === "Month-to-Month" && " — Short-term leases with frequent rent resets. Allows quick adjustments to market rates but less income predictability."}
  </InfoBox>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
 
  {/* FFO bar chart */}
  <div className="rounded-md border border-border bg-foreground/5 p-5">
@@ -948,10 +938,8 @@ function CommercialRE() {
  {/* Sector grid */}
  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
  {CRE_SECTORS.map((s) => (
- <motion.div
+ <div
  key={s.type}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
  className="rounded-md border border-border bg-foreground/5 p-4 space-y-2"
  >
  <div className="flex items-center justify-between">
@@ -980,7 +968,7 @@ function CommercialRE() {
  </div>
  </div>
  <p className="text-xs text-muted-foreground leading-relaxed">{s.note}</p>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -1551,8 +1539,7 @@ const TABS = [
 
 export default function RealEstatePage() {
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Hero */}
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Real Estate</h1>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">PROPERTY · REITs · CAP RATES · VALUATIONS</p>
@@ -1564,7 +1551,7 @@ export default function RealEstatePage() {
  <TabsTrigger
  key={id}
  value={id}
- className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="flex items-center gap-1.5 data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent px-3 py-2 text-xs text-muted-foreground"
  >
  {icon}
  <span className="hidden sm:inline">{label}</span>
@@ -1596,7 +1583,6 @@ export default function RealEstatePage() {
  <PortfolioStrategy />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

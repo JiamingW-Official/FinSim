@@ -1232,10 +1232,9 @@ export default function FamilyOfficePage() {
  ];
 
  return (
- <div className="flex h-full flex-col overflow-y-auto">
- <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <div className="mb-6">
+ <div>
  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Family Office</h1>
  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">WEALTH · GOVERNANCE · MULTI-GENERATIONAL</p>
  </div>
@@ -1249,7 +1248,7 @@ export default function FamilyOfficePage() {
  <TabsTrigger
  key={id}
  value={id}
- className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="flex items-center gap-1.5 rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
  <Icon className="h-3.5 w-3.5" />
  {label}
@@ -1276,7 +1275,6 @@ export default function FamilyOfficePage() {
  <LiquidityTab />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

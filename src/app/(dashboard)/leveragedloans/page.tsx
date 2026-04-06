@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Layers,
  TrendingUp,
@@ -172,21 +171,13 @@ function InfoCard({
  <ChevronDown className="w-4 h-4 text-muted-foreground" />
  )}
  </button>
- <AnimatePresence>
  {open && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
- className="overflow-hidden"
- >
- <div className="px-4 pb-4 text-sm text-muted-foreground leading-relaxed border-t border-border pt-3">
- {children}
- </div>
- </motion.div>
- )}
- </AnimatePresence>
+             <div className="overflow-hidden">
+               <div className="px-4 pb-4 text-sm text-muted-foreground leading-relaxed border-t border-border pt-3">
+                 {children}
+               </div>
+             </div>
+           )}
  </div>
  );
 }
@@ -916,13 +907,7 @@ function MarketDynamicsTab() {
  <div key={i} className="flex items-center gap-3">
  <div className="text-xs text-muted-foreground w-28 text-right flex-shrink-0">{bar.label}</div>
  <div className="flex-1 bg-muted rounded-full h-4 overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${bar.recovery}%` }}
- transition={{ duration: 0.8, delay: i * 0.1 }}
- className="h-full rounded-full"
- style={{ backgroundColor: bar.color }}
- />
+ <div className="h-full rounded-full" style={{ backgroundColor: bar.color, width: `${bar.recovery}%` }} />
  </div>
  <div className="text-xs font-medium w-12 flex-shrink-0" style={{ color: bar.color }}>
  {bar.recovery}¢
@@ -1057,12 +1042,12 @@ export default function LeveragedLoansPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <TabsList className="border-b border-border bg-transparent p-0 h-auto w-full flex gap-4">
  {tabItems.map((tab) => (
  <TabsTrigger
  key={tab.value}
  value={tab.value}
- className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ className="rounded-none px-0 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5"
  >
  <tab.icon className="w-3.5 h-3.5 flex-shrink-0" />
  <span className="hidden sm:inline">{tab.label}</span>
@@ -1070,14 +1055,6 @@ export default function LeveragedLoansPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
- key={activeTab}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- transition={{ duration: 0.2 }}
- >
  <TabsContent value="structure" className="data-[state=inactive]:hidden">
  <LoanStructureTab />
  </TabsContent>
@@ -1090,10 +1067,8 @@ export default function LeveragedLoansPage() {
  <TabsContent value="dynamics" className="data-[state=inactive]:hidden">
  <MarketDynamicsTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
  </Tabs>
- </div>
- </div>
- );
+   </div>
+   </div>
+   );
 }

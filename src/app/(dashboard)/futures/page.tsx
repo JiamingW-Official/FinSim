@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -535,10 +534,8 @@ function EquityFuturesTab() {
  {filtered.map((f) => {
  const premPct = (f.premium / f.spotPrice) * 100;
  return (
- <motion.tr
+ <tr
  key={f.symbol}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
  className="border-b border-border hover:bg-muted/20 cursor-pointer transition-colors"
  onClick={() => setSelectedFuture(selectedFuture?.symbol === f.symbol ? null : f)}
  >
@@ -563,7 +560,7 @@ function EquityFuturesTab() {
  <td className="px-3 py-2.5 text-xs text-muted-foreground tabular-nums">
  <span className="text-amber-400">{f.rollSpread > 0 ? "+" : ""}{f.rollSpread.toFixed(2)}</span>
  </td>
- </motion.tr>
+ </tr>
  );
  })}
  </tbody>
@@ -1630,37 +1627,37 @@ export default function FuturesPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
+ 
  <TabsContent value="equity" className="mt-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <EquityFuturesTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="rates" className="mt-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <InterestRateFuturesTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="currency" className="mt-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <CurrencyCryptoTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="vol" className="mt-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <VolatilityTab />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="margin" className="mt-4 data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+ <div>
  <MarginOrderTab />
- </motion.div>
+ </div>
  </TabsContent>
- </AnimatePresence>
+ 
  </Tabs>
  </div>
  </div>

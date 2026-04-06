@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -683,15 +682,12 @@ function ScoreBar({ score }: { score: number }) {
 
 function SectionCard({ title, children, className }: { title: string; children: React.ReactNode; className?: string }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
+ <div
  className={cn("bg-foreground/[0.03] border border-border rounded-md p-4", className)}
  >
  <h3 className="text-xs font-semibold text-muted-foreground mb-3">{title}</h3>
  {children}
- </motion.div>
+ </div>
  );
 }
 
@@ -751,11 +747,8 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
  {/* Indicators Grid */}
  <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
  {indicators.map((ind, i) => (
- <motion.div
+ <div
  key={ind.name}
- initial={{ opacity: 0, scale: 0.95 }}
- animate={{ opacity: 1, scale: 1 }}
- transition={{ delay: i * 0.04 }}
  className="bg-foreground/[0.03] border border-border rounded-lg p-3 hover:border-border transition-colors"
  >
  <div className="flex items-center justify-between mb-1">
@@ -774,7 +767,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
  />
  </div>
  <ScoreBar score={ind.score} />
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1015,11 +1008,8 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
  </thead>
  <tbody>
  {sorted.map((c, i) => (
- <motion.tr
+ <tr
  key={c.name}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: i * 0.03 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="py-1.5 text-foreground">
@@ -1030,7 +1020,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
  <td className={cn("text-right pr-4 font-mono", cellColor(c.unemployment, "unemployment"))}>{c.unemployment.toFixed(1)}%</td>
  <td className={cn("text-right pr-4 font-mono", cellColor(c.debtGdp, "debtGdp"))}>{c.debtGdp}%</td>
  <td className={cn("text-right pr-4 font-mono", cellColor(c.currentAccount, "currentAccount"))}>{c.currentAccount > 0 ? "+" : ""}{c.currentAccount.toFixed(1)}%</td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1117,11 +1107,8 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
  {/* Indicator Detail Cards */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
  {recessionIndicators.map((ri, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.06 }}
  className={cn("p-3 rounded-lg border text-xs text-muted-foreground", ri.triggered ? "border-red-500/20 bg-red-500/5" : "border-border bg-foreground/[0.02]")}
  >
  <div className="flex items-center justify-between mb-1">
@@ -1135,7 +1122,7 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
  <span className="text-muted-foreground">vs {ri.threshold}{ri.unit} threshold</span>
  </div>
  <div className="text-muted-foreground">{ri.desc}</div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1183,11 +1170,8 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
  </thead>
  <tbody>
  {sectorData.map((s, i) => (
- <motion.tr
+ <tr
  key={s.name}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="py-1.5 text-foreground flex items-center gap-1.5">
@@ -1213,7 +1197,7 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
  <td className={cn("text-right pr-4 font-mono", s.revisions > 0 ? "text-emerald-400" : "text-red-400")}>
  {s.revisions > 0 ? "+" : ""}{s.revisions}
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -1291,8 +1275,8 @@ function RegimeTracker({ data }: { data: ReturnType<typeof generateData> }) {
  {regimeHistory.map((r, i) => (
  <div key={i} className="flex items-center gap-3 text-xs text-muted-foreground">
  <span className="text-muted-foreground w-16 shrink-0">{r.period}</span>
- <div className="flex-1 h-5 rounded flex items-center px-2" style={{ backgroundColor: regimeColors[r.regime] + "20" }}>
- <span className="font-medium" style={{ color: regimeColors[r.regime] }}>{r.regime}</span>
+ <div className="flex-1 h-5 rounded flex items-center px-2" style={{ backgroundColor: regimeColors[r.regime] + "20", color: regimeColors[r.regime] }}>
+ <span className="font-medium" >{r.regime}</span>
  </div>
  <span className={cn("w-20 text-right font-mono", r.gdpMom >= 0 ? "text-emerald-400" : "text-red-400")}>
  GDP {r.gdpMom > 0 ? "+" : ""}{r.gdpMom.toFixed(1)}
@@ -1368,9 +1352,7 @@ export default function EconDataPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-screen-2xl mx-auto px-4 py-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
  >
  <div className="flex items-center gap-3 mb-1">
@@ -1381,7 +1363,7 @@ export default function EconDataPage() {
  <span className="px-2 py-0.5 text-xs rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Live</span>
  </div>
  <p className="text-sm text-muted-foreground ml-11">Macro indicators, Fed policy, global comparisons, and recession signals</p>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
@@ -1398,7 +1380,7 @@ export default function EconDataPage() {
  })}
  </TabsList>
 
- <AnimatePresence mode="wait">
+ 
  <TabsContent value="us" className="data-[state=inactive]:hidden">
  <USDashboard data={data} />
  </TabsContent>
@@ -1417,7 +1399,7 @@ export default function EconDataPage() {
  <TabsContent value="regime" className="data-[state=inactive]:hidden">
  <RegimeTracker data={data} />
  </TabsContent>
- </AnimatePresence>
+ 
  </Tabs>
  </div>
  </div>

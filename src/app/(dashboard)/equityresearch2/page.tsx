@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Search,
  FileText,
@@ -549,11 +548,9 @@ function ResearchProcessTab() {
  {/* Step selector */}
  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
  {RESEARCH_STEPS.map((step, i) => (
- <motion.button
+ <button
  key={step.id}
  onClick={() => setActiveStep(step.id)}
- whileHover={{ scale: 1.02 }}
- whileTap={{ scale: 0.98 }}
  className={cn(
  "p-3 rounded-lg border text-left transition-all",
  activeStep === step.id
@@ -577,18 +574,14 @@ function ResearchProcessTab() {
  <div className="text-sm font-medium text-foreground/90 leading-tight">
  {step.title}
  </div>
- </motion.button>
+ </button>
  ))}
  </div>
 
  {/* Detail card */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeStep}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- transition={{ duration: 0.2 }}
  className={cn(
  "rounded-md border p-5 space-y-4",
  colorMap[active.color]
@@ -624,8 +617,8 @@ function ResearchProcessTab() {
  ))}
  </div>
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  {/* Report Types */}
  <div>
@@ -1149,14 +1142,9 @@ function ValuationFrameworkTab() {
  </div>
  <div className="flex items-center gap-2">
  <div className="flex-1 h-2 bg-foreground/10 rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{
- width: `${(method.impliedPrice / 200) * 100}%`,
- }}
- transition={{ duration: 0.8, delay: 0.1 }}
+ <div
+ style={{ width: `${(method.impliedPrice / 200) * 100}%`, background: method.color }}
  className="h-full rounded-full"
- style={{ background: method.color }}
  />
  </div>
  </div>

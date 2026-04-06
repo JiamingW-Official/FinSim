@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -590,13 +589,9 @@ function ShortSellingTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={squeezeStep}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="flex items-center gap-3 bg-muted/50 rounded-lg p-3"
  >
  <div
@@ -606,8 +601,8 @@ function ShortSellingTab() {
  ${squeezeSteps[squeezeStep].price.toLocaleString()}
  </div>
  <p className="text-xs text-muted-foreground">{squeezeSteps[squeezeStep].detail}</p>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
 
  <svg viewBox={`0 0 ${sqW} ${sqH}`} className="w-full" style={{ maxHeight: 160 }}>
  <defs>
@@ -1277,13 +1272,9 @@ export default function EquityLongShortPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeTab}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- transition={{ duration: 0.22 }}
  >
  <TabsContent value="portfolio" className="mt-0 data-[state=inactive]:hidden">
  <PortfolioStructureTab />
@@ -1297,8 +1288,8 @@ export default function EquityLongShortPage() {
  <TabsContent value="economics" className="mt-0 data-[state=inactive]:hidden">
  <FundEconomicsTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </Tabs>
  </div>
  </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -278,10 +277,8 @@ function AssetClassOverview() {
  </thead>
  <tbody>
  {filtered.map((asset) => (
- <motion.tr
+ <tr
  key={asset.id}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
  onMouseEnter={() => setHovered(asset.id)}
  onMouseLeave={() => setHovered(null)}
  className={cn(
@@ -320,7 +317,7 @@ function AssetClassOverview() {
  </div>
  </div>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>

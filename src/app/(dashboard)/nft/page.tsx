@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Image,
  TrendingUp,
@@ -742,11 +741,8 @@ function MarketOverview() {
  </thead>
  <tbody>
  {COLLECTIONS.map((c, i) => (
- <motion.tr
+ <tr
  key={c.name}
- initial={{ opacity: 0, y: 4 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.04 }}
  className="border-b border-border hover:bg-muted/30 transition-colors"
  >
  <td className="px-3 py-2 font-medium text-foreground">{c.name}</td>
@@ -766,7 +762,7 @@ function MarketOverview() {
  {c.blockchain}
  </Badge>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -944,11 +940,8 @@ function PricingModels() {
  </CardHeader>
  <CardContent className="space-y-3">
  {WASH_SIGNALS.map((ws, i) => (
- <motion.div
+ <div
  key={i}
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ delay: i * 0.06 }}
  className="flex items-start gap-3 p-3 bg-muted/40 rounded-lg"
  >
  <div className={`mt-0.5 flex-shrink-0 ${ws.detected ? "text-red-400" : "text-green-400"}`}>
@@ -966,7 +959,7 @@ function PricingModels() {
  </div>
  <p className="text-xs text-muted-foreground">{ws.description}</p>
  </div>
- </motion.div>
+ </div>
  ))}
  </CardContent>
  </Card>
@@ -1150,20 +1143,16 @@ function NFTFinancialization() {
  </div>
  {isOpen ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
  </button>
- <AnimatePresence initial={false}>
+ 
  {isOpen && (
- <motion.div
+ <div
  key="content"
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.25, ease: "easeInOut" }}
  className="overflow-hidden"
  >
  <CardContent className="pt-0 pb-4">{sec.content}</CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
  );
  })}
@@ -1295,11 +1284,8 @@ function InvestmentFramework() {
  </thead>
  <tbody>
  {filtered.map((c, i) => (
- <motion.tr
+ <tr
  key={`${c.criterion}-${i}`}
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ delay: i * 0.05 }}
  className="border-b border-border hover:bg-muted/20 align-top"
  >
  <td className="px-3 py-3">
@@ -1322,7 +1308,7 @@ function InvestmentFramework() {
  ))}
  </ul>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>

@@ -22,7 +22,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ─────────────────────────────────────────────────────────────
 
@@ -1095,17 +1094,13 @@ function Tab3HFTStrategies() {
  })}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={selectedStrategy}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.15 }}
  >
  {content[selectedStrategy]}
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
  );
 }
@@ -1404,21 +1399,15 @@ function Tab5RegulationRisk() {
  <AlertTriangle className="h-4 w-4 text-red-400" />
  <span className="text-sm font-medium">Case Study: 2010 Flash Crash (May 6)</span>
  </div>
- <motion.div
- animate={{ rotate: caseStudyOpen ? 90 : 0 }}
- transition={{ duration: 0.15 }}
+ <div
  >
  <ChevronRight className="h-4 w-4 text-muted-foreground" />
- </motion.div>
+ </div>
  </button>
 
- <AnimatePresence>
+ 
  {caseStudyOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 space-y-4">
@@ -1456,9 +1445,9 @@ function Tab5RegulationRisk() {
  </ul>
  </InfoCard>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  </div>
  );
@@ -1480,10 +1469,7 @@ export default function AlgoMMPage() {
  return (
  <div className="flex flex-col gap-3 p-4 max-w-5xl mx-auto">
  {/* HERO Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="border-l-4 border-l-primary rounded-md bg-card p-6 space-y-1"
  >
  <div className="flex items-center gap-3">
@@ -1515,7 +1501,7 @@ export default function AlgoMMPage() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="mm101" className="space-y-4">
@@ -1532,57 +1518,42 @@ export default function AlgoMMPage() {
  })}
  </TabsList>
 
- <AnimatePresence mode="wait">
+ 
  <TabsContent value="mm101" className="mt-0 data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  >
  <Tab1MarketMaking101 />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="spread" className="mt-0 data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  >
  <Tab2SpreadModeling />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="hft" className="mt-0 data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  >
  <Tab3HFTStrategies />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="pnl" className="mt-0 data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  >
  <Tab4PnlAttribution />
- </motion.div>
+ </div>
  </TabsContent>
 
  <TabsContent value="reg" className="mt-0 data-[state=inactive]:hidden">
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  >
  <Tab5RegulationRisk />
- </motion.div>
+ </div>
  </TabsContent>
- </AnimatePresence>
+ 
  </Tabs>
  </div>
  );

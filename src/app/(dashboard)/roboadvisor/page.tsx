@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -261,7 +260,7 @@ function RoboLandscape() {
  </thead>
  <tbody>
  {PROVIDERS.map((p) => (
- <motion.tr
+ <tr
  key={p.name}
  className={cn(
  "border-b border-border cursor-pointer transition-colors",
@@ -288,7 +287,7 @@ function RoboLandscape() {
  <td className="text-right">
  <span className="text-amber-400 font-semibold">{p.rating}</span>
  </td>
- </motion.tr>
+ </tr>
  ))}
  </tbody>
  </table>
@@ -296,16 +295,13 @@ function RoboLandscape() {
  </Card>
 
  {/* Selected Provider Detail */}
- <AnimatePresence>
+ 
  {selected && (() => {
  const p = PROVIDERS.find((x) => x.name === selected);
  if (!p) return null;
  return (
- <motion.div
+ <div
  key={selected}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
  >
  <Card className="p-5 bg-card border-border">
  <div className="flex items-start justify-between mb-3">
@@ -331,10 +327,10 @@ function RoboLandscape() {
  ))}
  </div>
  </Card>
- </motion.div>
+ </div>
  );
  })()}
- </AnimatePresence>
+ 
 
  {/* Key Insights */}
  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -918,12 +914,9 @@ function SmartFeatures() {
  </Button>
  </div>
 
- <AnimatePresence>
+ 
  {submitted && (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
+ <div
  className="mt-5 p-4 bg-muted/60 rounded-md border border-border"
  >
  <div className="flex items-center justify-between mb-3">
@@ -931,11 +924,9 @@ function SmartFeatures() {
  <span className={cn("text-sm font-medium", riskLabel.color)}>{riskLabel.label}</span>
  </div>
  <div className="w-full bg-muted rounded-full h-2 mb-2">
- <motion.div
+ <div
  className="h-2 rounded-full bg-primary"
- initial={{ width: 0 }}
- animate={{ width: `${pct}%` }}
- transition={{ duration: 0.8 }}
+ style={{ width: `${pct}%` }}
  />
  </div>
  <p className="text-xs text-muted-foreground">Score: {totalScore}/{maxScore} ({pct.toFixed(0)}%)</p>
@@ -946,9 +937,9 @@ function SmartFeatures() {
  ? "A moderate allocation (e.g., 60% equity / 35% bonds / 5% cash) balances growth with downside protection."
  : "An aggressive growth allocation (e.g., 90% equity / 8% bonds / 2% cash) aligns with your long horizon and high risk tolerance."}
  </p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
  </div>
  );
@@ -1034,12 +1025,9 @@ function AIAndFuture() {
  <div className="absolute left-6 top-0 bottom-0 w-px bg-muted" />
  <div className="space-y-5">
  {TIMELINE.map((ev) => (
- <motion.div
+ <div
  key={ev.year}
  className="flex gap-5 items-start"
- initial={{ opacity: 0, x: -10 }}
- animate={{ opacity: 1, x: 0 }}
- transition={{ duration: 0.3 }}
  >
  <div
  className={cn(
@@ -1076,7 +1064,7 @@ function AIAndFuture() {
  </div>
  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{ev.desc}</p>
  </div>
- </motion.div>
+ </div>
  ))}
  </div>
  </div>
@@ -1149,43 +1137,43 @@ export default function RoboAdvisorPage() {
  </TabsList>
 
  <TabsContent value="landscape" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="landscape" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ 
+ <div key="landscape">
  <RoboLandscape />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  <TabsContent value="construction" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="construction" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ 
+ <div key="construction">
  <PortfolioConstruction />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  <TabsContent value="costs" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="costs" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ 
+ <div key="costs">
  <CostComparison />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  <TabsContent value="smart" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="smart" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ 
+ <div key="smart">
  <SmartFeatures />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
 
  <TabsContent value="ai" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div key="ai" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+ 
+ <div key="ai">
  <AIAndFuture />
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </TabsContent>
  </Tabs>
  </div>

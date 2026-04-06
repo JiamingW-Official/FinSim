@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  TrendingUp,
  BarChart3,
@@ -234,7 +233,7 @@ function generateAllWeatherSeries(): PerfPoint[] {
  return pts;
 }
 
-// ── SVG layout constants ──────────────────────────────────────────────────────
+// ── SVG constants ──────────────────────────────────────────────────────
 
 const SVG_W = 480;
 const SVG_H = 280;
@@ -629,13 +628,9 @@ function ConceptCard({ title, description, details, accent, icon }: ConceptCardP
  </div>
  <p className="text-muted-foreground text-xs mt-1">{description}</p>
  </CardHeader>
- <AnimatePresence initial={false}>
+ 
  {expanded && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <CardContent className="pt-0 pb-3">
@@ -648,9 +643,9 @@ function ConceptCard({ title, description, details, accent, icon }: ConceptCardP
  ))}
  </ul>
  </CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
  );
 }
@@ -891,13 +886,9 @@ export default function QuantPortfolioPage() {
  </CardContent>
  </Card>
 
- <AnimatePresence>
+ 
  {selectedViewObj && (
- <motion.div
- initial={{ opacity: 0, y: -8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
+ <div
  >
  <Card className="bg-indigo-950/40 border-indigo-500/30">
  <CardHeader className="pb-2">
@@ -914,9 +905,9 @@ export default function QuantPortfolioPage() {
  />
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
  <Card className="bg-card border-border">
  <CardHeader className="pb-2">

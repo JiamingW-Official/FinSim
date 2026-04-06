@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Database,
  Satellite,
@@ -578,11 +577,8 @@ function AltDataCategoriesTab() {
 
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  {ALT_DATA_CATEGORIES.map((cat, i) => (
- <motion.div
+ <div
  key={`cat-${i}`}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.05 }}
  >
  <Card
  className="bg-card/60 border-border cursor-pointer hover:border-border transition-colors"
@@ -609,13 +605,9 @@ function AltDataCategoriesTab() {
  )}
  </div>
  </div>
- <AnimatePresence>
+ 
  {expanded === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-3 space-y-2">
@@ -641,12 +633,12 @@ function AltDataCategoriesTab() {
  ))}
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
 
@@ -727,7 +719,7 @@ function SatelliteTab() {
  <span style={{ color: stat.color }} className="inline-flex justify-center mb-1">
  {stat.icon}
  </span>
- <div className="text-lg font-bold" style={{ color: stat.color }}>
+ <div className="text-lg font-bold" >
  {stat.value}
  </div>
  <div className="text-xs text-muted-foreground">{stat.label}</div>
@@ -752,7 +744,7 @@ function SatelliteTab() {
  <div className="flex-1">
  <div className="flex items-center gap-2">
  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
+ <div
  className="h-full rounded-full"
  style={{
  backgroundColor:
@@ -761,10 +753,8 @@ function SatelliteTab() {
  : sig.strength >= 75
  ? "#f59e0b"
  : "#818cf8",
+ width: `${sig.strength}%`,
  }}
- initial={{ width: 0 }}
- animate={{ width: `${sig.strength}%` }}
- transition={{ delay: i * 0.06, duration: 0.5 }}
  />
  </div>
  <span className="text-xs text-muted-foreground w-7 shrink-0">{sig.strength}</span>
@@ -1044,13 +1034,9 @@ function BuildingEdgeTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground" />
  )}
  </div>
- <AnimatePresence>
+ 
  {openStage === i && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-3 pb-3 space-y-2 border-t border-border">
@@ -1071,9 +1057,9 @@ function BuildingEdgeTab() {
  <span className="text-xs text-amber-300">{stage.pitfall}</span>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  ))}
  </CardContent>

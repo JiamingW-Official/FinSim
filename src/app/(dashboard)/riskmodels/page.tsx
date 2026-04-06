@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  ShieldAlert,
  BarChart2,
@@ -704,20 +703,16 @@ function ConceptCard({ title, icon, children, defaultOpen = false }: ConceptCard
  </CardTitle>
  </CardHeader>
  </button>
- <AnimatePresence initial={false}>
+ 
  {open && (
- <motion.div
+ <div
  key="content"
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
  className="overflow-hidden"
  >
  <CardContent>{children}</CardContent>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </Card>
  );
 }

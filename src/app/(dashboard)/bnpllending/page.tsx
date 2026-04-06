@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  CreditCard,
  ShoppingCart,
@@ -1382,13 +1381,9 @@ export default function BNPLLendingPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
  >
  <TabsContent value="model" className="mt-0 data-[state=inactive]:hidden">
  <Tab1BNPLModel />
@@ -1402,8 +1397,8 @@ export default function BNPLLendingPage() {
  <TabsContent value="risk" className="mt-0 data-[state=inactive]:hidden">
  <Tab4RiskRegulation />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </Tabs>
  </div>
  </div>

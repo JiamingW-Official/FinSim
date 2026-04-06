@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Users,
  DollarSign,
@@ -478,13 +477,9 @@ function RegulatoryTab() {
  <ChevronDown className="w-4 h-4 text-muted-foreground" />
  )}
  </button>
- <AnimatePresence initial={false}>
+ 
  {isOpen && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
@@ -502,9 +497,9 @@ function RegulatoryTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  );
  })}
@@ -626,9 +621,8 @@ function PlatformTab() {
  {/* Platform Cards */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  {PLATFORMS.map((platform) => (
- <motion.div
+ <div
  key={platform.name}
- whileHover={{ scale: 1.01 }}
  onClick={() => setSelectedPlatform(selectedPlatform?.name === platform.name ? null : platform)}
  className={cn(
  "rounded-md border p-4 cursor-pointer transition-colors",
@@ -691,13 +685,9 @@ function PlatformTab() {
  </div>
  </div>
  {/* Expanded description */}
- <AnimatePresence initial={false}>
+ 
  {selectedPlatform?.name === platform.name && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  className="overflow-hidden"
  >
  <p className="text-xs text-muted-foreground mt-3 pt-3 border-t border-border leading-relaxed">
@@ -715,10 +705,10 @@ function PlatformTab() {
  <div className="text-foreground font-medium">{platform.dealsClosed.toLocaleString()}</div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
 

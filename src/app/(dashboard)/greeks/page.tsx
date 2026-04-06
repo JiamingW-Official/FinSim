@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { useGameStore } from "@/stores/game-store";
@@ -322,10 +321,8 @@ function GreekCard({
  {label}
  </span>
  {delta && (
- <motion.span
+ <span
  key={delta.curr.toFixed(6)}
- initial={{ opacity: 0, y: -4 }}
- animate={{ opacity: 1, y: 0 }}
  className={`text-xs text-muted-foreground font-mono px-1.5 py-0.5 rounded ${
  delta.diff > 0
  ? "bg-green-500/10 text-green-400"
@@ -336,17 +333,15 @@ function GreekCard({
  >
  {delta.diff > 0 ? "+" : ""}
  {delta.diff.toFixed(4)}
- </motion.span>
+ </span>
  )}
  </div>
- <motion.div
+ <div
  key={value.toFixed(6)}
- initial={{ scale: 0.95 }}
- animate={{ scale: 1 }}
  className={`text-2xl font-mono font-semibold ${color}`}
  >
  {fmt(value)}
- </motion.div>
+ </div>
  <p className="text-xs text-muted-foreground">{description}</p>
  </div>
  );
@@ -934,14 +929,12 @@ function GreeksExplorer() {
  <p className="text-xs font-medium text-muted-foreground mb-1">
  {params.isCall ? "Call" : "Put"} Price
  </p>
- <motion.p
+ <p
  key={result.price.toFixed(4)}
- initial={{ scale: 0.95 }}
- animate={{ scale: 1 }}
  className="text-2xl font-mono font-semibold text-foreground"
  >
  ${result.price.toFixed(4)}
- </motion.p>
+ </p>
  </div>
 
  {/* Greeks grid */}
@@ -984,13 +977,10 @@ function GreeksExplorer() {
  </div>
 
  {/* What changed */}
- <AnimatePresence mode="popLayout">
+ 
  {deltas.length > 0 && (
- <motion.div
+ <div
  key={deltas.map((d) => d.name).join(",")}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
  className="rounded-md border border-border bg-card p-3"
  >
  <p className="text-xs font-medium text-muted-foreground mb-2">What Changed</p>
@@ -1008,9 +998,9 @@ function GreeksExplorer() {
  </span>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
  </div>
  );
@@ -1059,9 +1049,8 @@ function GreeksVisualized({ params }: { params: SliderParams }) {
  </p>
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  {charts.map((c) => (
- <motion.div
+ <div
  key={c.id}
- layout
  onClick={() => setExpanded(expanded === c.id ? null : c.id)}
  className="rounded-md border border-border bg-card p-4 cursor-pointer hover:border-primary/30 transition-colors"
  >
@@ -1079,22 +1068,19 @@ function GreeksVisualized({ params }: { params: SliderParams }) {
  <div className="overflow-hidden">
  {c.component}
  </div>
- <AnimatePresence>
+ 
  {expanded === c.id && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
+ <div
  className="mt-3 pt-3 border-t border-border"
  >
  <div className="flex gap-2 items-start">
  <Info className="size-3.5 text-foreground mt-0.5 shrink-0" />
  <p className="text-xs text-foreground/80">{c.insight}</p>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
- </motion.div>
+ 
+ </div>
  ))}
  </div>
  </div>
@@ -1277,9 +1263,7 @@ function GreeksQuiz() {
  if (mode === "done") {
  const pct = Math.round((score / QUIZ_QUESTIONS.length) * 100);
  return (
- <motion.div
- initial={{ opacity: 0, scale: 0.95 }}
- animate={{ opacity: 1, scale: 1 }}
+ <div
  className="flex flex-col items-center justify-center gap-3 py-12"
  >
  <div className="text-2xl">{pct >= 80 ? "" : pct >= 60 ? "" : ""}</div>
@@ -1317,7 +1301,7 @@ function GreeksQuiz() {
  >
  Retry Quiz
  </button>
- </motion.div>
+ </div>
  );
  }
 
@@ -1336,10 +1320,8 @@ function GreeksQuiz() {
  </button>
  </div>
  </div>
- <motion.div
+ <div
  key={flashIdx}
- initial={{ opacity: 0, x: 20 }}
- animate={{ opacity: 1, x: 0 }}
  className="rounded-md border border-border bg-card p-4 cursor-pointer min-h-[200px] flex flex-col justify-between"
  onClick={() => setShowFlashAnswer(!showFlashAnswer)}
  >
@@ -1348,24 +1330,21 @@ function GreeksQuiz() {
  <p className="text-sm text-foreground">{fq.scenario}</p>
  <p className="text-sm font-medium text-foreground mt-3">{fq.question}</p>
  </div>
- <AnimatePresence>
+ 
  {showFlashAnswer && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
+ <div
  className="mt-4 pt-4 border-t border-border"
  >
  <p className="text-xs text-muted-foreground mb-1">Answer</p>
  <p className="text-sm font-medium text-green-400">{fq.choices[fq.correct]}</p>
  <p className="text-xs text-muted-foreground mt-2">{fq.explanation}</p>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  {!showFlashAnswer && (
  <p className="text-xs text-muted-foreground text-center mt-4">Tap to reveal answer</p>
  )}
- </motion.div>
+ </div>
  <div className="flex gap-3 items-center justify-between">
  <button
  onClick={() => { setFlashIdx((i) => Math.max(0, i - 1)); setShowFlashAnswer(false); }}
@@ -1430,12 +1409,9 @@ function GreeksQuiz() {
  </div>
 
  {/* Question */}
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={currentQ}
- initial={{ opacity: 0, x: 20 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -20 }}
  className="space-y-4"
  >
  <div className="rounded-md border border-border bg-card p-5">
@@ -1467,9 +1443,7 @@ function GreeksQuiz() {
  </div>
 
  {selected !== null && (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
+ <div
  className="rounded-md border border-border bg-muted/50 p-4 space-y-2"
  >
  <div className="flex items-center gap-2">
@@ -1490,10 +1464,10 @@ function GreeksQuiz() {
  {currentQ < QUIZ_QUESTIONS.length - 1 ? "Next Question" : "See Results"}
  <ChevronRight className="size-3.5" />
  </button>
- </motion.div>
+ </div>
  )}
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
  );
 }

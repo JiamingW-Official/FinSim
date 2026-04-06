@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  AlertTriangle,
  TrendingDown,
@@ -717,14 +716,10 @@ export default function CrisisHistoryPage() {
  </div>
 
  {/* Expanded crisis detail */}
- <AnimatePresence mode="wait">
+ 
  {selected && (
- <motion.div
+ <div
  key={selected.id}
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  <Card className="bg-card border-border">
  <CardHeader className="pb-3">
@@ -770,9 +765,9 @@ export default function CrisisHistoryPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </TabsContent>
 
  {/* ── Tab 2: 2008 GFC Deep Dive ─────────────────────────────────────── */}
@@ -1214,19 +1209,15 @@ export default function CrisisHistoryPage() {
  : <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0 mt-0.5" />
  }
  </div>
- <AnimatePresence>
+ 
  {expandedLesson === i && (
- <motion.p
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- transition={{ duration: 0.15 }}
+ <p
  className="text-xs text-muted-foreground mt-2 leading-relaxed overflow-hidden"
  >
  {item.a}
- </motion.p>
+ </p>
  )}
- </AnimatePresence>
+ 
  </button>
  ))}
  </div>
@@ -1252,12 +1243,9 @@ export default function CrisisHistoryPage() {
  <span className="text-xs text-muted-foreground">{row.pre} → {row.post}</span>
  </div>
  <div className="h-2 bg-muted rounded-full overflow-hidden">
- <motion.div
- initial={{ width: 0 }}
- animate={{ width: `${Math.min((row.ratio / 12) * 100, 100)}%` }}
- transition={{ duration: 0.8, delay: 0.1 }}
+ <div
+ style={{ width: `${Math.min((row.ratio / 12) * 100, 100)}%` }}
  className="h-full rounded-full"
- style={{ backgroundColor: row.color, opacity: 0.7 }}
  />
  </div>
  <p className="text-xs text-muted-foreground mt-0.5">{row.ratio}× expansion</p>

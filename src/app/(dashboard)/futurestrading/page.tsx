@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  TrendingUp,
  TrendingDown,
@@ -735,7 +734,7 @@ function FuturesBasicsTab() {
  const [selectedContract, setSelectedContract] = useState<ContractSpec | null>(null);
 
  return (
- <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-4">
+ <div className="space-y-4">
  {/* Intro */}
  <Card className="border-border bg-card">
  <CardContent className="pt-4 pb-3">
@@ -811,7 +810,7 @@ function FuturesBasicsTab() {
 
  {/* Contract Detail Drawer */}
  {selectedContract && (
- <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}>
+ <div>
  <Card className="border-primary/40 bg-muted/5">
  <CardContent className="pt-4 pb-4">
  <div className="flex items-start justify-between mb-3">
@@ -848,7 +847,7 @@ function FuturesBasicsTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  )}
 
  {/* Expiration Calendar */}
@@ -911,14 +910,14 @@ function FuturesBasicsTab() {
  </Card>
  ))}
  </div>
- </motion.div>
+ </div>
  );
 }
 
 // ── Tab: Contango & Backwardation ─────────────────────────────────────────────
 function ContangoTab() {
  return (
- <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-4">
+ <div className="space-y-4">
  {/* Explanation Cards */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  <Card className="border-red-500/30 bg-red-500/5">
@@ -1025,7 +1024,7 @@ function ContangoTab() {
  </p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -1034,7 +1033,7 @@ function BasisTab() {
  const [selectedSpread, setSelectedSpread] = useState<SpreadType>(SPREAD_TYPES[0]);
 
  return (
- <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-4">
+ <div className="space-y-4">
  <Card className="border-border bg-card">
  <CardContent className="pt-4 pb-3">
  <div className="flex gap-3">
@@ -1160,7 +1159,7 @@ function BasisTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -1183,7 +1182,7 @@ function HedgingTab() {
  : scenario.targetPrice - futuresPnL / scenario.quantity;
 
  return (
- <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-4">
+ <div className="space-y-4">
  {/* Concept */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  <Card className="border-border bg-card">
@@ -1336,7 +1335,7 @@ function HedgingTab() {
  </p>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -1356,7 +1355,7 @@ function SpeculativeTab() {
  const worstMonth = SEASONAL_DATA.reduce((worst, d) => d[selectedCommodity] < worst[selectedCommodity] ? d : worst);
 
  return (
- <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-4">
+ <div className="space-y-4">
  {/* Strategies Overview */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {[
@@ -1540,7 +1539,7 @@ function SpeculativeTab() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
  );
 }
 
@@ -1550,7 +1549,7 @@ export default function FuturesTradingPage() {
  <div className="min-h-screen bg-background text-foreground">
  <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
  {/* Header */}
- <motion.div variants={fadeUp} initial="hidden" animate="visible" className="border-l-4 border-l-primary rounded-lg bg-card p-6 space-y-1">
+ <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 space-y-1">
  <div className="flex items-center gap-3">
  <div className="p-2 rounded-lg bg-muted/10 border border-primary/20">
  <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1581,7 +1580,7 @@ export default function FuturesTradingPage() {
  </Card>
  ))}
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
  <Tabs defaultValue="basics" className="mt-8 space-y-4">

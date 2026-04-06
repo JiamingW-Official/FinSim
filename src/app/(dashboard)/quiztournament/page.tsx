@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
  Trophy, Brain, Zap, Clock, Star, Shield, Swords, Flame,
  CheckCircle2, XCircle, Crown, Medal, Lock, TrendingUp,
@@ -911,14 +910,7 @@ function QuestionCard({
  const optionLetters = ["A", "B", "C", "D"];
 
  return (
- <motion.div
- key={question.id}
- initial={{ opacity: 0, x: 40 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: -40 }}
- transition={{ type: "spring", stiffness: 280, damping: 26 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  {/* Header row */}
  <div className="flex items-center justify-between">
  <div className="flex items-center gap-2">
@@ -1007,7 +999,7 @@ function QuestionCard({
  );
  })}
  </div>
- </motion.div>
+ </div>
  );
 }
 
@@ -1027,11 +1019,7 @@ function ExplanationPanel({
  isLast: boolean;
 }) {
  return (
- <motion.div
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- className="mt-4 space-y-3"
- >
+ <div className="mt-4 space-y-3">
  <Card className={cn(
  "border p-4",
  wasCorrect
@@ -1070,7 +1058,7 @@ function ExplanationPanel({
  {isLast ? "See Results" : "Next Question"}
  <ChevronRight className="h-4 w-4 ml-1" />
  </Button>
- </motion.div>
+ </div>
  );
 }
 
@@ -1095,20 +1083,11 @@ function FinalScoreScreen({
  const xpGained = Math.floor(totalPoints * 0.5);
 
  return (
- <motion.div
- initial={{ opacity: 0, scale: 0.96 }}
- animate={{ opacity: 1, scale: 1 }}
- className="space-y-4"
- >
+ <div className="space-y-4">
  <div className="text-center py-6">
- <motion.div
- initial={{ scale: 0 }}
- animate={{ scale: 1 }}
- transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
- className={cn("text-7xl font-medium mb-2", color)}
- >
+ <div className={cn("text-7xl font-medium mb-2", color)}>
  {grade}
- </motion.div>
+ </div>
  <p className="text-muted-foreground text-sm">{label}</p>
  <div className="flex items-center justify-center gap-3 mt-4">
  <div className="text-center">
@@ -1155,7 +1134,7 @@ function FinalScoreScreen({
  <BarChart2 className="h-4 w-4 mr-2" />
  Play Again
  </Button>
- </motion.div>
+ </div>
  );
 }
 
@@ -1315,8 +1294,7 @@ function DailyChallengeTab() {
 
  return (
  <div>
- <AnimatePresence mode="wait">
- {phase === "playing" || phase === "answered" ? (
+ {(phase === "playing" || phase === "answered") && (
  <QuestionCard
  key={q.id}
  question={q}
@@ -1329,8 +1307,7 @@ function DailyChallengeTab() {
  totalQuestions={dailyQuestions.length}
  streak={streak}
  />
- ) : null}
- </AnimatePresence>
+ )}
 
  {phase === "answered" && lastAnswer && (
  <ExplanationPanel
@@ -1771,15 +1748,8 @@ function SpeedRoundTab() {
  </div>
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
- key={current}
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -20 }}
- transition={{ duration: 0.2 }}
- >
- <Card className="bg-card/70 border-border p-4 mb-3">
+ <div>
+ <Card className="rounded-lg border border-border bg-card p-5 mb-3">
  <div className="flex items-center gap-2 mb-2">
  <span className={cn("text-xs text-muted-foreground border rounded px-1.5 py-0.5", CATEGORY_COLORS[q.category])}>
  {q.category}
@@ -1802,8 +1772,7 @@ function SpeedRoundTab() {
  </button>
  ))}
  </div>
- </motion.div>
- </AnimatePresence>
+ </div>
  </div>
  );
 }
@@ -1901,7 +1870,7 @@ function BossChallengesTab() {
 
  if (bossPhase === "done") {
  return (
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
+ <div className="space-y-4">
  <div className="text-center py-6">
  {won ? (
  <>
@@ -1962,7 +1931,7 @@ function BossChallengesTab() {
  Exit
  </Button>
  </div>
- </motion.div>
+ </div>
  );
  }
 
@@ -1991,7 +1960,6 @@ function BossChallengesTab() {
  </div>
  </div>
 
- <AnimatePresence mode="wait">
  {q && (
  <QuestionCard
  key={q.id}
@@ -2006,7 +1974,6 @@ function BossChallengesTab() {
  streak={0}
  />
  )}
- </AnimatePresence>
 
  {bossPhase === "answered" && lastAns && q && (
  <ExplanationPanel
@@ -2028,12 +1995,7 @@ function BossChallengesTab() {
  Defeat bosses in order. Answer 8/10 correctly to win. Wrong answers deal damage — reach 0 HP and you lose.
  </div>
  {bossList.map((boss, i) => (
- <motion.div
- key={boss.id}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: i * 0.06 }}
- >
+ <div key={boss.id}>
  <Card className={cn(
  "border p-4",
  boss.unlocked
@@ -2089,7 +2051,7 @@ function BossChallengesTab() {
  </div>
  </div>
  </Card>
- </motion.div>
+ </div>
  ))}
  </div>
  );
@@ -2245,15 +2207,9 @@ function QuestionBuilderTab() {
  </Card>
 
  {/* Preview */}
- <AnimatePresence>
  {preview && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- className="overflow-hidden"
- >
- <Card className="bg-card/50 border-border p-4">
+ <div className="overflow-hidden">
+ <Card className="rounded-lg border border-border bg-card p-5">
  <div className="text-xs text-muted-foreground font-medium uppercase mb-3">Preview</div>
  <QuestionCard
  question={previewQuestion}
@@ -2267,9 +2223,8 @@ function QuestionBuilderTab() {
  streak={0}
  />
  </Card>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
 
  {/* Community questions */}
  <div>
@@ -2335,15 +2290,14 @@ export default function QuizTournamentPage() {
  const [activeTab, setActiveTab] = useState<TabId>("daily");
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- <div className="max-w-2xl mx-auto space-y-5">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <div className="flex items-center gap-3 border-l-4 border-l-primary rounded-lg bg-card p-6">
+ <div className="flex items-center gap-3 rounded-lg border border-border bg-card p-5">
  <div className="p-2.5 rounded-md bg-yellow-500/20 border border-yellow-500/30">
  <Trophy className="h-6 w-6 text-yellow-400" />
  </div>
  <div>
- <h1 className="text-xl font-medium text-foreground">Quiz Tournament</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Quiz Tournament</h1>
  <p className="text-xs text-muted-foreground">Test your financial knowledge across 8 categories</p>
  </div>
  <div className="ml-auto flex items-center gap-1.5">
@@ -2360,7 +2314,7 @@ export default function QuizTournamentPage() {
  { label: "Accuracy", value: "72%", icon: <TrendingUp className="h-3.5 w-3.5 text-green-400" />, color: "text-green-400" },
  { label: "Badges", value: "4", icon: <Star className="h-3.5 w-3.5 text-yellow-400" />, color: "text-yellow-400" },
  ].map((stat) => (
- <Card key={stat.label} className="bg-card/60 border-border p-3 text-center">
+ <Card key={stat.label} className="rounded-lg border border-border bg-card p-3 text-center">
  <div className="flex justify-center mb-1">{stat.icon}</div>
  <div className={cn("text-base font-medium", stat.color)}>{stat.value}</div>
  <div className="text-xs text-muted-foreground">{stat.label}</div>
@@ -2370,12 +2324,12 @@ export default function QuizTournamentPage() {
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
- <TabsList className="w-full bg-card/80 border border-border p-1 h-auto flex">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto w-full flex">
  {TABS.map((tab) => (
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="flex-1 flex items-center justify-center gap-1 text-xs py-1.5 data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
+ className="flex-1 flex items-center justify-center gap-1 text-xs py-2 data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none rounded-none bg-transparent text-muted-foreground data-[state=active]:text-foreground"
  >
  {tab.icon}
  <span className="hidden sm:inline">{tab.label}</span>
@@ -2384,25 +2338,25 @@ export default function QuizTournamentPage() {
  </TabsList>
 
  <TabsContent value="daily" className="mt-4 data-[state=inactive]:hidden">
- <Card className="bg-card/40 border-border p-4">
+ <Card className="rounded-lg border border-border bg-card p-5">
  <DailyChallengeTab />
  </Card>
  </TabsContent>
 
  <TabsContent value="league" className="mt-4 data-[state=inactive]:hidden">
- <Card className="bg-card/40 border-border p-4">
+ <Card className="rounded-lg border border-border bg-card p-5">
  <WeeklyLeagueTab />
  </Card>
  </TabsContent>
 
  <TabsContent value="speed" className="mt-4 data-[state=inactive]:hidden">
- <Card className="bg-card/40 border-border p-4">
+ <Card className="rounded-lg border border-border bg-card p-5">
  <SpeedRoundTab />
  </Card>
  </TabsContent>
 
  <TabsContent value="bosses" className="mt-4 data-[state=inactive]:hidden">
- <Card className="bg-card/40 border-border p-4">
+ <Card className="rounded-lg border border-border bg-card p-5">
  <BossChallengesTab />
  </Card>
  </TabsContent>
@@ -2411,7 +2365,6 @@ export default function QuizTournamentPage() {
  <QuestionBuilderTab />
  </TabsContent>
  </Tabs>
- </div>
  </div>
  );
 }

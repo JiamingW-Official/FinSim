@@ -30,7 +30,6 @@ import {
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
 
@@ -476,14 +475,10 @@ function IPOTimelineTab() {
  </div>
 
  {/* Detail Panel */}
- <AnimatePresence mode="wait">
+ 
  {selectedStep && (
- <motion.div
+ <div
  key={selectedStep.id}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  className="border rounded-md p-5 space-y-4"
  style={{ borderColor: selectedStep.color + "40", backgroundColor: selectedStep.color + "08" }}
  >
@@ -539,9 +534,9 @@ function IPOTimelineTab() {
  </div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* SVG Gantt Chart */}
@@ -601,13 +596,9 @@ function IPOTimelineTab() {
  </span>
  <ChevronDown className={cn("w-4 h-4 text-foreground/40 transition-transform", showS1 && "rotate-180")} />
  </button>
- <AnimatePresence>
+ 
  {showS1 && (
- <motion.div
- initial={{ height: 0, opacity: 0 }}
- animate={{ height: "auto", opacity: 1 }}
- exit={{ height: 0, opacity: 0 }}
- transition={{ duration: 0.25 }}
+ <div
  className="overflow-hidden"
  >
  <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -621,9 +612,9 @@ function IPOTimelineTab() {
  </div>
  ))}
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
  </div>
 
  {/* SEC Review Process */}
@@ -718,13 +709,9 @@ function BookBuildingTab() {
  ))}
  </div>
 
- <AnimatePresence mode="wait">
- <motion.div
+ 
+ <div
  key={activeSection}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.2 }}
  >
  {activeSection === "bookbuild" && (
  <div className="space-y-4">
@@ -969,8 +956,8 @@ function BookBuildingTab() {
  note: "Overrides fundamentals in extreme environments.",
  },
  ].map((m) => (
- <div key={m.method} className="border rounded-md p-4" style={{ borderColor: m.color + "30", backgroundColor: m.color + "08" }}>
- <div className="text-sm font-medium mb-3" style={{ color: m.color }}>{m.method}</div>
+ <div key={m.method} className="border rounded-md p-4" style={{ borderColor: m.color + "30", backgroundColor: m.color + "08", color: m.color }}>
+ <div className="text-sm font-medium mb-3" >{m.method}</div>
  <ol className="space-y-1.5 mb-3">
  {m.steps.map((step, i) => (
  <li key={i} className="flex items-start gap-2 text-xs text-foreground/65">
@@ -1072,8 +1059,8 @@ function BookBuildingTab() {
  </div>
  </div>
  )}
- </motion.div>
- </AnimatePresence>
+ </div>
+ 
  </div>
  );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import {
  Home,
  Building2,
@@ -518,34 +517,24 @@ export default function MortgageFinancePage() {
  const totalInterestLifetime = schedule.reduce((s, d) => s + d.interestPaid, 0);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
+ <div className="max-w-5xl px-6 py-8 mx-auto space-y-6">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex flex-col gap-1"
- >
+ <div className="flex flex-col gap-1">
  <div className="flex items-center gap-3">
- <div className="p-2 rounded-lg bg-muted/10 border border-border">
- <Home className="w-3.5 h-3.5 text-muted-foreground/50" />
+ <div className="p-2 rounded-lg border border-border">
+ <Home className="w-3.5 h-3.5 text-muted-foreground" />
  </div>
  <div>
- <h1 className="text-2xl font-semibold tracking-tight">Mortgage &amp; Real Estate Finance</h1>
+ <h1 className="text-3xl font-bold tracking-tight">Mortgage &amp; Real Estate Finance</h1>
  <p className="text-sm text-muted-foreground">
  MBS structure, prepayment risk, home affordability &amp; buy vs. rent analysis
  </p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Key Metrics — Hero */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.08 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-3 rounded-md border border-border bg-card border-l-4 border-l-primary p-6"
- >
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
  {KEY_METRICS.map((m, i) => {
  const Icon = m.icon;
  return (
@@ -564,20 +553,15 @@ export default function MortgageFinancePage() {
  </Card>
  );
  })}
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.16 }}
- >
  <Tabs defaultValue="mortgage-math">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- <TabsTrigger value="mortgage-math">Mortgage Math</TabsTrigger>
- <TabsTrigger value="mbs">MBS Markets</TabsTrigger>
- <TabsTrigger value="affordability">Affordability</TabsTrigger>
- <TabsTrigger value="prepayment">Prepayment</TabsTrigger>
+ <TabsTrigger value="mortgage-math" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent">Mortgage Math</TabsTrigger>
+ <TabsTrigger value="mbs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent">MBS Markets</TabsTrigger>
+ <TabsTrigger value="affordability" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent">Affordability</TabsTrigger>
+ <TabsTrigger value="prepayment" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:shadow-none bg-transparent">Prepayment</TabsTrigger>
  </TabsList>
 
  {/* ── Tab 1: Mortgage Math ─────────────────────────────────────── */}
@@ -1088,17 +1072,11 @@ export default function MortgageFinancePage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
 
  {/* Footer note */}
- <motion.div
- initial={{ opacity: 0 }}
- animate={{ opacity: 1 }}
- transition={{ duration: 0.4, delay: 0.3 }}
- className="text-xs text-muted-foreground text-center pb-4"
- >
+ <div className="text-xs text-muted-foreground text-center pb-4">
  Educational simulation — rates, prices, and yields are illustrative. Not financial advice.
- </motion.div>
+ </div>
  </div>
  );
 }
